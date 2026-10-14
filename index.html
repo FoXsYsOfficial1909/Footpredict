@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>FootPredict — футбольная аналитика</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#121d2e;--panel2:#18263a;--text:#eef4ff;--muted:#9fb0c7;--line:#293950;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#16263c 0,#0b1220 52%);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text)}
+main{max-width:980px;margin:auto;padding:24px 16px 48px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}.brand{display:flex;align-items:center;gap:12px}.logo{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:#183d31;color:var(--green);font-size:24px}.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}.tag{font-size:12px;color:var(--green);border:1px solid #2b6247;border-radius:99px;padding:6px 10px}
+h2{font-size:19px;margin:0 0 6px}.intro{color:var(--muted);margin:0 0 20px}.card{background:rgba(18,29,46,.94);border:1px solid var(--line);border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 12px 36px #0002}
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:16px}.team{background:var(--panel2);padding:16px;border:1px solid var(--line);border-radius:16px}.team h3{margin:0 0 14px;font-size:14px;color:var(--muted);font-weight:600}.field{margin-bottom:12px}.field:last-child{margin-bottom:0}label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}input{width:100%;background:#0c1626;border:1px solid #34465e;border-radius:10px;padding:11px 12px;color:var(--text);font:inherit;min-width:0}input:focus{outline:2px solid #3b82f6;border-color:transparent}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{font-size:12px;color:var(--muted);margin:12px 0 0}
+button{border:0;border-radius:12px;padding:13px 18px;background:var(--green);color:#062214;font:700 15px system-ui;cursor:pointer;width:100%;margin-top:16px}button:hover{filter:brightness(1.05)}
+.results{display:none}.results.show{display:block}.probrow{margin:18px 0}.probhead{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.probhead strong{font-size:16px}.percent{font-weight:800;font-variant-numeric:tabular-nums}.track{height:10px;background:#26354a;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;border-radius:99px;transition:width .3s}.homefill{background:var(--green)}.drawfill{background:var(--amber)}.awayfill{background:var(--blue)}.scorebox{display:flex;justify-content:center;align-items:center;gap:22px;padding:22px 8px;margin-top:10px;background:#0c1626;border:1px solid var(--line);border-radius:16px}.scoreteam{text-align:center;max-width:42%;overflow-wrap:anywhere}.score{font-size:34px;font-weight:850;letter-spacing:2px}.scorelabel{font-size:12px;color:var(--muted);margin-top:4px}.subgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.mini{background:#0c1626;border:1px solid var(--line);padding:13px;border-radius:13px}.mini span{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}.mini strong{font-size:19px}.notice{font-size:13px;color:var(--muted);border-left:3px solid var(--amber);padding:10px 12px;background:#2a2415;border-radius:0 10px 10px 0;margin-top:16px}.footer{text-align:center;color:#8192a9;font-size:12px;padding:10px}
+@media(max-width:600px){main{padding:18px 12px 32px}.card{padding:15px;border-radius:16px}.teams{grid-template-columns:1fr}.top{align-items:flex-start}.brand h1{font-size:19px}.subgrid{grid-template-columns:1fr 1fr}.subgrid .mini:last-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div class="brand"><div class="logo">⚽</div><div><h1>FootPredict</h1><p>Футбольная аналитика</p></div></div><div class="tag">ПРОТОТИП · v0.2</div></header>
+<h2>Прогноз на матч</h2><p class="intro">Укажи команды и их средние голы. Модель оценит вероятность трёх исходов.</p>
+<section class="card"><div class="teams">
+<div class="team"><h3>ХОЗЯЕВА</h3><div class="field"><label for="homeName">Название команды</label><input id="homeName" value="Зенит" maxlength="50"></div><div class="stats"><div class="field"><label for="homeScored">Забивают дома за матч</label><input id="homeScored" type="text" inputmode="decimal" value="1,7"></div><div class="field"><label for="homeConceded">Пропускают дома</label><input id="homeConceded" type="text" inputmode="decimal" value="1,0"></div></div></div>
+<div class="team"><h3>ГОСТИ</h3><div class="field"><label for="awayName">Название команды</label><input id="awayName" value="Спартак" maxlength="50"></div><div class="stats"><div class="field"><label for="awayScored">Забивают в гостях за матч</label><input id="awayScored" type="text" inputmode="decimal" value="1,2"></div><div class="field"><label for="awayConceded">Пропускают в гостях</label><input id="awayConceded" type="text" inputmode="decimal" value="1,5"></div></div></div>
+</div><p class="hint">Вводи средние значения по сопоставимой выборке матчей. Можно использовать запятую или точку в дробных числах.</p><button type="button" id="calc">Рассчитать вероятности</button><p id="error" role="alert" style="display:none;color:#fca5a5;margin:12px 0 0"></p></section>
+<section class="card results" id="results" aria-live="polite"><h2>Вероятности исхода</h2><p class="intro" id="matchLabel">Зенит — Спартак</p>
+<div class="probrow"><div class="probhead"><strong>Победа хозяев</strong><span class="percent" id="hp">—</span></div><div class="track"><div class="fill homefill" id="hb"></div></div></div>
+<div class="probrow"><div class="probhead"><strong>Ничья</strong><span class="percent" id="dp">—</span></div><div class="track"><div class="fill drawfill" id="db"></div></div></div>
+<div class="probrow"><div class="probhead"><strong>Победа гостей</strong><span class="percent" id="ap">—</span></div><div class="track"><div class="fill awayfill" id="ab"></div></div></div>
+<div class="scorebox"><div class="scoreteam"><strong id="homeOut">Зенит</strong><div class="scorelabel">Хозяева</div></div><div class="score" id="score">1 : 1</div><div class="scoreteam"><strong id="awayOut">Спартак</strong><div class="scorelabel">Гости</div></div></div>
+<div class="subgrid"><div class="mini"><span>Ожидаемые голы хозяев</span><strong id="lh">—</strong></div><div class="mini"><span>Ожидаемые голы гостей</span><strong id="la">—</strong></div><div class="mini"><span>Сумма вероятностей</span><strong id="sum">—</strong></div></div>
+<div class="notice">Это базовая математическая оценка по введённым средним голам, а не прогноз на основе полной статистики. Модель не учитывает составы, травмы, силу соперников и текущую форму.</div></section>
+<div class="footer">FootPredict · Учебный прототип · Данные вводятся вручную</div>
+</main>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+function num(id){const raw=$(id).value.trim().replace(',','.');const v=Number(raw);if(raw===''||!Number.isFinite(v)||v<0||v>8)throw new Error('Все показатели голов должны быть числами от 0 до 8.');return v;}
+function poisson(k,l){if(l===0)return k===0?1:0;let p=Math.exp(-l);for(let i=1;i<=k;i++)p*=l/i;return p;}
+function calculate(){
+ const err=$('error');err.style.display='none';
+ try{
+ const hn=$('homeName').value.trim()||'Хозяева',an=$('awayName').value.trim()||'Гости';
+ const hs=num('homeScored'),hc=num('homeConceded'),as=num('awayScored'),ac=num('awayConceded');
+ const lh=Math.max(.05,(hs+ac)/2),la=Math.max(.05,(as+hc)/2);
+ let h=0,d=0,a=0,best=-1,bs=[0,0];
+ for(let i=0;i<=10;i++)for(let j=0;j<=10;j++){const p=poisson(i,lh)*poisson(j,la);if(i>j)h+=p;else if(i===j)d+=p;else a+=p;if(p>best){best=p;bs=[i,j];}}
+ const t=h+d+a;h/=t;d/=t;a/=t;
+ $('matchLabel').textContent=hn+' — '+an;$('homeOut').textContent=hn;$('awayOut').textContent=an;
+ $('hp').textContent=(h*100).toFixed(1)+'%';$('dp').textContent=(d*100).toFixed(1)+'%';$('ap').textContent=(a*100).toFixed(1)+'%';
+ $('hb').style.width=(h*100)+'%';$('db').style.width=(d*100)+'%';$('ab').style.width=(a*100)+'%';
+ $('score').textContent=bs[0]+' : '+bs[1];$('lh').textContent=lh.toFixed(2);$('la').textContent=la.toFixed(2);$('sum').textContent=((h+d+a)*100).toFixed(1)+'%';
+ $('results').classList.add('show');
+ }catch(e){err.textContent=e.message||'Проверь введённые данные.';err.style.display='block';}
+}
+$('calc').addEventListener('click',calculate);
+document.querySelectorAll('input').forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter')calculate();}));
+calculate();
+})();
+</script>
+</body></html>
