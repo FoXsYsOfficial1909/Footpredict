@@ -18,20 +18,20 @@ button{border:0;border-radius:12px;padding:13px 18px;background:var(--green);col
 </head>
 <body>
 <main>
-<header class="top"><div class="brand"><div class="logo">⚽</div><div><h1>FootPredict</h1><p>Футбольная аналитика</p></div></div><div class="tag">ПРОТОТИП · v0.2</div></header>
-<h2>Прогноз на матч</h2><p class="intro">Укажи команды и их средние голы. Модель оценит вероятность трёх исходов.</p>
+<header class="top"><div class="brand"><div class="logo">⚽</div><div><h1>FootPredict</h1><p>Футбольная аналитика</p></div></div><div class="tag">МОДЕЛЬ · v0.3</div></header>
+<h2>Прогноз на матч</h2><p class="intro">Укажи средние голы команд и средние показатели лиги. Модель Пуассона оценит вероятность трёх исходов по ожидаемым голам.</p>
 <section class="card"><div class="teams">
 <div class="team"><h3>ХОЗЯЕВА</h3><div class="field"><label for="homeName">Название команды</label><input id="homeName" value="Зенит" maxlength="50"></div><div class="stats"><div class="field"><label for="homeScored">Забивают дома за матч</label><input id="homeScored" type="text" inputmode="decimal" value="1,7"></div><div class="field"><label for="homeConceded">Пропускают дома</label><input id="homeConceded" type="text" inputmode="decimal" value="1,0"></div></div></div>
 <div class="team"><h3>ГОСТИ</h3><div class="field"><label for="awayName">Название команды</label><input id="awayName" value="Спартак" maxlength="50"></div><div class="stats"><div class="field"><label for="awayScored">Забивают в гостях за матч</label><input id="awayScored" type="text" inputmode="decimal" value="1,2"></div><div class="field"><label for="awayConceded">Пропускают в гостях</label><input id="awayConceded" type="text" inputmode="decimal" value="1,5"></div></div></div>
-</div><p class="hint">Вводи средние значения по сопоставимой выборке матчей. Можно использовать запятую или точку в дробных числах.</p><button type="button" id="calc">Рассчитать вероятности</button><p id="error" role="alert" style="display:none;color:#fca5a5;margin:12px 0 0"></p></section>
+</div><div class="team" style="margin-top:14px"><h3>СРЕДНИЕ ПО ЛИГЕ</h3><div class="stats"><div class="field"><label for="leagueHome">Голы хозяев за матч в лиге</label><input id="leagueHome" type="text" inputmode="decimal" value="1,5"></div><div class="field"><label for="leagueAway">Голы гостей за матч в лиге</label><input id="leagueAway" type="text" inputmode="decimal" value="1,2"></div></div></div><p class="hint">Используй средние значения за один и тот же турнир и период. Можно вводить запятую или точку. Значения по лиге нужны для сравнения силы атаки и обороны.</p><button type="button" id="calc">Рассчитать вероятности</button><p id="error" role="alert" style="display:none;color:#fca5a5;margin:12px 0 0"></p></section>
 <section class="card results" id="results" aria-live="polite"><h2>Вероятности исхода</h2><p class="intro" id="matchLabel">Зенит — Спартак</p>
 <div class="probrow"><div class="probhead"><strong>Победа хозяев</strong><span class="percent" id="hp">—</span></div><div class="track"><div class="fill homefill" id="hb"></div></div></div>
 <div class="probrow"><div class="probhead"><strong>Ничья</strong><span class="percent" id="dp">—</span></div><div class="track"><div class="fill drawfill" id="db"></div></div></div>
 <div class="probrow"><div class="probhead"><strong>Победа гостей</strong><span class="percent" id="ap">—</span></div><div class="track"><div class="fill awayfill" id="ab"></div></div></div>
 <div class="scorebox"><div class="scoreteam"><strong id="homeOut">Зенит</strong><div class="scorelabel">Хозяева</div></div><div class="score" id="score">1 : 1</div><div class="scoreteam"><strong id="awayOut">Спартак</strong><div class="scorelabel">Гости</div></div></div>
 <div class="subgrid"><div class="mini"><span>Ожидаемые голы хозяев</span><strong id="lh">—</strong></div><div class="mini"><span>Ожидаемые голы гостей</span><strong id="la">—</strong></div><div class="mini"><span>Сумма вероятностей</span><strong id="sum">—</strong></div></div>
-<div class="notice">Это базовая математическая оценка по введённым средним голам, а не прогноз на основе полной статистики. Модель не учитывает составы, травмы, силу соперников и текущую форму.</div></section>
-<div class="footer">FootPredict · Учебный прототип · Данные вводятся вручную</div>
+<div class="notice">Модель Пуассона: ожидаемые голы учитывают результативность атаки, пропускаемость соперника и средние показатели лиги. Это ориентировочная оценка по введённым данным. Не учитываются составы, травмы, сила уже встречавшихся соперников и свежая форма; точность не проверена на исторической выборке.</div></section>
+<div class="footer">FootPredict · Модель Пуассона · Данные вводятся вручную · Версия 0.3</div>
 </main>
 <script>
 (function(){
@@ -43,7 +43,9 @@ function calculate(){
  try{
  const hn=$('homeName').value.trim()||'Хозяева',an=$('awayName').value.trim()||'Гости';
  const hs=num('homeScored'),hc=num('homeConceded'),as=num('awayScored'),ac=num('awayConceded');
- const lh=Math.max(.05,(hs+ac)/2),la=Math.max(.05,(as+hc)/2);
+ const leagueH=num('leagueHome'),leagueA=num('leagueAway');
+ if(leagueH===0||leagueA===0)throw new Error('Средние голы по лиге должны быть больше нуля.');
+ const lh=Math.max(.05,(hs*ac)/leagueH),la=Math.max(.05,(as*hc)/leagueA);
  let h=0,d=0,a=0,best=-1,bs=[0,0];
  for(let i=0;i<=10;i++)for(let j=0;j<=10;j++){const p=poisson(i,lh)*poisson(j,la);if(i>j)h+=p;else if(i===j)d+=p;else a+=p;if(p>best){best=p;bs=[i,j];}}
  const t=h+d+a;h/=t;d/=t;a/=t;
