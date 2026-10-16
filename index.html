@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 0.6 — автоматические прогнозы</title>
+<title>FootPredict 0.7 — прогнозы и проверка модели</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -33,15 +33,19 @@ button:disabled,select:disabled{opacity:.48;cursor:not-allowed}
 .bar{height:10px;background:#293a50;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;transition:width .3s}
 .score{background:var(--field);border:1px solid var(--line);padding:20px;border-radius:14px;text-align:center;font-size:24px;font-weight:750}
 .note{background:#272314;border-left:3px solid var(--yellow);padding:12px;border-radius:0 10px 10px 0;font-size:13px;color:#d5cbab;margin-top:12px}
+.backtestMetrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.metric{background:var(--field);border:1px solid var(--line);border-radius:12px;padding:13px}
+.metric strong{display:block;font-size:22px}
+.metric small{color:var(--muted)}
 .info{border:1px solid #35516d;background:#10253a;padding:13px;border-radius:12px;margin:12px 0;white-space:pre-line;font-size:13px}
 .credit{text-align:center;font-size:12px;color:var(--muted)}
 a{color:var(--blue)}
-@media(max-width:600px){.grid,.actions{grid-template-columns:1fr}.card{padding:15px}.item{align-items:flex-start}h1{font-size:21px}}
+@media(max-width:600px){.grid,.actions,.backtestMetrics{grid-template-columns:1fr}.card{padding:15px}.item{align-items:flex-start}h1{font-size:21px}}
 </style>
 </head>
 <body>
 <main>
-<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v0.6</span></header>
+<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v0.7</span></header>
 <section class="card">
 <h2>🌍 Выбери матч</h2>
 <p class="muted">football-data.org — актуальные соревнования. API-Football остаётся доступным для ручного анализа исторических сезонов.</p>
@@ -59,6 +63,21 @@ a{color:var(--blue)}
 <div id="status" class="status" role="status" aria-live="polite">Сначала загрузи лиги.</div>
 <div id="content" class="list"></div>
 <p class="muted small">Источник: <a href="https://www.football-data.org/" target="_blank" rel="noopener noreferrer">football-data.org</a>. Новые запросы расходуют квоту; повторные ответы могут приходить из Cloudflare KV-кэша.</p>
+</section>
+<section class="card" id="backtesting">
+<h2>🧪 Проверка модели на истории</h2>
+<p class="muted small">Проверяем все доступные завершённые матчи выбранного сезона по порядку. Для каждого прогноза используются <strong>только матчи, начавшиеся раньше</strong>; результат проверяемой встречи не включается в расчёт. Это тест на исторической выборке, а не гарантия будущей доходности.</p>
+<button type="button" id="runBacktest" style="width:100%" disabled>Проверить точность на сыгранных матчах</button>
+<p class="muted small" id="backtestStatus" aria-live="polite">Выбери соревнование football-data.org и сезон.</p>
+<div id="backtestResult" class="hidden">
+<div class="backtestMetrics">
+<div class="metric"><small>Проверено матчей</small><strong id="btMatches">—</strong></div>
+<div class="metric"><small>Brier Score, ниже лучше</small><strong id="btBrier">—</strong></div>
+<div class="metric"><small>Log Loss, ниже лучше</small><strong id="btLogLoss">—</strong></div>
+</div>
+<div id="backtestDetails" class="info"></div>
+<p class="muted small">Сравниваем с простой базовой моделью: частоты П1 / X / П2 в предыдущих играх лиги с небольшим сглаживанием. Настройки алгоритма при этой проверке не подбираются.</p>
+</div>
 </section>
 <section class="card" id="calculator">
  <h2>📊 Прогноз П1 / X / П2</h2>
@@ -99,7 +118,7 @@ a{color:var(--blue)}
  <p id="expected" class="muted small"></p>
  <div class="note">Экспериментальная модель Пуассона. Она не учитывает составы, травмы и изменение силы команд. Сглаживание помогает при маленькой выборке, но не доказывает точность. Не является рекомендацией к ставкам.</div>
 </section>
-<p class="credit">FootPredict 0.6 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 0.7 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
 </main>
 <script>
 (() => {
@@ -139,13 +158,19 @@ function clearSeasonData() {
   $('results').classList.remove('show');
   $('sampleInfo').classList.add('hidden');
   $('calcError').textContent = '';
+  statIds.forEach(id => $(id).value = '');
+  $('homeName').value = 'Хозяева';
+  $('awayName').value = 'Гости';
   currentAuto = false;
+  $('backtestResult').classList.add('hidden');
+  $('backtestStatus').textContent = 'Выбери лигу и сезон, затем нажми кнопку проверки.';
 }
 function controls() {
   const ready = Boolean($('competition').value && $('season').value);
   $('loadCompetitions').disabled = busy;
   $('loadTeams').disabled = busy || !ready;
   $('loadMatches').disabled = busy || !ready;
+  $('runBacktest').disabled = busy || !ready || provider() !== 'fd';
   $('provider').disabled = busy;
   $('competition').disabled = busy || !leagues.length;
   $('season').disabled = busy || !ready;
@@ -186,7 +211,7 @@ async function run(task) {
   busy = true;
   controls();
   try { await task(); }
-  catch (error) { setStatus(error.message || 'Не удалось загрузить данные.', true); }
+  catch (error) { setStatus(error.message || 'Не удалось загрузить данные.', true); $('backtestStatus').textContent = 'Ошибка: ' + (error.message || 'Не удалось загрузить данные.'); }
   finally { busy = false; controls(); }
 }
 function addRow(title, subtitle, action) {
@@ -403,34 +428,36 @@ function poisson(k, lambda) {
   for (let n = 1; n <= k; n++) result *= lambda / n;
   return result;
 }
+function modelProbabilities(stats) {
+  const {homeScored:hs,homeConceded:hc,awayScored:as,
+    awayConceded:ac,leagueHome:lh,leagueAway:la} = stats;
+  if (!lh || !la) throw new Error('Средние голы лиги должны быть больше нуля.');
+  const lambdaH = Math.max(0.05, Math.min(5, hs * ac / lh));
+  const lambdaA = Math.max(0.05, Math.min(5, as * hc / la));
+  let p1 = 0, px = 0, p2 = 0, maxP = -1, best = '';
+  for (let i = 0; i <= 20; i++) for (let j = 0; j <= 20; j++) {
+    const p = poisson(i, lambdaH) * poisson(j, lambdaA);
+    if (i > j) p1 += p;
+    else if (i === j) px += p;
+    else p2 += p;
+    if (p > maxP) { maxP = p; best = i + ' : ' + j; }
+  }
+  const sum = p1 + px + p2;
+  return {probs:[p1/sum,px/sum,p2/sum],lambdaH,lambdaA,best};
+}
 function computeProbabilities() {
   $('calcError').textContent = '';
   try {
-    const hs = numeric('homeScored');
-    const hc = numeric('homeConceded');
-    const as = numeric('awayScored');
-    const ac = numeric('awayConceded');
-    const lh = numeric('leagueHome');
-    const la = numeric('leagueAway');
-    if (!lh || !la) throw new Error('Средние голы лиги должны быть больше нуля.');
-    const lambdaH = Math.max(0.05, Math.min(5, hs * ac / lh));
-    const lambdaA = Math.max(0.05, Math.min(5, as * hc / la));
-    let p1 = 0, px = 0, p2 = 0, maxP = -1, best = '';
-    for (let i = 0; i <= 20; i++) for (let j = 0; j <= 20; j++) {
-      const p = poisson(i, lambdaH) * poisson(j, lambdaA);
-      if (i > j) p1 += p;
-      else if (i === j) px += p;
-      else p2 += p;
-      if (p > maxP) {maxP = p; best = i + ' : ' + j;}
-    }
-    const sum = p1 + px + p2;
-    p1 /= sum; px /= sum; p2 /= sum;
-    [['p1','b1',p1],['px','bx',px],['p2','b2',p2]].forEach(([label,bar,p]) => {
+    const stats = Object.fromEntries(statIds.map(id => [id,numeric(id)]));
+    const {probs,lambdaH,lambdaA,best} = modelProbabilities(stats);
+    [['p1','b1',probs[0]],['px','bx',probs[1]],['p2','b2',probs[2]]].forEach(([label,bar,p]) => {
       $(label).textContent = (100 * p).toFixed(1) + '%';
       $(bar).style.width = (100 * p) + '%';
     });
     $('matchName').textContent = ($('homeName').value.trim() || 'Хозяева') + ' — ' + ($('awayName').value.trim() || 'Гости');
-    $('modelSource').textContent = currentAuto ? 'Автопрогноз · завершённые игры сезона + статистическое сглаживание' : 'Ручной ввод статистики';
+    $('modelSource').textContent = currentAuto
+      ? 'Автопрогноз · завершённые игры сезона + статистическое сглаживание'
+      : 'Ручной ввод / изменение статистики';
     $('score').textContent = 'Наиболее вероятный счёт: ' + best;
     $('expected').textContent = 'Ожидаемые голы: ' + lambdaH.toFixed(2) + ' — ' + lambdaA.toFixed(2);
     $('results').classList.add('show');
@@ -439,7 +466,84 @@ function computeProbabilities() {
     $('calcError').textContent = error.message;
   }
 }
-$('calc').addEventListener('click', () => {currentAuto = false; computeProbabilities();});
+
+// Проверка качества без будущих данных и без дополнительных запросов при уже загруженном сезоне.
+function backtest(matches) {
+  const finished = matches.filter(g =>
+    g.status === 'FINISHED' &&
+    Number.isFinite(Date.parse(g.utcDate)) &&
+    g.homeTeam?.id && g.awayTeam?.id &&
+    Number.isInteger(g.score?.fullTime?.home) &&
+    Number.isInteger(g.score?.fullTime?.away)
+  ).sort((a,b) => Date.parse(a.utcDate)-Date.parse(b.utcDate));
+  let tested = 0, correct = 0, brier = 0, logLoss = 0;
+  let baseBrier = 0, baseLogLoss = 0;
+  let skipped = 0;
+  for (const game of finished) {
+    let stats;
+    try { stats = estimateStats(matches, game); }
+    catch { skipped++; continue; }
+    let probabilities;
+    try { probabilities = modelProbabilities(stats).probs; }
+    catch { skipped++; continue; }
+    const h = game.score.fullTime.home;
+    const a = game.score.fullTime.away;
+    const actual = h > a ? 0 : h === a ? 1 : 2;
+    // Базовая модель использует только сыгранные ранее матчи, со сглаживанием Лапласа.
+    const prior = finishedBefore(matches, game);
+    const counts = [1,1,1];
+    for (const past of prior) {
+      const ph=past.score.fullTime.home, pa=past.score.fullTime.away;
+      counts[ph>pa ? 0 : ph===pa ? 1 : 2]++;
+    }
+    const base = counts.map(x => x/(prior.length+3));
+    for (let outcome=0; outcome<3; outcome++) {
+      const truth = actual === outcome ? 1 : 0;
+      brier += (probabilities[outcome]-truth)**2;
+      baseBrier += (base[outcome]-truth)**2;
+    }
+    logLoss -= Math.log(Math.max(probabilities[actual],1e-12));
+    baseLogLoss -= Math.log(Math.max(base[actual],1e-12));
+    if (probabilities.indexOf(Math.max(...probabilities)) === actual) correct++;
+    tested++;
+  }
+  return {tested,skipped,finished:finished.length,
+    brier:tested?brier/tested:null,
+    baseBrier:tested?baseBrier/tested:null,
+    logLoss:tested?logLoss/tested:null,
+    baseLogLoss:tested?baseLogLoss/tested:null,
+    accuracy:tested?correct/tested:null};
+}
+
+$('runBacktest').addEventListener('click', () => run(async () => {
+  if (provider() !== 'fd') throw new Error('Проверка истории доступна для football-data.org.');
+  $('backtestResult').classList.add('hidden');
+  $('backtestStatus').textContent = 'Проверяем завершённые матчи сезона…';
+  const all = await loadSeasonFixtures();
+  const m = backtest(all);
+  if (!m.tested) {
+    $('backtestStatus').textContent =
+      'Недостаточно исторических матчей для тестирования. Дождись следующих туров.';
+    return;
+  }
+  const fmt = n => n.toFixed(3);
+  $('btMatches').textContent = m.tested + ' / ' + m.finished;
+  $('btBrier').textContent = fmt(m.brier);
+  $('btLogLoss').textContent = fmt(m.logLoss);
+  $('backtestDetails').textContent =
+    'Базовая модель (частоты результатов лиги до каждого матча):\n' +
+    'Brier: ' + fmt(m.baseBrier) + ' · Log Loss: ' + fmt(m.baseLogLoss) + '\n' +
+    'Доля правильных наиболее вероятных исходов: ' +
+      (100*m.accuracy).toFixed(1) + '%\n' +
+    'Пропущено из-за малого объёма данных: ' + m.skipped + '.\n' +
+    (m.tested < 100
+       ? '⚠ Малая тестовая выборка: выводы предварительные.'
+       : 'Проверка историческая; качество будущих прогнозов не гарантировано.') +
+    '\nМеньший Brier / Log Loss лучше. Сравнивай с базовой моделью, а не только с нулём.';
+  $('backtestResult').classList.remove('hidden');
+  $('backtestStatus').textContent = 'Историческая проверка завершена без дополнительных запросов к API.';
+}));
+$('calc').addEventListener('click', computeProbabilities);
 statIds.concat(['homeName','awayName']).forEach(id => {
   $(id).addEventListener('input', () => {
     if (currentAuto) {
