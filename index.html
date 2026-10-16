@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -6,65 +7,754 @@
 <meta name="theme-color" content="#101827">
 <title>FootPredict 0.5</title>
 <style>
-:root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b3048,#0b1220 55%);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:940px;margin:auto;padding:22px 15px 50px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}h1{margin:0;font-size:25px}h2{margin:0 0 10px;font-size:20px}h3{margin:0 0 10px;font-size:15px;color:var(--muted)}p{margin:8px 0 14px}.muted{color:var(--muted)}.small{font-size:13px}.version{color:var(--green);border:1px solid #327252;border-radius:99px;padding:5px 9px;font-size:12px;white-space:nowrap}.card{background:#132033;border:1px solid var(--line);padding:20px;border-radius:20px;margin:0 0 17px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{margin:0 0 12px}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}select,input{background:var(--field);border:1px solid #435771;color:var(--text);border-radius:11px;padding:12px;width:100%;font:inherit}button{background:var(--green);color:#082819;border:0;border-radius:11px;padding:13px 15px;font:700 14px system-ui;cursor:pointer}button:disabled,select:disabled{opacity:.48;cursor:not-allowed}.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:5px 0 12px}.actions button{width:100%}.status{margin:12px 0 6px;color:var(--muted);font-size:14px}.danger{color:#fca5a5}.list{display:grid;gap:9px;margin-top:12px}.item{padding:12px;background:var(--field);border:1px solid var(--line);border-radius:12px;display:flex;gap:12px;align-items:center;justify-content:space-between}.item span{font-size:12px;color:var(--muted)}.item button{flex-shrink:0;padding:9px}.hidden{display:none!important}.team{background:#1a2a40;border:1px solid var(--line);border-radius:15px;padding:14px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.results{display:none}.results.show{display:block}.prob{margin:16px 0}.probhead{display:flex;justify-content:space-between;gap:12px;margin-bottom:7px}.bar{height:10px;background:#293a50;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;transition:width .3s}.score{background:var(--field);border:1px solid var(--line);padding:20px;border-radius:14px;text-align:center;font-size:24px;font-weight:750}.note{background:#272314;border-left:3px solid var(--yellow);padding:12px;border-radius:0 10px 10px 0;font-size:13px;color:#d5cbab}.credit{text-align:center;font-size:12px;color:var(--muted)}@media(max-width:600px){.grid,.actions{grid-template-columns:1fr}.card{padding:15px}.item{align-items:flex-start}h1{font-size:21px}}
+:root{
+ color-scheme:dark;--bg:#0b1220;--panel:#132033;
+ --field:#0c1728;--line:#314258;--text:#f0f6ff;
+ --muted:#a6b7ce;--green:#4ade80;
+ --blue:#60a5fa;--yellow:#fbbf24
+}
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:radial-gradient(ellipse at top,#1b3048,#0b1220 55%);
+ color:var(--text);
+ font:16px/1.45 system-ui,-apple-system,Segoe UI,sans-serif
+}
+main{max-width:940px;margin:auto;padding:22px 15px 50px}
+header{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;margin-bottom:22px
+}
+h1{margin:0;font-size:25px}
+h2{margin:0 0 10px;font-size:20px}
+h3{margin:0 0 10px;font-size:15px;color:var(--muted)}
+p{margin:8px 0 14px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.version{
+ color:var(--green);border:1px solid #327252;
+ border-radius:99px;padding:5px 9px;
+ font-size:12px;white-space:nowrap
+}
+.card{
+ background:#132033;border:1px solid var(--line);
+ padding:20px;border-radius:20px;margin:0 0 17px
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:14px
+}
+.field{margin:0 0 12px}
+.field label{
+ display:block;font-size:13px;
+ color:var(--muted);margin-bottom:6px
+}
+select,input{
+ background:var(--field);
+ border:1px solid #435771;color:var(--text);
+ border-radius:11px;padding:12px;width:100%;font:inherit
+}
+button{
+ background:var(--green);color:#082819;
+ border:0;border-radius:11px;
+ padding:13px 15px;font:700 14px system-ui;cursor:pointer
+}
+button:disabled,select:disabled{opacity:.48;cursor:not-allowed}
+.actions{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:10px;margin:5px 0 12px
+}
+.actions button{width:100%}
+.status{
+ margin:12px 0 6px;
+ color:var(--muted);font-size:14px
+}
+.danger{color:#fca5a5}
+.list{display:grid;gap:9px;margin-top:12px}
+.item{
+ padding:12px;background:var(--field);
+ border:1px solid var(--line);border-radius:12px;
+ display:flex;gap:12px;align-items:center;
+ justify-content:space-between
+}
+.item span{font-size:12px;color:var(--muted)}
+.item button{flex-shrink:0;padding:9px}
+.hidden{display:none!important}
+.team{
+ background:#1a2a40;border:1px solid var(--line);
+ border-radius:15px;padding:14px
+}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.results{display:none}
+.results.show{display:block}
+.prob{margin:16px 0}
+.probhead{
+ display:flex;justify-content:space-between;
+ gap:12px;margin-bottom:7px
+}
+.bar{
+ height:10px;background:#293a50;
+ border-radius:99px;overflow:hidden
+}
+.fill{height:100%;width:0;transition:width .3s}
+.score{
+ background:var(--field);border:1px solid var(--line);
+ padding:20px;border-radius:14px;
+ text-align:center;font-size:24px;font-weight:750
+}
+.note{
+ background:#272314;border-left:3px solid var(--yellow);
+ padding:12px;border-radius:0 10px 10px 0;
+ font-size:13px;color:#d5cbab
+}
+.credit{text-align:center;font-size:12px;color:var(--muted)}
+@media(max-width:600px){
+ .grid,.actions{grid-template-columns:1fr}
+ .card{padding:15px}
+ .item{align-items:flex-start}
+ h1{font-size:21px}
+}
 </style>
 </head>
-<body><main>
-<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика и реальные матчи</div></div><span class="version">v0.5</span></header>
+<body>
+<main>
+
+<header>
+ <div>
+  <h1>⚽ FootPredict</h1>
+  <div class="muted small">Футбольная аналитика и реальные матчи</div>
+ </div>
+ <span class="version">v0.5</span>
+</header>
+
 <section class="card">
-<h2>🌍 Реальные данные</h2>
-<p class="muted">Выбери источник и загрузи доступные соревнования. Источник football-data.org уже поддерживает актуальные сезоны. API-Football сохранён для исторических данных.</p>
-<div class="grid">
-<div class="field"><label for="provider">Источник</label><select id="provider"><option value="fd">football-data.org (рекомендуем)</option><option value="old">API-Football</option></select></div>
-<div class="field" id="countryField"><label for="country">Страна для API-Football</label><input id="country" value="England" placeholder="England, Spain, Kazakhstan"></div>
-<div class="field"><label for="competition">Соревнование</label><select id="competition" disabled><option value="">Сначала загрузи лиги</option></select></div>
-<div class="field"><label for="season">Сезон (год начала)</label><select id="season" disabled><option value="">Выбери соревнование</option></select></div>
-</div>
-<div class="actions"><button id="loadCompetitions">Загрузить лиги</button><button id="loadTeams" disabled>Показать команды</button><button id="loadMatches" disabled>Показать матчи</button></div>
-<div id="status" class="status" role="status" aria-live="polite">Готово к загрузке.</div>
-<div id="content" class="list"></div>
-<p class="muted small">Данные football-data.org предоставляются <a href="https://www.football-data.org/" rel="noopener noreferrer" target="_blank" style="color:var(--blue)">football-data.org</a>. Покрытие и доступность отдельных сезонов зависят от тарифа. Каждый новый запрос может расходовать лимит API.</p>
+ <h2>🌍 Реальные данные</h2>
+ <p class="muted">
+  Выбери источник и загрузи доступные соревнования.
+  Источник football-data.org уже поддерживает актуальные сезоны.
+  API-Football сохранён для исторических данных.
+ </p>
+
+ <div class="grid">
+  <div class="field">
+   <label for="provider">Источник</label>
+   <select id="provider">
+    <option value="fd">football-data.org (рекомендуем)</option>
+    <option value="old">API-Football</option>
+   </select>
+  </div>
+
+  <div class="field" id="countryField">
+   <label for="country">Страна для API-Football</label>
+   <input id="country" value="England"
+    placeholder="England, Spain, Kazakhstan">
+  </div>
+
+  <div class="field">
+   <label for="competition">Соревнование</label>
+   <select id="competition" disabled>
+    <option value="">Сначала загрузи лиги</option>
+   </select>
+  </div>
+
+  <div class="field">
+   <label for="season">Сезон (год начала)</label>
+   <select id="season" disabled>
+    <option value="">Выбери соревнование</option>
+   </select>
+  </div>
+ </div>
+
+ <div class="actions">
+  <button id="loadCompetitions">Загрузить лиги</button>
+  <button id="loadTeams" disabled>Показать команды</button>
+  <button id="loadMatches" disabled>Показать матчи</button>
+ </div>
+
+ <div id="status" class="status" role="status" aria-live="polite">
+  Готово к загрузке.
+ </div>
+
+ <div id="content" class="list"></div>
+
+ <p class="muted small">
+  Данные football-data.org предоставляются
+  <a href="https://www.football-data.org/"
+   rel="noopener noreferrer" target="_blank"
+   style="color:var(--blue)">football-data.org</a>.
+  Покрытие и доступность отдельных сезонов зависят от тарифа.
+  Каждый новый запрос может расходовать лимит API.
+ </p>
 </section>
+
 <section class="card" id="calculator">
-<h2>📊 Вероятности исхода</h2>
-<p class="muted small">Названия команд подставляются при выборе матча. Голы ниже пока вводятся вручную — приложение не выдаёт примерные показатели за фактические.</p>
-<div class="grid">
-<div class="team"><h3>Хозяева</h3><div class="field"><label for="homeName">Команда</label><input id="homeName" value="Хозяева"></div><div class="metrics"><div class="field"><label for="homeScored">Забивают дома</label><input id="homeScored" inputmode="decimal" placeholder="1,7"></div><div class="field"><label for="homeConceded">Пропускают дома</label><input id="homeConceded" inputmode="decimal" placeholder="1,0"></div></div></div>
-<div class="team"><h3>Гости</h3><div class="field"><label for="awayName">Команда</label><input id="awayName" value="Гости"></div><div class="metrics"><div class="field"><label for="awayScored">Забивают в гостях</label><input id="awayScored" inputmode="decimal" placeholder="1,2"></div><div class="field"><label for="awayConceded">Пропускают в гостях</label><input id="awayConceded" inputmode="decimal" placeholder="1,5"></div></div></div>
-</div>
-<div class="team" style="margin-top:12px"><h3>Средние голы по лиге</h3><div class="grid"><div class="field"><label for="leagueHome">Голы хозяев</label><input id="leagueHome" inputmode="decimal" placeholder="1,5"></div><div class="field"><label for="leagueAway">Голы гостей</label><input id="leagueAway" inputmode="decimal" placeholder="1,2"></div></div></div>
-<button id="calc" style="width:100%;margin-top:14px">Рассчитать прогноз</button><p id="calcError" class="danger small" role="alert"></p>
+ <h2>📊 Вероятности исхода</h2>
+ <p class="muted small">
+  Названия команд подставляются при выборе матча.
+  Голы ниже пока вводятся вручную — приложение не выдаёт
+  примерные показатели за фактические.
+ </p>
+
+ <div class="grid">
+  <div class="team">
+   <h3>Хозяева</h3>
+   <div class="field">
+    <label for="homeName">Команда</label>
+    <input id="homeName" value="Хозяева">
+   </div>
+   <div class="metrics">
+    <div class="field">
+     <label for="homeScored">Забивают дома</label>
+     <input id="homeScored" inputmode="decimal" placeholder="1,7">
+    </div>
+    <div class="field">
+     <label for="homeConceded">Пропускают дома</label>
+     <input id="homeConceded" inputmode="decimal" placeholder="1,0">
+    </div>
+   </div>
+  </div>
+
+  <div class="team">
+   <h3>Гости</h3>
+   <div class="field">
+    <label for="awayName">Команда</label>
+    <input id="awayName" value="Гости">
+   </div>
+   <div class="metrics">
+    <div class="field">
+     <label for="awayScored">Забивают в гостях</label>
+     <input id="awayScored" inputmode="decimal" placeholder="1,2">
+    </div>
+    <div class="field">
+     <label for="awayConceded">Пропускают в гостях</label>
+     <input id="awayConceded" inputmode="decimal" placeholder="1,5">
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="team" style="margin-top:12px">
+  <h3>Средние голы по лиге</h3>
+  <div class="grid">
+   <div class="field">
+    <label for="leagueHome">Голы хозяев</label>
+    <input id="leagueHome" inputmode="decimal" placeholder="1,5">
+   </div>
+   <div class="field">
+    <label for="leagueAway">Голы гостей</label>
+    <input id="leagueAway" inputmode="decimal" placeholder="1,2">
+   </div>
+  </div>
+ </div>
+
+ <button id="calc" style="width:100%;margin-top:14px">
+  Рассчитать прогноз
+ </button>
+ <p id="calcError" class="danger small" role="alert"></p>
 </section>
-<section id="results" class="card results"><h2 id="matchName">Матч</h2><div class="prob"><div class="probhead"><span>П1 · Победа хозяев</span><strong id="p1">—</strong></div><div class="bar"><div id="b1" class="fill" style="background:var(--green)"></div></div></div><div class="prob"><div class="probhead"><span>X · Ничья</span><strong id="px">—</strong></div><div class="bar"><div id="bx" class="fill" style="background:var(--yellow)"></div></div></div><div class="prob"><div class="probhead"><span>П2 · Победа гостей</span><strong id="p2">—</strong></div><div class="bar"><div id="b2" class="fill" style="background:var(--blue)"></div></div></div><div class="score" id="score">—</div><p id="expected" class="muted small"></p><div class="note">Модель Пуассона использует только введённые средние голы. Её точность пока не проверена на исторических матчах. Это не рекомендация делать ставки.</div></section>
-<p class="credit">FootPredict 0.5 · Источники: football-data.org и API-Football</p>
+
+<section id="results" class="card results">
+ <h2 id="matchName">Матч</h2>
+ <div class="prob">
+  <div class="probhead">
+   <span>П1 · Победа хозяев</span><strong id="p1">—</strong>
+  </div>
+  <div class="bar">
+   <div id="b1" class="fill" style="background:var(--green)"></div>
+  </div>
+ </div>
+
+ <div class="prob">
+  <div class="probhead">
+   <span>X · Ничья</span><strong id="px">—</strong>
+  </div>
+  <div class="bar">
+   <div id="bx" class="fill" style="background:var(--yellow)"></div>
+  </div>
+ </div>
+
+ <div class="prob">
+  <div class="probhead">
+   <span>П2 · Победа гостей</span><strong id="p2">—</strong>
+  </div>
+  <div class="bar">
+   <div id="b2" class="fill" style="background:var(--blue)"></div>
+  </div>
+ </div>
+
+ <div class="score" id="score">—</div>
+ <p id="expected" class="muted small"></p>
+ <div class="note">
+  Модель Пуассона использует только введённые средние голы.
+  Её точность пока не проверена на исторических матчах.
+  Это не рекомендация делать ставки.
+ </div>
+</section>
+
+<p class="credit">
+ FootPredict 0.5 · Источники: football-data.org и API-Football
+</p>
+
 </main>
 <script>
 (() => {
 'use strict';
-const API='https://footpredict-api.wzjp5747md.workers.dev';
-const $=id=>document.getElementById(id);
-let leagues=[], busy=false;
-const statIds=['homeScored','homeConceded','awayScored','awayConceded','leagueHome','leagueAway'];
-function status(s,error=false){$('status').textContent=s;$('status').classList.toggle('danger',error)}
-function opt(sel,value,text){const o=document.createElement('option');o.value=String(value);o.textContent=String(text);sel.append(o)}
-function clear(sel,text){sel.replaceChildren();opt(sel,'',text)}
-function reset(){leagues=[];clear($('competition'),'Сначала загрузи лиги');clear($('season'),'Выбери соревнование');$('competition').disabled=true;$('season').disabled=true;$('content').replaceChildren();controls()}
-function controls(){const selected=!!$('competition').value&&!!$('season').value;$('loadCompetitions').disabled=busy;$('loadTeams').disabled=busy||!selected;$('loadMatches').disabled=busy||!selected}
-function provider(){return $('provider').value}
-$('provider').addEventListener('change',()=>{$('countryField').classList.toggle('hidden',provider()==='fd');reset();status('Источник изменён. Нажми «Загрузить лиги».')});
+
+const API = 'https://footpredict-api.wzjp5747md.workers.dev';
+const $ = id => document.getElementById(id);
+let leagues = [], busy = false;
+
+const statIds = [
+ 'homeScored', 'homeConceded', 'awayScored',
+ 'awayConceded', 'leagueHome', 'leagueAway'
+];
+
+function status(s, error = false) {
+ $('status').textContent = s;
+ $('status').classList.toggle('danger', error);
+}
+
+function opt(sel, value, text) {
+ const o = document.createElement('option');
+ o.value = String(value);
+ o.textContent = String(text);
+ sel.append(o);
+}
+
+function clear(sel, text) {
+ sel.replaceChildren();
+ opt(sel, '', text);
+}
+
+function reset() {
+ leagues = [];
+ clear($('competition'), 'Сначала загрузи лиги');
+ clear($('season'), 'Выбери соревнование');
+ $('competition').disabled = true;
+ $('season').disabled = true;
+ $('content').replaceChildren();
+ controls();
+}
+
+function controls() {
+ const selected = !!$('competition').value && !!$('season').value;
+ $('loadCompetitions').disabled = busy;
+ $('loadTeams').disabled = busy || !selected;
+ $('loadMatches').disabled = busy || !selected;
+}
+
+function provider() {
+ return $('provider').value;
+}
+
+$('provider').addEventListener('change', () => {
+ $('countryField').classList.toggle('hidden', provider() === 'fd');
+ reset();
+ status('Источник изменён. Нажми «Загрузить лиги».');
+});
+
 $('countryField').classList.add('hidden');
-async function get(path,params={}){const q=new URLSearchParams(params).toString();const response=await fetch(API+path+(q?'?'+q:''),{cache:'no-store'});let data;try{data=await response.json()}catch{throw Error('Сервер ответил не в формате JSON')}if(!response.ok||data.error||data.errors&&Object.keys(data.errors).length){if(response.status===429||data.error==='RATE_LIMIT')throw Error('Источник временно ограничил запросы. Не обновляй страницу многократно.');throw Error(data.message||data.error||'Сервис не предоставил данные для этого запроса')}return data}
-async function run(fn){if(busy)return;busy=true;controls();try{await fn()}catch(e){status(e.message||'Ошибка соединения',true)}finally{busy=false;controls()}}
-$('loadCompetitions').addEventListener('click',()=>run(async()=>{reset();status('Загружаю соревнования...');if(provider()==='fd'){const data=await get('/fd/competitions');leagues=(data.competitions||[]).map(x=>({id:x.code,label:x.name,year:Number((x.currentSeason?.startDate||'').slice(0,4)),country:x.area?.name||''})).filter(x=>x.id&&x.year).sort((a,b)=>a.label.localeCompare(b.label));}else{const country=$('country').value.trim();if(!/^[A-Za-z][A-Za-z -]{1,59}$/.test(country))throw Error('Укажи страну на английском, например England');const data=await get('/leagues',{country});leagues=(data.response||[]).map(x=>({id:x.league?.id,label:x.league?.name,years:(x.seasons||[]).map(s=>({year:s.year,current:s.current}))})).filter(x=>x.id&&x.label).sort((a,b)=>a.label.localeCompare(b.label));}clear($('competition'),'Выбери соревнование');leagues.forEach(x=>opt($('competition'),x.id,x.label));$('competition').disabled=!leagues.length;status('Соревнований загружено: '+leagues.length+'. Выбери лигу.')}));
-$('competition').addEventListener('change',()=>{clear($('season'),'Выбери сезон');$('content').replaceChildren();const x=leagues.find(a=>String(a.id)===$('competition').value);if(x){if(provider()==='fd'){opt($('season'),x.year,x.year+' / '+(x.year+1)+' · текущий');}else{x.years.sort((a,b)=>b.year-a.year).forEach(s=>opt($('season'),s.year,s.year+(s.current?' · текущий':'')));}if($('season').options.length>1)$('season').selectedIndex=1;}$('season').disabled=!x;controls();status(x?'Выбери «Показать команды» или «Показать матчи».':'Выбери соревнование')});
-$('season').addEventListener('change',()=>{$('content').replaceChildren();controls()});
-function row(title,subtitle,action){const box=document.createElement('div');box.className='item';const left=document.createElement('div');const b=document.createElement('strong');b.textContent=title;const s=document.createElement('div');s.className='muted small';s.textContent=subtitle;left.append(b,s);box.append(left);if(action){const button=document.createElement('button');button.textContent='Выбрать';button.addEventListener('click',action);box.append(button)}$('content').append(box)}
-function sel(){return {league:$('competition').value,season:$('season').value}}
-$('loadTeams').addEventListener('click',()=>run(async()=>{const p=sel();status('Загружаю команды...');$('content').replaceChildren();let teams;if(provider()==='fd'){const data=await get('/fd/competitions/'+p.league+'/teams',{season:p.season});teams=(data.teams||[]).map(x=>({name:x.name||x.shortName||'Команда',sub:x.area?.name||''}));}else{const data=await get('/teams',p);teams=(data.response||[]).map(x=>({name:x.team?.name||'Команда',sub:x.team?.country||''}));}teams.sort((a,b)=>a.name.localeCompare(b.name));teams.forEach(x=>row(x.name,x.sub));if(!teams.length)row('Команды не найдены','Выбери другой сезон');status('Загружено команд: '+teams.length)}));
-$('loadMatches').addEventListener('click',()=>run(async()=>{const p=sel();status('Загружаю ближайшие матчи...');$('content').replaceChildren();let games=[];if(provider()==='fd'){const now=new Date();const later=new Date(now.getTime()+30*86400000);const date=d=>d.toISOString().slice(0,10);const data=await get('/fd/competitions/'+p.league+'/matches',{dateFrom:date(now),dateTo:date(later)});games=(data.matches||[]).filter(x=>x.homeTeam&&x.awayTeam).slice(0,25).map(x=>({home:x.homeTeam.name||x.homeTeam.shortName,away:x.awayTeam.name||x.awayTeam.shortName,date:x.utcDate,status:x.status}));}else{const data=await get('/fixtures',{...p,next:15});games=(data.response||[]).map(x=>({home:x.teams?.home?.name,away:x.teams?.away?.name,date:x.fixture?.date,status:x.fixture?.status?.short}));}for(const g of games){const home=g.home||'Хозяева',away=g.away||'Гости';const when=g.date?new Date(g.date).toLocaleString('ru-RU',{dateStyle:'medium',timeStyle:'short'}):'Дата неизвестна';row(home+' — '+away,when+(g.status?' · '+g.status:''),()=>{$('homeName').value=home;$('awayName').value=away;statIds.forEach(id=>$(id).value='');$('results').classList.remove('show');status('Матч выбран. Введи фактические средние голы вручную.');$('calculator').scrollIntoView({behavior:'smooth'})})}if(!games.length)row('Матчей не найдено','На ближайшие 30 дней нет доступных игр');status('Загружено матчей: '+games.length)}));
-function goal(id){const text=$(id).value.trim().replace(',','.');const x=Number(text);if(!text||!Number.isFinite(x)||x<0||x>8)throw Error('Заполни все поля голов числами от 0 до 8');return x}
-function poisson(k,lambda){let p=Math.exp(-lambda);for(let n=1;n<=k;n++)p*=lambda/n;return p}
-$('calc').addEventListener('click',()=>{try{$('calcError').textContent='';const hs=goal('homeScored'),hc=goal('homeConceded'),as=goal('awayScored'),ac=goal('awayConceded'),lh=goal('leagueHome'),la=goal('leagueAway');if(!lh||!la)throw Error('Средние голы лиги должны быть больше нуля');const h=Math.max(.05,hs*ac/lh),a=Math.max(.05,as*hc/la);let p1=0,px=0,p2=0,best=-1,score='';for(let i=0;i<=20;i++)for(let j=0;j<=20;j++){const p=poisson(i,h)*poisson(j,a);if(i>j)p1+=p;else if(i===j)px+=p;else p2+=p;if(p>best){best=p;score=i+' : '+j}}const total=p1+px+p2;p1/=total;px/=total;p2/=total;[['p1','b1',p1],['px','bx',px],['p2','b2',p2]].forEach(([label,bar,p])=>{$(label).textContent=(p*100).toFixed(1)+'%';$(bar).style.width=p*100+'%'});$('matchName').textContent=($('homeName').value||'Хозяева')+' — '+($('awayName').value||'Гости');$('score').textContent='Наиболее вероятный счёт: '+score;$('expected').textContent='Ожидаемые голы: '+h.toFixed(2)+' — '+a.toFixed(2);$('results').classList.add('show');$('results').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){$('calcError').textContent=e.message}});
+
+async function get(path, params = {}) {
+ const q = new URLSearchParams(params).toString();
+
+ const response = await fetch(
+  API + path + (q ? '?' + q : ''),
+  {cache:'no-store'}
+ );
+
+ let data;
+ try {
+  data = await response.json();
+ } catch {
+  throw Error('Сервер ответил не в формате JSON');
+ }
+
+ if (
+  !response.ok ||
+  data.error ||
+  data.errors && Object.keys(data.errors).length
+ ) {
+  if (response.status === 429 || data.error === 'RATE_LIMIT') {
+   throw Error(
+    'Источник временно ограничил запросы. ' +
+    'Не обновляй страницу многократно.'
+   );
+  }
+
+  throw Error(
+   data.message || data.error ||
+   'Сервис не предоставил данные для этого запроса'
+  );
+ }
+
+ return data;
+}
+
+async function run(fn) {
+ if (busy) return;
+ busy = true;
+ controls();
+
+ try {
+  await fn();
+ } catch (e) {
+  status(e.message || 'Ошибка соединения', true);
+ } finally {
+  busy = false;
+  controls();
+ }
+}
+
+$('loadCompetitions').addEventListener('click', () =>
+ run(async () => {
+  reset();
+  status('Загружаю соревнования...');
+
+  if (provider() === 'fd') {
+   const data = await get('/fd/competitions');
+
+   leagues = (data.competitions || []).map(x => ({
+    id: x.code,
+    label: x.name,
+    year: Number((x.currentSeason?.startDate || '').slice(0,4)),
+    country: x.area?.name || ''
+   })).filter(x => x.id && x.year)
+     .sort((a,b) => a.label.localeCompare(b.label));
+
+  } else {
+   const country = $('country').value.trim();
+
+   if (!/^[A-Za-z][A-Za-z -]{1,59}$/.test(country)) {
+    throw Error(
+     'Укажи страну на английском, например England'
+    );
+   }
+
+   const data = await get('/leagues', {country});
+
+   leagues = (data.response || []).map(x => ({
+    id: x.league?.id,
+    label: x.league?.name,
+    years: (x.seasons || []).map(s => ({
+     year: s.year,
+     current: s.current
+    }))
+   })).filter(x => x.id && x.label)
+     .sort((a,b) => a.label.localeCompare(b.label));
+  }
+
+  clear($('competition'), 'Выбери соревнование');
+
+  leagues.forEach(x =>
+   opt($('competition'), x.id, x.label)
+  );
+
+  $('competition').disabled = !leagues.length;
+
+  status(
+   'Соревнований загружено: ' +
+   leagues.length + '. Выбери лигу.'
+  );
+ })
+);
+
+$('competition').addEventListener('change', () => {
+ clear($('season'), 'Выбери сезон');
+ $('content').replaceChildren();
+
+ const x = leagues.find(
+  a => String(a.id) === $('competition').value
+ );
+
+ if (x) {
+  if (provider() === 'fd') {
+   opt(
+    $('season'), x.year,
+    x.year + ' / ' + (x.year + 1) + ' · текущий'
+   );
+  } else {
+   x.years.sort((a,b) => b.year - a.year)
+    .forEach(s =>
+     opt(
+      $('season'), s.year,
+      s.year + (s.current ? ' · текущий' : '')
+     )
+    );
+  }
+
+  if ($('season').options.length > 1) {
+   $('season').selectedIndex = 1;
+  }
+ }
+
+ $('season').disabled = !x;
+ controls();
+
+ status(
+  x ? 'Выбери «Показать команды» или «Показать матчи».'
+    : 'Выбери соревнование'
+ );
+});
+
+$('season').addEventListener('change', () => {
+ $('content').replaceChildren();
+ controls();
+});
+
+function row(title, subtitle, action) {
+ const box = document.createElement('div');
+ box.className = 'item';
+
+ const left = document.createElement('div');
+ const b = document.createElement('strong');
+ b.textContent = title;
+
+ const s = document.createElement('div');
+ s.className = 'muted small';
+ s.textContent = subtitle;
+
+ left.append(b,s);
+ box.append(left);
+
+ if (action) {
+  const button = document.createElement('button');
+  button.textContent = 'Выбрать';
+  button.addEventListener('click', action);
+  box.append(button);
+ }
+
+ $('content').append(box);
+}
+
+function sel() {
+ return {
+  league: $('competition').value,
+  season: $('season').value
+ };
+}
+
+$('loadTeams').addEventListener('click', () =>
+ run(async () => {
+  const p = sel();
+  status('Загружаю команды...');
+  $('content').replaceChildren();
+
+  let teams;
+
+  if (provider() === 'fd') {
+   const data = await get(
+    '/fd/competitions/' + p.league + '/teams',
+    {season:p.season}
+   );
+
+   teams = (data.teams || []).map(x => ({
+    name:x.name || x.shortName || 'Команда',
+    sub:x.area?.name || ''
+   }));
+
+  } else {
+   const data = await get('/teams', p);
+
+   teams = (data.response || []).map(x => ({
+    name:x.team?.name || 'Команда',
+    sub:x.team?.country || ''
+   }));
+  }
+
+  teams.sort((a,b) => a.name.localeCompare(b.name));
+  teams.forEach(x => row(x.name, x.sub));
+
+  if (!teams.length) {
+   row('Команды не найдены','Выбери другой сезон');
+  }
+
+  status('Загружено команд: ' + teams.length);
+ })
+);
+
+$('loadMatches').addEventListener('click', () =>
+ run(async () => {
+  const p = sel();
+  status('Загружаю ближайшие матчи...');
+  $('content').replaceChildren();
+
+  let games = [];
+
+  if (provider() === 'fd') {
+   const now = new Date();
+   const later = new Date(now.getTime() + 30*86400000);
+   const date = d => d.toISOString().slice(0,10);
+
+   const data = await get(
+    '/fd/competitions/' + p.league + '/matches',
+    {
+     dateFrom: date(now),
+     dateTo: date(later)
+    }
+   );
+
+   games = (data.matches || [])
+    .filter(x => x.homeTeam && x.awayTeam)
+    .slice(0,25)
+    .map(x => ({
+     home:x.homeTeam.name || x.homeTeam.shortName,
+     away:x.awayTeam.name || x.awayTeam.shortName,
+     date:x.utcDate,
+     status:x.status
+    }));
+
+  } else {
+   const data = await get(
+    '/fixtures',
+    {...p, next:15}
+   );
+
+   games = (data.response || []).map(x => ({
+    home:x.teams?.home?.name,
+    away:x.teams?.away?.name,
+    date:x.fixture?.date,
+    status:x.fixture?.status?.short
+   }));
+  }
+
+  for (const g of games) {
+   const home = g.home || 'Хозяева';
+   const away = g.away || 'Гости';
+
+   const when = g.date
+    ? new Date(g.date).toLocaleString(
+       'ru-RU',
+       {dateStyle:'medium',timeStyle:'short'}
+      )
+    : 'Дата неизвестна';
+
+   row(
+    home + ' — ' + away,
+    when + (g.status ? ' · ' + g.status : ''),
+    () => {
+     $('homeName').value = home;
+     $('awayName').value = away;
+
+     statIds.forEach(id => $(id).value = '');
+     $('results').classList.remove('show');
+
+     status(
+      'Матч выбран. Введи фактические ' +
+      'средние голы вручную.'
+     );
+
+     $('calculator').scrollIntoView({
+      behavior:'smooth'
+     });
+    }
+   );
+  }
+
+  if (!games.length) {
+   row(
+    'Матчей не найдено',
+    'На ближайшие 30 дней нет доступных игр'
+   );
+  }
+
+  status('Загружено матчей: ' + games.length);
+ })
+);
+
+function goal(id) {
+ const text = $(id).value.trim().replace(',','.');
+ const x = Number(text);
+
+ if (!text || !Number.isFinite(x) || x < 0 || x > 8) {
+  throw Error(
+   'Заполни все поля голов числами от 0 до 8'
+  );
+ }
+ return x;
+}
+
+function poisson(k, lambda) {
+ let p = Math.exp(-lambda);
+ for (let n=1;n<=k;n++) p *= lambda/n;
+ return p;
+}
+
+$('calc').addEventListener('click', () => {
+ try {
+  $('calcError').textContent='';
+
+  const hs = goal('homeScored');
+  const hc = goal('homeConceded');
+  const as = goal('awayScored');
+  const ac = goal('awayConceded');
+  const lh = goal('leagueHome');
+  const la = goal('leagueAway');
+
+  if (!lh || !la) {
+   throw Error(
+    'Средние голы лиги должны быть больше нуля'
+   );
+  }
+
+  const h = Math.max(.05,hs*ac/lh);
+  const a = Math.max(.05,as*hc/la);
+
+  let p1=0,px=0,p2=0,best=-1,score='';
+
+  for(let i=0;i<=20;i++) {
+   for(let j=0;j<=20;j++) {
+    const p=poisson(i,h)*poisson(j,a);
+
+    if(i>j) p1+=p;
+    else if(i===j) px+=p;
+    else p2+=p;
+
+    if(p>best) {
+     best=p;
+     score=i+' : '+j;
+    }
+   }
+  }
+
+  const total=p1+px+p2;
+  p1/=total;
+  px/=total;
+  p2/=total;
+
+  [
+   ['p1','b1',p1],
+   ['px','bx',px],
+   ['p2','b2',p2]
+  ].forEach(([label,bar,p]) => {
+   $(label).textContent=(p*100).toFixed(1)+'%';
+   $(bar).style.width=p*100+'%';
+  });
+
+  $('matchName').textContent=
+   ($('homeName').value||'Хозяева')+' — '+
+   ($('awayName').value||'Гости');
+
+  $('score').textContent=
+   'Наиболее вероятный счёт: '+score;
+
+  $('expected').textContent=
+   'Ожидаемые голы: '+h.toFixed(2)+
+   ' — '+a.toFixed(2);
+
+  $('results').classList.add('show');
+  $('results').scrollIntoView({
+   behavior:'smooth',block:'start'
+  });
+
+ } catch(e) {
+  $('calcError').textContent=e.message;
+ }
+});
+
 })();
-</script></body></html>
+</script>
+</body>
+</html>
