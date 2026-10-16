@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 0.7 — прогнозы и проверка модели</title>
+<title>FootPredict 0.8 — многосезонная проверка модели</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -38,6 +38,14 @@ button:disabled,select:disabled{opacity:.48;cursor:not-allowed}
 .metric strong{display:block;font-size:22px}
 .metric small{color:var(--muted)}
 .info{border:1px solid #35516d;background:#10253a;padding:13px;border-radius:12px;margin:12px 0;white-space:pre-line;font-size:13px}
+.historical-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.historical-table th,.historical-table td{padding:9px 7px;text-align:left;border-bottom:1px solid var(--line)}
+.historical-table th{color:var(--muted);font-weight:600}
+.table-scroll{overflow-x:auto}
+.cal-row{display:grid;grid-template-columns:90px 80px 1fr 80px;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px}
+.cal-track{height:8px;background:#283951;border-radius:99px;overflow:hidden}
+.cal-fill{height:100%;background:var(--blue);border-radius:99px}
+.good{color:var(--green)}.warning{color:var(--yellow)}
 .credit{text-align:center;font-size:12px;color:var(--muted)}
 a{color:var(--blue)}
 @media(max-width:600px){.grid,.actions,.backtestMetrics{grid-template-columns:1fr}.card{padding:15px}.item{align-items:flex-start}h1{font-size:21px}}
@@ -45,7 +53,7 @@ a{color:var(--blue)}
 </head>
 <body>
 <main>
-<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v0.7</span></header>
+<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v0.8</span></header>
 <section class="card">
 <h2>🌍 Выбери матч</h2>
 <p class="muted">football-data.org — актуальные соревнования. API-Football остаётся доступным для ручного анализа исторических сезонов.</p>
@@ -65,23 +73,34 @@ a{color:var(--blue)}
 <p class="muted small">Источник: <a href="https://www.football-data.org/" target="_blank" rel="noopener noreferrer">football-data.org</a>. Новые запросы расходуют квоту; повторные ответы могут приходить из Cloudflare KV-кэша.</p>
 </section>
 <section class="card" id="backtesting">
-<h2>🧪 Проверка модели на истории</h2>
-<p class="muted small">Проверяем все доступные завершённые матчи выбранного сезона по порядку. Для каждого прогноза используются <strong>только матчи, начавшиеся раньше</strong>; результат проверяемой встречи не включается в расчёт. Это тест на исторической выборке, а не гарантия будущей доходности.</p>
-<button type="button" id="runBacktest" style="width:100%" disabled>Проверить точность на сыгранных матчах</button>
-<p class="muted small" id="backtestStatus" aria-live="polite">Выбери соревнование football-data.org и сезон.</p>
+<h2>🧪 Проверка модели на нескольких сезонах</h2>
+<p class="muted small">Проверяем завершённые матчи в хронологическом порядке. Перед каждым прогнозом видны <strong>только результаты, сыгранные строго раньше начала матча</strong>. Предыдущий сезон учитывается с меньшим весом, а более свежие матчи — с большим. Параметры модели фиксированы, под результаты проверки не подбираются.</p>
+<div class="field"><label for="backtestYears">Глубина истории (от выбранного сезона назад)</label>
+<select id="backtestYears">
+<option value="1">1 сезон · без дополнительных сезонных запросов, если матчи уже загружены</option>
+<option value="2">2 сезона · до 1 дополнительного запроса</option>
+<option value="3" selected>3 сезона · до 2 дополнительных запросов</option>
+</select></div>
+<button type="button" id="runBacktest" style="width:100%" disabled>Проверить качество прогнозов</button>
+<p class="muted small" id="backtestStatus" role="status" aria-live="polite">Выбери лигу и сезон football-data.org, затем запусти проверку.</p>
 <div id="backtestResult" class="hidden">
 <div class="backtestMetrics">
-<div class="metric"><small>Проверено матчей</small><strong id="btMatches">—</strong></div>
-<div class="metric"><small>Brier Score, ниже лучше</small><strong id="btBrier">—</strong></div>
-<div class="metric"><small>Log Loss, ниже лучше</small><strong id="btLogLoss">—</strong></div>
+<div class="metric"><small>Проверено / завершено</small><strong id="btMatches">—</strong></div>
+<div class="metric"><small>Brier Score · меньше лучше</small><strong id="btBrier">—</strong></div>
+<div class="metric"><small>Log Loss · меньше лучше</small><strong id="btLogLoss">—</strong></div>
 </div>
 <div id="backtestDetails" class="info"></div>
-<p class="muted small">Сравниваем с простой базовой моделью: частоты П1 / X / П2 в предыдущих играх лиги с небольшим сглаживанием. Настройки алгоритма при этой проверке не подбираются.</p>
+<h3>Результаты по сезонам</h3>
+<div class="table-scroll"><table class="historical-table"><thead><tr><th>Сезон</th><th>Прогнозы</th><th>Brier</th><th>База</th><th>Log Loss</th></tr></thead><tbody id="seasonRows"></tbody></table></div>
+<h3 style="margin-top:20px">Калибровка вероятности победы хозяев</h3>
+<p class="muted small">В каждом диапазоне сравниваем средний прогноз П1 с фактической долей побед хозяев. При малом числе матчей значения нестабильны.</p>
+<div id="calibrationRows"></div>
+<p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2. Многосезонный тест — наблюдение на прошлом, а не гарантия доходности или независимый прогноз будущих матчей. Если старые сезоны недоступны по тарифу, они будут исключены с уведомлением.</p>
 </div>
 </section>
 <section class="card" id="calculator">
  <h2>📊 Прогноз П1 / X / П2</h2>
- <p class="muted small">Выбери предстоящий матч из football-data.org: приложение автоматически возьмёт завершённые игры этого сезона, посчитает домашнюю и гостевую статистику и построит прогноз. Поля можно менять вручную.</p>
+ <p class="muted small">Выбери предстоящий матч из football-data.org: приложение использует уже загруженные результаты текущего сезона и, если доступен, предыдущего с меньшим весом. Поля можно менять вручную.</p>
  <div id="sampleInfo" class="info hidden" role="status"></div>
  <div class="grid">
   <div class="team"><h3>Хозяева</h3>
@@ -116,9 +135,9 @@ a{color:var(--blue)}
  <div class="prob"><div class="probhead"><span>П2 · Победа гостей</span><strong id="p2">—</strong></div><div class="bar"><div id="b2" class="fill" style="background:var(--blue)"></div></div></div>
  <div class="score" id="score">—</div>
  <p id="expected" class="muted small"></p>
- <div class="note">Экспериментальная модель Пуассона. Она не учитывает составы, травмы и изменение силы команд. Сглаживание помогает при маленькой выборке, но не доказывает точность. Не является рекомендацией к ставкам.</div>
+ <div class="note">Экспериментальная модель Пуассона. Старые результаты получают меньший вес, а маленькие выборки сглаживаются к среднему лиги. Составы, травмы и изменение силы команд не учитываются. Историческая проверка не доказывает будущую точность. Не является рекомендацией к ставкам.</div>
 </section>
-<p class="credit">FootPredict 0.7 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 0.8 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
 </main>
 <script>
 (() => {
@@ -126,61 +145,73 @@ a{color:var(--blue)}
 const API = 'https://footpredict-api.wzjp5747md.workers.dev';
 const $ = id => document.getElementById(id);
 const statIds = ['homeScored','homeConceded','awayScored','awayConceded','leagueHome','leagueAway'];
+const PRIOR_SEASON_WEIGHT = 0.35;
+const HALF_LIFE_DAYS = 120;
 const REGULARIZATION_GAMES = 5;
-const MIN_LEAGUE_MATCHES = 15;
-const MIN_SIDE_MATCHES = 2;
+const MIN_LEAGUE_GAMES = 15;
+const MIN_TEAM_SIDE_GAMES = 2;
+const FINISH_SAFETY_HOURS = 4;
+const DAY_MS = 86400000;
+const loadedSeasons = new Map();
+const failedSeasons = new Map();
 let leagues = [];
 let busy = false;
-let loadedSeasonMatches = null;
-let loadedSeasonKey = '';
 let currentAuto = false;
 
-function setStatus(message, bad = false) {
+function setStatus(message, isError = false) {
   $('status').textContent = message;
-  $('status').classList.toggle('danger', bad);
+  $('status').classList.toggle('danger', isError);
 }
-function option(select, value, label) {
-  const node = document.createElement('option');
-  node.value = String(value);
-  node.textContent = String(label);
-  select.append(node);
+function chooseOption(select, value, title) {
+  const o = document.createElement('option');
+  o.value = String(value);
+  o.textContent = String(title);
+  select.append(o);
 }
-function resetSelect(select, placeholder) {
+function resetSelect(select, label) {
   select.replaceChildren();
-  option(select, '', placeholder);
+  chooseOption(select, '', label);
 }
 function provider() { return $('provider').value; }
-function selection() { return {league:$('competition').value,season:$('season').value}; }
-function clearSeasonData() {
-  loadedSeasonMatches = null;
-  loadedSeasonKey = '';
-  $('content').replaceChildren();
-  $('results').classList.remove('show');
-  $('sampleInfo').classList.add('hidden');
-  $('calcError').textContent = '';
+function selection() {
+  return {league: $('competition').value, season: Number($('season').value)};
+}
+function selectedCompetition() {
+  return leagues.find(x => String(x.id) === $('competition').value);
+}
+function clearCalc() {
   statIds.forEach(id => $(id).value = '');
   $('homeName').value = 'Хозяева';
   $('awayName').value = 'Гости';
+  $('results').classList.remove('show');
+  $('sampleInfo').classList.add('hidden');
+  $('calcError').textContent = '';
   currentAuto = false;
+}
+function clearSelectionData() {
+  $('content').replaceChildren();
+  clearCalc();
   $('backtestResult').classList.add('hidden');
   $('backtestStatus').textContent = 'Выбери лигу и сезон, затем нажми кнопку проверки.';
 }
-function controls() {
+function updateControls() {
   const ready = Boolean($('competition').value && $('season').value);
   $('loadCompetitions').disabled = busy;
   $('loadTeams').disabled = busy || !ready;
   $('loadMatches').disabled = busy || !ready;
   $('runBacktest').disabled = busy || !ready || provider() !== 'fd';
   $('provider').disabled = busy;
+  $('country').disabled = busy;
   $('competition').disabled = busy || !leagues.length;
   $('season').disabled = busy || !ready;
+  $('backtestYears').disabled = busy;
 }
 function resetAll() {
   leagues = [];
   resetSelect($('competition'), 'Сначала загрузи лиги');
   resetSelect($('season'), 'Выбери соревнование');
-  clearSeasonData();
-  controls();
+  clearSelectionData();
+  updateControls();
 }
 $('provider').addEventListener('change', () => {
   $('countryField').classList.toggle('hidden', provider() === 'fd');
@@ -190,370 +221,523 @@ $('provider').addEventListener('change', () => {
 $('country').addEventListener('change', resetAll);
 
 async function apiGet(path, params = {}) {
-  const qs = new URLSearchParams(params).toString();
-  const response = await fetch(API + path + (qs ? '?' + qs : ''), {cache:'no-store'});
+  const query = new URLSearchParams(params).toString();
+  let response;
+  try {
+    response = await fetch(API + path + (query ? '?' + query : ''), {cache:'no-store'});
+  } catch {
+    throw new Error('Нет соединения с Cloudflare Worker.');
+  }
   let data;
   try { data = await response.json(); }
   catch { throw new Error('Сервер вернул ответ не в формате JSON.'); }
   if (!response.ok || data.error || (data.errors && Object.keys(data.errors).length)) {
     if (response.status === 429 || data.error === 'RATE_LIMIT') {
-      throw new Error('Источник временно ограничил запросы. Повтори позже, не обновляя страницу многократно.');
+      throw new Error('Лимит API: подожди несколько минут. Не обновляй страницу многократно.');
     }
-    if (response.status === 403 || response.status === 401) {
-      throw new Error('Этот сезон или турнир недоступен в текущем тарифе API.');
+    if (response.status === 401 || response.status === 403) {
+      throw new Error('Провайдер не разрешает доступ к сезону на текущем тарифе.');
     }
     throw new Error(data.message || data.error || 'Источник данных вернул ошибку.');
   }
   return data;
 }
-async function run(task) {
+async function guarded(fn, context = 'site') {
   if (busy) return;
   busy = true;
-  controls();
-  try { await task(); }
-  catch (error) { setStatus(error.message || 'Не удалось загрузить данные.', true); $('backtestStatus').textContent = 'Ошибка: ' + (error.message || 'Не удалось загрузить данные.'); }
-  finally { busy = false; controls(); }
+  updateControls();
+  try { await fn(); }
+  catch (e) {
+    if (context === 'backtest') $('backtestStatus').textContent = 'Ошибка проверки: ' + e.message;
+    else setStatus(e.message || 'Ошибка загрузки.', true);
+  } finally {
+    busy = false;
+    updateControls();
+  }
 }
-function addRow(title, subtitle, action) {
-  const item = document.createElement('div');
-  item.className = 'item';
+function row(title, subtitle, click) {
+  const el = document.createElement('div');
+  el.className = 'item';
   const left = document.createElement('div');
   const strong = document.createElement('strong');
   strong.textContent = title;
-  const sub = document.createElement('div');
-  sub.className = 'sub';
-  sub.textContent = subtitle;
-  left.append(strong, sub);
-  item.append(left);
-  if (action) {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.textContent = 'Выбрать и прогноз';
-    b.addEventListener('click', action);
-    item.append(b);
+  const small = document.createElement('div');
+  small.className = 'sub';
+  small.textContent = subtitle;
+  left.append(strong, small);
+  el.append(left);
+  if (click) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = 'Выбрать и прогноз';
+    button.addEventListener('click', () => guarded(click));
+    el.append(button);
   }
-  $('content').append(item);
+  $('content').append(el);
 }
-$('loadCompetitions').addEventListener('click', () => run(async () => {
+
+$('loadCompetitions').addEventListener('click', () => guarded(async () => {
   resetAll();
   setStatus('Загружаю соревнования...');
   if (provider() === 'fd') {
     const data = await apiGet('/fd/competitions');
-    leagues = (data.competitions || []).map(c => ({
-      id:c.code, label:c.name, type:c.type,
-      year:Number((c.currentSeason?.startDate || '').slice(0,4))
-    })).filter(c => c.id && c.year).sort((a,b) => a.label.localeCompare(b.label));
+    leagues = (data.competitions || []).map(x => ({
+      id:x.code,
+      label:x.name,
+      type:x.type,
+      year:Number((x.currentSeason?.startDate || '').slice(0,4)),
+      endYear:Number((x.currentSeason?.endDate || '').slice(0,4))
+    })).filter(x => x.id && x.year).sort((a,b) => a.label.localeCompare(b.label));
   } else {
     const country = $('country').value.trim();
-    if (!/^[A-Za-z][A-Za-z -]{1,59}$/.test(country)) throw new Error('Введи страну по-английски, например England.');
+    if (!/^[A-Za-z][A-Za-z -]{1,59}$/.test(country)) {
+      throw new Error('Укажи страну по-английски, например England.');
+    }
     const data = await apiGet('/leagues', {country});
-    leagues = (data.response || []).map(c => ({
-      id:c.league?.id, label:c.league?.name,
-      years:(c.seasons || []).map(s => ({year:s.year,current:s.current}))
-    })).filter(c => c.id && c.label).sort((a,b) => a.label.localeCompare(b.label));
+    leagues = (data.response || []).map(x => ({
+      id:x.league?.id, label:x.league?.name,
+      years:(x.seasons || []).map(s => ({year:s.year,current:s.current}))
+    })).filter(x => x.id && x.label).sort((a,b) => a.label.localeCompare(b.label));
   }
   resetSelect($('competition'), 'Выбери соревнование');
-  leagues.forEach(c => option($('competition'), c.id, c.label));
-  controls();
-  setStatus('Загружено соревнований: ' + leagues.length + '. Выбери лигу.');
+  leagues.forEach(x => chooseOption($('competition'), x.id, x.label));
+  updateControls();
+  setStatus('Соревнований: ' + leagues.length + '. Выбери лигу.');
 }));
 $('competition').addEventListener('change', () => {
-  clearSeasonData();
+  clearSelectionData();
   resetSelect($('season'), 'Выбери сезон');
-  const c = leagues.find(x => String(x.id) === $('competition').value);
-  if (c) {
+  const x = selectedCompetition();
+  if (x) {
     if (provider() === 'fd') {
-      option($('season'), c.year, String(c.year) + ' / ' + String(c.year + 1) + ' · текущий');
+      chooseOption($('season'), x.year, String(x.year) + (x.endYear > x.year ? '/' + x.endYear : '') + ' · текущий');
+      // Previous seasons are available only if the provider grants access.
+      for (let y = x.year - 1; y >= x.year - 2; y--) {
+        chooseOption($('season'), y, String(y) + '/' + (y+1) + ' · архив (доступ зависит от тарифа)');
+      }
     } else {
-      [...(c.years || [])].sort((a,b) => b.year - a.year).forEach(s => option($('season'), s.year, s.year + (s.current ? ' · текущий' : '')));
+      [...(x.years || [])].sort((a,b) => b.year-a.year).forEach(s =>
+        chooseOption($('season'), s.year, String(s.year) + (s.current ? ' · текущий' : '')));
     }
     if ($('season').options.length > 1) $('season').selectedIndex = 1;
   }
-  controls();
-  setStatus(c ? 'Можно загрузить команды или матчи.' : 'Выбери соревнование.');
+  updateControls();
+  setStatus(x ? 'Можно показать матчи, команды или проверить историю.' : 'Выбери соревнование.');
 });
-$('season').addEventListener('change', () => { clearSeasonData(); controls(); });
+$('season').addEventListener('change', () => {clearSelectionData();updateControls();});
+$('backtestYears').addEventListener('change', () => {$('backtestResult').classList.add('hidden');});
 
-$('loadTeams').addEventListener('click', () => run(async () => {
-  const s = selection();
-  $('content').replaceChildren();
-  setStatus('Загружаю команды...');
-  let names;
-  if (provider() === 'fd') {
-    const data = await apiGet('/fd/competitions/' + s.league + '/teams', {season:s.season});
-    names = (data.teams || []).map(t => ({name:t.name || t.shortName || 'Команда', area:t.area?.name || ''}));
-  } else {
-    const data = await apiGet('/teams', s);
-    names = (data.response || []).map(t => ({name:t.team?.name || 'Команда', area:t.team?.country || ''}));
-  }
-  names.sort((a,b) => a.name.localeCompare(b.name));
-  for (const t of names) addRow(t.name, t.area);
-  if (!names.length) addRow('Команды не найдены', 'Возможно, сезон недоступен.');
-  setStatus('Загружено команд: ' + names.length + '.');
-}));
-
-async function loadSeasonFixtures() {
-  const s = selection();
-  const key = s.league + '/' + s.season;
-  if (loadedSeasonMatches !== null && loadedSeasonKey === key) return loadedSeasonMatches;
-  // ONE request includes finished and upcoming fixtures of the season.
-  const data = await apiGet('/fd/competitions/' + s.league + '/matches', {season:s.season});
-  if (!Array.isArray(data.matches)) throw new Error('API не прислал список матчей сезона.');
-  loadedSeasonMatches = data.matches;
-  loadedSeasonKey = key;
-  return loadedSeasonMatches;
+function storageKey(league,year) {
+  return `footpredict:v08:${league}:${year}`;
 }
-const gameDate = date => new Date(date).toLocaleString('ru-RU', {dateStyle:'medium',timeStyle:'short'});
-
-$('loadMatches').addEventListener('click', () => run(async () => {
-  const s = selection();
-  setStatus('Загружаю матчи...');
-  $('content').replaceChildren();
-  if (provider() === 'fd') {
-    const all = await loadSeasonFixtures();
-    const now = Date.now();
-    const limit = now + 30 * 86400000;
-    const future = all.filter(g => {
-      const t = Date.parse(g.utcDate);
-      return Number.isFinite(t) && t >= now && t <= limit &&
-        ['SCHEDULED','TIMED'].includes(g.status) &&
-        g.homeTeam?.id && g.awayTeam?.id;
-    }).sort((a,b) => Date.parse(a.utcDate) - Date.parse(b.utcDate)).slice(0,25);
-    for (const g of future) {
-      const home = g.homeTeam.name || g.homeTeam.shortName || 'Хозяева';
-      const away = g.awayTeam.name || g.awayTeam.shortName || 'Гости';
-      addRow(home + ' — ' + away, gameDate(g.utcDate), () => chooseMatch(g, all));
-    }
-    if (!future.length) addRow('Предстоящих матчей нет', 'На ближайшие 30 дней в выбранном сезоне игр не найдено.');
-    setStatus('Найдено ближайших матчей: ' + future.length + '. Нажми «Выбрать и прогноз».');
-  } else {
-    const data = await apiGet('/fixtures', {...s,next:'15'});
-    const games = data.response || [];
-    for (const g of games) {
-      const home = g.teams?.home?.name || 'Хозяева';
-      const away = g.teams?.away?.name || 'Гости';
-      addRow(home + ' — ' + away, g.fixture?.date ? gameDate(g.fixture.date) : 'Без даты', () => {
-        clearForm();
-        $('homeName').value = home;
-        $('awayName').value = away;
-        $('calcError').textContent = 'Для API-Football пока доступен только ручной расчёт.';
-        $('calculator').scrollIntoView({behavior:'smooth'});
-      });
-    }
-    if (!games.length) addRow('Матчи не найдены', 'Попробуй другой сезон.');
-    setStatus('Найдено матчей: ' + games.length + '. Для API-Football расчёт ручной.');
-  }
-}));
-
-function clearForm() {
-  statIds.forEach(id => $(id).value = '');
-  $('results').classList.remove('show');
-  $('sampleInfo').classList.add('hidden');
-  $('calcError').textContent = '';
-  currentAuto = false;
+function tryReadStorage(league,year,ttl) {
+  try {
+    const raw = localStorage.getItem(storageKey(league,year));
+    if (!raw) return null;
+    const x = JSON.parse(raw);
+    if (Date.now() - x.saved > ttl || !Array.isArray(x.matches)) return null;
+    return x.matches;
+  } catch { return null; }
 }
-function finishedBefore(matches, selected) {
-  const cutoff = Math.min(Date.now(), Date.parse(selected.utcDate));
-  return matches.filter(g => {
+function trySaveStorage(league,year,matches) {
+  try {
+    localStorage.setItem(storageKey(league,year), JSON.stringify({
+      saved:Date.now(), matches
+    }));
+  } catch { /* Storage is optional. */ }
+}
+async function loadSeason(league,year) {
+  const key = `${league}/${year}`;
+  if (loadedSeasons.has(key)) return loadedSeasons.get(key);
+  const failed = failedSeasons.get(key);
+  if (failed && Date.now() - failed.at < 10 * 60 * 1000) {
+    throw new Error(failed.message + ' (повтор через несколько минут)');
+  }
+  const currentYear = selectedCompetition()?.year;
+  const ttl = year === currentYear ? 5*60*1000 : 24*60*60*1000;
+  const stored = tryReadStorage(league,year,ttl);
+  if (stored) {
+    loadedSeasons.set(key,stored);
+    return stored;
+  }
+  let result;
+  try {
+    result = await apiGet('/fd/competitions/' + league + '/matches', {season:year});
+    if (!Array.isArray(result.matches)) throw new Error('API не прислал массив matches.');
+  } catch (err) {
+    failedSeasons.set(key,{at:Date.now(),message:err.message});
+    throw err;
+  }
+  loadedSeasons.set(key,result.matches);
+  trySaveStorage(league,year,result.matches);
+  return result.matches;
+}
+function dateRu(t) {
+  return new Date(t).toLocaleString('ru-RU',{dateStyle:'medium',timeStyle:'short'});
+}
+function taggedRows(matches,year) {
+  return matches.map(g => ({...g, __year:year}));
+}
+function completedBefore(games,target,year) {
+  const start = Date.parse(target.utcDate);
+  // Kickoff is known; true final whistle time is not included in the API.
+  // To avoid same-time match leakage, allow only games kicked off 4+ hours earlier.
+  const cutoff = Math.min(Date.now(),start) - FINISH_SAFETY_HOURS*3600000;
+  if (!Number.isFinite(cutoff)) return [];
+  return games.filter(g => {
     const t = Date.parse(g.utcDate);
-    return g.id !== selected.id && g.status === 'FINISHED' &&
-      Number.isFinite(t) && t < cutoff &&
+    return g.id !== target.id && g.status === 'FINISHED' &&
+      Number.isFinite(t) && t <= cutoff &&
+      (g.__year === year || g.__year === year-1) &&
+      g.homeTeam?.id && g.awayTeam?.id &&
       Number.isInteger(g.score?.fullTime?.home) &&
-      Number.isInteger(g.score?.fullTime?.away) &&
-      g.homeTeam?.id && g.awayTeam?.id;
+      Number.isInteger(g.score?.fullTime?.away);
   });
 }
-function estimateStats(matches, selected) {
-  const completed = finishedBefore(matches, selected);
-  const hId = selected.homeTeam.id;
-  const aId = selected.awayTeam.id;
-  const home = completed.filter(g => g.homeTeam.id === hId);
-  const away = completed.filter(g => g.awayTeam.id === aId);
-  if (completed.length < MIN_LEAGUE_MATCHES || home.length < MIN_SIDE_MATCHES || away.length < MIN_SIDE_MATCHES) {
-    throw new Error('Недостаточно сыгранных матчей для автопрогноза: в лиге нужно минимум ' + MIN_LEAGUE_MATCHES + ', у хозяев дома и гостей на выезде — минимум по ' + MIN_SIDE_MATCHES + '. Попробуй позже или введи статистику вручную.');
+function weight(g,target,year) {
+  const ageDays = Math.max(0,(Date.parse(target.utcDate)-Date.parse(g.utcDate))/DAY_MS);
+  const recency = Math.exp(-Math.LN2 * ageDays / HALF_LIFE_DAYS);
+  return recency*(g.__year === year ? 1 : PRIOR_SEASON_WEIGHT);
+}
+function summary(games,side,weights) {
+  let count = 0, sum = 0, goals = 0;
+  for (const g of games) {
+    const w = weights.get(g);
+    if (!(w > 0)) continue;
+    count++;
+    sum += w;
+    goals += w * g.score.fullTime[side];
   }
-  const total = (arr, side) => arr.reduce((sum,g) => sum + g.score.fullTime[side], 0);
-  const leagueH = total(completed,'home') / completed.length;
-  const leagueA = total(completed,'away') / completed.length;
-  if (leagueH < 0.25 || leagueA < 0.25) throw new Error('Недостаточно надёжных данных о голах лиги.');
-  // Five league-average pseudo-matches stabilise noisy home/away rates.
-  const smooth = (goals, games, leagueMean) =>
-    (goals + REGULARIZATION_GAMES * leagueMean) / (games + REGULARIZATION_GAMES);
+  return {count,sum,goals};
+}
+function estimateStats(games,target,year) {
+  const prior = completedBefore(games,target,year);
+  const home = prior.filter(g => g.homeTeam.id === target.homeTeam.id);
+  const away = prior.filter(g => g.awayTeam.id === target.awayTeam.id);
+  if (prior.length < MIN_LEAGUE_GAMES ||
+      home.length < MIN_TEAM_SIDE_GAMES || away.length < MIN_TEAM_SIDE_GAMES) {
+    throw new Error('Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд.');
+  }
+  const weights = new Map(prior.map(g => [g,weight(g,target,year)]));
+  const leagueHome = summary(prior,'home',weights);
+  const leagueAway = summary(prior,'away',weights);
+  if (leagueHome.sum < 0.01 || leagueAway.sum < 0.01) {
+    throw new Error('Недостаточная суммарная статистическая масса выборки.');
+  }
+  const leagueH = leagueHome.goals/leagueHome.sum;
+  const leagueA = leagueAway.goals/leagueAway.sum;
+  if (leagueH < 0.25 || leagueA < 0.25) throw new Error('Слишком низкие средние голы для расчёта.');
+  const hs = summary(home,'home',weights);
+  const hc = summary(home,'away',weights);
+  const as = summary(away,'away',weights);
+  const ac = summary(away,'home',weights);
+  const smooth = (x,base) => (x.goals+REGULARIZATION_GAMES*base)/(x.sum+REGULARIZATION_GAMES);
   return {
-    homeScored:smooth(total(home,'home'),home.length,leagueH),
-    homeConceded:smooth(total(home,'away'),home.length,leagueA),
-    awayScored:smooth(total(away,'away'),away.length,leagueA),
-    awayConceded:smooth(total(away,'home'),away.length,leagueH),
+    homeScored:smooth(hs,leagueH), homeConceded:smooth(hc,leagueA),
+    awayScored:smooth(as,leagueA), awayConceded:smooth(ac,leagueH),
     leagueHome:leagueH, leagueAway:leagueA,
-    leagueCount:completed.length, homeCount:home.length, awayCount:away.length,
-    homeRawFor:total(home,'home'),homeRawAgainst:total(home,'away'),
-    awayRawFor:total(away,'away'),awayRawAgainst:total(away,'home')
+    leagueCount:prior.length, homeCount:home.length, awayCount:away.length,
+    priorLeagueCount:prior.filter(g=>g.__year===year-1).length,
+    weightedHomeCount:hs.sum, weightedAwayCount:as.sum,
+    baseCounts:(() => {
+      const c=[1,1,1];
+      for (const g of prior) {
+        const h=g.score.fullTime.home,a=g.score.fullTime.away;
+        c[h>a?0:h===a?1:2]+=weights.get(g);
+      }
+      const sum=c.reduce((a,b)=>a+b,0);
+      return c.map(n=>n/sum);
+    })()
   };
 }
-function chooseMatch(game, seasonMatches) {
-  clearForm();
-  $('homeName').value = game.homeTeam.name || game.homeTeam.shortName || 'Хозяева';
-  $('awayName').value = game.awayTeam.name || game.awayTeam.shortName || 'Гости';
+function poisson(k,lambda) {
+  let p=Math.exp(-lambda);
+  for (let i=1;i<=k;i++) p*=lambda/i;
+  return p;
+}
+function predict(stats) {
+  const lh=stats.leagueHome,la=stats.leagueAway;
+  if (!(lh>0 && la>0)) throw new Error('Средние голы лиги должны быть больше нуля.');
+  const h=Math.max(.05,Math.min(5,stats.homeScored*stats.awayConceded/lh));
+  const a=Math.max(.05,Math.min(5,stats.awayScored*stats.homeConceded/la));
+  let p1=0,px=0,p2=0,best=-1,score='';
+  for(let i=0;i<=20;i++) for(let j=0;j<=20;j++) {
+    const p=poisson(i,h)*poisson(j,a);
+    if(i>j) p1+=p;
+    else if(i===j) px+=p;
+    else p2+=p;
+    if(p>best){best=p;score=i+' : '+j;}
+  }
+  const total=p1+px+p2;
+  return {prob:[p1/total,px/total,p2/total],homeGoals:h,awayGoals:a,score};
+}
+function number(id) {
+  const text=$(id).value.trim().replace(',','.');
+  const v=Number(text);
+  if (!text || !Number.isFinite(v) || v<0 || v>8) {
+    throw new Error('Все показатели должны быть числами от 0 до 8.');
+  }
+  return v;
+}
+function calculate() {
+  $('calcError').textContent='';
   try {
-    const stats = estimateStats(seasonMatches, game);
-    for (const id of statIds) $(id).value = stats[id].toFixed(3).replace('.', ',');
-    const limited = stats.homeCount < 5 || stats.awayCount < 5;
+    const stats=Object.fromEntries(statIds.map(id=>[id,number(id)]));
+    const r=predict(stats);
+    [['p1','b1',r.prob[0]],['px','bx',r.prob[1]],['p2','b2',r.prob[2]]]
+      .forEach(([label,bar,p])=>{
+        $(label).textContent=(p*100).toFixed(1)+'%';
+        $(bar).style.width=(p*100)+'%';
+      });
+    $('matchName').textContent=($('homeName').value||'Хозяева')+' — '+($('awayName').value||'Гости');
+    $('modelSource').textContent=currentAuto
+      ? 'Автоматическая статистика · последние игры + предыдущий сезон (если доступен)'
+      : 'Статистика введена / изменена вручную';
+    $('score').textContent='Наиболее вероятный счёт: '+r.score;
+    $('expected').textContent='Ожидаемые голы: '+r.homeGoals.toFixed(2)+' — '+r.awayGoals.toFixed(2);
+    $('results').classList.add('show');
+  } catch (e) {
+    $('results').classList.remove('show');
+    $('calcError').textContent=e.message;
+  }
+}
+$('calc').addEventListener('click',calculate);
+statIds.concat(['homeName','awayName']).forEach(id=>{
+  $(id).addEventListener('input',()=>{
+    if (currentAuto) {
+      currentAuto=false;
+      $('sampleInfo').textContent+='\nПоказатели изменены вручную.';
+    }
+    $('results').classList.remove('show');
+  });
+});
+
+async function chooseMatch(match,season,year) {
+  clearCalc();
+  $('homeName').value=match.homeTeam.name||match.homeTeam.shortName||'Хозяева';
+  $('awayName').value=match.awayTeam.name||match.awayTeam.shortName||'Гости';
+  let note='';
+  const sel=selection();
+  let all=taggedRows(season,year);
+  if (year-1>1900) {
+    try {
+      const old=await loadSeason(sel.league,year-1);
+      all=all.concat(taggedRows(old,year-1));
+    } catch (e) {
+      note='Предыдущий сезон недоступен ('+e.message+'). Используем только выбранный сезон.\n';
+    }
+  }
+  try {
+    const stats=estimateStats(all,match,year);
+    for(const id of statIds) $(id).value=stats[id].toFixed(3).replace('.',',');
     $('sampleInfo').classList.remove('hidden');
-    $('sampleInfo').textContent =
-      'Автоматическая статистика сезона ' + $('season').value + ' (до ' + gameDate(game.utcDate) + '):\n' +
-      'Матчей в лиге: ' + stats.leagueCount + '.\n' +
-      'Хозяева дома: ' + stats.homeCount + ' игр, голы ' + stats.homeRawFor + ':' + stats.homeRawAgainst + '.\n' +
-      'Гости на выезде: ' + stats.awayCount + ' игр, голы ' + stats.awayRawFor + ':' + stats.awayRawAgainst + '.\n' +
-      'Показатели полей сглажены к среднему лиги (эквивалент 5 дополнительных игр). ' +
-      (limited ? '⚠ МАЛЕНЬКАЯ ВЫБОРКА: вероятности особенно ненадёжны.' : '');
-    currentAuto = true;
-    computeProbabilities();
-    setStatus('Автопрогноз рассчитан по завершённым матчам выбранного сезона.');
-  } catch (error) {
-    $('calcError').textContent = error.message;
-    setStatus('Матч выбран, но автопрогноз недоступен из-за недостаточной выборки.', true);
+    $('sampleInfo').textContent=
+      note+'Данные до '+dateRu(match.utcDate)+'.\n'+
+      'Ранее завершено: '+stats.leagueCount+' матчей, из предыдущего сезона: '+stats.priorLeagueCount+'.\n'+
+      'Хозяева дома: '+stats.homeCount+' игр, гости на выезде: '+stats.awayCount+' игр.\n'+
+      'Вес старого сезона 0,35, полураспад актуальности 120 дней, сглаживание 5 игр.\n'+
+      ((stats.homeCount<5 || stats.awayCount<5)
+       ? '⚠ МАЛЕНЬКАЯ ВЫБОРКА: оценки нестабильны.' : '');
+    currentAuto=true;
+    calculate();
+    setStatus('Прогноз рассчитан по историческим результатам, доступным до матча.');
+  } catch (e) {
+    $('calcError').textContent=note+e.message;
+    setStatus('Матч выбран, но для автопрогноза недостаточно доступных результатов.',true);
   }
   $('calculator').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function numeric(id) {
-  const raw = $(id).value.trim().replace(',', '.');
-  const value = Number(raw);
-  if (!raw || !Number.isFinite(value) || value < 0 || value > 8) {
-    throw new Error('Заполни все показатели голов числами от 0 до 8.');
+
+$('loadTeams').addEventListener('click',()=>guarded(async()=>{
+  const s=selection();
+  $('content').replaceChildren();
+  setStatus('Загружаю команды...');
+  let teams=[];
+  if(provider()==='fd') {
+    const d=await apiGet(`/fd/competitions/${s.league}/teams`,{season:s.season});
+    teams=(d.teams||[]).map(t=>({name:t.name||t.shortName||'Команда',sub:t.area?.name||''}));
+  } else {
+    const d=await apiGet('/teams',s);
+    teams=(d.response||[]).map(t=>({name:t.team?.name||'Команда',sub:t.team?.country||''}));
   }
-  return value;
-}
-function poisson(k, lambda) {
-  let result = Math.exp(-lambda);
-  for (let n = 1; n <= k; n++) result *= lambda / n;
-  return result;
-}
-function modelProbabilities(stats) {
-  const {homeScored:hs,homeConceded:hc,awayScored:as,
-    awayConceded:ac,leagueHome:lh,leagueAway:la} = stats;
-  if (!lh || !la) throw new Error('Средние голы лиги должны быть больше нуля.');
-  const lambdaH = Math.max(0.05, Math.min(5, hs * ac / lh));
-  const lambdaA = Math.max(0.05, Math.min(5, as * hc / la));
-  let p1 = 0, px = 0, p2 = 0, maxP = -1, best = '';
-  for (let i = 0; i <= 20; i++) for (let j = 0; j <= 20; j++) {
-    const p = poisson(i, lambdaH) * poisson(j, lambdaA);
-    if (i > j) p1 += p;
-    else if (i === j) px += p;
-    else p2 += p;
-    if (p > maxP) { maxP = p; best = i + ' : ' + j; }
+  teams.sort((a,b)=>a.name.localeCompare(b.name));
+  teams.forEach(t=>row(t.name,t.sub));
+  if(!teams.length) row('Команды не найдены','Сезон может быть недоступен по тарифу');
+  setStatus('Загружено команд: '+teams.length+'.');
+}));
+
+$('loadMatches').addEventListener('click',()=>guarded(async()=>{
+  const s=selection();
+  $('content').replaceChildren();
+  setStatus('Загружаю матчи...');
+  if(provider()==='fd') {
+    const all=await loadSeason(s.league,s.season);
+    const now=Date.now(),end=now+30*DAY_MS;
+    const upcoming=all.filter(g=>{
+      const t=Date.parse(g.utcDate);
+      return Number.isFinite(t)&&t>=now&&t<=end&&
+        ['SCHEDULED','TIMED'].includes(g.status)&&
+        g.homeTeam?.id&&g.awayTeam?.id;
+    }).sort((a,b)=>Date.parse(a.utcDate)-Date.parse(b.utcDate)).slice(0,25);
+    upcoming.forEach(g=>row(
+      (g.homeTeam.name||'Хозяева')+' — '+(g.awayTeam.name||'Гости'),
+      dateRu(g.utcDate),()=>chooseMatch(g,all,s.season)
+    ));
+    if(!upcoming.length) row('Будущих матчей на 30 дней нет','Можно запустить историческую проверку.');
+    setStatus('Предстоящих матчей: '+upcoming.length+'. История доступна для проверки.');
+  } else {
+    const d=await apiGet('/fixtures',{league:s.league,season:s.season,next:'15'});
+    const games=d.response||[];
+    for(const g of games) {
+      row((g.teams?.home?.name||'Хозяева')+' — '+(g.teams?.away?.name||'Гости'),
+        g.fixture?.date?dateRu(g.fixture.date):'Без даты',async()=>{
+          clearCalc();
+          $('homeName').value=g.teams?.home?.name||'Хозяева';
+          $('awayName').value=g.teams?.away?.name||'Гости';
+          $('calcError').textContent='Для API-Football пока доступен ручной расчёт.';
+          $('calculator').scrollIntoView({behavior:'smooth'});
+        });
+    }
+    if(!games.length) row('Матчи не найдены','Попробуй другой сезон');
+    setStatus('Загружено матчей: '+games.length+'. Для этого источника расчёт ручной.');
   }
-  const sum = p1 + px + p2;
-  return {probs:[p1/sum,px/sum,p2/sum],lambdaH,lambdaA,best};
+}));
+
+function actualIndex(g) {
+  const h=g.score.fullTime.home,a=g.score.fullTime.away;
+  return h>a?0:(h===a?1:2);
 }
-function computeProbabilities() {
-  $('calcError').textContent = '';
-  try {
-    const stats = Object.fromEntries(statIds.map(id => [id,numeric(id)]));
-    const {probs,lambdaH,lambdaA,best} = modelProbabilities(stats);
-    [['p1','b1',probs[0]],['px','bx',probs[1]],['p2','b2',probs[2]]].forEach(([label,bar,p]) => {
-      $(label).textContent = (100 * p).toFixed(1) + '%';
-      $(bar).style.width = (100 * p) + '%';
+function emptyMetrics(year) {
+  return {year,tested:0,skipped:0,brier:0,baseBrier:0,logLoss:0,baseLoss:0,hit:0,
+    completed:0};
+}
+function verify(history,year) {
+  const metrics=emptyMetrics(year);
+  const rows=[];
+  const current=history.filter(g=>g.__year===year && g.status==='FINISHED' &&
+    Number.isFinite(Date.parse(g.utcDate)) && g.homeTeam?.id && g.awayTeam?.id &&
+    Number.isInteger(g.score?.fullTime?.home)&&Number.isInteger(g.score?.fullTime?.away))
+    .sort((a,b)=>Date.parse(a.utcDate)-Date.parse(b.utcDate)||a.id-b.id);
+  metrics.completed=current.length;
+  for (const g of current) {
+    let stats,pred;
+    try {
+      stats=estimateStats(history,g,year);
+      pred=predict(stats);
+    } catch {metrics.skipped++;continue;}
+    const actual=actualIndex(g), truth=[0,0,0];
+    truth[actual]=1;
+    metrics.brier+=pred.prob.reduce((s,p,i)=>s+(p-truth[i])**2,0);
+    metrics.baseBrier+=stats.baseCounts.reduce((s,p,i)=>s+(p-truth[i])**2,0);
+    metrics.logLoss-=Math.log(Math.max(pred.prob[actual],1e-12));
+    metrics.baseLoss-=Math.log(Math.max(stats.baseCounts[actual],1e-12));
+    if(pred.prob.indexOf(Math.max(...pred.prob))===actual) metrics.hit++;
+    metrics.tested++;
+    rows.push({season:year,prob:pred.prob,actual});
+  }
+  return {metrics,rows};
+}
+function pct(x){return (100*x).toFixed(1)+'%';}
+function fmt(x){return x.toFixed(3);}
+function cell(tr,txt){
+  const td=document.createElement('td');
+  td.textContent=String(txt);
+  tr.append(td);
+}
+function calibration(rows) {
+  $('calibrationRows').replaceChildren();
+  for(let k=0;k<5;k++) {
+    const group=rows.filter(r=>{
+      const p=r.prob[0];
+      return p>=k/5&&(k===4?p<=1:p<(k+1)/5);
     });
-    $('matchName').textContent = ($('homeName').value.trim() || 'Хозяева') + ' — ' + ($('awayName').value.trim() || 'Гости');
-    $('modelSource').textContent = currentAuto
-      ? 'Автопрогноз · завершённые игры сезона + статистическое сглаживание'
-      : 'Ручной ввод / изменение статистики';
-    $('score').textContent = 'Наиболее вероятный счёт: ' + best;
-    $('expected').textContent = 'Ожидаемые голы: ' + lambdaH.toFixed(2) + ' — ' + lambdaA.toFixed(2);
-    $('results').classList.add('show');
-  } catch (error) {
-    $('results').classList.remove('show');
-    $('calcError').textContent = error.message;
+    const line=document.createElement('div');
+    line.className='cal-row';
+    const range=document.createElement('span');
+    range.textContent=(k*20)+'–'+((k+1)*20)+'%';
+    const count=document.createElement('span');
+    count.textContent='n = '+group.length;
+    const track=document.createElement('div');
+    track.className='cal-track';
+    const bar=document.createElement('div');
+    bar.className='cal-fill';
+    const forecast=group.length?group.reduce((s,r)=>s+r.prob[0],0)/group.length:0;
+    const actual=group.length?group.reduce((s,r)=>s+(r.actual===0),0)/group.length:0;
+    bar.style.width=pct(actual);
+    track.title='Средний прогноз '+pct(forecast)+'; победы '+pct(actual);
+    track.append(bar);
+    const label=document.createElement('span');
+    label.textContent=group.length?pct(actual):'—';
+    if(group.length<20) label.className='warning';
+    line.append(range,count,track,label);
+    $('calibrationRows').append(line);
   }
 }
 
-// Проверка качества без будущих данных и без дополнительных запросов при уже загруженном сезоне.
-function backtest(matches) {
-  const finished = matches.filter(g =>
-    g.status === 'FINISHED' &&
-    Number.isFinite(Date.parse(g.utcDate)) &&
-    g.homeTeam?.id && g.awayTeam?.id &&
-    Number.isInteger(g.score?.fullTime?.home) &&
-    Number.isInteger(g.score?.fullTime?.away)
-  ).sort((a,b) => Date.parse(a.utcDate)-Date.parse(b.utcDate));
-  let tested = 0, correct = 0, brier = 0, logLoss = 0;
-  let baseBrier = 0, baseLogLoss = 0;
-  let skipped = 0;
-  for (const game of finished) {
-    let stats;
-    try { stats = estimateStats(matches, game); }
-    catch { skipped++; continue; }
-    let probabilities;
-    try { probabilities = modelProbabilities(stats).probs; }
-    catch { skipped++; continue; }
-    const h = game.score.fullTime.home;
-    const a = game.score.fullTime.away;
-    const actual = h > a ? 0 : h === a ? 1 : 2;
-    // Базовая модель использует только сыгранные ранее матчи, со сглаживанием Лапласа.
-    const prior = finishedBefore(matches, game);
-    const counts = [1,1,1];
-    for (const past of prior) {
-      const ph=past.score.fullTime.home, pa=past.score.fullTime.away;
-      counts[ph>pa ? 0 : ph===pa ? 1 : 2]++;
-    }
-    const base = counts.map(x => x/(prior.length+3));
-    for (let outcome=0; outcome<3; outcome++) {
-      const truth = actual === outcome ? 1 : 0;
-      brier += (probabilities[outcome]-truth)**2;
-      baseBrier += (base[outcome]-truth)**2;
-    }
-    logLoss -= Math.log(Math.max(probabilities[actual],1e-12));
-    baseLogLoss -= Math.log(Math.max(base[actual],1e-12));
-    if (probabilities.indexOf(Math.max(...probabilities)) === actual) correct++;
-    tested++;
-  }
-  return {tested,skipped,finished:finished.length,
-    brier:tested?brier/tested:null,
-    baseBrier:tested?baseBrier/tested:null,
-    logLoss:tested?logLoss/tested:null,
-    baseLogLoss:tested?baseLogLoss/tested:null,
-    accuracy:tested?correct/tested:null};
-}
-
-$('runBacktest').addEventListener('click', () => run(async () => {
-  if (provider() !== 'fd') throw new Error('Проверка истории доступна для football-data.org.');
+$('runBacktest').addEventListener('click',()=>guarded(async()=>{
+  if(provider()!=='fd') throw new Error('Проверка доступна для football-data.org.');
   $('backtestResult').classList.add('hidden');
-  $('backtestStatus').textContent = 'Проверяем завершённые матчи сезона…';
-  const all = await loadSeasonFixtures();
-  const m = backtest(all);
-  if (!m.tested) {
-    $('backtestStatus').textContent =
-      'Недостаточно исторических матчей для тестирования. Дождись следующих туров.';
+  const {league,season}=selection();
+  const count=Number($('backtestYears').value);
+  const years=Array.from({length:count},(_,i)=>season-(count-1-i));
+  const collected=[];
+  const notices=[];
+  for (const year of years) {
+    $('backtestStatus').textContent='Загружаю историю '+year+'…';
+    try {
+      const games=await loadSeason(league,year);
+      collected.push({year,games});
+    } catch(e) {
+      notices.push(year+': '+e.message);
+    }
+  }
+  if(!collected.length) {
+    throw new Error('Не удалось загрузить ни одного сезона. '+notices.join(' '));
+  }
+  const history=collected.flatMap(x=>taggedRows(x.games,x.year));
+  const results=collected.map(x=>verify(history,x.year));
+  const m=results.map(x=>x.metrics);
+  const tested=m.reduce((s,x)=>s+x.tested,0);
+  const completed=m.reduce((s,x)=>s+x.completed,0);
+  const skipped=m.reduce((s,x)=>s+x.skipped,0);
+  if(!tested) {
+    $('backtestStatus').textContent='Проверить нечего: слишком мало данных. '+notices.join(' ');
     return;
   }
-  const fmt = n => n.toFixed(3);
-  $('btMatches').textContent = m.tested + ' / ' + m.finished;
-  $('btBrier').textContent = fmt(m.brier);
-  $('btLogLoss').textContent = fmt(m.logLoss);
-  $('backtestDetails').textContent =
-    'Базовая модель (частоты результатов лиги до каждого матча):\n' +
-    'Brier: ' + fmt(m.baseBrier) + ' · Log Loss: ' + fmt(m.baseLogLoss) + '\n' +
-    'Доля правильных наиболее вероятных исходов: ' +
-      (100*m.accuracy).toFixed(1) + '%\n' +
-    'Пропущено из-за малого объёма данных: ' + m.skipped + '.\n' +
-    (m.tested < 100
-       ? '⚠ Малая тестовая выборка: выводы предварительные.'
-       : 'Проверка историческая; качество будущих прогнозов не гарантировано.') +
-    '\nМеньший Brier / Log Loss лучше. Сравнивай с базовой моделью, а не только с нулём.';
+  const sum=k=>m.reduce((s,x)=>s+x[k],0);
+  const brier=sum('brier')/tested,base=sum('baseBrier')/tested;
+  const loss=sum('logLoss')/tested,baseLoss=sum('baseLoss')/tested;
+  const allPred=results.flatMap(x=>x.rows);
+  $('btMatches').textContent=tested+' / '+completed;
+  $('btBrier').textContent=fmt(brier);
+  $('btLogLoss').textContent=fmt(loss);
+  const improvementB=(base-brier)/base*100;
+  const improvementL=(baseLoss-loss)/baseLoss*100;
+  $('backtestDetails').textContent=
+    'Базовая модель: Brier '+fmt(base)+' · Log Loss '+fmt(baseLoss)+'.\n'+
+    'Разница с базой: Brier '+improvementB.toFixed(1)+'%, Log Loss '+improvementL.toFixed(1)+'% (положительная — лучше).\n'+
+    'Правильный наиболее вероятный исход: '+pct(sum('hit')/tested)+'.\n'+
+    'Пропущено из-за недостаточной статистики: '+skipped+'.\n'+
+    'Использованы сезоны: '+collected.map(x=>x.year).join(', ')+'.\n'+
+    (notices.length?'Недоступные сезоны: '+notices.join(' | ')+'.\n':'')+
+    (tested<200?'⚠ Малая выборка (< 200 матчей): выводы предварительные.\n':'')+
+    'Новые матчи не использовались для обучения параметров. Показатели относятся к доступной исторической выборке.';
+  $('seasonRows').replaceChildren();
+  for(const r of m) {
+    const tr=document.createElement('tr');
+    cell(tr,r.year);cell(tr,r.tested+' / '+r.completed);
+    cell(tr,r.tested?fmt(r.brier/r.tested):'—');
+    cell(tr,r.tested?fmt(r.baseBrier/r.tested):'—');
+    cell(tr,r.tested?fmt(r.logLoss/r.tested):'—');
+    $('seasonRows').append(tr);
+  }
+  calibration(allPred);
   $('backtestResult').classList.remove('hidden');
-  $('backtestStatus').textContent = 'Историческая проверка завершена без дополнительных запросов к API.';
-}));
-$('calc').addEventListener('click', computeProbabilities);
-statIds.concat(['homeName','awayName']).forEach(id => {
-  $(id).addEventListener('input', () => {
-    if (currentAuto) {
-      currentAuto = false;
-      $('sampleInfo').textContent += '\nПоля изменены вручную; нажми «Рассчитать / пересчитать прогноз».';
-    }
-    $('results').classList.remove('show');
-  });
-});
+  $('backtestStatus').textContent=
+    'Историческая проверка завершена. '+collected.length+' сезон(ов), '+tested+' прогнозов.';
+},'backtest'));
 })();
+
 </script>
 </body>
 </html>
