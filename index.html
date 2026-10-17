@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 0.8 — многосезонная проверка модели</title>
+<title>FootPredict 0.9 — автопрогнозы и раздельная проверка</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -46,14 +46,30 @@ button:disabled,select:disabled{opacity:.48;cursor:not-allowed}
 .cal-track{height:8px;background:#283951;border-radius:99px;overflow:hidden}
 .cal-fill{height:100%;background:var(--blue);border-radius:99px}
 .good{color:var(--green)}.warning{color:var(--yellow)}
+details.advanced{border:1px solid var(--line);border-radius:14px;background:var(--field);overflow:hidden}
+details.advanced>summary{padding:16px;cursor:pointer;font-weight:700;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+details.advanced>summary::-webkit-details-marker{display:none}
+details.advanced>summary::after{content:'⌄';color:var(--muted);font-size:23px;line-height:1}
+details.advanced[open]>summary::after{content:'⌃'}
+.advanced-content{padding:0 15px 17px}.advanced-content .team{background:#1a2a40}
+.section-hint{font-size:13px;color:var(--muted);margin:0 0 12px}
+.split-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+.split-card{padding:14px;border-radius:13px;border:1px solid var(--line);background:var(--field)}
+.split-card.test{border-color:#2c6b4e;background:#112b27}
+.split-title{font-size:14px;font-weight:800;margin-bottom:8px}
+.split-facts{font-size:13px;color:var(--muted);white-space:pre-line}
+.split-score{font-weight:750;font-size:22px;font-variant-numeric:tabular-nums}
+.inline-label{font-size:12px;color:var(--muted);margin:2px 0 5px}
+.model-note{background:#10253a;border:1px solid #35516d;padding:12px;border-radius:12px;font-size:13px;color:var(--muted);margin:13px 0}
+.empty-state{color:var(--muted);font-size:13px;margin-top:10px}
 .credit{text-align:center;font-size:12px;color:var(--muted)}
 a{color:var(--blue)}
-@media(max-width:600px){.grid,.actions,.backtestMetrics{grid-template-columns:1fr}.card{padding:15px}.item{align-items:flex-start}h1{font-size:21px}}
+@media(max-width:600px){.grid,.actions,.backtestMetrics,.split-grid{grid-template-columns:1fr}.card{padding:15px}.item{align-items:flex-start}h1{font-size:21px}}
 </style>
 </head>
 <body>
 <main>
-<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v0.8</span></header>
+<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v0.9</span></header>
 <section class="card">
 <h2>🌍 Выбери матч</h2>
 <p class="muted">football-data.org — актуальные соревнования. API-Football остаётся доступным для ручного анализа исторических сезонов.</p>
@@ -72,36 +88,24 @@ a{color:var(--blue)}
 <div id="content" class="list"></div>
 <p class="muted small">Источник: <a href="https://www.football-data.org/" target="_blank" rel="noopener noreferrer">football-data.org</a>. Новые запросы расходуют квоту; повторные ответы могут приходить из Cloudflare KV-кэша.</p>
 </section>
-<section class="card" id="backtesting">
-<h2>🧪 Проверка модели на нескольких сезонах</h2>
-<p class="muted small">Проверяем завершённые матчи в хронологическом порядке. Перед каждым прогнозом видны <strong>только результаты, сыгранные строго раньше начала матча</strong>. Предыдущий сезон учитывается с меньшим весом, а более свежие матчи — с большим. Параметры модели фиксированы, под результаты проверки не подбираются.</p>
-<div class="field"><label for="backtestYears">Глубина истории (от выбранного сезона назад)</label>
-<select id="backtestYears">
-<option value="1">1 сезон · без дополнительных сезонных запросов, если матчи уже загружены</option>
-<option value="2">2 сезона · до 1 дополнительного запроса</option>
-<option value="3" selected>3 сезона · до 2 дополнительных запросов</option>
-</select></div>
-<button type="button" id="runBacktest" style="width:100%" disabled>Проверить качество прогнозов</button>
-<p class="muted small" id="backtestStatus" role="status" aria-live="polite">Выбери лигу и сезон football-data.org, затем запусти проверку.</p>
-<div id="backtestResult" class="hidden">
-<div class="backtestMetrics">
-<div class="metric"><small>Проверено / завершено</small><strong id="btMatches">—</strong></div>
-<div class="metric"><small>Brier Score · меньше лучше</small><strong id="btBrier">—</strong></div>
-<div class="metric"><small>Log Loss · меньше лучше</small><strong id="btLogLoss">—</strong></div>
-</div>
-<div id="backtestDetails" class="info"></div>
-<h3>Результаты по сезонам</h3>
-<div class="table-scroll"><table class="historical-table"><thead><tr><th>Сезон</th><th>Прогнозы</th><th>Brier</th><th>База</th><th>Log Loss</th></tr></thead><tbody id="seasonRows"></tbody></table></div>
-<h3 style="margin-top:20px">Калибровка вероятности победы хозяев</h3>
-<p class="muted small">В каждом диапазоне сравниваем средний прогноз П1 с фактической долей побед хозяев. При малом числе матчей значения нестабильны.</p>
-<div id="calibrationRows"></div>
-<p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2. Многосезонный тест — наблюдение на прошлом, а не гарантия доходности или независимый прогноз будущих матчей. Если старые сезоны недоступны по тарифу, они будут исключены с уведомлением.</p>
-</div>
+<section id="results" class="card results" aria-live="polite">
+ <h2 id="matchName">Матч</h2>
+ <p id="modelSource" class="muted small"></p>
+<div id="sampleInfo" class="info hidden" role="status"></div>
+ <div class="prob"><div class="probhead"><span>П1 · Победа хозяев</span><strong id="p1">—</strong></div><div class="bar"><div id="b1" class="fill" style="background:var(--green)"></div></div></div>
+ <div class="prob"><div class="probhead"><span>X · Ничья</span><strong id="px">—</strong></div><div class="bar"><div id="bx" class="fill" style="background:var(--yellow)"></div></div></div>
+ <div class="prob"><div class="probhead"><span>П2 · Победа гостей</span><strong id="p2">—</strong></div><div class="bar"><div id="b2" class="fill" style="background:var(--blue)"></div></div></div>
+ <div class="score" id="score">—</div>
+ <p id="expected" class="muted small"></p>
+ <div class="note">Экспериментальная модель Пуассона. Старые результаты получают меньший вес, а маленькие выборки сглаживаются к среднему лиги. Составы, травмы и изменение силы команд не учитываются. Историческая проверка не доказывает будущую точность. Не является рекомендацией к ставкам.</div>
 </section>
 <section class="card" id="calculator">
- <h2>📊 Прогноз П1 / X / П2</h2>
- <p class="muted small">Выбери предстоящий матч из football-data.org: приложение использует уже загруженные результаты текущего сезона и, если доступен, предыдущего с меньшим весом. Поля можно менять вручную.</p>
- <div id="sampleInfo" class="info hidden" role="status"></div>
+ <h2>⚙️ Настройки прогноза</h2>
+ <p class="section-hint">Прогноз строится сразу после выбора матча. Если хочешь проверить другие значения голов, открой настройки ниже.</p>
+ <details id="advancedSettings" class="advanced">
+ <summary>Расширенные настройки · ручные показатели</summary>
+ <div class="advanced-content">
+ <p class="muted small">Изменения не сохраняются в исходных футбольных данных. После редактирования нажми кнопку пересчёта.</p>
  <div class="grid">
   <div class="team"><h3>Хозяева</h3>
    <div class="field"><label for="homeName">Команда</label><input id="homeName" value="Хозяева"></div>
@@ -124,20 +128,46 @@ a{color:var(--blue)}
    <div class="field"><label for="leagueAway">Голы гостей за матч</label><input id="leagueAway" inputmode="decimal" placeholder="1,20"></div>
   </div>
  </div>
- <button type="button" id="calc" style="width:100%;margin-top:14px">Рассчитать / пересчитать прогноз</button>
+ <button type="button" id="calc" style="width:100%;margin-top:14px">Пересчитать с этими показателями</button>
+ </div>
+ </details>
  <p id="calcError" class="danger small" role="alert"></p>
 </section>
-<section id="results" class="card results" aria-live="polite">
- <h2 id="matchName">Матч</h2>
- <p id="modelSource" class="muted small"></p>
- <div class="prob"><div class="probhead"><span>П1 · Победа хозяев</span><strong id="p1">—</strong></div><div class="bar"><div id="b1" class="fill" style="background:var(--green)"></div></div></div>
- <div class="prob"><div class="probhead"><span>X · Ничья</span><strong id="px">—</strong></div><div class="bar"><div id="bx" class="fill" style="background:var(--yellow)"></div></div></div>
- <div class="prob"><div class="probhead"><span>П2 · Победа гостей</span><strong id="p2">—</strong></div><div class="bar"><div id="b2" class="fill" style="background:var(--blue)"></div></div></div>
- <div class="score" id="score">—</div>
- <p id="expected" class="muted small"></p>
- <div class="note">Экспериментальная модель Пуассона. Старые результаты получают меньший вес, а маленькие выборки сглаживаются к среднему лиги. Составы, травмы и изменение силы команд не учитываются. Историческая проверка не доказывает будущую точность. Не является рекомендацией к ставкам.</div>
+<section class="card" id="backtesting">
+<h2>🧪 Проверка качества: развитие и контроль</h2>
+<p class="muted small">Каждый матч прогнозируется по результатам, доступным до его начала. При проверке трёх сезонов первые два помечаются как <strong>период разработки</strong>, последний — как <strong>контрольный период</strong>. Алгоритм и его параметры одинаковы для всех сезонов, автоматически не обучаются и не подгоняются под эти результаты.</p>
+<div class="model-note">⚠ Контрольный сезон здесь <strong>не является полностью независимым и нетронутым тестом</strong>: мы уже анализировали его в предыдущих версиях. Это отдельный временной срез, а не гарантия будущей точности. Честный следующий шаг — оценка новых матчей по мере их завершения.</div>
+<div class="field"><label for="backtestYears">Глубина истории (от выбранного сезона назад)</label>
+<select id="backtestYears">
+<option value="1">1 сезон · без дополнительных сезонных запросов, если матчи уже загружены</option>
+<option value="2">2 сезона · до 1 дополнительного запроса</option>
+<option value="3" selected>3 сезона · до 2 дополнительных запросов</option>
+</select></div>
+<button type="button" id="runBacktest" style="width:100%" disabled>Проверить качество прогнозов</button>
+<p class="muted small" id="backtestStatus" role="status" aria-live="polite">Выбери лигу и сезон football-data.org, затем запусти проверку.</p>
+<div id="backtestResult" class="hidden">
+<h3>Раздельные результаты</h3>
+<div id="splitSummary" class="split-grid">
+  <div class="split-card"><div class="split-title">Период разработки</div><div class="split-facts" id="developmentSummary">—</div></div>
+  <div class="split-card test"><div class="split-title">Контрольный период</div><div class="split-facts" id="controlSummary">—</div></div>
+</div>
+<p class="section-hint" id="controlWarning"></p>
+<h3 style="margin-top:17px">Все сезоны суммарно · справочно</h3>
+<div class="backtestMetrics">
+<div class="metric"><small>Проверено / завершено</small><strong id="btMatches">—</strong></div>
+<div class="metric"><small>Brier Score · меньше лучше</small><strong id="btBrier">—</strong></div>
+<div class="metric"><small>Log Loss · меньше лучше</small><strong id="btLogLoss">—</strong></div>
+</div>
+<div id="backtestDetails" class="info"></div>
+<h3>Результаты по сезонам</h3>
+<div class="table-scroll"><table class="historical-table"><thead><tr><th>Сезон</th><th>Роль</th><th>Прогнозы</th><th>Brier</th><th>База</th><th>Log Loss</th></tr></thead><tbody id="seasonRows"></tbody></table></div>
+<h3 style="margin-top:20px">Калибровка П1 на контрольном периоде</h3>
+<p class="muted small">В каждом диапазоне сравниваем средний прогноз П1 с фактической долей побед хозяев <strong>только за последний выбранный сезон</strong>. Числа менее 20 — малые выборки.</p>
+<div id="calibrationRows"></div>
+<p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2, рассчитанные только по прошлым встречам. Недоступные по тарифу сезоны отмечаются. Сравнения носят исследовательский характер, не являются сигналами для ставок.</p>
+</div>
 </section>
-<p class="credit">FootPredict 0.8 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 0.9 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
 </main>
 <script>
 (() => {
@@ -186,6 +216,7 @@ function clearCalc() {
   $('results').classList.remove('show');
   $('sampleInfo').classList.add('hidden');
   $('calcError').textContent = '';
+  $('advancedSettings').open = false;
   currentAuto = false;
 }
 function clearSelectionData() {
@@ -501,7 +532,10 @@ function calculate() {
     $('calcError').textContent=e.message;
   }
 }
-$('calc').addEventListener('click',calculate);
+$('calc').addEventListener('click',()=>{
+  calculate();
+  if ($('results').classList.contains('show')) $('results').scrollIntoView({behavior:'smooth',block:'start'});
+});
 statIds.concat(['homeName','awayName']).forEach(id=>{
   $(id).addEventListener('input',()=>{
     if (currentAuto) {
@@ -545,7 +579,12 @@ async function chooseMatch(match,season,year) {
     $('calcError').textContent=note+e.message;
     setStatus('Матч выбран, но для автопрогноза недостаточно доступных результатов.',true);
   }
-  $('calculator').scrollIntoView({behavior:'smooth',block:'start'});
+  if ($('results').classList.contains('show')) {
+    $('results').scrollIntoView({behavior:'smooth',block:'start'});
+  } else {
+    $('advancedSettings').open = true;
+    $('calculator').scrollIntoView({behavior:'smooth',block:'start'});
+  }
 }
 
 $('loadTeams').addEventListener('click',()=>guarded(async()=>{
@@ -595,6 +634,7 @@ $('loadMatches').addEventListener('click',()=>guarded(async()=>{
           $('homeName').value=g.teams?.home?.name||'Хозяева';
           $('awayName').value=g.teams?.away?.name||'Гости';
           $('calcError').textContent='Для API-Football пока доступен ручной расчёт.';
+          $('advancedSettings').open=true;
           $('calculator').scrollIntoView({behavior:'smooth'});
         });
     }
@@ -674,6 +714,37 @@ function calibration(rows) {
   }
 }
 
+function displaySplitSummary(years, metricResults) {
+  const controlYear = Math.max(...years);
+  const dev = metricResults.filter(x=>x.year < controlYear);
+  const hold = metricResults.find(x=>x.year === controlYear);
+  function reduce(items) {
+    const n = items.reduce((sum,m)=>sum+m.tested,0);
+    if (!n) return null;
+    const get = key => items.reduce((sum,m)=>sum+m[key],0)/n;
+    return {n,completed:items.reduce((sum,m)=>sum+m.completed,0),
+      brier:get('brier'),base:get('baseBrier'),loss:get('logLoss'),baseLoss:get('baseLoss')};
+  }
+  function body(x,labels) {
+    if (!x) return labels+'\nНет проверенных матчей — вывод сделать нельзя.';
+    const diff = 100*(x.base-x.brier)/x.base;
+    return labels+'\nПроверено '+x.n+' / '+x.completed+' матчей.'+
+      '\nBrier: '+fmt(x.brier)+' · база '+fmt(x.base)+
+      '\nLog Loss: '+fmt(x.loss)+' · база '+fmt(x.baseLoss)+
+      '\nРазница Brier с базой: '+diff.toFixed(1)+'%';
+  }
+  $('developmentSummary').textContent = body(reduce(dev),
+    dev.length ? 'Сезоны: '+dev.map(m=>m.year).join(', ') : 'Сезонов разработки нет.');
+  $('controlSummary').textContent = body(reduce(hold?[hold]:[]),
+    'Сезон '+controlYear+' (отдельный период)');
+  const nh = hold?.tested || 0;
+  $('controlWarning').textContent = !dev.length ?
+    '⚠ Разделение невозможно: выбран только один доступный сезон. Для сравнения выбери несколько сезонов.' :
+    nh < 100 ? '⚠ На контрольном сезоне только '+nh+' матчей — выводы особенно нестабильны.' :
+    'Контрольный период выделен по времени. Его уже анализировали в предыдущих версиях, поэтому он не полностью независим.';
+  return controlYear;
+}
+
 $('runBacktest').addEventListener('click',()=>guarded(async()=>{
   if(provider()!=='fd') throw new Error('Проверка доступна для football-data.org.');
   $('backtestResult').classList.add('hidden');
@@ -708,6 +779,7 @@ $('runBacktest').addEventListener('click',()=>guarded(async()=>{
   const brier=sum('brier')/tested,base=sum('baseBrier')/tested;
   const loss=sum('logLoss')/tested,baseLoss=sum('baseLoss')/tested;
   const allPred=results.flatMap(x=>x.rows);
+  const controlYear = displaySplitSummary(collected.map(x=>x.year),m);
   $('btMatches').textContent=tested+' / '+completed;
   $('btBrier').textContent=fmt(brier);
   $('btLogLoss').textContent=fmt(loss);
@@ -721,20 +793,20 @@ $('runBacktest').addEventListener('click',()=>guarded(async()=>{
     'Использованы сезоны: '+collected.map(x=>x.year).join(', ')+'.\n'+
     (notices.length?'Недоступные сезоны: '+notices.join(' | ')+'.\n':'')+
     (tested<200?'⚠ Малая выборка (< 200 матчей): выводы предварительные.\n':'')+
-    'Новые матчи не использовались для обучения параметров. Показатели относятся к доступной исторической выборке.';
+    'Параметры зафиксированы, но контрольный сезон уже рассматривался в прошлых версиях. Это не независимая оценка на новых данных.';
   $('seasonRows').replaceChildren();
   for(const r of m) {
     const tr=document.createElement('tr');
-    cell(tr,r.year);cell(tr,r.tested+' / '+r.completed);
+    cell(tr,r.year);cell(tr,r.year===controlYear?'Контроль':'Разработка');cell(tr,r.tested+' / '+r.completed);
     cell(tr,r.tested?fmt(r.brier/r.tested):'—');
     cell(tr,r.tested?fmt(r.baseBrier/r.tested):'—');
     cell(tr,r.tested?fmt(r.logLoss/r.tested):'—');
     $('seasonRows').append(tr);
   }
-  calibration(allPred);
+  calibration(allPred.filter(x=>x.season===controlYear));
   $('backtestResult').classList.remove('hidden');
   $('backtestStatus').textContent=
-    'Историческая проверка завершена. '+collected.length+' сезон(ов), '+tested+' прогнозов.';
+    'Раздельная проверка завершена. '+collected.length+' сезон(ов), '+tested+' прогнозов. Контрольный год: '+controlYear+'.';
 },'backtest'));
 })();
 
