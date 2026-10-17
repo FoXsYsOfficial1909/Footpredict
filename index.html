@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 0.9 — автопрогнозы и раздельная проверка</title>
+<title>FootPredict 1.0 — автопрогнозы и раздельная проверка</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ a{color:var(--blue)}
 </head>
 <body>
 <main>
-<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v0.9</span></header>
+<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v1.0</span></header>
 <section class="card">
 <h2>🌍 Выбери матч</h2>
 <p class="muted">football-data.org — актуальные соревнования. API-Football остаётся доступным для ручного анализа исторических сезонов.</p>
@@ -97,8 +97,31 @@ a{color:var(--blue)}
  <div class="prob"><div class="probhead"><span>П2 · Победа гостей</span><strong id="p2">—</strong></div><div class="bar"><div id="b2" class="fill" style="background:var(--blue)"></div></div></div>
  <div class="score" id="score">—</div>
  <p id="expected" class="muted small"></p>
- <div class="note">Экспериментальная модель Пуассона. Старые результаты получают меньший вес, а маленькие выборки сглаживаются к среднему лиги. Составы, травмы и изменение силы команд не учитываются. Историческая проверка не доказывает будущую точность. Не является рекомендацией к ставкам.</div>
+ <div class="note">Экспериментальная модель Пуассона. Старые результаты получают меньший вес, а маленькие выборки сглаживаются к среднему лиги. Составы, травмы и изменение силы команд не учитываются. Для истории используется полная точность входов; округление показателей только на экране. Историческая проверка не доказывает будущую точность. Не является рекомендацией к ставкам.</div>
 </section>
+<section class="card" id="predictionHistory">
+<h2>📒 История новых прогнозов</h2>
+<p class="section-hint">Сохрани прогноз заранее. После матча сравнивай именно сохранённые вероятности, без пересчёта по новым данным. Только автопрогноз football-data.org.</p>
+<div class="field"><label for="historyMode">Где хранить</label><select id="historyMode"><option value="local">В этом браузере · неподтверждённая история</option><option value="server">На сервере · общая подтверждённая история</option></select></div>
+<p class="small muted" id="historyModeHint">Локальные записи можно изменить или потерять при очистке браузера. Они не входят в подтверждённую серверную оценку.</p>
+<details class="advanced" id="ownerPanel"><summary>Доступ владельца для записи на сервер</summary><div class="advanced-content">
+<label for="ownerToken" class="small">Токен владельца (не API-ключ)</label>
+<input id="ownerToken" type="password" autocomplete="off" placeholder="Нужен только для серверного сохранения и сверки">
+<button type="button" id="forgetToken" style="margin-top:10px">Убрать токен</button>
+<p class="small muted">Токен не сохраняется приложением. Не передавай его друзьям. Они могут читать общую историю без токена.</p>
+</div></details>
+<div class="actions" style="margin-top:14px">
+<button type="button" id="savePrediction" disabled>Сохранить выбранный прогноз</button>
+<button type="button" id="refreshHistory">Загрузить историю</button>
+<button type="button" id="exportHistory">Скачать JSON</button>
+</div>
+<p id="historyStatus" class="status" role="status" aria-live="polite">История ещё не загружена.</p>
+<p class="small muted" id="historyMetrics"></p>
+<div id="historyRows" class="list"></div>
+<button type="button" id="moreHistory" class="hidden">Следующая страница</button>
+<p class="small muted">Новый сервер нужен только для серверного режима. В старом Worker v0.9 этих маршрутов нет. Запись закрывается за 5 минут до начала. Переносы и спорные результаты исключаются из оценки.</p>
+</section>
+
 <section class="card" id="calculator">
  <h2>⚙️ Настройки прогноза</h2>
  <p class="section-hint">Прогноз строится сразу после выбора матча. Если хочешь проверить другие значения голов, открой настройки ниже.</p>
@@ -167,7 +190,7 @@ a{color:var(--blue)}
 <p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2, рассчитанные только по прошлым встречам. Недоступные по тарифу сезоны отмечаются. Сравнения носят исследовательский характер, не являются сигналами для ставок.</p>
 </div>
 </section>
-<p class="credit">FootPredict 0.9 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 1.0 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
 </main>
 <script>
 (() => {
@@ -187,6 +210,9 @@ const failedSeasons = new Map();
 let leagues = [];
 let busy = false;
 let currentAuto = false;
+let selectedSnapshot = null;
+let autoStats = null;
+const MODEL_VERSION = "poisson-1.0.0";
 
 function setStatus(message, isError = false) {
   $('status').textContent = message;
@@ -210,6 +236,8 @@ function selectedCompetition() {
   return leagues.find(x => String(x.id) === $('competition').value);
 }
 function clearCalc() {
+  selectedSnapshot = null; autoStats = null;
+  $("savePrediction").disabled = true;
   statIds.forEach(id => $(id).value = '');
   $('homeName').value = 'Хозяева';
   $('awayName').value = 'Гости';
@@ -379,7 +407,8 @@ function trySaveStorage(league,year,matches) {
 }
 async function loadSeason(league,year) {
   const key = `${league}/${year}`;
-  if (loadedSeasons.has(key)) return loadedSeasons.get(key);
+  const cached=loadedSeasons.get(key);
+  if (cached && Date.now()-cached.saved<5*60*1000) return cached.matches;
   const failed = failedSeasons.get(key);
   if (failed && Date.now() - failed.at < 10 * 60 * 1000) {
     throw new Error(failed.message + ' (повтор через несколько минут)');
@@ -388,7 +417,7 @@ async function loadSeason(league,year) {
   const ttl = year === currentYear ? 5*60*1000 : 24*60*60*1000;
   const stored = tryReadStorage(league,year,ttl);
   if (stored) {
-    loadedSeasons.set(key,stored);
+    loadedSeasons.set(key,{saved:Date.now(),matches:stored});
     return stored;
   }
   let result;
@@ -399,7 +428,7 @@ async function loadSeason(league,year) {
     failedSeasons.set(key,{at:Date.now(),message:err.message});
     throw err;
   }
-  loadedSeasons.set(key,result.matches);
+  loadedSeasons.set(key,{saved:Date.now(),matches:result.matches});
   trySaveStorage(league,year,result.matches);
   return result.matches;
 }
@@ -417,12 +446,12 @@ function completedBefore(games,target,year) {
   if (!Number.isFinite(cutoff)) return [];
   return games.filter(g => {
     const t = Date.parse(g.utcDate);
-    return g.id !== target.id && g.status === 'FINISHED' &&
+    return g.id !== target.id && g.status === 'FINISHED' && g.score?.duration === 'REGULAR' &&
       Number.isFinite(t) && t <= cutoff &&
       (g.__year === year || g.__year === year-1) &&
       g.homeTeam?.id && g.awayTeam?.id &&
-      Number.isInteger(g.score?.fullTime?.home) &&
-      Number.isInteger(g.score?.fullTime?.away);
+      Number.isInteger(g.score?.fullTime?.home) && g.score.fullTime.home >= 0 &&
+      Number.isInteger(g.score?.fullTime?.away) && g.score.fullTime.away >= 0;
   });
 }
 function weight(g,target,year) {
@@ -513,7 +542,7 @@ function number(id) {
 function calculate() {
   $('calcError').textContent='';
   try {
-    const stats=Object.fromEntries(statIds.map(id=>[id,number(id)]));
+    const stats=currentAuto && autoStats ? autoStats : Object.fromEntries(statIds.map(id=>[id,number(id)]));
     const r=predict(stats);
     [['p1','b1',r.prob[0]],['px','bx',r.prob[1]],['p2','b2',r.prob[2]]]
       .forEach(([label,bar,p])=>{
@@ -533,6 +562,7 @@ function calculate() {
   }
 }
 $('calc').addEventListener('click',()=>{
+  currentAuto=false; $('savePrediction').disabled=true;
   calculate();
   if ($('results').classList.contains('show')) $('results').scrollIntoView({behavior:'smooth',block:'start'});
 });
@@ -540,6 +570,7 @@ statIds.concat(['homeName','awayName']).forEach(id=>{
   $(id).addEventListener('input',()=>{
     if (currentAuto) {
       currentAuto=false;
+      $("savePrediction").disabled=true;
       $('sampleInfo').textContent+='\nПоказатели изменены вручную.';
     }
     $('results').classList.remove('show');
@@ -573,7 +604,11 @@ async function chooseMatch(match,season,year) {
       ((stats.homeCount<5 || stats.awayCount<5)
        ? '⚠ МАЛЕНЬКАЯ ВЫБОРКА: оценки нестабильны.' : '');
     currentAuto=true;
+    autoStats=stats;
+    selectedSnapshot={match:structuredClone(match),year,league:sel.league,stats:structuredClone(stats),
+      inputs:completedBefore(all,match,year).map(g=>({id:g.id,utcDate:g.utcDate,status:g.status,homeTeam:{id:g.homeTeam.id},awayTeam:{id:g.awayTeam.id},score:g.score,__year:g.__year}))};
     calculate();
+    $("savePrediction").disabled=false;
     setStatus('Прогноз рассчитан по историческим результатам, доступным до матча.');
   } catch (e) {
     $('calcError').textContent=note+e.message;
@@ -654,7 +689,7 @@ function emptyMetrics(year) {
 function verify(history,year) {
   const metrics=emptyMetrics(year);
   const rows=[];
-  const current=history.filter(g=>g.__year===year && g.status==='FINISHED' &&
+  const current=history.filter(g=>g.__year===year && g.status==='FINISHED' && g.score?.duration==='REGULAR' &&
     Number.isFinite(Date.parse(g.utcDate)) && g.homeTeam?.id && g.awayTeam?.id &&
     Number.isInteger(g.score?.fullTime?.home)&&Number.isInteger(g.score?.fullTime?.away))
     .sort((a,b)=>Date.parse(a.utcDate)-Date.parse(b.utcDate)||a.id-b.id);
@@ -808,6 +843,138 @@ $('runBacktest').addEventListener('click',()=>guarded(async()=>{
   $('backtestStatus').textContent=
     'Раздельная проверка завершена. '+collected.length+' сезон(ов), '+tested+' прогнозов. Контрольный год: '+controlYear+'.';
 },'backtest'));
+const HISTORY_KEY='footpredict:history:v1';
+let historyRows=[], historyCursor=null, historyBusy=false;
+const isServer=()=>$('historyMode').value==='server';
+const stateNames={pending:'Ожидается',live:'Идёт',settled:'Завершён',postponed:'Перенесён',cancelled:'Отменён',review_required:'Нужна проверка'};
+function historyMessage(text,error=false){$('historyStatus').textContent=text;$('historyStatus').classList.toggle('danger',error);}
+function readLocal(){
+  const raw=localStorage.getItem(HISTORY_KEY);
+  if(!raw) return [];
+  const list=JSON.parse(raw);
+  if(!Array.isArray(list)) throw new Error('Локальная история повреждена. Не перезаписываем её.');
+  return list;
+}
+async function historyRequest(path,body){
+  const headers={};
+  if(body){
+    const token=$('ownerToken').value.trim();
+    if(!token) throw new Error('Открой доступ владельца и введи токен сервера.');
+    headers.Authorization='Bearer '+token;headers['Content-Type']='application/json';
+  }
+  const r=await fetch(API+'/v1'+path,{method:body?'POST':'GET',headers,body:body?JSON.stringify(body):undefined,cache:'no-store',signal:AbortSignal.timeout(30000)});
+  let d;try{d=await r.json();}catch{throw new Error('Worker не вернул JSON. Проверь адрес и установку v1.0.');}
+  if(!r.ok) throw new Error(d.message||'Ошибка сервера '+r.status);
+  return d;
+}
+async function historyAction(fn){
+  if(historyBusy) return;
+  historyBusy=true;
+  ['savePrediction','refreshHistory','exportHistory','moreHistory','historyMode'].forEach(id=>$(id).disabled=true);
+  try{await fn();}catch(e){historyMessage(e.name==='TimeoutError'?'Время ожидания истекло. Запись могла сохраниться: загрузи историю перед повтором.':e.message,true);}
+  finally{historyBusy=false;['refreshHistory','exportHistory','moreHistory','historyMode'].forEach(id=>$(id).disabled=false);$('savePrediction').disabled=!currentAuto||!selectedSnapshot;}
+}
+function renderHistory(){
+  $('historyRows').replaceChildren();
+  for(const item of historyRows){
+    const p=item.prediction, o=item.latest||{status:'pending'};
+    const block=document.createElement('div');block.className='item';block.style.display='block';
+    const title=document.createElement('strong');title.textContent=p.homeName+' — '+p.awayName;
+    const info=document.createElement('p');info.className='small muted';
+    info.textContent=`${p.provider} #${p.fixtureId} · ${p.modelVersion}\nСоздан: ${dateRu(p.createdAt)} · матч: ${dateRu(p.kickoffAt)}\nП1 / X / П2: ${p.probabilities.map(x=>(100*x).toFixed(1)+'%').join(' / ')} · ${stateNames[o.status]||o.status}`;
+    info.style.whiteSpace='pre-line';
+    if(o.result) info.textContent+='\nОсновное время: '+o.result.home+' : '+o.result.away+' · Brier '+o.metrics?.brier?.toFixed(3);
+    if(o.reason) info.textContent+='\n'+o.reason;
+    if(o.checkedAt) info.textContent+='\nСверено: '+dateRu(o.checkedAt);
+    const check=document.createElement('button');check.type='button';check.textContent='Сверить результат';
+    check.addEventListener('click',()=>historyAction(async()=>{
+      historyMessage('Проверяю результат…');
+      if(isServer()){
+        const d=await historyRequest('/history/'+encodeURIComponent(p.predictionId)+'/check',{});
+        item.latest=d.latest;historyMessage(d.message||'Результат проверен.');
+      }else{
+        if(Date.now()<Date.parse(p.kickoffAt)+4*3600000) throw new Error('Локальную сверку запускай через 4 часа после начала.');
+        const d=await apiGet('/fd/competitions/'+encodeURIComponent(p.league)+'/matches',{season:p.year});
+        const match=(d.matches||[]).find(g=>Number(g.id)===Number(p.fixtureId));
+        if(!match)throw new Error('Матч не найден в ответе сезона. История не изменена.');
+        item.latest=compareResult(p,match,new Date().toISOString());
+        const all=readLocal(), idx=all.findIndex(x=>x.prediction.predictionId===p.predictionId);
+        if(idx<0) throw new Error('Запись больше не найдена в браузере.');
+        all[idx].latest=item.latest;localStorage.setItem(HISTORY_KEY,JSON.stringify(all));
+        historyMessage('Локальный результат обновлён. Источник может использовать кэш; это не серверное подтверждение.');
+      }
+      renderHistory();
+    }));
+    const details=document.createElement('details'),summary=document.createElement('summary'),pre=document.createElement('pre');
+    summary.textContent='Данные сохранённого прогноза';pre.style.cssText='white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px';pre.textContent=JSON.stringify(item,null,2);details.append(summary,pre);
+    block.append(title,info,check,details);$('historyRows').append(block);
+  }
+  if(!historyRows.length)$('historyRows').textContent='Сохранённых прогнозов пока нет.';
+  const done=historyRows.filter(x=>x.latest?.status==='settled'&&x.latest.metrics);
+  $('historyMetrics').textContent=done.length?`На загруженных записях (${isServer()?'сервер':'локально, неподтверждённо'}): n=${done.length}, Brier ${(done.reduce((s,x)=>s+x.latest.metrics.brier,0)/done.length).toFixed(3)}, Log Loss ${(done.reduce((s,x)=>s+x.latest.metrics.logLoss,0)/done.length).toFixed(3)}. Малая выборка не доказывает точность.`:'Для оценки пока нет завершённых записей.';
+  $('moreHistory').classList.toggle('hidden',!isServer()||!historyCursor);
+}
+function compareResult(p,g,checkedAt){
+  let status='pending',result=null,reason='';
+  const kickoff=Date.parse(g.utcDate), original=Date.parse(p.kickoffAt);
+  if(Number(g.id)!==Number(p.fixtureId)||g.homeTeam?.id!==p.homeId||g.awayTeam?.id!==p.awayId||!Number.isFinite(kickoff)) {status='review_required';reason='Не совпадают идентификатор, команды или дата.';}
+  else if(kickoff!==original){status='review_required';reason='Время матча изменилось. Старый прогноз исключён из оценки.';}
+  else if(kickoff<=Date.parse(p.savedAt||p.createdAt)+5*60000){status='review_required';reason='Не подтверждён достаточный запас времени до начала.';}
+  else if(g.status==='FINISHED'){
+    const score=g.score?.duration==='REGULAR'?g.score.fullTime:g.score?.regularTime;
+    if(!score||!Number.isInteger(score.home)||!Number.isInteger(score.away)||score.home<0||score.away<0){status='review_required';reason='Нет надёжного счёта основного времени.';}
+    else {status='settled';result={home:score.home,away:score.away};}
+  }else if(g.status==='CANCELLED')status='cancelled';
+  else if(g.status==='POSTPONED')status='postponed';
+  else if(['IN_PLAY','PAUSED','EXTRA_TIME','PENALTY_SHOOTOUT'].includes(g.status))status='live';
+  else if(!['TIMED','SCHEDULED'].includes(g.status)){status='review_required';reason='Статус провайдера: '+g.status;}
+  const r={status,result,reason,checkedAt,providerStatus:g.status,kickoffAt:g.utcDate};
+  if(result){const a=result.home>result.away?0:result.home===result.away?1:2;
+    r.metrics={actualIndex:a,brier:p.probabilities.reduce((s,v,i)=>s+(v-(i===a?1:0))**2,0),logLoss:-Math.log(Math.max(1e-12,p.probabilities[a]))};}
+  return r;
+}
+async function refreshHistory(append=false){
+  if(isServer()){
+    const d=await historyRequest('/history'+(append&&historyCursor?'?cursor='+encodeURIComponent(historyCursor):''));
+    historyRows=append?historyRows.concat(d.items):d.items;historyCursor=d.nextCursor;
+  }else{historyRows=readLocal();historyCursor=null;}
+  renderHistory();historyMessage('Загружено записей: '+historyRows.length+'.');
+}
+$('savePrediction').addEventListener('click',()=>historyAction(async()=>{
+  if(busy) throw new Error('Дождись завершения загрузки матча.');
+  if(!currentAuto||!selectedSnapshot)throw new Error('Выбери автоматический прогноз без ручных изменений.');
+  const s=structuredClone(selectedSnapshot),g=s.match;
+  historyMessage('Сохраняю прогноз…');
+  if(isServer()){
+    const d=await historyRequest('/predictions',{fixtureId:g.id});
+    await refreshHistory();historyMessage(d.existing?'Этот матч уже сохранён: показана первоначальная запись.':'Прогноз рассчитан и сохранён сервером. Он может отличаться от предварительного расчёта на экране.');
+  }else{
+    const now=Date.now();
+    if(!['SCHEDULED','TIMED'].includes(g.status)||Date.parse(g.utcDate)<=now+5*60000)throw new Error('Нужен предстоящий матч минимум через 5 минут.');
+    const predictionId='local:fd:'+g.id+':'+MODEL_VERSION;
+    const all=readLocal();
+    if(all.some(x=>x.prediction.predictionId===predictionId))throw new Error('Матч уже сохранён локально. Первоначальный прогноз не заменяется.');
+    const prediction={schemaVersion:1,predictionId,provider:'football-data.org',fixtureId:g.id,modelVersion:MODEL_VERSION,createdAt:new Date(now).toISOString(),kickoffAt:g.utcDate,homeId:g.homeTeam.id,awayId:g.awayTeam.id,homeName:g.homeTeam.name,awayName:g.awayTeam.name,league:s.league,year:s.year,probabilities:predict(s.stats).prob,stats:s.stats,inputs:s.inputs,trust:'browser-unverified',market:'1X2_REGULATION',parameters:{priorSeasonWeight:PRIOR_SEASON_WEIGHT,halfLifeDays:HALF_LIFE_DAYS,regularizationGames:REGULARIZATION_GAMES,finishSafetyHours:FINISH_SAFETY_HOURS}};
+    all.unshift({prediction,latest:{status:'pending'}});
+    localStorage.setItem(HISTORY_KEY,JSON.stringify(all));await refreshHistory();
+    historyMessage('Сохранено только в этом браузере. Время и предматчевый статус сервером не подтверждены.');
+  }
+}));
+$('refreshHistory').addEventListener('click',()=>historyAction(()=>refreshHistory()));
+$('moreHistory').addEventListener('click',()=>historyAction(()=>refreshHistory(true)));
+$('historyMode').addEventListener('change',()=>{
+  historyRows=[];historyCursor=null;renderHistory();
+  $('historyModeHint').textContent=isServer()?'Сервер пересчитывает и фиксирует прогноз сам. Для записи нужен доступ владельца; чтение общей истории открыто.':'Только этот браузер; очистка данных удалит записи. Сервер не подтверждает их время и исходные данные.';
+  historyMessage('Нажми «Загрузить историю».');
+});
+$('forgetToken').addEventListener('click',()=>{$('ownerToken').value='';historyMessage('Токен убран из поля.');});
+$('exportHistory').addEventListener('click',()=>historyAction(async()=>{
+  if(!isServer()){historyRows=readLocal();renderHistory();}
+  const b=new Blob([JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),mode:isServer()?'server-loaded-pages':'browser-unverified',items:historyRows},null,2)],{type:'application/json'});
+  const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='footpredict-history-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);
+  historyMessage('Скачаны загруженные записи. Для полного сервера сначала загрузи все страницы.');
+}));
+
 })();
 
 </script>
