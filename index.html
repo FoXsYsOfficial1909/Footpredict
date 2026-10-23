@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.0 — автопрогнозы и раздельная проверка</title>
+<title>FootPredict 1.0.1 — автопрогнозы и раздельная проверка</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ a{color:var(--blue)}
 </head>
 <body>
 <main>
-<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v1.0</span></header>
+<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v1.0.1</span></header>
 <section class="card">
 <h2>🌍 Выбери матч</h2>
 <p class="muted">football-data.org — актуальные соревнования. API-Football остаётся доступным для ручного анализа исторических сезонов.</p>
@@ -102,8 +102,8 @@ a{color:var(--blue)}
 <section class="card" id="predictionHistory">
 <h2>📒 История новых прогнозов</h2>
 <p class="section-hint">Сохрани прогноз заранее. После матча сравнивай именно сохранённые вероятности, без пересчёта по новым данным. Только автопрогноз football-data.org.</p>
-<div class="field"><label for="historyMode">Где хранить</label><select id="historyMode"><option value="local">В этом браузере · неподтверждённая история</option><option value="server">На сервере · общая подтверждённая история</option></select></div>
-<p class="small muted" id="historyModeHint">Локальные записи можно изменить или потерять при очистке браузера. Они не входят в подтверждённую серверную оценку.</p>
+<div class="field"><label for="historyMode">Где хранить</label><select id="historyMode"><option value="server" selected>На сервере · общая подтверждённая история</option><option value="local">В этом браузере · неподтверждённая история</option></select></div>
+<p class="small muted" id="historyModeHint">Общая история загружается автоматически. Для просмотра пароль не нужен. Для сохранения и сверки нужен доступ владельца.</p>
 <details class="advanced" id="ownerPanel"><summary>Доступ владельца для записи на сервер</summary><div class="advanced-content">
 <label for="ownerToken" class="small">Токен владельца (не API-ключ)</label>
 <input id="ownerToken" type="password" autocomplete="off" placeholder="Нужен только для серверного сохранения и сверки">
@@ -111,15 +111,15 @@ a{color:var(--blue)}
 <p class="small muted">Токен не сохраняется приложением. Не передавай его друзьям. Они могут читать общую историю без токена.</p>
 </div></details>
 <div class="actions" style="margin-top:14px">
-<button type="button" id="savePrediction" disabled>Сохранить выбранный прогноз</button>
+<button type="button" id="savePrediction" disabled>Сохранить на сервере</button>
 <button type="button" id="refreshHistory">Загрузить историю</button>
 <button type="button" id="exportHistory">Скачать JSON</button>
 </div>
-<p id="historyStatus" class="status" role="status" aria-live="polite">История ещё не загружена.</p>
+<p id="historyStatus" class="status" role="status" aria-live="polite">Загружаю серверную историю…</p>
 <p class="small muted" id="historyMetrics"></p>
 <div id="historyRows" class="list"></div>
 <button type="button" id="moreHistory" class="hidden">Следующая страница</button>
-<p class="small muted">Новый сервер нужен только для серверного режима. В старом Worker v0.9 этих маршрутов нет. Запись закрывается за 5 минут до начала. Переносы и спорные результаты исключаются из оценки.</p>
+<p class="small muted">Запись закрывается за 5 минут до начала матча. Для обновления итогового счёта нажми «Сверить результат»; автоматическая сверка пока выключена. Переносы и спорные результаты исключаются из оценки.</p>
 </section>
 
 <section class="card" id="calculator">
@@ -190,7 +190,7 @@ a{color:var(--blue)}
 <p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2, рассчитанные только по прошлым встречам. Недоступные по тарифу сезоны отмечаются. Сравнения носят исследовательский характер, не являются сигналами для ставок.</p>
 </div>
 </section>
-<p class="credit">FootPredict 1.0 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 1.0.1 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
 </main>
 <script>
 (() => {
@@ -934,11 +934,18 @@ function compareResult(p,g,checkedAt){
   return r;
 }
 async function refreshHistory(append=false){
-  if(isServer()){
-    const d=await historyRequest('/history'+(append&&historyCursor?'?cursor='+encodeURIComponent(historyCursor):''));
-    historyRows=append?historyRows.concat(d.items):d.items;historyCursor=d.nextCursor;
-  }else{historyRows=readLocal();historyCursor=null;}
-  renderHistory();historyMessage('Загружено записей: '+historyRows.length+'.');
+  historyMessage(append?'Загружаю следующую страницу…':isServer()?'Загружаю серверную историю…':'Загружаю историю этого браузера…');
+  if(!historyRows.length)$('historyRows').textContent='История загружается…';
+  try{
+    if(isServer()){
+      const d=await historyRequest('/history'+(append&&historyCursor?'?cursor='+encodeURIComponent(historyCursor):''));
+      historyRows=append?historyRows.concat(d.items):d.items;historyCursor=d.nextCursor;
+    }else{historyRows=readLocal();historyCursor=null;}
+    renderHistory();historyMessage((isServer()?'Загружено с сервера записей: ':'Загружено записей этого браузера: ')+historyRows.length+'.');
+  }catch(e){
+    if(!historyRows.length)$('historyRows').textContent='История не загружена. Нажми «Загрузить историю», чтобы повторить.';
+    throw e;
+  }
 }
 $('savePrediction').addEventListener('click',()=>historyAction(async()=>{
   if(busy) throw new Error('Дождись завершения загрузки матча.');
@@ -962,11 +969,16 @@ $('savePrediction').addEventListener('click',()=>historyAction(async()=>{
 }));
 $('refreshHistory').addEventListener('click',()=>historyAction(()=>refreshHistory()));
 $('moreHistory').addEventListener('click',()=>historyAction(()=>refreshHistory(true)));
-$('historyMode').addEventListener('change',()=>{
-  historyRows=[];historyCursor=null;renderHistory();
-  $('historyModeHint').textContent=isServer()?'Сервер пересчитывает и фиксирует прогноз сам. Для записи нужен доступ владельца; чтение общей истории открыто.':'Только этот браузер; очистка данных удалит записи. Сервер не подтверждает их время и исходные данные.';
-  historyMessage('Нажми «Загрузить историю».');
-});
+function updateHistoryMode(){
+  $('savePrediction').textContent=isServer()?'Сохранить на сервере':'Сохранить в этом браузере';
+  $('historyModeHint').textContent=isServer()?'Общая история загружается автоматически. Для просмотра пароль не нужен. Для сохранения и сверки нужен доступ владельца.':'Сохраняется только в этом браузере; очистка данных удалит записи. Это неподтверждённая история, отдельная от общей серверной.';
+}
+$('historyMode').addEventListener('change',()=>historyAction(async()=>{
+  historyRows=[];historyCursor=null;
+  $('historyRows').replaceChildren();$('historyMetrics').textContent='';$('moreHistory').classList.add('hidden');
+  updateHistoryMode();
+  await refreshHistory();
+}));
 $('forgetToken').addEventListener('click',()=>{$('ownerToken').value='';historyMessage('Токен убран из поля.');});
 $('exportHistory').addEventListener('click',()=>historyAction(async()=>{
   if(!isServer()){historyRows=readLocal();renderHistory();}
@@ -974,6 +986,10 @@ $('exportHistory').addEventListener('click',()=>historyAction(async()=>{
   const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='footpredict-history-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);
   historyMessage('Скачаны загруженные записи. Для полного сервера сначала загрузи все страницы.');
 }));
+// A new page always starts with the shared ledger; local history stays opt-in.
+$('historyMode').value='server';
+updateHistoryMode();
+historyAction(()=>refreshHistory());
 
 })();
 
