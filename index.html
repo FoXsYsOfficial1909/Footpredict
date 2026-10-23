@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.0.2 — автопрогнозы и раздельная проверка</title>
+<title>FootPredict 1.0.3 — автопрогнозы и раздельная проверка</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -326,12 +326,35 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .brand-mark { width: 36px; height: 36px; flex-basis: 36px; font-size: 21px; }
   .app-nav a { padding-inline: 8px; font-size: 12px; }
   .card { padding: 14px; }
-  .prob-value { font-size: 21px; }
-  .record-probability { padding-inline: 6px; }
+  .prob-value { font-size: 18px; white-space: nowrap; }
+  .record-probability { padding-inline: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+.history-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.history-filters button { min-height: 44px; font-size: 12px; font-weight: 600; }
+.history-filters button[aria-pressed="true"] { border-color: #69ac86; background: #1c3b2e; color: #d0f3de; }
+.accuracy-report { margin: 19px 0; padding: 18px; border: 1px solid #38536a; border-radius: 14px; background: #0e1c2b; }
+.accuracy-report h3 { margin-bottom: 8px; color: var(--text); font-size: 16px; }
+.accuracy-progress { margin: 12px 0 6px; color: #c8deed; font-size: 14px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.accuracy-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+.accuracy-table caption { text-align: left; margin-bottom: 7px; }
+.accuracy-table th, .accuracy-table td { padding: 9px 10px; text-align: left; border-bottom: 1px solid #2e455a; }
+.accuracy-table thead th { font-size: 12px; color: #b6cade; font-weight: 600; }
+.accuracy-table tbody th { font-weight: 500; color: #bdcfe0; }
+.accuracy-table td { font-weight: 650; font-variant-numeric: tabular-nums; }
+.accuracy-previous { margin-top: 15px; padding-top: 4px; border-top: 1px solid #2e455a; }
+.accuracy-previous > summary { min-height: 44px; padding: 10px 0; color: #bcd0e3; font-size: 13px; cursor: pointer; }
+.accuracy-exclusions { padding-left: 20px; color: #e1c794; font-size: 12px; }
+.accuracy-exclusions li { margin: 7px 0; }
+@media (max-width: 600px) {
+  .history-filters { display: grid; grid-template-columns: 1fr 1fr; }
+  .history-filters button { min-width: 0; padding-inline: 8px; font-size: 11px; }
+  .accuracy-report { padding: 13px; }
+  .accuracy-table { font-size: 12px; }
+  .accuracy-table th, .accuracy-table td { padding: 8px 6px; }
 }
 
 </style>
@@ -340,7 +363,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <main>
 <header class="app-header">
 <div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
-<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.0.2</span>
+<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.0.3</span>
 </header>
 <div class="workbench">
 <section class="card picker-card" id="matchPicker">
@@ -396,9 +419,40 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 </div>
 <p id="historyStatus" class="status" role="status" aria-live="polite">Загружаю серверную историю…</p>
 <p class="small muted history-metrics" id="historyMetrics"></p>
+<section class="accuracy-report hidden" id="accuracyReport" aria-labelledby="accuracyTitle">
+<h3 id="accuracyTitle">Проверка серии · 10 матчей</h3>
+<p class="small muted">Заранее выбранные матчи 24–31 октября 2026 · poisson-1.0.0. Состав серии фиксирован; две первые игры в неё не входят.</p>
+<p class="accuracy-progress" id="batchProgress"></p>
+<p class="small muted" id="batchCoverage"></p>
+<div class="table-scroll"><table class="accuracy-table"><caption class="small muted" id="batchMetricScope"></caption><thead><tr><th scope="col">Оценка</th><th scope="col">Модель</th><th scope="col">Простая база</th></tr></thead><tbody>
+<tr><th scope="row">Brier ↓</th><td id="batchBrier">—</td><td id="batchBaseBrier">—</td></tr>
+<tr><th scope="row">Log Loss ↓</th><td id="batchLogLoss">—</td><td id="batchBaseLogLoss">—</td></tr>
+<tr><th scope="row">Угадан самый вероятный исход</th><td id="batchTop">—</td><td id="batchBaseTop">—</td></tr>
+</tbody></table></div>
+<p class="small muted" id="batchEvaluationNote"></p>
+<ul class="accuracy-exclusions hidden" id="batchExclusions"></ul>
+<details class="accuracy-previous"><summary>Две первые игры · отдельно от серии</summary>
+<p class="small muted" id="previousProgress"></p>
+<div class="table-scroll"><table class="accuracy-table"><caption class="small muted" id="previousMetricScope"></caption><thead><tr><th scope="col">Оценка</th><th scope="col">Модель</th><th scope="col">Простая база</th></tr></thead><tbody>
+<tr><th scope="row">Brier ↓</th><td id="previousBrier">—</td><td id="previousBaseBrier">—</td></tr>
+<tr><th scope="row">Log Loss ↓</th><td id="previousLogLoss">—</td><td id="previousBaseLogLoss">—</td></tr>
+<tr><th scope="row">Угадан самый вероятный исход</th><td id="previousTop">—</td><td id="previousBaseTop">—</td></tr>
+</tbody></table></div>
+<p class="small muted" id="previousEvaluationNote"></p>
+</details>
+<p class="small muted">Для Brier и Log Loss меньше — лучше. База — сохранённые частоты исходов лиги, а не букмекерские коэффициенты. Десять матчей — малая выборка, не доказательство будущей точности. Отчёт читает сохранённые данные и не запускает прогнозы или сверку.</p>
+</section>
+<p class="small muted hidden" id="localAccuracyHint">Локальные записи неподтверждённые и не смешиваются с серверной серией из 10 матчей. Её отчёт доступен в режиме «На сервере».</p>
+<div class="history-filters hidden" id="historyFilters" role="group" aria-label="Фильтр загруженной истории">
+<button type="button" id="filterAll" data-history-filter="all" aria-pressed="true">Все</button>
+<button type="button" id="filterPending" data-history-filter="pending" aria-pressed="false">Ожидают / идут</button>
+<button type="button" id="filterSettled" data-history-filter="settled" aria-pressed="false">Завершены</button>
+<button type="button" id="filterReview" data-history-filter="review" aria-pressed="false">Переносы и проверка</button>
+</div>
+<p class="small muted hidden" id="historyFilterNote" role="status" aria-live="polite"></p>
 <div id="historyRows" class="list"></div>
 <button type="button" id="moreHistory" class="hidden">Следующая страница</button>
-<p class="small muted">Запись закрывается за 5 минут до начала матча. Для обновления итогового счёта нажми «Сверить результат»; автоматическая сверка пока выключена. Переносы и спорные результаты исключаются из оценки.</p>
+<p class="small muted">Запись закрывается за 5 минут до начала матча. Серверная автосверка запускается раз в 2 часа, не раньше чем через 4 часа после начала матча, до 5 записей за запуск. При очереди или лимите API обновление может задержаться. Кнопка «Сверить результат» позволяет проверить вручную. Чтобы увидеть обновления, нажми «Загрузить историю» или обнови страницу. Локальная история автоматически не сверяется. Переносы и спорные результаты исключаются из оценки.</p>
 </section>
 
 <section class="card" id="calculator">
@@ -469,7 +523,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2, рассчитанные только по прошлым встречам. Недоступные по тарифу сезоны отмечаются. Сравнения носят исследовательский характер, не являются сигналами для ставок.</p>
 </div>
 </section>
-<p class="credit">FootPredict 1.0.2 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 1.0.3 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
 </main>
 <script>
 (() => {
@@ -560,26 +614,69 @@ $('country').addEventListener('change', resetAll);
 
 async function apiGet(path, params = {}) {
   const query = new URLSearchParams(params).toString();
+  const canonicalSite = 'https://foxsysofficial1909.github.io/Footpredict/';
+  const safeDiagnosticRoute = () => {
+    let pathname;
+    try { pathname = new URL(path, 'https://diagnostic.invalid').pathname; }
+    catch { return '[маршрут недоступен]'; }
+    if (!/^\/(?:leagues|teams|fixtures|fd\/competitions(?:\/[A-Za-z0-9]{2,5}\/(?:teams|matches|standings))?|fd\/matches\/\d{1,12})$/.test(pathname)) return '[маршрут скрыт]';
+    const allowed = new Set(['id','ids','name','country','code','league','season','team','type','current','search','live','date','last','next','from','to','round','status','venue','timezone','matchday','dateFrom','dateTo','stage','group']);
+    const diagnosticQuery = new URLSearchParams();
+    for (const [key,value] of new URLSearchParams(params)) {
+      if (!allowed.has(key)) continue;
+      // Only simple football filters are useful to reproduce a public request.
+      diagnosticQuery.append(key, /^[A-Za-z0-9 _.,:/+\-]{1,80}$/.test(value) ? value : '[скрыто]');
+    }
+    const safeQuery = diagnosticQuery.toString();
+    return pathname + (safeQuery ? '?' + safeQuery : '');
+  };
+  const diagnostic = status => 'Диагностика: FootPredict v1.0.3 · HTTP ' + (status || 'недоступен') + ' · ' + safeDiagnosticRoute();
+  const plainMessage = value => typeof value === 'string' ? value
+    .replace(/<[^>]*>/g, '')
+    .replace(/Bearer\s+[^\s,;]+/gi, 'Bearer [скрыто]')
+    .replace(/((?:access[_-]?token|token|api[_ -]?key|authorization|password|secret)\s*[:=]\s*)[^\s,;&]+/gi, '$1[скрыто]')
+    .replace(/\s+/g, ' ').trim().slice(0, 500) : '';
+  const fail = (message,status) => { throw new Error(message + '\n' + diagnostic(status)); };
   let response;
   try {
-    response = await fetch(API + path + (query ? '?' + query : ''), {cache:'no-store'});
-  } catch {
-    throw new Error('Нет соединения с Cloudflare Worker.');
+    response = await fetch(API + path + (query ? '?' + query : ''), {cache:'no-store',signal:AbortSignal.timeout(30000)});
+  } catch (error) {
+    if (error?.name === 'TimeoutError' || error?.name === 'AbortError') {
+      fail('Ответ не получен за 30 секунд. Проверь соединение и повтори вручную; автоматических повторов нет.', null);
+    }
+    fail('Браузер не смог получить ответ: возможны проблемы сети или блокировка запроса к Worker. Открой сайт по адресу ' + canonicalSite + ' и повтори вручную. Точная причина браузером не сообщена.', null);
   }
   let data;
   try { data = await response.json(); }
-  catch { throw new Error('Сервер вернул ответ не в формате JSON.'); }
-  if (!response.ok || data.error || (data.errors && Object.keys(data.errors).length)) {
-    if (response.status === 429 || data.error === 'RATE_LIMIT') {
-      throw new Error('Лимит API: подожди несколько минут. Не обновляй страницу многократно.');
+  catch {
+    fail(response.ok
+      ? 'Сервер ответил успешно, но вместо данных JSON пришёл другой формат. Обнови страницу сайта и повтори вручную.'
+      : 'Сервис данных вернул ошибку HTTP ' + response.status + ' и ответ не в формате JSON. Попробуй позже; автоматических повторов нет.', response.status);
+  }
+  const providerErrors = data?.errors;
+  const hasProviderErrors = providerErrors && (typeof providerErrors !== 'object' || Object.keys(providerErrors).length > 0);
+  if (!response.ok || data?.error || hasProviderErrors) {
+    // A Worker message can distinguish a daily quota, a bad key or a rejected origin.
+    // Preserve that explanation instead of replacing all 403/429 responses alike.
+    let message = plainMessage(data?.message);
+    if (!message && typeof data?.error === 'string' && !['REQUEST_FAILED','INTERNAL','RATE_LIMIT'].includes(data.error)) message = plainMessage(data.error);
+    if (!message && typeof providerErrors === 'string') message = plainMessage(providerErrors);
+    if (!message && providerErrors && typeof providerErrors === 'object') {
+      const explanations = Object.values(providerErrors).filter(value => typeof value === 'string').map(plainMessage).filter(Boolean);
+      if (explanations.length) message = explanations.join('; ').slice(0, 500);
     }
-    if (response.status === 401 || response.status === 403) {
-      throw new Error('Провайдер не разрешает доступ к сезону на текущем тарифе.');
+    if (!message) {
+      message = response.status === 429 || data?.error === 'RATE_LIMIT'
+        ? 'Достигнут лимит запросов. Срок ожидания зависит от минутной или дневной квоты; автоматических повторов нет.'
+        : response.status === 401 || response.status === 403
+          ? 'Доступ к этим данным не разрешён. Возможны ограничения ключа, тарифа или адреса сайта; токен владельца для просмотра команд не нужен.'
+          : 'Источник данных вернул ошибку. Повтори вручную позже.';
     }
-    throw new Error(data.message || data.error || 'Источник данных вернул ошибку.');
+    fail(message, response.status);
   }
   return data;
 }
+
 async function guarded(fn, context = 'site') {
   if (busy) return;
   busy = true;
@@ -1126,9 +1223,89 @@ $('runBacktest').addEventListener('click',()=>guarded(async()=>{
     'Раздельная проверка завершена. '+collected.length+' сезон(ов), '+tested+' прогнозов. Контрольный год: '+controlYear+'.';
 },'backtest'));
 const HISTORY_KEY='footpredict:history:v1';
-let historyRows=[], historyCursor=null, historyBusy=false;
+let historyRows=[], historyCursor=null, historyBusy=false, historyFilter='all';
 const isServer=()=>$('historyMode').value==='server';
 const stateNames={pending:'Ожидается',live:'Идёт',settled:'Завершён',postponed:'Перенесён',cancelled:'Отменён',review_required:'Нужна проверка'};
+// Membership is fixed before results: BATCH-10-RU.md and the archived selection of 23 October.
+const ACCURACY_MODEL='poisson-1.0.0';
+const ACCURACY_BATCH_IDS=Object.freeze([560614,560616,560618,560617,560612,560613,560615,560619,560621,560626]);
+const ACCURACY_PREVIOUS_IDS=Object.freeze([560603,565821]);
+function historyGroup(item){
+  const status=item.latest?.status||'pending';
+  return status==='settled'?'settled':['pending','live'].includes(status)?'pending':'review';
+}
+function accuracyDistribution(values,isCounts=false){
+  if(!Array.isArray(values)||values.length!==3||values.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||(!isCounts&&v>1)))return null;
+  const total=values.reduce((sum,v)=>sum+v,0);
+  if(!Number.isFinite(total)||total<=0||(!isCounts&&Math.abs(total-1)>1e-6))return null;
+  return values.map(v=>v/total);
+}
+function accuracyMetrics(probabilities,actual){
+  return {brier:probabilities.reduce((sum,v,i)=>sum+(v-(i===actual?1:0))**2,0),logLoss:-Math.log(Math.max(1e-12,probabilities[actual]))};
+}
+function accuracyTop(probabilities,actual){
+  const highest=Math.max(...probabilities),leaders=probabilities.map((value,index)=>Math.abs(value-highest)<=1e-12?index:-1).filter(index=>index>=0);
+  return leaders.length===1?{eligible:1,correct:Number(leaders[0]===actual),ties:0}:{eligible:0,correct:0,ties:1};
+}
+function summarizeAccuracy(rows,fixtureIds){
+  const members=new Map();
+  for(const item of rows){
+    const p=item.prediction;
+    if(p?.provider==='football-data.org'&&p.trust==='server-recorded'&&p.modelVersion===ACCURACY_MODEL&&p.predictionId==='fd:'+Number(p.fixtureId)+':'+ACCURACY_MODEL&&fixtureIds.includes(Number(p.fixtureId))&&!members.has(Number(p.fixtureId)))members.set(Number(p.fixtureId),item);
+  }
+  const summary={loaded:members.size,total:fixtureIds.length,pending:0,settled:0,review:[],invalid:[],tested:0,model:{brier:0,logLoss:0,eligible:0,correct:0,ties:0},base:{brier:0,logLoss:0,eligible:0,correct:0,ties:0}};
+  for(const item of members.values()){
+    const p=item.prediction,o=item.latest||{status:'pending'},group=historyGroup(item);
+    if(group==='pending'){summary.pending++;continue;}
+    if(group==='review'){summary.review.push(item);continue;}
+    summary.settled++;
+    const result=o.result,model=accuracyDistribution(p.probabilities),base=accuracyDistribution(p.stats?.baseCounts,true);
+    if(p.market!=='1X2_REGULATION'||!result||!Number.isInteger(result.home)||!Number.isInteger(result.away)||result.home<0||result.away<0||!model||!base){summary.invalid.push(item);continue;}
+    const actual=result.home>result.away?0:result.home===result.away?1:2;
+    summary.tested++;
+    for(const [key,prob] of [['model',model],['base',base]]){
+      const metrics=accuracyMetrics(prob,actual),top=accuracyTop(prob,actual),aggregate=summary[key];
+      aggregate.brier+=metrics.brier;aggregate.logLoss+=metrics.logLoss;
+      aggregate.eligible+=top.eligible;aggregate.correct+=top.correct;aggregate.ties+=top.ties;
+    }
+  }
+  return summary;
+}
+function renderAccuracyValues(prefix,summary){
+  const average=(key,metric)=>summary.tested?(summary[key][metric]/summary.tested).toFixed(3):'—';
+  const top=key=>{const s=summary[key];return s.eligible?s.correct+' / '+s.eligible+' · '+(100*s.correct/s.eligible).toFixed(0)+'%':'—';};
+  for(const [suffix,value] of [['Brier',average('model','brier')],['BaseBrier',average('base','brier')],['LogLoss',average('model','logLoss')],['BaseLogLoss',average('base','logLoss')],['Top',top('model')],['BaseTop',top('base')]])$(prefix+suffix).textContent=value;
+  $(prefix+'MetricScope').textContent='На одних и тех же завершённых матчах: '+summary.tested+'.';
+  const messages=[];
+  if(!summary.tested)messages.push('Пока нет завершённых записей с полными данными для сравнения.');
+  if(summary.invalid.length)messages.push('Без полных вероятностей, счёта основного времени или базы: '+summary.invalid.length+'; исключены из обеих оценок.');
+  if(summary.model.ties||summary.base.ties)messages.push('Равные максимумы исключены из доли угаданных: модель '+summary.model.ties+', база '+summary.base.ties+'. В Brier и Log Loss они остаются.');
+  if(summary.tested&&!summary.model.ties&&!summary.base.ties)messages.push('Доля угаданных считается по единственному наиболее вероятному исходу.');
+  $(prefix+'EvaluationNote').textContent=messages.join(' ');
+}
+function renderAccuracyReport(){
+  $('accuracyReport').classList.toggle('hidden',!isServer());
+  $('localAccuracyHint').classList.toggle('hidden',isServer());
+  if(!isServer())return;
+  const batch=summarizeAccuracy(historyRows,ACCURACY_BATCH_IDS),previous=summarizeAccuracy(historyRows,ACCURACY_PREVIOUS_IDS);
+  $('batchProgress').textContent='Загружено '+batch.loaded+' / 10 · завершено '+batch.settled+' · ожидают / идут '+batch.pending+' · переносы и проверка '+batch.review.length+'.';
+  $('batchCoverage').textContent=(historyCursor?'Загружена часть серверной истории. Нажимай «Следующая страница», пока не загрузятся все записи серии. ':batch.loaded<10?'Не все записи серии найдены среди загруженных. ':'Все 10 записей серии загружены. ')+(batch.loaded<10||batch.pending||batch.review.length||batch.invalid.length?'Отчёт промежуточный. ':'Все результаты серии сверены. ')+'Фильтры ниже меняют только список карточек; отчёт считает всю загруженную серию.';
+  renderAccuracyValues('batch',batch);
+  $('previousProgress').textContent='Загружено '+previous.loaded+' / 2 · завершено '+previous.settled+'. Эти результаты были известны до выбора новой серии и считаются отдельно.'+(historyCursor?' Старые записи могут находиться на следующих страницах.':'');
+  renderAccuracyValues('previous',previous);
+  $('batchExclusions').replaceChildren();
+  for(const item of batch.review){const li=document.createElement('li');li.textContent=item.prediction.homeName+' — '+item.prediction.awayName+': '+(stateNames[item.latest?.status]||item.latest?.status||'Нужна проверка')+(item.latest?.reason?' · '+item.latest.reason:'')+'. Не заменяется другим матчем.';$('batchExclusions').append(li);}
+  $('batchExclusions').classList.toggle('hidden',!batch.review.length);
+}
+function renderHistoryFilters(){
+  const groups={all:historyRows.length,pending:0,settled:0,review:0};
+  historyRows.forEach(item=>groups[historyGroup(item)]++);
+  for(const [id,value,label] of [['filterAll','all','Все'],['filterPending','pending','Ожидают / идут'],['filterSettled','settled','Завершены'],['filterReview','review','Переносы и проверка']]){
+    $(id).textContent=label+' · '+groups[value];$(id).setAttribute('aria-pressed',String(historyFilter===value));
+  }
+  $('historyFilters').classList.remove('hidden');$('historyFilterNote').classList.remove('hidden');
+  $('historyFilterNote').textContent='Показано '+groups[historyFilter]+' из '+historyRows.length+' загруженных записей.'+(historyCursor?' На сервере есть следующие страницы.':'')+(isServer()?'':' Локальная история неподтверждённая.');
+}
 function historyMessage(text,error=false){$('historyStatus').textContent=text;$('historyStatus').classList.toggle('danger',error);}
 function readLocal(){
   const raw=localStorage.getItem(HISTORY_KEY);
@@ -1162,8 +1339,10 @@ function renderHistory(){
   $('historyPending').textContent=historyRows.filter(x=>(x.latest?.status||'pending')==='pending').length;
   $('historySettled').textContent=historyRows.filter(x=>x.latest?.status==='settled').length;
   $('historyOverview').classList.remove('hidden');
+  renderAccuracyReport();renderHistoryFilters();
   const element=(tag,className,text)=>{const el=document.createElement(tag);el.className=className;if(text!==undefined)el.textContent=text;return el;};
-  for(const item of historyRows){
+  const visibleRows=historyRows.filter(item=>historyFilter==='all'||historyGroup(item)===historyFilter);
+  for(const item of visibleRows){
     const p=item.prediction, o=item.latest||{status:'pending'};
     const block=element('div','item history-record');
     const heading=element('div','record-heading');
@@ -1216,7 +1395,7 @@ function renderHistory(){
     summary.textContent='Данные сохранённого прогноза';pre.style.cssText='white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px';pre.textContent=JSON.stringify(item,null,2);details.append(summary,pre);
     footer.append(meta,check);block.append(footer,details);$('historyRows').append(block);
   }
-  if(!historyRows.length)$('historyRows').textContent='Сохранённых прогнозов пока нет.';
+  if(!visibleRows.length)$('historyRows').textContent=historyRows.length?'В этом фильтре нет загруженных записей. Выбери другой фильтр'+(historyCursor?' или загрузи следующую страницу.':'.'):'Сохранённых прогнозов пока нет.';
   const done=historyRows.filter(x=>x.latest?.status==='settled'&&x.latest.metrics);
   $('historyMetrics').textContent=done.length?`На загруженных записях (${isServer()?'сервер':'локально, неподтверждённо'}): n=${done.length}, Brier ${(done.reduce((s,x)=>s+x.latest.metrics.brier,0)/done.length).toFixed(3)}, Log Loss ${(done.reduce((s,x)=>s+x.latest.metrics.logLoss,0)/done.length).toFixed(3)}. Малая выборка не доказывает точность.`:'Для оценки пока нет завершённых записей.';
   $('moreHistory').classList.toggle('hidden',!isServer()||!historyCursor);
@@ -1276,13 +1455,15 @@ $('savePrediction').addEventListener('click',()=>historyAction(async()=>{
 }));
 $('refreshHistory').addEventListener('click',()=>historyAction(()=>refreshHistory()));
 $('moreHistory').addEventListener('click',()=>historyAction(()=>refreshHistory(true)));
+for(const [id,value] of [['filterAll','all'],['filterPending','pending'],['filterSettled','settled'],['filterReview','review']])$(id).addEventListener('click',()=>{historyFilter=value;renderHistory();});
 function updateHistoryMode(){
   $('savePrediction').textContent=isServer()?'Сохранить на сервере':'Сохранить в этом браузере';
   $('historyModeHint').textContent=isServer()?'Общая история загружается автоматически. Для просмотра пароль не нужен. Для сохранения и сверки нужен доступ владельца.':'Сохраняется только в этом браузере; очистка данных удалит записи. Это неподтверждённая история, отдельная от общей серверной.';
 }
 $('historyMode').addEventListener('change',()=>historyAction(async()=>{
-  historyRows=[];historyCursor=null;
+  historyRows=[];historyCursor=null;historyFilter='all';
   $('historyRows').replaceChildren();$('historyMetrics').textContent='';$('historyOverview').classList.add('hidden');$('moreHistory').classList.add('hidden');
+  ['accuracyReport','localAccuracyHint','historyFilters','historyFilterNote'].forEach(id=>$(id).classList.add('hidden'));
   updateHistoryMode();
   await refreshHistory();
 }));
