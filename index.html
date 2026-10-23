@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.0.1 — автопрогнозы и раздельная проверка</title>
+<title>FootPredict 1.0.2 — автопрогнозы и раздельная проверка</title>
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -65,15 +65,288 @@ details.advanced[open]>summary::after{content:'⌃'}
 .credit{text-align:center;font-size:12px;color:var(--muted)}
 a{color:var(--blue)}
 @media(max-width:600px){.grid,.actions,.backtestMetrics,.split-grid{grid-template-columns:1fr}.card{padding:15px}.item{align-items:flex-start}h1{font-size:21px}}
+/* FootPredict: clearer hierarchy, shared history and small-screen layout. */
+:root {
+  --bg: #0b121d;
+  --panel: #121e2d;
+  --field: #0d1724;
+  --line: #2b3c4f;
+  --text: #edf4fc;
+  --muted: #acbdd0;
+  --green: #58e294;
+  --blue: #8ac3fb;
+  --yellow: #f1cd79;
+}
+html { scroll-behavior: smooth; scroll-padding-top: 22px; }
+body {
+  background: radial-gradient(ellipse 1100px 540px at 50% -180px, #20374b 0%, transparent 82%), var(--bg);
+  font-size: 15px;
+  line-height: 1.55;
+}
+main { max-width: 1120px; padding: 30px 24px 48px; }
+h1, h2, h3, p, .field, .item, .card { min-width: 0; }
+h1 { font-size: 26px; letter-spacing: -.7px; line-height: 1.15; }
+h2 { font-size: 22px; letter-spacing: -.45px; line-height: 1.3; }
+.small, .section-hint { font-size: 13px; line-height: 1.6; }
+.card {
+  padding: 25px;
+  border-radius: 20px;
+  border-color: var(--line);
+  background: linear-gradient(145deg, #152232 0%, #111d2b 80%);
+  margin-bottom: 22px;
+  box-shadow: 0 9px 28px #00000012;
+}
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0 0 26px;
+  margin: 0 0 25px;
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; gap: 13px; align-items: center; min-width: 0; }
+.brand-mark {
+  flex: 0 0 47px;
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+  border-radius: 14px;
+  border: 1px solid #3e7959;
+  background: #17372b;
+}
+.brand-copy { min-width: 0; }
+.brand-copy .small { margin-top: 5px; font-size: 12px; }
+.version { display: inline-block; background: #173428; padding: 4px 9px; font-size: 11px; font-weight: 700; }
+.app-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+.app-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  color: #c4d1e0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.app-nav a:hover { background: #1b2d40; color: var(--text); }
+.section-heading { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 17px; }
+.section-number {
+  display: grid;
+  place-items: center;
+  width: 31px;
+  min-width: 31px;
+  height: 31px;
+  border: 1px solid #365268;
+  border-radius: 9px;
+  color: #b4cadc;
+  background: #182b3c;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.section-title { min-width: 0; }
+.section-title h2 { margin: 1px 0 5px; }
+.section-title p { margin: 5px 0 0; }
+.workbench { min-width: 0; }
+.picker-fields { gap: 14px 16px; }
+@media (min-width: 761px) {
+  .picker-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .picker-fields:has(#countryField:not(.hidden)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.field label { font-weight: 600; color: #b8c7d7; }
+select, input {
+  min-height: 46px;
+  border-color: #3b5065;
+  border-radius: 10px;
+  padding: 11px 12px;
+}
+button {
+  min-height: 44px;
+  padding: 11px 15px;
+  border: 1px solid #3a5268;
+  background: #1a2b3c;
+  color: #e0eaf5;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  transition: background-color .15s, border-color .15s;
+}
+button:hover:not(:disabled) { background: #243d52; border-color: #66839e; }
+#loadCompetitions, #savePrediction, #content .item button {
+  background: var(--green);
+  border-color: var(--green);
+  color: #082b1b;
+}
+#loadCompetitions:hover:not(:disabled), #savePrediction:hover:not(:disabled), #content .item button:hover:not(:disabled) {
+  background: #7aebaa;
+  border-color: #7aebaa;
+}
+button:disabled, select:disabled { opacity: .43; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 3px solid #a3d4ff;
+  outline-offset: 4px;
+}
+.actions { gap: 9px; }
+.status { font-size: 13px; }
+.item { padding: 15px; border-color: #304357; gap: 14px; }
+.item > div { min-width: 0; }
+.item strong { overflow-wrap: anywhere; }
+.item .sub { font-size: 13px; line-height: 1.6; margin-top: 5px; }
+.item button { min-height: 44px; padding: 10px 13px; }
+.list { gap: 12px; }
+#results .prob { margin: 19px 0; }
+#results .probhead strong { font-size: 22px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.bar { height: 8px; background: #293c50; }
+.score { font-size: 29px; border-radius: 13px; padding: 17px; font-variant-numeric: tabular-nums; }
+.score-label { display: block; color: #b8c9da; font-size: 13px; font-weight: 500; }
+.score-value { display: block; margin-top: 5px; font-size: 34px; line-height: 1.2; white-space: nowrap; }
+.note { background: #26251c; color: #d7d0b5; line-height: 1.65; }
+.history-toolbar {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-bottom: 13px;
+}
+.history-toolbar > .field { flex: 1 1 300px; margin: 0; }
+.history-toolbar > .history-actions { flex: 1 1 300px; }
+.history-actions { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; }
+.history-actions button { width: auto; flex: 1 1 auto; }
+#ownerPanel { margin: 14px 0; background: #0d1927; border-radius: 12px; }
+#ownerPanel > summary { padding: 12px 15px; min-height: 48px; font-size: 13px; color: #c2d0df; }
+.advanced-content { line-height: 1.65; }
+.history-overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px; margin: 17px 0; }
+.overview-stat { min-width: 0; padding: 14px 16px; border: 1px solid #30465b; border-radius: 12px; background: #0e1a28; }
+.overview-label { display: block; font-size: 12px; color: #b3c5d7; line-height: 1.45; }
+.overview-value { display: block; margin-top: 4px; font-size: 25px; font-weight: 750; line-height: 1.25; letter-spacing: -.35px; font-variant-numeric: tabular-nums; }
+#historyRows { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 15px; margin-top: 18px; }
+#historyRows > .history-record {
+  min-width: 0;
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 19px;
+  background: #0d1927;
+  border: 1px solid #30465b;
+  border-radius: 15px;
+}
+.record-heading { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+.record-title { flex: 1 1 220px; min-width: 0; margin: 0; font-size: 17px; font-weight: 700; line-height: 1.45; letter-spacing: -.15px; overflow-wrap: anywhere; }
+.record-status { display: inline-flex; align-items: center; min-height: 26px; max-width: 100%; padding: 3px 8px; border: 1px solid #43556b; border-radius: 7px; color: #c5d2e1; background: #1a293a; font-size: 11px; font-weight: 700; line-height: 1.4; }
+.status-pending { color: #e5d8b2; background: #2b281e; border-color: #655b38; }
+.status-live { color: #a7dfc0; background: #18352b; border-color: #3f775d; }
+.status-settled { color: #b4d7fb; background: #182d43; border-color: #3b6184; }
+.status-postponed, .status-review_required { color: #f1d492; background: #352b17; border-color: #7a6536; }
+.status-cancelled { color: #f2b6b8; background: #351f29; border-color: #724353; }
+.record-kickoff { margin: 7px 0 0; font-size: 13px; color: #b5c7da; font-variant-numeric: tabular-nums; }
+.record-probabilities { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin: 17px 0 15px; }
+.record-probability { min-width: 0; padding: 10px 9px; border: 1px solid #2e4155; background: #132233; border-radius: 10px; }
+.prob-label { display: block; font-size: 11px; color: #b3c6d9; font-weight: 600; line-height: 1.4; }
+.prob-value { display: block; margin-top: 4px; font-size: 23px; font-weight: 750; line-height: 1.25; letter-spacing: -.45px; font-variant-numeric: tabular-nums; }
+.record-probability.is-leading { background: #19372d; border-color: #4b8565; }
+.record-probability.is-leading .prob-label { color: #c1e8d1; }
+.record-probability.is-leading .prob-value { color: #a6f3c7; }
+.record-result { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 12px; padding: 11px 13px; margin: 0 0 15px; border: 1px solid #2d445a; border-radius: 10px; background: #15263a; }
+.result-label { flex: 1 1 auto; color: #bed0e2; font-size: 12px; }
+.result-score { font-size: 24px; font-weight: 750; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.result-metrics { flex-basis: 100%; color: #b5c8dc; font-size: 12px; line-height: 1.5; }
+.record-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: auto; padding-top: 1px; }
+.record-checked { margin: 0 0 12px; font-size: 12px; }
+.record-reason { padding: 10px 12px; border-left: 2px solid #a58b4b; background: #2b281e; color: #ead8ac; font-size: 13px; }
+.record-meta { min-width: 0; flex: 1 1 190px; margin: 0; font-size: 12px; line-height: 1.65; color: #aebfd2; overflow-wrap: anywhere; white-space: pre-line; }
+.record-check { flex: 0 0 auto; font-size: 12px; }
+.record-details { border-top: 1px solid #293e52; margin-top: 15px; padding-top: 3px; color: #aec3d8; font-size: 12px; }
+.record-details > summary { min-height: 44px; padding: 11px 0 7px; cursor: pointer; line-height: 1.5; }
+.record-details pre { max-width: 100%; max-height: 370px; overflow: auto; padding: 12px; background: #09131f; border-radius: 8px; color: #b7cade; font-size: 12px; }
+#moreHistory { display: block; margin: 18px auto 0; min-width: 185px; }
+.credit { padding-top: 8px; font-size: 12px; line-height: 1.8; }
+@media (min-width: 1051px) {
+  .workbench:has(> #results.show) { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: start; gap: 20px; }
+  .workbench:has(> #results.show) > .card { min-width: 0; }
+  .workbench:has(> #results.show) .picker-fields { grid-template-columns: 1fr; }
+  .workbench:has(> #results.show) .actions { grid-template-columns: 1fr; }
+  .workbench:has(> #results.show) #content .item { flex-direction: column; align-items: stretch; }
+  .workbench:has(> #results.show) #content .item button { width: 100%; }
+}
+@media (max-width: 760px) {
+  main { padding: 22px 17px 35px; }
+  .app-header { gap: 15px; margin-bottom: 21px; padding-bottom: 18px; }
+  .app-nav { width: 100%; gap: 4px; }
+  .brand { order: 0; }
+  .app-header .version { order: 1; margin-left: auto; }
+  .app-nav { order: 2; }
+  .app-nav a { padding: 8px 10px; }
+  .card { padding: 20px; }
+  #historyRows { grid-template-columns: 1fr; }
+  .record-title { flex-basis: 230px; }
+}
+@media (max-width: 600px) {
+  main { padding: 19px 13px 32px; }
+  h1 { font-size: 23px; }
+  h2 { font-size: 20px; }
+  .card { padding: 17px; border-radius: 16px; margin-bottom: 16px; }
+  .brand-mark { width: 42px; height: 42px; flex-basis: 42px; border-radius: 12px; font-size: 23px; }
+  .brand-copy .small { font-size: 11px; }
+  .section-heading { gap: 10px; }
+  .section-number { width: 29px; min-width: 29px; height: 29px; }
+  .picker-fields { grid-template-columns: 1fr; gap: 2px; }
+  #content .item { flex-direction: column; align-items: stretch; }
+  #content .item button { width: 100%; }
+  .history-toolbar { display: block; }
+  .history-toolbar > .field { margin-bottom: 12px; }
+  .history-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .history-actions #savePrediction { grid-column: 1 / -1; }
+  .history-actions button { min-width: 0; font-size: 12px; padding-inline: 9px; }
+  .history-overview { gap: 7px; }
+  .overview-stat { padding: 11px 9px; border-radius: 10px; }
+  .overview-label { font-size: 11px; }
+  .overview-value { font-size: 22px; }
+  #historyRows > .history-record { padding: 15px; }
+  .record-heading { gap: 8px; }
+  .record-title { flex: 1 1 180px; font-size: 16px; }
+  .record-status { font-size: 10px; }
+  .record-probabilities { gap: 6px; margin-top: 14px; }
+  .record-probability { padding: 10px 8px; }
+  .prob-value { font-size: 23px; }
+  .record-footer { gap: 10px; }
+  .record-check { width: 100%; }
+  .historical-table { font-size: 12px; }
+  .cal-row { grid-template-columns: 63px 50px minmax(35px, 1fr) 64px; gap: 5px; font-size: 10px; }
+}
+@media (max-width: 360px) {
+  .brand { gap: 9px; }
+  .brand-mark { width: 36px; height: 36px; flex-basis: 36px; font-size: 21px; }
+  .app-nav a { padding-inline: 8px; font-size: 12px; }
+  .card { padding: 14px; }
+  .prob-value { font-size: 21px; }
+  .record-probability { padding-inline: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
 </style>
 </head>
 <body>
 <main>
-<header><div><h1>⚽ FootPredict</h1><div class="muted small">Футбольная аналитика на реальных результатах</div></div><span class="version">v1.0.1</span></header>
-<section class="card">
-<h2>🌍 Выбери матч</h2>
+<header class="app-header">
+<div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
+<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.0.2</span>
+</header>
+<div class="workbench">
+<section class="card picker-card" id="matchPicker">
+<div class="section-heading"><span class="section-number" aria-hidden="true">01</span><div class="section-title"><h2>Выбери матч</h2></div></div>
 <p class="muted">football-data.org — актуальные соревнования. API-Football остаётся доступным для ручного анализа исторических сезонов.</p>
-<div class="grid">
+<div class="grid picker-fields">
  <div class="field"><label for="provider">Источник</label><select id="provider"><option value="fd">football-data.org (автопрогноз)</option><option value="old">API-Football (ручной расчёт)</option></select></div>
  <div class="field hidden" id="countryField"><label for="country">Страна (на английском)</label><input id="country" value="England" placeholder="England"></div>
  <div class="field"><label for="competition">Соревнование</label><select id="competition" disabled><option value="">Сначала загрузи лиги</option></select></div>
@@ -99,9 +372,15 @@ a{color:var(--blue)}
  <p id="expected" class="muted small"></p>
  <div class="note">Экспериментальная модель Пуассона. Старые результаты получают меньший вес, а маленькие выборки сглаживаются к среднему лиги. Составы, травмы и изменение силы команд не учитываются. Для истории используется полная точность входов; округление показателей только на экране. Историческая проверка не доказывает будущую точность. Не является рекомендацией к ставкам.</div>
 </section>
+</div>
 <section class="card" id="predictionHistory">
-<h2>📒 История новых прогнозов</h2>
+<div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div class="section-title"><h2>История прогнозов</h2></div></div>
 <p class="section-hint">Сохрани прогноз заранее. После матча сравнивай именно сохранённые вероятности, без пересчёта по новым данным. Только автопрогноз football-data.org.</p>
+<div class="history-overview hidden" id="historyOverview" aria-label="Сводка загруженных прогнозов">
+<div class="overview-stat"><span class="overview-label">Загружено</span><strong class="overview-value" id="historyTotal">0</strong></div>
+<div class="overview-stat"><span class="overview-label">В ожидании</span><strong class="overview-value" id="historyPending">0</strong></div>
+<div class="overview-stat"><span class="overview-label">Завершено</span><strong class="overview-value" id="historySettled">0</strong></div>
+</div>
 <div class="field"><label for="historyMode">Где хранить</label><select id="historyMode"><option value="server" selected>На сервере · общая подтверждённая история</option><option value="local">В этом браузере · неподтверждённая история</option></select></div>
 <p class="small muted" id="historyModeHint">Общая история загружается автоматически. Для просмотра пароль не нужен. Для сохранения и сверки нужен доступ владельца.</p>
 <details class="advanced" id="ownerPanel"><summary>Доступ владельца для записи на сервер</summary><div class="advanced-content">
@@ -110,20 +389,20 @@ a{color:var(--blue)}
 <button type="button" id="forgetToken" style="margin-top:10px">Убрать токен</button>
 <p class="small muted">Токен не сохраняется приложением. Не передавай его друзьям. Они могут читать общую историю без токена.</p>
 </div></details>
-<div class="actions" style="margin-top:14px">
+<div class="actions history-actions" style="margin-top:14px">
 <button type="button" id="savePrediction" disabled>Сохранить на сервере</button>
 <button type="button" id="refreshHistory">Загрузить историю</button>
 <button type="button" id="exportHistory">Скачать JSON</button>
 </div>
 <p id="historyStatus" class="status" role="status" aria-live="polite">Загружаю серверную историю…</p>
-<p class="small muted" id="historyMetrics"></p>
+<p class="small muted history-metrics" id="historyMetrics"></p>
 <div id="historyRows" class="list"></div>
 <button type="button" id="moreHistory" class="hidden">Следующая страница</button>
 <p class="small muted">Запись закрывается за 5 минут до начала матча. Для обновления итогового счёта нажми «Сверить результат»; автоматическая сверка пока выключена. Переносы и спорные результаты исключаются из оценки.</p>
 </section>
 
 <section class="card" id="calculator">
- <h2>⚙️ Настройки прогноза</h2>
+ <div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div class="section-title"><h2>Настройки прогноза</h2></div></div>
  <p class="section-hint">Прогноз строится сразу после выбора матча. Если хочешь проверить другие значения голов, открой настройки ниже.</p>
  <details id="advancedSettings" class="advanced">
  <summary>Расширенные настройки · ручные показатели</summary>
@@ -157,7 +436,7 @@ a{color:var(--blue)}
  <p id="calcError" class="danger small" role="alert"></p>
 </section>
 <section class="card" id="backtesting">
-<h2>🧪 Проверка качества: развитие и контроль</h2>
+<div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-title"><h2>Историческая проверка</h2></div></div>
 <p class="muted small">Каждый матч прогнозируется по результатам, доступным до его начала. При проверке трёх сезонов первые два помечаются как <strong>период разработки</strong>, последний — как <strong>контрольный период</strong>. Алгоритм и его параметры одинаковы для всех сезонов, автоматически не обучаются и не подгоняются под эти результаты.</p>
 <div class="model-note">⚠ Контрольный сезон здесь <strong>не является полностью независимым и нетронутым тестом</strong>: мы уже анализировали его в предыдущих версиях. Это отдельный временной срез, а не гарантия будущей точности. Честный следующий шаг — оценка новых матчей по мере их завершения.</div>
 <div class="field"><label for="backtestYears">Глубина истории (от выбранного сезона назад)</label>
@@ -190,7 +469,7 @@ a{color:var(--blue)}
 <p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2, рассчитанные только по прошлым встречам. Недоступные по тарифу сезоны отмечаются. Сравнения носят исследовательский характер, не являются сигналами для ставок.</p>
 </div>
 </section>
-<p class="credit">FootPredict 1.0.1 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 1.0.2 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
 </main>
 <script>
 (() => {
@@ -553,7 +832,10 @@ function calculate() {
     $('modelSource').textContent=currentAuto
       ? 'Автоматическая статистика · последние игры + предыдущий сезон (если доступен)'
       : 'Статистика введена / изменена вручную';
-    $('score').textContent='Наиболее вероятный счёт: '+r.score;
+    $('score').replaceChildren();
+    const scoreLabel=document.createElement('span');scoreLabel.className='score-label';scoreLabel.textContent='Наиболее вероятный счёт';
+    const scoreValue=document.createElement('strong');scoreValue.className='score-value';scoreValue.textContent=r.score;
+    $('score').append(scoreLabel,scoreValue);
     $('expected').textContent='Ожидаемые голы: '+r.homeGoals.toFixed(2)+' — '+r.awayGoals.toFixed(2);
     $('results').classList.add('show');
   } catch (e) {
@@ -876,17 +1158,42 @@ async function historyAction(fn){
 }
 function renderHistory(){
   $('historyRows').replaceChildren();
+  $('historyTotal').textContent=historyRows.length;
+  $('historyPending').textContent=historyRows.filter(x=>(x.latest?.status||'pending')==='pending').length;
+  $('historySettled').textContent=historyRows.filter(x=>x.latest?.status==='settled').length;
+  $('historyOverview').classList.remove('hidden');
+  const element=(tag,className,text)=>{const el=document.createElement(tag);el.className=className;if(text!==undefined)el.textContent=text;return el;};
   for(const item of historyRows){
     const p=item.prediction, o=item.latest||{status:'pending'};
-    const block=document.createElement('div');block.className='item';block.style.display='block';
-    const title=document.createElement('strong');title.textContent=p.homeName+' — '+p.awayName;
-    const info=document.createElement('p');info.className='small muted';
-    info.textContent=`${p.provider} #${p.fixtureId} · ${p.modelVersion}\nСоздан: ${dateRu(p.createdAt)} · матч: ${dateRu(p.kickoffAt)}\nП1 / X / П2: ${p.probabilities.map(x=>(100*x).toFixed(1)+'%').join(' / ')} · ${stateNames[o.status]||o.status}`;
-    info.style.whiteSpace='pre-line';
-    if(o.result) info.textContent+='\nОсновное время: '+o.result.home+' : '+o.result.away+' · Brier '+o.metrics?.brier?.toFixed(3);
-    if(o.reason) info.textContent+='\n'+o.reason;
-    if(o.checkedAt) info.textContent+='\nСверено: '+dateRu(o.checkedAt);
-    const check=document.createElement('button');check.type='button';check.textContent='Сверить результат';
+    const block=element('div','item history-record');
+    const heading=element('div','record-heading');
+    const title=element('strong','record-title',p.homeName+' — '+p.awayName);
+    const statusClass=Object.hasOwn(stateNames,o.status)?o.status:'pending';
+    const badge=element('span','record-status status-'+statusClass,stateNames[o.status]||o.status||stateNames.pending);
+    heading.append(title,badge);
+    const kickoff=element('p','record-kickoff','Начало · '+dateRu(p.kickoffAt));
+    const probabilities=element('div','record-probabilities');
+    const highest=Math.max(...p.probabilities);
+    p.probabilities.forEach((value,index)=>{
+      const cell=element('div','record-probability'+(value===highest?' is-leading':''));
+      const label=element('span','prob-label',['П1 · хозяева','X · ничья','П2 · гости'][index]);
+      const number=element('strong','prob-value',(100*value).toFixed(1)+'%');
+      cell.append(label,number);
+      if(value===highest)cell.title='Наиболее вероятный исход модели';
+      probabilities.append(cell);
+    });
+    block.append(heading,kickoff,probabilities);
+    if(o.result){
+      const result=element('div','record-result');
+      result.append(element('span','result-label','Основное время'),element('strong','result-score',o.result.home+' : '+o.result.away));
+      if(Number.isFinite(o.metrics?.brier))result.append(element('span','result-metrics','Brier '+o.metrics.brier.toFixed(3)));
+      block.append(result);
+    }
+    if(o.reason)block.append(element('p','record-reason',o.reason));
+    if(o.checkedAt)block.append(element('p','small muted record-checked','Сверено: '+dateRu(o.checkedAt)));
+    const meta=element('p','record-meta',`${p.provider} #${p.fixtureId} · ${p.modelVersion}\nСоздан: ${dateRu(p.createdAt)}`);
+    const footer=element('div','record-footer');
+    const check=element('button','record-check','Сверить результат');check.type='button';
     check.addEventListener('click',()=>historyAction(async()=>{
       historyMessage('Проверяю результат…');
       if(isServer()){
@@ -905,9 +1212,9 @@ function renderHistory(){
       }
       renderHistory();
     }));
-    const details=document.createElement('details'),summary=document.createElement('summary'),pre=document.createElement('pre');
+    const details=document.createElement('details'),summary=document.createElement('summary'),pre=document.createElement('pre');details.className='record-details';
     summary.textContent='Данные сохранённого прогноза';pre.style.cssText='white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px';pre.textContent=JSON.stringify(item,null,2);details.append(summary,pre);
-    block.append(title,info,check,details);$('historyRows').append(block);
+    footer.append(meta,check);block.append(footer,details);$('historyRows').append(block);
   }
   if(!historyRows.length)$('historyRows').textContent='Сохранённых прогнозов пока нет.';
   const done=historyRows.filter(x=>x.latest?.status==='settled'&&x.latest.metrics);
@@ -975,7 +1282,7 @@ function updateHistoryMode(){
 }
 $('historyMode').addEventListener('change',()=>historyAction(async()=>{
   historyRows=[];historyCursor=null;
-  $('historyRows').replaceChildren();$('historyMetrics').textContent='';$('moreHistory').classList.add('hidden');
+  $('historyRows').replaceChildren();$('historyMetrics').textContent='';$('historyOverview').classList.add('hidden');$('moreHistory').classList.add('hidden');
   updateHistoryMode();
   await refreshHistory();
 }));
