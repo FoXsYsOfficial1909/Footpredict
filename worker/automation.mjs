@@ -59,9 +59,11 @@ export async function automationStorage(env) {
 export async function enqueue(db, id, kind, payload, dueAt) {
   await db.prepare(`INSERT INTO automation_jobs (id,kind,payload,due_at) VALUES (?1,?2,?3,?4)
     ON CONFLICT(id) DO UPDATE SET
-      due_at=CASE WHEN automation_jobs.kind='research' AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
+      due_at=CASE WHEN automation_jobs.kind='news' AND automation_jobs.status='complete' THEN MIN(automation_jobs.due_at,excluded.due_at)
+        WHEN automation_jobs.kind='research' AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
         THEN MIN(automation_jobs.due_at,excluded.due_at) ELSE automation_jobs.due_at END,
-      status=CASE WHEN automation_jobs.status='complete' AND automation_jobs.kind='research'
+      status=CASE WHEN automation_jobs.status='complete' AND automation_jobs.kind='news' THEN 'waiting'
+        WHEN automation_jobs.status='complete' AND automation_jobs.kind='research'
         AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
         THEN 'waiting' ELSE automation_jobs.status END,
       payload=excluded.payload WHERE automation_jobs.status!='running'`)
@@ -136,10 +138,18 @@ async function discover(db,env,services) {
   for(const [name] of teams) {
     if(SOURCES.teams[name])await enqueue(db,'news:'+SOURCES.teams[name].bbc_slug,'news',{name},now);
   }
+  // Retire relegated clubs only after receiving a complete current-season roster.
+  // Evidence remains archived; a returning club's recurring job can reopen.
+  if(teams.size===20) {
+    const active=[...teams.keys()].filter(name=>SOURCES.teams[name]).map(name=>'news:'+SOURCES.teams[name].bbc_slug);
+    if(active.length)await db.prepare(`UPDATE automation_jobs SET status='complete',last_finished_at=?1,lease_until=0,lease_token=NULL
+      WHERE kind='news' AND (status!='running' OR lease_until<=?2) AND id NOT IN (${active.map(()=>'?').join(',')})`)
+      .bind(iso(now),now,...active).run();
+  }
   for(const game of upcoming)await enqueue(db,'research:'+game.id,'research',{fixtureId:game.id,kickoff:game.utcDate},now);
   await db.prepare(`INSERT INTO automation_meta (key,value) VALUES ('league',?1)
     ON CONFLICT(key) DO UPDATE SET value=excluded.value`).bind(json({season:year,clubs:teams.size,mappedClubs:[...teams.keys()].filter(name=>SOURCES.teams[name]).length,upcoming:upcoming.length,fetchedAt:season.fetchedAt})).run();
-  return {season:year,clubs:teams.size,upcoming:upcoming.length,partial:[...teams.keys()].some(name=>!SOURCES.teams[name])};
+  return {season:year,clubs:teams.size,upcoming:upcoming.length,partial:teams.size!==20||[...teams.keys()].some(name=>!SOURCES.teams[name])};
 }
 
 async function newsJob(db,env,services,team) {

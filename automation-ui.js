@@ -13,7 +13,7 @@ function renderStatus(data){
   $('automationStatus').textContent=labels[data.state]||'Состояние сбора неизвестно.';
   $('automationStatus').classList.toggle('danger',['delayed','recovering'].includes(data.state));
   const list=el('dl',undefined,'automation-stats');
-  const feeds=(data.jobs||[]).filter(job=>job.kind==='news'),successful=feeds.filter(job=>job.last_success_at&&Date.now()-Date.parse(job.last_success_at)<3*3600000);
+  const feeds=(data.jobs||[]).filter(job=>job.kind==='news'&&job.status!=='complete'),successful=feeds.filter(job=>job.last_success_at&&Date.now()-Date.parse(job.last_success_at)<3*3600000);
   list.append(fact('Последний проход',date(data.heartbeat?.finishedAt||data.heartbeat?.startedAt)),
     fact('Ленты проверены за 3 часа',successful.length+' / '+(data.league?.clubs||feeds.length||'—')),
     fact('Сохранённых публикаций',data.news?.total??0),fact('Прогнозов v2 до матча',data.forecasts?.total??0));

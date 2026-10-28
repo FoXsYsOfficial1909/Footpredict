@@ -4,6 +4,7 @@ import {memoryD1} from './helpers/d1.mjs';
 import {automationStorage,enqueue,claimJob,finishJob,retryTime,reportWindow,recordPrimary,scoreShadow,
   runAutomation,automationStatus,dailyReport,shadowHistory,shadowEvidence} from '../worker/automation.mjs';
 import {predictV2} from '../worker/model-v2.mjs';
+import SOURCES from '../worker/research-sources.mjs';
 
 const initial=Date.parse('2026-10-28T12:00:00Z');
 const fixture={id:560626,utcDate:'2026-10-31T12:30:00Z',status:'TIMED',competition:{code:'PL'},season:{startDate:'2026-08-21'},
@@ -149,6 +150,21 @@ test('a rescheduled fixture reopens collection without resetting an unrelated jo
   await enqueue(state.db,'news:one','news',{name:'Chelsea FC'},initial+900000);
   await enqueue(state.db,'news:one','news',{name:'Chelsea FC'},initial);
   assert.equal(await claimJob(state.db,'news',initial),null);state.db.close();
+});
+
+test('a complete new-season roster retires old feeds and returning clubs can resume',async()=>{
+  const state=environment();await runAutomation(state.env,state.services);
+  const roster=Object.keys(SOURCES.teams).filter(name=>name!=='Chelsea FC').slice(0,20);
+  const games=[];
+  for(let i=0;i<20;i+=2)games.push({...fixture,id:1000+i,homeTeam:{id:100+i,name:roster[i]},awayTeam:{id:101+i,name:roster[i+1]}});
+  state.setMatches(games);state.setTime(initial+6*3600000+1000);
+  await runAutomation(state.env,state.services);
+  const old=await state.db.prepare("SELECT status FROM automation_jobs WHERE id='news:chelsea'").first();
+  assert.equal(old.status,'complete');
+  await enqueue(state.db,'news:chelsea','news',{name:'Chelsea FC'},initial+7*3600000);
+  assert.equal((await state.db.prepare("SELECT status FROM automation_jobs WHERE id='news:chelsea'").first()).status,'waiting');
+  assert.ok((await state.db.prepare('SELECT COUNT(*) AS n FROM automation_news').first()).n>0);
+  state.db.close();
 });
 
 test('a failed report does not stop collection and its failure remains visible',async()=>{
