@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {memoryD1} from './helpers/d1.mjs';
 import {automationStorage,enqueue,claimJob,finishJob,retryTime,reportWindow,recordPrimary,scoreShadow,
-  runAutomation,automationStatus,dailyReport,shadowHistory} from '../worker/automation.mjs';
+  runAutomation,automationStatus,dailyReport,shadowHistory,shadowEvidence} from '../worker/automation.mjs';
 import {predictV2} from '../worker/model-v2.mjs';
 
 const initial=Date.parse('2026-10-28T12:00:00Z');
@@ -89,6 +89,8 @@ test('primary forecast is frozen across later model updates and cannot be backfi
     .bind('later',560626,packet.featureCutoffAt,'2026-10-28T12',JSON.stringify(packet)).run();
   await recordPrimary(state.db,560626,initial+2000);
   assert.deepEqual((await shadowHistory(state.env)).items[0].probabilities,before.probabilities);
+  assert.deepEqual((await shadowEvidence(state.env,560626)).candidate.probabilities,before.probabilities);
+  await assert.rejects(()=>shadowEvidence(state.env,99999),error=>error.status===404);
   packet.fixture.id=999;packet.fixture.kickoff='2026-10-28T12:30:00Z';
   await state.db.prepare('INSERT INTO research_snapshots VALUES (?1,?2,?3,?4,?5)')
     .bind('too-late',999,packet.featureCutoffAt,'2026-10-28T12',JSON.stringify(packet)).run();
@@ -122,6 +124,31 @@ test('a terminated coordinator is shown as recovering rather than a completed he
   assert.equal((await automationStatus(state.env,state.services)).state,'recovering');
   await runAutomation(state.env,state.services);
   assert.equal((await automationStatus(state.env,state.services)).state,'running');state.db.close();
+});
+
+test('missing first trigger becomes delayed and old completed jobs do not hide current work',async()=>{
+  const state=environment();await automationStorage(state.env);
+  await state.db.prepare("UPDATE automation_meta SET value=?1 WHERE key='installed'").bind(JSON.stringify({installedAt:new Date(initial-71*60000).toISOString()})).run();
+  assert.equal((await automationStatus(state.env,state.services)).state,'delayed');
+  const statements=[];
+  for(let i=0;i<160;i++)statements.push(state.db.prepare("INSERT INTO automation_jobs (id,kind,payload,status,due_at,last_finished_at) VALUES (?1,'research','{}','complete',?2,?3)")
+    .bind('old:'+i,initial-20*86400000,new Date(initial-20*86400000).toISOString()));
+  await state.db.batch(statements);
+  await enqueue(state.db,'research:current','research',{fixtureId:560626,kickoff:fixture.utcDate},initial);
+  const jobs=(await automationStatus(state.env,state.services)).jobs;
+  assert.equal(jobs.length,1);assert.equal(jobs[0].id,'research:current');state.db.close();
+});
+
+test('a rescheduled fixture reopens collection without resetting an unrelated job',async()=>{
+  const state=environment();await automationStorage(state.env);
+  await enqueue(state.db,'research:1','research',{fixtureId:1,kickoff:'2026-10-27T12:00:00Z'},initial);
+  const job=await claimJob(state.db,'research',initial);
+  await finishJob(state.db,job,initial,{complete:true});
+  await enqueue(state.db,'research:1','research',{fixtureId:1,kickoff:'2026-10-31T12:00:00Z'},initial+1000);
+  assert.ok(await claimJob(state.db,'research',initial+1000));
+  await enqueue(state.db,'news:one','news',{name:'Chelsea FC'},initial+900000);
+  await enqueue(state.db,'news:one','news',{name:'Chelsea FC'},initial);
+  assert.equal(await claimJob(state.db,'news',initial),null);state.db.close();
 });
 
 test('a failed report does not stop collection and its failure remains visible',async()=>{

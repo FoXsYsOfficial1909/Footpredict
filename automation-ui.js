@@ -6,6 +6,7 @@ function el(tag,text,className){const item=document.createElement(tag);if(text!=
 function date(value){const d=new Date(value);return Number.isFinite(d.getTime())?d.toLocaleString('ru-RU',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Moscow'})+' МСК':'ещё не получены';}
 async function get(path){const response=await fetch(API+path,{cache:'no-store',signal:AbortSignal.timeout(25000)});if(!response.ok)throw new Error('Не удалось получить состояние сервиса.');return response.json();}
 function fact(label,value){const item=el('div');item.append(el('dt',label),el('dd',value));return item;}
+function saveJson(data,name){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const anchor=el('a');anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 
 function renderStatus(data){
   const labels={running:'Сбор выполняется по расписанию.',delayed:'Последний запуск задерживается. Сохранённые сведения доступны.',recovering:'Предыдущий запуск прервался. Задачи ожидают следующего прохода.',not_started:'Ожидается первый запуск расписания.'};
@@ -61,6 +62,14 @@ function renderForecasts(data,append=false){
       el('p',row.probabilities.map((p,i)=>['П1','Х','П2'][i]+': '+(p*100).toFixed(1)+'%').join(' · ')));
     const latest=row.latest||{},labels={pending:'Ожидается результат',cancelled:'Матч отменён',postponed:'Матч перенесён',review_required:'Нужна проверка изменений матча'};
     item.append(el('p',latest.status==='settled'?'Итог: '+latest.score.home+':'+latest.score.away+' · Brier '+latest.brier.toFixed(3):labels[latest.status]||'Результат пока не подтверждён','research-note'));
+    const download=el('button','Скачать исходные сведения','secondary');download.type='button';
+    download.addEventListener('click',async()=>{
+      download.disabled=true;
+      try{saveJson(await get('/v1/automation/forecasts/'+row.fixtureId+'/evidence'),'footpredict-evidence-'+row.fixtureId+'.json');}
+      catch{item.append(el('p','Исходный снимок сейчас недоступен. Попробуй позже.','research-note'));}
+      finally{download.disabled=false;}
+    });
+    item.append(download);
     target.append(item);
   }
   if(!target.children.length)target.append(el('p','Первые прогнозы появятся после сбора карточек.','research-note'));
@@ -88,7 +97,6 @@ $('moreShadowForecasts').addEventListener('click',async()=>{
 });
 $('downloadDailyReport').addEventListener('click',()=>{
   if(!report)return;
-  const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));
-  const anchor=el('a');anchor.href=url;anchor.download='footpredict-report-'+report.day+'.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  saveJson(report,'footpredict-report-'+report.day+'.json');
 });
 refresh();

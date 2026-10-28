@@ -46,6 +46,8 @@ export async function automationStorage(env) {
           day TEXT PRIMARY KEY,scheduled_for TEXT NOT NULL,generated_at TEXT NOT NULL,payload TEXT NOT NULL)`
       ];
       await raw.batch(statements.map(sql => raw.prepare(sql)));
+      await raw.prepare(`INSERT INTO automation_meta (key,value) VALUES ('installed',?1)
+        ON CONFLICT(key) DO NOTHING`).bind(json({installedAt:iso(Date.now())})).run();
     })();
     initialization.set(raw, promise);
     promise.catch(() => initialization.delete(raw));
@@ -56,7 +58,13 @@ export async function automationStorage(env) {
 
 export async function enqueue(db, id, kind, payload, dueAt) {
   await db.prepare(`INSERT INTO automation_jobs (id,kind,payload,due_at) VALUES (?1,?2,?3,?4)
-    ON CONFLICT(id) DO UPDATE SET payload=excluded.payload WHERE automation_jobs.status!='running'`)
+    ON CONFLICT(id) DO UPDATE SET
+      due_at=CASE WHEN automation_jobs.kind='research' AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
+        THEN MIN(automation_jobs.due_at,excluded.due_at) ELSE automation_jobs.due_at END,
+      status=CASE WHEN automation_jobs.status='complete' AND automation_jobs.kind='research'
+        AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
+        THEN 'waiting' ELSE automation_jobs.status END,
+      payload=excluded.payload WHERE automation_jobs.status!='running'`)
     .bind(id,kind,json(payload),dueAt).run();
 }
 
@@ -250,18 +258,20 @@ async function v1Summary(db,cutoff) {
 }
 
 async function statusFromDb(db,now) {
+  const installation=parse((await db.prepare("SELECT value FROM automation_meta WHERE key='installed'").first())?.value);
   const heartbeat=parse((await db.prepare("SELECT value FROM automation_meta WHERE key='tick'").first())?.value);
   const league=parse((await db.prepare("SELECT value FROM automation_meta WHERE key='league'").first())?.value);
   const jobs=await db.prepare(`SELECT id,kind,status,due_at,lease_until,attempts,total_runs,last_started_at,
-    last_finished_at,last_success_at,last_error,result FROM automation_jobs WHERE kind!='coordinator' ORDER BY kind,id LIMIT 150`).all();
+    last_finished_at,last_success_at,last_error,result FROM automation_jobs WHERE kind!='coordinator'
+    AND (status!='complete' OR last_finished_at>=?1) ORDER BY kind,id LIMIT 150`).bind(iso(now-7*DAY)).all();
   const news=await db.prepare('SELECT COUNT(*) AS total,COUNT(DISTINCT team) AS teams,MAX(first_seen_at) AS latest FROM automation_news').first();
   const forecasts=await db.prepare('SELECT COUNT(*) AS total,MAX(saved_at) AS latest FROM automation_predictions').first();
   const cards=await db.prepare('SELECT COUNT(*) AS total,MAX(collected_at) AS latest FROM research_snapshots').first();
-  const last=heartbeat?.finishedAt||heartbeat?.startedAt;
+  const last=heartbeat?.finishedAt||heartbeat?.startedAt||installation?.installedAt;
   const age=last?now-Date.parse(last):0;
-  const state=!last?'not_started':age>70*60000?'delayed':!heartbeat.finishedAt&&age>240000?'recovering':'running';
+  const state=age>70*60000?'delayed':!heartbeat?'not_started':!heartbeat.finishedAt&&age>240000?'recovering':'running';
   return {version:AUTOMATION_VERSION,checkedAt:iso(now),state,
-    heartbeat,league,news,forecasts,cards,model:modelV2Info(),
+    installedAt:installation?.installedAt,heartbeat,league,news,forecasts,cards,model:modelV2Info(),
     jobs:jobs.results.map(row=>({...row,dueAt:iso(row.due_at),leaseUntil:row.lease_until?iso(row.lease_until):null,
       last_error:parse(row.last_error),result:parse(row.result)})),
     schedule:{expectedCrons:AUTOMATION_CRONS,collection:'Каждые 30 минут выполняется ограниченная часть очереди; текущие клубные ленты проверяются примерно раз в 2 часа.',
@@ -312,6 +322,14 @@ export async function shadowHistory(env,cursor=null) {
   return {items:page.map(row=>({fixtureId:row.fixture_id,kickoff:row.kickoff_at,savedAt:row.saved_at,modelVersion:row.model_version,
     probabilities:parse(row.probabilities),metadata:parse(row.metadata),latest:parse(row.latest)||{status:'pending'}})),
     nextCursor:rows.results.length>20?String(page.at(-1).fixture_id):null};
+}
+
+export async function shadowEvidence(env,fixtureId) {
+  const db=await automationStorage(env);
+  const row=await db.prepare(`SELECT s.payload FROM research_snapshots s JOIN automation_predictions p
+    ON p.snapshot_id=s.id WHERE p.fixture_id=?1`).bind(fixtureId).first();
+  if(!row)throw Object.assign(new Error('Для этого матча ещё нет зафиксированного снимка.'),{status:404});
+  return parse(row.payload);
 }
 
 export async function runAutomation(env,services,{reason='scheduled',scheduledTime=null}={}) {

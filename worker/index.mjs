@@ -1,6 +1,6 @@
 import {getResearch, storedResearch, researchLimits, RESEARCH_VERSION} from './research.mjs';
 import {predictV2, modelV2Info} from './model-v2.mjs';
-import {AUTOMATION_VERSION, runAutomation, automationStatus, dailyReport, shadowHistory} from './automation.mjs';
+import {AUTOMATION_VERSION, runAutomation, automationStatus, dailyReport, shadowHistory, shadowEvidence} from './automation.mjs';
 
 const PRIOR_SEASON_WEIGHT = 0.35;
 const HALF_LIFE_DAYS = 120;
@@ -469,6 +469,8 @@ export default {
       if([...u.searchParams.keys()].some(key=>key!=='cursor')||u.searchParams.getAll('cursor').length>1)fail(400,'Неизвестный параметр.');
       return reply(await shadowHistory(env,u.searchParams.get('cursor')));
     }
+    const evidence=u.pathname.match(/^\/v1\/automation\/forecasts\/(\d{1,12})\/evidence$/);
+    if(evidence&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await shadowEvidence(env,positiveId(evidence[1])));}
     if(u.pathname==='/v1/model-v2'&&req.method==='GET')return reply(modelV2Info());
     const researchMatch=u.pathname.match(/^\/v1\/research\/(\d{1,12})(\/(?:refresh|stored))?$/);
     if(researchMatch){
