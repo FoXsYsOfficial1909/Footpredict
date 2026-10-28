@@ -99,6 +99,17 @@ test('primary forecast is frozen across later model updates and cannot be backfi
   state.db.close();
 });
 
+test('an existing primary snapshot is adopted even when provider quota delays refreshing its card',async()=>{
+  const state=environment();await runAutomation(state.env,state.services);
+  await state.db.prepare('DELETE FROM automation_predictions').run();
+  await state.db.prepare("UPDATE automation_jobs SET due_at=?1 WHERE kind='research'").bind(initial).run();
+  state.services.budgetUsage=async()=>3;
+  const before=state.calls.length;await runAutomation(state.env,state.services);
+  assert.equal(state.calls.length,before);assert.equal((await shadowHistory(state.env)).items.length,1);
+  const job=await state.db.prepare("SELECT result FROM automation_jobs WHERE kind='research'").first();
+  assert.equal(JSON.parse(job.result).reason,'provider_minute_budget');state.db.close();
+});
+
 test('shadow scores use frozen probabilities and exclude rescheduled or uncertain results',()=>{
   const prediction={fixture_id:560626,kickoff_at:fixture.utcDate,saved_at:new Date(initial).toISOString(),
     probabilities:'[0.4,0.3,0.3]',metadata:'{"homeId":61,"awayId":66}'};

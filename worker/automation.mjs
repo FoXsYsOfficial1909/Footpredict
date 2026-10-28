@@ -189,9 +189,10 @@ export async function recordPrimary(db, fixtureId, now) {
 async function researchJob(db,env,services,payload) {
   const now=services.now();
   if(Date.parse(payload.kickoff)<=now+5*60000)return {complete:true,result:{reason:'prediction_window_closed'}};
+  // Adopting an existing immutable snapshot does not consume provider quota.
+  await recordPrimary(db,payload.fixtureId,now);
   const minute=iso(now).slice(0,16);
   if(await services.budgetUsage('fd:minute:'+minute)>2)return {nextAt:now+30*60000,result:{deferred:true,reason:'provider_minute_budget'}};
-  await recordPrimary(db,payload.fixtureId,now);
   const packet=await getResearch(payload.fixtureId,env,services);
   await recordPrimary(db,payload.fixtureId,services.now());
   if(packet.stale) {
