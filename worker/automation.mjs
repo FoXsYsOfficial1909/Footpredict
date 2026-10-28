@@ -258,7 +258,9 @@ async function statusFromDb(db,now) {
   const forecasts=await db.prepare('SELECT COUNT(*) AS total,MAX(saved_at) AS latest FROM automation_predictions').first();
   const cards=await db.prepare('SELECT COUNT(*) AS total,MAX(collected_at) AS latest FROM research_snapshots').first();
   const last=heartbeat?.finishedAt||heartbeat?.startedAt;
-  return {version:AUTOMATION_VERSION,checkedAt:iso(now),state:!last?'not_started':now-Date.parse(last)>70*60000?'delayed':'running',
+  const age=last?now-Date.parse(last):0;
+  const state=!last?'not_started':age>70*60000?'delayed':!heartbeat.finishedAt&&age>240000?'recovering':'running';
+  return {version:AUTOMATION_VERSION,checkedAt:iso(now),state,
     heartbeat,league,news,forecasts,cards,model:modelV2Info(),
     jobs:jobs.results.map(row=>({...row,dueAt:iso(row.due_at),leaseUntil:row.lease_until?iso(row.lease_until):null,
       last_error:parse(row.last_error),result:parse(row.result)})),
@@ -322,6 +324,11 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
     ON CONFLICT(key) DO UPDATE SET value=excluded.value`).bind(json(tick)).run();
   await meta();
   try {
+    // At the daily trigger, create the report before slow external feeds.
+    if(reason==='50 4 * * *') {
+      try {tick.reportCreated=await ensureReport(db,services.now());}
+      catch(error){tick.reportError=publicError(error);}
+    }
     await enqueue(db,'system:discover','discover',{},started);
     await enqueue(db,'system:settle-v1','settle-v1',{},started);
     await enqueue(db,'system:settle-v2','settle-v2',{},started);
@@ -345,7 +352,8 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
         tick.outcomes.push({id:job.id,outcome:'failed',error:publicError(error)});
       }
     }
-    tick.reportCreated=await ensureReport(db,services.now());
+    try {tick.reportCreated=await ensureReport(db,services.now())||!!tick.reportCreated;delete tick.reportError;}
+    catch(error){tick.reportError=publicError(error);}
     // Bounded operational logs; immutable forecasts, source evidence and reports remain.
     await db.prepare('DELETE FROM automation_runs WHERE id IN (SELECT id FROM automation_runs WHERE finished_at<?1 LIMIT 200)').bind(iso(started-90*DAY)).run();
     tick.finishedAt=iso(services.now());

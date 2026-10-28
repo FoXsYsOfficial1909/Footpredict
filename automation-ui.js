@@ -8,16 +8,17 @@ async function get(path){const response=await fetch(API+path,{cache:'no-store',s
 function fact(label,value){const item=el('div');item.append(el('dt',label),el('dd',value));return item;}
 
 function renderStatus(data){
-  const labels={running:'Сбор выполняется по расписанию.',delayed:'Последний запуск задерживается. Сохранённые сведения доступны.',not_started:'Ожидается первый запуск расписания.'};
+  const labels={running:'Сбор выполняется по расписанию.',delayed:'Последний запуск задерживается. Сохранённые сведения доступны.',recovering:'Предыдущий запуск прервался. Задачи ожидают следующего прохода.',not_started:'Ожидается первый запуск расписания.'};
   $('automationStatus').textContent=labels[data.state]||'Состояние сбора неизвестно.';
-  $('automationStatus').classList.toggle('danger',data.state==='delayed');
+  $('automationStatus').classList.toggle('danger',['delayed','recovering'].includes(data.state));
   const list=el('dl',undefined,'automation-stats');
-  const feeds=(data.jobs||[]).filter(job=>job.kind==='news'),successful=feeds.filter(job=>job.last_success_at);
+  const feeds=(data.jobs||[]).filter(job=>job.kind==='news'),successful=feeds.filter(job=>job.last_success_at&&Date.now()-Date.parse(job.last_success_at)<3*3600000);
   list.append(fact('Последний проход',date(data.heartbeat?.finishedAt||data.heartbeat?.startedAt)),
-    fact('Клубные ленты',successful.length+' / '+(data.league?.clubs||feeds.length||'—')),
+    fact('Ленты проверены за 3 часа',successful.length+' / '+(data.league?.clubs||feeds.length||'—')),
     fact('Сохранённых публикаций',data.news?.total??0),fact('Прогнозов v2 до матча',data.forecasts?.total??0));
   $('automationOverview').replaceChildren(list);
   const issues=new Set();
+  if(data.heartbeat?.reportError)issues.add('Ежедневный отчёт пока не сформирован. Попытка повторится при следующем запуске.');
   for(const job of data.jobs||[]){
     if(job.status==='retry')issues.add(job.kind==='news'?'Одна из новостных лент недоступна. Повтор запланирован.':'Часть сбора отложена после ошибки; повтор запланирован.');
     if(job.result?.deferred)issues.add(job.result.reason==='daily_budget'?'Дневной лимит сбора достигнут. Задачи продолжатся после сброса квоты.':'Часть обновлений отложена из-за лимита запросов.');

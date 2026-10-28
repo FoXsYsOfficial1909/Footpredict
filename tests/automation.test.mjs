@@ -115,6 +115,25 @@ test('global coordinator lease prevents overlapping scheduled ticks',async()=>{
   assert.equal(state.calls.length,0);state.db.close();
 });
 
+test('a terminated coordinator is shown as recovering rather than a completed healthy run',async()=>{
+  const state=environment();await automationStorage(state.env);
+  await state.db.prepare('INSERT INTO automation_meta (key,value) VALUES (?1,?2)').bind('tick',JSON.stringify({startedAt:new Date(initial).toISOString()})).run();
+  state.setTime(initial+5*60000);
+  assert.equal((await automationStatus(state.env,state.services)).state,'recovering');
+  await runAutomation(state.env,state.services);
+  assert.equal((await automationStatus(state.env,state.services)).state,'running');state.db.close();
+});
+
+test('a failed report does not stop collection and its failure remains visible',async()=>{
+  const state=environment();
+  await state.db.prepare('INSERT INTO predictions VALUES (?1,?2,?3)').bind('broken-fixture','invalid-json','2026-10-27T10:00:00Z').run();
+  const tick=await runAutomation(state.env,state.services,{reason:'50 4 * * *'});
+  assert.equal(tick.status,'complete');assert.ok(tick.reportError);
+  const status=await automationStatus(state.env,state.services);
+  assert.equal(status.forecasts.total,1);assert.equal(status.news.teams,2);assert.ok(status.heartbeat.reportError);
+  state.db.close();
+});
+
 test('finished games and later provider corrections append results without changing forecasts or frozen reports',async()=>{
   const state=environment();await runAutomation(state.env,state.services);
   const original=(await shadowHistory(state.env)).items[0];
