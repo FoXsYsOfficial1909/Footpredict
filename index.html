@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.0.3 — автопрогнозы и раздельная проверка</title>
+<title>FootPredict 1.2 — прогнозы, автоматический сбор и проверка</title>
+<link rel="stylesheet" href="./research-ui.css">
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -363,7 +364,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <main>
 <header class="app-header">
 <div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
-<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.0.3</span>
+<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#matchResearch">Разбор</a><a href="#serviceStatus">Сбор данных</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.2</span>
 </header>
 <div class="workbench">
 <section class="card picker-card" id="matchPicker">
@@ -396,8 +397,34 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
  <div class="note">Экспериментальная модель Пуассона. Старые результаты получают меньший вес, а маленькие выборки сглаживаются к среднему лиги. Составы, травмы и изменение силы команд не учитываются. Для истории используется полная точность входов; округление показателей только на экране. Историческая проверка не доказывает будущую точность. Не является рекомендацией к ставкам.</div>
 </section>
 </div>
+<section class="card research-card" id="matchResearch" aria-labelledby="researchTitle">
+<div class="research-heading"><div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div class="section-title"><h2 id="researchTitle">Разбор матча</h2></div></div><span class="research-label">АПЛ · факты и источники</span></div>
+<p class="section-hint">Форма команд, доступный календарь и свежие сообщения. Для каждого источника показываем время; недоступные сведения остаются неизвестными.</p>
+<div class="research-actions"><button type="button" id="loadResearch" disabled>Собрать сведения</button><button type="button" id="exportResearch" class="secondary" disabled>Скачать карточку</button></div>
+<p id="researchStatus" class="status" role="status" aria-live="polite">Выбери предстоящий матч АПЛ, затем нажми «Собрать сведения».</p>
+<div id="researchResult" hidden>
+<p id="researchMatch" class="research-match"></p>
+<div id="researchCoverage" class="research-coverage" aria-label="Покрытие данных"></div>
+<div id="researchTeams" class="research-team-grid"></div>
+<p class="research-note">Часть кубковых турниров может отсутствовать в календаре. Показанный интервал между играми не равен подтверждённому времени отдыха.</p>
+<details id="researchCandidate" class="research-candidate" hidden></details>
+<section id="researchAi" class="research-news" aria-label="Сведения из новостей"></section>
+<details class="research-news"><summary id="researchNewsTitle">Новости и источники</summary><div id="researchNews"></div></details>
+<ul id="researchErrors" class="research-source-errors"></ul>
+<p id="researchUpdated" class="research-note"></p>
+</div>
+</section>
+<section class="card automation-card" id="serviceStatus" aria-labelledby="serviceTitle">
+<div class="research-heading"><h2 id="serviceTitle">Автоматический сбор</h2><button id="refreshAutomation" type="button" class="secondary">Обновить статус</button></div>
+<p class="section-hint">Сбор продолжается при закрытом приложении. Ежедневный отчёт — в 07:50 МСК; время фактического формирования показываем отдельно.</p>
+<p id="automationStatus" class="status" role="status" aria-live="polite">Проверяю состояние сбора…</p>
+<div id="automationOverview" class="automation-overview"></div>
+<ul id="automationIssues" class="research-source-errors"></ul>
+<details id="automationReport"><summary>Ежедневный отчёт</summary><div id="automationReportBody"></div><button id="downloadDailyReport" type="button" disabled>Скачать отчёт</button></details>
+<details id="automationForecasts"><summary>Проверка экспериментальной v2 на новых матчах</summary><p class="research-note">Первые вероятности фиксируются минимум за сутки до игры. Итог сравнивается с этим прогнозом; новости пока не меняют вероятности.</p><div id="automationForecastList"></div><button id="moreShadowForecasts" class="secondary" type="button" hidden>Ещё прогнозы</button></details>
+</section>
 <section class="card" id="predictionHistory">
-<div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div class="section-title"><h2>История прогнозов</h2></div></div>
+<div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div class="section-title"><h2>История прогнозов</h2></div></div>
 <p class="section-hint">Сохрани прогноз заранее. После матча сравнивай именно сохранённые вероятности, без пересчёта по новым данным. Только автопрогноз football-data.org.</p>
 <div class="history-overview hidden" id="historyOverview" aria-label="Сводка загруженных прогнозов">
 <div class="overview-stat"><span class="overview-label">Загружено</span><strong class="overview-value" id="historyTotal">0</strong></div>
@@ -456,7 +483,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 </section>
 
 <section class="card" id="calculator">
- <div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div class="section-title"><h2>Настройки прогноза</h2></div></div>
+ <div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-title"><h2>Настройки прогноза</h2></div></div>
  <p class="section-hint">Прогноз строится сразу после выбора матча. Если хочешь проверить другие значения голов, открой настройки ниже.</p>
  <details id="advancedSettings" class="advanced">
  <summary>Расширенные настройки · ручные показатели</summary>
@@ -490,7 +517,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
  <p id="calcError" class="danger small" role="alert"></p>
 </section>
 <section class="card" id="backtesting">
-<div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-title"><h2>Историческая проверка</h2></div></div>
+<div class="section-heading"><span class="section-number" aria-hidden="true">05</span><div class="section-title"><h2>Историческая проверка</h2></div></div>
 <p class="muted small">Каждый матч прогнозируется по результатам, доступным до его начала. При проверке трёх сезонов первые два помечаются как <strong>период разработки</strong>, последний — как <strong>контрольный период</strong>. Алгоритм и его параметры одинаковы для всех сезонов, автоматически не обучаются и не подгоняются под эти результаты.</p>
 <div class="model-note">⚠ Контрольный сезон здесь <strong>не является полностью независимым и нетронутым тестом</strong>: мы уже анализировали его в предыдущих версиях. Это отдельный временной срез, а не гарантия будущей точности. Честный следующий шаг — оценка новых матчей по мере их завершения.</div>
 <div class="field"><label for="backtestYears">Глубина истории (от выбранного сезона назад)</label>
@@ -523,7 +550,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <p class="muted small">Базовая модель: сглаженные исторические частоты П1 / X / П2, рассчитанные только по прошлым встречам. Недоступные по тарифу сезоны отмечаются. Сравнения носят исследовательский характер, не являются сигналами для ставок.</p>
 </div>
 </section>
-<p class="credit">FootPredict 1.0.3 · Данные: <a href="https://www.football-data.org/">football-data.org</a> и API-Football · Ключи скрыты на сервере</p>
+<p class="credit">FootPredict 1.1 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, API-Football и BBC Sport · Новости не меняют сохранённые прогнозы</p>
 </main>
 <script>
 (() => {
@@ -569,6 +596,7 @@ function selectedCompetition() {
   return leagues.find(x => String(x.id) === $('competition').value);
 }
 function clearCalc() {
+  window.dispatchEvent(new CustomEvent('footpredict:selection-reset'));
   selectedSnapshot = null; autoStats = null;
   $("savePrediction").disabled = true;
   statIds.forEach(id => $(id).value = '');
@@ -630,7 +658,7 @@ async function apiGet(path, params = {}) {
     const safeQuery = diagnosticQuery.toString();
     return pathname + (safeQuery ? '?' + safeQuery : '');
   };
-  const diagnostic = status => 'Диагностика: FootPredict v1.0.3 · HTTP ' + (status || 'недоступен') + ' · ' + safeDiagnosticRoute();
+  const diagnostic = status => 'Диагностика: FootPredict v1.1 · HTTP ' + (status || 'недоступен') + ' · ' + safeDiagnosticRoute();
   const plainMessage = value => typeof value === 'string' ? value
     .replace(/<[^>]*>/g, '')
     .replace(/Bearer\s+[^\s,;]+/gi, 'Bearer [скрыто]')
@@ -962,6 +990,7 @@ async function chooseMatch(match,season,year) {
   $('awayName').value=match.awayTeam.name||match.awayTeam.shortName||'Гости';
   let note='';
   const sel=selection();
+  window.dispatchEvent(new CustomEvent('footpredict:match-selected',{detail:{fixtureId:match.id,league:sel.league,apiBase:API}}));
   let all=taggedRows(season,year);
   if (year-1>1900) {
     try {
@@ -1482,5 +1511,7 @@ historyAction(()=>refreshHistory());
 })();
 
 </script>
+<script type="module" src="./research-ui.js"></script>
+<script type="module" src="./automation-ui.js"></script>
 </body>
 </html>

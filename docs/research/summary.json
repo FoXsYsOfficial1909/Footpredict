@@ -1,0 +1,261 @@
+{
+  "protocol": {
+    "development_seasons": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "validation_seasons": [
+      2023,
+      2024
+    ],
+    "held_out_seasons": [
+      2025
+    ],
+    "current_season_not_used_for_selection": 2026,
+    "glm_grid": [
+      {
+        "half_life": 180,
+        "ridge": 0.03,
+        "window_days": 1095
+      },
+      {
+        "half_life": 180,
+        "ridge": 0.15,
+        "window_days": 1095
+      },
+      {
+        "half_life": 365,
+        "ridge": 0.03,
+        "window_days": 1095
+      },
+      {
+        "half_life": 365,
+        "ridge": 0.15,
+        "window_days": 1095
+      },
+      {
+        "half_life": 730,
+        "ridge": 0.03,
+        "window_days": 1095
+      },
+      {
+        "half_life": 730,
+        "ridge": 0.15,
+        "window_days": 1095
+      }
+    ],
+    "elo_grid": [
+      {
+        "k": 20,
+        "home_advantage": 65,
+        "draw_weight": 0.9
+      },
+      {
+        "k": 30,
+        "home_advantage": 80,
+        "draw_weight": 0.9
+      }
+    ],
+    "ensemble_glm_weights": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "selection_metric": "validation logloss on common eligible fixtures",
+    "data_fence": "Only matches strictly earlier than the day preceding the target match; no same-day or immediately preceding-day results.",
+    "caveat": "Held out within this experiment. These seasons may have been inspected in previous versions; future prospective validation is still required."
+  },
+  "selection": {
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "elo": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "glm_weight": 0.75,
+    "validation": {
+      "n": 736,
+      "brier": 0.5709614997461899,
+      "logloss": 0.9613428503572878,
+      "accuracy": 0.5570652173913043
+    },
+    "chosen_before_test": true
+  },
+  "validation_targets": 760,
+  "validation_common_targets": 736,
+  "held_out_targets": 380,
+  "held_out_common_targets": 369,
+  "metrics_common": {
+    "base": {
+      "n": 369,
+      "brier": 0.6590031422251011,
+      "logloss": 1.0880616617848256,
+      "accuracy": 0.4173441734417344
+    },
+    "v1": {
+      "n": 369,
+      "brier": 0.6323295798593116,
+      "logloss": 1.0500596498795642,
+      "accuracy": 0.48509485094850946
+    },
+    "glm": {
+      "n": 369,
+      "brier": 0.6184626587857894,
+      "logloss": 1.0300995353565798,
+      "accuracy": 0.46883468834688347
+    },
+    "elo": {
+      "n": 369,
+      "brier": 0.6183675205036344,
+      "logloss": 1.028472821820789,
+      "accuracy": 0.4878048780487805
+    },
+    "candidate": {
+      "n": 369,
+      "brier": 0.6158458026144642,
+      "logloss": 1.0255786510071188,
+      "accuracy": 0.4742547425474255
+    }
+  },
+  "metrics_full_coverage": {
+    "base": {
+      "n": 380,
+      "brier": 0.6569692265934695,
+      "logloss": 1.0851666993596358,
+      "accuracy": 0.4263157894736842
+    },
+    "glm": {
+      "n": 380,
+      "brier": 0.6168463605985677,
+      "logloss": 1.0288486686846983,
+      "accuracy": 0.47368421052631576
+    },
+    "elo": {
+      "n": 380,
+      "brier": 0.6157654445838567,
+      "logloss": 1.024637265656657,
+      "accuracy": 0.4921052631578947
+    },
+    "candidate": {
+      "n": 380,
+      "brier": 0.6137301414492983,
+      "logloss": 1.0227760485844448,
+      "accuracy": 0.4763157894736842
+    }
+  },
+  "candidate_minus_base_bootstrap": {
+    "brier": {
+      "difference": -0.043157339610637,
+      "ci95": [
+        -0.06766634670856334,
+        -0.019136275609700545
+      ],
+      "method": "paired resampling of calendar-day clusters",
+      "samples": 1500
+    },
+    "logloss": {
+      "difference": -0.062483010777706634,
+      "ci95": [
+        -0.09787953313880231,
+        -0.027633028901726447
+      ],
+      "method": "paired resampling of calendar-day clusters",
+      "samples": 1500
+    }
+  },
+  "passes_historical_advantage_gate": true,
+  "promoted_to_default": false,
+  "prospective_validation_required": true,
+  "validation_grid": [
+    {
+      "settings": {
+        "half_life": 180,
+        "ridge": 0.03,
+        "window_days": 1095
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5710974879999854,
+        "logloss": 0.9619024000345415,
+        "accuracy": 0.5394021739130435
+      }
+    },
+    {
+      "settings": {
+        "half_life": 180,
+        "ridge": 0.15,
+        "window_days": 1095
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5717940210517007,
+        "logloss": 0.9630499999442133,
+        "accuracy": 0.5434782608695652
+      }
+    },
+    {
+      "settings": {
+        "half_life": 365,
+        "ridge": 0.03,
+        "window_days": 1095
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5711168887195563,
+        "logloss": 0.9615133454140754,
+        "accuracy": 0.5529891304347826
+      }
+    },
+    {
+      "settings": {
+        "half_life": 365,
+        "ridge": 0.15,
+        "window_days": 1095
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.572175587433151,
+        "logloss": 0.9633761680360705,
+        "accuracy": 0.5516304347826086
+      }
+    },
+    {
+      "settings": {
+        "half_life": 730,
+        "ridge": 0.03,
+        "window_days": 1095
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5725027567023421,
+        "logloss": 0.9635084524891897,
+        "accuracy": 0.5489130434782609
+      }
+    },
+    {
+      "settings": {
+        "half_life": 730,
+        "ridge": 0.15,
+        "window_days": 1095
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5737438993694604,
+        "logloss": 0.9656976546888708,
+        "accuracy": 0.5489130434782609
+      }
+    }
+  ]
+}

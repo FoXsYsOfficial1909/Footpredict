@@ -1,0 +1,52 @@
+.research-heading { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+.research-label { display:inline-flex; padding:5px 10px; border:1px solid #49657e; border-radius:30px; color:#b8d8f6; font-size:12px; }
+.research-actions { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 10px; }
+.research-actions .secondary { background:#20384c; color:#d4e7f9; }
+.research-coverage { display:flex; flex-wrap:wrap; gap:7px; margin:14px 0 18px; }
+.coverage-chip { border:1px solid #354d63; border-radius:24px; padding:5px 10px; font-size:12px; color:#adc2d6; }
+.coverage-chip.available { border-color:#3a7656; color:#b8edce; background:#142e25; }
+.research-team-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+.research-team { padding:18px; border-radius:15px; background:#0d1b29; border:1px solid #30485d; min-width:0; }
+.research-team h3 { color:var(--text); font-size:17px; }
+.form-strip { display:flex; align-items:center; gap:6px; margin:12px 0; }
+.form-mark { display:grid; place-items:center; width:29px; height:29px; border-radius:8px; font-size:12px; font-weight:750; background:#314356; }
+.form-mark[data-outcome="W"] { background:#1f513b; color:#bce9ce; }
+.form-mark[data-outcome="L"] { background:#58313b; color:#f2c2c9; }
+.form-points { margin-left:auto; font-size:12px; color:var(--muted); }
+.research-facts { margin:12px 0; display:grid; gap:11px; }
+.research-facts dt { color:#a7bed2; font-size:12px; margin-bottom:3px; }
+.research-facts dd { margin:0; color:#e1edf8; font-size:13px; line-height:1.6; }
+.research-form-details { font-size:12px; color:var(--muted); }
+.research-form-details li { padding:5px 0; }
+.research-candidate { margin-top:18px; padding:15px; border:1px solid #4b5973; border-radius:14px; background:#141e30; }
+.research-candidate summary { cursor:pointer; color:#d7e5fc; font-weight:700; min-height:32px; }
+.candidate-probabilities { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:15px 0; }
+.candidate-probabilities div { padding:12px; border:1px solid #354b66; border-radius:10px; }
+.candidate-probabilities span { display:block; font-size:12px; color:var(--muted); }
+.candidate-probabilities strong { font-size:22px; font-variant-numeric:tabular-nums; }
+.research-news { margin-top:20px; border-top:1px solid #2d455a; padding-top:17px; }
+.research-news h3 { font-size:16px; color:var(--text); }
+.research-article { margin:12px 0; padding:13px; border:1px solid #2c4358; border-radius:12px; }
+.research-article a { overflow-wrap:anywhere; font-size:14px; }
+.research-article p { font-size:12px; margin:5px 0; color:var(--muted); }
+.research-quote { margin:12px 0; padding:13px 15px; border-left:3px solid #7298be; background:#102337; border-radius:0 10px 10px 0; }
+.research-quote p { margin:4px 0; font-size:13px; }
+.research-note { font-size:12px; color:var(--muted); line-height:1.7; }
+.research-match { font-size:17px; font-weight:650; margin:18px 0 7px; }
+.automation-card details { margin-top:16px; padding-top:15px; border-top:1px solid #2d455a; }
+.automation-card summary { cursor:pointer; min-height:32px; font-weight:650; }
+.automation-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:15px 0; }
+.automation-stats div { padding:12px; border:1px solid #30485d; border-radius:12px; min-width:0; }
+.automation-stats dt { color:var(--muted); font-size:12px; }
+.automation-stats dd { margin:5px 0 0; font-size:14px; overflow-wrap:anywhere; }
+.automation-forecast { padding:12px 0; border-bottom:1px solid #2d455a; }
+.automation-forecast h3 { font-size:15px; color:var(--text); }
+.research-source-errors { font-size:12px; color:#e4c899; padding-left:18px; }
+@media(max-width:600px) {
+  .research-team-grid { grid-template-columns:1fr; }
+  .research-actions { display:grid; grid-template-columns:1fr; }
+  .research-team { padding:15px; }
+  .candidate-probabilities { gap:6px; }
+  .candidate-probabilities div { padding:10px 8px; }
+  .candidate-probabilities strong { font-size:19px; }
+}

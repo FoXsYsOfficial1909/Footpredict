@@ -1,0 +1,116 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {memoryD1} from './helpers/d1.mjs';
+import {automationStorage,enqueue,claimJob,finishJob,retryTime,reportWindow,recordPrimary,scoreShadow,
+  runAutomation,automationStatus,dailyReport,shadowHistory} from '../worker/automation.mjs';
+import {predictV2} from '../worker/model-v2.mjs';
+
+const initial=Date.parse('2026-10-28T12:00:00Z');
+const fixture={id:560626,utcDate:'2026-10-31T12:30:00Z',status:'TIMED',competition:{code:'PL'},season:{startDate:'2026-08-21'},
+  homeTeam:{id:61,name:'Chelsea FC'},awayTeam:{id:66,name:'Manchester United FC'}};
+const earlier={...fixture,id:123,utcDate:'2026-10-25T14:00:00Z',status:'FINISHED',score:{duration:'REGULAR',fullTime:{home:2,away:1}}};
+const rss='<rss><channel><item><title>Chelsea prepare for United</title><link>https://www.bbc.com/sport/football/articles/one</link><pubDate>Tue, 27 Oct 2026 12:00:00 GMT</pubDate><description>Both teams have begun preparing for the next match.</description></item></channel></rss>';
+
+function environment() {
+  const db=memoryD1(),store=new Map();let clock=initial;
+  db.sqlite.exec('CREATE TABLE predictions (id TEXT PRIMARY KEY,snapshot TEXT,saved_at TEXT); CREATE TABLE observations (seq INTEGER PRIMARY KEY,prediction_id TEXT,payload TEXT)');
+  const env={FOOTPREDICT_DB:db,FOOTPREDICT_CACHE:{get:async(key,type)=>{
+    const item=store.get(key);return item&&item.expires>clock?item.value:null;
+  }},AI:{run:async()=>({choices:[{finish_reason:'stop',message:{content:'{"facts":[]}'}}]})}};
+  const calls=[];
+  const services={now:()=>clock,fetch:async()=>new Response(rss),readLimited:async body=>new Response(body).text(),
+    reserve:async()=>{},budgetUsage:async()=>0,predictCandidate:predictV2,settleV1:async()=>({processed:0}),
+    cachePut:async(key,value,ttl)=>store.set(key,{value,expires:clock+ttl*1000}),
+    upstream:async(provider,path)=>{
+      calls.push([provider,path]);
+      if(provider==='af')throw Object.assign(new Error('Free plans do not have access to this season'),{status:422});
+      if(path.startsWith('/matches/'))return {data:fixture,fetchedAt:new Date(clock).toISOString()};
+      return {data:{matches:[earlier,fixture]},fetchedAt:new Date(clock).toISOString()};
+    }};
+  return {db,env,services,calls,setTime:value=>{clock=value;}};
+}
+
+test('a claimed task is exclusive, recovers after worker death and rejects stale completion',async()=>{
+  const db=memoryD1();await automationStorage({FOOTPREDICT_DB:db});
+  await enqueue(db,'news:test','news',{name:'test'},initial);
+  const one=await claimJob(db,'news',initial,{leaseMs:1000});
+  assert.ok(one);assert.equal(await claimJob(db,'news',initial+500),null);
+  const successor=await claimJob(db,'news',initial+1001);
+  assert.ok(successor);assert.notEqual(one.lease_token,successor.lease_token);
+  assert.equal(await finishJob(db,one,initial+1100,{result:{bad:'stale'}}),false);
+  assert.equal(await finishJob(db,successor,initial+1200,{result:{articles:2}}),true);
+  const row=await db.prepare('SELECT * FROM automation_jobs WHERE id=?1').bind('news:test').first();
+  assert.equal(JSON.parse(row.result).articles,2);assert.equal(row.attempts,0);
+  db.close();
+});
+
+test('retry backoff respects daily reset and does not spin on a quota',()=>{
+  assert.equal(new Date(retryTime({status:429,message:'daily_budget'},initial)).toISOString(),'2026-10-29T00:01:00.000Z');
+  assert.equal(retryTime(new Error('temporary'),initial,1)-initial,15*60000);
+  assert.equal(retryTime(new Error('temporary'),initial,10)-initial,2*3600000);
+});
+
+test('daily report uses 07:50 Moscow including year boundaries',()=>{
+  assert.equal(reportWindow(Date.parse('2027-01-01T04:49:59Z')).day,'2026-12-31');
+  const window=reportWindow(Date.parse('2027-01-01T04:50:00Z'));
+  assert.equal(window.day,'2027-01-01');assert.equal(window.scheduledFor,'2027-01-01T04:50:00.000Z');
+});
+
+test('persistent pipeline runs despite a settlement failure and never alters original predictions',async()=>{
+  const state=environment();
+  await state.db.prepare('INSERT INTO predictions VALUES (?1,?2,?3)').bind('old-v1','{"marker":"immutable-original"}','2026-10-27T10:00:00Z').run();
+  state.services.settleV1=async()=>{throw new Error('Temporary provider failure');};
+  const tick=await runAutomation(state.env,state.services);
+  assert.equal(tick.status,'complete');assert.ok(tick.outcomes.some(row=>row.id==='system:settle-v1'&&row.outcome==='failed'));
+  const status=await automationStatus(state.env,state.services);
+  assert.equal(status.state,'running');assert.equal(status.news.teams,2);assert.equal(status.forecasts.total,1);
+  assert.ok(status.jobs.some(row=>row.kind==='research'&&row.result.partial));
+  assert.equal((await state.db.prepare('SELECT snapshot FROM predictions').first()).snapshot,'{"marker":"immutable-original"}');
+  const history=await shadowHistory(state.env);
+  assert.equal(history.items.length,1);assert.equal(history.items[0].latest.status,'pending');
+  const report=await dailyReport(state.env);
+  assert.equal(report.day,'2026-10-28');assert.ok(report.lateBySeconds>0);
+  // A second tick performs no duplicate work; the first report is immutable.
+  const before=JSON.stringify(report),calls=state.calls.length;
+  await runAutomation(state.env,state.services);
+  assert.equal(state.calls.length,calls);assert.equal(JSON.stringify(await dailyReport(state.env)),before);
+  state.setTime(initial+71*60000);
+  assert.equal((await automationStatus(state.env,state.services)).state,'delayed');
+  state.db.close();
+});
+
+test('primary forecast is frozen across later model updates and cannot be backfilled after kickoff',async()=>{
+  const state=environment();await runAutomation(state.env,state.services);
+  const before=(await shadowHistory(state.env)).items[0];
+  const packet={fixture:{id:560626,kickoff:fixture.utcDate,home:'Chelsea FC',away:'Manchester United FC'},
+    featureCutoffAt:new Date(initial+1000).toISOString(),teams:[{id:61},{id:66}],
+    candidate:{...predictV2('Chelsea FC','Manchester United FC',fixture.utcDate),generatedAt:new Date(initial+1000).toISOString(),probabilities:[.99,.005,.005]}};
+  await state.db.prepare('INSERT INTO research_snapshots VALUES (?1,?2,?3,?4,?5)')
+    .bind('later',560626,packet.featureCutoffAt,'2026-10-28T12',JSON.stringify(packet)).run();
+  await recordPrimary(state.db,560626,initial+2000);
+  assert.deepEqual((await shadowHistory(state.env)).items[0].probabilities,before.probabilities);
+  packet.fixture.id=999;packet.fixture.kickoff='2026-10-28T12:30:00Z';
+  await state.db.prepare('INSERT INTO research_snapshots VALUES (?1,?2,?3,?4,?5)')
+    .bind('too-late',999,packet.featureCutoffAt,'2026-10-28T12',JSON.stringify(packet)).run();
+  assert.equal(await recordPrimary(state.db,999,initial+2000),false);
+  state.db.close();
+});
+
+test('shadow scores use frozen probabilities and exclude rescheduled or uncertain results',()=>{
+  const prediction={fixture_id:560626,kickoff_at:fixture.utcDate,saved_at:new Date(initial).toISOString(),
+    probabilities:'[0.4,0.3,0.3]',metadata:'{"homeId":61,"awayId":66}'};
+  const finished={...fixture,status:'FINISHED',score:{duration:'REGULAR',fullTime:{home:2,away:0}}};
+  const result=scoreShadow(prediction,finished,'2026-10-31T17:00:00Z');
+  assert.equal(result.status,'settled');assert.ok(Math.abs(result.brier-.54)<1e-12);assert.equal(result.correct,1);
+  assert.equal(scoreShadow(prediction,{...finished,utcDate:'2026-11-01T12:30:00Z'},'2026-11-01T17:00:00Z').status,'review_required');
+  assert.equal(scoreShadow(prediction,finished,'2026-10-31T15:00:00Z').status,'review_required');
+  assert.equal(scoreShadow(prediction,{...finished,homeTeam:{id:999}},'2026-10-31T17:00:00Z').status,'review_required');
+});
+
+test('global coordinator lease prevents overlapping scheduled ticks',async()=>{
+  const state=environment();await automationStorage(state.env);
+  await enqueue(state.db,'system:tick','coordinator',{},initial);
+  await claimJob(state.db,'coordinator',initial,{leaseMs:240000});
+  assert.equal((await runAutomation(state.env,state.services)).status,'already_running');
+  assert.equal(state.calls.length,0);state.db.close();
+});

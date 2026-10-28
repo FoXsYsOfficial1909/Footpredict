@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "news_age_days": 10,
+  "teams": {
+    "Arsenal FC": {
+      "bbc_slug": "arsenal",
+      "csv_name": "Arsenal"
+    },
+    "Aston Villa FC": {
+      "bbc_slug": "aston-villa",
+      "csv_name": "Aston Villa"
+    },
+    "AFC Bournemouth": {
+      "bbc_slug": "afc-bournemouth",
+      "csv_name": "Bournemouth"
+    },
+    "Brentford FC": {
+      "bbc_slug": "brentford",
+      "csv_name": "Brentford"
+    },
+    "Brighton & Hove Albion FC": {
+      "bbc_slug": "brighton-and-hove-albion",
+      "csv_name": "Brighton"
+    },
+    "Chelsea FC": {
+      "bbc_slug": "chelsea",
+      "csv_name": "Chelsea"
+    },
+    "Crystal Palace FC": {
+      "bbc_slug": "crystal-palace",
+      "csv_name": "Crystal Palace"
+    },
+    "Everton FC": {
+      "bbc_slug": "everton",
+      "csv_name": "Everton"
+    },
+    "Fulham FC": {
+      "bbc_slug": "fulham",
+      "csv_name": "Fulham"
+    },
+    "Liverpool FC": {
+      "bbc_slug": "liverpool",
+      "csv_name": "Liverpool"
+    },
+    "Manchester City FC": {
+      "bbc_slug": "manchester-city",
+      "csv_name": "Man City"
+    },
+    "Manchester United FC": {
+      "bbc_slug": "manchester-united",
+      "csv_name": "Man United"
+    },
+    "Newcastle United FC": {
+      "bbc_slug": "newcastle-united",
+      "csv_name": "Newcastle"
+    },
+    "Nottingham Forest FC": {
+      "bbc_slug": "nottingham-forest",
+      "csv_name": "Nott'm Forest"
+    },
+    "Tottenham Hotspur FC": {
+      "bbc_slug": "tottenham-hotspur",
+      "csv_name": "Tottenham"
+    },
+    "West Ham United FC": {
+      "bbc_slug": "west-ham-united",
+      "csv_name": "West Ham"
+    },
+    "Wolverhampton Wanderers FC": {
+      "bbc_slug": "wolverhampton-wanderers",
+      "csv_name": "Wolves"
+    },
+    "Sunderland AFC": {
+      "bbc_slug": "sunderland",
+      "csv_name": "Sunderland"
+    },
+    "Leeds United FC": {
+      "bbc_slug": "leeds-united",
+      "csv_name": "Leeds"
+    },
+    "Burnley FC": {
+      "bbc_slug": "burnley",
+      "csv_name": "Burnley"
+    },
+    "Coventry City FC": {
+      "bbc_slug": "coventry-city",
+      "csv_name": "Coventry"
+    },
+    "Hull City AFC": {
+      "bbc_slug": "hull-city",
+      "csv_name": "Hull"
+    },
+    "Ipswich Town FC": {
+      "bbc_slug": "ipswich-town",
+      "csv_name": "Ipswich"
+    }
+  }
+}

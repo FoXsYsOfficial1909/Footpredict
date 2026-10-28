@@ -1,0 +1,20 @@
+{
+  "brier": {
+    "difference": -0.016483777244847488,
+    "ci95": [
+      -0.03184405939733344,
+      -0.0002768961033489112
+    ],
+    "method": "paired resampling of calendar-day clusters",
+    "samples": 1500
+  },
+  "logloss": {
+    "difference": -0.02448099887244541,
+    "ci95": [
+      -0.045337565999805526,
+      -0.002776183955518518
+    ],
+    "method": "paired resampling of calendar-day clusters",
+    "samples": 1500
+  }
+}

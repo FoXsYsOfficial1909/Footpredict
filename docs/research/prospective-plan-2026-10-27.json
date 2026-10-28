@@ -1,0 +1,82 @@
+{
+  "created_at": "2026-10-27T19:38:35.339089+00:00",
+  "fixtures": [
+    {
+      "away": "Manchester United FC",
+      "home": "Chelsea FC",
+      "id": 560626,
+      "kickoff": "2026-10-31T12:30:00Z"
+    },
+    {
+      "away": "Brighton & Hove Albion FC",
+      "home": "Manchester City FC",
+      "id": 560623,
+      "kickoff": "2026-10-31T15:00:00Z"
+    },
+    {
+      "away": "Leeds United FC",
+      "home": "AFC Bournemouth",
+      "id": 560624,
+      "kickoff": "2026-10-31T15:00:00Z"
+    },
+    {
+      "away": "Sunderland AFC",
+      "home": "Coventry City FC",
+      "id": 560625,
+      "kickoff": "2026-10-31T15:00:00Z"
+    },
+    {
+      "away": "Ipswich Town FC",
+      "home": "Hull City AFC",
+      "id": 560629,
+      "kickoff": "2026-10-31T15:00:00Z"
+    },
+    {
+      "away": "Nottingham Forest FC",
+      "home": "Brentford FC",
+      "id": 560630,
+      "kickoff": "2026-10-31T15:00:00Z"
+    },
+    {
+      "away": "Crystal Palace FC",
+      "home": "Tottenham Hotspur FC",
+      "id": 560627,
+      "kickoff": "2026-10-31T17:30:00Z"
+    },
+    {
+      "away": "Fulham FC",
+      "home": "Aston Villa FC",
+      "id": 560628,
+      "kickoff": "2026-10-31T20:00:00Z"
+    },
+    {
+      "away": "Arsenal FC",
+      "home": "Liverpool FC",
+      "id": 560631,
+      "kickoff": "2026-11-01T16:30:00Z"
+    },
+    {
+      "away": "Everton FC",
+      "home": "Newcastle United FC",
+      "id": 560622,
+      "kickoff": "2026-11-02T20:00:00Z"
+    }
+  ],
+  "metrics_after_settlement": [
+    "multiclass Brier (sum over three outcomes)",
+    "natural-log loss",
+    "top-outcome accuracy"
+  ],
+  "minimum_evidence_for_news_model": "No news model is trained on these ten fixtures. Collect longitudinal data and validate by time on substantially more fixtures.",
+  "model_changes": "No tuning or candidate promotion on this cohort. News remains outside model probabilities.",
+  "primary_prediction": "First valid archived candidate snapshot, at least 24 hours before kickoff; never replaced based on outcome.",
+  "secondary_snapshots": "Later evidence may be archived, but does not replace the primary prediction.",
+  "selection": "First ten upcoming EPL fixtures by kickoff, then fixture id; kickoff 24h–7d from registration.",
+  "sha256": "9dfb455c3bfbeb4ce676e58e640bc4938f5b57393d3f3ecd946c4526ad8c3723",
+  "source": {
+    "fetched_at": "2026-10-27T19:38:36.156118+00:00",
+    "http": 200,
+    "sha256": "307fce849875dcfacdc1d2a42a8dc9eb1828da0ddb6698a12e8de99d535e8481",
+    "url": "https://footpredict-api.wzjp5747md.workers.dev/fd/competitions/PL/matches?season=2026"
+  }
+}
