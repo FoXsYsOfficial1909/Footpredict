@@ -12,7 +12,7 @@ const earlier={...fixture,id:123,utcDate:'2026-10-25T14:00:00Z',status:'FINISHED
 const rss='<rss><channel><item><title>Chelsea prepare for United</title><link>https://www.bbc.com/sport/football/articles/one</link><pubDate>Tue, 27 Oct 2026 12:00:00 GMT</pubDate><description>Both teams have begun preparing for the next match.</description></item></channel></rss>';
 
 function environment() {
-  const db=memoryD1(),store=new Map();let clock=initial;
+  const db=memoryD1(),store=new Map();let clock=initial,games=[earlier,fixture];
   db.sqlite.exec('CREATE TABLE predictions (id TEXT PRIMARY KEY,snapshot TEXT,saved_at TEXT); CREATE TABLE observations (seq INTEGER PRIMARY KEY,prediction_id TEXT,payload TEXT)');
   const env={FOOTPREDICT_DB:db,FOOTPREDICT_CACHE:{get:async(key,type)=>{
     const item=store.get(key);return item&&item.expires>clock?item.value:null;
@@ -25,9 +25,9 @@ function environment() {
       calls.push([provider,path]);
       if(provider==='af')throw Object.assign(new Error('Free plans do not have access to this season'),{status:422});
       if(path.startsWith('/matches/'))return {data:fixture,fetchedAt:new Date(clock).toISOString()};
-      return {data:{matches:[earlier,fixture]},fetchedAt:new Date(clock).toISOString()};
+      return {data:{matches:games},fetchedAt:new Date(clock).toISOString()};
     }};
-  return {db,env,services,calls,setTime:value=>{clock=value;}};
+  return {db,env,services,calls,setTime:value=>{clock=value;},setMatches:value=>{games=value;}};
 }
 
 test('a claimed task is exclusive, recovers after worker death and rejects stale completion',async()=>{
@@ -113,4 +113,27 @@ test('global coordinator lease prevents overlapping scheduled ticks',async()=>{
   await claimJob(state.db,'coordinator',initial,{leaseMs:240000});
   assert.equal((await runAutomation(state.env,state.services)).status,'already_running');
   assert.equal(state.calls.length,0);state.db.close();
+});
+
+test('finished games and later provider corrections append results without changing forecasts or frozen reports',async()=>{
+  const state=environment();await runAutomation(state.env,state.services);
+  const original=(await shadowHistory(state.env)).items[0];
+  const final=score=>({...fixture,status:'FINISHED',score:{duration:'REGULAR',fullTime:score}});
+  state.setMatches([earlier,final({home:2,away:0})]);state.setTime(Date.parse('2026-10-31T17:00:00Z'));
+  await runAutomation(state.env,state.services);
+  assert.equal((await shadowHistory(state.env)).items[0].latest.status,'settled');
+  state.setTime(Date.parse('2026-11-01T04:50:00Z'));await runAutomation(state.env,state.services);
+  const report=await dailyReport(state.env,'2026-11-01');
+  assert.equal(report.experimentalMetrics.settled,1);assert.equal(report.lateBySeconds,0);
+  const frozen=JSON.stringify(report);
+  state.setMatches([earlier,final({home:0,away:2})]);state.setTime(Date.parse('2026-11-02T17:05:00Z'));
+  await runAutomation(state.env,state.services);
+  const corrected=(await shadowHistory(state.env)).items[0];
+  assert.deepEqual(corrected.latest.score,{home:0,away:2});assert.deepEqual(corrected.probabilities,original.probabilities);
+  assert.equal(JSON.stringify(await dailyReport(state.env,'2026-11-01')),frozen);
+  state.setMatches([earlier,final({home:2,away:0})]);state.setTime(Date.parse('2026-11-03T17:10:00Z'));
+  await runAutomation(state.env,state.services);
+  const observations=await state.db.prepare('SELECT COUNT(*) AS n FROM automation_results').first();
+  assert.equal(observations.n,3);assert.deepEqual((await shadowHistory(state.env)).items[0].latest.score,{home:2,away:0});
+  state.db.close();
 });
