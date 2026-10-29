@@ -1,5 +1,6 @@
 import {getResearch, storedResearch, researchLimits, RESEARCH_VERSION} from './research.mjs';
 import {predictV2, modelV2Info} from './model-v2.mjs';
+import {qualityReport} from './quality.mjs';
 import {AUTOMATION_VERSION, runAutomation, automationStatus, dailyReport, shadowHistory, shadowEvidence} from './automation.mjs';
 
 const PRIOR_SEASON_WEIGHT = 0.35;
@@ -458,8 +459,9 @@ export default {
     if(u.pathname==='/v1/health'&&req.method==='GET'){
       let usage=null;
       if(env.FOOTPREDICT_DB)try{const services=researchServices(env),day=new Date().toISOString().slice(0,10);usage={cards:await services.budgetUsage('research:day:'+day),ai:await services.budgetUsage('research-ai:day:'+day)};}catch{/* Health remains useful when optional counters cannot be read. */}
-      return reply({version:'1.3.0',history:'D1',automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
+      return reply({version:'1.4.0',history:'D1',automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
     }
+    if(u.pathname==='/v1/quality'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await qualityReport(primary(env)));}
     if(u.pathname==='/v1/automation/status'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await automationStatus(env,researchServices(env)));}
     if(u.pathname==='/v1/automation/report'&&req.method==='GET'){
       if([...u.searchParams.keys()].some(key=>key!=='day')||u.searchParams.getAll('day').length>1)fail(400,'Неизвестный параметр.');

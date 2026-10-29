@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.3 — прогнозы, клубные сводки и проверка</title>
+<title>FootPredict 1.4 — прогнозы и качество моделей</title>
 <link rel="stylesheet" href="./research-ui.css">
+<link rel="stylesheet" href="./quality-ui.css">
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
 *{box-sizing:border-box}
@@ -364,7 +365,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <main>
 <header class="app-header">
 <div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
-<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#matchResearch">Разбор</a><a href="#serviceStatus">Сбор данных</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.3</span>
+<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#matchResearch">Разбор</a><a href="#qualityDashboard">Качество</a><a href="#serviceStatus">Сбор данных</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.4</span>
 </header>
 <div class="workbench">
 <section class="card picker-card" id="matchPicker">
@@ -423,8 +424,39 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <details id="automationReport"><summary>Ежедневный отчёт</summary><div id="automationReportBody"></div><button id="downloadDailyReport" type="button" disabled>Скачать отчёт</button></details>
 <details id="automationForecasts"><summary>Проверка экспериментальной v2 на новых матчах</summary><p class="research-note">Первые вероятности фиксируются минимум за сутки до игры. Итог сравнивается с этим прогнозом; новости пока не меняют вероятности.</p><div id="automationForecastList"></div><button id="moreShadowForecasts" class="secondary" type="button" hidden>Ещё прогнозы</button></details>
 </section>
+<section class="card quality-dashboard" id="qualityDashboard" aria-labelledby="qualityTitle">
+<div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div class="section-title"><h2 id="qualityTitle">Качество прогнозов</h2></div></div>
+<p class="section-hint">Считаем по заранее сохранённым вероятностям и подтверждённым итогам основного времени. У каждой оценки виден размер выборки.</p>
+<div class="quality-controls">
+<div class="field"><label for="qualityView">Какие данные смотреть</label><select id="qualityView"><option value="live">Сохранённые прогнозы</option><option value="historical">Исторический эксперимент · 2025/26</option></select></div>
+<button type="button" id="refreshQuality">Обновить качество</button><button type="button" id="downloadQuality" class="secondary" disabled>Скачать отчёт JSON</button>
+</div>
+<p id="qualityStatus" class="status" role="status" aria-live="polite">Загружаю качество прогнозов…</p>
+<div id="qualityResult" hidden>
+<div id="qualityLive">
+<p class="research-note">Архивы v1 и v2 содержат разные матчи. Их общие проценты не определяют, какая модель лучше; для этого используется сравнение ниже.</p>
+<div id="qualityCohorts" class="quality-models"></div>
+<p id="qualityNextMatch" class="research-note"></p>
+<div id="qualityPaired" class="quality-panel"></div>
+<h3>Разбор результатов</h3>
+<p class="research-note">Открой матч, чтобы увидеть исходные вероятности, счёт и величину ошибки.</p>
+<div class="quality-controls">
+<div class="field"><label for="qualityFilter">Какие матчи</label><select id="qualityFilter"><option value="errors">Ошибки наиболее вероятного исхода</option><option value="settled">Все с результатом</option><option value="pending">Ожидают результат</option><option value="review">Нужна проверка / исключены</option><option value="all">Все сохранённые</option></select></div>
+<div class="field"><label for="qualityModelFilter">Модель в разборе</label><select id="qualityModelFilter"><option value="all">Обе модели</option><option value="v1">Только v1</option><option value="v2">Только v2</option></select></div>
+</div>
+<p id="qualityFixtureCount" class="research-note" role="status" aria-live="polite"></p>
+<div id="qualityFixtures"></div><button type="button" id="moreQualityFixtures" hidden>Ещё матчи</button>
+</div>
+<div id="qualityHistorical" class="quality-panel" hidden></div>
+<details class="quality-help"><summary>Как читать показатели</summary>
+<p class="research-note">«Совпал исход» — как часто единственный наиболее вероятный вариант П1 / Х / П2 совпал с итогом. Равные максимумы исключаются из этого процента и отмечаются отдельно. Ошибка такого выбора не означает, что модель обещала исход со стопроцентной вероятностью.</p>
+<p class="research-note">Brier оценивает все три вероятности: сумма квадратов ошибок, от 0 до 2. Log Loss оценивает вероятность случившегося исхода и сильнее штрафует уверенные ошибки. Для обоих меньше — лучше. Для нулевой вероятности в Log Loss используется нижняя граница 10⁻¹².</p>
+<p class="research-note">Показываем последние сохранённые результаты сверки. Переносы, отмены, разногласия в счёте и неполные записи исключаются из общего сравнения. Исторический эксперимент оценивается отдельно. Маленькая выборка не доказывает будущего преимущества модели.</p>
+</details>
+</div>
+</section>
 <section class="card" id="predictionHistory">
-<div class="section-heading"><span class="section-number" aria-hidden="true">03</span><div class="section-title"><h2>История прогнозов</h2></div></div>
+<div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-title"><h2>История прогнозов</h2></div></div>
 <p class="section-hint">Сохрани прогноз заранее. После матча сравнивай именно сохранённые вероятности, без пересчёта по новым данным. Только автопрогноз football-data.org.</p>
 <div class="history-overview hidden" id="historyOverview" aria-label="Сводка загруженных прогнозов">
 <div class="overview-stat"><span class="overview-label">Загружено</span><strong class="overview-value" id="historyTotal">0</strong></div>
@@ -483,7 +515,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 </section>
 
 <section class="card" id="calculator">
- <div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-title"><h2>Настройки прогноза</h2></div></div>
+ <div class="section-heading"><span class="section-number" aria-hidden="true">05</span><div class="section-title"><h2>Настройки прогноза</h2></div></div>
  <p class="section-hint">Прогноз строится сразу после выбора матча. Если хочешь проверить другие значения голов, открой настройки ниже.</p>
  <details id="advancedSettings" class="advanced">
  <summary>Расширенные настройки · ручные показатели</summary>
@@ -517,7 +549,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
  <p id="calcError" class="danger small" role="alert"></p>
 </section>
 <section class="card" id="backtesting">
-<div class="section-heading"><span class="section-number" aria-hidden="true">05</span><div class="section-title"><h2>Историческая проверка</h2></div></div>
+<div class="section-heading"><span class="section-number" aria-hidden="true">06</span><div class="section-title"><h2>Историческая проверка</h2></div></div>
 <p class="muted small">Каждый матч прогнозируется по результатам, доступным до его начала. При проверке трёх сезонов первые два помечаются как <strong>период разработки</strong>, последний — как <strong>контрольный период</strong>. Алгоритм и его параметры одинаковы для всех сезонов, автоматически не обучаются и не подгоняются под эти результаты.</p>
 <div class="model-note">⚠ Контрольный сезон здесь <strong>не является полностью независимым и нетронутым тестом</strong>: мы уже анализировали его в предыдущих версиях. Это отдельный временной срез, а не гарантия будущей точности. Честный следующий шаг — оценка новых матчей по мере их завершения.</div>
 <div class="field"><label for="backtestYears">Глубина истории (от выбранного сезона назад)</label>
@@ -1513,5 +1545,6 @@ historyAction(()=>refreshHistory());
 </script>
 <script type="module" src="./research-ui.js"></script>
 <script type="module" src="./automation-ui.js"></script>
+<script type="module" src="./quality-ui.js"></script>
 </body>
 </html>
