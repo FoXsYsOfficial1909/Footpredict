@@ -17,10 +17,17 @@ function renderStatus(data){
   list.append(fact('Последний проход',date(data.heartbeat?.finishedAt||data.heartbeat?.startedAt)),
     fact('Ленты проверены за 3 часа',successful.length+' / '+(data.league?.clubs||feeds.length||'—')),
     fact('Сохранённых публикаций',data.news?.total??0),fact('Прогнозов v2 до матча',data.forecasts?.total??0));
+  const official=(data.jobs||[]).filter(job=>job.kind==='official'&&job.status!=='complete');
+  if(official.length)list.append(fact('Официальные сайты проверены',official.filter(job=>job.last_success_at).length+' / '+official.length),
+    fact('Сайтов со сводкой о доступности',official.filter(job=>job.result?.articles>0).length));
   $('automationOverview').replaceChildren(list);
   const issues=new Set();
   if(data.heartbeat?.reportError)issues.add('Ежедневный отчёт пока не сформирован. Попытка повторится при следующем запуске.');
   for(const job of data.jobs||[]){
+    if(job.kind==='official'&&job.status==='retry'){
+      issues.add(job.last_error?.status===403?'Часть официальных сайтов ограничивает автоматический доступ. Эти источники помечены как недоступные.':'Одна из официальных сводок временно недоступна; повтор запланирован.');
+      continue;
+    }
     if(job.status==='retry')issues.add(job.kind==='news'?'Одна из новостных лент недоступна. Повтор запланирован.':'Часть сбора отложена после ошибки; повтор запланирован.');
     if(job.result?.deferred)issues.add(job.result.reason==='daily_budget'?'Дневной лимит сбора достигнут. Задачи продолжатся после сброса квоты.':'Часть обновлений отложена из-за лимита запросов.');
     if(job.result?.aiStatus==='budget_reached')issues.add('Дневной лимит ИИ-разбора достигнут; статистика и новости сохраняются.');

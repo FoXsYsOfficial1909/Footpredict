@@ -13,6 +13,11 @@ function dateText(value) {
   return Number.isFinite(date.getTime()) ? date.toLocaleString('ru-RU', {dateStyle:'medium', timeStyle:'short', timeZone:'Europe/Moscow'}) + ' МСК' : 'время не указано';
 }
 
+function publicationText(fact){
+  if(fact.publishedPrecision==='day')return new Date(fact.publishedAt).toLocaleDateString('ru-RU',{dateStyle:'medium',timeZone:'UTC'})+' · время не указано';
+  return dateText(fact.publishedAt);
+}
+
 function articleLink(text, address) {
   const anchor = node('a', text);
   try {
@@ -48,7 +53,7 @@ window.addEventListener('footpredict:match-selected', event => {
 });
 
 function coverage(data) {
-  const labels = [['form','Форма'],['news','Новости'],['ai','ИИ-разбор'],['injuries','Травмы'],['lineups','Составы'],['completeCalendar','Полный календарь']];
+  const labels = [['form','Форма'],['news','Новости'],['availabilityReports','Сообщения о доступности'],['officialNews','Официальные сводки'],['ai','ИИ-разбор'],['injuries','Сводный список травм'],['lineups','Стартовые составы'],['completeCalendar','Полный календарь']];
   $('researchCoverage').replaceChildren(...labels.map(([key,label]) => node('span', (data.coverage?.[key] ? '✓ ' : '○ ') + label, 'coverage-chip' + (data.coverage?.[key] ? ' available' : ''))));
 }
 
@@ -73,8 +78,9 @@ function teamCard(team) {
   const calendar = team.calendar;
   fact('Интервал в доступном календаре',typeof calendar?.gapDays === 'number' ? calendar.gapDays.toFixed(1).replace('.',',') + ' дн.' + (calendar.basedOnScheduledMatch ? ' после запланированной игры' : ' после последней известной игры') : 'Полный календарь не получен.');
   const injuries = team.injuries;
-  fact('Сообщения о травмах',injuries?.reports?.length ? injuries.reports.map(item => item.player + ': ' + item.reason).join('; ') : injuries?.status === 'no_reports_found' ? 'Источник не вернул сообщений. Это не подтверждает отсутствие травм.' : 'Источник пока недоступен. Статус игроков неизвестен.');
+  fact('Сводка о травмах',injuries?.reports?.length ? injuries.reports.map(item => item.player + ': ' + item.reason).join('; ') : injuries?.status === 'no_reports_found' ? 'Источник не вернул сообщений. Это не подтверждает отсутствие травм.' : team.availability?.reports?.length ? 'Полного списка нет. Доступные сообщения клубов и прессы — ниже.' : 'Источник пока недоступен. Статус игроков неизвестен.');
   fact('Состав',team.lineup?.players?.length ? team.lineup.players.map(player=>player.name).join(', ') : 'Не получен. Стартовый состав не подтверждён.');
+  if(team.availability)fact('Сообщения о доступности',team.availability.reports?.length?'Найдено '+team.availability.reports.length+'. Цитаты и даты — ниже. Готовность к матчу не подтверждена.':'В собранных фрагментах подходящих сообщений нет. Статус игроков остаётся неизвестным.');
   card.append(list);
   const details = node('details',undefined,'research-form-details');details.append(node('summary','Матчи, из которых собрана форма'));
   const games = node('ul');
@@ -112,23 +118,35 @@ function render(data) {
   $('researchResult').hidden = false;
   $('researchMatch').textContent = data.fixture.home+' — '+data.fixture.away+' · '+dateText(data.fixture.kickoff);
   coverage(data);$('researchTeams').replaceChildren(...data.teams.map(teamCard));renderCandidate(data.candidate);
-  const ai = $('researchAi');ai.replaceChildren(node('h3','Сообщения, выделенные ИИ'));
-  for(const fact of data.ai?.facts || []) {
+  const ai = $('researchAi');ai.replaceChildren(node('h3','Сведения о доступности игроков'));
+  const reports=new Map();
+  for(const fact of [...(data.availabilityReports||[]),...(data.ai?.facts||[])])reports.set(fact.url+'\n'+fact.quote,fact);
+  const categoryLabels={injury:'Сообщение о травме',suspension:'Дисциплинарное сообщение',availability:'Тренировки и доступность',lineup:'Новости состава',context:'Контекст'};
+  for(const fact of reports.values()) {
     const quote = node('blockquote',undefined,'research-quote');
-    quote.append(node('p',fact.subject+' · '+fact.team),node('p','«'+fact.quote+'»'),articleLink('Сообщение источника · '+dateText(fact.publishedAt),fact.url));ai.append(quote);
+    quote.append(node('p',(fact.subject?fact.subject+' · ':'')+fact.team),
+      node('span',(fact.sourceType==='official_club'?'Официальный клуб':'Сообщение прессы')+' · '+(categoryLabels[fact.category]||'Сообщение'),'evidence-label'),
+      node('p','«'+fact.quote+'»'),articleLink((fact.source||'Источник')+' · '+publicationText(fact),fact.url),
+      node('p',fact.extractionMethod==='ai_selection'?'Фрагмент выбран ИИ; цитата взята из источника.':'Короткий фрагмент выбран по тексту источника.','research-note'));
+    ai.append(quote);
   }
   if(!data.ai?.facts?.length) {
     const messages = {not_connected:'ИИ-разбор пока не подключён. Новости с источниками доступны ниже.',
       unavailable:'ИИ-разбор не получен или не прошёл проверку. Непроверенные утверждения не показаны.',
       budget_reached:'Дневной лимит ИИ-разбора достигнут. Статистика и новости доступны.',
       no_sources:'Нет доступных материалов для ИИ-разбора.',rejected:'Ответ ИИ не прошёл проверку цитат. Неподтверждённые сведения не показаны.',complete:'В доступных материалах ИИ не выделил фактов с проверяемой цитатой. Это не означает отсутствия травм.'};
+    messages.no_relevant_evidence='Для ИИ нет подходящих сообщений о доступности. Лимит вызовов не расходуется.';
     ai.append(node('p',messages[data.ai?.status] || 'Нет проверяемых цитат для этой карточки.','research-note'));
   }
-  ai.append(node('p','Цитаты — сообщения источников, а не независимое подтверждение состояния игроков.','research-note'));
+  ai.append(node('p','Цитата может относиться к прошлой игре или другому турниру. Она не подтверждает готовность игрока или стартовый состав на выбранный матч.','research-note'));
+  for(const source of data.officialSources||[]){
+    const labels={available:'сводка получена',pending_collection:'ожидается сбор',no_relevant_reports:'в просмотренной ленте подходящих сообщений нет',no_usable_metadata:'подходящие данные не удалось прочитать',unavailable:'сайт сейчас недоступен',not_configured:'источник пока не подключён'};
+    ai.append(node('p',source.team+' · официальный сайт: '+(labels[source.status]||'статус неизвестен')+(source.fetchedAt?' · '+dateText(source.fetchedAt):'')+(source.stale?' · ожидается обновление':''),'research-note'));
+  }
   $('researchNewsTitle').textContent = 'Новости и источники · '+(data.articles?.length || 0);
   const news = $('researchNews');news.replaceChildren();
   for(const article of data.articles || []) {
-    const item = node('article',undefined,'research-article');item.append(articleLink(article.title,article.url),node('p',article.source+' · '+article.team+' · '+dateText(article.publishedAt)));
+    const item = node('article',undefined,'research-article');item.append(articleLink(article.title,article.url),node('p',article.source+' · '+article.team+' · '+publicationText(article)));
     if(article.summary)item.append(node('p',article.summary));news.append(item);
   }
   const errors = $('researchErrors');errors.replaceChildren();

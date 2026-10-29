@@ -17,6 +17,18 @@ def snapshot():
 
 
 class EvidenceFeatureTests(unittest.TestCase):
+    def test_source_reports_are_counted_without_turning_them_into_confirmed_injuries(self):
+        packet=snapshot()
+        packet['articles']=[{'id':'official:one','team':'Chelsea FC','url':'https://www.chelseafc.com/en/news/article/smith-training','title':'Alex Smith returns to training','summary':'Alex Smith has returned to team training.',
+                             'publishedAt':'2026-10-27T12:00:00Z','fetchedAt':'2026-10-27T18:00:00Z'}]
+        packet['availabilityReports']=[{'sourceId':'official:one','team':'Chelsea FC','sourceType':'official_club','quote':'Alex Smith has returned to team training.'}]
+        row=feature_row(packet)
+        self.assertEqual(row['features']['home_source_availability_reports'],1)
+        self.assertEqual(row['features']['home_official_availability_reports'],1)
+        self.assertIsNone(row['features']['home_injury_reports'])
+        packet['availabilityReports'][0]['quote']='Alex Smith is fit for the next match.'
+        with self.assertRaisesRegex(ValueError,'not grounded'):feature_row(packet)
+
     def test_missing_availability_stays_null_and_target_is_separate(self):
         row = feature_row(snapshot())
         self.assertIsNone(row['features']['home_injury_reports'])

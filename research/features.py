@@ -6,7 +6,7 @@ import hashlib
 import json
 import math
 
-FEATURE_VERSION = 'apl-evidence-features-1'
+FEATURE_VERSION = 'apl-evidence-features-2'
 
 
 def instant(value):
@@ -39,6 +39,14 @@ def feature_row(packet):
     for article in articles:
         if instant(article['publishedAt']) > cutoff or instant(article['fetchedAt']) > cutoff:
             raise ValueError('News was not available at the feature cutoff')
+    reports = packet.get('availabilityReports')
+    if reports is not None:
+        sources = {article['id']: article for article in articles}
+        for report in reports:
+            source = sources.get(report.get('sourceId'))
+            text = ' '.join((str(source.get('title', '')) + ' ' + str(source.get('summary', ''))).split()) if source else ''
+            if not report.get('quote') or report['quote'] not in text:
+                raise ValueError('Availability excerpt is not grounded in the stored source')
     candidate = packet.get('candidate', {})
     probabilities = candidate.get('probabilities')
     if candidate.get('status') != 'experimental' or not isinstance(probabilities, list) or len(probabilities) != 3:
@@ -86,6 +94,9 @@ def feature_row(packet):
         features[prefix + 'ai_source_available'] = usable_ai
         facts = {(fact['sourceId'], fact['quote']) for fact in ai.get('facts', []) if fact.get('team') == team['name'] and fact.get('category') in ('injury', 'availability', 'suspension')}
         features[prefix + 'availability_mentions'] = len(facts) if usable_ai else None
+        team_reports = [report for report in reports if report.get('team') == team['name']] if reports is not None else None
+        features[prefix + 'source_availability_reports'] = len(team_reports) if team_reports is not None else None
+        features[prefix + 'official_availability_reports'] = sum(report.get('sourceType') == 'official_club' for report in team_reports) if team_reports is not None else None
     return {'schema_version': FEATURE_VERSION, 'fixture_id': fixture['id'], 'kickoff': fixture['kickoff'],
             'home': fixture['home'], 'away': fixture['away'], 'collected_at': packet['collectedAt'],
             'snapshot_sha256': digest(packet), 'features': features,

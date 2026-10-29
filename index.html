@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.2 — прогнозы, автоматический сбор и проверка</title>
+<title>FootPredict 1.3 — прогнозы, клубные сводки и проверка</title>
 <link rel="stylesheet" href="./research-ui.css">
 <style>
 :root{color-scheme:dark;--bg:#0b1220;--panel:#132033;--field:#0c1728;--line:#314258;--text:#f0f6ff;--muted:#a6b7ce;--green:#4ade80;--blue:#60a5fa;--yellow:#fbbf24}
@@ -364,7 +364,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <main>
 <header class="app-header">
 <div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
-<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#matchResearch">Разбор</a><a href="#serviceStatus">Сбор данных</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.2</span>
+<nav class="app-nav" aria-label="Главные разделы"><a href="#matchPicker">Выбрать матч</a><a href="#matchResearch">Разбор</a><a href="#serviceStatus">Сбор данных</a><a href="#predictionHistory">История</a><a href="#backtesting">Проверка</a></nav><span class="version">v1.3</span>
 </header>
 <div class="workbench">
 <section class="card picker-card" id="matchPicker">
@@ -399,7 +399,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 </div>
 <section class="card research-card" id="matchResearch" aria-labelledby="researchTitle">
 <div class="research-heading"><div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div class="section-title"><h2 id="researchTitle">Разбор матча</h2></div></div><span class="research-label">АПЛ · факты и источники</span></div>
-<p class="section-hint">Форма команд, доступный календарь и свежие сообщения. Для каждого источника показываем время; недоступные сведения остаются неизвестными.</p>
+<p class="section-hint">Форма команд и сообщения о доступности игроков с датами и источниками. Подтверждение состава отмечается отдельно; недоступные сведения остаются неизвестными.</p>
 <div class="research-actions"><button type="button" id="loadResearch" disabled>Собрать сведения</button><button type="button" id="exportResearch" class="secondary" disabled>Скачать карточку</button></div>
 <p id="researchStatus" class="status" role="status" aria-live="polite">Выбери предстоящий матч АПЛ, затем нажми «Собрать сведения».</p>
 <div id="researchResult" hidden>

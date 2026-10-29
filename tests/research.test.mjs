@@ -55,7 +55,7 @@ test('missing AI and exhausted budget are explicit and do not generate facts',as
 test('malformed AI output fails closed; valid quoted evidence is retained',async()=>{
   const bad=await extractFacts({run:async()=>({response:'A confident unsupported prediction'})},[article],async()=>{});
   assert.equal(bad.status,'unavailable');assert.deepEqual(bad.facts,[]);
-  const valid=await extractFacts({run:async()=>({response:JSON.stringify({facts:[{sourceId:article.id,category:'injury',subject:'Cole Palmer',quote:article.summary}]})})},[article],async()=>{});
+  const valid=await extractFacts({run:async()=>({response:JSON.stringify({facts:[{evidenceId:'e0',subject:'Cole Palmer'}]})})},[article],async()=>{});
   assert.equal(valid.status,'complete');assert.equal(valid.facts.length,1);
 });
 

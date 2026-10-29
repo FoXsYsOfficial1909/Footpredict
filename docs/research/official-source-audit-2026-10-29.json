@@ -1,0 +1,200 @@
+{
+  "checked_at": "2026-10-29T08:09:19.124345+00:00",
+  "sources": [
+    {
+      "name": "arsenal",
+      "url": "https://www.arsenal.com/news",
+      "robots_http": 403
+    },
+    {
+      "name": "villa",
+      "url": "https://www.avfc.co.uk/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 1624164,
+      "final_url": "https://www.avfc.co.uk/news/",
+      "kind": "text/html",
+      "sha256": "9baa9b975f7cffe65416da6a6cd8c0fd50944d9c18bc1e12d5bae6fe29a7f302"
+    },
+    {
+      "name": "bournemouth",
+      "url": "https://www.afcb.co.uk/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 1323703,
+      "final_url": "https://www.afcb.co.uk/news/",
+      "kind": "text/html",
+      "sha256": "a746248a4304954b9023a5db902b0531f0c58d3d543f606afaf6a9b5f791b432"
+    },
+    {
+      "name": "brentford",
+      "url": "https://www.brentfordfc.com/en/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 431668,
+      "final_url": "https://www.brentfordfc.com/en/news",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "d67953e73682e429eda65c0e30b39f2eeaf6a2924da330503b084539490035cf"
+    },
+    {
+      "name": "brighton",
+      "url": "https://www.brightonandhovealbion.com/pages/en/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 1711670,
+      "final_url": "https://www.brightonandhovealbion.com/all-latest-news",
+      "kind": "text/html",
+      "sha256": "912e49780cecd6e013703b0110a5fd2ea1a22cdd5bc1e206255e0d8c536f71d8"
+    },
+    {
+      "name": "chelsea",
+      "url": "https://www.chelseafc.com/en/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 122040,
+      "final_url": "https://www.chelseafc.com/en/news/latest-news",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "f50cb7be2ce23b17b1a53b3a3dcd3793773f31f766c54dde6025f95c2c5218dd"
+    },
+    {
+      "name": "coventry",
+      "url": "https://www.ccfc.co.uk/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 2039482,
+      "final_url": "https://www.ccfc.co.uk/news/",
+      "kind": "text/html",
+      "sha256": "f1b22343018adb2ec8d6d43e4fd85934629c7b2007f3d8a5c9f2c148f583aa5a"
+    },
+    {
+      "name": "palace",
+      "url": "https://www.cpfc.co.uk/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 180992,
+      "final_url": "https://www.cpfc.co.uk/news/",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "14b0172d6e4f4e3c772acbc458a0f04b11e90343884ff15cae1113a25d145683"
+    },
+    {
+      "name": "everton",
+      "url": "https://www.evertonfc.com/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 235812,
+      "final_url": "https://www.evertonfc.com/news",
+      "kind": "text/html;charset=utf-8",
+      "sha256": "cec9245cc73398ff049ff50c5229e8e0ade13ef25b4208dcfb9c756098cd2c1b"
+    },
+    {
+      "name": "fulham",
+      "url": "https://www.fulhamfc.com/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 1592913,
+      "final_url": "https://www.fulhamfc.com/news/",
+      "kind": "text/html",
+      "sha256": "d795184763e74fe36ece425415c71b16ec3f1d3f58aeae4b7687773d2a31d9a5"
+    },
+    {
+      "name": "hull",
+      "url": "https://www.wearehullcity.co.uk/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 1337920,
+      "final_url": "https://www.wearehullcity.co.uk/news/",
+      "kind": "text/html",
+      "sha256": "7d18014be8bbefd033dbb40e1119278e1c89a91ed3c8f7e11dfe9988ae108231"
+    },
+    {
+      "name": "ipswich",
+      "url": "https://www.itfc.co.uk/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 207846,
+      "final_url": "https://www.itfc.co.uk/news/",
+      "kind": "text/html",
+      "sha256": "2c50c090f5f2c11f3c1e887fb1a9cacbfdb33fd14c3ae6fa66c410c92575174b"
+    },
+    {
+      "name": "leeds",
+      "url": "https://www.leedsunited.com/en/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 392179,
+      "final_url": "https://www.leedsunited.com/en/news",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "61adb1abecec2d443af51e2f7f6a6ba7b551cfb3804a49152e8fb3aa7a2dc032"
+    },
+    {
+      "name": "liverpool",
+      "url": "https://www.liverpoolfc.com/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 593793,
+      "final_url": "https://www.liverpoolfc.com/news",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "9ef54dcb2d95ac144c381c1af1a22ecb8e5da02d7bb1671f76c33c20726affd5"
+    },
+    {
+      "name": "city",
+      "url": "https://www.mancity.com/news/mens",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 301568,
+      "final_url": "https://www.mancity.com/news/mens",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "9f791d8d2d5a65b1500202f181789dcc698cb1502232dd6265a125966507bd91"
+    },
+    {
+      "name": "united",
+      "url": "https://www.manutd.com/en/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 665101,
+      "final_url": "https://www.manutd.com/en/news",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "6f5bd995712fb19b7bef4dc95a7f61ed4585ceeee66961305b8a106d4cb1d834"
+    },
+    {
+      "name": "newcastle",
+      "url": "https://www.newcastleunited.com/en/news",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 406552,
+      "final_url": "https://www.newcastleunited.com/en/news",
+      "kind": "text/html; charset=utf-8",
+      "sha256": "6844879794f912ff0f7346d774b4ee02a8e6cf98da223de47b9e8062c5ecc189"
+    },
+    {
+      "name": "forest",
+      "url": "https://www.nottinghamforest.co.uk/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 1449882,
+      "final_url": "https://www.nottinghamforest.co.uk/news/",
+      "kind": "text/html",
+      "sha256": "d363f3bc82ff2c12a4e70965de582df696eaa7102ab8a08db0fc95269cd19e85"
+    },
+    {
+      "name": "sunderland",
+      "url": "https://www.safc.com/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 1785637,
+      "final_url": "https://www.safc.com/news/",
+      "kind": "text/html",
+      "sha256": "fe7ac7d282b6f516c7e0be7f2e2bdee31707c559e28edb0acf3de877e6491b7f"
+    },
+    {
+      "name": "tottenham",
+      "url": "https://www.tottenhamhotspur.com/news/",
+      "robots_allowed": true,
+      "http": 200,
+      "bytes": 126286,
+      "final_url": "https://www.tottenhamhotspur.com/news/",
+      "kind": "text/html;charset=utf-8",
+      "sha256": "06c1d571628baa0021d32989a26e75f82a809eabbfe993da7613f50f86a1f205"
+    }
+  ]
+}

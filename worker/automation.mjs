@@ -2,8 +2,9 @@
 import SOURCES from './research-sources.mjs';
 import {ensureResearchStorage, getResearch, getNews, cleanText} from './research.mjs';
 import {modelV2Info} from './model-v2.mjs';
+import {collectOfficialNews,officialConfiguration} from './official.mjs';
 
-export const AUTOMATION_VERSION = 'automation-1.0.0';
+export const AUTOMATION_VERSION = 'automation-1.1.0';
 export const AUTOMATION_CRONS = Object.freeze(['17 */2 * * *', '7,37 * * * *', '50 4 * * *']);
 const HOUR = 3600000, DAY = 24 * HOUR;
 const initialization = new WeakMap();
@@ -59,10 +60,10 @@ export async function automationStorage(env) {
 export async function enqueue(db, id, kind, payload, dueAt) {
   await db.prepare(`INSERT INTO automation_jobs (id,kind,payload,due_at) VALUES (?1,?2,?3,?4)
     ON CONFLICT(id) DO UPDATE SET
-      due_at=CASE WHEN automation_jobs.kind='news' AND automation_jobs.status='complete' THEN MIN(automation_jobs.due_at,excluded.due_at)
+      due_at=CASE WHEN automation_jobs.kind IN ('news','official') AND automation_jobs.status='complete' THEN MIN(automation_jobs.due_at,excluded.due_at)
         WHEN automation_jobs.kind='research' AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
         THEN MIN(automation_jobs.due_at,excluded.due_at) ELSE automation_jobs.due_at END,
-      status=CASE WHEN automation_jobs.status='complete' AND automation_jobs.kind='news' THEN 'waiting'
+      status=CASE WHEN automation_jobs.status='complete' AND automation_jobs.kind IN ('news','official') THEN 'waiting'
         WHEN automation_jobs.status='complete' AND automation_jobs.kind='research'
         AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
         THEN 'waiting' ELSE automation_jobs.status END,
@@ -137,13 +138,15 @@ async function discover(db,env,services) {
   }).sort((a,b)=>Date.parse(a.utcDate)-Date.parse(b.utcDate)||a.id-b.id).slice(0,20);
   for(const [name] of teams) {
     if(SOURCES.teams[name])await enqueue(db,'news:'+SOURCES.teams[name].bbc_slug,'news',{name},now);
+    if(officialConfiguration(name))await enqueue(db,'official:'+SOURCES.teams[name].bbc_slug,'official',{name},now+officialConfiguration(name).priority);
   }
   // Retire relegated clubs only after receiving a complete current-season roster.
   // Evidence remains archived; a returning club's recurring job can reopen.
   if(teams.size===20) {
-    const active=[...teams.keys()].filter(name=>SOURCES.teams[name]).map(name=>'news:'+SOURCES.teams[name].bbc_slug);
+    const active=[...teams.keys()].filter(name=>SOURCES.teams[name]).flatMap(name=>['news:'+SOURCES.teams[name].bbc_slug,
+      ...(officialConfiguration(name)?['official:'+SOURCES.teams[name].bbc_slug]:[])]);
     if(active.length)await db.prepare(`UPDATE automation_jobs SET status='complete',last_finished_at=?1,lease_until=0,lease_token=NULL
-      WHERE kind='news' AND (status!='running' OR lease_until<=?2) AND id NOT IN (${active.map(()=>'?').join(',')})`)
+      WHERE kind IN ('news','official') AND (status!='running' OR lease_until<=?2) AND id NOT IN (${active.map(()=>'?').join(',')})`)
       .bind(iso(now),now,...active).run();
   }
   for(const game of upcoming)await enqueue(db,'research:'+game.id,'research',{fixtureId:game.id,kickoff:game.utcDate},now);
@@ -155,8 +158,13 @@ async function discover(db,env,services) {
 async function newsJob(db,env,services,team) {
   const news=await getNews(team,env,services,services.now());
   if(news.error)throw Object.assign(new Error('Лента BBC: '+news.error.reason),{status:news.error.status});
+  await saveArticles(db,news.articles);
+  return {team:team.name,articles:news.articles.length,source:'BBC Sport',collectedAt:iso(services.now())};
+}
+
+async function saveArticles(db,articles) {
   const rows=[];
-  for(const article of news.articles) {
+  for(const article of articles) {
     // Content-addressed immutable observations; unchanged headlines do not grow hourly.
     const id=await hash([article.team,article.url,article.publishedAt,article.title,article.summary]);
     rows.push(db.prepare(`INSERT INTO automation_news (id,team,url,published_at,first_seen_at,payload)
@@ -164,7 +172,25 @@ async function newsJob(db,env,services,team) {
       .bind(id,article.team,article.url,article.publishedAt,article.fetchedAt,json(article)));
   }
   if(rows.length)await db.batch(rows);
-  return {team:team.name,articles:news.articles.length,source:'BBC Sport',collectedAt:iso(services.now())};
+}
+
+async function officialJob(db,env,services,team){
+  const result=await collectOfficialNews(team,env,services);
+  if(result.status==='unavailable')throw Object.assign(new Error('Официальный сайт: '+result.error?.reason),
+    {status:result.error?.status,retryAt:result.error?.status===403?services.now()+DAY:undefined});
+  await saveArticles(db,result.articles);
+  return {team:team.name,sourceStatus:result.status,articles:result.articles.length,candidates:result.candidates||0,
+    collectedAt:result.fetchedAt,partial:result.status==='no_usable_metadata'};
+}
+
+async function seedOfficialJobs(db,now){
+  if(await db.prepare("SELECT id FROM automation_jobs WHERE kind='official' LIMIT 1").first())return;
+  const active=await db.prepare("SELECT payload FROM automation_jobs WHERE kind='news' AND status!='complete'").all();
+  const statements=[];
+  for(const row of active.results){const team=parse(row.payload),config=officialConfiguration(team.name);if(!config)continue;
+    statements.push(db.prepare(`INSERT INTO automation_jobs (id,kind,payload,due_at) VALUES (?1,'official',?2,?3)
+      ON CONFLICT(id) DO NOTHING`).bind('official:'+SOURCES.teams[team.name].bbc_slug,json(team),now+config.priority));}
+  if(statements.length)await db.batch(statements);
 }
 
 export async function recordPrimary(db, fixtureId, now) {
@@ -202,7 +228,8 @@ async function researchJob(db,env,services,payload) {
   const remaining=Date.parse(payload.kickoff)-now;
   return {nextAt:now+(remaining>DAY?DAY:remaining>6*HOUR?6*HOUR:HOUR),result:{fixtureId:payload.fixtureId,collectedAt:packet.collectedAt,
     articles:packet.articles.length,aiStatus:packet.ai.status,aiFacts:packet.ai.facts.length,coverage:packet.coverage,
-    sourceErrors:packet.sourceErrors,partial:!packet.coverage.injuries||!packet.coverage.lineups||!packet.coverage.ai}};
+    sourceErrors:packet.sourceErrors,officialSources:packet.officialSources,availabilityReports:packet.availabilityReports?.length||0,
+    aiRejectionReasons:packet.ai.rejectionReasons||null,partial:!packet.coverage.injuries||!packet.coverage.lineups||!packet.coverage.ai}};
 }
 
 export function scoreShadow(prediction,game,fetchedAt) {
@@ -361,8 +388,9 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
     await enqueue(db,'system:discover','discover',{},started);
     await enqueue(db,'system:settle-v1','settle-v1',{},started);
     await enqueue(db,'system:settle-v2','settle-v2',{},started);
+    await seedOfficialJobs(db,started);
     // Isolated job failures are persisted; no single provider prevents other kinds.
-    const kinds=['settle-v1','discover','settle-v2','news','news','news','news','news','news','research'];
+    const kinds=['settle-v1','discover','settle-v2','news','news','news','news','news','news','official','research'];
     for(const kind of kinds) {
       if(services.now()-started>90000)break;
       const job=await claimJob(db,kind,services.now());
@@ -371,6 +399,7 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
         let finished;
         if(kind==='discover')finished={nextAt:services.now()+6*HOUR,result:await discover(db,env,services)};
         else if(kind==='news')finished={nextAt:services.now()+2*HOUR,result:await newsJob(db,env,services,job.payload)};
+        else if(kind==='official')finished={nextAt:services.now()+12*HOUR,result:await officialJob(db,env,services,job.payload)};
         else if(kind==='research')finished=await researchJob(db,env,services,job.payload);
         else if(kind==='settle-v1')finished={nextAt:services.now()+2*HOUR,result:await services.settleV1()};
         else finished={nextAt:services.now()+2*HOUR,result:await settleShadow(db,services)};

@@ -32,6 +32,7 @@
 .research-quote { margin:12px 0; padding:13px 15px; border-left:3px solid #7298be; background:#102337; border-radius:0 10px 10px 0; }
 .research-quote p { margin:4px 0; font-size:13px; }
 .research-note { font-size:12px; color:var(--muted); line-height:1.7; }
+.evidence-label { display:inline-block; margin:6px 0; padding:3px 8px; border:1px solid #45677b; border-radius:12px; color:#beddec; font-size:11px; }
 .research-match { font-size:17px; font-weight:650; margin:18px 0 7px; }
 .automation-card details { margin-top:16px; padding-top:15px; border-top:1px solid #2d455a; }
 .automation-card summary { cursor:pointer; min-height:32px; font-weight:650; }

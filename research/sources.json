@@ -4,63 +4,200 @@
   "teams": {
     "Arsenal FC": {
       "bbc_slug": "arsenal",
-      "csv_name": "Arsenal"
+      "csv_name": "Arsenal",
+      "official": {
+        "index_url": "https://www.arsenal.com/news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Aston Villa FC": {
       "bbc_slug": "aston-villa",
-      "csv_name": "Aston Villa"
+      "csv_name": "Aston Villa",
+      "official": {
+        "index_url": "https://www.avfc.co.uk/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "AFC Bournemouth": {
       "bbc_slug": "afc-bournemouth",
-      "csv_name": "Bournemouth"
+      "csv_name": "Bournemouth",
+      "official": {
+        "index_url": "https://www.afcb.co.uk/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Brentford FC": {
       "bbc_slug": "brentford",
-      "csv_name": "Brentford"
+      "csv_name": "Brentford",
+      "official": {
+        "index_url": "https://www.brentfordfc.com/en/news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 1,
+        "access": "public_metadata"
+      }
     },
     "Brighton & Hove Albion FC": {
       "bbc_slug": "brighton-and-hove-albion",
-      "csv_name": "Brighton"
+      "csv_name": "Brighton",
+      "official": {
+        "index_url": "https://www.brightonandhovealbion.com/all-latest-news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/",
+          "/pages/en/media-article/",
+          "/pages/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Chelsea FC": {
       "bbc_slug": "chelsea",
-      "csv_name": "Chelsea"
+      "csv_name": "Chelsea",
+      "official": {
+        "index_url": "https://www.chelseafc.com/en/news/category/mens-team",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Crystal Palace FC": {
       "bbc_slug": "crystal-palace",
-      "csv_name": "Crystal Palace"
+      "csv_name": "Crystal Palace",
+      "official": {
+        "index_url": "https://www.cpfc.co.uk/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Everton FC": {
       "bbc_slug": "everton",
-      "csv_name": "Everton"
+      "csv_name": "Everton",
+      "official": {
+        "index_url": "https://www.evertonfc.com/news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Fulham FC": {
       "bbc_slug": "fulham",
-      "csv_name": "Fulham"
+      "csv_name": "Fulham",
+      "official": {
+        "index_url": "https://www.fulhamfc.com/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Liverpool FC": {
       "bbc_slug": "liverpool",
-      "csv_name": "Liverpool"
+      "csv_name": "Liverpool",
+      "official": {
+        "index_url": "https://www.liverpoolfc.com/news/listing/mens-team-news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Manchester City FC": {
       "bbc_slug": "manchester-city",
-      "csv_name": "Man City"
+      "csv_name": "Man City",
+      "official": {
+        "index_url": "https://www.mancity.com/news/mens",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Manchester United FC": {
       "bbc_slug": "manchester-united",
-      "csv_name": "Man United"
+      "csv_name": "Man United",
+      "official": {
+        "index_url": "https://www.manutd.com/en/news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 0,
+        "access": "public_metadata"
+      }
     },
     "Newcastle United FC": {
       "bbc_slug": "newcastle-united",
-      "csv_name": "Newcastle"
+      "csv_name": "Newcastle",
+      "official": {
+        "index_url": "https://www.newcastleunited.com/en/news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Nottingham Forest FC": {
       "bbc_slug": "nottingham-forest",
-      "csv_name": "Nott'm Forest"
+      "csv_name": "Nott'm Forest",
+      "official": {
+        "index_url": "https://www.nottinghamforest.co.uk/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Tottenham Hotspur FC": {
       "bbc_slug": "tottenham-hotspur",
-      "csv_name": "Tottenham"
+      "csv_name": "Tottenham",
+      "official": {
+        "index_url": "https://www.tottenhamhotspur.com/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "West Ham United FC": {
       "bbc_slug": "west-ham-united",
@@ -72,11 +209,29 @@
     },
     "Sunderland AFC": {
       "bbc_slug": "sunderland",
-      "csv_name": "Sunderland"
+      "csv_name": "Sunderland",
+      "official": {
+        "index_url": "https://www.safc.com/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Leeds United FC": {
       "bbc_slug": "leeds-united",
-      "csv_name": "Leeds"
+      "csv_name": "Leeds",
+      "official": {
+        "index_url": "https://www.leedsunited.com/en/news",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Burnley FC": {
       "bbc_slug": "burnley",
@@ -84,15 +239,42 @@
     },
     "Coventry City FC": {
       "bbc_slug": "coventry-city",
-      "csv_name": "Coventry"
+      "csv_name": "Coventry",
+      "official": {
+        "index_url": "https://www.ccfc.co.uk/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Hull City AFC": {
       "bbc_slug": "hull-city",
-      "csv_name": "Hull"
+      "csv_name": "Hull",
+      "official": {
+        "index_url": "https://www.wearehullcity.co.uk/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     },
     "Ipswich Town FC": {
       "bbc_slug": "ipswich-town",
-      "csv_name": "Ipswich"
+      "csv_name": "Ipswich",
+      "official": {
+        "index_url": "https://www.itfc.co.uk/news/",
+        "article_prefixes": [
+          "/news/",
+          "/en/news/"
+        ],
+        "priority": 10,
+        "access": "public_metadata"
+      }
     }
   }
 }
