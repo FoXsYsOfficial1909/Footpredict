@@ -204,6 +204,10 @@ export async function collectOfficialNews(team,env,services){
       try{await services.cachePut(key,robots,86400);}catch{/* Optional cache. */}
     }
     const listing=await allowedPage(config.index_url,config,robots.text,env,services);
+    const listingObserved=structured(listing.body).some(node=>['NewsArticle','Article','BlogPosting'].includes(node['@type'])&&
+      (node.headline||node.name||node.description)&&officialUrl(node.url||node.mainEntityOfPage?.['@id']||'',config,{article:true}))||
+      /"postTitle"\s*:/.test(listing.body)&&/"publishedDateTime"\s*:/.test(listing.body);
+    result.listingObserved=listingObserved;
     const previews=publicIndexArticles(listing.body,{team:team.name,config,now:services.now(),fetchedAt:new Date(services.now()).toISOString()});
     if(previews.length){result.articles=previews.slice(0,OFFICIAL_LIMITS.articlesPerClub);result.candidates=previews.length;result.status='available';}
     let candidates=previews.length?[]:discoverOfficialLinks(listing.body,config);
@@ -220,7 +224,7 @@ export async function collectOfficialNews(team,env,services){
         if(article)result.articles.push(article);
       }catch(error){result.articleError={status:error.status||null,reason:String(error.message).slice(0,100)};}
     }
-    result.status=result.articles.length?'available':candidates.length?'no_usable_metadata':'no_relevant_reports';
+    result.status=result.articles.length?'available':candidates.length||!listingObserved?'no_usable_metadata':'no_relevant_reports';
   }catch(error){result.error={status:Number.isInteger(error.status)?error.status:null,reason:cleanText(error.message,100)};}
   result.fetchedAt=new Date(services.now()).toISOString();
   try{await services.cachePut('research:official:'+mapping.bbc_slug,result,86400);}catch{/* Keep the source outcome visible to the caller. */}

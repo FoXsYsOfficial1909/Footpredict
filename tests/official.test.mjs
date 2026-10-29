@@ -70,3 +70,13 @@ test('official collection and stored-only reads use bounded configured URLs',asy
   assert.equal(result.status,'available');assert.equal(result.articles.length,1);assert.equal(requests.length,3);
   const stored=await storedOfficialNews(team,env,services);assert.equal(stored.status,'available');assert.equal(requests.length,3);
 });
+
+test('an unreadable listing is distinguished from a parsed feed without relevant reports',async()=>{
+  for(const [listing,expected] of [['<html><div>Loading news…</div></html>','no_usable_metadata'],
+    ['<script type="application/ld+json">'+JSON.stringify({'@type':'CollectionPage',hasPart:[{'@type':'NewsArticle',url:'https://www.manutd.com/en/news/new-shop-opening',headline:'Club opens a shop'}]})+'</script>','no_relevant_reports']]){
+    const services={now:()=>now,reserve:async()=>{},cachePut:async()=>{},readLimited:async body=>new Response(body).text(),
+      fetch:async address=>new Response(address.endsWith('/robots.txt')?'User-agent: *\nAllow: /':listing)};
+    const result=await collectOfficialNews({name:'Manchester United FC'},{FOOTPREDICT_CACHE:{get:async()=>null}},services);
+    assert.equal(result.status,expected);
+  }
+});
