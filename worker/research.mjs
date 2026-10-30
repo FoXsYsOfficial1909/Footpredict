@@ -1,10 +1,12 @@
 // Evidence collection is separate from the immutable v1 prediction ledger.
 import SOURCE_CONFIG from './research-sources.mjs';
 import {cleanText} from './text.mjs';
-import {buildEvidence,sourceExcerpts,validateEvidenceChoices} from './availability.mjs';
+import {buildEvidence,sourceExcerpts,validateEvidenceChoices,currentAvailabilityView} from './availability.mjs';
+import {parseModelAnswer,describeModelAnswer} from './ai-response.mjs';
 import {storedOfficialNews,OFFICIAL_LIMITS} from './official.mjs';
 export {cleanText} from './text.mjs';
-export const RESEARCH_VERSION = 'research-0.5.0';
+export {normalizeModelAnswer} from './ai-response.mjs';
+export const RESEARCH_VERSION = 'research-0.6.0';
 const DAY = 86400000;
 const MAX_FEED_BYTES = 500000;
 const NEWS_AGE_DAYS = 10;
@@ -110,28 +112,6 @@ export function validateAiFacts(value, articles) {
   return {facts, rejected: rejected.length};
 }
 
-export function normalizeModelAnswer(answer) {
-  let candidate = answer;
-  for (let depth = 0; depth < 8; depth++) {
-    if (candidate && typeof candidate === 'object' && Array.isArray(candidate.facts)) return candidate;
-    if (typeof candidate === 'string') {
-      let raw = candidate.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
-      if (raw.length > 16000) throw new Error('AI output too large');
-      if (!raw.startsWith('{')) {const first = raw.indexOf('{'), last = raw.lastIndexOf('}');if(first >= 0 && last > first)raw = raw.slice(first,last+1);}
-      candidate = JSON.parse(raw);
-    } else if (candidate && typeof candidate === 'object' && Array.isArray(candidate.choices)) {
-      const choice = candidate.choices[0];
-      if (!choice || choice.finish_reason === 'length' || choice.message?.refusal || choice.message?.tool_calls) throw new Error('Incomplete or refused AI answer');
-      const content = choice.message?.content ?? choice.text;
-      candidate = Array.isArray(content) ? content.filter(part => part.type === 'text' && typeof part.text === 'string').map(part => part.text).join('') : content;
-    } else if (candidate && typeof candidate === 'object' && candidate.response !== undefined) candidate = candidate.response;
-    else if (candidate && typeof candidate === 'object' && candidate.result !== undefined) candidate = candidate.result;
-    else throw new Error('Unsupported AI response shape');
-  }
-  if (candidate && typeof candidate === 'object' && Array.isArray(candidate.facts)) return candidate;
-  throw new Error('Unsupported AI response shape');
-}
-
 export async function extractFacts(binding, articles, reserveCall) {
   const evidence=buildEvidence(articles);
   if (!binding?.run) return {status: 'not_connected', facts: [], model: null};
@@ -146,19 +126,25 @@ export async function extractFacts(binding, articles, reserveCall) {
   let timer, stage = 'request', outputCharacters = 0, responseShape = null;
   try {
     const answer = await Promise.race([binding.run(AI_MODEL, {messages: [{role: 'system', content: 'You extract verifiable football news snippets as JSON.'},
-      {role: 'user', content: prompt}], max_tokens: 768, temperature: 0, response_format: {type:'json_object'}}),
+      {role: 'user', content: prompt}], max_tokens: 768, temperature: 0, stream:false,
+      response_format: {type:'json_schema',json_schema:{type:'object',additionalProperties:false,
+        properties:{facts:{type:'array',maxItems:4,items:{type:'object',additionalProperties:false,
+          properties:{evidenceId:{type:'string',enum:evidence.map(item=>item.id)},subject:{type:['string','null'],maxLength:80}},required:['evidenceId','subject']}}},required:['facts']}}}),
       new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('AI timeout')), 20000); })]);
     stage = 'response';
-    responseShape = {type: typeof answer, keys: answer && typeof answer === 'object' ? Object.keys(answer).filter(key=>/^[a-z_]{1,40}$/i.test(key)).slice(0,8) : [], responseType: typeof answer?.response};
-    outputCharacters = typeof answer?.response === 'string' ? answer.response.length : typeof answer === 'string' ? answer.length : 0;
+    responseShape = describeModelAnswer(answer);
+    outputCharacters = responseShape.outputCharacters;
     stage = 'parse';
-    const validated=validateEvidenceChoices(normalizeModelAnswer(answer),evidence);
-    return {status: validated.rejected ? validated.facts.length ? 'partial' : 'rejected' : 'complete', ...validated, model: AI_MODEL,evidenceConsidered:evidence.length};
+    const normalized=parseModelAnswer(answer);
+    if(normalized.value.facts.length>4)throw Object.assign(new Error('Too many AI selections'),{reason:'schema_mismatch'});
+    const validated=validateEvidenceChoices(normalized.value,evidence);
+    return {status: validated.rejected ? validated.facts.length ? 'partial' : 'rejected' : 'complete', ...validated, model: AI_MODEL,
+      evidenceConsidered:evidence.length,responseFormat:normalized.path};
   } catch (error) {
     const code = typeof error?.code === 'number' ? error.code : null;
     const reason = stage !== 'request' ? 'invalid_output' : /limit|quota|neurons|429/i.test(String(error?.message)) ? 'quota' : /authoriz|permission|forbidden|403/i.test(String(error?.message)) ? 'not_permitted' : /model.*not|unknown model|not found/i.test(String(error?.message)) ? 'model_unavailable' : 'request_failed';
     const message = cleanText(error?.message, 260).replace(/Bearer\s+[^\s,;]+/gi,'Bearer [redacted]').replace(/((?:api[_-]?key|token|secret)\s*[:=]\s*)[^\s,;]+/gi,'$1[redacted]');
-    return {status: 'unavailable', facts: [], model: AI_MODEL, diagnostic: {stage, reason, code, outputCharacters, responseShape, message}};
+    return {status: 'unavailable', facts: [], model: AI_MODEL, diagnostic: {stage, reason, parseReason:stage==='parse'&&typeof error?.reason==='string'?error.reason:null, code, outputCharacters, responseShape, message}};
   }
   finally { clearTimeout(timer); }
 }
@@ -305,12 +291,12 @@ export async function getResearch(fixtureId, env, services, {force = false} = {}
     const age = services.now() - Date.parse(saved.collectedAt);
     const aiBudgetReset = saved.ai?.status === 'budget_reached' &&
       saved.collectedAt.slice(0, 10) !== new Date(services.now()).toISOString().slice(0, 10);
-    if (saved.version === RESEARCH_VERSION && age >= 0 && age < 3600000 && !aiBudgetReset) return {...saved, cached: true};
+    if (saved.version === RESEARCH_VERSION && age >= 0 && age < 3600000 && !aiBudgetReset) return {...currentAvailabilityView(saved), cached: true};
   }
   let packet;
   try { packet = await collectResearch(fixtureId, env, services); }
   catch (error) {
-    if (latest && error?.status === 429) return {...JSON.parse(latest.payload), cached: true, stale: true,
+    if (latest && error?.status === 429) return {...currentAvailabilityView(JSON.parse(latest.payload)), cached: true, stale: true,
       refreshStatus: 'rate_limited', refreshReason: /Дневной/.test(String(error.message)) ? 'daily_budget' : /Минутный/.test(String(error.message)) ? 'minute_budget' : 'provider_limit'};
     throw error;
   }
@@ -319,7 +305,7 @@ export async function getResearch(fixtureId, env, services, {force = false} = {}
   if (payload.length > 200000) throw Object.assign(new Error('Карточка исследования слишком большая.'), {status: 422});
   await db.prepare('INSERT INTO research_snapshots (id,fixture_id,collected_at,bucket,payload) VALUES (?1,?2,?3,?4,?5)')
     .bind(id, fixtureId, packet.collectedAt, bucket, payload).run();
-  return {...packet, cached: false};
+  return {...currentAvailabilityView(packet), cached: false};
 }
 
 export async function storedResearch(fixtureId, env) {
@@ -327,7 +313,7 @@ export async function storedResearch(fixtureId, env) {
   const db = await schema(env);
   const row = await db.prepare('SELECT payload FROM research_snapshots WHERE fixture_id=?1 ORDER BY collected_at DESC LIMIT 1').bind(fixtureId).first();
   if (!row) throw Object.assign(new Error('Для этого матча ещё нет сохранённого разбора.'), {status: 404});
-  return {...JSON.parse(row.payload), cached: true, storedOnly: true};
+  return {...currentAvailabilityView(JSON.parse(row.payload)), cached: true, storedOnly: true};
 }
 
 export async function runResearchScheduled(env, services) {

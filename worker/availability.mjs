@@ -2,6 +2,9 @@
 import {cleanText} from './text.mjs';
 
 const OTHER_SQUADS=/(?:\bwom[ae]n(?:['’]?s)?\b|\bladies\b|\bgirls\b|\bacademy\b|\bunder[- ]?(?:18|19|21|23)s?\b|\bu(?:18|19|21|23)s?\b|\bb[- ]team\b)/i;
+const FANTASY=/\b(?:fpl|fantasy(?:[-_\s]*(?:football|premier[-_\s]*league))?)\b/i;
+const SPECULATION=/\b(?:predicted|predictions?)\b/i;
+export const AVAILABILITY_POLICY='availability-policy-2';
 const SIGNALS=[
   ['injury',/\binjur(?:y|ies|ed)\b|\b(?:hamstring|shin|knee|ankle|quad) (?:injury|problem)\b/i],
   ['suspension',/\bsuspen(?:sion|ded)\b|\bred card\b|\bban(?:ned)?\b/i],
@@ -11,7 +14,19 @@ const SIGNALS=[
 
 export function isFirstTeamText(text){return !OTHER_SQUADS.test(text);}
 export function availabilityCategory(text){return SIGNALS.find(([,pattern])=>pattern.test(text))?.[0]||null;}
-export function availabilityPriority(text){const type=availabilityCategory(text);return type==='injury'||type==='suspension'?3:type==='availability'?2:type==='lineup'?1:0;}
+export function availabilityPriority(text){if(FANTASY.test(text))return 0;const type=availabilityCategory(text);return type==='injury'||type==='suspension'?3:type==='availability'?2:type==='lineup'?1:0;}
+
+export function isAvailabilitySource(article){
+  const title=cleanText(article.title,500),summary=cleanText(article.summary,1600),section=cleanText(article.section,200);
+  let address=String(article.url||'');try{address=decodeURIComponent(address);}catch{/* A malformed escape is not decoded. */}
+  const text=title+' '+summary+' '+section+' '+address;
+  return isFirstTeamText(text)&&!FANTASY.test(text);
+}
+
+export function isAvailabilityQuote(value){
+  return typeof value==='string'&&value.length>=12&&value.length<=240&&value.split(/\s+/).length<=25&&
+    !value.endsWith('?')&&!FANTASY.test(value)&&!SPECULATION.test(value)&&!!availabilityCategory(value);
+}
 
 function quoteCandidates(article) {
   const title=cleanText(article.title,500),summary=cleanText(article.summary,1600);
@@ -19,13 +34,13 @@ function quoteCandidates(article) {
   const result=[];
   for(let candidate of candidates){
     candidate=candidate.replace(/\s+/g,' ').trim();
-    if(!candidate||candidate.endsWith('?')||/\b(?:predicted|prediction|fantasy|FPL picks)\b/i.test(candidate))continue;
+    if(!candidate||candidate.endsWith('?')||FANTASY.test(candidate)||SPECULATION.test(candidate))continue;
     if(candidate.split(/\s+/).length>25){
       const intro=candidate.match(/^(.{0,110}?\b(?:explains why|confirms that|said that|says that))\s+(.+)$/i);
       if(intro&&!/\bnot\b/i.test(intro[1]))candidate=intro[2];
     }
     // An entire short sentence/headline is retained, including negation and hedges.
-    if(candidate.length<12||candidate.length>240||candidate.split(/\s+/).length>25||!availabilityCategory(candidate))continue;
+    if(!isAvailabilityQuote(candidate))continue;
     if(!result.includes(candidate))result.push(candidate);
   }
   return result;
@@ -34,7 +49,7 @@ function quoteCandidates(article) {
 export function buildEvidence(articles,{maximum=12}={}) {
   const groups=new Map(),seen=new Set();
   for(const article of articles){
-    if(!isFirstTeamText(article.title+' '+article.summary+' '+article.url+' '+(article.section||'')))continue;
+    if(!isAvailabilitySource(article))continue;
     const quotes=quoteCandidates(article);
     if(!quotes.length)continue;
     const quality=text=>availabilityPriority(text)+(/\b(?:is|are|was|were|will|expected|ruled|returns?|returning|suffers?|sustains?|miss(?:es|ing)?)\b/i.test(text)?2:0);
@@ -87,4 +102,27 @@ export function validateEvidenceChoices(value,evidence) {
     seen.add(selected.id);facts.push(groundedFact(selected,{subject,method:'ai_selection'}));
   }
   return {facts,rejected:Object.values(reasons).reduce((a,b)=>a+b,0),rejectionReasons:reasons};
+}
+
+// Revalidate the current display without changing any stored observation or
+// primary forecast. Raw snapshot downloads keep their original contents.
+export function currentAvailabilityView(packet){
+  const sources=new Map((packet.articles||[]).map(article=>[article.id,article]));
+  const allowed=fact=>{
+    const source=sources.get(fact?.sourceId);
+    return !!source&&source.url===fact.url&&source.team===fact.team&&isAvailabilitySource(source)&&isAvailabilityQuote(fact.quote)&&
+      cleanText(source.title+' '+source.summary,2400).includes(fact.quote);
+  };
+  const reports=(packet.availabilityReports||[]).filter(allowed),facts=(packet.ai?.facts||[]).filter(allowed);
+  const reportsExcluded=(packet.availabilityReports?.length||0)-reports.length,aiFactsExcluded=(packet.ai?.facts?.length||0)-facts.length;
+  const prior=packet.sourcePolicy?.version===AVAILABILITY_POLICY?packet.sourcePolicy:null;
+  let ai=packet.ai;
+  if(ai&&Array.isArray(ai.facts))ai={...ai,facts,...(aiFactsExcluded?{unfilteredStatus:ai.unfilteredStatus||ai.status,
+    sourcePolicyExcluded:(ai.sourcePolicyExcluded||0)+aiFactsExcluded,status:facts.length?'partial':'filtered'}:{})};
+  return {...packet,...(packet.availabilityReports?{availabilityReports:reports}:{}),...(ai?{ai}:{}),
+    ...(packet.teams?{teams:packet.teams.map(team=>team.availability?{...team,availability:{...team.availability,
+      reports:(team.availability.reports||[]).filter(allowed),status:(team.availability.reports||[]).some(allowed)?'reports_found':'no_supported_reports'}}:team)}:{}),
+    ...(packet.coverage?{coverage:{...packet.coverage,ai:facts.length>0&&['complete','partial'].includes(ai?.status),availabilityReports:reports.length>0}}:{}),
+    sourcePolicy:{version:AVAILABILITY_POLICY,reportsExcluded:(prior?.reportsExcluded||0)+reportsExcluded,
+      aiFactsExcluded:(prior?.aiFactsExcluded||0)+aiFactsExcluded,archivedSnapshotUnchanged:true}};
 }

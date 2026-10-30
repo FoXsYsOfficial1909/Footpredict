@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {buildEvidence,sourceExcerpts,validateEvidenceChoices} from '../worker/availability.mjs';
-import {extractFacts} from '../worker/research.mjs';
+import {buildEvidence,sourceExcerpts,validateEvidenceChoices,currentAvailabilityView} from '../worker/availability.mjs';
+import {extractFacts,storedResearch,getResearch} from '../worker/research.mjs';
+import {memoryD1} from './helpers/d1.mjs';
 
 const article=(overrides={})=>({id:'club:1',team:'Example FC',source:'BBC Sport',url:'https://www.bbc.com/sport/football/articles/a',
   title:'Alex Smith injury update',summary:'Alex Smith is a doubt for Saturday after missing training.',publishedAt:'2026-10-28T12:00:00Z',fetchedAt:'2026-10-29T08:00:00Z',...overrides});
@@ -42,4 +43,54 @@ test('a real-shaped choices response selects a source excerpt without asking the
     return {choices:[{message:{content:'{"facts":[{"evidenceId":"e0","subject":"Alex Smith"}]}'},finish_reason:'stop'}]};
   }},[article()],async()=>{});
   assert.equal(result.status,'complete');assert.equal(result.facts.length,1);assert.equal(result.facts[0].extractionMethod,'ai_selection');
+});
+
+test('all FPL titles, fantasy sections and URLs are excluded even when their summaries sound medical',async()=>{
+  const variants=[{title:'Replacing injured Joao Pedro in FPL'},{title:'FPL injury news'},
+    {title:'Fantasy Premier League team news'},{section:'Fantasy Football'},
+    {url:'https://www.bbc.com/sport/fantasyfootball/injury-update'},
+    {title:'Injury update',summary:'FPL managers expect Alex Smith to miss the match.'},
+    {url:'https://www.bbc.com/sport/football/fpl-injury-news'},
+    {url:'https://www.bbc.com/sport/football/%66%70%6c-injury-news'}];
+  let calls=0,reserved=0;
+  for(const variant of variants){
+    const articles=[article(variant)];assert.deepEqual(buildEvidence(articles),[]);
+    const result=await extractFacts({run:async()=>{calls++;}},articles,async()=>{reserved++;});
+    assert.equal(result.status,'no_relevant_evidence');
+  }
+  assert.equal(calls,0);assert.equal(reserved,0);
+  assert.equal(buildEvidence([article({title:'Fplovia FC injury update'})]).length,1);
+});
+
+test('filtering existing display reports preserves negation, original timestamps and archived bytes',async()=>{
+  const fantasy=article({id:'fpl',title:'Replacing injured Joao Pedro in FPL',summary:'Joao Pedro is injured.'});
+  const good=article({id:'real',title:'Alex Smith injury news',summary:'Alex Smith will not miss Saturday through injury.'});
+  const badFact={sourceId:'fpl',team:fantasy.team,url:fantasy.url,quote:fantasy.title,category:'injury'};
+  const goodFact={sourceId:'real',team:good.team,url:good.url,quote:good.summary,category:'injury'};
+  const packet={version:'research-0.5.0',collectedAt:'2026-10-30T00:17:37.734Z',articles:[fantasy,good],availabilityReports:[badFact,goodFact],
+    ai:{status:'complete',facts:[badFact,goodFact],rejected:0},teams:[{name:good.team,availability:{status:'reports_found',reports:[badFact,goodFact]}}],
+    candidate:{probabilities:[.4,.3,.3]},coverage:{ai:true,availabilityReports:true,injuries:false}};
+  const original=JSON.stringify(packet),view=currentAvailabilityView(packet);
+  assert.equal(JSON.stringify(packet),original);assert.deepEqual(view.ai.facts,[goodFact]);assert.equal(view.ai.status,'partial');
+  assert.equal(view.ai.unfilteredStatus,'complete');assert.equal(view.ai.rejected,0);assert.equal(view.sourcePolicy.aiFactsExcluded,1);
+  assert.deepEqual(view.availabilityReports,[goodFact]);assert.equal(view.teams[0].availability.reports.length,1);
+  assert.ok(view.ai.facts[0].quote.includes('will not miss'));assert.equal(view.collectedAt,packet.collectedAt);
+  assert.deepEqual(view.candidate,packet.candidate);assert.deepEqual(view.articles,packet.articles);
+  assert.deepEqual(currentAvailabilityView(view),view);
+  const db=memoryD1();db.sqlite.exec('CREATE TABLE research_snapshots(id TEXT PRIMARY KEY,fixture_id INTEGER,collected_at TEXT,bucket TEXT,payload TEXT)');
+  db.sqlite.prepare('INSERT INTO research_snapshots VALUES(?,?,?,?,?)').run('existing',560626,packet.collectedAt,'bucket',original);
+  const stored=await storedResearch(560626,{FOOTPREDICT_DB:db});
+  assert.equal(stored.ai.facts.length,1);
+  const stale=await getResearch(560626,{FOOTPREDICT_DB:db},{now:()=>Date.parse('2026-10-30T16:00:00Z'),
+    reserve:async()=>{throw Object.assign(new Error('Дневной бюджет исчерпан'),{status:429});}});
+  assert.equal(stale.stale,true);assert.equal(stale.ai.facts.length,1);assert.equal(stale.refreshReason,'daily_budget');
+  assert.equal(db.sqlite.prepare('SELECT payload FROM research_snapshots').get().payload,original);db.close();
+});
+
+test('a fully excluded selection cannot leave the availability or AI coverage green',()=>{
+  const source=article({id:'fpl',title:'FPL injury update'}),fact={sourceId:'fpl',url:source.url,team:source.team,quote:source.title};
+  const view=currentAvailabilityView({articles:[source],ai:{status:'complete',facts:[fact]},availabilityReports:[fact],coverage:{ai:true,availabilityReports:true},
+    teams:[{availability:{reports:[fact],status:'reports_found',medicalStatus:'unknown'}}]});
+  assert.equal(view.ai.status,'filtered');assert.equal(view.coverage.ai,false);assert.equal(view.coverage.availabilityReports,false);
+  assert.equal(view.teams[0].availability.status,'no_supported_reports');assert.equal(view.teams[0].availability.medicalStatus,'unknown');
 });

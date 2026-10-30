@@ -229,7 +229,8 @@ async function researchJob(db,env,services,payload) {
   return {nextAt:now+(remaining>DAY?DAY:remaining>6*HOUR?6*HOUR:HOUR),result:{fixtureId:payload.fixtureId,collectedAt:packet.collectedAt,
     articles:packet.articles.length,aiStatus:packet.ai.status,aiFacts:packet.ai.facts.length,coverage:packet.coverage,
     sourceErrors:packet.sourceErrors,officialSources:packet.officialSources,availabilityReports:packet.availabilityReports?.length||0,
-    aiRejectionReasons:packet.ai.rejectionReasons||null,partial:!packet.coverage.injuries||!packet.coverage.lineups||!packet.coverage.ai}};
+    aiRejectionReasons:packet.ai.rejectionReasons||null,aiDiagnostic:packet.ai.diagnostic||null,aiResponseFormat:packet.ai.responseFormat||null,
+    partial:!packet.coverage.injuries||!packet.coverage.lineups||!packet.coverage.ai}};
 }
 
 export function scoreShadow(prediction,game,fetchedAt) {
