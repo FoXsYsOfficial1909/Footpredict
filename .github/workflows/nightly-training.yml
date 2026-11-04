@@ -1,6 +1,14 @@
 name: Nightly candidate training
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/nightly-training.yml'
+      - 'research/**'
+      - 'scripts/publish_training.py'
+      - 'requirements-research.txt'
+      - 'docs/research/selection.json'
   schedule:
     - cron: '23 0 * * *'
   workflow_dispatch:
