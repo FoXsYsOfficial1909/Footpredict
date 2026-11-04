@@ -1,3 +1,6 @@
+import {scoreQuality,summarizeQuality as summarize} from './metrics.mjs';
+import {comparisonReport} from './comparison.mjs';
+export {scoreQuality} from './metrics.mjs';
 import {modelV2Info} from './model-v2.mjs';
 
 export const QUALITY_VERSION='quality-1.0.0';
@@ -8,22 +11,6 @@ function distribution(values,counts=false){
   if(!Array.isArray(values)||values.length!==3||values.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||(!counts&&v>1)))return null;
   const total=values.reduce((sum,v)=>sum+v,0);
   return total>0&&Number.isFinite(total)&&(counts||Math.abs(total-1)<1e-6)?values.map(v=>v/total):null;
-}
-
-export function scoreQuality(probabilities,score){
-  const actual=score.home>score.away?0:score.home===score.away?1:2;
-  const max=Math.max(...probabilities),leaders=probabilities.map((p,i)=>Math.abs(p-max)<=1e-12?i:-1).filter(i=>i>=0);
-  return {brier:probabilities.reduce((sum,p,i)=>sum+(p-Number(i===actual))**2,0),
-    logLoss:-Math.log(Math.max(1e-12,probabilities[actual])),actual,actualProbability:probabilities[actual],
-    top:leaders.length===1?leaders[0]:null,topProbability:max,correct:leaders.length===1?leaders[0]===actual:null};
-}
-
-function summarize(records){
-  const scored=records.filter(record=>record.metrics),eligible=scored.filter(record=>record.metrics.correct!==null);
-  const average=key=>scored.length?scored.reduce((sum,row)=>sum+row.metrics[key],0)/scored.length:null;
-  return {n:scored.length,brier:average('brier'),logLoss:average('logLoss'),
-    correct:eligible.filter(row=>row.metrics.correct).length,topEligible:eligible.length,ties:scored.length-eligible.length,
-    accuracy:eligible.length?eligible.filter(row=>row.metrics.correct).length/eligible.length:null};
 }
 
 function forecast(row,key,now){
@@ -106,5 +93,5 @@ export async function qualityReport(db,now=null){
     json_extract(metadata,'$.home') AS home_name,json_extract(metadata,'$.away') AS away_name,
     (SELECT payload FROM automation_results WHERE fixture_id=p.fixture_id ORDER BY seq DESC LIMIT 1) AS latest
     FROM automation_predictions p WHERE model_version=?1`).bind(modelV2Info().modelVersion).all();
-  return buildQuality(v1.results,v2.results,now??Date.now());
+  return {...buildQuality(v1.results,v2.results,now??Date.now()),prospective:await comparisonReport(db,now??Date.now())};
 }

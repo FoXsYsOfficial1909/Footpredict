@@ -65,6 +65,39 @@ function renderPaired(){
   target.append(note('База — сохранённые частоты исходов лиги из v1. Время сохранения двух моделей может различаться. Новости пока не меняют вероятности v2.'));
 }
 
+function renderProspective(){
+  const target=$('qualityProspective'),data=report.prospective;
+  target.replaceChildren(el('h3','Совместная проверка моделей'));
+  if(!data){target.append(note('Данные новой серии пока недоступны. Попробуй обновить позже.'));return;}
+  const t=data.totals;
+  target.append(note('Зафиксировано матчей: '+t.registered+' · с результатом: '+t.settled+' · ожидают: '+t.pending+' · проверка / исключены: '+(t.review+t.excluded)+'.'));
+  target.append(note('v1, v2 и простая база сохраняются одновременно минимум за сутки до матча. Все три оцениваются по одинаковым результатам.'));
+  metricTable(target,[{label:'v1',metrics:data.models.v1},{label:'v2',metrics:data.models.v2},{label:'База',metrics:data.models.base}],
+    'Новая серия · общая выборка для трёх моделей.');
+  if(!t.settled)target.append(note(t.registered?'Ждём завершения матчей новой серии.':'Первые совместные прогнозы появятся после очередного автоматического сбора. Прошедшие матчи в эту серию не добавляются.'));
+  const ties=Object.entries(data.models).filter(([,m])=>m.ties).map(([key,m])=>key+': '+m.ties).join(', ');
+  if(ties)target.append(note('Равные максимумы исключены только из доли совпадений: '+ties+'.'));
+  if(data.fixtures?.length){
+    const details=el('details',undefined,'quality-help');details.append(el('summary','Матчи совместной серии'));
+    for(const fixture of data.fixtures){
+      const item=el('article',undefined,'automation-forecast');item.append(el('h4',fixture.home+' — '+fixture.away),note(date(fixture.kickoff)+' · сохранено '+date(fixture.savedAt)));
+      for(const key of ['v1','v2','base'])item.append(note((key==='base'?'База':key)+': '+fixture.models[key].probabilities.map((p,i)=>labels[i]+' '+percent(p)).join(' · ')));
+      item.append(note(fixture.state==='settled'?'Итог: '+fixture.latest.score.home+':'+fixture.latest.score.away:fixture.state==='pending'?'Ожидается результат':'Итог требует проверки.'));
+      const button=el('button','Скачать исходный расчёт');button.type='button';
+      button.addEventListener('click',async()=>{
+        button.disabled=true;
+        try{const response=await fetch(API+'/v1/comparison/'+fixture.fixtureId+'/evidence',{cache:'no-store',credentials:'omit'});
+          if(!response.ok)throw new Error('HTTP');const packet=await response.json();
+          const url=URL.createObjectURL(new Blob([JSON.stringify(packet,null,2)],{type:'application/json'})),link=el('a');
+          link.href=url;link.download='footpredict-comparison-'+fixture.fixtureId+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+        }catch{item.append(note('Не удалось скачать исходный расчёт. Попробуй позже.'));}finally{button.disabled=false;}
+      });item.append(button);details.append(item);
+    }
+    target.append(details);
+  }
+  target.append(note('v2 использует свои зафиксированные параметры обучения. Новости не меняют вероятности; модель автоматически основной не становится.'));
+}
+
 function renderHistorical(){
   const b=report.historical,target=$('qualityHistorical');target.replaceChildren(el('h3','Исторический эксперимент · '+b.period));
   target.append(note('Общая выборка: '+b.common_fixtures+' из 380 матчей. 11 игр с недостаточной историей для v1 исключены у всех моделей.'));
@@ -137,7 +170,7 @@ async function refresh(){
     if(!response.ok)throw new Error('HTTP '+response.status);
     const data=await response.json();
     if(data.schemaVersion!==1||!data.cohorts?.v1||!data.cohorts?.v2||!data.paired||!Array.isArray(data.fixtures))throw new Error('Incomplete report');
-    report=data;renderCohorts();renderPaired();renderHistorical();renderFixtures(true);view();
+    report=data;renderProspective();renderCohorts();renderPaired();renderHistorical();renderFixtures(true);view();
     $('qualityResult').hidden=false;$('downloadQuality').disabled=false;
     const pending=data.fixtures.filter(f=>f.v2?.state==='pending').sort((a,b)=>Date.parse(a.kickoff)-Date.parse(b.kickoff));
     $('qualityNextMatch').textContent=pending.length?'Ближайшая игра с ожидающим прогнозом v2: '+pending[0].home+' — '+pending[0].away+', '+date(pending[0].kickoff)+'. Сверка доступна через 4 часа после начала.':'';
@@ -157,4 +190,7 @@ $('downloadQuality').addEventListener('click',()=>{
   const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'})),link=el('a');
   link.href=url;link.download='footpredict-quality-'+report.generatedAt.slice(0,10)+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
-refresh();
+let opened=false;
+function open(){if(opened)return;opened=true;refresh();}
+window.addEventListener('footpredict:tab-selected',event=>{if(event.detail?.tab==='quality')open();});
+if(document.getElementById('tab-quality')?.getAttribute('aria-selected')==='true')open();

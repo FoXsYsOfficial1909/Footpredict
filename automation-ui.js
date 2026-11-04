@@ -17,6 +17,7 @@ function renderStatus(data){
   list.append(fact('Последний проход',date(data.heartbeat?.finishedAt||data.heartbeat?.startedAt)),
     fact('Ленты проверены за 3 часа',successful.length+' / '+(data.league?.clubs||feeds.length||'—')),
     fact('Сохранённых публикаций',data.news?.total??0),fact('Прогнозов v2 до матча',data.forecasts?.total??0));
+  if(data.comparison)list.append(fact('Совместных прогнозов v1 / v2 / базы',data.comparison.total));
   const official=(data.jobs||[]).filter(job=>job.kind==='official'&&job.status!=='complete');
   if(official.length)list.append(fact('Официальные сайты проверены',official.filter(job=>job.last_success_at).length+' / '+official.length),
     fact('Сайтов со сводкой о доступности',official.filter(job=>job.result?.articles>0).length));
@@ -106,4 +107,7 @@ $('downloadDailyReport').addEventListener('click',()=>{
   if(!report)return;
   saveJson(report,'footpredict-report-'+report.day+'.json');
 });
-refresh();
+let opened=false;
+function open(){if(opened)return;opened=true;refresh();}
+window.addEventListener('footpredict:tab-selected',event=>{if(['data','history'].includes(event.detail?.tab))open();});
+if(['data','history'].some(key=>document.getElementById('tab-'+key)?.getAttribute('aria-selected')==='true'))open();

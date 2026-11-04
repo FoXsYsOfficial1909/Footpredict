@@ -3,8 +3,9 @@ import SOURCES from './research-sources.mjs';
 import {ensureResearchStorage, getResearch, getNews, cleanText} from './research.mjs';
 import {modelV2Info} from './model-v2.mjs';
 import {collectOfficialNews,officialConfiguration} from './official.mjs';
+import {comparisonSchema,registerComparison,settleComparisons,comparisonReport} from './comparison.mjs';
 
-export const AUTOMATION_VERSION = 'automation-1.1.0';
+export const AUTOMATION_VERSION = 'automation-1.2.0';
 export const AUTOMATION_CRONS = Object.freeze(['17 */2 * * *', '7,37 * * * *', '50 4 * * *']);
 const HOUR = 3600000, DAY = 24 * HOUR;
 const initialization = new WeakMap();
@@ -44,7 +45,8 @@ export async function automationStorage(env) {
           checked_at TEXT NOT NULL,payload TEXT NOT NULL,UNIQUE(fixture_id,state_key))`,
         'CREATE INDEX IF NOT EXISTS automation_results_fixture ON automation_results(fixture_id,seq DESC)',
         `CREATE TABLE IF NOT EXISTS automation_reports (
-          day TEXT PRIMARY KEY,scheduled_for TEXT NOT NULL,generated_at TEXT NOT NULL,payload TEXT NOT NULL)`
+          day TEXT PRIMARY KEY,scheduled_for TEXT NOT NULL,generated_at TEXT NOT NULL,payload TEXT NOT NULL)`,
+        ...comparisonSchema()
       ];
       await raw.batch(statements.map(sql => raw.prepare(sql)));
       await raw.prepare(`INSERT INTO automation_meta (key,value) VALUES ('installed',?1)
@@ -149,7 +151,11 @@ async function discover(db,env,services) {
       WHERE kind IN ('news','official') AND (status!='running' OR lease_until<=?2) AND id NOT IN (${active.map(()=>'?').join(',')})`)
       .bind(iso(now),now,...active).run();
   }
-  for(const game of upcoming)await enqueue(db,'research:'+game.id,'research',{fixtureId:game.id,kickoff:game.utcDate},now);
+  for(const game of upcoming){
+    const payload={fixtureId:game.id,kickoff:game.utcDate};
+    await enqueue(db,'research:'+game.id,'research',payload,now);
+    if(services.predictV1&&Date.parse(game.utcDate)-now>=DAY)await enqueue(db,'comparison:'+game.id,'comparison',payload,now);
+  }
   await db.prepare(`INSERT INTO automation_meta (key,value) VALUES ('league',?1)
     ON CONFLICT(key) DO UPDATE SET value=excluded.value`).bind(json({season:year,clubs:teams.size,mappedClubs:[...teams.keys()].filter(name=>SOURCES.teams[name]).length,upcoming:upcoming.length,fetchedAt:season.fetchedAt})).run();
   return {season:year,clubs:teams.size,upcoming:upcoming.length,partial:teams.size!==20||[...teams.keys()].some(name=>!SOURCES.teams[name])};
@@ -191,6 +197,14 @@ async function seedOfficialJobs(db,now){
     statements.push(db.prepare(`INSERT INTO automation_jobs (id,kind,payload,due_at) VALUES (?1,'official',?2,?3)
       ON CONFLICT(id) DO NOTHING`).bind('official:'+SOURCES.teams[team.name].bbc_slug,json(team),now+config.priority));}
   if(statements.length)await db.batch(statements);
+}
+
+async function seedComparisonJobs(db,services){
+  if(!services.predictV1)return;
+  const now=services.now(),rows=await db.prepare("SELECT payload FROM automation_jobs WHERE kind='research' AND status!='complete'").all();
+  for(const row of rows.results){const payload=parse(row.payload),gap=Date.parse(payload.kickoff)-now;
+    if(gap>=DAY&&gap<7*DAY)await enqueue(db,'comparison:'+payload.fixtureId,'comparison',payload,now);
+  }
 }
 
 export async function recordPrimary(db, fixtureId, now) {
@@ -305,12 +319,13 @@ async function statusFromDb(db,now) {
     AND (status!='complete' OR last_finished_at>=?1) ORDER BY kind,id LIMIT 150`).bind(iso(now-7*DAY)).all();
   const news=await db.prepare('SELECT COUNT(*) AS total,COUNT(DISTINCT team) AS teams,MAX(first_seen_at) AS latest FROM automation_news').first();
   const forecasts=await db.prepare('SELECT COUNT(*) AS total,MAX(saved_at) AS latest FROM automation_predictions').first();
+  const comparison=await db.prepare('SELECT COUNT(*) AS total,MAX(saved_at) AS latest FROM comparison_predictions').first();
   const cards=await db.prepare('SELECT COUNT(*) AS total,MAX(collected_at) AS latest FROM research_snapshots').first();
   const last=heartbeat?.finishedAt||heartbeat?.startedAt||installation?.installedAt;
   const age=last?now-Date.parse(last):0;
   const state=age>70*60000?'delayed':!heartbeat?'not_started':!heartbeat.finishedAt&&age>240000?'recovering':'running';
   return {version:AUTOMATION_VERSION,checkedAt:iso(now),state,
-    installedAt:installation?.installedAt,heartbeat,league,news,forecasts,cards,model:modelV2Info(),
+    installedAt:installation?.installedAt,heartbeat,league,news,forecasts,comparison,cards,model:modelV2Info(),
     jobs:jobs.results.map(row=>({...row,dueAt:iso(row.due_at),leaseUntil:row.lease_until?iso(row.lease_until):null,
       last_error:parse(row.last_error),result:parse(row.result)})),
     schedule:{expectedCrons:AUTOMATION_CRONS,collection:'Каждые 30 минут выполняется ограниченная часть очереди; текущие клубные ленты проверяются примерно раз в 2 часа.',
@@ -330,7 +345,8 @@ async function ensureReport(db,now) {
     WHERE first_seen_at>?1 AND first_seen_at<=?2`).bind(window.from,window.to).first();
   const report={schemaVersion:1,day:window.day,scheduledFor:window.scheduledFor,generatedAt:iso(now),
     lateBySeconds:Math.floor((now-Date.parse(window.scheduledFor))/1000),window:{from:window.from,to:window.to},
-    activity:activity.results,cards,news,originalHistory:await v1Summary(db,window.to),experimentalMetrics:await metricSummary(db,window.to),currentHealth:await statusFromDb(db,now),
+    activity:activity.results,cards,news,originalHistory:await v1Summary(db,window.to),experimentalMetrics:await metricSummary(db,window.to),
+    pairedComparison:await comparisonReport(db,Date.parse(window.to)),currentHealth:await statusFromDb(db,now),
     notes:['Период активности заканчивается в запланированное время отчёта. Состояние сервиса отражено на момент формирования.',
       'Эксперимент оценивается по первым сохранённым вероятностям не менее чем за 24 часа до игры. Основная история v1 отдельная.',
       'Отчёт доступен в приложении; отправка в мессенджеры не настроена.']};
@@ -389,9 +405,11 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
     await enqueue(db,'system:discover','discover',{},started);
     await enqueue(db,'system:settle-v1','settle-v1',{},started);
     await enqueue(db,'system:settle-v2','settle-v2',{},started);
+    await enqueue(db,'system:settle-comparison','settle-comparison',{},started);
     await seedOfficialJobs(db,started);
+    await seedComparisonJobs(db,services);
     // Isolated job failures are persisted; no single provider prevents other kinds.
-    const kinds=['settle-v1','discover','settle-v2','news','news','news','news','news','news','official','research'];
+    const kinds=['settle-v1','discover','settle-v2','settle-comparison','comparison','news','news','news','news','news','news','official','research'];
     for(const kind of kinds) {
       if(services.now()-started>90000)break;
       const job=await claimJob(db,kind,services.now());
@@ -402,6 +420,8 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
         else if(kind==='news')finished={nextAt:services.now()+2*HOUR,result:await newsJob(db,env,services,job.payload)};
         else if(kind==='official')finished={nextAt:services.now()+12*HOUR,result:await officialJob(db,env,services,job.payload)};
         else if(kind==='research')finished=await researchJob(db,env,services,job.payload);
+        else if(kind==='comparison')finished=await registerComparison(db,services,job.payload);
+        else if(kind==='settle-comparison')finished={nextAt:services.now()+2*HOUR,result:await settleComparisons(db,services)};
         else if(kind==='settle-v1')finished={nextAt:services.now()+2*HOUR,result:await services.settleV1()};
         else finished={nextAt:services.now()+2*HOUR,result:await settleShadow(db,services)};
         await finishJob(db,job,services.now(),finished);

@@ -27,12 +27,14 @@ with sync_playwright() as playwright:
         response=page.goto('http://127.0.0.1:8000/',wait_until='networkidle',timeout=45000)
         assert response.status==200 and response.body()==(ROOT/'index.html').read_bytes()
         assert page.locator('#loadResearch').is_disabled()
+        page.click('#tab-history')
         page.wait_for_function("!document.getElementById('historyStatus').textContent.startsWith('Загружаю')",timeout=35000)
         assert 'Загружено с сервера записей:' in page.locator('#historyStatus').inner_text()
         log('HISTORY',page.locator('#historyStatus').inner_text())
         page.wait_for_function("!document.getElementById('refreshAutomation').disabled",timeout=35000)
         assert 'Не удалось' not in page.locator('#automationStatus').inner_text(),page.locator('#automationStatus').inner_text()
         assert page.locator('.automation-stats').count()>=1
+        page.click('#tab-data')
         page.locator('#automationReport summary').click()
         assert page.locator('#automationReportBody').inner_text()
         if page.locator('#downloadDailyReport').is_enabled():
@@ -45,6 +47,7 @@ with sync_playwright() as playwright:
 
         def idle():page.wait_for_function("!document.getElementById('loadCompetitions').disabled",timeout=65000)
 
+        page.click('#tab-matches')
         page.click('#loadCompetitions');idle();page.select_option('#competition','PL')
         page.click('#loadMatches');idle()
         page.locator('#content button').first.click();idle()
@@ -72,7 +75,9 @@ with sync_playwright() as playwright:
         page.set_viewport_size({'width':390,'height':844})
         assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth'), 'Mobile horizontal overflow'
         page.locator('#matchResearch').screenshot(path=str(OUTPUT/'research-mobile.png'))
+        page.click('#tab-data')
         page.locator('#serviceStatus').screenshot(path=str(OUTPUT/'automation-mobile.png'))
+        page.click('#tab-matches')
         assert not errors,errors
         assert not failures,failures
         assert api and all(item['http']==200 for item in api),api

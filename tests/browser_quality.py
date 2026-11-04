@@ -28,8 +28,9 @@ with sync_playwright() as playwright:
         if fixture:
             body=Path(fixture).read_text()
             page.route('**/v1/quality',lambda route:route.fulfill(status=200,content_type='application/json',body=body))
-        page.goto(BASE,wait_until='networkidle',timeout=60000)
+        page.goto(BASE.split('#')[0]+'#qualityDashboard',wait_until='networkidle',timeout=60000)
         page.wait_for_function("!document.getElementById('qualityResult').hidden",timeout=35000)
+        page.locator('.quality-archive > summary').click()
         assert page.locator('.quality-model').count()==2
         assert page.locator('#qualityPaired table').count()==1
         with page.expect_download() as event:page.click('#downloadQuality')
@@ -85,7 +86,7 @@ with sync_playwright() as playwright:
         assert not errors,errors
         fresh=browser.new_page()
         fresh.route('**/*.workers.dev/**',lambda route:route.fulfill(status=503,content_type='application/json',body='{}'))
-        fresh.goto(BASE,wait_until='networkidle',timeout=60000)
+        fresh.goto(BASE.split('#')[0]+'#qualityDashboard',wait_until='networkidle',timeout=60000)
         fresh.wait_for_function("!document.getElementById('refreshQuality').disabled")
         assert fresh.locator('#qualityResult').is_hidden()
         assert fresh.locator('#downloadQuality').is_disabled()

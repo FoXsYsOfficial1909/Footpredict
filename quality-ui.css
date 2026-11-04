@@ -26,6 +26,8 @@
 .quality-hit { color:#c4ddcf; font-size:13px; }
 .quality-miss { color:#f3bdac; font-size:13px; }
 .quality-help summary { min-height:44px; padding-block:10px; cursor:pointer; }
+.quality-archive > summary { cursor:pointer; min-height:46px; padding-block:12px; color:#c5d7e8; font-weight:650; }
+.quality-archive[open] > summary { margin-bottom:14px; }
 @media(max-width:600px) {
   .quality-models,.quality-picks { grid-template-columns:1fr; }
   .quality-controls { display:grid; grid-template-columns:1fr; }
