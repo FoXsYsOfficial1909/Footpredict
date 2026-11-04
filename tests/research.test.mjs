@@ -116,7 +116,7 @@ test('a fresh card with exhausted AI quota can refresh after the UTC daily reset
   const saved={version:RESEARCH_VERSION,collectedAt:before,fixture:{id:560626},ai:{status:'budget_reached'}};
   let inserts=0;
   const database={prepare:sql=>({run:async()=>({success:true}),bind:()=>({
-    first:async()=>({payload:JSON.stringify(saved)}),run:async()=>{inserts++;return {success:true};}
+    first:async()=>({payload:JSON.stringify(saved)}),run:async()=>{if(sql.startsWith('INSERT INTO research_snapshots'))inserts++;return {success:true};}
   })})};
   const deps=services({date:after});
   const packet=await getResearch(560626,{FOOTPREDICT_DB:database},deps);

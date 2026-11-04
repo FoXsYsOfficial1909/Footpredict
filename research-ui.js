@@ -127,7 +127,8 @@ function render(data) {
     quote.append(node('p',(fact.subject?fact.subject+' · ':'')+fact.team),
       node('span',(fact.sourceType==='official_club'?'Официальный клуб':'Сообщение прессы')+' · '+(categoryLabels[fact.category]||'Сообщение'),'evidence-label'),
       node('p','«'+fact.quote+'»'),articleLink((fact.source||'Источник')+' · '+publicationText(fact),fact.url),
-      node('p',fact.extractionMethod==='ai_selection'?'Фрагмент выбран ИИ; цитата взята из источника.':'Короткий фрагмент выбран по тексту источника.','research-note'));
+      node('p',fact.extractionMethod==='ai_selection_cached'?'Использован ранее проверенный выбор ИИ'+(fact.aiSelectedAt?' от '+dateText(fact.aiSelectedAt):'')+'. Цитата сверена с текущим текстом источника.':
+        fact.extractionMethod==='ai_selection'?'Фрагмент выбран ИИ; цитата взята из источника.':'Короткий фрагмент выбран по тексту источника.','research-note'));
     ai.append(quote);
   }
   if(!data.ai?.facts?.length) {
@@ -135,11 +136,13 @@ function render(data) {
       unavailable:'ИИ не вернул завершённый проверяемый разбор. Доступные фрагменты источников показаны отдельно.',
       filtered:'Выбранные ИИ фрагменты исключены из сведений о доступности по типу источника. Это не подтверждает отсутствие травм.',
       budget_reached:'Дневной лимит ИИ-разбора достигнут. Статистика и новости доступны.',
+      pending:'Эти материалы уже обрабатывает другой запрос. Доступные фрагменты источников показаны отдельно.',
       no_sources:'Нет доступных материалов для ИИ-разбора.',rejected:'Ответ ИИ не прошёл проверку цитат. Неподтверждённые сведения не показаны.',complete:'В доступных материалах ИИ не выделил фактов с проверяемой цитатой. Это не означает отсутствия травм.'};
     messages.no_relevant_evidence='Для ИИ нет подходящих сообщений о доступности. Лимит вызовов не расходуется.';
     ai.append(node('p',messages[data.ai?.status] || 'Нет проверяемых цитат для этой карточки.','research-note'));
   }
   ai.append(node('p','Цитата может относиться к прошлой игре или другому турниру. Она не подтверждает готовность игрока или стартовый состав на выбранный матч.','research-note'));
+  if(data.ai?.deferredReason==='budget_reached')ai.append(node('p','Использованы ранее проверенные сведения. Для новых материалов дневной лимит ИИ уже достигнут.','research-note'));
   if(data.sourcePolicy?.reportsExcluded||data.sourcePolicy?.aiFactsExcluded)ai.append(node('p','Материалы о фэнтези-футболе и другие неподходящие фрагменты не учитываются как сведения о доступности игроков.','research-note'));
   for(const source of data.officialSources||[]){
     const labels={available:'сводка получена',pending_collection:'ожидается сбор',no_relevant_reports:'в просмотренной ленте подходящих сообщений нет',no_usable_metadata:'подходящие данные не удалось прочитать',unavailable:'сайт сейчас недоступен',not_configured:'источник пока не подключён'};

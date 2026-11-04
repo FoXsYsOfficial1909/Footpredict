@@ -4,6 +4,8 @@ import {ensureResearchStorage, getResearch, getNews, cleanText} from './research
 import {modelV2Info} from './model-v2.mjs';
 import {collectOfficialNews,officialConfiguration} from './official.mjs';
 import {comparisonSchema,registerComparison,settleComparisons,comparisonReport} from './comparison.mjs';
+import {warmEvidenceCache} from './ai-cache.mjs';
+import {AI_MODEL} from './research.mjs';
 
 export const AUTOMATION_VERSION = 'automation-1.2.0';
 export const AUTOMATION_CRONS = Object.freeze(['17 */2 * * *', '7,37 * * * *', '50 4 * * *']);
@@ -243,7 +245,7 @@ async function researchJob(db,env,services,payload) {
   return {nextAt:now+(remaining>DAY?DAY:remaining>6*HOUR?6*HOUR:HOUR),result:{fixtureId:payload.fixtureId,collectedAt:packet.collectedAt,
     articles:packet.articles.length,aiStatus:packet.ai.status,aiFacts:packet.ai.facts.length,coverage:packet.coverage,
     sourceErrors:packet.sourceErrors,officialSources:packet.officialSources,availabilityReports:packet.availabilityReports?.length||0,
-    aiRejectionReasons:packet.ai.rejectionReasons||null,aiDiagnostic:packet.ai.diagnostic||null,aiResponseFormat:packet.ai.responseFormat||null,
+    aiRejectionReasons:packet.ai.rejectionReasons||null,aiDiagnostic:packet.ai.diagnostic||null,aiResponseFormat:packet.ai.responseFormat||null,aiCache:packet.ai.cache||null,
     partial:!packet.coverage.injuries||!packet.coverage.lineups||!packet.coverage.ai}};
 }
 
@@ -408,6 +410,8 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
     await enqueue(db,'system:settle-comparison','settle-comparison',{},started);
     await seedOfficialJobs(db,started);
     await seedComparisonJobs(db,services);
+    try{tick.aiCacheWarm=await warmEvidenceCache(db,{model:AI_MODEL,now:services.now()});}
+    catch(error){tick.aiCacheWarmError=publicError(error);}
     // Isolated job failures are persisted; no single provider prevents other kinds.
     const kinds=['settle-v1','discover','settle-v2','settle-comparison','comparison','news','news','news','news','news','news','official','research'];
     for(const kind of kinds) {

@@ -1,0 +1,83 @@
+name: Nightly candidate training
+
+on:
+  schedule:
+    - cron: '23 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: footpredict-nightly-training
+  cancel-in-progress: false
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/nightly
+          key: ${{ runner.os }}-football-csv-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ${{ runner.os }}-football-csv-v1-
+      - run: python -m pip install -r requirements-research.txt
+      - run: python -m unittest discover -s tests
+      - name: Train and evaluate a separate candidate
+        id: train
+        continue-on-error: true
+        run: python -m research.nightly --data-dir data/nightly --output artifacts/nightly
+      - name: Save candidate, data and evaluation
+        id: artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/nightly/
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Do not advertise a candidate without its saved artifact
+        if: always() && steps.train.outcome == 'success' && steps.artifact.outcome != 'success'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('artifacts/nightly/attempt.json')
+          report=json.loads(path.read_text())
+          report.update(status='failed',errorType='ArtifactUploadFailure',message='The model artifact was not saved.')
+          path.write_text(json.dumps(report,indent=2))
+          PY
+      - name: Training summary
+        if: always()
+        run: |
+          if test -f artifacts/nightly/report.md; then
+            cat artifacts/nightly/report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Publish attempt and retain the last successful report
+        if: always()
+        env:
+          TRAINING_REPOSITORY: ${{ github.repository }}
+          TRAINING_RUN_ID: ${{ github.run_id }}
+          TRAINING_RUN_ATTEMPT: ${{ github.run_attempt }}
+          TRAINING_COMMIT: ${{ github.sha }}
+        run: |
+          if test -f artifacts/nightly/attempt.json; then
+            python -m scripts.publish_training --output artifacts/nightly \
+              --repository "$TRAINING_REPOSITORY" --run-id "$TRAINING_RUN_ID" \
+              --run-attempt "$TRAINING_RUN_ATTEMPT" --commit "$TRAINING_COMMIT"
+          fi
+      - name: Preserve a failed workflow conclusion
+        if: steps.train.outcome != 'success'
+        run: exit 1

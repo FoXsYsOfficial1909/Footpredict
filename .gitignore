@@ -9,5 +9,6 @@ node_modules/
 !.env.example
 data/raw/
 data/cache/
+data/nightly/
 artifacts/
 *.log

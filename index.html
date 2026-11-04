@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.5 — матчи, история и сравнение моделей</title>
+<title>FootPredict 1.6 — матчи, обучение и сравнение моделей</title>
 <link rel="stylesheet" href="./research-ui.css">
 <link rel="stylesheet" href="./quality-ui.css">
 <link rel="stylesheet" href="./navigation.css">
@@ -366,7 +366,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <main>
 <header class="app-header">
 <div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
-<span class="version">v1.5</span>
+<span class="version">v1.6</span>
 </header>
 <nav class="app-tabs" role="tablist" aria-label="Разделы приложения"><a id="tab-matches" href="#matches" role="tab" aria-controls="matches" aria-selected="true" tabindex="0" data-app-tab="matches">Матчи</a><a id="tab-history" href="#history" role="tab" aria-controls="history" aria-selected="false" tabindex="-1" data-app-tab="history">История</a><a id="tab-quality" href="#quality" role="tab" aria-controls="quality" aria-selected="false" tabindex="-1" data-app-tab="quality">Качество</a><a id="tab-data" href="#data" role="tab" aria-controls="data" aria-selected="false" tabindex="-1" data-app-tab="data">Данные</a></nav>
 <div id="matches" class="app-panel" role="tabpanel" aria-labelledby="tab-matches" data-app-panel><div class="workbench">
@@ -527,6 +527,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <div id="qualityResult" hidden>
 <div id="qualityLive">
 <div id="qualityProspective" class="quality-panel"><h3>Совместная проверка моделей</h3><p class="research-note">Загружаю состояние новой серии…</p></div>
+<details id="trainingStatus" class="quality-panel quality-help"><summary>Ночное обучение кандидатов</summary>
+<p id="trainingMessage" class="research-note" role="status" aria-live="polite">Открой раздел, чтобы загрузить последний отчёт обучения.</p>
+<div class="quality-controls"><button id="refreshTraining" type="button">Обновить отчёт</button><button id="downloadTraining" type="button" class="secondary" disabled>Скачать отчёт JSON</button></div>
+<div id="trainingBody"></div>
+</details>
 <details class="quality-archive"><summary>Прежние серии и отдельные архивы</summary>
 <p class="research-note">Архивы v1 и v2 содержат разные матчи. Их общие проценты не определяют, какая модель лучше; для этого используется сравнение ниже.</p>
 <div id="qualityCohorts" class="quality-models"></div>
@@ -595,7 +600,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 <details id="automationReport"><summary>Ежедневный отчёт</summary><div id="automationReportBody"></div><button id="downloadDailyReport" type="button" disabled>Скачать отчёт</button></details>
 </section>
 </div>
-<p class="credit">FootPredict 1.5 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, API-Football и BBC Sport · Новости не меняют сохранённые прогнозы</p>
+<p class="credit">FootPredict 1.6 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, API-Football и BBC Sport · Новости не меняют сохранённые прогнозы</p>
 </main>
 <script>
 (() => {
@@ -1563,5 +1568,6 @@ if(document.getElementById('tab-history')?.getAttribute('aria-selected')==='true
 <script type="module" src="./research-ui.js"></script>
 <script type="module" src="./automation-ui.js"></script>
 <script type="module" src="./quality-ui.js"></script>
+<script type="module" src="./training-ui.js"></script>
 </body>
 </html>
