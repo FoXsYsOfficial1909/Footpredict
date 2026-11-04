@@ -81,7 +81,11 @@ function renderProspective(){
     const details=el('details',undefined,'quality-help');details.append(el('summary','Матчи совместной серии'));
     for(const fixture of data.fixtures){
       const item=el('article',undefined,'automation-forecast');item.append(el('h4',fixture.home+' — '+fixture.away),note(date(fixture.kickoff)+' · сохранено '+date(fixture.savedAt)));
-      for(const key of ['v1','v2','base'])item.append(note((key==='base'?'База':key)+': '+fixture.models[key].probabilities.map((p,i)=>labels[i]+' '+percent(p)).join(' · ')));
+      for(const key of ['v1','v2','base']){
+        const probabilities=fixture.models?.[key]?.probabilities;
+        item.append(note((key==='base'?'База':key)+': '+(Array.isArray(probabilities)&&probabilities.length===3&&probabilities.every(p=>typeof p==='number'&&Number.isFinite(p))?
+          probabilities.map((p,i)=>labels[i]+' '+percent(p)).join(' · '):'неполная запись, исключена из сравнения')));
+      }
       item.append(note(fixture.state==='settled'?'Итог: '+fixture.latest.score.home+':'+fixture.latest.score.away:fixture.state==='pending'?'Ожидается результат':'Итог требует проверки.'));
       const button=el('button','Скачать исходный расчёт');button.type='button';
       button.addEventListener('click',async()=>{
@@ -94,6 +98,7 @@ function renderProspective(){
       });item.append(button);details.append(item);
     }
     target.append(details);
+    if(data.fixtureScope?.total>data.fixtureScope.returned)target.append(note('В списке последние '+data.fixtureScope.returned+' матчей из '+data.fixtureScope.total+'. Сводные метрики учитывают всю серию.'));
   }
   target.append(note('v2 использует свои зафиксированные параметры обучения. Новости не меняют вероятности; модель автоматически основной не становится.'));
 }
