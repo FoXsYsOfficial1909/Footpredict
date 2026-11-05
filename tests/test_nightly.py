@@ -1,6 +1,7 @@
 import copy
 from datetime import date,timedelta
 import json
+import hashlib
 from pathlib import Path
 import tempfile
 import unittest
@@ -10,7 +11,7 @@ import numpy as np
 
 from research.data import Match
 from research.nightly import build_candidate,run,sha
-from scripts.publish_training import merge_latest
+from scripts.publish_training import merge_latest,save_public_model
 
 
 def sample():
@@ -74,6 +75,27 @@ class PublishTests(unittest.TestCase):
         self.assertEqual(merged['latestAttempt']['status'],'failed')
         self.assertEqual(merged['latestAttempt']['runUrl'],'https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/123')
         self.assertEqual(old,before)
+        self.assertTrue(old['latestSuccessful']['modelUrl'].endswith('/models/'+'a'*64+'.json'))
+
+    def test_public_model_bytes_match_the_report_hash_and_archive_is_immutable(self):
+        model={'model_version':'ensemble-candidate-example','coefficient':1.0,'team':'Команда'}
+        attempt={'status':'success','modelVersion':model['model_version'],'modelSha256':sha(model)}
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);output=root/'output';output.mkdir();(output/'model.json').write_text(json.dumps(model))
+            target=save_public_model(output,root,attempt)
+            self.assertEqual(hashlib.sha256(target.read_bytes()).hexdigest(),attempt['modelSha256'])
+            self.assertEqual(json.loads(target.read_bytes()),model)
+            self.assertEqual(save_public_model(output,root,attempt),target)
+            target.write_text('corrupted')
+            with self.assertRaises(ValueError):save_public_model(output,root,attempt)
+            self.assertEqual(target.read_text(),'corrupted')
+            with self.assertRaises(ValueError):save_public_model(output,root,{**attempt,'modelSha256':'../escape'})
+
+    def test_publication_rejects_weights_that_do_not_match_the_successful_attempt(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'model.json').write_text('{"model_version":"other"}')
+            with self.assertRaises(ValueError):save_public_model(root,root,{**self.success(),'modelVersion':'expected'})
+            self.assertFalse((root/'models').exists())
 
     def test_old_attempt_or_leaking_training_boundary_is_rejected(self):
         old=self.merge(None,self.success());older={**self.success(),'generatedAt':'2026-11-03T00:23:00+00:00'}

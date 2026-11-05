@@ -28,6 +28,8 @@ def merge_latest(previous,attempt,*,repository,run_id,run_attempt,commit):
     report={**attempt,'repository':repository,'runId':str(run_id),'runAttempt':str(run_attempt),'sourceCommit':commit,
         'runUrl':f'https://github.com/{repository}/actions/runs/{run_id}',
         'artifactsUrl':f'https://github.com/{repository}/actions/runs/{run_id}#artifacts'}
+    if attempt['status']=='success':
+        report['modelUrl']=f"https://raw.githubusercontent.com/{repository}/{BRANCH}/models/{attempt['modelSha256']}.json"
     previous=previous or {}
     old=previous.get('latestAttempt')
     if old and datetime.fromisoformat(old['generatedAt'].replace('Z','+00:00'))>datetime.fromisoformat(report['generatedAt'].replace('Z','+00:00')):
@@ -37,6 +39,21 @@ def merge_latest(previous,attempt,*,repository,run_id,run_attempt,commit):
 
 def git(*args,cwd=None):
     return subprocess.run(['git',*args],cwd=cwd,check=True,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE).stdout.strip()
+
+
+def save_public_model(output,worktree,attempt):
+    """Publish exact canonical bytes under their hash; never replace old weights."""
+    checksum=attempt.get('modelSha256','')
+    if attempt.get('status')!='success' or not re.fullmatch(r'[0-9a-f]{64}',checksum):
+        raise ValueError('Invalid successful model checksum')
+    model=json.loads((Path(output)/'model.json').read_text())
+    if sha(model)!=checksum or model.get('model_version')!=attempt.get('modelVersion'):
+        raise ValueError('Model checksum or version mismatch')
+    body=json.dumps(model,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+    target=Path(worktree)/'models'/(checksum+'.json');target.parent.mkdir(exist_ok=True)
+    if target.exists() and target.read_bytes()!=body:raise ValueError('Immutable model archive differs')
+    target.write_bytes(body)
+    return target
 
 
 def publish(output,repository,run_id,run_attempt,commit):
@@ -57,11 +74,12 @@ def publish(output,repository,run_id,run_attempt,commit):
         latest=worktree/'latest.json'
         previous=json.loads(latest.read_text()) if latest.exists() else None
         merged=merge_latest(previous,attempt,repository=repository,run_id=run_id,run_attempt=run_attempt,commit=commit)
+        if attempt['status']=='success':save_public_model(output,worktree,attempt)
         archive=worktree/'runs'/(str(run_id)+'-'+str(run_attempt)+'.json');archive.parent.mkdir(exist_ok=True)
         encoded=json.dumps(merged['latestAttempt'],ensure_ascii=False,indent=2)+'\n'
         if archive.exists() and archive.read_text()!=encoded:raise ValueError('Attempt archive already exists with different data')
         archive.write_text(encoded);latest.write_text(json.dumps(merged,ensure_ascii=False,indent=2)+'\n')
-        git('add','latest.json','runs',cwd=worktree)
+        git('add','latest.json','runs',*(['models'] if attempt['status']=='success' else []),cwd=worktree)
         if not git('diff','--cached','--name-only',cwd=worktree):return
         git('-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com',
             'commit','-m','Record training attempt '+str(run_id)+'/'+str(run_attempt),cwd=worktree)
