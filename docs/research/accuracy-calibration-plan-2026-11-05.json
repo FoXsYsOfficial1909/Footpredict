@@ -1,0 +1,20 @@
+{
+  "protocol": "accuracy-calibration-1",
+  "reason": "The first six challengers did not meet the preregistered validation accuracy floor; no new challenger audit was evaluated. Continue development on the same validation periods with eight prespecified small corrections.",
+  "selectionSeasons": [2023, 2024], "auditSeasons": [2025], "recentMonitoringSeasons": [2026],
+  "seasons": [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026],
+  "auditIsRetrospective": true, "prospectiveValidationRequired": true, "promotedToDefault": false,
+  "dataFence": "All model fitting and calibration labels precede target date minus one day. Calibration inputs are past-only rolling predictions, not in-sample fitted probabilities.",
+  "selectionRule": "Minimum validation log loss with accuracy at least the current candidate, on identical common matches. Persist selection before any new challenger audit metrics. Previously studied periods remain retrospective evidence.",
+  "shotContext": {"kind":"shot_poisson","goalWeight":0.5,"halfLife":180,"ridge":0.03,"windowDays":1095,"poissonWeight":0.75},
+  "models": [
+    {"id":"dc-365","kind":"dixon_coles","halfLife":365,"ridge":0.03,"windowDays":1095,"poissonWeight":0.75},
+    {"id":"dc-180","kind":"dixon_coles","halfLife":180,"ridge":0.03,"windowDays":1095,"poissonWeight":0.75},
+    {"id":"goals-temperature","kind":"calibration","source":"candidate","mode":"temperature","halfLife":730,"windowDays":1460,"ridge":0.05},
+    {"id":"goals-bias","kind":"calibration","source":"candidate","mode":"temperature_bias","halfLife":730,"windowDays":1460,"ridge":0.05},
+    {"id":"goals-matrix","kind":"calibration","source":"candidate","mode":"matrix","halfLife":730,"windowDays":1460,"ridge":0.05},
+    {"id":"shots-temperature","kind":"calibration","source":"shots","mode":"temperature","halfLife":730,"windowDays":1460,"ridge":0.05},
+    {"id":"shots-bias","kind":"calibration","source":"shots","mode":"temperature_bias","halfLife":730,"windowDays":1460,"ridge":0.05},
+    {"id":"shots-matrix","kind":"calibration","source":"shots","mode":"matrix","halfLife":730,"windowDays":1460,"ridge":0.05}
+  ]
+}
