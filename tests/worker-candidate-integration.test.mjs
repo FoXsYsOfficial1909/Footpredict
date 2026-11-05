@@ -27,6 +27,7 @@ test('the deployed Worker adapter registers real v1 math with verified nightly w
   try{
     globalThis.Date=class extends OriginalDate{constructor(...args){super(...(args.length?args:[clock]));}static now(){return clock;}};
     globalThis.fetch=async(input,options)=>{
+      if(options?.redirect==='error')throw new TypeError('Invalid redirect value, must be one of "follow" or "manual" ("error" is unsupported by workerd)');
       const url=new URL(typeof input==='string'?input:input.url);calls.push(url.href);
       if(url.href===TRAINING_BASE+'latest.json')return Response.json({schemaVersion:1,latestSuccessful:bundle.report});
       if(url.href===bundle.modelUrl)return new Response(bundle.modelJson);

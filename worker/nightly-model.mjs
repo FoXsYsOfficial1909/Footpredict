@@ -59,7 +59,9 @@ export async function verifyNightlyArtifact(report,modelJson,now){
 
 async function publicText(services,url,limit){
   let response;
-  try{response=await services.fetch(url,{headers:{Accept:'application/json'},credentials:'omit',redirect:'error',cache:'no-store',signal:AbortSignal.timeout(15000)});}
+  // workerd supports follow/manual, not the browser's redirect:error mode.
+  // A manual 3xx is rejected below without following it or changing hosts.
+  try{response=await services.fetch(url,{headers:{Accept:'application/json'},credentials:'omit',redirect:'manual',cache:'no-store',signal:AbortSignal.timeout(15000)});}
   catch{fail('Публичный архив ночного обучения временно недоступен.');}
   if(!response.ok)fail('Архив ночного обучения вернул HTTP '+response.status+'.');
   try{return await services.readLimited(response.body,limit);}

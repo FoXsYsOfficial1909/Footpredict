@@ -7,7 +7,7 @@ import {comparisonSchema,registerComparison,settleComparisons,comparisonReport,N
 import {warmEvidenceCache} from './ai-cache.mjs';
 import {AI_MODEL} from './research.mjs';
 
-export const AUTOMATION_VERSION = 'automation-1.3.0';
+export const AUTOMATION_VERSION = 'automation-1.3.1';
 export const AUTOMATION_CRONS = Object.freeze(['17 */2 * * *', '7,37 * * * *', '50 4 * * *']);
 const HOUR = 3600000, DAY = 24 * HOUR;
 const initialization = new WeakMap();
@@ -82,7 +82,7 @@ export async function claimJob(db, kind, now, {id=null, leaseMs=180000}={}) {
     lease_token=?2,attempts=attempts+1,last_started_at=?3
     WHERE id=(SELECT id FROM automation_jobs WHERE kind=?4 AND (?5 IS NULL OR id=?5)
       AND due_at<=?6 AND (status IN ('waiting','retry') OR (status='running' AND lease_until<=?6))
-      ORDER BY due_at,CASE WHEN kind='candidate-comparison' THEN json_extract(payload,'$.kickoff') END,id LIMIT 1)
+      ORDER BY CASE WHEN kind='candidate-comparison' THEN json_extract(payload,'$.kickoff') END,due_at,id LIMIT 1)
     AND due_at<=?6 AND (status IN ('waiting','retry') OR (status='running' AND lease_until<=?6)) RETURNING *`)
     .bind(now+leaseMs,token,iso(now),kind,id,now).first();
   return row ? {...row,payload:parse(row.payload)} : null;

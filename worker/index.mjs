@@ -471,7 +471,7 @@ export default {
       let usage=null,aiCache=null;
       if(env.FOOTPREDICT_DB)try{const services=researchServices(env),day=new Date().toISOString().slice(0,10);usage={cards:await services.budgetUsage('research:day:'+day),ai:await services.budgetUsage('research-ai:day:'+day)};}catch{/* Health remains useful when optional counters cannot be read. */}
       if(env.FOOTPREDICT_DB)try{aiCache=await primary(env).prepare('SELECT COUNT(*) AS entries,SUM(CASE WHEN expires_at>?1 THEN 1 ELSE 0 END) AS valid FROM ai_evidence_cache').bind(Date.now()).first();}catch{/* The cache is created by the next collection or scheduled task. */}
-      return reply({version:'1.7.0',history:'D1',automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage,aiCache},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
+      return reply({version:'1.7.1',history:'D1',automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage,aiCache},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
     }
     if(u.pathname==='/v1/comparison'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonReport(primary(env)));}
     const comparisonMatch=u.pathname.match(/^\/v1\/comparison\/(\d{1,12})\/evidence$/);

@@ -15,7 +15,7 @@ test('only fixed public paths are fetched and the exact model bytes match the re
   const loaded=await loadNightlyModel(services);
   assert.equal(loaded.report.modelSha256,await modelDigest(loaded.modelJson));
   assert.deepEqual(loaded.model,bundle.model);assert.equal(calls.length,2);
-  assert.ok(calls.every(c=>c.url.startsWith(TRAINING_BASE)&&c.options.credentials==='omit'&&c.options.redirect==='error'));
+  assert.ok(calls.every(c=>c.url.startsWith(TRAINING_BASE)&&c.options.credentials==='omit'&&c.options.redirect==='manual'));
   assert.ok(calls.every(c=>Object.keys(c.options.headers).join(',')==='Accept'));
   assert.equal(calls[1].url,bundle.modelUrl);
   const prediction=predictEnsemble(loaded.model,'Chelsea FC','Manchester United FC','2030-01-05T15:00:00Z');
@@ -46,7 +46,7 @@ test('future training, leakage, changed settings and a mismatched file fail clos
 
 test('bad HTTP, oversized data, broken JSON and invalid parameters never yield a candidate',async()=>{
   const bundle=await nightlyFixture();
-  for(const reply of [new Response('unavailable',{status:503}),new Response('x'.repeat(100001)),new Response('not JSON')]){
+  for(const reply of [new Response('unavailable',{status:503}),new Response(null,{status:302,headers:{Location:'https://untrusted.test/weights'}}),new Response('x'.repeat(100001)),new Response('not JSON')]){
     await assert.rejects(()=>loadNightlyModel({now:()=>now,readLimited,fetch:async()=>reply}),{status:503});
   }
   const model=structuredClone(bundle.model);model.glm.intercept=999;

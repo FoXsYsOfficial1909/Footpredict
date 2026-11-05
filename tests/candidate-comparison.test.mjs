@@ -147,6 +147,14 @@ test('a changed kickoff can reopen a closed collection job without rewriting a r
   assert.equal(JSON.stringify(await evidence(state)),before);state.db.close();
 });
 
+test('a due retry with an earlier kickoff takes priority over older waiting jobs',async()=>{
+  const state=await environment();await automationStorage({FOOTPREDICT_DB:state.db});
+  await enqueue(state.db,'candidate-comparison:900001','candidate-comparison',payload,start-2*DAY);
+  await enqueue(state.db,'candidate-comparison:900002','candidate-comparison',{fixtureId:900002,kickoff:'2030-01-03T15:00:00Z'},start-60000);
+  state.db.sqlite.prepare("UPDATE automation_jobs SET status='retry' WHERE id='candidate-comparison:900002'").run();
+  assert.equal((await claimJob(state.db,'candidate-comparison',start)).payload.fixtureId,900002);state.db.close();
+});
+
 test('daily summaries include only candidate registrations known at their cutoff and stay frozen',async()=>{
   const state=await environment(),env={FOOTPREDICT_DB:state.db,FOOTPREDICT_CACHE:{get:async()=>null}};
   state.db.sqlite.exec('CREATE TABLE predictions(id TEXT PRIMARY KEY,snapshot TEXT,saved_at TEXT); CREATE TABLE observations(seq INTEGER PRIMARY KEY,prediction_id TEXT,payload TEXT)');
