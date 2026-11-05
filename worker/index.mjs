@@ -492,6 +492,14 @@ export default {
     const evidence=u.pathname.match(/^\/v1\/automation\/forecasts\/(\d{1,12})\/evidence$/);
     if(evidence&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await shadowEvidence(env,positiveId(evidence[1])));}
     if(u.pathname==='/v1/model-v2'&&req.method==='GET')return reply(modelV2Info());
+    if(u.pathname==='/v1/model-candidate'&&req.method==='GET'){
+      if(u.search)fail(400,'Неизвестный параметр.');
+      const bundle=await loadNightlyModel(researchServices(env)),r=bundle.report;
+      return reply({status:'candidate',verified:true,modelVersion:r.modelVersion,modelSha256:r.modelSha256,
+        asOf:r.asOf,trainingCutoffExclusive:r.trainingCutoffExclusive,latestTrainingMatch:r.latestTrainingMatch,
+        trainingGeneratedAt:r.generatedAt,verifiedAt:bundle.modelFetchedAt,sourceCommit:r.sourceCommit,trainingRunId:r.runId,
+        promotedToDefault:false,newsUsedInProbabilities:false});
+    }
     const researchMatch=u.pathname.match(/^\/v1\/research\/(\d{1,12})(\/(?:refresh|stored))?$/);
     if(researchMatch){
       if(u.search)fail(400,'Неизвестный параметр исследования.');

@@ -72,5 +72,10 @@ test('the deployed Worker adapter registers real v1 math with verified nightly w
     const response=await worker.fetch(new Request('https://worker.test/v1/candidate-comparison',{headers:{Origin:env.ALLOWED_ORIGIN}}),env);
     assert.equal(response.status,200);const report=await response.json();assert.equal(report.totals.registered,1);
     assert.equal(report.models.candidate.n,0);assert.equal(report.models.candidate.brier,null);
+    const before=db.sqlite.prepare('SELECT total_changes() AS n').get().n;
+    const current=await worker.fetch(new Request('https://worker.test/v1/model-candidate',{headers:{Origin:env.ALLOWED_ORIGIN}}),env);
+    assert.equal(current.status,200);const info=await current.json();assert.equal(info.verified,true);
+    assert.equal(info.modelSha256,bundle.report.modelSha256);assert.equal(info.promotedToDefault,false);
+    assert.equal(db.sqlite.prepare('SELECT total_changes() AS n').get().n,before);
   }finally{globalThis.Date=OriginalDate;globalThis.fetch=originalFetch;db.close();}
 });
