@@ -12,6 +12,8 @@
 .quality-facts dd { font-size:19px; margin:2px 0; font-variant-numeric:tabular-nums; }
 .quality-panel { margin:20px 0; padding:17px; border:1px solid #38536a; border-radius:14px; background:#0e1c2b; }
 .quality-panel h3 { color:var(--text); font-size:17px; }
+.quality-panel h4 { overflow-wrap:anywhere; }
+.quality-panel { scroll-margin-top:64px; }
 .quality-panel caption { font-size:12px; line-height:1.6; color:var(--muted); }
 .quality-empty { color:#e9d59e; font-size:14px; }
 .quality-fixture { margin:12px 0; padding:16px; background:#0d1b29; border:1px solid #30485d; border-radius:14px; }

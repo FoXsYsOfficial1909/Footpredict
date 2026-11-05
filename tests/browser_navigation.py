@@ -35,7 +35,7 @@ with sync_playwright() as playwright:
         page.click('#tab-quality')
         page.wait_for_function("!document.getElementById('qualityResult').hidden",timeout=35000)
         assert page.locator('#qualityDashboard').is_visible()
-        assert page.locator('#qualityProspective').is_visible()
+        assert page.locator('#qualityNightly').is_visible()
         page.go_back(wait_until='networkidle')
         assert page.locator('#history').is_visible()
         assert page.locator('#historyMode').input_value()=='local'

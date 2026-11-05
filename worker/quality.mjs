@@ -1,9 +1,9 @@
 import {scoreQuality,summarizeQuality as summarize} from './metrics.mjs';
-import {comparisonReport} from './comparison.mjs';
+import {comparisonReport,NIGHTLY_COMPARISON_PROTOCOL} from './comparison.mjs';
 export {scoreQuality} from './metrics.mjs';
 import {modelV2Info} from './model-v2.mjs';
 
-export const QUALITY_VERSION='quality-1.0.0';
+export const QUALITY_VERSION='quality-1.1.0';
 const V1='poisson-1.0.0',HOUR=3600000;
 const parse=value=>typeof value==='string'?JSON.parse(value):value;
 
@@ -93,5 +93,6 @@ export async function qualityReport(db,now=null){
     json_extract(metadata,'$.home') AS home_name,json_extract(metadata,'$.away') AS away_name,
     (SELECT payload FROM automation_results WHERE fixture_id=p.fixture_id ORDER BY seq DESC LIMIT 1) AS latest
     FROM automation_predictions p WHERE model_version=?1`).bind(modelV2Info().modelVersion).all();
-  return {...buildQuality(v1.results,v2.results,now??Date.now()),prospective:await comparisonReport(db,now??Date.now())};
+  return {...buildQuality(v1.results,v2.results,now??Date.now()),prospective:await comparisonReport(db,now??Date.now()),
+    nightly:await comparisonReport(db,now??Date.now(),NIGHTLY_COMPARISON_PROTOCOL)};
 }

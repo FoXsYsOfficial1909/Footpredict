@@ -65,42 +65,64 @@ function renderPaired(){
   target.append(note('База — сохранённые частоты исходов лиги из v1. Время сохранения двух моделей может различаться. Новости пока не меняют вероятности v2.'));
 }
 
-function renderProspective(){
-  const target=$('qualityProspective'),data=report.prospective;
-  target.replaceChildren(el('h3','Совместная проверка моделей'));
+function renderProspective(nightly=false){
+  const target=$(nightly?'qualityNightly':'qualityProspective'),data=nightly?report.nightly:report.prospective;
+  target.replaceChildren(el('h3',nightly?'Ночной кандидат · будущие матчи':'Совместная проверка v1 и v2'));
   if(!data){target.append(note('Данные новой серии пока недоступны. Попробуй обновить позже.'));return;}
+  const names=nightly?{candidate:'Кандидат',v1:'v1',v2:'v2',base:'База'}:{v1:'v1',v2:'v2',base:'База'};
+  const keys=Object.keys(names),endpoint=nightly?'candidate-comparison':'comparison';
   const t=data.totals;
   target.append(note('Зафиксировано матчей: '+t.registered+' · с результатом: '+t.settled+' · ожидают: '+t.pending+' · проверка / исключены: '+(t.review+t.excluded)+'.'));
-  target.append(note('v1, v2 и простая база сохраняются одновременно минимум за сутки до матча. Все три оцениваются по одинаковым результатам.'));
-  metricTable(target,[{label:'v1',metrics:data.models.v1},{label:'v2',metrics:data.models.v2},{label:'База',metrics:data.models.base}],
-    'Новая серия · общая выборка для трёх моделей.');
+  target.append(note(nightly?'Ночной кандидат, v1, текущая v2 и база сохраняются одновременно минимум за сутки до матча. У всех общий набор результатов.':
+    'v1, v2 и простая база сохраняются одновременно минимум за сутки до матча. Все три оцениваются по одинаковым результатам.'));
+  metricTable(target,keys.map(key=>({label:names[key],metrics:data.models?.[key]})),
+    nightly?'Общая выборка для четырёх моделей.':'Новая серия · общая выборка для трёх моделей.');
+  if(nightly)target.append(note('Для каждой игры берётся последний проверенный кандидат не старше 36 часов. Версия и исходные веса фиксируются вместе с прогнозом. Общая таблица оценивает процедуру ночного обновления.'));
   if(!t.settled)target.append(note(t.registered?'Ждём завершения матчей новой серии.':'Первые совместные прогнозы появятся после очередного автоматического сбора. Прошедшие матчи в эту серию не добавляются.'));
-  const ties=Object.entries(data.models).filter(([,m])=>m.ties).map(([key,m])=>key+': '+m.ties).join(', ');
+  const ties=Object.entries(data.models||{}).filter(([,m])=>m.ties).map(([key,m])=>(names[key]||key)+': '+m.ties).join(', ');
   if(ties)target.append(note('Равные максимумы исключены только из доли совпадений: '+ties+'.'));
   if(data.fixtures?.length){
     const details=el('details',undefined,'quality-help');details.append(el('summary','Матчи совместной серии'));
     for(const fixture of data.fixtures){
       const item=el('article',undefined,'automation-forecast');item.append(el('h4',fixture.home+' — '+fixture.away),note(date(fixture.kickoff)+' · сохранено '+date(fixture.savedAt)));
-      for(const key of ['v1','v2','base']){
+      if(nightly){
+        const candidate=fixture.models?.candidate;
+        item.append(note('Кандидат: '+(candidate?.modelVersion||'версия не подтверждена')+'. Обучение: '+date(candidate?.trainingGeneratedAt)+'.'));
+        item.append(note('Данные строго до '+(candidate?.trainingCutoffExclusive||'—')+' UTC; последняя игра '+(candidate?.latestTrainingMatch||'—')+'.'));
+      }
+      for(const key of keys){
         const probabilities=fixture.models?.[key]?.probabilities;
-        item.append(note((key==='base'?'База':key)+': '+(Array.isArray(probabilities)&&probabilities.length===3&&probabilities.every(p=>typeof p==='number'&&Number.isFinite(p))?
+        item.append(note(names[key]+': '+(Array.isArray(probabilities)&&probabilities.length===3&&probabilities.every(p=>typeof p==='number'&&Number.isFinite(p))?
           probabilities.map((p,i)=>labels[i]+' '+percent(p)).join(' · '):'неполная запись, исключена из сравнения')));
       }
       item.append(note(fixture.state==='settled'?'Итог: '+fixture.latest.score.home+':'+fixture.latest.score.away:fixture.state==='pending'?'Ожидается результат':'Итог требует проверки.'));
       const button=el('button','Скачать исходный расчёт');button.type='button';
       button.addEventListener('click',async()=>{
         button.disabled=true;
-        try{const response=await fetch(API+'/v1/comparison/'+fixture.fixtureId+'/evidence',{cache:'no-store',credentials:'omit'});
+        try{if(!Number.isSafeInteger(fixture.fixtureId)||fixture.fixtureId<1)throw new Error('Invalid fixture');
+          const response=await fetch(API+'/v1/'+endpoint+'/'+fixture.fixtureId+'/evidence',{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(20000)});
           if(!response.ok)throw new Error('HTTP');const packet=await response.json();
           const url=URL.createObjectURL(new Blob([JSON.stringify(packet,null,2)],{type:'application/json'})),link=el('a');
-          link.href=url;link.download='footpredict-comparison-'+fixture.fixtureId+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+          link.href=url;link.download='footpredict-'+endpoint+'-'+fixture.fixtureId+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
         }catch{item.append(note('Не удалось скачать исходный расчёт. Попробуй позже.'));}finally{button.disabled=false;}
       });item.append(button);details.append(item);
     }
     target.append(details);
     if(data.fixtureScope?.total>data.fixtureScope.returned)target.append(note('В списке последние '+data.fixtureScope.returned+' матчей из '+data.fixtureScope.total+'. Сводные метрики учитывают всю серию.'));
   }
-  target.append(note('v2 использует свои зафиксированные параметры обучения. Новости не меняют вероятности; модель автоматически основной не становится.'));
+  if(nightly&&data.versions?.length){
+    const details=el('details',undefined,'quality-help');details.append(el('summary','Результаты по версиям кандидата · '+data.versions.length));
+    for(const version of data.versions.slice().sort((a,b)=>String(b.trainingGeneratedAt).localeCompare(String(a.trainingGeneratedAt))).slice(0,20)){
+      const item=el('article',undefined,'automation-forecast');item.append(el('h4',version.modelVersion||'Неполная версия'));
+      item.append(note('Зафиксировано '+version.totals.registered+' · с результатом '+version.totals.settled+' · ожидают '+version.totals.pending+'.'));
+      metricTable(item,keys.map(key=>({label:names[key],metrics:version.models?.[key]})),'Одни и те же матчи этой версии кандидата.');
+      details.append(item);
+    }
+    if(data.versions.length>20)details.append(note('Здесь последние 20 версий. Полный список есть в JSON-отчёте.'));
+    target.append(details);
+  }
+  target.append(note(nightly?'Кандидат остаётся экспериментальным. Для оценки нужны будущие результаты; новости, травмы и составы пока не входят в вероятности.':
+    'v2 использует свои зафиксированные параметры обучения. Новости не меняют вероятности; модель автоматически основной не становится.'));
 }
 
 function renderHistorical(){
@@ -175,7 +197,7 @@ async function refresh(){
     if(!response.ok)throw new Error('HTTP '+response.status);
     const data=await response.json();
     if(data.schemaVersion!==1||!data.cohorts?.v1||!data.cohorts?.v2||!data.paired||!Array.isArray(data.fixtures))throw new Error('Incomplete report');
-    report=data;renderProspective();renderCohorts();renderPaired();renderHistorical();renderFixtures(true);view();
+    report=data;renderProspective(true);renderProspective();renderCohorts();renderPaired();renderHistorical();renderFixtures(true);view();
     $('qualityResult').hidden=false;$('downloadQuality').disabled=false;
     const pending=data.fixtures.filter(f=>f.v2?.state==='pending').sort((a,b)=>Date.parse(a.kickoff)-Date.parse(b.kickoff));
     $('qualityNextMatch').textContent=pending.length?'Ближайшая игра с ожидающим прогнозом v2: '+pending[0].home+' — '+pending[0].away+', '+date(pending[0].kickoff)+'. Сверка доступна через 4 часа после начала.':'';

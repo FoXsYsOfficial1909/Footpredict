@@ -18,6 +18,13 @@ export function modelV2Info(){
 }
 
 export function predictV2(homeName,awayName,kickoff){
+  return predictEnsemble(MODEL,homeName,awayName,kickoff);
+}
+
+// The same inference is used for archived v2 and separately verified nightly
+// weights. Passing a model never changes the embedded production parameters.
+export function predictEnsemble(model,homeName,awayName,kickoff){
+  const MODEL=model;
   if(!Number.isFinite(Date.parse(kickoff))||Date.parse(kickoff)<=Date.parse(MODEL.as_of+'T00:00:00Z'))
     throw new Error('Experimental model cannot predict at or before its training cutoff.');
   const home=MODEL.aliases[homeName]||homeName,away=MODEL.aliases[awayName]||awayName;
@@ -29,7 +36,9 @@ export function predictV2(homeName,awayName,kickoff){
   const elo=MODEL.elo,delta=(elo.ratings[home]??1500)-(elo.ratings[away]??1500)+elo.parameters.home_advantage;
   const strength=10**(delta/800),values=[strength,elo.parameters.draw_weight,1/strength],total=values.reduce((x,y)=>x+y,0);
   const probabilities=poisson.probabilities.map((value,index)=>MODEL.glm_weight*value+(1-MODEL.glm_weight)*values[index]/total);
-  return {...modelV2Info(),probabilities,goalExpectations:[h,a],poissonComponentScore:poisson.score,
+  return {modelVersion:MODEL.model_version,status:MODEL.status,asOf:MODEL.as_of,
+    featuresUsed:MODEL.features_used,newsUsedInProbabilities:false,promotedToDefault:false,benchmark:MODEL.benchmark,
+    probabilities,goalExpectations:[h,a],poissonComponentScore:poisson.score,
     unseenTeams:[home,away].filter(team=>!MODEL.glm.teams[team]),
     note:'Экспериментальная версия. Новости и травмы пока не используются в расчёте вероятностей.'};
 }

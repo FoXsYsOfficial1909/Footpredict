@@ -1,7 +1,7 @@
 const tabs=[...document.querySelectorAll('[role="tab"][data-app-tab]')];
 const panels=[...document.querySelectorAll('[data-app-panel]')];
 const aliases={matchPicker:'matches',results:'matches',matchResearch:'matches',calculator:'matches',
-  predictionHistory:'history',automationForecasts:'history',qualityDashboard:'quality',backtesting:'quality',serviceStatus:'data'};
+  predictionHistory:'history',automationForecasts:'history',qualityDashboard:'quality',qualityNightly:'quality',trainingStatus:'quality',backtesting:'quality',serviceStatus:'data'};
 let active=null;
 
 function selectFromHash({scroll=false}={}){

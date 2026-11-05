@@ -1,7 +1,8 @@
 import {getResearch, storedResearch, researchLimits, RESEARCH_VERSION} from './research.mjs';
 import {predictV2, modelV2Info} from './model-v2.mjs';
 import {qualityReport} from './quality.mjs';
-import {comparisonReport,comparisonEvidence} from './comparison.mjs';
+import {comparisonReport,comparisonEvidence,NIGHTLY_COMPARISON_PROTOCOL} from './comparison.mjs';
+import {loadNightlyModel} from './nightly-model.mjs';
 import {AUTOMATION_VERSION, runAutomation, automationStatus, dailyReport, shadowHistory, shadowEvidence} from './automation.mjs';
 
 const PRIOR_SEASON_WEIGHT = 0.35;
@@ -435,7 +436,7 @@ async function runScheduled(env){
   return summary;
 }
 function researchServices(env){
-  return {now:()=>Date.now(),fetch:(...args)=>fetch(...args),readLimited,settleV1:()=>runScheduled(env),
+  const services={now:()=>Date.now(),fetch:(...args)=>fetch(...args),readLimited,settleV1:()=>runScheduled(env),
     predictCandidate:predictV2,
     predictV1:(current,previous,game,year)=>{
       const games=current.map(g=>normalized(g,year)).concat(previous.map(g=>normalized(g,year-1)));
@@ -452,6 +453,8 @@ function researchServices(env){
       await reserve(env,'kv:day:'+new Date().toISOString().slice(0,10),setting(env,'KV_DAILY_WRITES',700,1,900));
       await env.FOOTPREDICT_CACHE.put(key,JSON.stringify(value),{expirationTtl:Math.max(60,ttl)});
     }};
+  services.loadNightly=()=>loadNightlyModel(services);
+  return services;
 }
 export default {
  async fetch(req,env){
@@ -468,11 +471,14 @@ export default {
       let usage=null,aiCache=null;
       if(env.FOOTPREDICT_DB)try{const services=researchServices(env),day=new Date().toISOString().slice(0,10);usage={cards:await services.budgetUsage('research:day:'+day),ai:await services.budgetUsage('research-ai:day:'+day)};}catch{/* Health remains useful when optional counters cannot be read. */}
       if(env.FOOTPREDICT_DB)try{aiCache=await primary(env).prepare('SELECT COUNT(*) AS entries,SUM(CASE WHEN expires_at>?1 THEN 1 ELSE 0 END) AS valid FROM ai_evidence_cache').bind(Date.now()).first();}catch{/* The cache is created by the next collection or scheduled task. */}
-      return reply({version:'1.6.0',history:'D1',automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage,aiCache},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
+      return reply({version:'1.7.0',history:'D1',automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage,aiCache},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
     }
     if(u.pathname==='/v1/comparison'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonReport(primary(env)));}
     const comparisonMatch=u.pathname.match(/^\/v1\/comparison\/(\d{1,12})\/evidence$/);
     if(comparisonMatch&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonEvidence(primary(env),positiveId(comparisonMatch[1])));}
+    if(u.pathname==='/v1/candidate-comparison'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonReport(primary(env),Date.now(),NIGHTLY_COMPARISON_PROTOCOL));}
+    const candidateComparisonMatch=u.pathname.match(/^\/v1\/candidate-comparison\/(\d{1,12})\/evidence$/);
+    if(candidateComparisonMatch&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonEvidence(primary(env),positiveId(candidateComparisonMatch[1]),NIGHTLY_COMPARISON_PROTOCOL));}
     if(u.pathname==='/v1/quality'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await qualityReport(primary(env)));}
     if(u.pathname==='/v1/automation/status'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await automationStatus(env,researchServices(env)));}
     if(u.pathname==='/v1/automation/report'&&req.method==='GET'){

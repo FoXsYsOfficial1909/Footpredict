@@ -18,6 +18,7 @@ function renderStatus(data){
     fact('Ленты проверены за 3 часа',successful.length+' / '+(data.league?.clubs||feeds.length||'—')),
     fact('Сохранённых публикаций',data.news?.total??0),fact('Прогнозов v2 до матча',data.forecasts?.total??0));
   if(data.comparison)list.append(fact('Совместных прогнозов v1 / v2 / базы',data.comparison.total));
+  if(data.nightlyComparison)list.append(fact('Прогнозов ночного кандидата до матча',data.nightlyComparison.total));
   const official=(data.jobs||[]).filter(job=>job.kind==='official'&&job.status!=='complete');
   if(official.length)list.append(fact('Официальные сайты проверены',official.filter(job=>job.last_success_at).length+' / '+official.length),
     fact('Сайтов со сводкой о доступности',official.filter(job=>job.result?.articles>0).length));
@@ -25,6 +26,10 @@ function renderStatus(data){
   const issues=new Set();
   if(data.heartbeat?.reportError)issues.add('Ежедневный отчёт пока не сформирован. Попытка повторится при следующем запуске.');
   for(const job of data.jobs||[]){
+    if(job.kind==='candidate-comparison'&&job.status==='retry'){
+      issues.add('Сравнение ночного кандидата временно отложено. Проверка повторится по расписанию; отчёт обучения доступен во вкладке «Качество».');
+      continue;
+    }
     if(job.kind==='official'&&job.status==='retry'){
       issues.add(job.last_error?.status===403?'Часть официальных сайтов ограничивает автоматический доступ. Эти источники помечены как недоступные.':'Одна из официальных сводок временно недоступна; повтор запланирован.');
       continue;
@@ -39,7 +44,7 @@ function renderStatus(data){
     }
   }
   const modelAge=(Date.now()-Date.parse(data.model?.asOf+'T00:00:00Z'))/86400000;
-  if(modelAge>7)issues.add('Параметры v2 обучены более недели назад. Автоматическое переобучение пока не включено.');
+  if(modelAge>7)issues.add('Параметры текущей v2 обучены более недели назад и остаются зафиксированными. Ночное обновление проверяется отдельным кандидатом.');
   $('automationIssues').replaceChildren(...[...issues].map(text=>el('li',text)));
 }
 
@@ -57,6 +62,8 @@ function renderReport(data){
   else target.append(el('p','Итогов для оценки v2 пока нет. Исторические метрики доступны в разборе матча.','research-note'));
   const v1=data.originalHistory;
   if(v1)target.append(el('p','Основная история v1: '+v1.total+' прогнозов, '+v1.settled+' с итогом'+(v1.settled?' · совпал исход: '+(100*v1.accuracy).toFixed(1)+'%':'')+'.','research-note'));
+  const nightly=data.nightlyComparison;
+  if(nightly)target.append(el('p','Ночной кандидат на общих матчах: '+nightly.totals.registered+' прогнозов · с результатом '+nightly.totals.settled+' · ожидают '+nightly.totals.pending+'.','research-note'));
   const failures=(data.activity||[]).filter(row=>row.outcome==='failed').reduce((sum,row)=>sum+row.count,0);
   if(failures)target.append(el('p','Неудачных попыток за период: '+failures+'. Состояние повторных попыток показывается выше.','research-note'));
   target.append(el('p','Активность за период: '+date(data.window.from)+' — '+date(data.window.to)+'.','research-note'));

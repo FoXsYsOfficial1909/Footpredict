@@ -3,11 +3,11 @@ import SOURCES from './research-sources.mjs';
 import {ensureResearchStorage, getResearch, getNews, cleanText} from './research.mjs';
 import {modelV2Info} from './model-v2.mjs';
 import {collectOfficialNews,officialConfiguration} from './official.mjs';
-import {comparisonSchema,registerComparison,settleComparisons,comparisonReport} from './comparison.mjs';
+import {comparisonSchema,registerComparison,settleComparisons,comparisonReport,NIGHTLY_COMPARISON_PROTOCOL} from './comparison.mjs';
 import {warmEvidenceCache} from './ai-cache.mjs';
 import {AI_MODEL} from './research.mjs';
 
-export const AUTOMATION_VERSION = 'automation-1.2.0';
+export const AUTOMATION_VERSION = 'automation-1.3.0';
 export const AUTOMATION_CRONS = Object.freeze(['17 */2 * * *', '7,37 * * * *', '50 4 * * *']);
 const HOUR = 3600000, DAY = 24 * HOUR;
 const initialization = new WeakMap();
@@ -48,7 +48,7 @@ export async function automationStorage(env) {
         'CREATE INDEX IF NOT EXISTS automation_results_fixture ON automation_results(fixture_id,seq DESC)',
         `CREATE TABLE IF NOT EXISTS automation_reports (
           day TEXT PRIMARY KEY,scheduled_for TEXT NOT NULL,generated_at TEXT NOT NULL,payload TEXT NOT NULL)`,
-        ...comparisonSchema()
+        ...comparisonSchema(),...comparisonSchema(NIGHTLY_COMPARISON_PROTOCOL)
       ];
       await raw.batch(statements.map(sql => raw.prepare(sql)));
       await raw.prepare(`INSERT INTO automation_meta (key,value) VALUES ('installed',?1)
@@ -65,10 +65,10 @@ export async function enqueue(db, id, kind, payload, dueAt) {
   await db.prepare(`INSERT INTO automation_jobs (id,kind,payload,due_at) VALUES (?1,?2,?3,?4)
     ON CONFLICT(id) DO UPDATE SET
       due_at=CASE WHEN automation_jobs.kind IN ('news','official') AND automation_jobs.status='complete' THEN MIN(automation_jobs.due_at,excluded.due_at)
-        WHEN automation_jobs.kind='research' AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
+        WHEN automation_jobs.kind IN ('research','candidate-comparison') AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
         THEN MIN(automation_jobs.due_at,excluded.due_at) ELSE automation_jobs.due_at END,
       status=CASE WHEN automation_jobs.status='complete' AND automation_jobs.kind IN ('news','official') THEN 'waiting'
-        WHEN automation_jobs.status='complete' AND automation_jobs.kind='research'
+        WHEN automation_jobs.status='complete' AND automation_jobs.kind IN ('research','candidate-comparison')
         AND json_extract(automation_jobs.payload,'$.kickoff')!=json_extract(excluded.payload,'$.kickoff')
         THEN 'waiting' ELSE automation_jobs.status END,
       payload=excluded.payload WHERE automation_jobs.status!='running'`)
@@ -82,7 +82,7 @@ export async function claimJob(db, kind, now, {id=null, leaseMs=180000}={}) {
     lease_token=?2,attempts=attempts+1,last_started_at=?3
     WHERE id=(SELECT id FROM automation_jobs WHERE kind=?4 AND (?5 IS NULL OR id=?5)
       AND due_at<=?6 AND (status IN ('waiting','retry') OR (status='running' AND lease_until<=?6))
-      ORDER BY due_at,id LIMIT 1)
+      ORDER BY due_at,CASE WHEN kind='candidate-comparison' THEN json_extract(payload,'$.kickoff') END,id LIMIT 1)
     AND due_at<=?6 AND (status IN ('waiting','retry') OR (status='running' AND lease_until<=?6)) RETURNING *`)
     .bind(now+leaseMs,token,iso(now),kind,id,now).first();
   return row ? {...row,payload:parse(row.payload)} : null;
@@ -157,6 +157,7 @@ async function discover(db,env,services) {
     const payload={fixtureId:game.id,kickoff:game.utcDate};
     await enqueue(db,'research:'+game.id,'research',payload,now);
     if(services.predictV1&&Date.parse(game.utcDate)-now>=DAY)await enqueue(db,'comparison:'+game.id,'comparison',payload,now);
+    if(services.predictV1&&services.loadNightly&&Date.parse(game.utcDate)-now>=DAY)await enqueue(db,'candidate-comparison:'+game.id,'candidate-comparison',payload,now);
   }
   await db.prepare(`INSERT INTO automation_meta (key,value) VALUES ('league',?1)
     ON CONFLICT(key) DO UPDATE SET value=excluded.value`).bind(json({season:year,clubs:teams.size,mappedClubs:[...teams.keys()].filter(name=>SOURCES.teams[name]).length,upcoming:upcoming.length,fetchedAt:season.fetchedAt})).run();
@@ -205,7 +206,10 @@ async function seedComparisonJobs(db,services){
   if(!services.predictV1)return;
   const now=services.now(),rows=await db.prepare("SELECT payload FROM automation_jobs WHERE kind='research' AND status!='complete'").all();
   for(const row of rows.results){const payload=parse(row.payload),gap=Date.parse(payload.kickoff)-now;
-    if(gap>=DAY&&gap<7*DAY)await enqueue(db,'comparison:'+payload.fixtureId,'comparison',payload,now);
+    if(gap>=DAY&&gap<7*DAY){
+      await enqueue(db,'comparison:'+payload.fixtureId,'comparison',payload,now);
+      if(services.loadNightly)await enqueue(db,'candidate-comparison:'+payload.fixtureId,'candidate-comparison',payload,now);
+    }
   }
 }
 
@@ -322,12 +326,13 @@ async function statusFromDb(db,now) {
   const news=await db.prepare('SELECT COUNT(*) AS total,COUNT(DISTINCT team) AS teams,MAX(first_seen_at) AS latest FROM automation_news').first();
   const forecasts=await db.prepare('SELECT COUNT(*) AS total,MAX(saved_at) AS latest FROM automation_predictions').first();
   const comparison=await db.prepare('SELECT COUNT(*) AS total,MAX(saved_at) AS latest FROM comparison_predictions').first();
+  const nightlyComparison=await db.prepare('SELECT COUNT(*) AS total,MAX(saved_at) AS latest FROM nightly_predictions').first();
   const cards=await db.prepare('SELECT COUNT(*) AS total,MAX(collected_at) AS latest FROM research_snapshots').first();
   const last=heartbeat?.finishedAt||heartbeat?.startedAt||installation?.installedAt;
   const age=last?now-Date.parse(last):0;
   const state=age>70*60000?'delayed':!heartbeat?'not_started':!heartbeat.finishedAt&&age>240000?'recovering':'running';
   return {version:AUTOMATION_VERSION,checkedAt:iso(now),state,
-    installedAt:installation?.installedAt,heartbeat,league,news,forecasts,comparison,cards,model:modelV2Info(),
+    installedAt:installation?.installedAt,heartbeat,league,news,forecasts,comparison,nightlyComparison,cards,model:modelV2Info(),
     jobs:jobs.results.map(row=>({...row,dueAt:iso(row.due_at),leaseUntil:row.lease_until?iso(row.lease_until):null,
       last_error:parse(row.last_error),result:parse(row.result)})),
     schedule:{expectedCrons:AUTOMATION_CRONS,collection:'Каждые 30 минут выполняется ограниченная часть очереди; текущие клубные ленты проверяются примерно раз в 2 часа.',
@@ -349,6 +354,7 @@ async function ensureReport(db,now) {
     lateBySeconds:Math.floor((now-Date.parse(window.scheduledFor))/1000),window:{from:window.from,to:window.to},
     activity:activity.results,cards,news,originalHistory:await v1Summary(db,window.to),experimentalMetrics:await metricSummary(db,window.to),
     pairedComparison:await comparisonReport(db,Date.parse(window.to)),currentHealth:await statusFromDb(db,now),
+    nightlyComparison:await comparisonReport(db,Date.parse(window.to),NIGHTLY_COMPARISON_PROTOCOL),
     notes:['Период активности заканчивается в запланированное время отчёта. Состояние сервиса отражено на момент формирования.',
       'Эксперимент оценивается по первым сохранённым вероятностям не менее чем за 24 часа до игры. Основная история v1 отдельная.',
       'Отчёт доступен в приложении; отправка в мессенджеры не настроена.']};
@@ -408,12 +414,13 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
     await enqueue(db,'system:settle-v1','settle-v1',{},started);
     await enqueue(db,'system:settle-v2','settle-v2',{},started);
     await enqueue(db,'system:settle-comparison','settle-comparison',{},started);
+    if(services.loadNightly)await enqueue(db,'system:settle-candidate-comparison','settle-candidate-comparison',{},started);
     await seedOfficialJobs(db,started);
     await seedComparisonJobs(db,services);
     try{tick.aiCacheWarm=await warmEvidenceCache(db,{model:AI_MODEL,now:services.now()});}
     catch(error){tick.aiCacheWarmError=publicError(error);}
     // Isolated job failures are persisted; no single provider prevents other kinds.
-    const kinds=['settle-v1','discover','settle-v2','settle-comparison','comparison','news','news','news','news','news','news','official','research'];
+    const kinds=['settle-v1','discover','settle-v2','settle-comparison','settle-candidate-comparison','candidate-comparison','comparison','news','news','news','news','news','news','official','research'];
     for(const kind of kinds) {
       if(services.now()-started>90000)break;
       const job=await claimJob(db,kind,services.now());
@@ -425,7 +432,9 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
         else if(kind==='official')finished={nextAt:services.now()+12*HOUR,result:await officialJob(db,env,services,job.payload)};
         else if(kind==='research')finished=await researchJob(db,env,services,job.payload);
         else if(kind==='comparison')finished=await registerComparison(db,services,job.payload);
+        else if(kind==='candidate-comparison')finished=await registerComparison(db,services,job.payload,NIGHTLY_COMPARISON_PROTOCOL);
         else if(kind==='settle-comparison')finished={nextAt:services.now()+2*HOUR,result:await settleComparisons(db,services)};
+        else if(kind==='settle-candidate-comparison')finished={nextAt:services.now()+2*HOUR,result:await settleComparisons(db,services,NIGHTLY_COMPARISON_PROTOCOL)};
         else if(kind==='settle-v1')finished={nextAt:services.now()+2*HOUR,result:await services.settleV1()};
         else finished={nextAt:services.now()+2*HOUR,result:await settleShadow(db,services)};
         await finishJob(db,job,services.now(),finished);
