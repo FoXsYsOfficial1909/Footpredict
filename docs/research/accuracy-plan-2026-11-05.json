@@ -1,0 +1,24 @@
+{
+  "protocol": "accuracy-research-1",
+  "registeredBeforeNewEvaluation": true,
+  "dataSource": "https://www.football-data.co.uk/englandm.php",
+  "seasons": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "selectionSeasons": [2023, 2024],
+  "auditSeasons": [2025],
+  "recentMonitoringSeasons": [2026],
+  "auditIsRetrospective": true,
+  "caveat": "These periods were inspected in previous experiments. This is retrospective development evidence; a new prospective cohort is required.",
+  "dataFence": "Only observations with date strictly before target date minus one calendar day. Target-match statistics, odds and future scores never enter inputs.",
+  "models": [
+    {"id": "shots50-365", "kind": "shot_poisson", "goalWeight": 0.5, "halfLife": 365, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75},
+    {"id": "shots100-365", "kind": "shot_poisson", "goalWeight": 0.0, "halfLife": 365, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75},
+    {"id": "shots50-180", "kind": "shot_poisson", "goalWeight": 0.5, "halfLife": 180, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75},
+    {"id": "shots100-180", "kind": "shot_poisson", "goalWeight": 0.0, "halfLife": 180, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75},
+    {"id": "form-logistic", "kind": "logistic", "C": 1.0, "halfLife": 730, "windowDays": 1460, "retrain": "calendar-month", "randomState": 61},
+    {"id": "form-boosting", "kind": "hist_gradient_boosting", "iterations": 150, "learningRate": 0.05, "leaves": 7, "minimumLeafSamples": 80, "l2": 10.0, "halfLife": 730, "windowDays": 1460, "retrain": "calendar-month", "randomState": 61}
+  ],
+  "selectionRule": "Minimum validation log loss among challengers whose top-outcome accuracy is at least the current candidate on the identical v1-eligible cohort. Persist the choice before evaluating audit seasons. If none qualifies, retain the current candidate.",
+  "features": ["past_results", "past_shots", "past_shots_on_target", "past_elo", "league_match_interval", "home_advantage"],
+  "xgNotSelected": "HxG/AxG currently cover only the 90 current-season matches in this archive; not used to select or claim an xG improvement.",
+  "promotedToDefault": false
+}
