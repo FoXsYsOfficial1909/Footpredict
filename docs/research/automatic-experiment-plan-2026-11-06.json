@@ -1,0 +1,27 @@
+{
+  "protocol": "automatic-experiments-1",
+  "registeredBeforeEvaluation": true,
+  "retrospectiveOnly": true,
+  "caveat": "These same periods and recipes were inspected in prior research. Automation repeats a bounded development procedure; it does not create an untouched holdout or establish a reliable accuracy improvement. Cold independent fits may differ slightly from the earlier warm-start implementation.",
+  "seasons": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "selectionSeasons": [2023, 2024],
+  "auditSeasons": [2025],
+  "recentMonitoringSeasons": [2026],
+  "expectedValidationCommon": 736,
+  "expectedAuditCommon": 369,
+  "baseline": {"id": "xg100-180", "goalWeight": 0.0, "halfLife": 180, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75},
+  "models": [
+    {"id": "xg50-180", "goalWeight": 0.5, "halfLife": 180, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75},
+    {"id": "xg100-365", "goalWeight": 0.0, "halfLife": 365, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75}
+  ],
+  "elo": {"k": 30, "home_advantage": 80, "draw_weight": 0.9},
+  "dataFence": "Only observations dated strictly before as-of minus one calendar day are available to the procedure. Each historical prediction fits exclusively before target date minus one calendar day. Target outcomes never enter their own predictions.",
+  "sourcePolicy": "Use validated original Football-Data results and the last accepted consistent league-summary xG snapshot. Pin exact source hashes and show real xG coverage, missingness and last-match date even when sources are stale. Missing xG falls back to actual goals without dropping a fixture. Workload stays excluded until its complete scope is verified.",
+  "cachePolicy": "Whole-procedure reuse requires unchanged model-relevant inputs, eligible cohort, recipes and implementation. Per-prediction reuse additionally binds the exact consumed past goal/xG rows, Elo history, fixture identity and training cutoff. Verify cached bytes and distributions; corrupt entries must be recomputed. Changed historical observations invalidate affected predictions.",
+  "selectionRule": "Select minimum validation log loss among the two challengers only if it improves the fixed xG reference by more than numerical noise and does not reduce top-outcome accuracy on the identical eligible fixtures. Persist selection before evaluating only the selected challenger on the retrospective audit. Keep the reference if none qualifies.",
+  "auditGate": "Require lower Brier and log loss and no lower top-outcome accuracy on identical audit fixtures. Always report current-season monitoring and day-clustered intervals. A retrospective pass is only a research result, not authorization to change the primary model.",
+  "output": "Immutable versioned reports, source provenance, timings, cache statistics and a retained last successful report. An unchanged run is a check of previously evaluated inputs, not new training or new evidence.",
+  "prospectiveValidationRequired": true,
+  "promotedToDefault": false,
+  "existingFrozenPredictionsMayChange": false
+}
