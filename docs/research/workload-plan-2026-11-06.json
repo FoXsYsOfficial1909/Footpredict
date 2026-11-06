@@ -1,0 +1,25 @@
+{
+  "protocol": "xg-workload-research-1",
+  "registeredBeforeEvaluation": true,
+  "retrospectiveOnly": true,
+  "caveat": "Adaptive development after inspecting prior xG experiments on these seasons. These periods are not an untouched holdout. Existing frozen xg-paired-1 forecasts must not change.",
+  "seasons": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "selectionSeasons": [2023, 2024],
+  "auditSeasons": [2025],
+  "recentMonitoringSeasons": [2026],
+  "expectedValidationCommon": 736,
+  "expectedAuditCommon": 369,
+  "baseline": {"goalWeight": 0.0, "halfLife": 180, "ridge": 0.03, "windowDays": 1095, "poissonWeight": 0.75, "elo": {"k": 30, "home_advantage": 80, "draw_weight": 0.9}},
+  "sources": "Existing pinned consistent Understat league-summary snapshot plus public ESPN club fixture calendars. Pin normalized event bytes and source-response hashes before evaluating. Verify EPL identities and scores against the original Football-Data results; report scope/truncation/missing-competition coverage.",
+  "dataFence": "Every fitted observation and workload event is dated strictly before target date minus one calendar day. Base probabilities are rolling out-of-sample forecasts; outcome labels never enter their own features or correction fit.",
+  "features": ["(home rest capped at 14 days - away rest capped at 14 days) / 7", "-(home games in preceding 7 days - away games) / 3", "-(home games in preceding 14 days - away games) / 5"],
+  "missingness": "Only complete explicitly verified competition coverage supplies numeric rest/counts. Unknown coverage produces no correction and preserves the exact baseline distribution. Unknown match minutes never become zero extra time. Extra-time information is diagnostic only in this experiment.",
+  "correction": "Three shared coefficients beta in [-0.75, 0.75]; delta = dot(beta,features); softmax(log(baseline probabilities)+[delta,0,-delta]). Fit weighted cross entropy plus ridge from strictly earlier out-of-sample rows. No extra intercept or team parameters.",
+  "models": [
+    {"id": "workload-ridge-005", "ridge": 0.05, "halfLife": 730, "windowDays": 1460, "minimumCoveredRows": 300, "refit": "calendar-month"},
+    {"id": "workload-ridge-020", "ridge": 0.2, "halfLife": 730, "windowDays": 1460, "minimumCoveredRows": 300, "refit": "calendar-month"}
+  ],
+  "selectionRule": "Select minimum validation log loss among challengers improving fixed xG baseline log loss without reducing top-outcome accuracy on the same eligible fixtures. Save selection and plan/data/implementation hashes before evaluating only the chosen challenger on audit seasons. Retain baseline if none qualifies.",
+  "auditGate": "Require improved audit Brier and log loss, and no reduction in audit accuracy. Report day-clustered paired confidence intervals and current-season monitoring regardless of direction. Historical gains do not authorize default promotion or replacement of previously frozen forecasts.",
+  "promotedToDefault": false
+}
