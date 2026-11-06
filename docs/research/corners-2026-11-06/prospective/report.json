@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "protocol": "corner-paired-1",
+  "packetSha256": "36da27d3c59791b7e79af3fc13868226a1f8a517a175f406a73d7b90a8f9a2b5",
+  "frozenAt": "2026-11-06T17:46:48.428242Z",
+  "evaluatedAt": "2026-11-06T17:46:48.428242Z",
+  "registered": 5,
+  "pending": 5,
+  "settled": 0,
+  "excluded": 0,
+  "commonMatches": 0,
+  "providerResponseSha256": "c6e978c0c5a9e7fbe54d5ad16edfd1d3cd4f92afa12baf752ab321bdd553f025",
+  "metrics": {
+    "candidate": {
+      "n": 0,
+      "byLine": {
+        "8.5": {
+          "n": 0,
+          "brier": null,
+          "logloss": null,
+          "accuracy": null
+        },
+        "9.5": {
+          "n": 0,
+          "brier": null,
+          "logloss": null,
+          "accuracy": null
+        },
+        "10.5": {
+          "n": 0,
+          "brier": null,
+          "logloss": null,
+          "accuracy": null
+        }
+      },
+      "brier": null,
+      "logloss": null,
+      "accuracy": null
+    },
+    "baseline": {
+      "n": 0,
+      "byLine": {
+        "8.5": {
+          "n": 0,
+          "brier": null,
+          "logloss": null,
+          "accuracy": null
+        },
+        "9.5": {
+          "n": 0,
+          "brier": null,
+          "logloss": null,
+          "accuracy": null
+        },
+        "10.5": {
+          "n": 0,
+          "brier": null,
+          "logloss": null,
+          "accuracy": null
+        }
+      },
+      "brier": null,
+      "logloss": null,
+      "accuracy": null
+    }
+  },
+  "fixtures": [
+    {
+      "fixtureId": 560635,
+      "home": "Crystal Palace",
+      "away": "Liverpool",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560636,
+      "home": "Sunderland",
+      "away": "Chelsea",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560637,
+      "home": "Ipswich",
+      "away": "Bournemouth",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560638,
+      "home": "Brighton",
+      "away": "Brentford",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560639,
+      "home": "Man United",
+      "away": "Aston Villa",
+      "utcDate": "2026-11-08T16:30:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    }
+  ],
+  "default1X2Changed": false
+}

@@ -1,0 +1,89 @@
+name: Corner candidate training
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/corner-training.yml'
+      - 'research/corner_nightly.py'
+      - 'research/corner_experiment.py'
+      - 'research/corners.py'
+      - 'research/models.py'
+      - 'research/data.py'
+      - 'research/nightly.py'
+      - 'scripts/publish_corners.py'
+      - 'scripts/publish_training.py'
+      - 'requirements-research.txt'
+      - 'docs/research/corner-selection.json'
+  schedule:
+    - cron: '43 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: footpredict-corner-training
+  cancel-in-progress: false
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/corners
+          key: ${{ runner.os }}-corners-csv-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ${{ runner.os }}-corners-csv-v1-
+      - run: python -m pip install -r requirements-research.txt
+      - run: python -m unittest tests.test_corners tests.test_corner_experiment tests.test_corner_nightly tests.test_publish_corners
+      - name: Refresh the fixed selected corner recipe
+        id: train
+        continue-on-error: true
+        run: |
+          python -m research.corner_nightly --data-dir data/corners --output artifacts/corners \
+            --selection docs/research/corner-selection.json
+      - name: Retain weights and original corner observations
+        id: artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: corners-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/corners/
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Do not advertise weights without their archived evidence
+        if: always() && steps.train.outcome == 'success' && steps.artifact.outcome != 'success'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('artifacts/corners/attempt.json')
+          report=json.loads(path.read_text())
+          report.update(status='failed',errorType='ArtifactUploadFailure',message='Corner model artifact was not retained.')
+          path.write_text(json.dumps(report,indent=2))
+          PY
+      - name: Publish a separate verified corner candidate
+        if: always() && hashFiles('artifacts/corners/attempt.json') != ''
+        run: |
+          python -m scripts.publish_corners --output artifacts/corners \
+            --repository '${{ github.repository }}' --run-id '${{ github.run_id }}' \
+            --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
+      - name: Monitoring summary
+        if: always() && hashFiles('artifacts/corners/report.md') != ''
+        run: cat artifacts/corners/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve a failed training conclusion
+        if: steps.train.outcome != 'success' || steps.artifact.outcome != 'success'
+        run: exit 1

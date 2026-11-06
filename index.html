@@ -414,6 +414,11 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
  <div class="score" id="score">—</div>
  <p id="expected" class="owner-only muted small"></p>
  <div class="note">Вероятности рассчитаны по прошлым результатам. Составы и травмы пока не входят в расчёт. Исход матча остаётся неопределённым.</div>
+ <section id="cornerForecast" hidden aria-labelledby="cornerTitle" style="border-top:1px solid #30465b;margin-top:20px;padding-top:16px">
+ <h3 id="cornerTitle">Угловые</h3>
+ <p id="cornerStatus" class="research-note" role="status" aria-live="polite"></p>
+ <div id="cornerBody"></div>
+ </section>
 </section>
 </div>
 <section class="card research-card" hidden id="matchResearch" aria-labelledby="researchTitle">
@@ -1066,7 +1071,7 @@ async function chooseMatch(match,season,year) {
   $('awayName').value=match.awayTeam.name||match.awayTeam.shortName||'Гости';
   let note='';
   const sel=selection();
-  window.dispatchEvent(new CustomEvent('footpredict:match-selected',{detail:{fixtureId:match.id,league:sel.league,apiBase:API}}));
+  window.dispatchEvent(new CustomEvent('footpredict:match-selected',{detail:{fixtureId:match.id,league:sel.league,apiBase:API,homeName:match.homeTeam.name,awayName:match.awayTeam.name,kickoff:match.utcDate}}));
   let all=taggedRows(season,year);
   if (year-1>1900) {
     try {
@@ -1607,6 +1612,7 @@ openPremierLeague();
 <script type="module" src="./automation-ui.js?v=1.8"></script>
 <script type="module" src="./quality-ui.js?v=1.8"></script>
 <script type="module" src="./xg-data-ui.js?v=1.0"></script>
+<script type="module" src="./corners-ui.js?v=1.0"></script>
 <script type="module" src="./training-ui.js"></script>
 </body>
 </html>

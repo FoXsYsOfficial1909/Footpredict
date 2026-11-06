@@ -1,0 +1,705 @@
+{
+  "schemaVersion": 1,
+  "protocol": "corner-paired-1",
+  "frozenAt": "2026-11-06T17:46:48.428242Z",
+  "trainingCutoffExclusive": "2026-11-05",
+  "minimumLeadHours": 24,
+  "maximumLeadDays": 7,
+  "maximumFixtures": 10,
+  "lines": [
+    8.5,
+    9.5,
+    10.5
+  ],
+  "model": {
+    "schemaVersion": 1,
+    "model_version": "corners-candidate-2026-11-06-9ebe08a81447",
+    "status": "experimental",
+    "target": "corners_total_regulation",
+    "as_of": "2026-11-05",
+    "family": "poisson",
+    "alpha": 0.0,
+    "lines": [
+      8.5,
+      9.5,
+      10.5
+    ],
+    "parameters": {
+      "half_life": 365,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "intercept": 1.5071344622081406,
+    "home_advantage": 0.145200430602519,
+    "teams": {
+      "Arsenal": {
+        "attack": 0.20993213946619105,
+        "defence": 0.3903187422165455
+      },
+      "Aston Villa": {
+        "attack": 0.10315927283792649,
+        "defence": 0.09427525631956778
+      },
+      "Bournemouth": {
+        "attack": 0.16925755139728735,
+        "defence": 0.049785785013532265
+      },
+      "Brentford": {
+        "attack": -0.018363025833872115,
+        "defence": -0.07472211905905495
+      },
+      "Brighton": {
+        "attack": 0.06496078948913271,
+        "defence": 0.06527562131107018
+      },
+      "Burnley": {
+        "attack": -0.2120961952160496,
+        "defence": -0.13881419087354094
+      },
+      "Chelsea": {
+        "attack": 0.23537666155383974,
+        "defence": 0.13939511499894416
+      },
+      "Coventry": {
+        "attack": -0.20106966235545587,
+        "defence": 0.12010282884110615
+      },
+      "Crystal Palace": {
+        "attack": -0.1162878515141272,
+        "defence": -0.07136090805139743
+      },
+      "Everton": {
+        "attack": -0.0619601808746688,
+        "defence": -0.06277178742157
+      },
+      "Fulham": {
+        "attack": 0.132007490097836,
+        "defence": 0.01288348436795467
+      },
+      "Hull": {
+        "attack": -0.15131900462490658,
+        "defence": -0.20166227836130723
+      },
+      "Ipswich": {
+        "attack": -0.3409880536587494,
+        "defence": -0.1148764109559905
+      },
+      "Leeds": {
+        "attack": -0.07362352860670265,
+        "defence": 0.05079511220879656
+      },
+      "Leicester": {
+        "attack": -0.23043412557311743,
+        "defence": -0.1272250225572613
+      },
+      "Liverpool": {
+        "attack": 0.28166948005066184,
+        "defence": 0.24369177041272733
+      },
+      "Luton": {
+        "attack": 0.10765719695708152,
+        "defence": -0.16439366952778384
+      },
+      "Man City": {
+        "attack": 0.322564178939232,
+        "defence": 0.3284081159390177
+      },
+      "Man United": {
+        "attack": 0.10791988867586685,
+        "defence": 0.04330571693352954
+      },
+      "Newcastle": {
+        "attack": 0.16519474912266333,
+        "defence": 0.012998310535561441
+      },
+      "Nott'm Forest": {
+        "attack": 0.01718383977350896,
+        "defence": 0.0015118979916349127
+      },
+      "Sheffield United": {
+        "attack": -0.18475903893884887,
+        "defence": -0.26578259249564645
+      },
+      "Southampton": {
+        "attack": -0.1802570598270657,
+        "defence": -0.21091234759479405
+      },
+      "Sunderland": {
+        "attack": -0.16848502829986253,
+        "defence": 0.03832320739272956
+      },
+      "Tottenham": {
+        "attack": 0.2653265621011702,
+        "defence": 0.06654537887668738
+      },
+      "West Ham": {
+        "attack": -0.0349580462698167,
+        "defence": -0.10096572969409508
+      },
+      "Wolves": {
+        "attack": -0.23397211737187348,
+        "defence": -0.09776616826424188
+      }
+    },
+    "side_mean_bounds": [
+      0.1,
+      20.0
+    ],
+    "aliases": {
+      "Arsenal FC": "Arsenal",
+      "Aston Villa FC": "Aston Villa",
+      "AFC Bournemouth": "Bournemouth",
+      "Brentford FC": "Brentford",
+      "Brighton & Hove Albion FC": "Brighton",
+      "Chelsea FC": "Chelsea",
+      "Crystal Palace FC": "Crystal Palace",
+      "Everton FC": "Everton",
+      "Fulham FC": "Fulham",
+      "Liverpool FC": "Liverpool",
+      "Manchester City FC": "Man City",
+      "Manchester United FC": "Man United",
+      "Newcastle United FC": "Newcastle",
+      "Nottingham Forest FC": "Nott'm Forest",
+      "Tottenham Hotspur FC": "Tottenham",
+      "West Ham United FC": "West Ham",
+      "Wolverhampton Wanderers FC": "Wolves",
+      "Sunderland AFC": "Sunderland",
+      "Leeds United FC": "Leeds",
+      "Burnley FC": "Burnley",
+      "Coventry City FC": "Coventry",
+      "Hull City AFC": "Hull",
+      "Leicester City FC": "Leicester",
+      "Southampton FC": "Southampton",
+      "Ipswich Town FC": "Ipswich",
+      "Luton Town FC": "Luton",
+      "Sheffield United FC": "Sheffield United",
+      "Watford FC": "Watford",
+      "Norwich City FC": "Norwich",
+      "West Bromwich Albion FC": "West Brom"
+    },
+    "fit": {
+      "training_games": 1121,
+      "paired_corners_games": 1121,
+      "missing_corner_games": 0,
+      "latest_training_date": "2026-11-02",
+      "iterations": 44,
+      "loss": -3.2464333006812818,
+      "converged": true,
+      "dispersion_estimation": "not_applicable"
+    },
+    "promoted_to_default": false,
+    "protocol": "corner-research-1",
+    "training_cutoff_exclusive": "2026-11-05",
+    "recipe": {
+      "id": "corners-poisson-365",
+      "family": "poisson",
+      "halfLife": 365,
+      "ridge": 0.03,
+      "windowDays": 1095
+    },
+    "prospective_validation_required": true
+  },
+  "baseline": {
+    "expectedCorners": {
+      "home": 5.4141558436628126,
+      "away": 4.662200237858379,
+      "total": 10.07635608152119
+    },
+    "as_of": "2026-11-05",
+    "training_cutoff_exclusive": "2026-11-05",
+    "totals": {
+      "8.5": {
+        "line": 8.5,
+        "over": 0.6576968413381667,
+        "under": 0.34230315866183325
+      },
+      "9.5": {
+        "line": 9.5,
+        "over": 0.556405658421815,
+        "under": 0.443594341578185
+      },
+      "10.5": {
+        "line": 10.5,
+        "over": 0.4470994771012853,
+        "under": 0.5529005228987147
+      }
+    },
+    "range80": {
+      "lower": 6,
+      "upper": 15,
+      "coverage": 0.8
+    },
+    "distribution": {
+      "family": "empirical",
+      "alpha": null,
+      "mean": 10.07635608152119
+    },
+    "unseenTeams": [],
+    "fit": {
+      "training_games": 1121,
+      "latest_training_date": "2026-11-02"
+    }
+  },
+  "modelSha256": "cc0105e3c33143b3d90080aae94e64ce3063b4346ea6650adf56b474ba17dc1d",
+  "baselineSha256": "4453f30b189a47543ad8a0398c5dc6b3475f5a305550e7082662b153183e866c",
+  "providerResponseSha256": "c6e978c0c5a9e7fbe54d5ad16edfd1d3cd4f92afa12baf752ab321bdd553f025",
+  "sourceHashes": {
+    "researchModelFileSha256": "34e2ba612d21660fd262ef6bc4b4340c5752ee41147eb58da26feca42c3a0787",
+    "sourceCsv": [
+      {
+        "season": 2015,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+        "url": "https://www.football-data.co.uk/mmz4281/1516/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2016,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+        "url": "https://www.football-data.co.uk/mmz4281/1617/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2017,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+        "url": "https://www.football-data.co.uk/mmz4281/1718/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2018,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+        "url": "https://www.football-data.co.uk/mmz4281/1819/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2019,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+        "url": "https://www.football-data.co.uk/mmz4281/1920/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2020,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+        "url": "https://www.football-data.co.uk/mmz4281/2021/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2021,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+        "url": "https://www.football-data.co.uk/mmz4281/2122/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2022,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+        "url": "https://www.football-data.co.uk/mmz4281/2223/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2023,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+        "url": "https://www.football-data.co.uk/mmz4281/2324/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2024,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+        "url": "https://www.football-data.co.uk/mmz4281/2425/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2025,
+        "rows": 380,
+        "cornerRows": 380,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+        "url": "https://www.football-data.co.uk/mmz4281/2526/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      },
+      {
+        "season": 2026,
+        "rows": 90,
+        "cornerRows": 90,
+        "missingCornerRows": 0,
+        "invalidCornerRows": 0,
+        "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+        "url": "https://www.football-data.co.uk/mmz4281/2627/E0.csv",
+        "used_columns": [
+          "Date",
+          "HomeTeam",
+          "AwayTeam",
+          "FTHG",
+          "FTAG",
+          "FTR",
+          "HC",
+          "AC"
+        ],
+        "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+      }
+    ]
+  },
+  "fixtures": [
+    {
+      "fixtureId": 560635,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 354,
+      "awayId": 64,
+      "home": "Crystal Palace",
+      "away": "Liverpool",
+      "competition": "PL",
+      "season": 2026,
+      "predictions": {
+        "candidate": {
+          "8.5": {
+            "over": 0.6745791136136343,
+            "under": 0.3254208863863657
+          },
+          "9.5": {
+            "over": 0.5503182951980795,
+            "under": 0.4496817048019205
+          },
+          "10.5": {
+            "over": 0.42523550824555745,
+            "under": 0.5747644917544426
+          }
+        },
+        "baseline": {
+          "8.5": {
+            "over": 0.6576968413381667,
+            "under": 0.34230315866183325
+          },
+          "9.5": {
+            "over": 0.556405658421815,
+            "under": 0.443594341578185
+          },
+          "10.5": {
+            "over": 0.4470994771012853,
+            "under": 0.5529005228987147
+          }
+        }
+      },
+      "predictionsSha256": "a121b125402c57754e2ee37a4257eb98584841a4893f7b3ffa1a6054255b850c"
+    },
+    {
+      "fixtureId": 560636,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 71,
+      "awayId": 61,
+      "home": "Sunderland",
+      "away": "Chelsea",
+      "competition": "PL",
+      "season": 2026,
+      "predictions": {
+        "candidate": {
+          "8.5": {
+            "over": 0.5873456932029921,
+            "under": 0.4126543067970079
+          },
+          "9.5": {
+            "over": 0.4563799416759483,
+            "under": 0.5436200583240517
+          },
+          "10.5": {
+            "over": 0.334149419366254,
+            "under": 0.665850580633746
+          }
+        },
+        "baseline": {
+          "8.5": {
+            "over": 0.6576968413381667,
+            "under": 0.34230315866183325
+          },
+          "9.5": {
+            "over": 0.556405658421815,
+            "under": 0.443594341578185
+          },
+          "10.5": {
+            "over": 0.4470994771012853,
+            "under": 0.5529005228987147
+          }
+        }
+      },
+      "predictionsSha256": "abd71add224c627bed14aec0b77938d838754eaa29af32b4adc124e0ee61d773"
+    },
+    {
+      "fixtureId": 560637,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 349,
+      "awayId": 1044,
+      "home": "Ipswich",
+      "away": "Bournemouth",
+      "competition": "PL",
+      "season": 2026,
+      "predictions": {
+        "candidate": {
+          "8.5": {
+            "over": 0.6116153452603844,
+            "under": 0.3883846547396156
+          },
+          "9.5": {
+            "over": 0.4818091937467268,
+            "under": 0.5181908062532732
+          },
+          "10.5": {
+            "over": 0.3581301052823762,
+            "under": 0.6418698947176238
+          }
+        },
+        "baseline": {
+          "8.5": {
+            "over": 0.6576968413381667,
+            "under": 0.34230315866183325
+          },
+          "9.5": {
+            "over": 0.556405658421815,
+            "under": 0.443594341578185
+          },
+          "10.5": {
+            "over": 0.4470994771012853,
+            "under": 0.5529005228987147
+          }
+        }
+      },
+      "predictionsSha256": "7475489e39c6206b89df5d13e9267cee60452e19c2f2036c9976ef0bec59d5c8"
+    },
+    {
+      "fixtureId": 560638,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 397,
+      "awayId": 402,
+      "home": "Brighton",
+      "away": "Brentford",
+      "competition": "PL",
+      "season": 2026,
+      "predictions": {
+        "candidate": {
+          "8.5": {
+            "over": 0.6841591424629277,
+            "under": 0.31584085753707225
+          },
+          "9.5": {
+            "over": 0.5610793520817603,
+            "under": 0.43892064791823965
+          },
+          "10.5": {
+            "over": 0.43611448947771514,
+            "under": 0.5638855105222849
+          }
+        },
+        "baseline": {
+          "8.5": {
+            "over": 0.6576968413381667,
+            "under": 0.34230315866183325
+          },
+          "9.5": {
+            "over": 0.556405658421815,
+            "under": 0.443594341578185
+          },
+          "10.5": {
+            "over": 0.4470994771012853,
+            "under": 0.5529005228987147
+          }
+        }
+      },
+      "predictionsSha256": "aaf3146bf41f050fa549071130a28f8cc1c480851901fa408f5fc4a8847a5790"
+    },
+    {
+      "fixtureId": 560639,
+      "utcDate": "2026-11-08T16:30:00Z",
+      "homeId": 66,
+      "awayId": 58,
+      "home": "Man United",
+      "away": "Aston Villa",
+      "competition": "PL",
+      "season": 2026,
+      "predictions": {
+        "candidate": {
+          "8.5": {
+            "over": 0.6764531113991157,
+            "under": 0.3235468886008843
+          },
+          "9.5": {
+            "over": 0.5524160467080259,
+            "under": 0.44758395329197403
+          },
+          "10.5": {
+            "over": 0.42734890785403845,
+            "under": 0.5726510921459615
+          }
+        },
+        "baseline": {
+          "8.5": {
+            "over": 0.6576968413381667,
+            "under": 0.34230315866183325
+          },
+          "9.5": {
+            "over": 0.556405658421815,
+            "under": 0.443594341578185
+          },
+          "10.5": {
+            "over": 0.4470994771012853,
+            "under": 0.5529005228987147
+          }
+        }
+      },
+      "predictionsSha256": "d87d20c5ea4fa8185d1d756a9a4cf279a6a09abe9f019c6170289141d2f51bc8"
+    }
+  ],
+  "default1X2Changed": false,
+  "limitations": [
+    "Independent experimental corner target; not 1X2 accuracy.",
+    "Both probabilities fixed before games; no refitting for this cohort.",
+    "Missing corner results remain pending; changed fixtures exclude the pair."
+  ],
+  "packetSha256": "36da27d3c59791b7e79af3fc13868226a1f8a517a175f406a73d7b90a8f9a2b5"
+}

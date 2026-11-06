@@ -1,0 +1,73 @@
+name: Frozen corner prospective comparison
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/corner-prospective.yml'
+      - 'research/corner_prospective.py'
+      - 'docs/research/corners-2026-11-06/prospective/**'
+  schedule:
+    - cron: '53 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: corner-paired-1-settlement
+  cancel-in-progress: false
+
+jobs:
+  settle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - run: python -m pip install -r requirements-research.txt
+      - name: Read official fixture identity and final corner counts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import urllib.request
+          from research.data import download_season
+          output = Path('artifacts/corner-prospective')
+          output.mkdir(parents=True, exist_ok=True)
+          url = 'https://footpredict-api.wzjp5747md.workers.dev/fd/competitions/PL/matches?season=2026'
+          req = urllib.request.Request(url, headers={'Origin': 'https://foxsysofficial1909.github.io', 'User-Agent': 'FootpredictResearch/1.0'})
+          with urllib.request.urlopen(req, timeout=30) as response:
+              body = response.read(2_000_001)
+          if len(body) > 2_000_000:
+              raise ValueError('Oversized fixture response')
+          fixtures = json.loads(body)
+          if fixtures.get('competition', {}).get('code') != 'PL' or not fixtures.get('matches'):
+              raise ValueError('Expected EPL fixtures')
+          (output / 'current-fixtures.json').write_bytes(body)
+          download_season(2026, output / 'csv', refresh=True)
+          PY
+      - name: Settle the immutable paired corner packet
+        run: |
+          python -m research.corner_prospective settle \
+            --packet docs/research/corners-2026-11-06/prospective/packet.json \
+            --fixtures artifacts/corner-prospective/current-fixtures.json \
+            --data-dir artifacts/corner-prospective/csv \
+            --output artifacts/corner-prospective
+      - name: Comparison summary
+        run: cat artifacts/corner-prospective/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Retain source evidence and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: corner-paired-1-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/corner-prospective/
+          retention-days: 90
+          if-no-files-found: warn

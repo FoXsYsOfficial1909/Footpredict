@@ -1,0 +1,196 @@
+{
+  "protocol": "corner-research-1",
+  "planSha256": "7713b8b942d0069fc0fa8b7928b2b074bbe8c82b2422c0c99ce4fbd83b25861d",
+  "dataSha256": "a91a01c629307ff9e901e23422bb0d49688122a97fa37d55ec41acf460ff621e",
+  "implementationSha256": "07930110e305dd08fe8f4a5c8594d99a4ccd8c79b9eeaac19e7008133c69980a",
+  "baseline": {
+    "n": 760,
+    "brier": 0.2308962258443709,
+    "logloss": 0.6538524761733119,
+    "accuracy": 0.6039473684210527,
+    "meanAbsoluteError": 2.799825955498932,
+    "predictiveIntervalCoverage": 0.8552631578947368,
+    "meanPredictiveIntervalWidth": 8.964473684210526,
+    "byLine": {
+      "8.5": {
+        "n": 760,
+        "brier": 0.20114824307923757,
+        "logloss": 0.5922717315270973,
+        "accuracy": 0.7236842105263158
+      },
+      "9.5": {
+        "n": 760,
+        "brier": 0.23979018201135363,
+        "logloss": 0.6726251270535029,
+        "accuracy": 0.6065789473684211
+      },
+      "10.5": {
+        "n": 760,
+        "brier": 0.2517502524425214,
+        "logloss": 0.6966605699393355,
+        "accuracy": 0.48157894736842105
+      }
+    }
+  },
+  "validation": [
+    {
+      "id": "corners-poisson-365",
+      "settings": {
+        "id": "corners-poisson-365",
+        "family": "poisson",
+        "halfLife": 365,
+        "ridge": 0.03,
+        "windowDays": 1095
+      },
+      "metrics": {
+        "n": 760,
+        "brier": 0.228631525637894,
+        "logloss": 0.6498466369270571,
+        "accuracy": 0.6241228070175439,
+        "meanAbsoluteError": 2.779505404727025,
+        "predictiveIntervalCoverage": 0.8184210526315789,
+        "meanPredictiveIntervalWidth": 8.282894736842104,
+        "byLine": {
+          "8.5": {
+            "n": 760,
+            "brier": 0.19865312262865945,
+            "logloss": 0.5873085304451579,
+            "accuracy": 0.7210526315789474
+          },
+          "9.5": {
+            "n": 760,
+            "brier": 0.23776022700177268,
+            "logloss": 0.6697172751775203,
+            "accuracy": 0.6144736842105263
+          },
+          "10.5": {
+            "n": 760,
+            "brier": 0.24948122728324978,
+            "logloss": 0.6925141051584932,
+            "accuracy": 0.5368421052631579
+          }
+        }
+      }
+    },
+    {
+      "id": "corners-poisson-180",
+      "settings": {
+        "id": "corners-poisson-180",
+        "family": "poisson",
+        "halfLife": 180,
+        "ridge": 0.03,
+        "windowDays": 1095
+      },
+      "metrics": {
+        "n": 760,
+        "brier": 0.22986751322563795,
+        "logloss": 0.6540479843390411,
+        "accuracy": 0.6214912280701754,
+        "meanAbsoluteError": 2.79783133237843,
+        "predictiveIntervalCoverage": 0.8131578947368421,
+        "meanPredictiveIntervalWidth": 8.298684210526316,
+        "byLine": {
+          "8.5": {
+            "n": 760,
+            "brier": 0.19959420649741058,
+            "logloss": 0.5913592165893198,
+            "accuracy": 0.7197368421052631
+          },
+          "9.5": {
+            "n": 760,
+            "brier": 0.2396098764121128,
+            "logloss": 0.6753280813375991,
+            "accuracy": 0.5947368421052631
+          },
+          "10.5": {
+            "n": 760,
+            "brier": 0.25039845676739053,
+            "logloss": 0.6954566550902045,
+            "accuracy": 0.55
+          }
+        }
+      }
+    },
+    {
+      "id": "corners-nb-180",
+      "settings": {
+        "id": "corners-nb-180",
+        "family": "negative_binomial",
+        "halfLife": 180,
+        "ridge": 0.03,
+        "windowDays": 1095
+      },
+      "metrics": {
+        "n": 760,
+        "brier": 0.22972549585566715,
+        "logloss": 0.6536226384297931,
+        "accuracy": 0.6210526315789473,
+        "meanAbsoluteError": 2.79783133237843,
+        "predictiveIntervalCoverage": 0.8144736842105263,
+        "meanPredictiveIntervalWidth": 8.368421052631579,
+        "byLine": {
+          "8.5": {
+            "n": 760,
+            "brier": 0.19951333105801805,
+            "logloss": 0.5910019131149475,
+            "accuracy": 0.7197368421052631
+          },
+          "9.5": {
+            "n": 760,
+            "brier": 0.2394331825281792,
+            "logloss": 0.6748156433942041,
+            "accuracy": 0.5921052631578947
+          },
+          "10.5": {
+            "n": 760,
+            "brier": 0.25022997398080415,
+            "logloss": 0.6950503587802276,
+            "accuracy": 0.5513157894736842
+          }
+        }
+      }
+    }
+  ],
+  "chosen": {
+    "id": "corners-poisson-365",
+    "settings": {
+      "id": "corners-poisson-365",
+      "family": "poisson",
+      "halfLife": 365,
+      "ridge": 0.03,
+      "windowDays": 1095
+    },
+    "metrics": {
+      "n": 760,
+      "brier": 0.228631525637894,
+      "logloss": 0.6498466369270571,
+      "accuracy": 0.6241228070175439,
+      "meanAbsoluteError": 2.779505404727025,
+      "predictiveIntervalCoverage": 0.8184210526315789,
+      "meanPredictiveIntervalWidth": 8.282894736842104,
+      "byLine": {
+        "8.5": {
+          "n": 760,
+          "brier": 0.19865312262865945,
+          "logloss": 0.5873085304451579,
+          "accuracy": 0.7210526315789474
+        },
+        "9.5": {
+          "n": 760,
+          "brier": 0.23776022700177268,
+          "logloss": 0.6697172751775203,
+          "accuracy": 0.6144736842105263
+        },
+        "10.5": {
+          "n": 760,
+          "brier": 0.24948122728324978,
+          "logloss": 0.6925141051584932,
+          "accuracy": 0.5368421052631579
+        }
+      }
+    }
+  },
+  "auditDeferred": true,
+  "retrospectiveOnly": true,
+  "promotedToDefault": false
+}
