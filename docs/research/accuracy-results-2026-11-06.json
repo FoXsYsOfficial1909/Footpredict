@@ -1,0 +1,780 @@
+{
+  "asOf": "2026-11-06",
+  "claim": "No demonstrated accuracy improvement; no challenger promoted.",
+  "retrospectiveOnly": true,
+  "prospectiveValidationRequired": true,
+  "firstExperiment": {
+    "protocol": "accuracy-research-1",
+    "planSha256": "954f9f1fb9297b523ea2ffdcd4926fc137e762520a1e42ca90c9e12c4202b7ba",
+    "baseline": {
+      "n": 736,
+      "brier": 0.5709615203112507,
+      "logloss": 0.9613427811363984,
+      "accuracy": 0.5570652173913043
+    },
+    "chosen": null,
+    "validation": [
+      {
+        "id": "shots50-365",
+        "settings": {
+          "id": "shots50-365",
+          "kind": "shot_poisson",
+          "goalWeight": 0.5,
+          "halfLife": 365,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5707053341130055,
+          "logloss": 0.9614961894748748,
+          "accuracy": 0.5543478260869565
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5526561186619926,
+            "logloss": 0.93678530999912,
+            "accuracy": 0.5815217391304348
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5887545495640183,
+            "logloss": 0.9862070689506296,
+            "accuracy": 0.5271739130434783
+          }
+        },
+        "seconds": 1.4935746720002498
+      },
+      {
+        "id": "shots100-365",
+        "settings": {
+          "id": "shots100-365",
+          "kind": "shot_poisson",
+          "goalWeight": 0.0,
+          "halfLife": 365,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5734259789963656,
+          "logloss": 0.9658219142929544,
+          "accuracy": 0.5529891304347826
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5545064011423182,
+            "logloss": 0.9396890015540091,
+            "accuracy": 0.5815217391304348
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.592345556850413,
+            "logloss": 0.9919548270318996,
+            "accuracy": 0.5244565217391305
+          }
+        },
+        "seconds": 1.4517341030000352
+      },
+      {
+        "id": "shots50-180",
+        "settings": {
+          "id": "shots50-180",
+          "kind": "shot_poisson",
+          "goalWeight": 0.5,
+          "halfLife": 180,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.568838152446078,
+          "logloss": 0.9588494433289768,
+          "accuracy": 0.5461956521739131
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5537583878585267,
+            "logloss": 0.9386761044526982,
+            "accuracy": 0.5760869565217391
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5839179170336293,
+            "logloss": 0.9790227822052553,
+            "accuracy": 0.5163043478260869
+          }
+        },
+        "seconds": 1.5996239539999806
+      },
+      {
+        "id": "shots100-180",
+        "settings": {
+          "id": "shots100-180",
+          "kind": "shot_poisson",
+          "goalWeight": 0.0,
+          "halfLife": 180,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5707167097295177,
+          "logloss": 0.9619274826391522,
+          "accuracy": 0.5557065217391305
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5550192778307469,
+            "logloss": 0.9405314763191565,
+            "accuracy": 0.5815217391304348
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5864141416282884,
+            "logloss": 0.9833234889591478,
+            "accuracy": 0.529891304347826
+          }
+        },
+        "seconds": 1.5848108970003523
+      },
+      {
+        "id": "form-logistic",
+        "settings": {
+          "id": "form-logistic",
+          "kind": "logistic",
+          "C": 1.0,
+          "halfLife": 730,
+          "windowDays": 1460,
+          "retrain": "calendar-month",
+          "randomState": 61
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5907533727649296,
+          "logloss": 0.9912755081299559,
+          "accuracy": 0.5163043478260869
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5720785441290573,
+            "logloss": 0.9673492069946118,
+            "accuracy": 0.529891304347826
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.609428201400802,
+            "logloss": 1.0152018092653001,
+            "accuracy": 0.5027173913043478
+          }
+        },
+        "seconds": 1.048020429999724
+      },
+      {
+        "id": "form-boosting",
+        "settings": {
+          "id": "form-boosting",
+          "kind": "hist_gradient_boosting",
+          "iterations": 150,
+          "learningRate": 0.05,
+          "leaves": 7,
+          "minimumLeafSamples": 80,
+          "l2": 10.0,
+          "halfLife": 730,
+          "windowDays": 1460,
+          "retrain": "calendar-month",
+          "randomState": 61
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.6124752204005887,
+          "logloss": 1.0335478145793318,
+          "accuracy": 0.5122282608695652
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5903836009776466,
+            "logloss": 1.0025588308066673,
+            "accuracy": 0.5271739130434783
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.6345668398235308,
+            "logloss": 1.0645367983519958,
+            "accuracy": 0.49728260869565216
+          }
+        },
+        "seconds": 7.190266547000192
+      }
+    ],
+    "auditInspectedBeforeChoice": false,
+    "promotedToDefault": false
+  },
+  "calibrationExperiment": {
+    "protocol": "accuracy-calibration-1",
+    "selection": {
+      "protocol": "accuracy-calibration-1",
+      "planSha256": "fbea4df6edefeb263996e9dcdcd946534d60a1de9c131346dbb688d87b5d54fd",
+      "baseline": {
+        "n": 736,
+        "brier": 0.5709615203112507,
+        "logloss": 0.9613427811363984,
+        "accuracy": 0.5570652173913043
+      },
+      "chosen": {
+        "id": "goals-temperature",
+        "settings": {
+          "id": "goals-temperature",
+          "kind": "calibration",
+          "source": "candidate",
+          "mode": "temperature",
+          "halfLife": 730,
+          "windowDays": 1460,
+          "ridge": 0.05
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5708127508678554,
+          "logloss": 0.9608962716227534,
+          "accuracy": 0.5570652173913043
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5526941965722624,
+            "logloss": 0.9364792707147737,
+            "accuracy": 0.5815217391304348
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5889313051634484,
+            "logloss": 0.9853132725307331,
+            "accuracy": 0.532608695652174
+          }
+        },
+        "seconds": 0.5765864439999859
+      },
+      "validation": [
+        {
+          "id": "dc-365",
+          "settings": {
+            "id": "dc-365",
+            "kind": "dixon_coles",
+            "halfLife": 365,
+            "ridge": 0.03,
+            "windowDays": 1095,
+            "poissonWeight": 0.75
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5707818065276153,
+            "logloss": 0.9610460226787537,
+            "accuracy": 0.5570652173913043
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5532410926088788,
+              "logloss": 0.9373317153121871,
+              "accuracy": 0.5815217391304348
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.5883225204463519,
+              "logloss": 0.9847603300453203,
+              "accuracy": 0.532608695652174
+            }
+          },
+          "seconds": 1.2105603840000185
+        },
+        {
+          "id": "dc-180",
+          "settings": {
+            "id": "dc-180",
+            "kind": "dixon_coles",
+            "halfLife": 180,
+            "ridge": 0.03,
+            "windowDays": 1095,
+            "poissonWeight": 0.75
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5703491742833846,
+            "logloss": 0.9604202604181328,
+            "accuracy": 0.5475543478260869
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5555216123525022,
+              "logloss": 0.9409985218484982,
+              "accuracy": 0.5733695652173914
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.5851767362142669,
+              "logloss": 0.9798419989877675,
+              "accuracy": 0.5217391304347826
+            }
+          },
+          "seconds": 1.2843394779997652
+        },
+        {
+          "id": "goals-temperature",
+          "settings": {
+            "id": "goals-temperature",
+            "kind": "calibration",
+            "source": "candidate",
+            "mode": "temperature",
+            "halfLife": 730,
+            "windowDays": 1460,
+            "ridge": 0.05
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5708127508678554,
+            "logloss": 0.9608962716227534,
+            "accuracy": 0.5570652173913043
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5526941965722624,
+              "logloss": 0.9364792707147737,
+              "accuracy": 0.5815217391304348
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.5889313051634484,
+              "logloss": 0.9853132725307331,
+              "accuracy": 0.532608695652174
+            }
+          },
+          "seconds": 0.5765864439999859
+        },
+        {
+          "id": "goals-bias",
+          "settings": {
+            "id": "goals-bias",
+            "kind": "calibration",
+            "source": "candidate",
+            "mode": "temperature_bias",
+            "halfLife": 730,
+            "windowDays": 1460,
+            "ridge": 0.05
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5714286398591947,
+            "logloss": 0.9619946731796672,
+            "accuracy": 0.5529891304347826
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5531841448843235,
+              "logloss": 0.9374734432589724,
+              "accuracy": 0.5788043478260869
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.5896731348340658,
+              "logloss": 0.9865159031003621,
+              "accuracy": 0.5271739130434783
+            }
+          },
+          "seconds": 0.7480256020003253
+        },
+        {
+          "id": "goals-matrix",
+          "settings": {
+            "id": "goals-matrix",
+            "kind": "calibration",
+            "source": "candidate",
+            "mode": "matrix",
+            "halfLife": 730,
+            "windowDays": 1460,
+            "ridge": 0.05
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5718810615561908,
+            "logloss": 0.9631236325707,
+            "accuracy": 0.5543478260869565
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5534776155694913,
+              "logloss": 0.9384887696292121,
+              "accuracy": 0.5842391304347826
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.5902845075428904,
+              "logloss": 0.9877584955121878,
+              "accuracy": 0.5244565217391305
+            }
+          },
+          "seconds": 1.3338030879999678
+        },
+        {
+          "id": "shots-temperature",
+          "settings": {
+            "id": "shots-temperature",
+            "kind": "calibration",
+            "source": "shots",
+            "mode": "temperature",
+            "halfLife": 730,
+            "windowDays": 1460,
+            "ridge": 0.05
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5675565538651883,
+            "logloss": 0.9565626607134553,
+            "accuracy": 0.5461956521739131
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5510617246668087,
+              "logloss": 0.9345708924179222,
+              "accuracy": 0.5760869565217391
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.584051383063568,
+              "logloss": 0.9785544290089881,
+              "accuracy": 0.5163043478260869
+            }
+          },
+          "seconds": 0.5697012760001599
+        },
+        {
+          "id": "shots-bias",
+          "settings": {
+            "id": "shots-bias",
+            "kind": "calibration",
+            "source": "shots",
+            "mode": "temperature_bias",
+            "halfLife": 730,
+            "windowDays": 1460,
+            "ridge": 0.05
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5680182621838824,
+            "logloss": 0.957375424366172,
+            "accuracy": 0.5448369565217391
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5517520873266669,
+              "logloss": 0.9358499978813508,
+              "accuracy": 0.5733695652173914
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.584284437041098,
+              "logloss": 0.978900850850993,
+              "accuracy": 0.5163043478260869
+            }
+          },
+          "seconds": 0.7476129410001704
+        },
+        {
+          "id": "shots-matrix",
+          "settings": {
+            "id": "shots-matrix",
+            "kind": "calibration",
+            "source": "shots",
+            "mode": "matrix",
+            "halfLife": 730,
+            "windowDays": 1460,
+            "ridge": 0.05
+          },
+          "metrics": {
+            "n": 736,
+            "brier": 0.5684876223511564,
+            "logloss": 0.9585004532019973,
+            "accuracy": 0.5448369565217391
+          },
+          "bySeason": {
+            "2023": {
+              "n": 368,
+              "brier": 0.5520206001617695,
+              "logloss": 0.9368377685506467,
+              "accuracy": 0.5733695652173914
+            },
+            "2024": {
+              "n": 368,
+              "brier": 0.5849546445405432,
+              "logloss": 0.9801631378533476,
+              "accuracy": 0.5163043478260869
+            }
+          },
+          "seconds": 1.2505627929999719
+        }
+      ],
+      "auditInspectedBeforeChoice": false,
+      "promotedToDefault": false
+    },
+    "retrospectiveAudit": true,
+    "promotedToDefault": false,
+    "prospectiveValidationRequired": true,
+    "audit": {
+      "targets": 380,
+      "commonMatches": 369,
+      "metrics": {
+        "challenger": {
+          "n": 369,
+          "brier": 0.6166391309110408,
+          "logloss": 1.0264213689985007,
+          "accuracy": 0.4742547425474255
+        },
+        "candidate": {
+          "n": 369,
+          "brier": 0.6158462838678537,
+          "logloss": 1.025579381180643,
+          "accuracy": 0.4742547425474255
+        },
+        "v1": {
+          "n": 369,
+          "brier": 0.6323295798593116,
+          "logloss": 1.0500596498795642,
+          "accuracy": 0.48509485094850946
+        },
+        "base": {
+          "n": 369,
+          "brier": 0.6590031422251011,
+          "logloss": 1.0880616617848256,
+          "accuracy": 0.4173441734417344
+        }
+      },
+      "challengerMinusCurrent": {
+        "brier": {
+          "difference": 0.0007928470431871668,
+          "ci95": [
+            -0.0014690869976261044,
+            0.002960590330317128
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": 0.0008419878178575919,
+          "ci95": [
+            -0.0023849143258790834,
+            0.004140181665753913
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      },
+      "bySeason": {
+        "2025": {
+          "n": 369,
+          "brier": 0.6166391309110408,
+          "logloss": 1.0264213689985007,
+          "accuracy": 0.4742547425474255
+        }
+      }
+    },
+    "recentMonitoring": {
+      "targets": 90,
+      "commonMatches": 79,
+      "metrics": {
+        "challenger": {
+          "n": 79,
+          "brier": 0.6370828566680252,
+          "logloss": 1.0603836783162772,
+          "accuracy": 0.45569620253164556
+        },
+        "candidate": {
+          "n": 79,
+          "brier": 0.6363705498171235,
+          "logloss": 1.0590544473728998,
+          "accuracy": 0.45569620253164556
+        },
+        "v1": {
+          "n": 79,
+          "brier": 0.669674691923868,
+          "logloss": 1.0998090903227185,
+          "accuracy": 0.4050632911392405
+        },
+        "base": {
+          "n": 79,
+          "brier": 0.6740035580329587,
+          "logloss": 1.1091862245627953,
+          "accuracy": 0.3924050632911392
+        }
+      },
+      "challengerMinusCurrent": {
+        "brier": {
+          "difference": 0.0007123068509016807,
+          "ci95": [
+            -0.0013546682347368886,
+            0.002724262708025603
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": 0.0013292309433775976,
+          "ci95": [
+            -0.0017711625141734076,
+            0.004436001475907719
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      },
+      "bySeason": {
+        "2026": {
+          "n": 79,
+          "brier": 0.6370828566680252,
+          "logloss": 1.0603836783162772,
+          "accuracy": 0.45569620253164556
+        }
+      }
+    },
+    "passesRetrospectiveGate": false
+  },
+  "dataManifest": [
+    {
+      "season": 2015,
+      "rows": 380,
+      "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1516/E0.csv"
+    },
+    {
+      "season": 2016,
+      "rows": 380,
+      "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1617/E0.csv"
+    },
+    {
+      "season": 2017,
+      "rows": 380,
+      "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1718/E0.csv"
+    },
+    {
+      "season": 2018,
+      "rows": 380,
+      "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1819/E0.csv"
+    },
+    {
+      "season": 2019,
+      "rows": 380,
+      "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+    },
+    {
+      "season": 2020,
+      "rows": 380,
+      "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+    },
+    {
+      "season": 2021,
+      "rows": 380,
+      "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+      "shotsRows": 379,
+      "xgRows": 0,
+      "invalidStatisticsRows": 1,
+      "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+    },
+    {
+      "season": 2022,
+      "rows": 380,
+      "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+    },
+    {
+      "season": 2023,
+      "rows": 380,
+      "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+    },
+    {
+      "season": 2024,
+      "rows": 380,
+      "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+    },
+    {
+      "season": 2025,
+      "rows": 380,
+      "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+    },
+    {
+      "season": 2026,
+      "rows": 90,
+      "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+      "shotsRows": 90,
+      "xgRows": 90,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+    }
+  ],
+  "xgSourceInspection": {
+    "source": "https://github.com/JaseZiv/worldfootballR_data",
+    "downloadedFile": "data/understat_shots/epl_shot_data.rds",
+    "sha256": "39be54a6c4b5c7175188de8880c0c4ea563706e74b732af9f387e3a554f874a6",
+    "shotRows": 102257,
+    "uniqueMatches": 3996,
+    "earliest": "2014-08-16",
+    "latest": "2025-01-04",
+    "joinedToTrainingData": false,
+    "trainedXgChallenger": false,
+    "fresherReleaseAsset": "https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/epl_shot_data.rds",
+    "releaseAssetUpdated": "2025-09-18T18:43:31Z",
+    "releaseAssetNotDownloaded": true
+  },
+  "runtimeChanged": false
+}
