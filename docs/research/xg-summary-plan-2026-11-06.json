@@ -1,0 +1,83 @@
+{
+  "protocol": "expected-goals-summary-research-1",
+  "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "selectionSeasons": [
+    2023,
+    2024
+  ],
+  "auditSeasons": [
+    2025
+  ],
+  "recentMonitoringSeasons": [
+    2026
+  ],
+  "retrospectiveOnly": true,
+  "caveat": "Adaptive retrospective follow-up after inspecting the four raw-shot challengers. The same four fixed model recipes are re-evaluated with a consistent league-summary xG definition and recent coverage. These seasons are not an untouched holdout; future prospective validation is required.",
+  "source": "Raw Understat league-summary CSVs via elliot-gautier-129/footy-prediction at 90233c5edc2cd4a07011ea642b27ea479d106bf5; extend using only raw xG facts from CameronNichol47/epl-match-prediction-dashboard at 647420c6bb756db992374b04a5ba0ee6235a2624. No application features or models imported.",
+  "sourcePolicy": "Pin all source Git blobs and SHA-256s. Match exact date, canonical teams and actual score to original data. Require overlap league-summary xG agreement within 1e-4; primary summary source wins. Exclude raw-shot-sum archive and Football-Data xG. Missing xG uses actual-goal targets, without dropping a fixture.",
+  "dataFence": "Fit only matches whose date is strictly before target date minus one calendar day. Weighted goals/xG conversion is also past-only. Observed target-match xG and results never enter its prediction.",
+  "target": "goalWeight * actualGoals + (1 - goalWeight) * expectedGoals * pastWeightedGoalsPerXg; same nonnegative quasi-Poisson likelihood and team shrinkage as the reference",
+  "models": [
+    {
+      "id": "xg50-365",
+      "goalWeight": 0.5,
+      "halfLife": 365,
+      "ridge": 0.03,
+      "windowDays": 1095,
+      "poissonWeight": 0.75
+    },
+    {
+      "id": "xg100-365",
+      "goalWeight": 0.0,
+      "halfLife": 365,
+      "ridge": 0.03,
+      "windowDays": 1095,
+      "poissonWeight": 0.75
+    },
+    {
+      "id": "xg50-180",
+      "goalWeight": 0.5,
+      "halfLife": 180,
+      "ridge": 0.03,
+      "windowDays": 1095,
+      "poissonWeight": 0.75
+    },
+    {
+      "id": "xg100-180",
+      "goalWeight": 0.0,
+      "halfLife": 180,
+      "ridge": 0.03,
+      "windowDays": 1095,
+      "poissonWeight": 0.75
+    }
+  ],
+  "selectionRule": "On identical 736 reference-eligible validation fixtures, select minimum log loss among variants improving reference log loss without reducing top-outcome accuracy. Save selection before computing its retrospective audit. If none qualifies, retain current candidate.",
+  "auditGate": "Selected variant must improve Brier and log loss without reducing top-outcome accuracy on identical audit fixtures. Also report day-clustered confidence intervals, season metrics, current-season monitoring, xG coverage and latest xG date. Passing is permission for further prospective evaluation, not default promotion.",
+  "promotedToDefault": false,
+  "expectedValidationCommon": 736,
+  "expectedAuditCommon": 369,
+  "sourceInspectionBeforeEvaluation": {
+    "normalizedMatches": 2740,
+    "firstMatch": "2019-08-09",
+    "lastMatch": "2026-10-25",
+    "overlapMatches": 414,
+    "maxOverlapXgDifference": 0.0,
+    "scoreConflicts": 0,
+    "selectionWindowCoverage": "Full three-year xG windows for 2023 and 2024 selection seasons",
+    "recentCoverage": "80/90 current-season fixtures; last 10 fixtures lack xG and retain actual-goal training targets."
+  },
+  "registeredBeforeThisEvaluation": true
+}
