@@ -4,6 +4,7 @@ import json
 import hashlib
 from pathlib import Path
 import tempfile
+from itertools import count
 import unittest
 from unittest.mock import patch
 
@@ -56,6 +57,19 @@ class NightlyTests(unittest.TestCase):
             attempt=json.loads((root/'attempt.json').read_text())
             self.assertEqual(attempt['status'],'failed');self.assertFalse(attempt['promotedToDefault'])
             self.assertNotIn('network unavailable',json.dumps(attempt))
+
+    def test_timing_measurements_are_report_only_and_cannot_change_forecasts(self):
+        rows=sample()
+        with patch('research.nightly.time.monotonic',side_effect=count(10,1)):
+            first,report,predictions=self.build(rows)
+        with patch('research.nightly.time.monotonic',side_effect=count(1000,2)):
+            after,changed,other_predictions=self.build(rows)
+        self.assertEqual(first,after)
+        self.assertEqual(report['modelSha256'],changed['modelSha256'])
+        self.assertEqual(predictions,other_predictions)
+        self.assertNotEqual(report['timings'],changed['timings'])
+        self.assertTrue(all(value>=0 for value in report['timings'].values()))
+        self.assertNotIn('timings',first)
 
 
 class PublishTests(unittest.TestCase):

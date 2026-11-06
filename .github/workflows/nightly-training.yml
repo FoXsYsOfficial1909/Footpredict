@@ -5,7 +5,12 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/nightly-training.yml'
-      - 'research/**'
+      - 'research/__init__.py'
+      - 'research/nightly.py'
+      - 'research/models.py'
+      - 'research/evaluate.py'
+      - 'research/export_model.py'
+      - 'research/data.py'
       - 'scripts/publish_training.py'
       - 'requirements-research.txt'
       - 'docs/research/selection.json'

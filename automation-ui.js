@@ -116,5 +116,5 @@ $('downloadDailyReport').addEventListener('click',()=>{
 });
 let opened=false;
 function open(){if(opened)return;opened=true;refresh();}
-window.addEventListener('footpredict:tab-selected',event=>{if(['data','history'].includes(event.detail?.tab))open();});
+window.addEventListener('footpredict:tab-selected',event=>{if(event.detail?.tab==='data'||event.detail?.tab==='history'&&document.body.classList.contains('owner-mode'))open();});
 if(['data','history'].some(key=>document.getElementById('tab-'+key)?.getAttribute('aria-selected')==='true'))open();

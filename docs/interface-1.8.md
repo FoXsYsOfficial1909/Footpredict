@@ -1,0 +1,9 @@
+# FootPredict 1.8
+
+The public application has three sections: matches, history and quality. It opens the current Premier League fixture list directly; users no longer need to load providers, competitions, teams or seasons before selecting a game. Empty research and manual-calculator cards no longer occupy the first screen. Selected matches still show outcome probabilities, score estimates and an explicit warning for a small historical sample.
+
+History displays the saved forecast, its timestamp and confirmed score. Token entry, browser/server switches, manual result writes, raw JSON, Brier details and old experimental reports are opt-in owner tools. The quality screen shows completed forecasts, correct outcomes and accuracy, including the actual denominator and small-sample limitation. It does not substitute historical experimental scores for real saved results.
+
+The footer opens the owner tools and their existing four-section navigation. Returning to forecasts restores the public three-section flow, default EPL provider and server history. This presentation mode is not authorization: existing server token checks still govern writes.
+
+Measured before this change, the complete published data/training cycle took 2.97 seconds, including 1.35 seconds of computation; the GitHub job took 24 seconds including setup. Final fitting locally took about 0.004 seconds. Interface removal does not make numeric fitting faster. Narrower training-workflow dependencies prevent unrelated UI, xG-source and workload edits from retraining the same recipe. Report-only phase timings now distinguish source loading, reference preparation, chronological validation and final fitting. The complete final model and all 121 monitoring predictions were exactly identical before and after these changes; evidence is in `research/training-speed-2026-11-06.json`.

@@ -41,6 +41,7 @@ def build_candidate(matches,selected,as_of,*,manifests=(),evaluation_limit=120,m
     first=available[max(0,len(available)-evaluation_limit)].day
     seasons={m.season for m in available if m.day>=first}
     rows=[row for row in reference_rows(available,seasons) if date.fromisoformat(row['date'])>=first]
+    prepared=time.monotonic()
     poisson=glm_predictions((available,rows,selected['glm']))
     elo=elo_predictions(available,rows,selected['elo'])
     rows=with_predictions(with_predictions(rows,poisson['predictions'],'glm'),elo,'elo')
@@ -50,7 +51,9 @@ def build_candidate(matches,selected,as_of,*,manifests=(),evaluation_limit=120,m
     if len(common)<min_common:
         raise ValueError('Too few common chronological evaluation fixtures')
     metrics={key:summarize(common,key) for key in ['candidate','v1','base']}
+    validated=time.monotonic()
     final=LearnedPoisson(**selected['glm']).fit(available,cutoff)
+    fitted=time.monotonic()
     model={'status':'candidate','as_of':as_of.isoformat(),'training_cutoff_exclusive':cutoff.isoformat(),
         'glm_weight':selected['glm_weight'],'glm':final.export(),'elo':export_elo(available,cutoff,selected['elo']),
         'aliases':ALIASES,'features_used':['past_match_results','opponent_strength','home_advantage'],
@@ -66,6 +69,9 @@ def build_candidate(matches,selected,as_of,*,manifests=(),evaluation_limit=120,m
             'commonMatches':len(common),'excludedFromAll':len(rows)-len(common),
             'from':rows[0]['date'],'to':rows[-1]['date'],'metrics':metrics,'poissonFitSeconds':poisson['seconds']},
         'dataSources':list(manifests),'durationSeconds':time.monotonic()-started,
+        'timings':{'referencePreparationSeconds':prepared-started,
+            'historicalValidationSeconds':validated-prepared,
+            'finalFitSeconds':fitted-validated},
         'promotedToDefault':False,'prospectiveValidationRequired':True,
         'limitations':['Settings are fixed from the persisted validation selection; this run performs no grid search.',
             'Historical monitoring evaluates rolling fits, not the newly fitted final weights.',
@@ -87,7 +93,14 @@ def markdown(report):
         lines.append(f"| {name} | {m['brier']:.4f} | {m['logloss']:.4f} | {m['accuracy']:.1%} |")
     lines+=['','Это мониторинг исторической процедуры. Он не оценивает новые финальные веса на будущих матчах.',
         'Кандидат не опубликован как основная модель; действующие прогнозы и совместная серия сохраняют прежние версии.',
-        '',f"Время цикла: {report['durationSeconds']:.1f} с. Повторного подбора параметров нет.",'']
+        '',f"Время цикла: {report['durationSeconds']:.1f} с. Повторного подбора параметров нет."]
+    timings=report.get('timings',{})
+    if timings:
+        lines+=['',f"Загрузка и проверка истории: {timings.get('dataLoadSeconds',0):.2f} с; "
+            f"подготовка контрольных прогнозов: {timings['referencePreparationSeconds']:.2f} с; "
+            f"историческая проверка: {timings['historicalValidationSeconds']:.2f} с; "
+            f"финальное обучение: {timings['finalFitSeconds']:.2f} с."]
+    lines+=['']
     return '\n'.join(lines)
 
 
@@ -111,8 +124,10 @@ def run(data_dir,output,as_of,*,offline=False):
                 if len(rows)!=380:raise ValueError('A completed season is incomplete')
             matches.extend(rows);manifests.append(manifest)
         selected=json.loads((ROOT/'docs/research/selection.json').read_text())
+        loaded=time.monotonic()
         model,report,predictions=build_candidate(matches,selected,as_of,manifests=manifests)
         report['computeSeconds']=report['durationSeconds'];report['durationSeconds']=time.monotonic()-started
+        report['timings']['dataLoadSeconds']=loaded-started
         report['generatedAt']=generated
         (output/'model.json').write_text(json.dumps(model,ensure_ascii=False,indent=2,allow_nan=False))
         (output/'model.mjs').write_text('export default '+json.dumps(model,ensure_ascii=False,separators=(',',':'),allow_nan=False)+';\n')
@@ -125,7 +140,7 @@ def run(data_dir,output,as_of,*,offline=False):
         (output/'report.md').write_text(markdown(report))
         attempt={k:report[k] for k in ['schemaVersion','protocol','status','asOf','generatedAt','trainingCutoffExclusive','latestTrainingMatch',
             'trainingMatches','poissonTrainingMatches','modelVersion','modelSha256','dataSha256','settingsSha256','codeSha256','evaluation','durationSeconds',
-            'promotedToDefault','prospectiveValidationRequired','computeSeconds']}
+            'promotedToDefault','prospectiveValidationRequired','computeSeconds','timings']}
         print(json.dumps({'modelVersion':model['model_version'],'trainingMatches':report['trainingMatches'],
             'commonMatches':report['evaluation']['commonMatches'],'seconds':report['durationSeconds']}),flush=True)
     except Exception as error:

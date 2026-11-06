@@ -188,7 +188,19 @@ function view(){
   $('qualityLive').hidden=historical;$('qualityHistorical').hidden=!historical;
 }
 
+function renderOverview(){
+  const c=report.cohorts.v1,m=c.metrics,target=$('qualityOverview');target.replaceChildren();
+  for(const [label,value] of [['Завершено',String(m.n)],['Верных исходов',String(m.correct??0)],['Точность',m.topEligible?percent(m.accuracy):'—']]){
+    const item=el('div',undefined,'overview-stat');
+    item.append(el('span',label,'overview-label'),el('strong',value,'overview-value'));target.append(item);
+  }
+  target.append(note(m.topEligible?'Доля совпадений среди '+m.topEligible+' прогнозов с однозначным наиболее вероятным исходом. Небольшая выборка не гарантирует такую же точность дальше.':'Ждём подтверждённые результаты. Ожидающие матчи не считаются ошибками.'));
+  if(c.leagues?.length>1)target.append(note('Общая история: '+c.leagues.map(league=>({PL:'АПЛ',BL1:'Бундеслига'}[league]||league)).join(', ')+'.'));
+  if(c.pending)target.append(note('Ожидают результата: '+c.pending+'.'));
+}
+
 async function refresh(){
+  $('refreshQualityPublic').disabled=true;
   const button=$('refreshQuality');button.disabled=true;
   $('qualityStatus').textContent='Загружаю сохранённые прогнозы и последние результаты…';
   $('qualityStatus').classList.remove('danger');
@@ -197,21 +209,22 @@ async function refresh(){
     if(!response.ok)throw new Error('HTTP '+response.status);
     const data=await response.json();
     if(data.schemaVersion!==1||!data.cohorts?.v1||!data.cohorts?.v2||!data.paired||!Array.isArray(data.fixtures))throw new Error('Incomplete report');
-    report=data;renderProspective(true);renderProspective();renderCohorts();renderPaired();renderHistorical();renderFixtures(true);view();
+    report=data;renderOverview();renderProspective(true);renderProspective();renderCohorts();renderPaired();renderHistorical();renderFixtures(true);view();
     $('qualityResult').hidden=false;$('downloadQuality').disabled=false;
     const pending=data.fixtures.filter(f=>f.v2?.state==='pending').sort((a,b)=>Date.parse(a.kickoff)-Date.parse(b.kickoff));
     $('qualityNextMatch').textContent=pending.length?'Ближайшая игра с ожидающим прогнозом v2: '+pending[0].home+' — '+pending[0].away+', '+date(pending[0].kickoff)+'. Сверка доступна через 4 часа после начала.':'';
-    $('qualityStatus').textContent='Данные на '+date(data.generatedAt)+'. Сводки учитывают весь серверный архив указанных версий.';
+    $('qualityStatus').textContent='Обновлено: '+date(data.generatedAt)+'.';
   }catch{
     $('qualityStatus').textContent='Не удалось обновить качество прогнозов.'+(report?' Показаны предыдущие данные от '+date(report.generatedAt)+'.':' Попробуй обновить позже; отсутствие ответа не означает нулевую точность.');
     $('qualityStatus').classList.add('danger');
-  }finally{button.disabled=false;}
+  }finally{button.disabled=false;$('refreshQualityPublic').disabled=false;}
 }
 
 $('qualityView').addEventListener('change',view);
 for(const id of ['qualityFilter','qualityModelFilter'])$(id).addEventListener('change',()=>renderFixtures(true));
 $('moreQualityFixtures').addEventListener('click',()=>{shown+=20;renderFixtures();});
 $('refreshQuality').addEventListener('click',refresh);
+$('refreshQualityPublic').addEventListener('click',refresh);
 $('downloadQuality').addEventListener('click',()=>{
   if(!report)return;
   const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'})),link=el('a');

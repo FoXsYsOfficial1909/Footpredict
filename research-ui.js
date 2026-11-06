@@ -35,6 +35,7 @@ function status(message, error = false) {
 }
 
 function reset() {
+  $('matchResearch').hidden=true;
   generation++;controller?.abort();controller = null;selected = null;packet = null;
   $('loadResearch').disabled = true;$('exportResearch').disabled = true;
   $('researchResult').hidden = true;
@@ -48,6 +49,7 @@ window.addEventListener('footpredict:match-selected', event => {
   if (detail?.league !== 'PL') { status('Разбор пока доступен для матчей АПЛ.');return; }
   if (!Number.isSafeInteger(detail.fixtureId) || detail.fixtureId < 1) return;
   selected = detail;
+  $('matchResearch').hidden=false;
   $('loadResearch').disabled = false;
   status('Матч выбран. Соберём форму, доступный календарь и свежие сообщения с источниками.');
 });

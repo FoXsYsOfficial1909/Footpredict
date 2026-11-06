@@ -22,7 +22,7 @@ with sync_playwright() as playwright:
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.on('request',lambda request:reports.append(request.url) if 'training-reports/latest.json' in request.url else None)
         if FIXTURE:page.route(PATTERN,lambda route:route.fulfill(status=200,content_type='application/json',body=Path(FIXTURE).read_text()))
-        page.goto(BASE+'#qualityDashboard',wait_until='networkidle',timeout=45000)
+        page.goto(BASE+'#qualityNightly',wait_until='networkidle',timeout=45000)
         assert reports==[]
         page.locator('#trainingStatus > summary').click()
         page.wait_for_function("!document.getElementById('downloadTraining').disabled",timeout=35000)

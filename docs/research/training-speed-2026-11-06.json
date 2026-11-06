@@ -1,0 +1,17 @@
+{
+  "modelsAndPredictionsUnchanged": true,
+  "modelSha256": "c8af783ee2e41b28830d0cf5d1a84c33691cdb68370cecd32380f9a9a6a12196",
+  "matches": 4270,
+  "evaluationRows": 121,
+  "afterBuildSeconds": 1.1234547200001543,
+  "phaseTimings": {
+    "referencePreparationSeconds": 0.9981338659999892,
+    "historicalValidationSeconds": 0.1340286679987912,
+    "finalFitSeconds": 0.004405314000905491,
+    "dataLoadSeconds": 0.06910305500059621
+  },
+  "afterOfflineCycleSeconds": 1.213650753001275,
+  "publishedBeforeCycleSeconds": 2.973490142,
+  "publishedBeforeComputeSeconds": 1.351858959,
+  "githubJobSeconds": 24
+}

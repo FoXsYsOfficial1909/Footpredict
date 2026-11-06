@@ -24,7 +24,7 @@ with sync_playwright() as playwright:
         page.on('pageerror',lambda error:errors.append(str(error)))
         page.on('requestfailed',lambda request:failures.append({'url':request.url,'error':request.failure}))
         page.on('response',lambda response:api.append({'url':response.url,'http':response.status}) if 'workers.dev' in response.url else None)
-        response=page.goto('http://127.0.0.1:8000/',wait_until='networkidle',timeout=45000)
+        response=page.goto('http://127.0.0.1:8000/#serviceStatus',wait_until='networkidle',timeout=45000)
         assert response.status==200 and response.body()==(ROOT/'index.html').read_bytes()
         assert page.locator('#loadResearch').is_disabled()
         page.click('#tab-history')
