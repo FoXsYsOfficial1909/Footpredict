@@ -5,7 +5,7 @@
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
     "asOf": "2026-11-06",
-    "generatedAt": "2026-11-06T03:28:53.023443+00:00",
+    "generatedAt": "2026-11-06T03:50:40.963420+00:00",
     "trainingCutoffExclusive": "2026-11-05",
     "latestTrainingMatch": "2026-11-02",
     "trainingMatches": 4270,
@@ -43,18 +43,18 @@
           "accuracy": 0.4
         }
       },
-      "poissonFitSeconds": 0.21225692800000218
+      "poissonFitSeconds": 0.22018466900000533
     },
-    "durationSeconds": 3.168506157000003,
+    "durationSeconds": 2.904252587000002,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 1.8410463000000021,
+    "computeSeconds": 1.8550740630000035,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "42156771196",
+    "runId": "42158927938",
     "runAttempt": "1",
-    "sourceCommit": "b9927906c07bb7ef691f8c031f9f7a952b7fb9dd",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42156771196",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42156771196#artifacts",
+    "sourceCommit": "c005a0c252bfa33a6ee000b880ac26ecc45929de",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42158927938",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42158927938#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/077bcb8ffc5746885804eb2bbbddb3fcb5299fd5bc297d0e160f25b6b5b144b6.json"
   },
   "latestSuccessful": {
@@ -62,7 +62,7 @@
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
     "asOf": "2026-11-06",
-    "generatedAt": "2026-11-06T03:28:53.023443+00:00",
+    "generatedAt": "2026-11-06T03:50:40.963420+00:00",
     "trainingCutoffExclusive": "2026-11-05",
     "latestTrainingMatch": "2026-11-02",
     "trainingMatches": 4270,
@@ -100,18 +100,18 @@
           "accuracy": 0.4
         }
       },
-      "poissonFitSeconds": 0.21225692800000218
+      "poissonFitSeconds": 0.22018466900000533
     },
-    "durationSeconds": 3.168506157000003,
+    "durationSeconds": 2.904252587000002,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 1.8410463000000021,
+    "computeSeconds": 1.8550740630000035,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "42156771196",
+    "runId": "42158927938",
     "runAttempt": "1",
-    "sourceCommit": "b9927906c07bb7ef691f8c031f9f7a952b7fb9dd",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42156771196",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42156771196#artifacts",
+    "sourceCommit": "c005a0c252bfa33a6ee000b880ac26ecc45929de",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42158927938",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42158927938#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/077bcb8ffc5746885804eb2bbbddb3fcb5299fd5bc297d0e160f25b6b5b144b6.json"
   }
 }
