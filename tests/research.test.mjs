@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parseFeed, teamStatistics, calendarContext, validateAiFacts, normalizeModelAnswer, extractFacts, collectResearch, getResearch, storedResearch, RESEARCH_VERSION} from '../worker/research.mjs';
+import {memoryD1} from './helpers/d1.mjs';
 
 const now = Date.parse('2026-10-27T19:00:00Z');
 const fixture = {id:560626,utcDate:'2026-10-31T12:30:00Z',status:'TIMED',competition:{code:'PL'},season:{startDate:'2026-08-21'},
@@ -109,6 +110,31 @@ test('candidate probabilities are recorded in the collected snapshot before kick
   const deps=services();deps.predictCandidate=()=>({status:'experimental',modelVersion:'test-v2',probabilities:[.4,.3,.3]});
   const result=await collectResearch(560626,{FOOTPREDICT_CACHE:{get:async()=>null}},deps);
   assert.equal(result.candidate.modelVersion,'test-v2');assert.equal(result.candidate.generatedAt,result.collectedAt);
+});
+
+test('dated free player reports persist in a new snapshot without changing forecast probabilities',async()=>{
+  const database=memoryD1();
+  try{
+    const deps=services(),probabilities=[.4,.3,.3];
+    deps.predictCandidate=()=>({status:'experimental',modelVersion:'unchanged-model',probabilities});
+    deps.fetch=async url=>{
+      if(url.endsWith('/bootstrap-static/'))return Response.json({teams:[{id:1,name:'Chelsea'},{id:2,name:'Man Utd'}],
+        events:[{id:10}],elements:[{id:11,team:1,first_name:'Example',second_name:'Player',element_type:3,
+          status:'d',news:'Fitness test required',news_added:'2026-10-27T12:00:00Z'}]});
+      if(url.endsWith('/api/fixtures/'))return Response.json([{id:90,event:10,team_h:1,team_a:2,kickoff_time:fixture.utcDate}]);
+      return new Response(rss);
+    };
+    const packet=await getResearch(fixture.id,{FOOTPREDICT_DB:database,FOOTPREDICT_CACHE:{get:async()=>null}},deps);
+    assert.equal(packet.playerAvailability.teams[0].reports[0].status,'doubtful');
+    assert.equal(packet.playerAvailability.teams[0].reports[0].publishedAt,'2026-10-27T12:00:00.000Z');
+    assert.equal(packet.reportedLineups.status,'not_announced');
+    assert.deepEqual(packet.candidate.probabilities,probabilities);
+    const saved=JSON.parse(database.sqlite.prepare('SELECT payload FROM research_snapshots WHERE fixture_id=?').get(fixture.id).payload);
+    assert.deepEqual(saved.playerAvailability,packet.playerAvailability);
+    assert.ok(Date.parse(saved.playerAvailability.fetchedAt)<=Date.parse(saved.featureCutoffAt));
+    assert.ok(Date.parse(saved.featureCutoffAt)<Date.parse(saved.fixture.kickoff));
+    assert.deepEqual(saved.candidate.probabilities,probabilities);
+  }finally{database.close();}
 });
 
 test('a fresh card with exhausted AI quota can refresh after the UTC daily reset',async()=>{

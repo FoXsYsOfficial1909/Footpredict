@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.8 — прогнозы матчей АПЛ</title>
+<title>FootPredict 1.9 — прогнозы матчей АПЛ</title>
 <link rel="stylesheet" href="./research-ui.css">
 <link rel="stylesheet" href="./quality-ui.css?v=1.8">
 <link rel="stylesheet" href="./navigation.css">
@@ -379,7 +379,7 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 <main>
 <header class="app-header">
 <div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
-<span class="version">v1.8</span>
+<span class="version">v1.9</span>
 </header>
 <nav class="app-tabs" role="tablist" aria-label="Разделы приложения"><a id="tab-matches" href="#matches" role="tab" aria-controls="matches" aria-selected="true" tabindex="0" data-app-tab="matches">Матчи</a><a id="tab-history" href="#history" role="tab" aria-controls="history" aria-selected="false" tabindex="-1" data-app-tab="history">История</a><a id="tab-quality" href="#quality" role="tab" aria-controls="quality" aria-selected="false" tabindex="-1" data-app-tab="quality">Качество</a><a id="tab-data" href="#data" role="tab" aria-controls="data" aria-selected="false" tabindex="-1" data-app-tab="data" class="owner-only">Инструменты</a></nav>
 <div id="matches" class="app-panel" role="tabpanel" aria-labelledby="tab-matches" data-app-panel><div class="workbench">
@@ -423,17 +423,17 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 </div>
 <section class="card research-card" hidden id="matchResearch" aria-labelledby="researchTitle">
 <div class="research-heading"><div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div class="section-title"><h2 id="researchTitle">Разбор матча</h2></div></div><span class="research-label">АПЛ · факты и источники</span></div>
-<p class="section-hint">Форма команд и сообщения о доступности игроков с датами и источниками. Подтверждение состава отмечается отдельно; недоступные сведения остаются неизвестными.</p>
-<div class="research-actions"><button type="button" id="loadResearch" disabled>Собрать сведения</button><button type="button" id="exportResearch" class="owner-only secondary" disabled>Скачать карточку</button></div>
-<p id="researchStatus" class="status" role="status" aria-live="polite">Выбери предстоящий матч АПЛ, затем нажми «Собрать сведения».</p>
+<p class="section-hint">Сведения об игроках и составы загружаются автоматически.</p>
+<div class="research-actions owner-only"><button type="button" id="loadResearch" disabled>Обновить подробный разбор</button><button type="button" id="exportResearch" class="owner-only secondary" disabled>Скачать карточку</button></div>
+<p id="researchStatus" class="status" role="status" aria-live="polite">Выбери матч АПЛ — сведения появятся автоматически.</p>
 <div id="researchResult" hidden>
 <p id="researchMatch" class="research-match"></p>
 <div id="researchCoverage" class="owner-only research-coverage" aria-label="Покрытие данных"></div>
 <div id="researchTeams" class="research-team-grid"></div>
-<p class="research-note">Часть кубковых турниров может отсутствовать в календаре. Показанный интервал между играми не равен подтверждённому времени отдыха.</p>
+<div id="researchPlayerSources" class="research-note"></div>
 <details id="researchCandidate" class="owner-only research-candidate" hidden></details>
-<section id="researchAi" class="research-news" aria-label="Сведения из новостей"></section>
-<details class="research-news"><summary id="researchNewsTitle">Новости и источники</summary><div id="researchNews"></div></details>
+<details id="researchEvidence" class="research-news" hidden><summary>Сообщения клубов и прессы</summary><section id="researchAi" aria-label="Сведения из новостей"></section></details>
+<details id="researchNewsDetails" class="research-news" hidden><summary id="researchNewsTitle">Новости и источники</summary><div id="researchNews"></div></details>
 <ul id="researchErrors" class="owner-only research-source-errors"></ul>
 <p id="researchUpdated" class="research-note"></p>
 </div>
@@ -630,7 +630,7 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 <p class="research-note"><a href="https://github.com/FoXsYsOfficial1909/Footpredict/actions/workflows/automatic-experiments.yml" target="_blank" rel="noopener noreferrer">Отчёты автоматической проверки моделей</a></p>
 </section>
 </div>
-<p class="credit"><a href="#data" id="ownerToolsLink">Инструменты владельца</a> · FootPredict 1.8 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, API-Football и BBC Sport</p>
+<p class="credit"><a href="#data" id="ownerToolsLink">Инструменты владельца</a> · FootPredict 1.9 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, <a href="https://fantasy.premierleague.com/">Fantasy Premier League</a>, ESPN и BBC Sport</p>
 </main>
 <script>
 (() => {
@@ -1608,7 +1608,7 @@ openPremierLeague();
 
 </script>
 <script type="module" src="./navigation.js?v=1.8"></script>
-<script type="module" src="./research-ui.js"></script>
+<script type="module" src="./research-ui.js?v=1.9"></script>
 <script type="module" src="./automation-ui.js?v=1.8"></script>
 <script type="module" src="./quality-ui.js?v=1.8"></script>
 <script type="module" src="./xg-data-ui.js?v=1.0"></script>

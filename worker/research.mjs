@@ -5,9 +5,11 @@ import {buildEvidence,sourceExcerpts,validateEvidenceChoices,currentAvailability
 import {parseModelAnswer,describeModelAnswer} from './ai-response.mjs';
 import {storedOfficialNews,OFFICIAL_LIMITS} from './official.mjs';
 import {aiCacheSchema,evidenceCache,useEvidenceCache} from './ai-cache.mjs';
+import {getPlayerAvailability} from './player-availability.mjs';
+import {getConfirmedLineups} from './confirmed-lineups.mjs';
 export {cleanText} from './text.mjs';
 export {normalizeModelAnswer} from './ai-response.mjs';
-export const RESEARCH_VERSION = 'research-0.7.0';
+export const RESEARCH_VERSION = 'research-0.8.0';
 const DAY = 86400000;
 const MAX_FEED_BYTES = 500000;
 const NEWS_AGE_DAYS = 10;
@@ -213,6 +215,9 @@ export async function collectResearch(fixtureId, env, services) {
   const season = await services.upstream('fd', `/competitions/PL/matches?season=${year}`);
   if (!Array.isArray(season.data.matches)) throw Object.assign(new Error('Нет статистики сезона.'), {status: 502});
   const teams = [fixture.homeTeam, fixture.awayTeam].map(team => teamStatistics(team, season.data.matches, {cutoff: now, kickoff}));
+  // Keep dated provider reports in new append-only research snapshots for later
+  // prospective feature evaluation. They do not alter any prediction weights.
+  const playerContext = Promise.all([getPlayerAvailability(env,services,fixture),getConfirmedLineups(env,services,fixture)]);
   const packet = {schemaVersion: 1, version: RESEARCH_VERSION, status: 'partial',
     collectedAt: new Date(now).toISOString(), featureCutoffAt: new Date(now).toISOString(),
     fixture: {id: fixtureId, competition: 'PL', season: year, kickoff: fixture.utcDate,
@@ -275,9 +280,12 @@ export async function collectResearch(fixtureId, env, services) {
   } else packet.sourceErrors.push({source: 'API-Football injuries', reason: cooling.reason || 'rate_limit_cooldown', status: cooling.status || 429});
   const cache=env.FOOTPREDICT_DB?evidenceCache(await schema(env)):null;
   packet.ai = await extractFacts(env.AI, packet.articles, () => services.reserve('research-ai:day:' + day, DAILY_AI_CALLS),{cache,now:services.now});
+  [packet.playerAvailability,packet.reportedLineups] = await playerContext;
   packet.coverage = {form: teams.every(team => team.form.length > 0),
+    playerStatuses:packet.playerAvailability.status === 'available',
     injuries: teams.every(team => team.injuries.status === 'reported_by_api'),
-    lineups: teams.every(team => team.lineup.status === 'provided_by_api'),
+    lineups: teams.every(team => team.lineup.status === 'provided_by_api') ||
+      packet.reportedLineups.teams.every(team=>team.status==='reported_by_provider'),
     completeCalendar: false, news: packet.articles.length > 0, ai: ['complete', 'partial'].includes(packet.ai.status)&&packet.ai.facts.length>0,
     availabilityReports:packet.availabilityReports.length>0,officialNews:packet.articles.some(article=>article.sourceType==='official_club')};
   packet.collectionStartedAt = packet.collectedAt;

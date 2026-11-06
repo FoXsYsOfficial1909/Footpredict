@@ -59,6 +59,8 @@ with sync_playwright() as playwright:
         assert page.locator('#researchResult').is_visible(),page.locator('#researchStatus').inner_text()
         assert page.locator('.research-team').count()==2
         assert page.locator('.research-article').count()>0
+        page.locator('#researchEvidence').evaluate('(element)=>element.open=true')
+        page.locator('#researchNewsDetails').evaluate('(element)=>element.open=true')
         assert page.locator('#score').inner_text()==original_score
         page.locator('#researchCandidate summary').click()
         assert page.locator('.candidate-probabilities strong').count()==3

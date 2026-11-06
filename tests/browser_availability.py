@@ -41,13 +41,18 @@ with sync_playwright() as playwright:
                 route.fulfill(response=route.fetch(url=address))
 
         page.route('**'+RESEARCH_PATH,research)
-        page.goto(BASE,wait_until='networkidle',timeout=60000)
+        page.route('**'+RESEARCH_PATH+'/stored',research)
+        # This test covers the archived quote policy. Free current player data
+        # has its own independent browser test and must not contact providers here.
+        page.route('**/v1/player-context/**',lambda route:route.fulfill(status=503,content_type='application/json',body='{}'))
+        page.goto(BASE.split('#')[0]+'#serviceStatus',wait_until='networkidle',timeout=60000)
+        page.click('#tab-matches')
         page.evaluate("""({api,fixtureId})=>window.dispatchEvent(new CustomEvent('footpredict:match-selected',{
             detail:{league:'PL',fixtureId,apiBase:api}}))""",{'api':API,'fixtureId':FIXTURE_ID})
         before_score=page.locator('#score').inner_text()
-        page.click('#loadResearch')
-        page.wait_for_function("!document.getElementById('loadResearch').disabled",timeout=40000)
+        page.wait_for_function("!document.getElementById('researchResult').hidden",timeout=40000)
         assert page.locator('#researchResult').is_visible(),page.locator('#researchStatus').inner_text()
+        page.locator('#researchEvidence').evaluate('(element)=>element.open=true')
         assert page.locator('#score').inner_text()==before_score
         with page.expect_download() as event:page.click('#exportResearch')
         packet=json.loads(Path(event.value.path()).read_text())

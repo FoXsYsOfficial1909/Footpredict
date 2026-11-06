@@ -14,6 +14,7 @@ import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import tempfile
 import urllib.error
@@ -131,6 +132,8 @@ def main():
     parser.add_argument('--add-ai-binding',action='store_true')
     parser.add_argument('--rollback',type=Path)
     args=parser.parse_args()
+    if not args.rollback:
+        subprocess.run([sys.executable,str(ROOT/'scripts/build_site.py')],check=True)
     client=Client()
     before,schedules,live=save_backup(client,args.backup_dir)
     if args.rollback:

@@ -48,3 +48,21 @@ test('health does not expose secret values',async()=>{
   const response=await worker.fetch(request('/v1/health'),env);const text=await response.text();
   assert.ok(!text.includes(env.ADMIN_TOKEN));assert.equal(JSON.parse(text).research.aiBinding,false);
 });
+
+test('the public Worker site serves only bundled assets and supports same-origin API reads',async()=>{
+  const index=await worker.fetch(request('/app/'),env);
+  assert.equal(index.status,200);assert.match(index.headers.get('Content-Type'),/^text\/html/);
+  assert.match(await index.text(),/FootPredict 1\.9/);
+  const script=await worker.fetch(request('/app/research-ui.js?v=1.9'),env);
+  assert.equal(script.status,200);assert.match(await script.text(),/\/v1\/player-context\//);
+  const head=await worker.fetch(request('/app/','HEAD'),env);
+  assert.equal(head.status,200);assert.equal(await head.text(),'');
+  const redirect=await worker.fetch(request('/app'),env);
+  assert.equal(redirect.status,308);assert.equal(redirect.headers.get('Location'),'/app/');
+  for(const path of ['/app/.env','/app/worker/index.mjs','/app/tests/worker.test.mjs'])
+    assert.equal((await worker.fetch(request(path),env)).status,404);
+  assert.equal((await worker.fetch(request('/app/','POST'),env)).status,405);
+  const ownOrigin='https://worker.test';
+  const api=await worker.fetch(request('/v1/model-v2','GET',ownOrigin),env);
+  assert.equal(api.status,200);assert.equal(api.headers.get('Access-Control-Allow-Origin'),ownOrigin);
+});

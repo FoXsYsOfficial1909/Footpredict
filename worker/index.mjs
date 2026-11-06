@@ -3,6 +3,8 @@ import {predictV2, modelV2Info} from './model-v2.mjs';
 import {qualityReport} from './quality.mjs';
 import {comparisonReport,comparisonEvidence,NIGHTLY_COMPARISON_PROTOCOL} from './comparison.mjs';
 import {loadNightlyModel} from './nightly-model.mjs';
+import {getPlayerContext,PLAYER_CONTEXT_VERSION} from './player-context.mjs';
+import {getSiteAsset} from './site-assets.mjs';
 import {AUTOMATION_VERSION, runAutomation, automationStatus, dailyReport, shadowHistory, shadowEvidence} from './automation.mjs';
 
 const PRIOR_SEASON_WEIGHT = 0.35;
@@ -460,18 +462,27 @@ export default {
  async fetch(req,env){
   const headers={'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Origin'};
   const origin=req.headers.get('Origin');
-  const allowedOrigins=new Set([env.ALLOWED_ORIGIN,'http://127.0.0.1:8000']);
+  const allowedOrigins=new Set([env.ALLOWED_ORIGIN,'http://127.0.0.1:8000',new URL(req.url).origin]);
   if(origin&&allowedOrigins.has(origin)){headers['Access-Control-Allow-Origin']=origin;headers['Access-Control-Allow-Methods']='GET, POST, OPTIONS';headers['Access-Control-Allow-Headers']='Content-Type, Authorization';headers['Access-Control-Expose-Headers']='X-FootPredict-Source';}
   const reply=(data,status=200)=>new Response(JSON.stringify(data),{status,headers});
   try{
     if(origin&&!allowedOrigins.has(origin))fail(403,'Этот origin не разрешён.');
     if(req.method==='OPTIONS')return new Response(null,{status:204,headers});
     const u=new URL(req.url);
+    if(u.pathname==='/app'||u.pathname.startsWith('/app/')){
+      if(!['GET','HEAD'].includes(req.method))fail(405,'Метод не разрешён.');
+      if(u.pathname==='/app')return new Response(null,{status:308,headers:{Location:'/app/','Cache-Control':'no-store'}});
+      const asset=getSiteAsset(u.pathname);
+      if(!asset)fail(404,'Файл не найден.');
+      return new Response(req.method==='HEAD'?null:asset.body,{headers:{'Content-Type':asset.contentType,
+        'Cache-Control':asset.contentType.startsWith('text/html')?'no-store':'public, max-age=300',
+        'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'}});
+    }
     if(u.pathname==='/v1/health'&&req.method==='GET'){
       let usage=null,aiCache=null;
       if(env.FOOTPREDICT_DB)try{const services=researchServices(env),day=new Date().toISOString().slice(0,10);usage={cards:await services.budgetUsage('research:day:'+day),ai:await services.budgetUsage('research-ai:day:'+day)};}catch{/* Health remains useful when optional counters cannot be read. */}
       if(env.FOOTPREDICT_DB)try{aiCache=await primary(env).prepare('SELECT COUNT(*) AS entries,SUM(CASE WHEN expires_at>?1 THEN 1 ELSE 0 END) AS valid FROM ai_evidence_cache').bind(Date.now()).first();}catch{/* The cache is created by the next collection or scheduled task. */}
-      return reply({version:'1.7.1',history:'D1',automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage,aiCache},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
+      return reply({version:'1.8.0',history:'D1',playerContextVersion:PLAYER_CONTEXT_VERSION,automationVersion:AUTOMATION_VERSION,research:{version:RESEARCH_VERSION,aiBinding:!!env.AI,limits:researchLimits,usage,aiCache},configured:!!env.FOOTPREDICT_DB&&!!env.FOOTPREDICT_CACHE&&!!env.FOOTBALL_DATA_KEY&&!!env.API_FOOTBALL_KEY&&!!env.ALLOWED_ORIGIN&&!!env.ADMIN_TOKEN&&env.ADMIN_TOKEN.length>=32});
     }
     if(u.pathname==='/v1/comparison'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonReport(primary(env)));}
     const comparisonMatch=u.pathname.match(/^\/v1\/comparison\/(\d{1,12})\/evidence$/);
@@ -499,6 +510,12 @@ export default {
         asOf:r.asOf,trainingCutoffExclusive:r.trainingCutoffExclusive,latestTrainingMatch:r.latestTrainingMatch,
         trainingGeneratedAt:r.generatedAt,verifiedAt:bundle.modelFetchedAt,sourceCommit:r.sourceCommit,trainingRunId:r.runId,
         promotedToDefault:false,newsUsedInProbabilities:false});
+    }
+    const playerContextMatch=u.pathname.match(/^\/v1\/player-context\/(\d{1,12})$/);
+    if(playerContextMatch){
+      if(u.search)fail(400,'Неизвестный параметр сведений об игроках.');
+      if(req.method!=='GET')fail(405,'Метод не разрешён.');
+      return reply(await getPlayerContext(positiveId(playerContextMatch[1]),env,researchServices(env)));
     }
     const researchMatch=u.pathname.match(/^\/v1\/research\/(\d{1,12})(\/(?:refresh|stored))?$/);
     if(researchMatch){

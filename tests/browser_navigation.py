@@ -59,7 +59,8 @@ with sync_playwright() as playwright:
         assert page.locator('#homeName').input_value()=='Хозяева'
         assert page.locator('#provider').input_value()=='fd' and page.locator('#competition').input_value()=='PL'
         assert requests and all(method=='GET' for method,_ in requests)
-        assert all('/v1/research/' not in url for _,url in requests)
+        assert all('/v1/research/' not in url or url.endswith('/stored') for _,url in requests)
+        assert page.locator('#loadResearch').is_hidden()
         assert not errors,errors
         result={'publicTabs':3,'automaticEpl':True,'forecastWorks':True,'technicalControlsHidden':True,
             'ownerToolsOptIn':True,'mobileOverflow':False,'keyboard':True,'readOnlyRequests':len(requests),'jsErrors':errors}
