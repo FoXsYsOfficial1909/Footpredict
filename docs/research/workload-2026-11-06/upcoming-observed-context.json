@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-06T08:36:53.187357+00:00",
+  "sourceEventsSha256": "82224cfaaac77afe859ef4ae96ea9394397e1cb41b3395305cfe14b10d01c556",
+  "notInputsToFrozenForecasts": true,
+  "frozenForecastPacketSha256": "9a66a0c946cf34175a9159276e266c15f7eec804a6cadfa729b565838552b3f7",
+  "description": "Observed calendar context collected after the prediction packet was frozen. Game counts are lower bounds; days since the last observed game are not confirmed true rest. No probabilities were recalculated.",
+  "fixtures": [
+    {
+      "fixtureId": 560632,
+      "utcDate": "2026-11-07T12:30:00Z",
+      "home": "Leeds",
+      "away": "Tottenham",
+      "cutoffExclusive": "2026-11-06",
+      "sides": {
+        "home": {
+          "team": "Leeds",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 2,
+          "daysSinceLastObservedGame": 7,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Bournemouth",
+            "away": "Leeds",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401879251",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T15:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Tottenham",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 2,
+          "daysSinceLastObservedGame": 7,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Tottenham",
+            "away": "Crystal Palace",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401878761",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T17:30:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560633,
+      "utcDate": "2026-11-07T15:00:00Z",
+      "home": "Fulham",
+      "away": "Newcastle",
+      "cutoffExclusive": "2026-11-06",
+      "sides": {
+        "home": {
+          "team": "Fulham",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 3,
+          "daysSinceLastObservedGame": 7,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Aston Villa",
+            "away": "Fulham",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401879250",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Newcastle",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 3,
+          "daysSinceLastObservedGame": 5,
+          "lastObservedGame": {
+            "date": "2026-11-02",
+            "home": "Newcastle",
+            "away": "Everton",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401878762",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-02T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560640,
+      "utcDate": "2026-11-07T15:00:00Z",
+      "home": "Arsenal",
+      "away": "Hull",
+      "cutoffExclusive": "2026-11-06",
+      "sides": {
+        "home": {
+          "team": "Arsenal",
+          "observedGamesLast7Days": 2,
+          "observedGamesLast14Days": 4,
+          "daysSinceLastObservedGame": 3,
+          "lastObservedGame": {
+            "date": "2026-11-04",
+            "home": "Slavia Prague",
+            "away": "Arsenal",
+            "competition": "uefa.champions",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915381",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-04T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Hull",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 2,
+          "daysSinceLastObservedGame": 7,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Hull",
+            "away": "Ipswich",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401878763",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T15:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560641,
+      "utcDate": "2026-11-07T17:30:00Z",
+      "home": "Nott'm Forest",
+      "away": "Man City",
+      "cutoffExclusive": "2026-11-06",
+      "sides": {
+        "home": {
+          "team": "Nott'm Forest",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 1,
+          "daysSinceLastObservedGame": 7,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Brentford",
+            "away": "Nott'm Forest",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401879249",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T15:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Man City",
+          "observedGamesLast7Days": 2,
+          "observedGamesLast14Days": 4,
+          "daysSinceLastObservedGame": 3,
+          "lastObservedGame": {
+            "date": "2026-11-04",
+            "home": "RB Leipzig",
+            "away": "Man City",
+            "competition": "uefa.champions",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915306",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-04T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560635,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "home": "Crystal Palace",
+      "away": "Liverpool",
+      "cutoffExclusive": "2026-11-07",
+      "sides": {
+        "home": {
+          "team": "Crystal Palace",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 4,
+          "daysSinceLastObservedGame": 3,
+          "lastObservedGame": {
+            "date": "2026-11-05",
+            "home": "Crystal Palace",
+            "away": "TSG Hoffenheim",
+            "competition": "uefa.europa",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915526",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-05T17:45:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Liverpool",
+          "observedGamesLast7Days": 2,
+          "observedGamesLast14Days": 4,
+          "daysSinceLastObservedGame": 4,
+          "lastObservedGame": {
+            "date": "2026-11-04",
+            "home": "Fenerbahce",
+            "away": "Liverpool",
+            "competition": "uefa.champions",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915382",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-04T17:45:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560636,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "home": "Sunderland",
+      "away": "Chelsea",
+      "cutoffExclusive": "2026-11-07",
+      "sides": {
+        "home": {
+          "team": "Sunderland",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 4,
+          "daysSinceLastObservedGame": 3,
+          "lastObservedGame": {
+            "date": "2026-11-05",
+            "home": "Sunderland",
+            "away": "Dinamo Zagreb",
+            "competition": "uefa.europa",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915523",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-05T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Chelsea",
+          "observedGamesLast7Days": 0,
+          "observedGamesLast14Days": 2,
+          "daysSinceLastObservedGame": 8,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Chelsea",
+            "away": "Man United",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401879248",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T12:30:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560637,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "home": "Ipswich",
+      "away": "Bournemouth",
+      "cutoffExclusive": "2026-11-07",
+      "sides": {
+        "home": {
+          "team": "Ipswich",
+          "observedGamesLast7Days": 0,
+          "observedGamesLast14Days": 1,
+          "daysSinceLastObservedGame": 8,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Hull",
+            "away": "Ipswich",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401878763",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T15:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Bournemouth",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 4,
+          "daysSinceLastObservedGame": 3,
+          "lastObservedGame": {
+            "date": "2026-11-05",
+            "home": "Sparta Prague",
+            "away": "Bournemouth",
+            "competition": "uefa.europa",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915528",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-05T17:45:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560638,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "home": "Brighton",
+      "away": "Brentford",
+      "cutoffExclusive": "2026-11-07",
+      "sides": {
+        "home": {
+          "team": "Brighton",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 4,
+          "daysSinceLastObservedGame": 3,
+          "lastObservedGame": {
+            "date": "2026-11-05",
+            "home": "Getafe",
+            "away": "Brighton",
+            "competition": "uefa.europa.conf",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915821",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-05T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Brentford",
+          "observedGamesLast7Days": 0,
+          "observedGamesLast14Days": 3,
+          "daysSinceLastObservedGame": 8,
+          "lastObservedGame": {
+            "date": "2026-10-31",
+            "home": "Brentford",
+            "away": "Nott'm Forest",
+            "competition": "eng.1",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401879249",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-10-31T15:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    },
+    {
+      "fixtureId": 560639,
+      "utcDate": "2026-11-08T16:30:00Z",
+      "home": "Man United",
+      "away": "Aston Villa",
+      "cutoffExclusive": "2026-11-07",
+      "sides": {
+        "home": {
+          "team": "Man United",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 3,
+          "daysSinceLastObservedGame": 5,
+          "lastObservedGame": {
+            "date": "2026-11-03",
+            "home": "Man United",
+            "away": "AS Roma",
+            "competition": "uefa.champions",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915308",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-03T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        },
+        "away": {
+          "team": "Aston Villa",
+          "observedGamesLast7Days": 1,
+          "observedGamesLast14Days": 3,
+          "daysSinceLastObservedGame": 5,
+          "lastObservedGame": {
+            "date": "2026-11-03",
+            "home": "Barcelona",
+            "away": "Aston Villa",
+            "competition": "uefa.champions",
+            "played": true,
+            "minutes": 90,
+            "minutes_known": true,
+            "source_id": "ESPN:401915387",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2026&limit=1000",
+            "kickoff": "2026-11-03T20:00:00Z"
+          },
+          "trueDaysRest": null,
+          "allCompetitionCoverageVerified": false
+        }
+      }
+    }
+  ]
+}

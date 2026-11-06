@@ -1,0 +1,5563 @@
+{
+  "requiredCompetitions": [
+    "eng.1",
+    "eng.2",
+    "eng.fa",
+    "eng.league_cup",
+    "eng.charity",
+    "uefa.champions",
+    "uefa.europa",
+    "uefa.europa.conf",
+    "uefa.champions_qual",
+    "uefa.europa_qual",
+    "uefa.europa.conf_qual",
+    "uefa.super_cup",
+    "fifa.cwc",
+    "fifa.intercontinental_cup"
+  ],
+  "requiredCompetitionsVerified": false,
+  "scopes": [
+    {
+      "competition": "eng.1",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "9522c60cdbdf2391ab5cd5095bfc86955740d8b04c233e57bf2f2eda7245f569"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "71822d2c15fe743ac66627160cc57a860cf2d755c8d6eeb293d3160e959c007f"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "078bf8cf434f97a5cae2f67a718131780d0c66ad3ff5b533119de56991951eb8"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "ab1756f9c3308c5f9fbf8967c1bbc153f8497f603b72889a578059406da140a8"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "0d1dfc8eb034dcc50824d5f0753b2d6653361985b27505a83c44fa93b68decb9"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "5a8fd046cbde38fb8704c2209896881f9edbe0febd03fc9605cd5f327e746274"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "0d11722547fdc8ed5e9cf6218fde22059de47474be5b190472b256430f0eaafb"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "02721237701a9836b8119a49714d5f900066f8d4683be076b32ce428a20d6db3"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "d9ebf15d2444dc5d6c9c9e58560e8f300a17a096aa4367598072eb96b9ad3720"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "ff388998a8636e610b73b4c75de888d17556469f60a2084c379decf2734a6581"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2019-01-01",
+      "end": "2019-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "dbab21acebe80cbdf88c769b5598627503f66f9b96819da47f4665c9fb8f66fb"
+    },
+    {
+      "competition": "eng.1",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "238703be0ad6dee526312687cff77ce9eab1419ecc9186c6701bc55c19b912da"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "c9b8dccad4e912fdec8bac8fc10b642f8207a4669d935fd06671ace8f3f00b37"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "fe73aa0600606afaa981fcdf5a4ae9d06f233dedb9906daab7e074e4a2c089b8"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "c56f876a21c27ceee7ceb50ef00b2d8c9bf99ac6ed24c09e0ed29d8f0574d0a7"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "99743532a4882f90b101f2c945d9e74c453fdb6ca54eef8bdf4a2d4a203cad3c"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "a3f047869327502978e6096cd51eb515f38ea7528ab711b60b983f6621e1128a"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "88f0a2da81a12a5debdcffdfdf0e216d5d7bf223e1a374995556ddf941fc2f45"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "6c66aff2c0d8aecf96445ecaab893b5c3610f03b57761e9955d382fd82af3b7d"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "b884940f19fba5b8f7d9ff15a3584d3a28092be0fc380dcaf779097db10bec62"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "a87b5cbd6483be610e9e97fd169e2fcf834392ba5b931a9dbcac7040a654f7ef"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "19aa900ed0267a86ca0cda541217b3542340938c486215f1326ce96a54ae3517"
+    },
+    {
+      "competition": "eng.1",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "17c4402857ce03841f130f787adb4d4cf74e1032dadbc79c2b17e755e5398a38"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "3a8cd4c3957ff47b0044c71778c76fced99a89ff7475c16c831b0d7d50ea137b"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "baf697a3eba7ba689e25a67f98c3f7c5ef0808ca2e8707e6d680e66dded368ca"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "33d55c8be363746ecb1784191791c75b27f3db2b0cd2ebc91a2c0bd2547137d6"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "ce53bda2a837d00a1f767b936296851aafb01c6f8125cb336020df1aa71c56f3"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "9820d4e189682e3d96ad38c7139438659658990b13cb394b9761af8eff5b1891"
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "5b8529d82457879d7e35acb86a21379c24030befee1a0e8c63b43cda0e4f579b"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "deafb393a8bba6df825b85e01a5b2b4513dfd280dd5b781a5dbfb9e8afd00ed7"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "09d867570196991bddff7900bc06d6a6bc9bf2eada81e5544354f10b8363fd65"
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "39d8276173dd29af584720f8fcabfc165453dacb68b22332efadef1495efe822"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "06e06fa5f5f51f98336cec1be2af1b4abdbdd2c02b34d1162239ca946c98e885"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "a1715283b61195dd39aa1f15d6750949d36683634367207597ad875dce4a4f56"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "241ac8a55331fffc85a1d3aa9f792577c7e50413125d0124ee3e62853f063fb8"
+    },
+    {
+      "competition": "eng.1",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "d607ba33bfbf7f5a26d8e481fa66dd091f45d4955197f818f77eb28fbdafc0a0"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "d0e4382b34f49c41c049e10dadd8bccb3b810abaae5f48671cda1cea4528b84f"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "0411855863e61f5adb9eae2591dd3d2ee18b65afe6ce6b0c9bcc64c5d672dce6"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "679c5586fb58aeb3764ec627d581a45cc68605109c01ae01255b91aac90da116"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "1ce9c3ce016390605c66023b62f30930c664fa5a995913d0bf23a90590520f44"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "c6f5686aedcb61d994905dc78686060992a915c16c2a5422a6d44cf5c704d8c9"
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "95feefb41abd04a38e72c11492380185b8dc34ec526acbfcfb500f51c0cede5f"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "2fac435149f71b513c1fb8c82e30d12c519ecbe103dab59e0d4a24deb64b1fff"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "3acf41683482c83bec2f55ec81bfe350f248949ba8b778ff9f4a5019fe32f1ac"
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "e92aefcc1f70f9592fe2a251e262d3e3a71640a03468a298376fc750180650a7"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "7dc453238135b909ed337335bc534b679f9295ad7a75ee14de79b7f6f3832217"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "a00050f4fcf314ef1f9a24464a25132e0af98b35d9ec811108bf20ed4486aa5d"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "9594ebc271bb9614f6aad3c3e36dd8787a5334663db95f923b41fb3490b2b4f3"
+    },
+    {
+      "competition": "eng.1",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "5771acee6025cb4de98993a59bfa6a765557ee4bd6ae0521d19db0d4e85c907f"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "24ab61f37d828b897f8d66dcc5cba292ea9fc8226efacd3f5d2d6ff162acdb88"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "f3168220b1b48b29f442cbbc14dbcdf123aeb2871f3b82f6b2ec607336b4021a"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "26ecc7a0eccca6ca9c14109612efa2069097d4972ea9f7f2b7fd8d0dba7fdce1"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "c90e20c2906f5d54e25db955c6cad38fa12ac3d99ea978be638e27cf6cd9d4ba"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "9d0abe4e30848cf727889fc8ef0bf00cbd9965cf495ba87f10953bae87c43c45"
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "39b1aff05d96da584ccb00efc0c26898b1482916b6b296bc9ffaec0e870bf67c"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "f774d1bd0e9fecef8f0ad629d6c0acf6a90b25ee380fa0efaed2e7362cf605d8"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "792d4a92540bcfb0ff4772f2c5ed7e2292998985a7d898f1fd9d42274cf96f6e"
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "f8606712745312f2a13b864e7badcd8b4bff98e95571b9120769bb6bd07b5239"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "07a46d6fc5c08d5d9834b42e9e9f459cf2617c7e48707df5bd80ef70ef269b59"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "605a866d02f8b322a2ea398b00781376f73bdcf7a7b681d8ff93461a34f74efe"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "aceb1cfdceaf4fd37784b3b16fcc0d7213ea3785880e837a0b8d63d0de1f9571"
+    },
+    {
+      "competition": "eng.1",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "da94a6be12f5df3044759e936760111630edf7dfae473e53ce0e42741ec45086"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "c4a30cad8539fa6c07f3bae308a1f09319f001045033041ff1ada32acde7fd4f"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "f27dbbd9dacd029bd8e5230736814d06089251378ac9a75be62889e42fe6736b"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "c504ff1e22526fa5d9b3012f496f1396a69a5a13809c2c8fd24c19f86b537c79"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "b73845850862f646f302bc7816d3daf586bc936ab40d9e38b1a2f751c4385cf6"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "6ee67cb9943f80db5e1ca5b6247bbbb1d4dfca84d55daf25cde3306de709234b"
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "03cf944e304e76dd6dd62d488822b1a74d34f5220499481f91ad6ee6e372e968"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "77f2f97603d4e9f6450d845a8c7a644b83b78430fbe74caef2f65b624abd3547"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "69faa21c5030962d700e29adc2300c7ca24bfdea57e1c70dddda3d62393f0399"
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "644e41ef7ef2761b56f842c9961a16b4ff1eddc8c70fc073da5289c7b9c84c9c"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "ad119d98de6c29a176a86d8f94c549013195222522ca23349e2b478c3112356b"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "9d71c3d5b9728d5a5ec1c1ee6a140bd790ba5177c53f9e573393333bcc37a36f"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "8d854f681d1d8fe7dd10c40f6cd92f8a4b08e98dae65e2f3725215e14e1b84d5"
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental_cup/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "b0dd733f8940862850aa3ef926f1b934222089bbc9b37c8f4e2023195ff350c0"
+    },
+    {
+      "competition": "eng.1",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "c73aebba39d8f78a2c702e100212af3a53217a191910745300dddf6ebdc06b8f"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "e36f819965201f6a2c8baccc2789269cdc02e0934539407ea920769834d3010e"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "7833b3f065564aee9d011c5275e157ad1fb27e224d3e712767a9245c3c9d1775"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "3ed70d25e6d0c9e0565fc7c7b0bd04edbbfcb432041ae8ddf66b70297f19b9ca"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "d80aab4850b7013966619687164a0e8180e46a83ad7538bfa94dc38737020375"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "798097e8197a14ac0a45add75319e722ec7cec75d4983958154217e04bab51c6"
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "a55284254ad8d1d57e7eedc2f18ba5d1bf985b4ab929169eb27d18904f882a37"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "d2e529d7c71d62b2d5a91bc78036095ad22de43914de17474b61661828d30af4"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "675909ae1700a781dd6fedb5d373ea626b5495438afab61d2065f51147603420"
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "3792a3c9acc4c1db5826c4fe7f59e9d4f050eccd42ad0a0158c79005690529ed"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "eb6f2e2e9752dec45455f9a52e2a578a6cf4f817a05e38dd1417aacabf9c6380"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "efaaf72ba8ce3843d59d37e0825436be725635b64529dbac649b81a942c74740"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "045801fb9aa2b10dac71c637d1b805822238c0fbae94c5c1db87b865b0e7bbe2"
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental_cup/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "74698f1286eb5da2f691ba5bb8c6c460b89f732a6b12890831b3769cec38cc67"
+    },
+    {
+      "competition": "eng.1",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "3bbd42fdb68a70c2902d60abd7f93d39027f289266c0493a6b8de86772d576b3"
+    },
+    {
+      "competition": "eng.2",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "fd8d5bdf447db0b3336e0c391439e9043a69c2cf6b4be8e76a68c815f828d42a"
+    },
+    {
+      "competition": "eng.fa",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "f9d033098770b112f0158593e8153d5189aa293733cb996704ba96ebc2838b0f"
+    },
+    {
+      "competition": "eng.league_cup",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "dde879e7e404a5cae733cbb69e96fc59093ac3c65cb048d718df67c73027c6b1"
+    },
+    {
+      "competition": "uefa.champions",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "558329be3b87046485d20d5a5637ede52fa92b5f200a44d4b6cc9a1399349f0f"
+    },
+    {
+      "competition": "uefa.europa",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "b5f170fcd3d7976911edf7964f37245614d2a2f47daca1e8b5143cfbc81fb2f5"
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "c270668a3b5b87ac7463995e5323b51b4cc2b6dfb0674b09ca5a149e332a672e"
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "59dc3ab8d9a9c28b53838820235fb6b86336de81fcd4a8624663aecbb47f6751"
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "732e6109d4df842de0ef257d4927d991a5f04e582691c78f9562f3ed6a43618b"
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "69aca824dd179d8f907a4aad474f46bcab732b55075a46b59bbf9a296d9d64ae"
+    },
+    {
+      "competition": "eng.charity",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "344d4ba260be9f6656ab31917cb8206b8546ab8bd4d73206d97c8eb62c3ff147"
+    },
+    {
+      "competition": "uefa.super_cup",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "9d0b6747def116a2b432fcb2c5f3cc5279efc61c3053a2757d9f5b04be3613a3"
+    },
+    {
+      "competition": "fifa.cwc",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "8d854f681d1d8fe7dd10c40f6cd92f8a4b08e98dae65e2f3725215e14e1b84d5"
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "complete": false,
+      "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental_cup/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "55029db9f1766a46812cbd13b0bf5899d0cf46bd598a2e6dbc7dd8276fc7a838"
+    }
+  ],
+  "source": "ESPN public official-competition scoreboards",
+  "coverageCaveat": "Complete query retrieval and EPL identity verification do not establish all-competition completeness.",
+  "trackedCompetitions": [
+    "eng.1",
+    "eng.2",
+    "eng.fa",
+    "eng.league_cup",
+    "eng.charity",
+    "uefa.champions",
+    "uefa.europa",
+    "uefa.europa.conf",
+    "uefa.champions_qual",
+    "uefa.europa_qual",
+    "uefa.europa.conf_qual",
+    "uefa.super_cup",
+    "fifa.cwc",
+    "fifa.intercontinental_cup"
+  ],
+  "allCompetitionsComplete": false,
+  "competitionSeasonCounts": [
+    {
+      "competition": "eng.1",
+      "season": 2018,
+      "played": 180
+    },
+    {
+      "competition": "eng.1",
+      "season": 2019,
+      "played": 314
+    },
+    {
+      "competition": "eng.1",
+      "season": 2020,
+      "played": 446
+    },
+    {
+      "competition": "eng.1",
+      "season": 2021,
+      "played": 380
+    },
+    {
+      "competition": "eng.1",
+      "season": 2022,
+      "played": 380
+    },
+    {
+      "competition": "eng.1",
+      "season": 2023,
+      "played": 380
+    },
+    {
+      "competition": "eng.1",
+      "season": 2024,
+      "played": 380
+    },
+    {
+      "competition": "eng.1",
+      "season": 2025,
+      "played": 380
+    },
+    {
+      "competition": "eng.1",
+      "season": 2026,
+      "played": 90
+    },
+    {
+      "competition": "eng.2",
+      "season": 2018,
+      "played": 257
+    },
+    {
+      "competition": "eng.2",
+      "season": 2019,
+      "played": 475
+    },
+    {
+      "competition": "eng.2",
+      "season": 2020,
+      "played": 639
+    },
+    {
+      "competition": "eng.2",
+      "season": 2021,
+      "played": 557
+    },
+    {
+      "competition": "eng.2",
+      "season": 2022,
+      "played": 545
+    },
+    {
+      "competition": "eng.2",
+      "season": 2023,
+      "played": 557
+    },
+    {
+      "competition": "eng.2",
+      "season": 2024,
+      "played": 557
+    },
+    {
+      "competition": "eng.2",
+      "season": 2025,
+      "played": 557
+    },
+    {
+      "competition": "eng.2",
+      "season": 2026,
+      "played": 168
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2019,
+      "played": 1
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2020,
+      "played": 1
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2021,
+      "played": 1
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2022,
+      "played": 1
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2023,
+      "played": 1
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2024,
+      "played": 1
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2025,
+      "played": 1
+    },
+    {
+      "competition": "eng.charity",
+      "season": 2026,
+      "played": 1
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2018,
+      "played": 72
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2019,
+      "played": 153
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2020,
+      "played": 126
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2021,
+      "played": 136
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2022,
+      "played": 144
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2023,
+      "played": 149
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2024,
+      "played": 123
+    },
+    {
+      "competition": "eng.fa",
+      "season": 2025,
+      "played": 123
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2018,
+      "played": 5
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2019,
+      "played": 92
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2020,
+      "played": 90
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2021,
+      "played": 92
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2022,
+      "played": 93
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2023,
+      "played": 93
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2024,
+      "played": 93
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2025,
+      "played": 93
+    },
+    {
+      "competition": "eng.league_cup",
+      "season": 2026,
+      "played": 84
+    },
+    {
+      "competition": "fifa.cwc",
+      "season": 2019,
+      "played": 8
+    },
+    {
+      "competition": "fifa.cwc",
+      "season": 2020,
+      "played": 7
+    },
+    {
+      "competition": "fifa.cwc",
+      "season": 2021,
+      "played": 8
+    },
+    {
+      "competition": "fifa.cwc",
+      "season": 2022,
+      "played": 7
+    },
+    {
+      "competition": "fifa.cwc",
+      "season": 2023,
+      "played": 7
+    },
+    {
+      "competition": "fifa.cwc",
+      "season": 2024,
+      "played": 54
+    },
+    {
+      "competition": "fifa.cwc",
+      "season": 2025,
+      "played": 10
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "season": 2024,
+      "played": 5
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "season": 2025,
+      "played": 5
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "season": 2026,
+      "played": 2
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2018,
+      "played": 32
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2019,
+      "played": 196
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2020,
+      "played": 136
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2021,
+      "played": 125
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2022,
+      "played": 125
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2023,
+      "played": 125
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2024,
+      "played": 189
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2025,
+      "played": 189
+    },
+    {
+      "competition": "uefa.champions",
+      "season": 2026,
+      "played": 72
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "season": 2020,
+      "played": 56
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "season": 2021,
+      "played": 93
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "season": 2022,
+      "played": 89
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "season": 2023,
+      "played": 86
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "season": 2024,
+      "played": 90
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "season": 2025,
+      "played": 92
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "season": 2026,
+      "played": 90
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2018,
+      "played": 68
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2019,
+      "played": 489
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2020,
+      "played": 220
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2021,
+      "played": 139
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2022,
+      "played": 141
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2023,
+      "played": 141
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2024,
+      "played": 189
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2025,
+      "played": 189
+    },
+    {
+      "competition": "uefa.europa",
+      "season": 2026,
+      "played": 72
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "season": 2021,
+      "played": 141
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "season": 2022,
+      "played": 141
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "season": 2023,
+      "played": 141
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "season": 2024,
+      "played": 153
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "season": 2025,
+      "played": 153
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "season": 2026,
+      "played": 54
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "season": 2021,
+      "played": 282
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "season": 2022,
+      "played": 274
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "season": 2023,
+      "played": 276
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "season": 2024,
+      "played": 256
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "season": 2025,
+      "played": 256
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "season": 2026,
+      "played": 258
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "season": 2020,
+      "played": 157
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "season": 2021,
+      "played": 36
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "season": 2022,
+      "played": 34
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "season": 2023,
+      "played": 34
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "season": 2024,
+      "played": 80
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "season": 2025,
+      "played": 82
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "season": 2026,
+      "played": 80
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2019,
+      "played": 1
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2020,
+      "played": 1
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2021,
+      "played": 1
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2022,
+      "played": 1
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2023,
+      "played": 1
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2024,
+      "played": 1
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2025,
+      "played": 1
+    },
+    {
+      "competition": "uefa.super_cup",
+      "season": 2026,
+      "played": 1
+    }
+  ],
+  "inputSnapshots": [
+    {
+      "competition": "eng.1",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "9522c60cdbdf2391ab5cd5095bfc86955740d8b04c233e57bf2f2eda7245f569",
+      "rawBytes": 3852767,
+      "events": 379,
+      "file": "eng.1-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:39.642833+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 379,
+        "playedEvents": 379,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 379
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "71822d2c15fe743ac66627160cc57a860cf2d755c8d6eeb293d3160e959c007f",
+      "rawBytes": 5426927,
+      "events": 556,
+      "file": "eng.2-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:40.950101+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 556,
+        "playedEvents": 556,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 555,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "078bf8cf434f97a5cae2f67a718131780d0c66ad3ff5b533119de56991951eb8",
+      "rawBytes": 1438836,
+      "events": 151,
+      "file": "eng.fa-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:38.037028+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 151,
+        "playedEvents": 151,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 143,
+          "STATUS_FINAL_AET": 6,
+          "STATUS_FINAL_PEN": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "ab1756f9c3308c5f9fbf8967c1bbc153f8497f603b72889a578059406da140a8",
+      "rawBytes": 971384,
+      "events": 93,
+      "file": "eng.league_cup-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:37.853311+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 93,
+        "playedEvents": 92,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:557502",
+            "status": "STATUS_POSTPONED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 67,
+          "STATUS_FINAL_PEN": 25,
+          "STATUS_POSTPONED": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "0d1dfc8eb034dcc50824d5f0753b2d6653361985b27505a83c44fa93b68decb9",
+      "rawBytes": 2300025,
+      "events": 216,
+      "file": "uefa.champions-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:38.069346+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 216,
+        "playedEvents": 216,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 211,
+          "STATUS_FINAL_AET": 2,
+          "STATUS_FINAL_PEN": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "5a8fd046cbde38fb8704c2209896881f9edbe0febd03fc9605cd5f327e746274",
+      "rawBytes": 5059690,
+      "events": 519,
+      "file": "uefa.europa-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:40.652936+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 519,
+        "playedEvents": 519,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 503,
+          "STATUS_FINAL_AET": 11,
+          "STATUS_FINAL_PEN": 5
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "0d11722547fdc8ed5e9cf6218fde22059de47474be5b190472b256430f0eaafb",
+      "rawBytes": 557,
+      "events": 0,
+      "file": "uefa.champions_qual-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:38.503494+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 0,
+        "playedEvents": 0,
+        "excludedEvents": [],
+        "statuses": {},
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "02721237701a9836b8119a49714d5f900066f8d4683be076b32ce428a20d6db3",
+      "rawBytes": 542,
+      "events": 0,
+      "file": "uefa.europa_qual-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:39.190234+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 0,
+        "playedEvents": 0,
+        "excludedEvents": [],
+        "statuses": {},
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "d9ebf15d2444dc5d6c9c9e58560e8f300a17a096aa4367598072eb96b9ad3720",
+      "rawBytes": 14328,
+      "events": 1,
+      "file": "eng.charity-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:38.770842+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "ff388998a8636e610b73b4c75de888d17556469f60a2084c379decf2734a6581",
+      "rawBytes": 16127,
+      "events": 1,
+      "file": "uefa.super_cup-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:39.146831+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2019,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2019&limit=1000",
+      "rawSha256": "dbab21acebe80cbdf88c769b5598627503f66f9b96819da47f4665c9fb8f66fb",
+      "rawBytes": 90067,
+      "events": 8,
+      "file": "fifa.cwc-2019.json.gz",
+      "retrievedAt": "2026-11-06T03:58:40.292735+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 8,
+        "playedEvents": 8,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_AET": 2,
+          "STATUS_FULL_TIME": 5,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.1",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "238703be0ad6dee526312687cff77ce9eab1419ecc9186c6701bc55c19b912da",
+      "rawBytes": 3342635,
+      "events": 336,
+      "file": "eng.1-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:42.031813+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 336,
+        "playedEvents": 336,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 336
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "c9b8dccad4e912fdec8bac8fc10b642f8207a4669d935fd06671ace8f3f00b37",
+      "rawBytes": 4852095,
+      "events": 518,
+      "file": "eng.2-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:43.049084+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 518,
+        "playedEvents": 518,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 517,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "fe73aa0600606afaa981fcdf5a4ae9d06f233dedb9906daab7e074e4a2c089b8",
+      "rawBytes": 1341900,
+      "events": 137,
+      "file": "eng.fa-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:40.634298+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 137,
+        "playedEvents": 137,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 111,
+          "STATUS_FINAL_AET": 15,
+          "STATUS_FINAL_PEN": 11
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "c56f876a21c27ceee7ceb50ef00b2d8c9bf99ac6ed24c09e0ed29d8f0574d0a7",
+      "rawBytes": 954094,
+      "events": 93,
+      "file": "eng.league_cup-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:40.969455+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 93,
+        "playedEvents": 92,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:583465",
+            "status": "STATUS_POSTPONED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 72,
+          "STATUS_FINAL_PEN": 20,
+          "STATUS_POSTPONED": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "99743532a4882f90b101f2c945d9e74c453fdb6ca54eef8bdf4a2d4a203cad3c",
+      "rawBytes": 1285937,
+      "events": 119,
+      "file": "uefa.champions-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:42.751946+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 119,
+        "playedEvents": 119,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 118,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "a3f047869327502978e6096cd51eb515f38ea7528ab711b60b983f6621e1128a",
+      "rawBytes": 2084134,
+      "events": 197,
+      "file": "uefa.europa-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:43.515575+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 197,
+        "playedEvents": 197,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 194,
+          "STATUS_FINAL_AET": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "88f0a2da81a12a5debdcffdfdf0e216d5d7bf223e1a374995556ddf941fc2f45",
+      "rawBytes": 550871,
+      "events": 53,
+      "file": "uefa.champions_qual-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:42.608212+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 53,
+        "playedEvents": 53,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 46,
+          "STATUS_FINAL_AET": 3,
+          "STATUS_FINAL_PEN": 4
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "6c66aff2c0d8aecf96445ecaab893b5c3610f03b57761e9955d382fd82af3b7d",
+      "rawBytes": 1478911,
+      "events": 157,
+      "file": "uefa.europa_qual-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:43.503113+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 157,
+        "playedEvents": 157,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 127,
+          "STATUS_FINAL_PEN": 16,
+          "STATUS_FINAL_AET": 14
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "b884940f19fba5b8f7d9ff15a3584d3a28092be0fc380dcaf779097db10bec62",
+      "rawBytes": 14271,
+      "events": 1,
+      "file": "eng.charity-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:43.370781+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "a87b5cbd6483be610e9e97fd169e2fcf834392ba5b931a9dbcac7040a654f7ef",
+      "rawBytes": 12206,
+      "events": 1,
+      "file": "uefa.super_cup-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:43.241092+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2020,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2020&limit=1000",
+      "rawSha256": "19aa900ed0267a86ca0cda541217b3542340938c486215f1326ce96a54ae3517",
+      "rawBytes": 1710,
+      "events": 0,
+      "file": "fifa.cwc-2020.json.gz",
+      "retrievedAt": "2026-11-06T03:58:43.141053+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 0,
+        "playedEvents": 0,
+        "excludedEvents": [],
+        "statuses": {},
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.1",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "17c4402857ce03841f130f787adb4d4cf74e1032dadbc79c2b17e755e5398a38",
+      "rawBytes": 4086777,
+      "events": 408,
+      "file": "eng.1-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:46.709940+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 408,
+        "playedEvents": 408,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 408
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "3a8cd4c3957ff47b0044c71778c76fced99a89ff7475c16c831b0d7d50ea137b",
+      "rawBytes": 5509675,
+      "events": 578,
+      "file": "eng.2-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:47.102704+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 578,
+        "playedEvents": 578,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 578
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "baf697a3eba7ba689e25a67f98c3f7c5ef0808ca2e8707e6d680e66dded368ca",
+      "rawBytes": 1312721,
+      "events": 136,
+      "file": "eng.fa-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:44.069501+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 136,
+        "playedEvents": 136,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 123,
+          "STATUS_FINAL_AET": 10,
+          "STATUS_FINAL_PEN": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "33d55c8be363746ecb1784191791c75b27f3db2b0cd2ebc91a2c0bd2547137d6",
+      "rawBytes": 983211,
+      "events": 91,
+      "file": "eng.league_cup-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:44.207371+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 91,
+        "playedEvents": 90,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:608525",
+            "status": "STATUS_CANCELED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 61,
+          "STATUS_FINAL_PEN": 29,
+          "STATUS_CANCELED": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "ce53bda2a837d00a1f767b936296851aafb01c6f8125cb336020df1aa71c56f3",
+      "rawBytes": 1348876,
+      "events": 125,
+      "file": "uefa.champions-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:44.580180+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 125,
+        "playedEvents": 125,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 124,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "9820d4e189682e3d96ad38c7139438659658990b13cb394b9761af8eff5b1891",
+      "rawBytes": 1643170,
+      "events": 157,
+      "file": "uefa.europa-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:44.923295+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 157,
+        "playedEvents": 157,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 155,
+          "STATUS_FINAL_AET": 1,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "5b8529d82457879d7e35acb86a21379c24030befee1a0e8c63b43cda0e4f579b",
+      "rawBytes": 999797,
+      "events": 96,
+      "file": "uefa.europa.conf-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:44.801728+00:00",
+      "league": "UEFA Conference League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 96,
+        "playedEvents": 96,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 96
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "deafb393a8bba6df825b85e01a5b2b4513dfd280dd5b781a5dbfb9e8afd00ed7",
+      "rawBytes": 957347,
+      "events": 93,
+      "file": "uefa.champions_qual-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:44.934245+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 93,
+        "playedEvents": 93,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 88,
+          "STATUS_FINAL_AET": 4,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "09d867570196991bddff7900bc06d6a6bc9bf2eada81e5544354f10b8363fd65",
+      "rawBytes": 404645,
+      "events": 36,
+      "file": "uefa.europa_qual-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:45.198557+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 36,
+        "playedEvents": 36,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 33,
+          "STATUS_FINAL_PEN": 2,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "39d8276173dd29af584720f8fcabfc165453dacb68b22332efadef1495efe822",
+      "rawBytes": 2647260,
+      "events": 282,
+      "file": "uefa.europa.conf_qual-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:46.186516+00:00",
+      "league": "UEFA Conference League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 282,
+        "playedEvents": 282,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 258,
+          "STATUS_FINAL_PEN": 13,
+          "STATUS_FINAL_AET": 11
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "06e06fa5f5f51f98336cec1be2af1b4abdbdd2c02b34d1162239ca946c98e885",
+      "rawBytes": 9856,
+      "events": 1,
+      "file": "eng.charity-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:45.484784+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "a1715283b61195dd39aa1f15d6750949d36683634367207597ad875dce4a4f56",
+      "rawBytes": 16677,
+      "events": 1,
+      "file": "uefa.super_cup-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:45.811759+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2021,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2021&limit=1000",
+      "rawSha256": "241ac8a55331fffc85a1d3aa9f792577c7e50413125d0124ee3e62853f063fb8",
+      "rawBytes": 73047,
+      "events": 8,
+      "file": "fifa.cwc-2021.json.gz",
+      "retrievedAt": "2026-11-06T03:58:46.031500+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 8,
+        "playedEvents": 7,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:592363",
+            "status": "STATUS_CANCELED"
+          }
+        ],
+        "statuses": {
+          "STATUS_CANCELED": 1,
+          "STATUS_FULL_TIME": 6,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.1",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "d607ba33bfbf7f5a26d8e481fa66dd091f45d4955197f818f77eb28fbdafc0a0",
+      "rawBytes": 3678520,
+      "events": 361,
+      "file": "eng.1-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:48.219989+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 361,
+        "playedEvents": 361,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 361
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "d0e4382b34f49c41c049e10dadd8bccb3b810abaae5f48671cda1cea4528b84f",
+      "rawBytes": 5685048,
+      "events": 574,
+      "file": "eng.2-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:50.664977+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 574,
+        "playedEvents": 574,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 573,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "0411855863e61f5adb9eae2591dd3d2ee18b65afe6ce6b0c9bcc64c5d672dce6",
+      "rawBytes": 1304002,
+      "events": 132,
+      "file": "eng.fa-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:46.992604+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 132,
+        "playedEvents": 132,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 116,
+          "STATUS_FINAL_AET": 11,
+          "STATUS_FINAL_PEN": 5
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "679c5586fb58aeb3764ec627d581a45cc68605109c01ae01255b91aac90da116",
+      "rawBytes": 920216,
+      "events": 89,
+      "file": "eng.league_cup-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:46.800047+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 89,
+        "playedEvents": 89,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 71,
+          "STATUS_FINAL_PEN": 18
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "1ce9c3ce016390605c66023b62f30930c664fa5a995913d0bf23a90590520f44",
+      "rawBytes": 1341446,
+      "events": 125,
+      "file": "uefa.champions-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:47.674034+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 125,
+        "playedEvents": 125,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 123,
+          "STATUS_FINAL_AET": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "c6f5686aedcb61d994905dc78686060992a915c16c2a5422a6d44cf5c704d8c9",
+      "rawBytes": 1481205,
+      "events": 141,
+      "file": "uefa.europa-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:47.741452+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 141,
+        "playedEvents": 139,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:632487",
+            "status": "STATUS_CANCELED"
+          },
+          {
+            "source_id": "ESPN:632479",
+            "status": "STATUS_CANCELED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 134,
+          "STATUS_FINAL_PEN": 2,
+          "STATUS_CANCELED": 2,
+          "STATUS_FINAL_AET": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "95feefb41abd04a38e72c11492380185b8dc34ec526acbfcfb500f51c0cede5f",
+      "rawBytes": 1496140,
+      "events": 141,
+      "file": "uefa.europa.conf-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:48.057194+00:00",
+      "league": "UEFA Conference League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 141,
+        "playedEvents": 141,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 139,
+          "STATUS_FINAL_PEN": 1,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "2fac435149f71b513c1fb8c82e30d12c519ecbe103dab59e0d4a24deb64b1fff",
+      "rawBytes": 977563,
+      "events": 89,
+      "file": "uefa.champions_qual-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:48.427736+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 89,
+        "playedEvents": 89,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 78,
+          "STATUS_FINAL_PEN": 3,
+          "STATUS_FINAL_AET": 8
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "3acf41683482c83bec2f55ec81bfe350f248949ba8b778ff9f4a5019fe32f1ac",
+      "rawBytes": 372870,
+      "events": 34,
+      "file": "uefa.europa_qual-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:48.461345+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 34,
+        "playedEvents": 34,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 30,
+          "STATUS_FINAL_PEN": 3,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "e92aefcc1f70f9592fe2a251e262d3e3a71640a03468a298376fc750180650a7",
+      "rawBytes": 2614145,
+      "events": 274,
+      "file": "uefa.europa.conf_qual-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:50.059991+00:00",
+      "league": "UEFA Conference League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 274,
+        "playedEvents": 274,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 248,
+          "STATUS_FINAL_PEN": 17,
+          "STATUS_FINAL_AET": 9
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "7dc453238135b909ed337335bc534b679f9295ad7a75ee14de79b7f6f3832217",
+      "rawBytes": 10944,
+      "events": 1,
+      "file": "eng.charity-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:48.592742+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "a00050f4fcf314ef1f9a24464a25132e0af98b35d9ec811108bf20ed4486aa5d",
+      "rawBytes": 8923,
+      "events": 1,
+      "file": "uefa.super_cup-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:48.802624+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2022,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2022&limit=1000",
+      "rawSha256": "9594ebc271bb9614f6aad3c3e36dd8787a5334663db95f923b41fb3490b2b4f3",
+      "rawBytes": 83429,
+      "events": 8,
+      "file": "fifa.cwc-2022.json.gz",
+      "retrievedAt": "2026-11-06T03:58:49.170681+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 8,
+        "playedEvents": 8,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 7,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.1",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "5771acee6025cb4de98993a59bfa6a765557ee4bd6ae0521d19db0d4e85c907f",
+      "rawBytes": 4435538,
+      "events": 412,
+      "file": "eng.1-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:50.414429+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 412,
+        "playedEvents": 412,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 412
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "24ab61f37d828b897f8d66dcc5cba292ea9fc8226efacd3f5d2d6ff162acdb88",
+      "rawBytes": 5660362,
+      "events": 559,
+      "file": "eng.2-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:52.212215+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 559,
+        "playedEvents": 547,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:643545",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643542",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643553",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643551",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643550",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643548",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643555",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643557",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643558",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643559",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643563",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:643560",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 546,
+          "STATUS_SCHEDULED": 12,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "f3168220b1b48b29f442cbbc14dbcdf123aeb2871f3b82f6b2ec607336b4021a",
+      "rawBytes": 1511897,
+      "events": 148,
+      "file": "eng.fa-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:49.861874+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 148,
+        "playedEvents": 148,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 141,
+          "STATUS_FINAL_AET": 4,
+          "STATUS_FINAL_PEN": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "26ecc7a0eccca6ca9c14109612efa2069097d4972ea9f7f2b7fd8d0dba7fdce1",
+      "rawBytes": 1089912,
+      "events": 97,
+      "file": "eng.league_cup-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:50.264995+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 97,
+        "playedEvents": 97,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 72,
+          "STATUS_FINAL_PEN": 25
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "c90e20c2906f5d54e25db955c6cad38fa12ac3d99ea978be638e27cf6cd9d4ba",
+      "rawBytes": 1370726,
+      "events": 125,
+      "file": "uefa.champions-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:50.966379+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 125,
+        "playedEvents": 125,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 125
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "9d0abe4e30848cf727889fc8ef0bf00cbd9965cf495ba87f10953bae87c43c45",
+      "rawBytes": 1528818,
+      "events": 141,
+      "file": "uefa.europa-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:51.031070+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 141,
+        "playedEvents": 141,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 135,
+          "STATUS_FINAL_PEN": 4,
+          "STATUS_FINAL_AET": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "39b1aff05d96da584ccb00efc0c26898b1482916b6b296bc9ffaec0e870bf67c",
+      "rawBytes": 1496804,
+      "events": 141,
+      "file": "uefa.europa.conf-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:51.623821+00:00",
+      "league": "UEFA Conference League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 141,
+        "playedEvents": 141,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 135,
+          "STATUS_FINAL_PEN": 4,
+          "STATUS_FINAL_AET": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "f774d1bd0e9fecef8f0ad629d6c0acf6a90b25ee380fa0efaed2e7362cf605d8",
+      "rawBytes": 931068,
+      "events": 89,
+      "file": "uefa.champions_qual-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:51.488935+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 89,
+        "playedEvents": 89,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 80,
+          "STATUS_FINAL_AET": 4,
+          "STATUS_FINAL_PEN": 5
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "792d4a92540bcfb0ff4772f2c5ed7e2292998985a7d898f1fd9d42274cf96f6e",
+      "rawBytes": 363892,
+      "events": 34,
+      "file": "uefa.europa_qual-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:51.164289+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 34,
+        "playedEvents": 34,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 34
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "f8606712745312f2a13b864e7badcd8b4bff98e95571b9120769bb6bd07b5239",
+      "rawBytes": 2698812,
+      "events": 276,
+      "file": "uefa.europa.conf_qual-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:52.800732+00:00",
+      "league": "UEFA Conference League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 276,
+        "playedEvents": 276,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 251,
+          "STATUS_FINAL_AET": 13,
+          "STATUS_FINAL_PEN": 12
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "07a46d6fc5c08d5d9834b42e9e9f459cf2617c7e48707df5bd80ef70ef269b59",
+      "rawBytes": 14059,
+      "events": 1,
+      "file": "eng.charity-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:51.529900+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "605a866d02f8b322a2ea398b00781376f73bdcf7a7b681d8ff93461a34f74efe",
+      "rawBytes": 15146,
+      "events": 1,
+      "file": "uefa.super_cup-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:51.643424+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2023,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2023&limit=1000",
+      "rawSha256": "aceb1cfdceaf4fd37784b3b16fcc0d7213ea3785880e837a0b8d63d0de1f9571",
+      "rawBytes": 155988,
+      "events": 14,
+      "file": "fifa.cwc-2023.json.gz",
+      "retrievedAt": "2026-11-06T03:58:52.775905+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 14,
+        "playedEvents": 14,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 13,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.1",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "da94a6be12f5df3044759e936760111630edf7dfae473e53ce0e42741ec45086",
+      "rawBytes": 4138258,
+      "events": 372,
+      "file": "eng.1-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:54.608315+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 372,
+        "playedEvents": 372,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 372
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "c4a30cad8539fa6c07f3bae308a1f09319f001045033041ff1ada32acde7fd4f",
+      "rawBytes": 5373866,
+      "events": 541,
+      "file": "eng.2-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:54.520217+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 541,
+        "playedEvents": 541,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 541
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "f27dbbd9dacd029bd8e5230736814d06089251378ac9a75be62889e42fe6736b",
+      "rawBytes": 1420789,
+      "events": 136,
+      "file": "eng.fa-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:54.022506+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 136,
+        "playedEvents": 136,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 110,
+          "STATUS_FINAL_AET": 16,
+          "STATUS_FINAL_PEN": 10
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "c504ff1e22526fa5d9b3012f496f1396a69a5a13809c2c8fd24c19f86b537c79",
+      "rawBytes": 993620,
+      "events": 93,
+      "file": "eng.league_cup-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:53.164878+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 93,
+        "playedEvents": 93,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 77,
+          "STATUS_FINAL_AET": 1,
+          "STATUS_FINAL_PEN": 15
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "b73845850862f646f302bc7816d3daf586bc936ab40d9e38b1a2f751c4385cf6",
+      "rawBytes": 1517859,
+      "events": 137,
+      "file": "uefa.champions-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:54.012741+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 137,
+        "playedEvents": 137,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 134,
+          "STATUS_FINAL_PEN": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "6ee67cb9943f80db5e1ca5b6247bbbb1d4dfca84d55daf25cde3306de709234b",
+      "rawBytes": 1653775,
+      "events": 153,
+      "file": "uefa.europa-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:53.893630+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 153,
+        "playedEvents": 153,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 149,
+          "STATUS_FINAL_AET": 2,
+          "STATUS_FINAL_PEN": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "03cf944e304e76dd6dd62d488822b1a74d34f5220499481f91ad6ee6e372e968",
+      "rawBytes": 1615910,
+      "events": 153,
+      "file": "uefa.europa.conf-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:54.503792+00:00",
+      "league": "UEFA Conference League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 153,
+        "playedEvents": 153,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 146,
+          "STATUS_FINAL_AET": 4,
+          "STATUS_FINAL_PEN": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "77f2f97603d4e9f6450d845a8c7a644b83b78430fbe74caef2f65b624abd3547",
+      "rawBytes": 977677,
+      "events": 90,
+      "file": "uefa.champions_qual-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:54.509314+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 90,
+        "playedEvents": 90,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 84,
+          "STATUS_FINAL_PEN": 3,
+          "STATUS_FINAL_AET": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "69faa21c5030962d700e29adc2300c7ca24bfdea57e1c70dddda3d62393f0399",
+      "rawBytes": 856804,
+      "events": 80,
+      "file": "uefa.europa_qual-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:54.721803+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 80,
+        "playedEvents": 80,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 72,
+          "STATUS_FINAL_PEN": 5,
+          "STATUS_FINAL_AET": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "644e41ef7ef2761b56f842c9961a16b4ff1eddc8c70fc073da5289c7b9c84c9c",
+      "rawBytes": 2721065,
+      "events": 256,
+      "file": "uefa.europa.conf_qual-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:57.134097+00:00",
+      "league": "UEFA Conference League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 256,
+        "playedEvents": 256,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 232,
+          "STATUS_FINAL_PEN": 15,
+          "STATUS_FINAL_AET": 9
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "ad119d98de6c29a176a86d8f94c549013195222522ca23349e2b478c3112356b",
+      "rawBytes": 10400,
+      "events": 1,
+      "file": "eng.charity-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:55.074118+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "9d71c3d5b9728d5a5ec1c1ee6a140bd790ba5177c53f9e573393333bcc37a36f",
+      "rawBytes": 10499,
+      "events": 1,
+      "file": "uefa.super_cup-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:55.191145+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "8d854f681d1d8fe7dd10c40f6cd92f8a4b08e98dae65e2f3725215e14e1b84d5",
+      "rawBytes": 793,
+      "events": 0,
+      "file": "fifa.cwc-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:55.202070+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 0,
+        "playedEvents": 0,
+        "excludedEvents": [],
+        "statuses": {},
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental_cup/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "b0dd733f8940862850aa3ef926f1b934222089bbc9b37c8f4e2023195ff350c0",
+      "rawBytes": 58930,
+      "events": 5,
+      "file": "fifa.intercontinental_cup-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:55.242912+00:00",
+      "league": "FIFA Intercontinental Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 5,
+        "playedEvents": 5,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 4,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.1",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "c73aebba39d8f78a2c702e100212af3a53217a191910745300dddf6ebdc06b8f",
+      "rawBytes": 4048895,
+      "events": 378,
+      "file": "eng.1-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:58.137224+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 378,
+        "playedEvents": 378,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 378
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "e36f819965201f6a2c8baccc2789269cdc02e0934539407ea920769834d3010e",
+      "rawBytes": 5468117,
+      "events": 559,
+      "file": "eng.2-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:58.341839+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 559,
+        "playedEvents": 559,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 558,
+          "STATUS_FINAL_AET": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "7833b3f065564aee9d011c5275e157ad1fb27e224d3e712767a9245c3c9d1775",
+      "rawBytes": 1319124,
+      "events": 123,
+      "file": "eng.fa-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:56.202579+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 123,
+        "playedEvents": 123,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 93,
+          "STATUS_FINAL_AET": 11,
+          "STATUS_FINAL_PEN": 19
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "3ed70d25e6d0c9e0565fc7c7b0bd04edbbfcb432041ae8ddf66b70297f19b9ca",
+      "rawBytes": 972499,
+      "events": 93,
+      "file": "eng.league_cup-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:55.815645+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 93,
+        "playedEvents": 93,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 73,
+          "STATUS_FINAL_PEN": 20
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "d80aab4850b7013966619687164a0e8180e46a83ad7538bfa94dc38737020375",
+      "rawBytes": 2056677,
+      "events": 189,
+      "file": "uefa.champions-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:56.513955+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 189,
+        "playedEvents": 189,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 185,
+          "STATUS_FINAL_AET": 2,
+          "STATUS_FINAL_PEN": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "798097e8197a14ac0a45add75319e722ec7cec75d4983958154217e04bab51c6",
+      "rawBytes": 2039830,
+      "events": 189,
+      "file": "uefa.europa-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:57.191636+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 189,
+        "playedEvents": 189,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 184,
+          "STATUS_FINAL_AET": 3,
+          "STATUS_FINAL_PEN": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "a55284254ad8d1d57e7eedc2f18ba5d1bf985b4ab929169eb27d18904f882a37",
+      "rawBytes": 1620496,
+      "events": 153,
+      "file": "uefa.europa.conf-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:57.222391+00:00",
+      "league": "UEFA Conference League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 153,
+        "playedEvents": 153,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 146,
+          "STATUS_FINAL_AET": 5,
+          "STATUS_FINAL_PEN": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "d2e529d7c71d62b2d5a91bc78036095ad22de43914de17474b61661828d30af4",
+      "rawBytes": 962991,
+      "events": 92,
+      "file": "uefa.champions_qual-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:57.130549+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 92,
+        "playedEvents": 92,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 86,
+          "STATUS_FINAL_PEN": 3,
+          "STATUS_FINAL_AET": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "675909ae1700a781dd6fedb5d373ea626b5495438afab61d2065f51147603420",
+      "rawBytes": 854906,
+      "events": 82,
+      "file": "uefa.europa_qual-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:57.808230+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 82,
+        "playedEvents": 82,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 71,
+          "STATUS_FINAL_PEN": 5,
+          "STATUS_FINAL_AET": 6
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "3792a3c9acc4c1db5826c4fe7f59e9d4f050eccd42ad0a0158c79005690529ed",
+      "rawBytes": 2768296,
+      "events": 256,
+      "file": "uefa.europa.conf_qual-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:58.675006+00:00",
+      "league": "UEFA Conference League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 256,
+        "playedEvents": 256,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 231,
+          "STATUS_FINAL_PEN": 6,
+          "STATUS_FINAL_AET": 19
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "eb6f2e2e9752dec45455f9a52e2a578a6cf4f817a05e38dd1417aacabf9c6380",
+      "rawBytes": 18248,
+      "events": 1,
+      "file": "eng.charity-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:57.958512+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "efaaf72ba8ce3843d59d37e0825436be725635b64529dbac649b81a942c74740",
+      "rawBytes": 12882,
+      "events": 1,
+      "file": "uefa.super_cup-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:57.692957+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "045801fb9aa2b10dac71c637d1b805822238c0fbae94c5c1db87b865b0e7bbe2",
+      "rawBytes": 698079,
+      "events": 64,
+      "file": "fifa.cwc-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:58.357634+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 64,
+        "playedEvents": 64,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FINAL_AET": 4,
+          "STATUS_FULL_TIME": 60
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental_cup/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "74698f1286eb5da2f691ba5bb8c6c460b89f732a6b12890831b3769cec38cc67",
+      "rawBytes": 52464,
+      "events": 5,
+      "file": "fifa.intercontinental_cup-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:58.449081+00:00",
+      "league": "FIFA Intercontinental Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 5,
+        "playedEvents": 5,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 4,
+          "STATUS_FINAL_PEN": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.1",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "3bbd42fdb68a70c2902d60abd7f93d39027f289266c0493a6b8de86772d576b3",
+      "rawBytes": 3889396,
+      "events": 374,
+      "file": "eng.1-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.931059+00:00",
+      "league": "English Premier League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 374,
+        "playedEvents": 284,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:401879242",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878758",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878760",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879241",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878757",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879244",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879243",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878759",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879239",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879240",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879233",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879238",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878756",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879236",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879235",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878754",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879232",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879234",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878755",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879237",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879225",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879227",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879226",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878752",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879229",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879231",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879230",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879228",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879224",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878753",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879221",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879222",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879220",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879219",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879218",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879223",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878751",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878750",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879217",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878749",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879213",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879216",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879215",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879211",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879210",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878747",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879214",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879212",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878748",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879209",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879206",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878744",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878743",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878742",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878746",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878745",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878741",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879208",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879207",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879205",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879203",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878740",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879201",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879199",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879200",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878739",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879198",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878738",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879204",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879202",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878737",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879197",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878734",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879196",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878731",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878733",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878732",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878736",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879195",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878735",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879190",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879186",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879192",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401878730",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879193",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879191",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879188",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879187",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879194",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879189",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 284,
+          "STATUS_SCHEDULED": 90
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.2",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.2/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "fd8d5bdf447db0b3336e0c391439e9043a69c2cf6b4be8e76a68c815f828d42a",
+      "rawBytes": 5419490,
+      "events": 559,
+      "file": "eng.2-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.719488+00:00",
+      "league": "English League Championship",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 559,
+        "playedEvents": 439,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:401880167",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880170",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880166",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880161",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880172",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880171",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880169",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880168",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880165",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880164",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880163",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880162",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880156",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880155",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880153",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880160",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880158",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880157",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880154",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880152",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880151",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880150",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880149",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880159",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880148",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880147",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880146",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880145",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880144",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880143",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880142",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880141",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880140",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880139",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880137",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880138",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880129",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880135",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880133",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880131",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880136",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880134",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880132",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880130",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880127",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880126",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880125",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880128",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880116",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880124",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880123",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880119",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880114",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880121",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880120",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880118",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880117",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880115",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880113",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880122",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880111",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880110",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880109",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880108",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880107",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880105",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880112",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880106",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880104",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880103",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880102",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880101",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880099",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880094",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880093",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880091",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880100",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880098",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880097",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880095",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880092",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880090",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880089",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880096",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880078",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880088",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880087",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880083",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880080",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880079",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880086",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880085",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880084",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880082",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880081",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880077",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880075",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879681",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880076",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880074",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880073",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880072",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880071",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880070",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401880069",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879680",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879679",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879678",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879666",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879676",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879675",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879674",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879673",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879672",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879671",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879669",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879668",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879667",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879677",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401879670",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 438,
+          "STATUS_FINAL_AET": 1,
+          "STATUS_SCHEDULED": 120
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.fa",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.fa/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "f9d033098770b112f0158593e8153d5189aa293733cb996704ba96ebc2838b0f",
+      "rawBytes": 1087906,
+      "events": 103,
+      "file": "eng.fa-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:58:59.176411+00:00",
+      "league": "English FA Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 103,
+        "playedEvents": 63,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:401931085",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931109",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931119",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931116",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931103",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931089",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931083",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931118",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931091",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931082",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931090",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931088",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931081",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931102",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931120",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931107",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931099",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931105",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931101",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931092",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931096",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931094",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931106",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931110",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931100",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931095",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931122",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931117",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931121",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931275",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931086",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931087",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931084",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931097",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931104",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931079",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931080",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931093",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931108",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401931098",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FINAL_PEN": 9,
+          "STATUS_FULL_TIME": 49,
+          "STATUS_FINAL_AET": 5,
+          "STATUS_SCHEDULED": 40
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.league_cup",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.league_cup/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "dde879e7e404a5cae733cbb69e96fc59093ac3c65cb048d718df67c73027c6b1",
+      "rawBytes": 1015186,
+      "events": 93,
+      "file": "eng.league_cup-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:58:59.068852+00:00",
+      "league": "English Carabao Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 93,
+        "playedEvents": 89,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:401932185",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401932163",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401932187",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401932186",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 73,
+          "STATUS_FINAL_PEN": 16,
+          "STATUS_SCHEDULED": 4
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "558329be3b87046485d20d5a5637ede52fa92b5f200a44d4b6cc9a1399349f0f",
+      "rawBytes": 2082558,
+      "events": 189,
+      "file": "uefa.champions-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:58:59.727370+00:00",
+      "league": "UEFA Champions League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 189,
+        "playedEvents": 153,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:401915380",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915300",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915295",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915296",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915294",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915379",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915299",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915298",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915297",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915378",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915293",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915291",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915292",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915376",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915377",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915374",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915375",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915373",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915290",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915372",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915289",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915288",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915286",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915285",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915284",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915371",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915287",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915283",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915282",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915367",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915368",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915281",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915370",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915369",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915366",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915365",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 150,
+          "STATUS_FINAL_AET": 2,
+          "STATUS_FINAL_PEN": 1,
+          "STATUS_SCHEDULED": 36
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "b5f170fcd3d7976911edf7964f37245614d2a2f47daca1e8b5143cfbc81fb2f5",
+      "rawBytes": 1911750,
+      "events": 189,
+      "file": "uefa.europa-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:58:59.792680+00:00",
+      "league": "UEFA Europa League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 189,
+        "playedEvents": 153,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:401915506",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915519",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915517",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915507",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915521",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915520",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915508",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915518",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915504",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915516",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915502",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915501",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915505",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915503",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915514",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915513",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915512",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915515",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915511",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915500",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915494",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915499",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915496",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915495",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915498",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915497",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915493",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915488",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915492",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915491",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915486",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915510",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915485",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915487",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915489",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915490",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 148,
+          "STATUS_FINAL_AET": 3,
+          "STATUS_FINAL_PEN": 2,
+          "STATUS_SCHEDULED": 36
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "c270668a3b5b87ac7463995e5323b51b4cc2b6dfb0674b09ca5a149e332a672e",
+      "rawBytes": 1481587,
+      "events": 153,
+      "file": "uefa.europa.conf-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.001812+00:00",
+      "league": "UEFA Conference League",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 153,
+        "playedEvents": 99,
+        "excludedEvents": [
+          {
+            "source_id": "ESPN:401915816",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915815",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915814",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915810",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915811",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915813",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915812",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915739",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915809",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915808",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915806",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915802",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915803",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915807",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915805",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915738",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915804",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915801",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915737",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915800",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915736",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915799",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915735",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915798",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915734",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915733",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915797",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915796",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915795",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915732",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915629",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915794",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915792",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915793",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915628",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915630",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915731",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915627",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915626",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915623",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915614",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915615",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915613",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915625",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915730",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915729",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915624",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915619",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915621",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915618",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915620",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915617",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915616",
+            "status": "STATUS_SCHEDULED"
+          },
+          {
+            "source_id": "ESPN:401915622",
+            "status": "STATUS_SCHEDULED"
+          }
+        ],
+        "statuses": {
+          "STATUS_FULL_TIME": 97,
+          "STATUS_FINAL_AET": 2,
+          "STATUS_SCHEDULED": 54
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.champions_qual",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions_qual/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "59dc3ab8d9a9c28b53838820235fb6b86336de81fcd4a8624663aecbb47f6751",
+      "rawBytes": 1008989,
+      "events": 90,
+      "file": "uefa.champions_qual-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:58:59.902221+00:00",
+      "league": "UEFA Champions League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 90,
+        "playedEvents": 90,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 80,
+          "STATUS_FINAL_AET": 7,
+          "STATUS_FINAL_PEN": 3
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa_qual",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa_qual/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "732e6109d4df842de0ef257d4927d991a5f04e582691c78f9562f3ed6a43618b",
+      "rawBytes": 872261,
+      "events": 80,
+      "file": "uefa.europa_qual-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.400149+00:00",
+      "league": "UEFA Europa League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 80,
+        "playedEvents": 80,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 74,
+          "STATUS_FINAL_PEN": 2,
+          "STATUS_FINAL_AET": 4
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.europa.conf_qual",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf_qual/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "69aca824dd179d8f907a4aad474f46bcab732b55075a46b59bbf9a296d9d64ae",
+      "rawBytes": 2883473,
+      "events": 258,
+      "file": "uefa.europa.conf_qual-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:01.427503+00:00",
+      "league": "UEFA Conference League Qualifying",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 258,
+        "playedEvents": 258,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 230,
+          "STATUS_FINAL_AET": 12,
+          "STATUS_FINAL_PEN": 16
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "eng.charity",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.charity/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "344d4ba260be9f6656ab31917cb8206b8546ab8bd4d73206d97c8eb62c3ff147",
+      "rawBytes": 19192,
+      "events": 1,
+      "file": "eng.charity-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.411417+00:00",
+      "league": "English FA Community Shield",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "uefa.super_cup",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.super_cup/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "9d0b6747def116a2b432fcb2c5f3cc5279efc61c3053a2757d9f5b04be3613a3",
+      "rawBytes": 11743,
+      "events": 1,
+      "file": "uefa.super_cup-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.639831+00:00",
+      "league": "UEFA Super Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 1,
+        "playedEvents": 1,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 1
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.cwc",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.cwc/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "8d854f681d1d8fe7dd10c40f6cd92f8a4b08e98dae65e2f3725215e14e1b84d5",
+      "rawBytes": 793,
+      "events": 0,
+      "file": "fifa.cwc-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.952290+00:00",
+      "league": "FIFA Club World Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 0,
+        "playedEvents": 0,
+        "excludedEvents": [],
+        "statuses": {},
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    },
+    {
+      "competition": "fifa.intercontinental_cup",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental_cup/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "55029db9f1766a46812cbd13b0bf5899d0cf46bd598a2e6dbc7dd8276fc7a838",
+      "rawBytes": 22934,
+      "events": 2,
+      "file": "fifa.intercontinental_cup-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:00.929378+00:00",
+      "league": "FIFA Intercontinental Cup",
+      "ok": true,
+      "normalization": {
+        "inputEvents": 2,
+        "playedEvents": 2,
+        "excludedEvents": [],
+        "statuses": {
+          "STATUS_FULL_TIME": 2
+        },
+        "limit": 1000,
+        "limitReached": false,
+        "coverageIndependentlyVerified": false
+      }
+    }
+  ],
+  "failedQueries": [],
+  "referenceCheck": {
+    "matched": 2930,
+    "conflicts": [],
+    "matchedBySeason": {
+      "2018": 180,
+      "2019": 380,
+      "2020": 380,
+      "2021": 380,
+      "2022": 380,
+      "2023": 380,
+      "2024": 380,
+      "2025": 380,
+      "2026": 90
+    },
+    "missingBySeason": {
+      "2015": 380,
+      "2016": 380,
+      "2017": 380,
+      "2018": 200,
+      "2019": 0,
+      "2020": 0,
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026": 0
+    }
+  },
+  "excludedCompetitionQueries": [
+    {
+      "competition": "fifa.intercontinental.cup",
+      "calendarYear": 2024,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental.cup/scoreboard?dates=2024&limit=1000",
+      "rawSha256": "b26e6e5246199f8ea426c7609798ca2bb10852d3b468d7a40cf5ff6b1a340ab0",
+      "rawBytes": 22504,
+      "events": 3,
+      "file": "fifa.intercontinental.cup-2024.json.gz",
+      "retrievedAt": "2026-11-06T03:58:55.211719+00:00",
+      "league": "Intercontinental Cup (India)",
+      "ok": true,
+      "reason": "Separate national-team tournament, not the FIFA club Intercontinental Cup"
+    },
+    {
+      "competition": "fifa.intercontinental.cup",
+      "calendarYear": 2025,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental.cup/scoreboard?dates=2025&limit=1000",
+      "rawSha256": "6eff1e06f791de5ecc5b7acd4acd44f0d4560aaef371f92c165850f8a00fe685",
+      "rawBytes": 728,
+      "events": 0,
+      "file": "fifa.intercontinental.cup-2025.json.gz",
+      "retrievedAt": "2026-11-06T03:58:58.442864+00:00",
+      "league": "Intercontinental Cup (India)",
+      "ok": true,
+      "reason": "Separate national-team tournament, not the FIFA club Intercontinental Cup"
+    },
+    {
+      "competition": "fifa.intercontinental.cup",
+      "calendarYear": 2026,
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.intercontinental.cup/scoreboard?dates=2026&limit=1000",
+      "rawSha256": "6eff1e06f791de5ecc5b7acd4acd44f0d4560aaef371f92c165850f8a00fe685",
+      "rawBytes": 728,
+      "events": 0,
+      "file": "fifa.intercontinental.cup-2026.json.gz",
+      "retrievedAt": "2026-11-06T03:59:01.100739+00:00",
+      "league": "Intercontinental Cup (India)",
+      "ok": true,
+      "reason": "Separate national-team tournament, not the FIFA club Intercontinental Cup"
+    }
+  ],
+  "matches": 15453,
+  "unknownDurationMatches": 459,
+  "firstDate": "2019-01-01",
+  "lastDate": "2026-11-05",
+  "missingCompetitionBeforeInception": {
+    "uefa.europa.conf": 2021,
+    "uefa.europa.conf_qual": 2021,
+    "fifa.intercontinental_cup": 2024
+  },
+  "availabilityCaveat": "Historical snapshots do not prove the exact source was available 24 hours before historical fixtures.",
+  "normalizedMatchesSha256": "82224cfaaac77afe859ef4ae96ea9394397e1cb41b3395305cfe14b10d01c556"
+}

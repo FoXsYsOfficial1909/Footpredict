@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-06T08:36:53.161927+00:00",
+  "normalizedMatchesSha256": "82224cfaaac77afe859ef4ae96ea9394397e1cb41b3395305cfe14b10d01c556",
+  "events": 15453,
+  "referenceCheck": {
+    "matched": 2930,
+    "conflicts": [],
+    "matchedBySeason": {
+      "2018": 180,
+      "2019": 380,
+      "2020": 380,
+      "2021": 380,
+      "2022": 380,
+      "2023": 380,
+      "2024": 380,
+      "2025": 380,
+      "2026": 90
+    },
+    "missingBySeason": {
+      "2015": 380,
+      "2016": 380,
+      "2017": 380,
+      "2018": 200,
+      "2019": 0,
+      "2020": 0,
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0,
+      "2026": 0
+    }
+  },
+  "openfootballCountChecks": [
+    {
+      "file": "2023-24-eflcup.txt",
+      "sha256": "129cb57a2ff512523df20dc8e3aae1afad587fc5f8f092f3a2bd07e0f873a59f",
+      "declaredMatches": 93,
+      "parsedMatchLines": 93,
+      "espnMatches": 93,
+      "countsAgree": true,
+      "limitation": "Matching total counts do not establish exact fixture identity or completeness of every other competition."
+    },
+    {
+      "file": "2023-24-facup.txt",
+      "sha256": "2ccca37d088961f07e396dae438f88f767566c53dba4aa290f924e07017056ee",
+      "declaredMatches": 149,
+      "parsedMatchLines": 149,
+      "espnMatches": 149,
+      "countsAgree": true,
+      "limitation": "Matching total counts do not establish exact fixture identity or completeness of every other competition."
+    },
+    {
+      "file": "2024-25-eflcup.txt",
+      "sha256": "e0514dc8d5d9dceee39fc37452b7d6eaab1a19bdd33a976184875863f1e1fc36",
+      "declaredMatches": 93,
+      "parsedMatchLines": 93,
+      "espnMatches": 93,
+      "countsAgree": true,
+      "limitation": "Matching total counts do not establish exact fixture identity or completeness of every other competition."
+    },
+    {
+      "file": "2024-25-facup.txt",
+      "sha256": "4d36f0935e01c1cd5186b70a7e8887ecb819a0fb11eb9fb195099da5f441086a",
+      "declaredMatches": 123,
+      "parsedMatchLines": 123,
+      "espnMatches": 123,
+      "countsAgree": true,
+      "limitation": "Matching total counts do not establish exact fixture identity or completeness of every other competition."
+    }
+  ],
+  "allCompetitionCoverageVerified": false,
+  "numericWorkloadPermitted": false,
+  "unresolved": [
+    "Cross-provider fixture-level completeness for every required competition has not been proved.",
+    "ESPN Championship season 2022 contains 545 games, below the standard 557 including playoffs.",
+    "July-based derived season labels split pandemic fixtures and June/July Club World Cup schedules; calendar-year source coverage must not be mistaken for verified competition-season coverage.",
+    "Penalty shootouts alone do not establish whether 120 minutes were played."
+  ],
+  "unknownDurationMatches": 459,
+  "earliestEvent": "2019-01-01",
+  "latestEvent": "2026-11-05"
+}

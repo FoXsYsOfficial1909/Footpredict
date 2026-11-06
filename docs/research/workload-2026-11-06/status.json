@@ -1,0 +1,11 @@
+{
+  "status": "partial_coverage",
+  "normalizedMatchesSha256": "82224cfaaac77afe859ef4ae96ea9394397e1cb41b3395305cfe14b10d01c556",
+  "compressedSha256": "dadc2a4b85f9d93a74701bc870d3e9865984863b38283f7e58fd015a212b5a71",
+  "observedEvents": 15453,
+  "eplResultsVerified": 2930,
+  "allCompetitionsComplete": false,
+  "workloadModelTrained": false,
+  "reason": "Complete competition coverage is not independently established; true rest stays unknown and no numerical correction is enabled.",
+  "previousFrozenForecastsChanged": false
+}
