@@ -1,0 +1,9 @@
+{
+  "research/xg_experiment.py": "60453623d26d4bee8ec4da1b304044810392dbd522428294b1f814a21f097404",
+  "research/xg_model.py": "9898904fb0c588749b2aa2de14e2d259af0c921beaf3045cf34cced4a71d593d",
+  "research/xg_data.py": "5c823452d812f3d3bbb5a10fcde5411e913f261d796528cddfdc8489d8a13b5a",
+  "research/performance.py": "f7f5b0769fbd4c4c3ae12787585ab071750d8a0b5fb8ba8799d17fc7f2bf50bb",
+  "research/models.py": "5e7b3b9013e75df0a08c6cec00a9b0e1a445adc299ef47935218cd79198e10bb",
+  "research/evaluate.py": "bce7e9177bf0ec7512a8296d436f08aca311c0b72816d333034a87bfe6a8f0a9",
+  "research/data.py": "14dad566e1839f9cb91fc064c34770ad792a2597005a5f7179ac4ddc326977fd"
+}

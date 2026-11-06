@@ -1,0 +1,1290 @@
+{
+  "overlapMatches": 38,
+  "within1e4": 15,
+  "mismatchMatches": [
+    {
+      "fixture": [
+        "2025-08-16",
+        "Tottenham",
+        "Burnley"
+      ],
+      "primary": [
+        2.0389568358659744,
+        0.7499592136591673
+      ],
+      "recent": [
+        1.97858,
+        0.734138
+      ],
+      "maxAbsDifference": 0.06037683586597442,
+      "primaryMatchId": 28782,
+      "score": [
+        3,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Chelsea",
+        "Crystal Palace"
+      ],
+      "primary": [
+        1.376580948010087,
+        1.0375595069490373
+      ],
+      "recent": [
+        1.36793,
+        1.03414
+      ],
+      "maxAbsDifference": 0.008650948010086923,
+      "primaryMatchId": 28784,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Man United",
+        "Arsenal"
+      ],
+      "primary": [
+        1.3853190168738365,
+        1.3303993921726942
+      ],
+      "recent": [
+        1.37653,
+        1.3304
+      ],
+      "maxAbsDifference": 0.008789016873836486,
+      "primaryMatchId": 28786,
+      "score": [
+        0,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Nott'm Forest",
+        "Brentford"
+      ],
+      "primary": [
+        1.757047581486404,
+        1.3344093672931194
+      ],
+      "recent": [
+        1.7555,
+        1.32516
+      ],
+      "maxAbsDifference": 0.009249367293119537,
+      "primaryMatchId": 28785,
+      "score": [
+        3,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-18",
+        "Leeds",
+        "Everton"
+      ],
+      "primary": [
+        2.3856260925531387,
+        0.6892823874950409
+      ],
+      "recent": [
+        2.3812,
+        0.674338
+      ],
+      "maxAbsDifference": 0.0149443874950409,
+      "primaryMatchId": 28787,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-22",
+        "West Ham",
+        "Chelsea"
+      ],
+      "primary": [
+        0.978572016581893,
+        3.975819131359458
+      ],
+      "recent": [
+        0.978572,
+        3.94997
+      ],
+      "maxAbsDifference": 0.02584913135945799,
+      "primaryMatchId": 28788,
+      "score": [
+        1,
+        5
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Arsenal",
+        "Leeds"
+      ],
+      "primary": [
+        2.7670507915318012,
+        0.1567608118057251
+      ],
+      "recent": [
+        2.73761,
+        0.156761
+      ],
+      "maxAbsDifference": 0.029440791531801125,
+      "primaryMatchId": 28793,
+      "score": [
+        5,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Brentford",
+        "Aston Villa"
+      ],
+      "primary": [
+        1.3765398059040308,
+        0.9803101420402527
+      ],
+      "recent": [
+        1.12964,
+        0.976852
+      ],
+      "maxAbsDifference": 0.24689980590403082,
+      "primaryMatchId": 28790,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Man City",
+        "Tottenham"
+      ],
+      "primary": [
+        1.2474997155368328,
+        1.2829762157052755
+      ],
+      "recent": [
+        1.2475,
+        1.28015
+      ],
+      "maxAbsDifference": 0.0028262157052756365,
+      "primaryMatchId": 28789,
+      "score": [
+        0,
+        2
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Everton",
+        "Brighton"
+      ],
+      "primary": [
+        1.818065207451582,
+        2.0848709996789694
+      ],
+      "recent": [
+        1.80116,
+        2.08487
+      ],
+      "maxAbsDifference": 0.01690520745158186,
+      "primaryMatchId": 28795,
+      "score": [
+        2,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Fulham",
+        "Man United"
+      ],
+      "primary": [
+        1.6628399481996894,
+        1.546026909723878
+      ],
+      "recent": [
+        1.65333,
+        1.54603
+      ],
+      "maxAbsDifference": 0.009509948199689422,
+      "primaryMatchId": 28796,
+      "score": [
+        1,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Man United",
+        "Burnley"
+      ],
+      "primary": [
+        4.024839863181114,
+        1.3765081726014614
+      ],
+      "recent": [
+        4.02237,
+        1.32618
+      ],
+      "maxAbsDifference": 0.050328172601461496,
+      "primaryMatchId": 28802,
+      "score": [
+        3,
+        2
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Sunderland",
+        "Brentford"
+      ],
+      "primary": [
+        1.5731097664684057,
+        1.4460431225597858
+      ],
+      "recent": [
+        1.57127,
+        1.44604
+      ],
+      "maxAbsDifference": 0.001839766468405779,
+      "primaryMatchId": 28801,
+      "score": [
+        2,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Tottenham",
+        "Bournemouth"
+      ],
+      "primary": [
+        0.1706703556701541,
+        2.1235710438340902
+      ],
+      "recent": [
+        0.17067,
+        2.1201
+      ],
+      "maxAbsDifference": 0.0034710438340903593,
+      "primaryMatchId": 28799,
+      "score": [
+        0,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Wolves",
+        "Everton"
+      ],
+      "primary": [
+        0.9459304893389344,
+        2.0379134519025683
+      ],
+      "recent": [
+        0.943257,
+        2.03791
+      ],
+      "maxAbsDifference": 0.0026734893389344094,
+      "primaryMatchId": 28800,
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Aston Villa",
+        "Crystal Palace"
+      ],
+      "primary": [
+        1.2277568019926548,
+        2.5971274115145206
+      ],
+      "recent": [
+        1.20586,
+        2.59713
+      ],
+      "maxAbsDifference": 0.02189680199265487,
+      "primaryMatchId": 28807,
+      "score": [
+        0,
+        3
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Liverpool",
+        "Arsenal"
+      ],
+      "primary": [
+        0.481403598561883,
+        0.4906639792025089
+      ],
+      "recent": [
+        0.481404,
+        0.485679
+      ],
+      "maxAbsDifference": 0.004984979202508899,
+      "primaryMatchId": 28806,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Brentford",
+        "Chelsea"
+      ],
+      "primary": [
+        1.175331775099039,
+        0.7563956193625927
+      ],
+      "recent": [
+        1.17533,
+        0.755999
+      ],
+      "maxAbsDifference": 0.00039661936259272057,
+      "primaryMatchId": 28815,
+      "score": [
+        2,
+        2
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Crystal Palace",
+        "Sunderland"
+      ],
+      "primary": [
+        1.802269708365202,
+        0.35412874072790146
+      ],
+      "recent": [
+        1.75805,
+        0.354129
+      ],
+      "maxAbsDifference": 0.04421970836520206,
+      "primaryMatchId": 28811,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Everton",
+        "Aston Villa"
+      ],
+      "primary": [
+        1.893398960120976,
+        0.3543270006775856
+      ],
+      "recent": [
+        1.8927,
+        0.354327
+      ],
+      "maxAbsDifference": 0.0006989601209759222,
+      "primaryMatchId": 28812,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Newcastle",
+        "Wolves"
+      ],
+      "primary": [
+        1.1930506378412247,
+        0.3759419834241271
+      ],
+      "recent": [
+        1.19186,
+        0.375942
+      ],
+      "maxAbsDifference": 0.001190637841224751,
+      "primaryMatchId": 28809,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Burnley",
+        "Liverpool"
+      ],
+      "primary": [
+        0.16804119758307934,
+        2.797998026944697
+      ],
+      "recent": [
+        0.168041,
+        2.79492
+      ],
+      "maxAbsDifference": 0.0030780269446970543,
+      "primaryMatchId": 28816,
+      "score": [
+        0,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Man City",
+        "Man United"
+      ],
+      "primary": [
+        2.0130717530846596,
+        1.55162519402802
+      ],
+      "recent": [
+        1.99725,
+        1.51915
+      ],
+      "maxAbsDifference": 0.032475194028019905,
+      "primaryMatchId": 28817,
+      "score": [
+        3,
+        0
+      ]
+    }
+  ],
+  "maximumDifference": 0.24689980590403082,
+  "allOverlap": [
+    {
+      "fixture": [
+        "2025-08-15",
+        "Liverpool",
+        "Bournemouth"
+      ],
+      "primary": [
+        2.330073371529579,
+        1.5730311125516891
+      ],
+      "recent": [
+        2.33007,
+        1.57303
+      ],
+      "maxAbsDifference": 3.3715295790770483e-06,
+      "primaryMatchId": 28778,
+      "score": [
+        4,
+        2
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-16",
+        "Aston Villa",
+        "Newcastle"
+      ],
+      "primary": [
+        0.3186008632183075,
+        1.4009809014387429
+      ],
+      "recent": [
+        0.318601,
+        1.40098
+      ],
+      "maxAbsDifference": 9.014387429839843e-07,
+      "primaryMatchId": 28779,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-16",
+        "Sunderland",
+        "West Ham"
+      ],
+      "primary": [
+        0.7243677731603384,
+        0.5589482830837369
+      ],
+      "recent": [
+        0.724368,
+        0.558948
+      ],
+      "maxAbsDifference": 2.83083736896117e-07,
+      "primaryMatchId": 28781,
+      "score": [
+        3,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-16",
+        "Tottenham",
+        "Burnley"
+      ],
+      "primary": [
+        2.0389568358659744,
+        0.7499592136591673
+      ],
+      "recent": [
+        1.97858,
+        0.734138
+      ],
+      "maxAbsDifference": 0.06037683586597442,
+      "primaryMatchId": 28782,
+      "score": [
+        3,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Chelsea",
+        "Crystal Palace"
+      ],
+      "primary": [
+        1.376580948010087,
+        1.0375595069490373
+      ],
+      "recent": [
+        1.36793,
+        1.03414
+      ],
+      "maxAbsDifference": 0.008650948010086923,
+      "primaryMatchId": 28784,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Man United",
+        "Arsenal"
+      ],
+      "primary": [
+        1.3853190168738365,
+        1.3303993921726942
+      ],
+      "recent": [
+        1.37653,
+        1.3304
+      ],
+      "maxAbsDifference": 0.008789016873836486,
+      "primaryMatchId": 28786,
+      "score": [
+        0,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Nott'm Forest",
+        "Brentford"
+      ],
+      "primary": [
+        1.757047581486404,
+        1.3344093672931194
+      ],
+      "recent": [
+        1.7555,
+        1.32516
+      ],
+      "maxAbsDifference": 0.009249367293119537,
+      "primaryMatchId": 28785,
+      "score": [
+        3,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-18",
+        "Leeds",
+        "Everton"
+      ],
+      "primary": [
+        2.3856260925531387,
+        0.6892823874950409
+      ],
+      "recent": [
+        2.3812,
+        0.674338
+      ],
+      "maxAbsDifference": 0.0149443874950409,
+      "primaryMatchId": 28787,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-22",
+        "West Ham",
+        "Chelsea"
+      ],
+      "primary": [
+        0.978572016581893,
+        3.975819131359458
+      ],
+      "recent": [
+        0.978572,
+        3.94997
+      ],
+      "maxAbsDifference": 0.02584913135945799,
+      "primaryMatchId": 28788,
+      "score": [
+        1,
+        5
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Arsenal",
+        "Leeds"
+      ],
+      "primary": [
+        2.7670507915318012,
+        0.1567608118057251
+      ],
+      "recent": [
+        2.73761,
+        0.156761
+      ],
+      "maxAbsDifference": 0.029440791531801125,
+      "primaryMatchId": 28793,
+      "score": [
+        5,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Bournemouth",
+        "Wolves"
+      ],
+      "primary": [
+        1.7846234329044819,
+        0.3733670199289918
+      ],
+      "recent": [
+        1.78462,
+        0.373367
+      ],
+      "maxAbsDifference": 3.4329044817926757e-06,
+      "primaryMatchId": 28792,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Brentford",
+        "Aston Villa"
+      ],
+      "primary": [
+        1.3765398059040308,
+        0.9803101420402527
+      ],
+      "recent": [
+        1.12964,
+        0.976852
+      ],
+      "maxAbsDifference": 0.24689980590403082,
+      "primaryMatchId": 28790,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Burnley",
+        "Sunderland"
+      ],
+      "primary": [
+        1.0038139838725328,
+        1.1212703455239534
+      ],
+      "recent": [
+        1.00381,
+        1.12127
+      ],
+      "maxAbsDifference": 3.983872532753452e-06,
+      "primaryMatchId": 28791,
+      "score": [
+        2,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Man City",
+        "Tottenham"
+      ],
+      "primary": [
+        1.2474997155368328,
+        1.2829762157052755
+      ],
+      "recent": [
+        1.2475,
+        1.28015
+      ],
+      "maxAbsDifference": 0.0028262157052756365,
+      "primaryMatchId": 28789,
+      "score": [
+        0,
+        2
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Crystal Palace",
+        "Nott'm Forest"
+      ],
+      "primary": [
+        1.1018764190375805,
+        1.3298739567399025
+      ],
+      "recent": [
+        1.10188,
+        1.32987
+      ],
+      "maxAbsDifference": 3.956739902388762e-06,
+      "primaryMatchId": 28794,
+      "score": [
+        1,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Everton",
+        "Brighton"
+      ],
+      "primary": [
+        1.818065207451582,
+        2.0848709996789694
+      ],
+      "recent": [
+        1.80116,
+        2.08487
+      ],
+      "maxAbsDifference": 0.01690520745158186,
+      "primaryMatchId": 28795,
+      "score": [
+        2,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Fulham",
+        "Man United"
+      ],
+      "primary": [
+        1.6628399481996894,
+        1.546026909723878
+      ],
+      "recent": [
+        1.65333,
+        1.54603
+      ],
+      "maxAbsDifference": 0.009509948199689422,
+      "primaryMatchId": 28796,
+      "score": [
+        1,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-25",
+        "Newcastle",
+        "Liverpool"
+      ],
+      "primary": [
+        1.9634245662018657,
+        0.646559089422226
+      ],
+      "recent": [
+        1.96342,
+        0.646559
+      ],
+      "maxAbsDifference": 4.56620186572998e-06,
+      "primaryMatchId": 28797,
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Chelsea",
+        "Fulham"
+      ],
+      "primary": [
+        2.4323999090120196,
+        0.7362277898937464
+      ],
+      "recent": [
+        2.4324,
+        0.736228
+      ],
+      "maxAbsDifference": 2.1010625361750357e-07,
+      "primaryMatchId": 28798,
+      "score": [
+        2,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Leeds",
+        "Newcastle"
+      ],
+      "primary": [
+        0.677299601957202,
+        0.30363519582897425
+      ],
+      "recent": [
+        0.6773,
+        0.303635
+      ],
+      "maxAbsDifference": 3.980427980554424e-07,
+      "primaryMatchId": 28803,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Man United",
+        "Burnley"
+      ],
+      "primary": [
+        4.024839863181114,
+        1.3765081726014614
+      ],
+      "recent": [
+        4.02237,
+        1.32618
+      ],
+      "maxAbsDifference": 0.050328172601461496,
+      "primaryMatchId": 28802,
+      "score": [
+        3,
+        2
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Sunderland",
+        "Brentford"
+      ],
+      "primary": [
+        1.5731097664684057,
+        1.4460431225597858
+      ],
+      "recent": [
+        1.57127,
+        1.44604
+      ],
+      "maxAbsDifference": 0.001839766468405779,
+      "primaryMatchId": 28801,
+      "score": [
+        2,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Tottenham",
+        "Bournemouth"
+      ],
+      "primary": [
+        0.1706703556701541,
+        2.1235710438340902
+      ],
+      "recent": [
+        0.17067,
+        2.1201
+      ],
+      "maxAbsDifference": 0.0034710438340903593,
+      "primaryMatchId": 28799,
+      "score": [
+        0,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Wolves",
+        "Everton"
+      ],
+      "primary": [
+        0.9459304893389344,
+        2.0379134519025683
+      ],
+      "recent": [
+        0.943257,
+        2.03791
+      ],
+      "maxAbsDifference": 0.0026734893389344094,
+      "primaryMatchId": 28800,
+      "score": [
+        2,
+        3
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Aston Villa",
+        "Crystal Palace"
+      ],
+      "primary": [
+        1.2277568019926548,
+        2.5971274115145206
+      ],
+      "recent": [
+        1.20586,
+        2.59713
+      ],
+      "maxAbsDifference": 0.02189680199265487,
+      "primaryMatchId": 28807,
+      "score": [
+        0,
+        3
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Brighton",
+        "Man City"
+      ],
+      "primary": [
+        2.2086410466581583,
+        2.134180729277432
+      ],
+      "recent": [
+        2.20864,
+        2.13418
+      ],
+      "maxAbsDifference": 1.0466581583656875e-06,
+      "primaryMatchId": 28805,
+      "score": [
+        2,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Liverpool",
+        "Arsenal"
+      ],
+      "primary": [
+        0.481403598561883,
+        0.4906639792025089
+      ],
+      "recent": [
+        0.481404,
+        0.485679
+      ],
+      "maxAbsDifference": 0.004984979202508899,
+      "primaryMatchId": 28806,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Nott'm Forest",
+        "West Ham"
+      ],
+      "primary": [
+        0.7160180853679776,
+        2.2359961941838264
+      ],
+      "recent": [
+        0.716018,
+        2.236
+      ],
+      "maxAbsDifference": 3.805816173763077e-06,
+      "primaryMatchId": 28804,
+      "score": [
+        0,
+        3
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Arsenal",
+        "Nott'm Forest"
+      ],
+      "primary": [
+        2.881697740405798,
+        0.29368119314312935
+      ],
+      "recent": [
+        2.8817,
+        0.293681
+      ],
+      "maxAbsDifference": 2.259594201969861e-06,
+      "primaryMatchId": 28808,
+      "score": [
+        3,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Bournemouth",
+        "Brighton"
+      ],
+      "primary": [
+        1.4418748170137405,
+        0.6249234266579151
+      ],
+      "recent": [
+        1.44187,
+        0.624923
+      ],
+      "maxAbsDifference": 4.817013740554543e-06,
+      "primaryMatchId": 28810,
+      "score": [
+        2,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Brentford",
+        "Chelsea"
+      ],
+      "primary": [
+        1.175331775099039,
+        0.7563956193625927
+      ],
+      "recent": [
+        1.17533,
+        0.755999
+      ],
+      "maxAbsDifference": 0.00039661936259272057,
+      "primaryMatchId": 28815,
+      "score": [
+        2,
+        2
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Crystal Palace",
+        "Sunderland"
+      ],
+      "primary": [
+        1.802269708365202,
+        0.35412874072790146
+      ],
+      "recent": [
+        1.75805,
+        0.354129
+      ],
+      "maxAbsDifference": 0.04421970836520206,
+      "primaryMatchId": 28811,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Everton",
+        "Aston Villa"
+      ],
+      "primary": [
+        1.893398960120976,
+        0.3543270006775856
+      ],
+      "recent": [
+        1.8927,
+        0.354327
+      ],
+      "maxAbsDifference": 0.0006989601209759222,
+      "primaryMatchId": 28812,
+      "score": [
+        0,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Fulham",
+        "Leeds"
+      ],
+      "primary": [
+        1.1397936679422855,
+        0.830397542566061
+      ],
+      "recent": [
+        1.13979,
+        0.830398
+      ],
+      "maxAbsDifference": 3.66794228545686e-06,
+      "primaryMatchId": 28813,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Newcastle",
+        "Wolves"
+      ],
+      "primary": [
+        1.1930506378412247,
+        0.3759419834241271
+      ],
+      "recent": [
+        1.19186,
+        0.375942
+      ],
+      "maxAbsDifference": 0.001190637841224751,
+      "primaryMatchId": 28809,
+      "score": [
+        1,
+        0
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "West Ham",
+        "Tottenham"
+      ],
+      "primary": [
+        0.7932476624846458,
+        1.5140169728547335
+      ],
+      "recent": [
+        0.793248,
+        1.51402
+      ],
+      "maxAbsDifference": 3.027145266454312e-06,
+      "primaryMatchId": 28814,
+      "score": [
+        0,
+        3
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Burnley",
+        "Liverpool"
+      ],
+      "primary": [
+        0.16804119758307934,
+        2.797998026944697
+      ],
+      "recent": [
+        0.168041,
+        2.79492
+      ],
+      "maxAbsDifference": 0.0030780269446970543,
+      "primaryMatchId": 28816,
+      "score": [
+        0,
+        1
+      ]
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Man City",
+        "Man United"
+      ],
+      "primary": [
+        2.0130717530846596,
+        1.55162519402802
+      ],
+      "recent": [
+        1.99725,
+        1.51915
+      ],
+      "maxAbsDifference": 0.032475194028019905,
+      "primaryMatchId": 28817,
+      "score": [
+        3,
+        0
+      ]
+    }
+  ]
+}

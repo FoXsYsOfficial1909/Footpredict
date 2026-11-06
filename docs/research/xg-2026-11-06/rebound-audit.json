@@ -1,0 +1,2601 @@
+{
+  "algorithm": "Hypothesis: merge a shot marked lastAction=Rebound with the immediately previous chronological shot only if same side, previous result !=Goal, and minute interval 0..1; group xG=1-product(1-xGi).",
+  "providerImplementationConfirmed": false,
+  "xgTolerance": 0.0001,
+  "metadataSha256": "f02cffa6f0a3e5e55275aaf78438a7910554ee05cca157b2811fccd7e8aab0bc",
+  "fixtures": 38,
+  "fixturesMatching": 38,
+  "maximumAbsoluteDifference": 4.9199355474094375e-06,
+  "acceptedChains": 41,
+  "rejectedRebounds": [],
+  "perFixture": [
+    {
+      "fixture": [
+        "2025-08-15",
+        "Liverpool",
+        "Bournemouth"
+      ],
+      "sourceMatchId": 28778,
+      "raw": [
+        2.3300733716,
+        1.5730311126
+      ],
+      "adjusted": [
+        2.3300733716,
+        1.5730311125999998
+      ],
+      "summary": [
+        2.33007,
+        1.57303
+      ],
+      "rawMinusSummary": [
+        3.371600000079411e-06,
+        1.1126000001304703e-06
+      ],
+      "adjustedMinusSummary": [
+        3.371600000079411e-06,
+        1.1125999999084257e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-16",
+        "Aston Villa",
+        "Newcastle"
+      ],
+      "sourceMatchId": 28779,
+      "raw": [
+        0.3186008633,
+        1.4009809014
+      ],
+      "adjusted": [
+        0.31860086330000004,
+        1.4009809014
+      ],
+      "summary": [
+        0.318601,
+        1.40098
+      ],
+      "rawMinusSummary": [
+        -1.3670000004184502e-07,
+        9.014000001972278e-07
+      ],
+      "adjustedMinusSummary": [
+        -1.3669999998633386e-07,
+        9.014000001972278e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-16",
+        "Sunderland",
+        "West Ham"
+      ],
+      "sourceMatchId": 28781,
+      "raw": [
+        0.7243677732,
+        0.5589482831
+      ],
+      "adjusted": [
+        0.7243677731999999,
+        0.5589482831
+      ],
+      "summary": [
+        0.724368,
+        0.558948
+      ],
+      "rawMinusSummary": [
+        -2.2680000000274703e-07,
+        2.830999999980932e-07
+      ],
+      "adjustedMinusSummary": [
+        -2.2680000011376933e-07,
+        2.830999999980932e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-16",
+        "Tottenham",
+        "Burnley"
+      ],
+      "sourceMatchId": 28782,
+      "raw": [
+        2.038956836,
+        0.7499592134999999
+      ],
+      "adjusted": [
+        1.9785805038491744,
+        0.734138290355035
+      ],
+      "summary": [
+        1.97858,
+        0.734138
+      ],
+      "rawMinusSummary": [
+        0.0603768360000001,
+        0.015821213499999986
+      ],
+      "adjustedMinusSummary": [
+        5.038491743825091e-07,
+        2.9035503501528837e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Chelsea",
+        "Crystal Palace"
+      ],
+      "sourceMatchId": 28784,
+      "raw": [
+        1.3765809479,
+        1.0375595068
+      ],
+      "adjusted": [
+        1.3679250945737493,
+        1.0341372643589044
+      ],
+      "summary": [
+        1.36793,
+        1.03414
+      ],
+      "rawMinusSummary": [
+        0.008650947899999872,
+        0.0034195068000000273
+      ],
+      "adjustedMinusSummary": [
+        -4.905426250756406e-06,
+        -2.735641095652497e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 4
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Man United",
+        "Arsenal"
+      ],
+      "sourceMatchId": 28786,
+      "raw": [
+        1.3853190167,
+        1.3303993922
+      ],
+      "adjusted": [
+        1.3765261227586385,
+        1.3303993922
+      ],
+      "summary": [
+        1.37653,
+        1.3304
+      ],
+      "rawMinusSummary": [
+        0.008789016699999985,
+        -6.078000001075168e-07
+      ],
+      "adjustedMinusSummary": [
+        -3.877241361527339e-06,
+        -6.078000001075168e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Nott'm Forest",
+        "Brentford"
+      ],
+      "sourceMatchId": 28785,
+      "raw": [
+        1.7570475815,
+        1.3344093673
+      ],
+      "adjusted": [
+        1.7555029706606589,
+        1.325162698087412
+      ],
+      "summary": [
+        1.7555,
+        1.32516
+      ],
+      "rawMinusSummary": [
+        0.001547581499999895,
+        0.009249367300000033
+      ],
+      "adjustedMinusSummary": [
+        2.9706606587964757e-06,
+        2.6980874121562692e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-18",
+        "Leeds",
+        "Everton"
+      ],
+      "sourceMatchId": 28787,
+      "raw": [
+        2.3856260926,
+        0.6892823874
+      ],
+      "adjusted": [
+        2.381200838379022,
+        0.6743377517598504
+      ],
+      "summary": [
+        2.3812,
+        0.674338
+      ],
+      "rawMinusSummary": [
+        0.004426092599999709,
+        0.014944387400000037
+      ],
+      "adjustedMinusSummary": [
+        8.383790217614262e-07,
+        -2.4824014954738516e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 3
+    },
+    {
+      "fixture": [
+        "2025-08-22",
+        "West Ham",
+        "Chelsea"
+      ],
+      "sourceMatchId": 28788,
+      "raw": [
+        0.9785720167,
+        3.9758191312
+      ],
+      "adjusted": [
+        0.9785720167,
+        3.9499650800644526
+      ],
+      "summary": [
+        0.978572,
+        3.94997
+      ],
+      "rawMinusSummary": [
+        1.6700000049496566e-08,
+        0.025849131200000208
+      ],
+      "adjustedMinusSummary": [
+        1.6700000049496566e-08,
+        -4.9199355474094375e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Arsenal",
+        "Leeds"
+      ],
+      "sourceMatchId": 28793,
+      "raw": [
+        2.7670507916,
+        0.1567608117
+      ],
+      "adjusted": [
+        2.7376076099205693,
+        0.1567608117
+      ],
+      "summary": [
+        2.73761,
+        0.156761
+      ],
+      "rawMinusSummary": [
+        0.029440791599999905,
+        -1.8830000000913394e-07
+      ],
+      "adjustedMinusSummary": [
+        -2.3900794308140405e-06,
+        -1.8830000000913394e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Bournemouth",
+        "Wolves"
+      ],
+      "sourceMatchId": 28792,
+      "raw": [
+        1.784623433,
+        0.3733670201
+      ],
+      "adjusted": [
+        1.7846234329999997,
+        0.3733670201
+      ],
+      "summary": [
+        1.78462,
+        0.373367
+      ],
+      "rawMinusSummary": [
+        3.4329999998305993e-06,
+        2.009999999774692e-08
+      ],
+      "adjustedMinusSummary": [
+        3.4329999996085547e-06,
+        2.009999999774692e-08
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Brentford",
+        "Aston Villa"
+      ],
+      "sourceMatchId": 28790,
+      "raw": [
+        1.3765398059,
+        0.980310142
+      ],
+      "adjusted": [
+        1.129642082500455,
+        0.9768519744240967
+      ],
+      "summary": [
+        1.12964,
+        0.976852
+      ],
+      "rawMinusSummary": [
+        0.24689980590000005,
+        0.003458141999999942
+      ],
+      "adjustedMinusSummary": [
+        2.0825004549696047e-06,
+        -2.557590339513638e-08
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Burnley",
+        "Sunderland"
+      ],
+      "sourceMatchId": 28791,
+      "raw": [
+        1.0038139838,
+        1.1212703457
+      ],
+      "adjusted": [
+        1.0038139838,
+        1.1212703457
+      ],
+      "summary": [
+        1.00381,
+        1.12127
+      ],
+      "rawMinusSummary": [
+        3.983799999884852e-06,
+        3.456999999595922e-07
+      ],
+      "adjustedMinusSummary": [
+        3.983799999884852e-06,
+        3.456999999595922e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Man City",
+        "Tottenham"
+      ],
+      "sourceMatchId": 28789,
+      "raw": [
+        1.2474997156,
+        1.2829762157
+      ],
+      "adjusted": [
+        1.2474997156,
+        1.280151961308829
+      ],
+      "summary": [
+        1.2475,
+        1.28015
+      ],
+      "rawMinusSummary": [
+        -2.843999999946334e-07,
+        0.0028262157000000787
+      ],
+      "adjustedMinusSummary": [
+        -2.843999999946334e-07,
+        1.961308829123709e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Crystal Palace",
+        "Nott'm Forest"
+      ],
+      "sourceMatchId": 28794,
+      "raw": [
+        1.1018764191,
+        1.3298739568
+      ],
+      "adjusted": [
+        1.1018764191000001,
+        1.3298739567999998
+      ],
+      "summary": [
+        1.10188,
+        1.32987
+      ],
+      "rawMinusSummary": [
+        -3.5809000000774915e-06,
+        3.956799999871308e-06
+      ],
+      "adjustedMinusSummary": [
+        -3.580899999855447e-06,
+        3.956799999649263e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Everton",
+        "Brighton"
+      ],
+      "sourceMatchId": 28795,
+      "raw": [
+        1.8180652076,
+        2.0848709997
+      ],
+      "adjusted": [
+        1.8011611419998488,
+        2.0848709997
+      ],
+      "summary": [
+        1.80116,
+        2.08487
+      ],
+      "rawMinusSummary": [
+        0.016905207599999805,
+        9.997000001149559e-07
+      ],
+      "adjustedMinusSummary": [
+        1.141999848686126e-06,
+        9.997000001149559e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Fulham",
+        "Man United"
+      ],
+      "sourceMatchId": 28796,
+      "raw": [
+        1.6628399481,
+        1.5460269096
+      ],
+      "adjusted": [
+        1.6533339596838552,
+        1.5460269096
+      ],
+      "summary": [
+        1.65333,
+        1.54603
+      ],
+      "rawMinusSummary": [
+        0.009509948100000054,
+        -3.0903999999054577e-06
+      ],
+      "adjustedMinusSummary": [
+        3.959683855248031e-06,
+        -3.0903999999054577e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-25",
+        "Newcastle",
+        "Liverpool"
+      ],
+      "sourceMatchId": 28797,
+      "raw": [
+        1.9634245661,
+        0.6465590895
+      ],
+      "adjusted": [
+        1.9634245661,
+        0.6465590895
+      ],
+      "summary": [
+        1.96342,
+        0.646559
+      ],
+      "rawMinusSummary": [
+        4.566100000102935e-06,
+        8.949999996676894e-08
+      ],
+      "adjustedMinusSummary": [
+        4.566100000102935e-06,
+        8.949999996676894e-08
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Chelsea",
+        "Fulham"
+      ],
+      "sourceMatchId": 28798,
+      "raw": [
+        2.4323999088,
+        0.7362277897
+      ],
+      "adjusted": [
+        2.4323999088,
+        0.7362277896999999
+      ],
+      "summary": [
+        2.4324,
+        0.736228
+      ],
+      "rawMinusSummary": [
+        -9.119999999640527e-08,
+        -2.1029999996979853e-07
+      ],
+      "adjustedMinusSummary": [
+        -9.119999999640527e-08,
+        -2.1030000008082084e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Leeds",
+        "Newcastle"
+      ],
+      "sourceMatchId": 28803,
+      "raw": [
+        0.6772996019,
+        0.3036351958
+      ],
+      "adjusted": [
+        0.6772996019,
+        0.30363519579999987
+      ],
+      "summary": [
+        0.6773,
+        0.303635
+      ],
+      "rawMinusSummary": [
+        -3.9809999996531786e-07,
+        1.9579999999130848e-07
+      ],
+      "adjustedMinusSummary": [
+        -3.9809999996531786e-07,
+        1.9579999988028618e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Man United",
+        "Burnley"
+      ],
+      "sourceMatchId": 28802,
+      "raw": [
+        4.0248398631,
+        1.3765081727
+      ],
+      "adjusted": [
+        4.022372268997071,
+        1.326180087485727
+      ],
+      "summary": [
+        4.02237,
+        1.32618
+      ],
+      "rawMinusSummary": [
+        0.0024698631000008575,
+        0.05032817270000001
+      ],
+      "adjustedMinusSummary": [
+        2.268997071119827e-06,
+        8.748572710715052e-08
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Sunderland",
+        "Brentford"
+      ],
+      "sourceMatchId": 28801,
+      "raw": [
+        1.5731097664,
+        1.4460431227
+      ],
+      "adjusted": [
+        1.5712673840468474,
+        1.4460431227
+      ],
+      "summary": [
+        1.57127,
+        1.44604
+      ],
+      "rawMinusSummary": [
+        0.0018397664000000535,
+        3.1226999999134364e-06
+      ],
+      "adjustedMinusSummary": [
+        -2.6159531525404844e-06,
+        3.1226999999134364e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Tottenham",
+        "Bournemouth"
+      ],
+      "sourceMatchId": 28799,
+      "raw": [
+        0.1706703556,
+        2.1235710437
+      ],
+      "adjusted": [
+        0.1706703556,
+        2.1201006678542744
+      ],
+      "summary": [
+        0.17067,
+        2.1201
+      ],
+      "rawMinusSummary": [
+        3.556000000015658e-07,
+        0.003471043700000287
+      ],
+      "adjustedMinusSummary": [
+        3.556000000015658e-07,
+        6.678542745497396e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Wolves",
+        "Everton"
+      ],
+      "sourceMatchId": 28800,
+      "raw": [
+        0.9459304893,
+        2.0379134519
+      ],
+      "adjusted": [
+        0.9432568955091635,
+        2.0379134519
+      ],
+      "summary": [
+        0.943257,
+        2.03791
+      ],
+      "rawMinusSummary": [
+        0.002673489299999998,
+        3.4519000000621247e-06
+      ],
+      "adjustedMinusSummary": [
+        -1.0449083653885083e-07,
+        3.4519000000621247e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Aston Villa",
+        "Crystal Palace"
+      ],
+      "sourceMatchId": 28807,
+      "raw": [
+        1.227756802,
+        2.5971274114
+      ],
+      "adjusted": [
+        1.20585733870087,
+        2.5971274114
+      ],
+      "summary": [
+        1.20586,
+        2.59713
+      ],
+      "rawMinusSummary": [
+        0.021896802000000104,
+        -2.5886000001307252e-06
+      ],
+      "adjustedMinusSummary": [
+        -2.661299129957939e-06,
+        -2.5886000001307252e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Brighton",
+        "Man City"
+      ],
+      "sourceMatchId": 28805,
+      "raw": [
+        2.2086410468,
+        2.1341807293
+      ],
+      "adjusted": [
+        2.2086410468000004,
+        2.1341807293
+      ],
+      "summary": [
+        2.20864,
+        2.13418
+      ],
+      "rawMinusSummary": [
+        1.0468000000152244e-06,
+        7.2929999994642e-07
+      ],
+      "adjustedMinusSummary": [
+        1.0468000004593137e-06,
+        7.2929999994642e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Liverpool",
+        "Arsenal"
+      ],
+      "sourceMatchId": 28806,
+      "raw": [
+        0.4814035984,
+        0.4906639792
+      ],
+      "adjusted": [
+        0.48140359840000013,
+        0.485679007356403
+      ],
+      "summary": [
+        0.481404,
+        0.485679
+      ],
+      "rawMinusSummary": [
+        -4.015999999773534e-07,
+        0.0049849791999999615
+      ],
+      "adjustedMinusSummary": [
+        -4.015999998663311e-07,
+        7.356402986768984e-09
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Nott'm Forest",
+        "West Ham"
+      ],
+      "sourceMatchId": 28804,
+      "raw": [
+        0.7160180853,
+        2.2359961943
+      ],
+      "adjusted": [
+        0.7160180853,
+        2.2359961943
+      ],
+      "summary": [
+        0.716018,
+        2.236
+      ],
+      "rawMinusSummary": [
+        8.529999995232629e-08,
+        -3.80570000002578e-06
+      ],
+      "adjustedMinusSummary": [
+        8.529999995232629e-08,
+        -3.80570000002578e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Arsenal",
+        "Nott'm Forest"
+      ],
+      "sourceMatchId": 28808,
+      "raw": [
+        2.8816977405,
+        0.2936811931
+      ],
+      "adjusted": [
+        2.8816977405000004,
+        0.2936811931000002
+      ],
+      "summary": [
+        2.8817,
+        0.293681
+      ],
+      "rawMinusSummary": [
+        -2.259499999990311e-06,
+        1.9309999998995409e-07
+      ],
+      "adjustedMinusSummary": [
+        -2.2594999995462217e-06,
+        1.9310000015648754e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Bournemouth",
+        "Brighton"
+      ],
+      "sourceMatchId": 28810,
+      "raw": [
+        1.441874817,
+        0.6249234267
+      ],
+      "adjusted": [
+        1.441874817,
+        0.6249234267
+      ],
+      "summary": [
+        1.44187,
+        0.624923
+      ],
+      "rawMinusSummary": [
+        4.816999999990301e-06,
+        4.267000000002241e-07
+      ],
+      "adjustedMinusSummary": [
+        4.816999999990301e-06,
+        4.267000000002241e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Brentford",
+        "Chelsea"
+      ],
+      "sourceMatchId": 28815,
+      "raw": [
+        1.1753317751,
+        0.7563956193
+      ],
+      "adjusted": [
+        1.1753317751,
+        0.7559988679088986
+      ],
+      "summary": [
+        1.17533,
+        0.755999
+      ],
+      "rawMinusSummary": [
+        1.7751000001009487e-06,
+        0.0003966193000000118
+      ],
+      "adjustedMinusSummary": [
+        1.7751000001009487e-06,
+        -1.320911013902304e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Crystal Palace",
+        "Sunderland"
+      ],
+      "sourceMatchId": 28811,
+      "raw": [
+        1.8022697084000001,
+        0.3541287409
+      ],
+      "adjusted": [
+        1.7580519005936213,
+        0.3541287408999999
+      ],
+      "summary": [
+        1.75805,
+        0.354129
+      ],
+      "rawMinusSummary": [
+        0.044219708400000224,
+        -2.5910000001072575e-07
+      ],
+      "adjustedMinusSummary": [
+        1.9005936213734032e-06,
+        -2.5910000012174805e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Everton",
+        "Aston Villa"
+      ],
+      "sourceMatchId": 28812,
+      "raw": [
+        1.8933989602,
+        0.3543270006
+      ],
+      "adjusted": [
+        1.8927003663320727,
+        0.3543270006
+      ],
+      "summary": [
+        1.8927,
+        0.354327
+      ],
+      "rawMinusSummary": [
+        0.0006989602000000428,
+        5.999999941330714e-10
+      ],
+      "adjustedMinusSummary": [
+        3.663320726765562e-07,
+        5.999999941330714e-10
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Fulham",
+        "Leeds"
+      ],
+      "sourceMatchId": 28813,
+      "raw": [
+        1.1397936679,
+        0.8303975426
+      ],
+      "adjusted": [
+        1.1397936678999998,
+        0.8303975425999999
+      ],
+      "summary": [
+        1.13979,
+        0.830398
+      ],
+      "rawMinusSummary": [
+        3.667899999948432e-06,
+        -4.5739999998684056e-07
+      ],
+      "adjustedMinusSummary": [
+        3.6678999997263873e-06,
+        -4.5740000009786286e-07
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Newcastle",
+        "Wolves"
+      ],
+      "sourceMatchId": 28809,
+      "raw": [
+        1.1930506379,
+        0.3759419834
+      ],
+      "adjusted": [
+        1.1918620401337943,
+        0.37594198339999985
+      ],
+      "summary": [
+        1.19186,
+        0.375942
+      ],
+      "rawMinusSummary": [
+        0.0011906379000001799,
+        -1.6599999985711378e-08
+      ],
+      "adjustedMinusSummary": [
+        2.0401337943454223e-06,
+        -1.660000015224483e-08
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 1
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "West Ham",
+        "Tottenham"
+      ],
+      "sourceMatchId": 28814,
+      "raw": [
+        0.7932476624,
+        1.5140169728
+      ],
+      "adjusted": [
+        0.7932476623999999,
+        1.5140169728
+      ],
+      "summary": [
+        0.793248,
+        1.51402
+      ],
+      "rawMinusSummary": [
+        -3.3759999995552903e-07,
+        -3.0272000000053367e-06
+      ],
+      "adjustedMinusSummary": [
+        -3.3760000006655133e-07,
+        -3.0272000000053367e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 0
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Burnley",
+        "Liverpool"
+      ],
+      "sourceMatchId": 28816,
+      "raw": [
+        0.16804119769999998,
+        2.7979980267999998
+      ],
+      "adjusted": [
+        0.16804119770000003,
+        2.7949236866554483
+      ],
+      "summary": [
+        0.168041,
+        2.79492
+      ],
+      "rawMinusSummary": [
+        1.9769999998198173e-07,
+        0.003078026799999911
+      ],
+      "adjustedMinusSummary": [
+        1.9770000003749288e-07,
+        3.6866554484760172e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 2
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Man City",
+        "Man United"
+      ],
+      "sourceMatchId": 28817,
+      "raw": [
+        2.013071753,
+        1.5516251939999999
+      ],
+      "adjusted": [
+        1.9972506994432522,
+        1.5191515207253015
+      ],
+      "summary": [
+        1.99725,
+        1.51915
+      ],
+      "rawMinusSummary": [
+        0.015821753000000216,
+        0.032475193999999874
+      ],
+      "adjustedMinusSummary": [
+        6.994432522056115e-07,
+        1.5207253014626332e-06
+      ],
+      "withinTolerance": true,
+      "acceptedChains": 3
+    }
+  ],
+  "chainEvidence": [
+    {
+      "fixture": [
+        "2025-08-16",
+        "Tottenham",
+        "Burnley"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28782.0,
+          "id": 637722.0,
+          "minute": 51.0,
+          "result": "BlockedShot",
+          "xG": 0.088762939,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Cross",
+          "side": "h"
+        },
+        {
+          "match_id": 28782.0,
+          "id": 637723.0,
+          "minute": 51.0,
+          "result": "SavedShot",
+          "xG": 0.4998835921,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        },
+        {
+          "match_id": 28782.0,
+          "id": 637724.0,
+          "minute": 51.0,
+          "result": "MissedShots",
+          "xG": 0.0294064283,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.6180529594,
+      "adjusted": 0.5576766272491742,
+      "reduction": 0.06037633215082583
+    },
+    {
+      "fixture": [
+        "2025-08-16",
+        "Tottenham",
+        "Burnley"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28782.0,
+          "id": 637725.0,
+          "minute": 57.0,
+          "result": "MissedShots",
+          "xG": 0.1226560548,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Pass",
+          "side": "a"
+        },
+        {
+          "match_id": 28782.0,
+          "id": 637726.0,
+          "minute": 57.0,
+          "result": "SavedShot",
+          "xG": 0.1289860755,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.2516421303,
+      "adjusted": 0.23582120715503496,
+      "reduction": 0.015820923144965027
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Chelsea",
+        "Crystal Palace"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28784.0,
+          "id": 638042.0,
+          "minute": 29.0,
+          "result": "BlockedShot",
+          "xG": 0.1087790504,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28784.0,
+          "id": 638043.0,
+          "minute": 29.0,
+          "result": "BlockedShot",
+          "xG": 0.0389928631,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.1477719135,
+      "adjusted": 0.14353030687960489,
+      "reduction": 0.004241606620395105
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Chelsea",
+        "Crystal Palace"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28784.0,
+          "id": 638044.0,
+          "minute": 29.0,
+          "result": "BlockedShot",
+          "xG": 0.0200033356,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "None",
+          "side": "h"
+        },
+        {
+          "match_id": 28784.0,
+          "id": 638045.0,
+          "minute": 29.0,
+          "result": "MissedShots",
+          "xG": 0.1311507821,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.1511541177,
+      "adjusted": 0.14853066459145126,
+      "reduction": 0.002623453108548751
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Chelsea",
+        "Crystal Palace"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28784.0,
+          "id": 638047.0,
+          "minute": 46.0,
+          "result": "BlockedShot",
+          "xG": 0.0560662262,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Interception",
+          "side": "h"
+        },
+        {
+          "match_id": 28784.0,
+          "id": 638048.0,
+          "minute": 46.0,
+          "result": "MissedShots",
+          "xG": 0.0319406837,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.0880069099,
+      "adjusted": 0.08621611630269321,
+      "reduction": 0.0017907935973067862
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Chelsea",
+        "Crystal Palace"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28784.0,
+          "id": 638050.0,
+          "minute": 48.0,
+          "result": "BlockedShot",
+          "xG": 0.0557276644,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "None",
+          "side": "a"
+        },
+        {
+          "match_id": 28784.0,
+          "id": 638051.0,
+          "minute": 48.0,
+          "result": "MissedShots",
+          "xG": 0.0614101179,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.11713778229999999,
+      "adjusted": 0.11371553985890426,
+      "reduction": 0.0034222424410957353
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Man United",
+        "Arsenal"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28786.0,
+          "id": 638248.0,
+          "minute": 88.0,
+          "result": "MissedShots",
+          "xG": 0.0645395592,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28786.0,
+          "id": 638249.0,
+          "minute": 88.0,
+          "result": "BlockedShot",
+          "xG": 0.136240378,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.20077993719999998,
+      "adjusted": 0.19198704325863858,
+      "reduction": 0.008792893941361402
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Nott'm Forest",
+        "Brentford"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28785.0,
+          "id": 638066.0,
+          "minute": 17.0,
+          "result": "BlockedShot",
+          "xG": 0.0520314425,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "BallTouch",
+          "side": "h"
+        },
+        {
+          "match_id": 28785.0,
+          "id": 638067.0,
+          "minute": 17.0,
+          "result": "SavedShot",
+          "xG": 0.0296861045,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.081717547,
+      "adjusted": 0.08017293616065924,
+      "reduction": 0.0015446108393407654
+    },
+    {
+      "fixture": [
+        "2025-08-17",
+        "Nott'm Forest",
+        "Brentford"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28785.0,
+          "id": 638070.0,
+          "minute": 39.0,
+          "result": "MissedShots",
+          "xG": 0.075135082,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Pass",
+          "side": "a"
+        },
+        {
+          "match_id": 28785.0,
+          "id": 638071.0,
+          "minute": 39.0,
+          "result": "BlockedShot",
+          "xG": 0.1230672672,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.19820234920000002,
+      "adjusted": 0.18895567998741203,
+      "reduction": 0.009246669212587988
+    },
+    {
+      "fixture": [
+        "2025-08-18",
+        "Leeds",
+        "Everton"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28787.0,
+          "id": 638385.0,
+          "minute": 36.0,
+          "result": "MissedShots",
+          "xG": 0.1181735694,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Cross",
+          "side": "h"
+        },
+        {
+          "match_id": 28787.0,
+          "id": 638386.0,
+          "minute": 36.0,
+          "result": "BlockedShot",
+          "xG": 0.0331664979,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.1513400673,
+      "adjusted": 0.14742066385865948,
+      "reduction": 0.003919403441340508
+    },
+    {
+      "fixture": [
+        "2025-08-18",
+        "Leeds",
+        "Everton"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28787.0,
+          "id": 638400.0,
+          "minute": 87.0,
+          "result": "BlockedShot",
+          "xG": 0.0418624207,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Aerial",
+          "side": "a"
+        },
+        {
+          "match_id": 28787.0,
+          "id": 638401.0,
+          "minute": 87.0,
+          "result": "MissedShots",
+          "xG": 0.3569940627,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.3988564834,
+      "adjusted": 0.38391184775985043,
+      "reduction": 0.014944635640149584
+    },
+    {
+      "fixture": [
+        "2025-08-18",
+        "Leeds",
+        "Everton"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28787.0,
+          "id": 638402.0,
+          "minute": 90.0,
+          "result": "SavedShot",
+          "xG": 0.0273878463,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28787.0,
+          "id": 638403.0,
+          "minute": 90.0,
+          "result": "BlockedShot",
+          "xG": 0.0184698999,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.0458577462,
+      "adjusted": 0.04535189542036244,
+      "reduction": 0.000505850779637558
+    },
+    {
+      "fixture": [
+        "2025-08-22",
+        "West Ham",
+        "Chelsea"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28788.0,
+          "id": 638580.0,
+          "minute": 57.0,
+          "result": "MissedShots",
+          "xG": 0.0404708385,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Aerial",
+          "side": "a"
+        },
+        {
+          "match_id": 28788.0,
+          "id": 638581.0,
+          "minute": 57.0,
+          "result": "Goal",
+          "xG": 0.6388316154,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.6793024539,
+      "adjusted": 0.6534484027644525,
+      "reduction": 0.025854051135547507
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Arsenal",
+        "Leeds"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28793.0,
+          "id": 638957.0,
+          "minute": 55.0,
+          "result": "BlockedShot",
+          "xG": 0.1219795272,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Goal",
+          "side": "h"
+        },
+        {
+          "match_id": 28793.0,
+          "id": 638958.0,
+          "minute": 55.0,
+          "result": "Goal",
+          "xG": 0.1695878059,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.2915673331,
+      "adjusted": 0.27088109271743266,
+      "reduction": 0.020686240382567334
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Arsenal",
+        "Leeds"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28793.0,
+          "id": 638959.0,
+          "minute": 61.0,
+          "result": "MissedShots",
+          "xG": 0.1361981481,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Cross",
+          "side": "h"
+        },
+        {
+          "match_id": 28793.0,
+          "id": 638960.0,
+          "minute": 61.0,
+          "result": "MissedShots",
+          "xG": 0.0642955974,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.2004937455,
+      "adjusted": 0.19173680420313677,
+      "reduction": 0.008756941296863219
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Brentford",
+        "Aston Villa"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28790.0,
+          "id": 638833.0,
+          "minute": 11.0,
+          "result": "SavedShot",
+          "xG": 0.3994886279,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "TakeOn",
+          "side": "h"
+        },
+        {
+          "match_id": 28790.0,
+          "id": 638834.0,
+          "minute": 12.0,
+          "result": "Goal",
+          "xG": 0.6180344224,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 1.0175230503,
+      "adjusted": 0.7706253269004549,
+      "reduction": 0.24689772339954497
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Brentford",
+        "Aston Villa"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28790.0,
+          "id": 638842.0,
+          "minute": 30.0,
+          "result": "SavedShot",
+          "xG": 0.0405598767,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Pass",
+          "side": "a"
+        },
+        {
+          "match_id": 28790.0,
+          "id": 638843.0,
+          "minute": 30.0,
+          "result": "MissedShots",
+          "xG": 0.085260801,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.1258206777,
+      "adjusted": 0.12236251012409671,
+      "reduction": 0.0034581675759032815
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Man City",
+        "Tottenham"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28789.0,
+          "id": 638639.0,
+          "minute": 8.0,
+          "result": "BlockedShot",
+          "xG": 0.0574947856,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Standard",
+          "side": "a"
+        },
+        {
+          "match_id": 28789.0,
+          "id": 638640.0,
+          "minute": 8.0,
+          "result": "MissedShots",
+          "xG": 0.0256271474,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.08312193300000001,
+      "adjusted": 0.08164850565469739,
+      "reduction": 0.0014734273453026192
+    },
+    {
+      "fixture": [
+        "2025-08-23",
+        "Man City",
+        "Tottenham"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28789.0,
+          "id": 638659.0,
+          "minute": 92.0,
+          "result": "SavedShot",
+          "xG": 0.0915763825,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "FormationChange",
+          "side": "a"
+        },
+        {
+          "match_id": 28789.0,
+          "id": 638660.0,
+          "minute": 92.0,
+          "result": "SavedShot",
+          "xG": 0.0147508234,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.1063272059,
+      "adjusted": 0.10497637885413169,
+      "reduction": 0.001350827045868308
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Everton",
+        "Brighton"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28795.0,
+          "id": 639309.0,
+          "minute": 87.0,
+          "result": "MissedShots",
+          "xG": 0.1297798902,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28795.0,
+          "id": 639310.0,
+          "minute": 87.0,
+          "result": "MissedShots",
+          "xG": 0.13025181,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.2600317002,
+      "adjusted": 0.24312763459984876,
+      "reduction": 0.01690406560015123
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Fulham",
+        "Man United"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28796.0,
+          "id": 639494.0,
+          "minute": 15.0,
+          "result": "BlockedShot",
+          "xG": 0.013400333,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Aerial",
+          "side": "h"
+        },
+        {
+          "match_id": 28796.0,
+          "id": 639495.0,
+          "minute": 15.0,
+          "result": "SavedShot",
+          "xG": 0.0473304838,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.060730816800000004,
+      "adjusted": 0.06009657255602896,
+      "reduction": 0.0006342442439710438
+    },
+    {
+      "fixture": [
+        "2025-08-24",
+        "Fulham",
+        "Man United"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28796.0,
+          "id": 639500.0,
+          "minute": 45.0,
+          "result": "BlockedShot",
+          "xG": 0.148974508,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28796.0,
+          "id": 639501.0,
+          "minute": 45.0,
+          "result": "BlockedShot",
+          "xG": 0.0595520958,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.20852660380000002,
+      "adjusted": 0.19965485962782614,
+      "reduction": 0.008871744172173873
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Man United",
+        "Burnley"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28802.0,
+          "id": 640299.0,
+          "minute": 47.0,
+          "result": "BlockedShot",
+          "xG": 0.0156550538,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28802.0,
+          "id": 640300.0,
+          "minute": 47.0,
+          "result": "MissedShots",
+          "xG": 0.157622844,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.17327789780000002,
+      "adjusted": 0.17081030369707106,
+      "reduction": 0.0024675941029289605
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Man United",
+        "Burnley"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28802.0,
+          "id": 640310.0,
+          "minute": 65.0,
+          "result": "SavedShot",
+          "xG": 0.07852377,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "None",
+          "side": "a"
+        },
+        {
+          "match_id": 28802.0,
+          "id": 640311.0,
+          "minute": 65.0,
+          "result": "Goal",
+          "xG": 0.64092803,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.7194518,
+      "adjusted": 0.6691237147857269,
+      "reduction": 0.05032808521427312
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Sunderland",
+        "Brentford"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28801.0,
+          "id": 640273.0,
+          "minute": 45.0,
+          "result": "BlockedShot",
+          "xG": 0.0293918196,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "None",
+          "side": "h"
+        },
+        {
+          "match_id": 28801.0,
+          "id": 640274.0,
+          "minute": 45.0,
+          "result": "MissedShots",
+          "xG": 0.0626835078,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.09207532739999999,
+      "adjusted": 0.0902329450468472,
+      "reduction": 0.0018423823531527883
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Tottenham",
+        "Bournemouth"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28799.0,
+          "id": 640232.0,
+          "minute": 48.0,
+          "result": "BlockedShot",
+          "xG": 0.0682341903,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Pass",
+          "side": "a"
+        },
+        {
+          "match_id": 28799.0,
+          "id": 640233.0,
+          "minute": 48.0,
+          "result": "BlockedShot",
+          "xG": 0.0508597791,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.1190939694,
+      "adjusted": 0.11562359355427465,
+      "reduction": 0.0034703758457253486
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Wolves",
+        "Everton"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28800.0,
+          "id": 640261.0,
+          "minute": 83.0,
+          "result": "BlockedShot",
+          "xG": 0.0433531068,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Cross",
+          "side": "h"
+        },
+        {
+          "match_id": 28800.0,
+          "id": 640262.0,
+          "minute": 83.0,
+          "result": "BlockedShot",
+          "xG": 0.02783948,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.0711925868,
+      "adjusted": 0.06998565885030361,
+      "reduction": 0.0012069279496963875
+    },
+    {
+      "fixture": [
+        "2025-08-30",
+        "Wolves",
+        "Everton"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28800.0,
+          "id": 640264.0,
+          "minute": 93.0,
+          "result": "SavedShot",
+          "xG": 0.0182199609,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28800.0,
+          "id": 640265.0,
+          "minute": 93.0,
+          "result": "MissedShots",
+          "xG": 0.0804977491,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.09871771,
+      "adjusted": 0.09725104415885999,
+      "reduction": 0.0014666658411400108
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Aston Villa",
+        "Crystal Palace"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28807.0,
+          "id": 641131.0,
+          "minute": 72.0,
+          "result": "BlockedShot",
+          "xG": 0.0775464028,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Pass",
+          "side": "h"
+        },
+        {
+          "match_id": 28807.0,
+          "id": 641132.0,
+          "minute": 72.0,
+          "result": "MissedShots",
+          "xG": 0.2824046314,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.35995103419999996,
+      "adjusted": 0.33805157090087,
+      "reduction": 0.02189946329912995
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Liverpool",
+        "Arsenal"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28806.0,
+          "id": 640944.0,
+          "minute": 38.0,
+          "result": "BlockedShot",
+          "xG": 0.0893765688,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Pass",
+          "side": "a"
+        },
+        {
+          "match_id": 28806.0,
+          "id": 640945.0,
+          "minute": 38.0,
+          "result": "BlockedShot",
+          "xG": 0.0419676155,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.1313441843,
+      "adjusted": 0.12759326282589223,
+      "reduction": 0.003750921474107771
+    },
+    {
+      "fixture": [
+        "2025-08-31",
+        "Liverpool",
+        "Arsenal"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28806.0,
+          "id": 640949.0,
+          "minute": 62.0,
+          "result": "BlockedShot",
+          "xG": 0.0586242937,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Pass",
+          "side": "a"
+        },
+        {
+          "match_id": 28806.0,
+          "id": 640950.0,
+          "minute": 62.0,
+          "result": "BlockedShot",
+          "xG": 0.0210501533,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.07967444700000001,
+      "adjusted": 0.07844039663051083,
+      "reduction": 0.0012340503694891758
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Brentford",
+        "Chelsea"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28815.0,
+          "id": 642004.0,
+          "minute": 64.0,
+          "result": "BlockedShot",
+          "xG": 0.0318642296,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Standard",
+          "side": "a"
+        },
+        {
+          "match_id": 28815.0,
+          "id": 642005.0,
+          "minute": 64.0,
+          "result": "BlockedShot",
+          "xG": 0.0124513097,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.0443155393,
+      "adjusted": 0.04391878790889847,
+      "reduction": 0.0003967513911015269
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Crystal Palace",
+        "Sunderland"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28811.0,
+          "id": 641699.0,
+          "minute": 49.0,
+          "result": "SavedShot",
+          "xG": 0.108536616,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Cross",
+          "side": "h"
+        },
+        {
+          "match_id": 28811.0,
+          "id": 641700.0,
+          "minute": 49.0,
+          "result": "BlockedShot",
+          "xG": 0.398040086,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.506576702,
+      "adjusted": 0.4633747780332109,
+      "reduction": 0.043201923966789124
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Crystal Palace",
+        "Sunderland"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28811.0,
+          "id": 641707.0,
+          "minute": 87.0,
+          "result": "SavedShot",
+          "xG": 0.0601100549,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "HeadPass",
+          "side": "h"
+        },
+        {
+          "match_id": 28811.0,
+          "id": 641708.0,
+          "minute": 87.0,
+          "result": "SavedShot",
+          "xG": 0.0169003978,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.07701045270000001,
+      "adjusted": 0.07599456886041012,
+      "reduction": 0.0010158838395898928
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Everton",
+        "Aston Villa"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28812.0,
+          "id": 641730.0,
+          "minute": 61.0,
+          "result": "BlockedShot",
+          "xG": 0.0477190688,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "None",
+          "side": "h"
+        },
+        {
+          "match_id": 28812.0,
+          "id": 641731.0,
+          "minute": 61.0,
+          "result": "BlockedShot",
+          "xG": 0.0146397213,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.0623587901,
+      "adjusted": 0.06166019623207253,
+      "reduction": 0.0006985938679274703
+    },
+    {
+      "fixture": [
+        "2025-09-13",
+        "Newcastle",
+        "Wolves"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28809.0,
+          "id": 641665.0,
+          "minute": 48.0,
+          "result": "BlockedShot",
+          "xG": 0.0393163003,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "None",
+          "side": "h"
+        },
+        {
+          "match_id": 28809.0,
+          "id": 641666.0,
+          "minute": 49.0,
+          "result": "ShotOnPost",
+          "xG": 0.0302316789,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.0695479792,
+      "adjusted": 0.06835938143379439,
+      "reduction": 0.0011885977662056124
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Burnley",
+        "Liverpool"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28816.0,
+          "id": 642143.0,
+          "minute": 30.0,
+          "result": "BlockedShot",
+          "xG": 0.0441175364,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "None",
+          "side": "a"
+        },
+        {
+          "match_id": 28816.0,
+          "id": 642144.0,
+          "minute": 30.0,
+          "result": "BlockedShot",
+          "xG": 0.0141502647,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.058267801099999995,
+      "adjusted": 0.05764352628202818,
+      "reduction": 0.0006242748179718163
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Burnley",
+        "Liverpool"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28816.0,
+          "id": 642152.0,
+          "minute": 57.0,
+          "result": "BlockedShot",
+          "xG": 0.0618000142,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "TakeOn",
+          "side": "a"
+        },
+        {
+          "match_id": 28816.0,
+          "id": 642153.0,
+          "minute": 57.0,
+          "result": "BlockedShot",
+          "xG": 0.0396450609,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.1014450751,
+      "adjusted": 0.09899500977342013,
+      "reduction": 0.0024500653265798755
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Man City",
+        "Man United"
+      ],
+      "side": "h",
+      "shots": [
+        {
+          "match_id": 28817.0,
+          "id": 642430.0,
+          "minute": 54.0,
+          "result": "ShotOnPost",
+          "xG": 0.2434357405,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "TakeOn",
+          "side": "h"
+        },
+        {
+          "match_id": 28817.0,
+          "id": 642431.0,
+          "minute": 54.0,
+          "result": "MissedShots",
+          "xG": 0.0649906769,
+          "h_a": null,
+          "home_away": "h",
+          "lastAction": "Rebound",
+          "side": "h"
+        }
+      ],
+      "rawSum": 0.3084264174,
+      "adjusted": 0.2926053638432523,
+      "reduction": 0.015821053556747677
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Man City",
+        "Man United"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28817.0,
+          "id": 642440.0,
+          "minute": 83.0,
+          "result": "MissedShots",
+          "xG": 0.0387188308,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Chipped",
+          "side": "a"
+        },
+        {
+          "match_id": 28817.0,
+          "id": 642441.0,
+          "minute": 83.0,
+          "result": "MissedShots",
+          "xG": 0.6350149512,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.673733782,
+      "adjusted": 0.649146745549017,
+      "reduction": 0.024587036450983035
+    },
+    {
+      "fixture": [
+        "2025-09-14",
+        "Man City",
+        "Man United"
+      ],
+      "side": "a",
+      "shots": [
+        {
+          "match_id": 28817.0,
+          "id": 642442.0,
+          "minute": 84.0,
+          "result": "MissedShots",
+          "xG": 0.0174983647,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Aerial",
+          "side": "a"
+        },
+        {
+          "match_id": 28817.0,
+          "id": 642443.0,
+          "minute": 84.0,
+          "result": "MissedShots",
+          "xG": 0.450707078,
+          "h_a": null,
+          "home_away": "a",
+          "lastAction": "Rebound",
+          "side": "a"
+        }
+      ],
+      "rawSum": 0.4682054427,
+      "adjusted": 0.4603188058762846,
+      "reduction": 0.007886636823715376
+    }
+  ]
+}

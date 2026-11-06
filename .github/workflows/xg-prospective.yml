@@ -1,0 +1,72 @@
+name: Frozen xG prospective comparison
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/xg-prospective.yml'
+      - 'research/xg_prospective.py'
+      - 'docs/research/xg-2026-11-06/prospective/**'
+  schedule:
+    - cron: '43 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: xg-paired-1-settlement
+  cancel-in-progress: false
+
+jobs:
+  settle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - run: python -m pip install -r requirements-research.txt
+      - name: Read current fixture results
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import urllib.request
+          path = Path('artifacts/xg-prospective')
+          path.mkdir(parents=True, exist_ok=True)
+          url = 'https://footpredict-api.wzjp5747md.workers.dev/fd/competitions/PL/matches?season=2026'
+          request = urllib.request.Request(url, headers={
+              'Origin': 'https://foxsysofficial1909.github.io',
+              'User-Agent': 'FootpredictResearch/1.0'})
+          with urllib.request.urlopen(request, timeout=30) as response:
+              body = response.read(2_000_001)
+          if len(body) > 2_000_000:
+              raise ValueError('Oversized fixture response')
+          packet = json.loads(body)
+          if packet.get('competition', {}).get('code') != 'PL' or not packet.get('matches'):
+              raise ValueError('Expected an EPL fixture response')
+          (path / 'current-fixtures.json').write_bytes(body)
+          PY
+      - name: Score the immutable forecast packet without refitting
+        run: |
+          python -m research.xg_prospective settle \
+            --packet docs/research/xg-2026-11-06/prospective/packet.json \
+            --fixtures artifacts/xg-prospective/current-fixtures.json \
+            --output artifacts/xg-prospective
+      - name: Comparison summary
+        run: cat artifacts/xg-prospective/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Retain scores and the provider response
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xg-paired-1-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/xg-prospective/
+          retention-days: 90
+          if-no-files-found: warn

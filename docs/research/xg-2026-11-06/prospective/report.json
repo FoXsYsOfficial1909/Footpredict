@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "protocol": "xg-paired-1",
+  "packetSha256": "9a66a0c946cf34175a9159276e266c15f7eec804a6cadfa729b565838552b3f7",
+  "frozenAt": "2026-11-06T03:48:36.112821Z",
+  "evaluatedAt": "2026-11-06T03:48:36.147485Z",
+  "promotedToDefault": false,
+  "providerResponseSha256": "c6e978c0c5a9e7fbe54d5ad16edfd1d3cd4f92afa12baf752ab321bdd553f025",
+  "registered": 9,
+  "pending": 9,
+  "settled": 0,
+  "excluded": 0,
+  "commonMatches": 0,
+  "metrics": {
+    "xg": {
+      "n": 0,
+      "brier": null,
+      "logloss": null,
+      "accuracy": null
+    },
+    "reference": {
+      "n": 0,
+      "brier": null,
+      "logloss": null,
+      "accuracy": null
+    }
+  },
+  "fixtures": [
+    {
+      "fixtureId": 560632,
+      "home": "Leeds",
+      "away": "Tottenham",
+      "utcDate": "2026-11-07T12:30:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560633,
+      "home": "Fulham",
+      "away": "Newcastle",
+      "utcDate": "2026-11-07T15:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560640,
+      "home": "Arsenal",
+      "away": "Hull",
+      "utcDate": "2026-11-07T15:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560641,
+      "home": "Nott'm Forest",
+      "away": "Man City",
+      "utcDate": "2026-11-07T17:30:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560635,
+      "home": "Crystal Palace",
+      "away": "Liverpool",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560636,
+      "home": "Sunderland",
+      "away": "Chelsea",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560637,
+      "home": "Ipswich",
+      "away": "Bournemouth",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560638,
+      "home": "Brighton",
+      "away": "Brentford",
+      "utcDate": "2026-11-08T14:00:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    },
+    {
+      "fixtureId": 560639,
+      "home": "Man United",
+      "away": "Aston Villa",
+      "utcDate": "2026-11-08T16:30:00Z",
+      "status": "pending",
+      "reason": "result_unavailable"
+    }
+  ]
+}

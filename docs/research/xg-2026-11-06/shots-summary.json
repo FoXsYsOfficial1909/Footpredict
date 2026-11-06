@@ -1,0 +1,1600 @@
+{
+  "protocol": "expected-goals-research-1",
+  "selection": {
+    "protocol": "expected-goals-research-1",
+    "planSha256": "a52e040b18ba1a630646c15ef4d4b0c9f9ca3872ddedf997fefa01fcfc11072d",
+    "dataSha256": "5db370add352c55f363172f5068b03876f6a1272cb8c553a72f41d8e0b28e20f",
+    "referenceSettingsSha256": "bdc6f29f3ab8db55cbdcd861fee4cd280103b18c5dcf231a96575decff8b96cd",
+    "implementationSha256": "6fe99edc720f8d6ddafee9d6082bbdee65d7021d1d2597766db2db6a650eddb0",
+    "baseline": {
+      "n": 736,
+      "brier": 0.5709614997461899,
+      "logloss": 0.9613428503572878,
+      "accuracy": 0.5570652173913043
+    },
+    "validation": [
+      {
+        "id": "xg50-365",
+        "settings": {
+          "id": "xg50-365",
+          "goalWeight": 0.5,
+          "halfLife": 365,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5690055276482843,
+          "logloss": 0.9589743654816553,
+          "accuracy": 0.5584239130434783
+        },
+        "fullCoverage": {
+          "n": 760,
+          "brier": 0.5650609507199592,
+          "logloss": 0.9533675377755085,
+          "accuracy": 0.5631578947368421
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5527236549282043,
+            "logloss": 0.9369165406184056,
+            "accuracy": 0.5869565217391305
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5852874003683644,
+            "logloss": 0.9810321903449051,
+            "accuracy": 0.529891304347826
+          }
+        }
+      },
+      {
+        "id": "xg100-365",
+        "settings": {
+          "id": "xg100-365",
+          "goalWeight": 0.0,
+          "halfLife": 365,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5690953909909279,
+          "logloss": 0.9595062182415017,
+          "accuracy": 0.563858695652174
+        },
+        "fullCoverage": {
+          "n": 760,
+          "brier": 0.5658663511373561,
+          "logloss": 0.9548453920594876,
+          "accuracy": 0.5671052631578948
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5544411907014123,
+            "logloss": 0.9395058025309317,
+            "accuracy": 0.5869565217391305
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5837495912804433,
+            "logloss": 0.9795066339520717,
+            "accuracy": 0.5407608695652174
+          }
+        }
+      },
+      {
+        "id": "xg50-180",
+        "settings": {
+          "id": "xg50-180",
+          "goalWeight": 0.5,
+          "halfLife": 180,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5673606494564779,
+          "logloss": 0.956645990978577,
+          "accuracy": 0.5584239130434783
+        },
+        "fullCoverage": {
+          "n": 760,
+          "brier": 0.563406621230574,
+          "logloss": 0.9509320985023141,
+          "accuracy": 0.5631578947368421
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5538351075661655,
+            "logloss": 0.9389466952301813,
+            "accuracy": 0.5760869565217391
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5808861913467903,
+            "logloss": 0.9743452867269725,
+            "accuracy": 0.5407608695652174
+          }
+        }
+      },
+      {
+        "id": "xg100-180",
+        "settings": {
+          "id": "xg100-180",
+          "goalWeight": 0.0,
+          "halfLife": 180,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5668458538857561,
+          "logloss": 0.9562249522640166,
+          "accuracy": 0.5625
+        },
+        "fullCoverage": {
+          "n": 760,
+          "brier": 0.5636623357549772,
+          "logloss": 0.9515393304024644,
+          "accuracy": 0.5671052631578948
+        },
+        "bySeason": {
+          "2023": {
+            "n": 368,
+            "brier": 0.5550591808666419,
+            "logloss": 0.9406431988357061,
+            "accuracy": 0.5842391304347826
+          },
+          "2024": {
+            "n": 368,
+            "brier": 0.5786325269048704,
+            "logloss": 0.9718067056923271,
+            "accuracy": 0.5407608695652174
+          }
+        }
+      }
+    ],
+    "chosen": {
+      "id": "xg100-180",
+      "settings": {
+        "id": "xg100-180",
+        "goalWeight": 0.0,
+        "halfLife": 180,
+        "ridge": 0.03,
+        "windowDays": 1095,
+        "poissonWeight": 0.75
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5668458538857561,
+        "logloss": 0.9562249522640166,
+        "accuracy": 0.5625
+      },
+      "fullCoverage": {
+        "n": 760,
+        "brier": 0.5636623357549772,
+        "logloss": 0.9515393304024644,
+        "accuracy": 0.5671052631578948
+      },
+      "bySeason": {
+        "2023": {
+          "n": 368,
+          "brier": 0.5550591808666419,
+          "logloss": 0.9406431988357061,
+          "accuracy": 0.5842391304347826
+        },
+        "2024": {
+          "n": 368,
+          "brier": 0.5786325269048704,
+          "logloss": 0.9718067056923271,
+          "accuracy": 0.5407608695652174
+        }
+      }
+    },
+    "retrospectiveOnly": true,
+    "challengerAuditDeferred": true,
+    "promotedToDefault": false
+  },
+  "data": {
+    "csv": [
+      {
+        "season": 2015,
+        "rows": 380,
+        "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1516/E0.csv"
+      },
+      {
+        "season": 2016,
+        "rows": 380,
+        "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1617/E0.csv"
+      },
+      {
+        "season": 2017,
+        "rows": 380,
+        "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1718/E0.csv"
+      },
+      {
+        "season": 2018,
+        "rows": 380,
+        "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1819/E0.csv"
+      },
+      {
+        "season": 2019,
+        "rows": 380,
+        "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+      },
+      {
+        "season": 2020,
+        "rows": 380,
+        "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+      },
+      {
+        "season": 2021,
+        "rows": 380,
+        "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+        "shotsRows": 379,
+        "xgRows": 0,
+        "invalidStatisticsRows": 1,
+        "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+      },
+      {
+        "season": 2022,
+        "rows": 380,
+        "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+      },
+      {
+        "season": 2023,
+        "rows": 380,
+        "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+      },
+      {
+        "season": 2024,
+        "rows": 380,
+        "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+      },
+      {
+        "season": 2025,
+        "rows": 380,
+        "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+      },
+      {
+        "season": 2026,
+        "rows": 90,
+        "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+        "shotsRows": 90,
+        "xgRows": 90,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+      }
+    ],
+    "xgSha256": "ccaafc1ef2dbadc0eb3f0e1235c43c2bf36764a31d820210ba62d4be88dc1538",
+    "join": {
+      "source": "Validated Understat match observations",
+      "providerMixing": false,
+      "referenceMatches": 4270,
+      "archiveMatches": 4220,
+      "matched": 3811,
+      "unmatchedArchiveMatches": 409,
+      "scoreConflicts": [],
+      "bySeason": {
+        "2015": {
+          "referenceMatches": 380,
+          "matched": 367,
+          "missing": 13,
+          "scoreConflicts": 0
+        },
+        "2016": {
+          "referenceMatches": 380,
+          "matched": 367,
+          "missing": 13,
+          "scoreConflicts": 0
+        },
+        "2017": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2018": {
+          "referenceMatches": 380,
+          "matched": 379,
+          "missing": 1,
+          "scoreConflicts": 0
+        },
+        "2019": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2020": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2021": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2022": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2023": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2024": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2025": {
+          "referenceMatches": 380,
+          "matched": 38,
+          "missing": 342,
+          "scoreConflicts": 0
+        },
+        "2026": {
+          "referenceMatches": 90,
+          "matched": 0,
+          "missing": 90,
+          "scoreConflicts": 0
+        }
+      },
+      "unmatchedArchiveSample": [
+        [
+          "2014-08-16",
+          "Arsenal",
+          "Crystal Palace"
+        ],
+        [
+          "2014-08-16",
+          "Leicester",
+          "Everton"
+        ],
+        [
+          "2014-08-16",
+          "Man United",
+          "Swansea"
+        ],
+        [
+          "2014-08-16",
+          "QPR",
+          "Hull"
+        ],
+        [
+          "2014-08-16",
+          "Stoke",
+          "Aston Villa"
+        ],
+        [
+          "2014-08-16",
+          "West Brom",
+          "Sunderland"
+        ],
+        [
+          "2014-08-16",
+          "West Ham",
+          "Tottenham"
+        ],
+        [
+          "2014-08-17",
+          "Liverpool",
+          "Southampton"
+        ],
+        [
+          "2014-08-17",
+          "Newcastle",
+          "Man City"
+        ],
+        [
+          "2014-08-18",
+          "Burnley",
+          "Chelsea"
+        ],
+        [
+          "2014-08-23",
+          "Aston Villa",
+          "Newcastle"
+        ],
+        [
+          "2014-08-23",
+          "Chelsea",
+          "Leicester"
+        ],
+        [
+          "2014-08-23",
+          "Crystal Palace",
+          "West Ham"
+        ],
+        [
+          "2014-08-23",
+          "Everton",
+          "Arsenal"
+        ],
+        [
+          "2014-08-23",
+          "Southampton",
+          "West Brom"
+        ],
+        [
+          "2014-08-23",
+          "Swansea",
+          "Burnley"
+        ],
+        [
+          "2014-08-24",
+          "Hull",
+          "Stoke"
+        ],
+        [
+          "2014-08-24",
+          "Sunderland",
+          "Man United"
+        ],
+        [
+          "2014-08-24",
+          "Tottenham",
+          "QPR"
+        ],
+        [
+          "2014-08-25",
+          "Man City",
+          "Liverpool"
+        ]
+      ],
+      "excludedNearDateCandidates": [
+        {
+          "archiveFixture": [
+            "2015-11-03",
+            "Tottenham",
+            "Aston Villa"
+          ],
+          "referenceFixture": [
+            "2015-11-02",
+            "Tottenham",
+            "Aston Villa"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2015-11-24",
+            "Crystal Palace",
+            "Sunderland"
+          ],
+          "referenceFixture": [
+            "2015-11-23",
+            "Crystal Palace",
+            "Sunderland"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2015-12-08",
+            "Everton",
+            "Crystal Palace"
+          ],
+          "referenceFixture": [
+            "2015-12-07",
+            "Everton",
+            "Crystal Palace"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2015-12-15",
+            "Leicester",
+            "Chelsea"
+          ],
+          "referenceFixture": [
+            "2015-12-14",
+            "Leicester",
+            "Chelsea"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2015-12-22",
+            "Arsenal",
+            "Man City"
+          ],
+          "referenceFixture": [
+            "2015-12-21",
+            "Arsenal",
+            "Man City"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-01-14",
+            "Liverpool",
+            "Arsenal"
+          ],
+          "referenceFixture": [
+            "2016-01-13",
+            "Liverpool",
+            "Arsenal"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-01-14",
+            "Tottenham",
+            "Leicester"
+          ],
+          "referenceFixture": [
+            "2016-01-13",
+            "Tottenham",
+            "Leicester"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-01-19",
+            "Swansea",
+            "Watford"
+          ],
+          "referenceFixture": [
+            "2016-01-18",
+            "Swansea",
+            "Watford"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-02-03",
+            "Crystal Palace",
+            "Bournemouth"
+          ],
+          "referenceFixture": [
+            "2016-02-02",
+            "Crystal Palace",
+            "Bournemouth"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-02-03",
+            "Man United",
+            "Stoke"
+          ],
+          "referenceFixture": [
+            "2016-02-02",
+            "Man United",
+            "Stoke"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-02-03",
+            "West Brom",
+            "Swansea"
+          ],
+          "referenceFixture": [
+            "2016-02-02",
+            "West Brom",
+            "Swansea"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-03-03",
+            "Liverpool",
+            "Man City"
+          ],
+          "referenceFixture": [
+            "2016-03-02",
+            "Liverpool",
+            "Man City"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-03-03",
+            "Man United",
+            "Watford"
+          ],
+          "referenceFixture": [
+            "2016-03-02",
+            "Man United",
+            "Watford"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-11-01",
+            "Stoke",
+            "Swansea"
+          ],
+          "referenceFixture": [
+            "2016-10-31",
+            "Stoke",
+            "Swansea"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-11-22",
+            "West Brom",
+            "Burnley"
+          ],
+          "referenceFixture": [
+            "2016-11-21",
+            "West Brom",
+            "Burnley"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-06",
+            "Middlesbrough",
+            "Hull"
+          ],
+          "referenceFixture": [
+            "2016-12-05",
+            "Middlesbrough",
+            "Hull"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-15",
+            "Crystal Palace",
+            "Man United"
+          ],
+          "referenceFixture": [
+            "2016-12-14",
+            "Crystal Palace",
+            "Man United"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-15",
+            "Man City",
+            "Watford"
+          ],
+          "referenceFixture": [
+            "2016-12-14",
+            "Man City",
+            "Watford"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-15",
+            "Stoke",
+            "Southampton"
+          ],
+          "referenceFixture": [
+            "2016-12-14",
+            "Stoke",
+            "Southampton"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-15",
+            "Tottenham",
+            "Hull"
+          ],
+          "referenceFixture": [
+            "2016-12-14",
+            "Tottenham",
+            "Hull"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-15",
+            "West Brom",
+            "Swansea"
+          ],
+          "referenceFixture": [
+            "2016-12-14",
+            "West Brom",
+            "Swansea"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-20",
+            "Everton",
+            "Liverpool"
+          ],
+          "referenceFixture": [
+            "2016-12-19",
+            "Everton",
+            "Liverpool"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2016-12-31",
+            "Hull",
+            "Everton"
+          ],
+          "referenceFixture": [
+            "2016-12-30",
+            "Hull",
+            "Everton"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2017-01-04",
+            "Crystal Palace",
+            "Swansea"
+          ],
+          "referenceFixture": [
+            "2017-01-03",
+            "Crystal Palace",
+            "Swansea"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2017-01-04",
+            "Stoke",
+            "Watford"
+          ],
+          "referenceFixture": [
+            "2017-01-03",
+            "Stoke",
+            "Watford"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2017-01-05",
+            "Tottenham",
+            "Chelsea"
+          ],
+          "referenceFixture": [
+            "2017-01-04",
+            "Tottenham",
+            "Chelsea"
+          ]
+        },
+        {
+          "archiveFixture": [
+            "2018-08-25",
+            "Fulham",
+            "Burnley"
+          ],
+          "referenceFixture": [
+            "2018-08-26",
+            "Fulham",
+            "Burnley"
+          ]
+        }
+      ]
+    },
+    "archive": {
+      "schemaVersion": 1,
+      "source": "https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/epl_shot_data.rds",
+      "archiveURL": "https://github.com/JaseZiv/worldfootballR_data/releases/download/understat_shots/epl_shot_data.rds",
+      "archiveSha256": "c51e6661029a2b0f2b770bd9fc0a54da1913b303d6c6c908d11008f5c526ab60",
+      "archiveBytes": 29646577,
+      "aggregation": {
+        "inputShotRows": 107838,
+        "uniqueShots": 107838,
+        "identicalDuplicateShots": 0,
+        "matches": 4220,
+        "firstDate": "2014-08-16",
+        "lastDate": "2025-09-14"
+      },
+      "normalizedMatchesSha256": "ccaafc1ef2dbadc0eb3f0e1235c43c2bf36764a31d820210ba62d4be88dc1538",
+      "referenceSources": [
+        {
+          "season": 2015,
+          "rows": 380,
+          "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/1516/E0.csv"
+        },
+        {
+          "season": 2016,
+          "rows": 380,
+          "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/1617/E0.csv"
+        },
+        {
+          "season": 2017,
+          "rows": 380,
+          "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/1718/E0.csv"
+        },
+        {
+          "season": 2018,
+          "rows": 380,
+          "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/1819/E0.csv"
+        },
+        {
+          "season": 2019,
+          "rows": 380,
+          "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+        },
+        {
+          "season": 2020,
+          "rows": 380,
+          "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+        },
+        {
+          "season": 2021,
+          "rows": 380,
+          "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+          "shotsRows": 379,
+          "xgRows": 0,
+          "invalidStatisticsRows": 1,
+          "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+        },
+        {
+          "season": 2022,
+          "rows": 380,
+          "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+        },
+        {
+          "season": 2023,
+          "rows": 380,
+          "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+        },
+        {
+          "season": 2024,
+          "rows": 380,
+          "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+        },
+        {
+          "season": 2025,
+          "rows": 380,
+          "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+          "shotsRows": 380,
+          "xgRows": 0,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+        },
+        {
+          "season": 2026,
+          "rows": 90,
+          "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+          "shotsRows": 90,
+          "xgRows": 90,
+          "invalidStatisticsRows": 0,
+          "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+        }
+      ],
+      "join": {
+        "source": "Validated Understat match observations",
+        "providerMixing": false,
+        "referenceMatches": 4270,
+        "archiveMatches": 4220,
+        "matched": 3811,
+        "unmatchedArchiveMatches": 409,
+        "scoreConflicts": [],
+        "bySeason": {
+          "2015": {
+            "referenceMatches": 380,
+            "matched": 367,
+            "missing": 13,
+            "scoreConflicts": 0
+          },
+          "2016": {
+            "referenceMatches": 380,
+            "matched": 367,
+            "missing": 13,
+            "scoreConflicts": 0
+          },
+          "2017": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2018": {
+            "referenceMatches": 380,
+            "matched": 379,
+            "missing": 1,
+            "scoreConflicts": 0
+          },
+          "2019": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2020": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2021": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2022": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2023": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2024": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2025": {
+            "referenceMatches": 380,
+            "matched": 38,
+            "missing": 342,
+            "scoreConflicts": 0
+          },
+          "2026": {
+            "referenceMatches": 90,
+            "matched": 0,
+            "missing": 90,
+            "scoreConflicts": 0
+          }
+        },
+        "unmatchedArchiveSample": [
+          [
+            "2014-08-16",
+            "Arsenal",
+            "Crystal Palace"
+          ],
+          [
+            "2014-08-16",
+            "Leicester",
+            "Everton"
+          ],
+          [
+            "2014-08-16",
+            "Man United",
+            "Swansea"
+          ],
+          [
+            "2014-08-16",
+            "QPR",
+            "Hull"
+          ],
+          [
+            "2014-08-16",
+            "Stoke",
+            "Aston Villa"
+          ],
+          [
+            "2014-08-16",
+            "West Brom",
+            "Sunderland"
+          ],
+          [
+            "2014-08-16",
+            "West Ham",
+            "Tottenham"
+          ],
+          [
+            "2014-08-17",
+            "Liverpool",
+            "Southampton"
+          ],
+          [
+            "2014-08-17",
+            "Newcastle",
+            "Man City"
+          ],
+          [
+            "2014-08-18",
+            "Burnley",
+            "Chelsea"
+          ],
+          [
+            "2014-08-23",
+            "Aston Villa",
+            "Newcastle"
+          ],
+          [
+            "2014-08-23",
+            "Chelsea",
+            "Leicester"
+          ],
+          [
+            "2014-08-23",
+            "Crystal Palace",
+            "West Ham"
+          ],
+          [
+            "2014-08-23",
+            "Everton",
+            "Arsenal"
+          ],
+          [
+            "2014-08-23",
+            "Southampton",
+            "West Brom"
+          ],
+          [
+            "2014-08-23",
+            "Swansea",
+            "Burnley"
+          ],
+          [
+            "2014-08-24",
+            "Hull",
+            "Stoke"
+          ],
+          [
+            "2014-08-24",
+            "Sunderland",
+            "Man United"
+          ],
+          [
+            "2014-08-24",
+            "Tottenham",
+            "QPR"
+          ],
+          [
+            "2014-08-25",
+            "Man City",
+            "Liverpool"
+          ]
+        ],
+        "excludedNearDateCandidates": [
+          {
+            "archiveFixture": [
+              "2015-11-03",
+              "Tottenham",
+              "Aston Villa"
+            ],
+            "referenceFixture": [
+              "2015-11-02",
+              "Tottenham",
+              "Aston Villa"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2015-11-24",
+              "Crystal Palace",
+              "Sunderland"
+            ],
+            "referenceFixture": [
+              "2015-11-23",
+              "Crystal Palace",
+              "Sunderland"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2015-12-08",
+              "Everton",
+              "Crystal Palace"
+            ],
+            "referenceFixture": [
+              "2015-12-07",
+              "Everton",
+              "Crystal Palace"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2015-12-15",
+              "Leicester",
+              "Chelsea"
+            ],
+            "referenceFixture": [
+              "2015-12-14",
+              "Leicester",
+              "Chelsea"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2015-12-22",
+              "Arsenal",
+              "Man City"
+            ],
+            "referenceFixture": [
+              "2015-12-21",
+              "Arsenal",
+              "Man City"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-01-14",
+              "Liverpool",
+              "Arsenal"
+            ],
+            "referenceFixture": [
+              "2016-01-13",
+              "Liverpool",
+              "Arsenal"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-01-14",
+              "Tottenham",
+              "Leicester"
+            ],
+            "referenceFixture": [
+              "2016-01-13",
+              "Tottenham",
+              "Leicester"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-01-19",
+              "Swansea",
+              "Watford"
+            ],
+            "referenceFixture": [
+              "2016-01-18",
+              "Swansea",
+              "Watford"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-02-03",
+              "Crystal Palace",
+              "Bournemouth"
+            ],
+            "referenceFixture": [
+              "2016-02-02",
+              "Crystal Palace",
+              "Bournemouth"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-02-03",
+              "Man United",
+              "Stoke"
+            ],
+            "referenceFixture": [
+              "2016-02-02",
+              "Man United",
+              "Stoke"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-02-03",
+              "West Brom",
+              "Swansea"
+            ],
+            "referenceFixture": [
+              "2016-02-02",
+              "West Brom",
+              "Swansea"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-03-03",
+              "Liverpool",
+              "Man City"
+            ],
+            "referenceFixture": [
+              "2016-03-02",
+              "Liverpool",
+              "Man City"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-03-03",
+              "Man United",
+              "Watford"
+            ],
+            "referenceFixture": [
+              "2016-03-02",
+              "Man United",
+              "Watford"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-11-01",
+              "Stoke",
+              "Swansea"
+            ],
+            "referenceFixture": [
+              "2016-10-31",
+              "Stoke",
+              "Swansea"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-11-22",
+              "West Brom",
+              "Burnley"
+            ],
+            "referenceFixture": [
+              "2016-11-21",
+              "West Brom",
+              "Burnley"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-06",
+              "Middlesbrough",
+              "Hull"
+            ],
+            "referenceFixture": [
+              "2016-12-05",
+              "Middlesbrough",
+              "Hull"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-15",
+              "Crystal Palace",
+              "Man United"
+            ],
+            "referenceFixture": [
+              "2016-12-14",
+              "Crystal Palace",
+              "Man United"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-15",
+              "Man City",
+              "Watford"
+            ],
+            "referenceFixture": [
+              "2016-12-14",
+              "Man City",
+              "Watford"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-15",
+              "Stoke",
+              "Southampton"
+            ],
+            "referenceFixture": [
+              "2016-12-14",
+              "Stoke",
+              "Southampton"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-15",
+              "Tottenham",
+              "Hull"
+            ],
+            "referenceFixture": [
+              "2016-12-14",
+              "Tottenham",
+              "Hull"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-15",
+              "West Brom",
+              "Swansea"
+            ],
+            "referenceFixture": [
+              "2016-12-14",
+              "West Brom",
+              "Swansea"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-20",
+              "Everton",
+              "Liverpool"
+            ],
+            "referenceFixture": [
+              "2016-12-19",
+              "Everton",
+              "Liverpool"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2016-12-31",
+              "Hull",
+              "Everton"
+            ],
+            "referenceFixture": [
+              "2016-12-30",
+              "Hull",
+              "Everton"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2017-01-04",
+              "Crystal Palace",
+              "Swansea"
+            ],
+            "referenceFixture": [
+              "2017-01-03",
+              "Crystal Palace",
+              "Swansea"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2017-01-04",
+              "Stoke",
+              "Watford"
+            ],
+            "referenceFixture": [
+              "2017-01-03",
+              "Stoke",
+              "Watford"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2017-01-05",
+              "Tottenham",
+              "Chelsea"
+            ],
+            "referenceFixture": [
+              "2017-01-04",
+              "Tottenham",
+              "Chelsea"
+            ]
+          },
+          {
+            "archiveFixture": [
+              "2018-08-25",
+              "Fulham",
+              "Burnley"
+            ],
+            "referenceFixture": [
+              "2018-08-26",
+              "Fulham",
+              "Burnley"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "retrospectiveOnly": true,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true,
+  "passesRetrospectiveGate": true,
+  "challengerAuditComputedAfterSelection": true,
+  "audit": {
+    "commonMatches": 369,
+    "targets": 380,
+    "metrics": {
+      "challenger": {
+        "n": 369,
+        "brier": 0.6152296115137149,
+        "logloss": 1.0242246375316104,
+        "accuracy": 0.48509485094850946
+      },
+      "candidate": {
+        "n": 369,
+        "brier": 0.6158461204289281,
+        "logloss": 1.0255791743502944,
+        "accuracy": 0.4742547425474255
+      },
+      "v1": {
+        "n": 369,
+        "brier": 0.6323295798593116,
+        "logloss": 1.0500596498795642,
+        "accuracy": 0.48509485094850946
+      },
+      "base": {
+        "n": 369,
+        "brier": 0.6590031422251011,
+        "logloss": 1.0880616617848256,
+        "accuracy": 0.4173441734417344
+      }
+    },
+    "bySeason": {
+      "2025": {
+        "n": 369,
+        "brier": 0.6152296115137149,
+        "logloss": 1.0242246375316104,
+        "accuracy": 0.48509485094850946
+      }
+    },
+    "fullCoverage": {
+      "n": 380,
+      "brier": 0.6126632739485975,
+      "logloss": 1.0206735164162473,
+      "accuracy": 0.4868421052631579
+    },
+    "challengerMinusCurrent": {
+      "brier": {
+        "difference": -0.0006165089152130784,
+        "ci95": [
+          -0.006831362356758437,
+          0.005367003093162631
+        ],
+        "method": "paired resampling of calendar-day clusters",
+        "samples": 1500
+      },
+      "logloss": {
+        "difference": -0.0013545368186841135,
+        "ci95": [
+          -0.01055569490061446,
+          0.007640951886008527
+        ],
+        "method": "paired resampling of calendar-day clusters",
+        "samples": 1500
+      }
+    }
+  },
+  "recentMonitoring": {
+    "commonMatches": 79,
+    "targets": 90,
+    "metrics": {
+      "challenger": {
+        "n": 79,
+        "brier": 0.6429902961527625,
+        "logloss": 1.0679403408990544,
+        "accuracy": 0.4430379746835443
+      },
+      "candidate": {
+        "n": 79,
+        "brier": 0.6363712817521223,
+        "logloss": 1.0590551620806166,
+        "accuracy": 0.45569620253164556
+      },
+      "v1": {
+        "n": 79,
+        "brier": 0.669674691923868,
+        "logloss": 1.0998090903227185,
+        "accuracy": 0.4050632911392405
+      },
+      "base": {
+        "n": 79,
+        "brier": 0.6740035580329587,
+        "logloss": 1.1091862245627953,
+        "accuracy": 0.3924050632911392
+      }
+    },
+    "bySeason": {
+      "2026": {
+        "n": 79,
+        "brier": 0.6429902961527625,
+        "logloss": 1.0679403408990544,
+        "accuracy": 0.4430379746835443
+      }
+    },
+    "fullCoverage": {
+      "n": 90,
+      "brier": 0.6233010599721112,
+      "logloss": 1.0383171797616662,
+      "accuracy": 0.45555555555555555
+    },
+    "challengerMinusCurrent": {
+      "brier": {
+        "difference": 0.006619014400640216,
+        "ci95": [
+          -0.004554064761748937,
+          0.018242182989367816
+        ],
+        "method": "paired resampling of calendar-day clusters",
+        "samples": 1500
+      },
+      "logloss": {
+        "difference": 0.008885178818438203,
+        "ci95": [
+          -0.006296310903007329,
+          0.025549591215630222
+        ],
+        "method": "paired resampling of calendar-day clusters",
+        "samples": 1500
+      }
+    }
+  }
+}

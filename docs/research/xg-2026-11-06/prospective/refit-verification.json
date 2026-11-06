@@ -1,0 +1,9 @@
+{
+  "packetSha256": "9a66a0c946cf34175a9159276e266c15f7eec804a6cadfa729b565838552b3f7",
+  "trainingRows": 4270,
+  "coldRefitMatchesExactly": true,
+  "modelsSha256": {
+    "xg": "70d8c2d1f2525ad92f33564a7f6d09cae3ffd8cbdd262f52c6c0dbb558f26896",
+    "reference": "b9dbae374656c85e2bd918e6ce7ce5873ccd5686b9e112c6f6dbb701779ea6a5"
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "verified": true,
+  "combinedByteForByteEqual": true,
+  "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+  "combinedMatches": 2740,
+  "canonicalPrimaryManifest": {
+    "repository": "elliot-gautier-129/footy-prediction",
+    "revision": "90233c5edc2cd4a07011ea642b27ea479d106bf5",
+    "sourceUrl": "https://github.com/elliot-gautier-129/footy-prediction/tree/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng",
+    "source": "Understat league-summary xG cached by soccerdata; not raw shot xG sums",
+    "pinnedFilesVerified": true,
+    "referenceScoresVerified": true,
+    "inputFiles": [
+      {
+        "file": "eng_1920.csv",
+        "season": 2019,
+        "sha256": "0d6d302ded2c3d4f450d0d9840baa54f3968d8c4c2f6d49fc84f0e6e2d080c2e",
+        "gitBlobSha1": "7e70b4ba0f40465f6c215ae3ea817deaab51ad13",
+        "bytes": 74533,
+        "inputRows": 380,
+        "completedMatches": 380,
+        "futureFixturesSkipped": 0,
+        "missingDataSkipped": 0
+      },
+      {
+        "file": "eng_2021.csv",
+        "season": 2020,
+        "sha256": "9d4ce295d0ed9000f73847e0205dce2a39626404ae14e2b82b4acef23b813bf1",
+        "gitBlobSha1": "6d6ff05a38a789fd9132f28e15b1fe141822db3f",
+        "bytes": 75080,
+        "inputRows": 380,
+        "completedMatches": 380,
+        "futureFixturesSkipped": 0,
+        "missingDataSkipped": 0
+      },
+      {
+        "file": "eng_2122.csv",
+        "season": 2021,
+        "sha256": "11842ab7340d26ce84a8ae8bf24fa025bc71bddff39274af080bf07b6c00562d",
+        "gitBlobSha1": "79afe5b1a34c756b6e75425fd426eb69ef165a40",
+        "bytes": 73600,
+        "inputRows": 380,
+        "completedMatches": 380,
+        "futureFixturesSkipped": 0,
+        "missingDataSkipped": 0
+      },
+      {
+        "file": "eng_2223.csv",
+        "season": 2022,
+        "sha256": "5d8b9cac43f3a9219fe4a6e344f047763a2d6fb140ec5a038d58883952ac1da6",
+        "gitBlobSha1": "4ad8152fd3c76c7e333abe05799f26b3077a444b",
+        "bytes": 74622,
+        "inputRows": 380,
+        "completedMatches": 380,
+        "futureFixturesSkipped": 0,
+        "missingDataSkipped": 0
+      },
+      {
+        "file": "eng_2324.csv",
+        "season": 2023,
+        "sha256": "fb0a926ada8950984c146dd2d4de5eecfec1e5282428e1659937509cf6defe82",
+        "gitBlobSha1": "c252e5408fde7449171bb0d0afc6b77f931eb7e6",
+        "bytes": 74851,
+        "inputRows": 380,
+        "completedMatches": 380,
+        "futureFixturesSkipped": 0,
+        "missingDataSkipped": 0
+      },
+      {
+        "file": "eng_2425.csv",
+        "season": 2024,
+        "sha256": "0cbf28491e41c215861e1beff4c84d8979c745098f166ab6534cd7cafefb7e3d",
+        "gitBlobSha1": "19a7180c38073f62203fc9f71b2cd025adad43d4",
+        "bytes": 74731,
+        "inputRows": 380,
+        "completedMatches": 380,
+        "futureFixturesSkipped": 0,
+        "missingDataSkipped": 0
+      },
+      {
+        "file": "eng_2526.csv",
+        "season": 2025,
+        "sha256": "5ab8c8b7ec5be260ed444774c06cd0a904abca5474b9a32639ce3f9b9ca39573",
+        "gitBlobSha1": "4ce495d6dea19c8d8021b2d214d3439b32ec97a0",
+        "bytes": 74361,
+        "inputRows": 380,
+        "completedMatches": 380,
+        "futureFixturesSkipped": 0,
+        "missingDataSkipped": 0
+      },
+      {
+        "file": "eng_2627.csv",
+        "season": 2026,
+        "sha256": "dd45e298a5e7d0e670df01c5b3f6d68947cbef3dc9fc14ee7c155e09b93fd69f",
+        "gitBlobSha1": "0ea0770e24f3005958e7b5dcfbbab3fc6dce7715",
+        "bytes": 68068,
+        "inputRows": 380,
+        "completedMatches": 40,
+        "futureFixturesSkipped": 340,
+        "missingDataSkipped": 0
+      }
+    ],
+    "matches": 2700,
+    "firstDate": "2019-08-09",
+    "lastDate": "2026-09-14",
+    "futureFixturesSkipped": 340,
+    "missingDataSkipped": 0,
+    "bySeason": {
+      "2019": 380,
+      "2020": 380,
+      "2021": 380,
+      "2022": 380,
+      "2023": 380,
+      "2024": 380,
+      "2025": 380,
+      "2026": 40
+    },
+    "usedColumns": [
+      "away_goals",
+      "away_team",
+      "away_xg",
+      "date",
+      "game_id",
+      "has_data",
+      "home_goals",
+      "home_team",
+      "home_xg",
+      "is_result",
+      "league",
+      "season",
+      "season_id",
+      "url"
+    ],
+    "join": {
+      "source": "Validated Understat match observations",
+      "providerMixing": false,
+      "referenceMatches": 4270,
+      "archiveMatches": 2700,
+      "matched": 2700,
+      "unmatchedArchiveMatches": 0,
+      "scoreConflicts": [],
+      "bySeason": {
+        "2015": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2016": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2017": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2018": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2019": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2020": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2021": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2022": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2023": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2024": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2025": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2026": {
+          "referenceMatches": 90,
+          "matched": 40,
+          "missing": 50,
+          "scoreConflicts": 0
+        }
+      },
+      "unmatchedArchiveSample": [],
+      "excludedNearDateCandidates": []
+    },
+    "availabilityCaveat": "Pinned snapshot supports retrospective research, not historical 24-hour availability."
+  },
+  "canonicalRecentManifest": {
+    "repository": "CameronNichol47/epl-match-prediction-dashboard",
+    "revision": "647420c6bb756db992374b04a5ba0ee6235a2624",
+    "sourceUrl": "https://github.com/CameronNichol47/epl-match-prediction-dashboard/tree/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed",
+    "pipelineUrl": "https://github.com/CameronNichol47/epl-match-prediction-dashboard/blob/647420c6bb756db992374b04a5ba0ee6235a2624/src/scraping.py",
+    "source": "Secondary Understat-derived CSV cache; not a direct provider response",
+    "pinnedFilesVerified": true,
+    "inputTeamRows": 806,
+    "matches": 454,
+    "bothTeamCopies": 352,
+    "firstDate": "2025-08-15",
+    "lastDate": "2026-10-25",
+    "referenceScoresVerified": true,
+    "bySeason": {
+      "2025": 374,
+      "2026": 80
+    },
+    "usedColumns": [
+      "Comp",
+      "Date",
+      "GA",
+      "GF",
+      "Opponent",
+      "Venue",
+      "XG_against",
+      "XG_for"
+    ],
+    "inputFiles": [
+      {
+        "file": "Arsenal.csv",
+        "sha256": "8db412043d54df7f72c48c647aebd88809c07ecce471e24d6534efcf68c935a8",
+        "gitBlobSha1": "ed4934972b186408b89785169c5af120d1eccb30",
+        "bytes": 12688,
+        "rawRows": 46
+      },
+      {
+        "file": "Aston Villa.csv",
+        "sha256": "b3e4a01df184485cb2171facf79d81983079f2e2bd259347caf2d5fd82a321b8",
+        "gitBlobSha1": "49e81b79427425d0000ddd12927c9c00fe3ab09d",
+        "bytes": 13009,
+        "rawRows": 46
+      },
+      {
+        "file": "Bournemouth.csv",
+        "sha256": "022d3d5959e7b511070dc7ca3b6f86c484a28a1989bb74e2e0b5fbe76542c68e",
+        "gitBlobSha1": "54ec5b58a20b2c40718a94d7a16f948a9d987df3",
+        "bytes": 13072,
+        "rawRows": 46
+      },
+      {
+        "file": "Brentford.csv",
+        "sha256": "38075b74a5fae5d37170886b7f007f1134dda0bfdd4c30e87ee4ccfd8922dcf5",
+        "gitBlobSha1": "542d923f95ee8020205a6126526daed8cdcfafa7",
+        "bytes": 12966,
+        "rawRows": 46
+      },
+      {
+        "file": "Brighton.csv",
+        "sha256": "dc855a244c9909d14d2faec5db2e5f4dc3b935067de4ef52946dd5a0145708e1",
+        "gitBlobSha1": "461e604c9f1244560b10a64b6c12eb16494c3295",
+        "bytes": 12863,
+        "rawRows": 46
+      },
+      {
+        "file": "Chelsea.csv",
+        "sha256": "06bf19292a7d7ef5821d56474e8cd46f9620c6b3442bcc6c081026237917474f",
+        "gitBlobSha1": "a137bb98a51e84d7d8952d3eda810dabcec6e69e",
+        "bytes": 12775,
+        "rawRows": 46
+      },
+      {
+        "file": "Coventry.csv",
+        "sha256": "998baf017ffa67b0a4781e123c4439b085f8aab60dd23d3431776d22e89664c6",
+        "gitBlobSha1": "adc8fb48b11affba53cc3ac3489a55eae40f6d61",
+        "bytes": 904,
+        "rawRows": 8
+      },
+      {
+        "file": "Crystal Palace.csv",
+        "sha256": "9f455bc149082a500594085023428c2119c5894459ab1d4838b677b8851fa8a1",
+        "gitBlobSha1": "dbb04f9a374090f952fd0baad4a758283fbe99d9",
+        "bytes": 13042,
+        "rawRows": 46
+      },
+      {
+        "file": "Everton.csv",
+        "sha256": "11c7637706c4634e0a9a2c21e163462b21c8f32720efbe6ead90e6235dac45dc",
+        "gitBlobSha1": "0ba496bd3b911f4a924afcf43b1681d49d648df8",
+        "bytes": 13107,
+        "rawRows": 46
+      },
+      {
+        "file": "Fulham.csv",
+        "sha256": "73f6018214639912afe5e6e140c40c7a7f1480616568e3018239bbdd8ef05927",
+        "gitBlobSha1": "43ab5d84e66affa3a4d162fdbe4c33d37a8cfb4a",
+        "bytes": 13085,
+        "rawRows": 46
+      },
+      {
+        "file": "Hull.csv",
+        "sha256": "a45fa57a3ec323cb8a1d850d5c385921664132e9f69b0a83b17127fcf45bfeb9",
+        "gitBlobSha1": "7de136a37d339ed6b6e3e6ed85baeb91967b4836",
+        "bytes": 872,
+        "rawRows": 8
+      },
+      {
+        "file": "Ipswich.csv",
+        "sha256": "5ce022984cd7458cf24dad6d50f3f7db87473d6576e647f9a4a0687d61348778",
+        "gitBlobSha1": "7a14c5f2a6bf4309c8ed08df7de0dfd3fc8caa32",
+        "bytes": 917,
+        "rawRows": 8
+      },
+      {
+        "file": "Leeds United.csv",
+        "sha256": "ee77923f177ba1f45c49dadf76a8ec4c896ec50992e47855642bf188912629a0",
+        "gitBlobSha1": "9c226a4fbe1d9bbec3c012b46051a57552e5f90c",
+        "bytes": 13058,
+        "rawRows": 46
+      },
+      {
+        "file": "Liverpool.csv",
+        "sha256": "75bb2ce3e99de1323ab162356673549cba2ed6ffa2f076268585b96c6add4074",
+        "gitBlobSha1": "6482cba5a0640886b7b900b4d6823ebef48a3705",
+        "bytes": 12783,
+        "rawRows": 46
+      },
+      {
+        "file": "Manchester City.csv",
+        "sha256": "fdae91feb0d4802db79c3fca0c8d660aba34798234ad8af6b47ced5c18702c94",
+        "gitBlobSha1": "b256b329078ea1a103e092ed74d7696ee7912281",
+        "bytes": 12684,
+        "rawRows": 46
+      },
+      {
+        "file": "Manchester Utd.csv",
+        "sha256": "cc697bb5ef3fd709dc899881a8598fd89639aa4e723174b03f9b4bdc86fb96e1",
+        "gitBlobSha1": "ff5c294ff8c58064440a7202c59b9d830ea14615",
+        "bytes": 12990,
+        "rawRows": 46
+      },
+      {
+        "file": "Newcastle.csv",
+        "sha256": "d4140bfaa0cadd21f1842a3db76f26b215387f6f7c3f3924c3851580f93fab34",
+        "gitBlobSha1": "be6684ad78fd5449f77d7e29899a8287c136d94f",
+        "bytes": 13033,
+        "rawRows": 46
+      },
+      {
+        "file": "Nottingham.csv",
+        "sha256": "d3c59455ed239ae622dc33feab9b04451f3eaf3ffd4acb08b39131c39b6607e6",
+        "gitBlobSha1": "8ca44954b206bacb2cc22d7104caeff11af0013b",
+        "bytes": 13076,
+        "rawRows": 46
+      },
+      {
+        "file": "Sunderland.csv",
+        "sha256": "509482a14134ae6c036ade384647c4947652befacc0aa54bb21971681f4cc709",
+        "gitBlobSha1": "7e7775a59eb9e48d82bc4fc17d5f16c3e1afbc16",
+        "bytes": 13098,
+        "rawRows": 46
+      },
+      {
+        "file": "Tottenham.csv",
+        "sha256": "e8a3622b73d5df8f0cc444f4d5eecd22622d2bdc0c28034421942f09cd0a5b5f",
+        "gitBlobSha1": "f75b6bdae33aea071b27b4c30c43fa4c950860fc",
+        "bytes": 13133,
+        "rawRows": 46
+      }
+    ],
+    "availabilityCaveat": "Pinned October 2026 snapshot supports retrospective research; it does not prove historical 24-hour availability."
+  },
+  "overlapCount": 414,
+  "overlapMaximumDifference": 0.0,
+  "sourceCodeSha256": {
+    "research/xg_summary.py": "9f6b9767e97311060cd5a3d6dd903cbdaf1208a8d42f56feeb20902191058506",
+    "research/xg_recent.py": "fba04c14eae1164520da1ba261d9d0404b0c85ed3156a62c068d018d43265d43"
+  }
+}

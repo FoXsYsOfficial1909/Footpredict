@@ -1,0 +1,203 @@
+{
+  "protocol": "expected-goals-research-1",
+  "planSha256": "a52e040b18ba1a630646c15ef4d4b0c9f9ca3872ddedf997fefa01fcfc11072d",
+  "dataSha256": "5db370add352c55f363172f5068b03876f6a1272cb8c553a72f41d8e0b28e20f",
+  "referenceSettingsSha256": "bdc6f29f3ab8db55cbdcd861fee4cd280103b18c5dcf231a96575decff8b96cd",
+  "implementationSha256": "6fe99edc720f8d6ddafee9d6082bbdee65d7021d1d2597766db2db6a650eddb0",
+  "baseline": {
+    "n": 736,
+    "brier": 0.5709614997461899,
+    "logloss": 0.9613428503572878,
+    "accuracy": 0.5570652173913043
+  },
+  "validation": [
+    {
+      "id": "xg50-365",
+      "settings": {
+        "id": "xg50-365",
+        "goalWeight": 0.5,
+        "halfLife": 365,
+        "ridge": 0.03,
+        "windowDays": 1095,
+        "poissonWeight": 0.75
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5690055276482843,
+        "logloss": 0.9589743654816553,
+        "accuracy": 0.5584239130434783
+      },
+      "fullCoverage": {
+        "n": 760,
+        "brier": 0.5650609507199592,
+        "logloss": 0.9533675377755085,
+        "accuracy": 0.5631578947368421
+      },
+      "bySeason": {
+        "2023": {
+          "n": 368,
+          "brier": 0.5527236549282043,
+          "logloss": 0.9369165406184056,
+          "accuracy": 0.5869565217391305
+        },
+        "2024": {
+          "n": 368,
+          "brier": 0.5852874003683644,
+          "logloss": 0.9810321903449051,
+          "accuracy": 0.529891304347826
+        }
+      }
+    },
+    {
+      "id": "xg100-365",
+      "settings": {
+        "id": "xg100-365",
+        "goalWeight": 0.0,
+        "halfLife": 365,
+        "ridge": 0.03,
+        "windowDays": 1095,
+        "poissonWeight": 0.75
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5690953909909279,
+        "logloss": 0.9595062182415017,
+        "accuracy": 0.563858695652174
+      },
+      "fullCoverage": {
+        "n": 760,
+        "brier": 0.5658663511373561,
+        "logloss": 0.9548453920594876,
+        "accuracy": 0.5671052631578948
+      },
+      "bySeason": {
+        "2023": {
+          "n": 368,
+          "brier": 0.5544411907014123,
+          "logloss": 0.9395058025309317,
+          "accuracy": 0.5869565217391305
+        },
+        "2024": {
+          "n": 368,
+          "brier": 0.5837495912804433,
+          "logloss": 0.9795066339520717,
+          "accuracy": 0.5407608695652174
+        }
+      }
+    },
+    {
+      "id": "xg50-180",
+      "settings": {
+        "id": "xg50-180",
+        "goalWeight": 0.5,
+        "halfLife": 180,
+        "ridge": 0.03,
+        "windowDays": 1095,
+        "poissonWeight": 0.75
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5673606494564779,
+        "logloss": 0.956645990978577,
+        "accuracy": 0.5584239130434783
+      },
+      "fullCoverage": {
+        "n": 760,
+        "brier": 0.563406621230574,
+        "logloss": 0.9509320985023141,
+        "accuracy": 0.5631578947368421
+      },
+      "bySeason": {
+        "2023": {
+          "n": 368,
+          "brier": 0.5538351075661655,
+          "logloss": 0.9389466952301813,
+          "accuracy": 0.5760869565217391
+        },
+        "2024": {
+          "n": 368,
+          "brier": 0.5808861913467903,
+          "logloss": 0.9743452867269725,
+          "accuracy": 0.5407608695652174
+        }
+      }
+    },
+    {
+      "id": "xg100-180",
+      "settings": {
+        "id": "xg100-180",
+        "goalWeight": 0.0,
+        "halfLife": 180,
+        "ridge": 0.03,
+        "windowDays": 1095,
+        "poissonWeight": 0.75
+      },
+      "metrics": {
+        "n": 736,
+        "brier": 0.5668458538857561,
+        "logloss": 0.9562249522640166,
+        "accuracy": 0.5625
+      },
+      "fullCoverage": {
+        "n": 760,
+        "brier": 0.5636623357549772,
+        "logloss": 0.9515393304024644,
+        "accuracy": 0.5671052631578948
+      },
+      "bySeason": {
+        "2023": {
+          "n": 368,
+          "brier": 0.5550591808666419,
+          "logloss": 0.9406431988357061,
+          "accuracy": 0.5842391304347826
+        },
+        "2024": {
+          "n": 368,
+          "brier": 0.5786325269048704,
+          "logloss": 0.9718067056923271,
+          "accuracy": 0.5407608695652174
+        }
+      }
+    }
+  ],
+  "chosen": {
+    "id": "xg100-180",
+    "settings": {
+      "id": "xg100-180",
+      "goalWeight": 0.0,
+      "halfLife": 180,
+      "ridge": 0.03,
+      "windowDays": 1095,
+      "poissonWeight": 0.75
+    },
+    "metrics": {
+      "n": 736,
+      "brier": 0.5668458538857561,
+      "logloss": 0.9562249522640166,
+      "accuracy": 0.5625
+    },
+    "fullCoverage": {
+      "n": 760,
+      "brier": 0.5636623357549772,
+      "logloss": 0.9515393304024644,
+      "accuracy": 0.5671052631578948
+    },
+    "bySeason": {
+      "2023": {
+        "n": 368,
+        "brier": 0.5550591808666419,
+        "logloss": 0.9406431988357061,
+        "accuracy": 0.5842391304347826
+      },
+      "2024": {
+        "n": 368,
+        "brier": 0.5786325269048704,
+        "logloss": 0.9718067056923271,
+        "accuracy": 0.5407608695652174
+      }
+    }
+  },
+  "retrospectiveOnly": true,
+  "challengerAuditDeferred": true,
+  "promotedToDefault": false
+}

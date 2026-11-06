@@ -1,0 +1,69 @@
+{
+  "repo": "elliot-gautier-129/footy-prediction",
+  "revision": "90233c5edc2cd4a07011ea642b27ea479d106bf5",
+  "files": [
+    {
+      "path": "README.md",
+      "sha": "68476fafcb52f1148b9812cdc626761f3796f898",
+      "size": 9401,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/README.md",
+      "sha256": "814137e03c94c67a992bd01e57c632699029f3aeda65eb08078d460e5e40b3f9"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_1920.csv",
+      "sha": "7e70b4ba0f40465f6c215ae3ea817deaab51ad13",
+      "size": 74533,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_1920.csv",
+      "sha256": "0d6d302ded2c3d4f450d0d9840baa54f3968d8c4c2f6d49fc84f0e6e2d080c2e"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_2021.csv",
+      "sha": "6d6ff05a38a789fd9132f28e15b1fe141822db3f",
+      "size": 75080,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2021.csv",
+      "sha256": "9d4ce295d0ed9000f73847e0205dce2a39626404ae14e2b82b4acef23b813bf1"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_2122.csv",
+      "sha": "79afe5b1a34c756b6e75425fd426eb69ef165a40",
+      "size": 73600,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2122.csv",
+      "sha256": "11842ab7340d26ce84a8ae8bf24fa025bc71bddff39274af080bf07b6c00562d"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_2223.csv",
+      "sha": "4ad8152fd3c76c7e333abe05799f26b3077a444b",
+      "size": 74622,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2223.csv",
+      "sha256": "5d8b9cac43f3a9219fe4a6e344f047763a2d6fb140ec5a038d58883952ac1da6"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_2324.csv",
+      "sha": "c252e5408fde7449171bb0d0afc6b77f931eb7e6",
+      "size": 74851,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2324.csv",
+      "sha256": "fb0a926ada8950984c146dd2d4de5eecfec1e5282428e1659937509cf6defe82"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_2425.csv",
+      "sha": "19a7180c38073f62203fc9f71b2cd025adad43d4",
+      "size": 74731,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2425.csv",
+      "sha256": "0cbf28491e41c215861e1beff4c84d8979c745098f166ab6534cd7cafefb7e3d"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_2526.csv",
+      "sha": "4ce495d6dea19c8d8021b2d214d3439b32ec97a0",
+      "size": 74361,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2526.csv",
+      "sha256": "5ab8c8b7ec5be260ed444774c06cd0a904abca5474b9a32639ce3f9b9ca39573"
+    },
+    {
+      "path": "data/raw/understat/eng/eng_2627.csv",
+      "sha": "0ea0770e24f3005958e7b5dcfbbab3fc6dce7715",
+      "size": 68068,
+      "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2627.csv",
+      "sha256": "dd45e298a5e7d0e670df01c5b3f6d68947cbef3dc9fc14ee7c155e09b93fd69f"
+    }
+  ]
+}

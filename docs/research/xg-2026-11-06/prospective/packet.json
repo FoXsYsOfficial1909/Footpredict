@@ -1,0 +1,801 @@
+{
+  "schemaVersion": 1,
+  "protocol": "xg-paired-1",
+  "frozenAt": "2026-11-06T03:48:36.112821Z",
+  "minimumLeadHours": 24,
+  "maximumLeadDays": 7,
+  "maximumFixtures": 10,
+  "trainingCutoffExclusive": "2026-11-05",
+  "promotedToDefault": false,
+  "settings": {
+    "xg": {
+      "id": "xg100-180",
+      "goalWeight": 0.0,
+      "halfLife": 180,
+      "ridge": 0.03,
+      "windowDays": 1095,
+      "poissonWeight": 0.75
+    },
+    "reference": {
+      "glm": {
+        "half_life": 365,
+        "ridge": 0.03,
+        "window_days": 1095
+      },
+      "elo": {
+        "k": 30,
+        "home_advantage": 80,
+        "draw_weight": 0.9
+      },
+      "glm_weight": 0.75,
+      "validation": {
+        "n": 736,
+        "brier": 0.5709614997461899,
+        "logloss": 0.9613428503572878,
+        "accuracy": 0.5570652173913043
+      },
+      "chosen_before_test": true
+    }
+  },
+  "settingsSha256": "804d256fc955c7a26714824cc547ce158f7f5343bf76b7b6fd388074821281ae",
+  "models": {
+    "xg": {
+      "glm": {
+        "model_version": "expected-goals-poisson-0.1",
+        "status": "experimental",
+        "as_of": "2026-11-05",
+        "parameters": {
+          "half_life": 180,
+          "ridge": 0.03,
+          "window_days": 1095
+        },
+        "intercept": 0.20944767967719824,
+        "home_advantage": 0.17722736301617198,
+        "teams": {
+          "Arsenal": {
+            "attack": 0.30126835012399694,
+            "defence": 0.5470932367408151
+          },
+          "Aston Villa": {
+            "attack": 0.03513788298391634,
+            "defence": 0.037278169027405224
+          },
+          "Bournemouth": {
+            "attack": 0.28185382615618393,
+            "defence": 0.20899100325807288
+          },
+          "Brentford": {
+            "attack": 0.1987510429563248,
+            "defence": 0.04304892696706564
+          },
+          "Brighton": {
+            "attack": 0.2044975197775143,
+            "defence": 0.19402095131936598
+          },
+          "Burnley": {
+            "attack": -0.3254479988192461,
+            "defence": -0.24829873378168266
+          },
+          "Chelsea": {
+            "attack": 0.21819601867436858,
+            "defence": 0.07533468478108513
+          },
+          "Coventry": {
+            "attack": -0.07350324259579419,
+            "defence": 0.08851766687998286
+          },
+          "Crystal Palace": {
+            "attack": 0.08504103901055035,
+            "defence": -0.09527080102401954
+          },
+          "Everton": {
+            "attack": -0.05944194828869878,
+            "defence": 0.1054277965895722
+          },
+          "Fulham": {
+            "attack": -0.04205572337339832,
+            "defence": 0.061527096407022745
+          },
+          "Hull": {
+            "attack": -0.1572521413655007,
+            "defence": -0.14700317621957742
+          },
+          "Ipswich": {
+            "attack": -0.08954084118795046,
+            "defence": -0.33778634384143064
+          },
+          "Leeds": {
+            "attack": 0.025832162425638742,
+            "defence": 0.12426360914132982
+          },
+          "Leicester": {
+            "attack": -0.37246977885380544,
+            "defence": -0.2885780624357457
+          },
+          "Liverpool": {
+            "attack": 0.17482002457909301,
+            "defence": 0.19650708418008306
+          },
+          "Luton": {
+            "attack": -0.06244865889558879,
+            "defence": -0.2389297073569675
+          },
+          "Man City": {
+            "attack": 0.34248241742518687,
+            "defence": 0.2524573303031986
+          },
+          "Man United": {
+            "attack": 0.1501403777807463,
+            "defence": 0.08076836655041782
+          },
+          "Newcastle": {
+            "attack": 0.03968895357879472,
+            "defence": -0.020660308179761947
+          },
+          "Nott'm Forest": {
+            "attack": 0.031380922970849955,
+            "defence": 0.06427019063356786
+          },
+          "Sheffield United": {
+            "attack": -0.08668127619845122,
+            "defence": -0.1800134677456182
+          },
+          "Southampton": {
+            "attack": -0.36520531783776256,
+            "defence": -0.41606902654172634
+          },
+          "Sunderland": {
+            "attack": -0.07610091386089335,
+            "defence": -0.07743063253499446
+          },
+          "Tottenham": {
+            "attack": -0.06802432738057858,
+            "defence": 0.11963336737703728
+          },
+          "West Ham": {
+            "attack": -0.05892560828926249,
+            "defence": -0.06099570399358313
+          },
+          "Wolves": {
+            "attack": -0.2549089784392236,
+            "defence": -0.08518729955792649
+          }
+        },
+        "fit": {
+          "training_games": 1121,
+          "latest_training_date": "2026-11-02",
+          "iterations": 37,
+          "loss": 0.8890632830462942,
+          "converged": true,
+          "xg_games": 1111,
+          "xg_weighted_coverage": 0.958621315073622,
+          "latest_xg_date": "2026-10-25"
+        },
+        "goal_cap": 5,
+        "poisson_max": 20,
+        "xg_target": {
+          "goal_weight": 0.0,
+          "goals_per_xg": 0.8901233183738967,
+          "training_games": 1121,
+          "xg_games": 1111,
+          "missing_xg_games": 10,
+          "weighted_coverage": 0.958621315073622,
+          "earliest_xg_date": "2023-11-06",
+          "latest_xg_date": "2026-10-25",
+          "cutoff_exclusive": "2026-11-05"
+        }
+      },
+      "elo": {
+        "parameters": {
+          "k": 30,
+          "home_advantage": 80,
+          "draw_weight": 0.9
+        },
+        "ratings": {
+          "Bournemouth": 1596.2902291082748,
+          "Aston Villa": 1590.8566729980435,
+          "Chelsea": 1562.2141660762607,
+          "Swansea": 1477.8639077135222,
+          "Everton": 1540.2952780698076,
+          "Watford": 1424.7655928257834,
+          "Leicester": 1405.7063053970728,
+          "Sunderland": 1480.9838642390118,
+          "Man United": 1567.2334890460818,
+          "Tottenham": 1493.5214059512998,
+          "Norwich": 1421.2167879638705,
+          "Crystal Palace": 1464.869244903292,
+          "Arsenal": 1756.8638879791288,
+          "West Ham": 1495.9901918018177,
+          "Newcastle": 1509.4405978719303,
+          "Southampton": 1345.0063447797436,
+          "Stoke": 1481.5528933720552,
+          "Liverpool": 1607.0417704288807,
+          "West Brom": 1458.4626969761784,
+          "Man City": 1700.942392322021,
+          "Burnley": 1375.5313144836148,
+          "Hull": 1489.6561789446664,
+          "Middlesbrough": 1475.29810989393,
+          "Brighton": 1618.4938307458253,
+          "Huddersfield": 1445.8845812777947,
+          "Cardiff": 1479.025165634739,
+          "Fulham": 1516.3219217416156,
+          "Wolves": 1410.6039486421807,
+          "Sheffield United": 1381.94331379545,
+          "Leeds": 1538.9023387972738,
+          "Brentford": 1569.8359713440022,
+          "Nott'm Forest": 1483.249962820219,
+          "Luton": 1426.6311986760313,
+          "Ipswich": 1432.9244926750082,
+          "Coventry": 1474.5799507035726
+        },
+        "as_of": "2026-11-05",
+        "training_games": 4270,
+        "latest_training_date": "2026-11-02"
+      },
+      "glm_weight": 0.75,
+      "as_of": "2026-11-06",
+      "training_cutoff_exclusive": "2026-11-05",
+      "aliases": {
+        "Arsenal FC": "Arsenal",
+        "Aston Villa FC": "Aston Villa",
+        "AFC Bournemouth": "Bournemouth",
+        "Brentford FC": "Brentford",
+        "Brighton & Hove Albion FC": "Brighton",
+        "Chelsea FC": "Chelsea",
+        "Crystal Palace FC": "Crystal Palace",
+        "Everton FC": "Everton",
+        "Fulham FC": "Fulham",
+        "Liverpool FC": "Liverpool",
+        "Manchester City FC": "Man City",
+        "Manchester United FC": "Man United",
+        "Newcastle United FC": "Newcastle",
+        "Nottingham Forest FC": "Nott'm Forest",
+        "Tottenham Hotspur FC": "Tottenham",
+        "West Ham United FC": "West Ham",
+        "Wolverhampton Wanderers FC": "Wolves",
+        "Sunderland AFC": "Sunderland",
+        "Leeds United FC": "Leeds",
+        "Burnley FC": "Burnley",
+        "Coventry City FC": "Coventry",
+        "Hull City AFC": "Hull",
+        "Leicester City FC": "Leicester",
+        "Southampton FC": "Southampton",
+        "Ipswich Town FC": "Ipswich",
+        "Luton Town FC": "Luton",
+        "Sheffield United FC": "Sheffield United",
+        "Watford FC": "Watford",
+        "Norwich City FC": "Norwich",
+        "West Bromwich Albion FC": "West Brom"
+      },
+      "status": "experimental",
+      "promoted_to_default": false,
+      "news_used_in_probabilities": false,
+      "features_used": [
+        "past_match_results",
+        "opponent_strength",
+        "home_advantage",
+        "past_expected_goals"
+      ],
+      "model_version": "ensemble-xg-frozen-2026-11-06-0871a06cfc05"
+    },
+    "reference": {
+      "glm": {
+        "model_version": "poisson-v2-experimental-0.1",
+        "status": "experimental",
+        "as_of": "2026-11-05",
+        "parameters": {
+          "half_life": 365,
+          "ridge": 0.03,
+          "window_days": 1095
+        },
+        "intercept": 0.2276227005633495,
+        "home_advantage": 0.1766092406873318,
+        "teams": {
+          "Arsenal": {
+            "attack": 0.3270072747688642,
+            "defence": 0.683442544727562
+          },
+          "Aston Villa": {
+            "attack": 0.13673338602149493,
+            "defence": 0.09483986576221402
+          },
+          "Bournemouth": {
+            "attack": 0.16623350400811784,
+            "defence": 0.10723495712169918
+          },
+          "Brentford": {
+            "attack": 0.18348156703793775,
+            "defence": 0.08658840758982674
+          },
+          "Brighton": {
+            "attack": 0.251524470535538,
+            "defence": 0.18921112746120378
+          },
+          "Burnley": {
+            "attack": -0.20535017018181967,
+            "defence": -0.2471952293512465
+          },
+          "Chelsea": {
+            "attack": 0.27930864745517964,
+            "defence": 0.045087095123897525
+          },
+          "Coventry": {
+            "attack": -0.1217320570930169,
+            "defence": -0.13505362945218732
+          },
+          "Crystal Palace": {
+            "attack": -0.07717599667398858,
+            "defence": -0.041594269157130825
+          },
+          "Everton": {
+            "attack": -0.126017928983707,
+            "defence": 0.21230581376334917
+          },
+          "Fulham": {
+            "attack": -0.04246510011055828,
+            "defence": 0.0997502524465048
+          },
+          "Hull": {
+            "attack": -0.12032909437482563,
+            "defence": 0.23381197698897813
+          },
+          "Ipswich": {
+            "attack": -0.04261427810146601,
+            "defence": -0.34390921244951317
+          },
+          "Leeds": {
+            "attack": -0.044023062721850366,
+            "defence": 0.1700856115637954
+          },
+          "Leicester": {
+            "attack": -0.42171147881884175,
+            "defence": -0.30996769460673906
+          },
+          "Liverpool": {
+            "attack": 0.3074785056651411,
+            "defence": 0.18767577987420664
+          },
+          "Luton": {
+            "attack": 0.12651592420324215,
+            "defence": -0.4120425397477916
+          },
+          "Man City": {
+            "attack": 0.42946432643942706,
+            "defence": 0.37086143190675425
+          },
+          "Man United": {
+            "attack": 0.15134171616979847,
+            "defence": 0.052452083464145365
+          },
+          "Newcastle": {
+            "attack": 0.1811183309728076,
+            "defence": -0.007698141573975604
+          },
+          "Nott'm Forest": {
+            "attack": -0.04084115754382138,
+            "defence": 0.10963473735780191
+          },
+          "Sheffield United": {
+            "attack": -0.2577300822402593,
+            "defence": -0.5290727093851733
+          },
+          "Southampton": {
+            "attack": -0.5832860522012729,
+            "defence": -0.3877768017388477
+          },
+          "Sunderland": {
+            "attack": -0.20503321062976432,
+            "defence": 0.051821231025226545
+          },
+          "Tottenham": {
+            "attack": 0.040218808226090835,
+            "defence": -0.02544719156566276
+          },
+          "West Ham": {
+            "attack": -0.028663521936460667,
+            "defence": -0.11213432404145428
+          },
+          "Wolves": {
+            "attack": -0.2640920445627006,
+            "defence": -0.14227239843673173
+          }
+        },
+        "fit": {
+          "training_games": 1121,
+          "latest_training_date": "2026-11-02",
+          "iterations": 37,
+          "loss": 0.8547298383093291,
+          "converged": true
+        },
+        "goal_cap": 5,
+        "poisson_max": 20
+      },
+      "elo": {
+        "parameters": {
+          "k": 30,
+          "home_advantage": 80,
+          "draw_weight": 0.9
+        },
+        "ratings": {
+          "Bournemouth": 1596.2902291082748,
+          "Aston Villa": 1590.8566729980435,
+          "Chelsea": 1562.2141660762607,
+          "Swansea": 1477.8639077135222,
+          "Everton": 1540.2952780698076,
+          "Watford": 1424.7655928257834,
+          "Leicester": 1405.7063053970728,
+          "Sunderland": 1480.9838642390118,
+          "Man United": 1567.2334890460818,
+          "Tottenham": 1493.5214059512998,
+          "Norwich": 1421.2167879638705,
+          "Crystal Palace": 1464.869244903292,
+          "Arsenal": 1756.8638879791288,
+          "West Ham": 1495.9901918018177,
+          "Newcastle": 1509.4405978719303,
+          "Southampton": 1345.0063447797436,
+          "Stoke": 1481.5528933720552,
+          "Liverpool": 1607.0417704288807,
+          "West Brom": 1458.4626969761784,
+          "Man City": 1700.942392322021,
+          "Burnley": 1375.5313144836148,
+          "Hull": 1489.6561789446664,
+          "Middlesbrough": 1475.29810989393,
+          "Brighton": 1618.4938307458253,
+          "Huddersfield": 1445.8845812777947,
+          "Cardiff": 1479.025165634739,
+          "Fulham": 1516.3219217416156,
+          "Wolves": 1410.6039486421807,
+          "Sheffield United": 1381.94331379545,
+          "Leeds": 1538.9023387972738,
+          "Brentford": 1569.8359713440022,
+          "Nott'm Forest": 1483.249962820219,
+          "Luton": 1426.6311986760313,
+          "Ipswich": 1432.9244926750082,
+          "Coventry": 1474.5799507035726
+        },
+        "as_of": "2026-11-05",
+        "training_games": 4270,
+        "latest_training_date": "2026-11-02"
+      },
+      "glm_weight": 0.75,
+      "as_of": "2026-11-06",
+      "training_cutoff_exclusive": "2026-11-05",
+      "aliases": {
+        "Arsenal FC": "Arsenal",
+        "Aston Villa FC": "Aston Villa",
+        "AFC Bournemouth": "Bournemouth",
+        "Brentford FC": "Brentford",
+        "Brighton & Hove Albion FC": "Brighton",
+        "Chelsea FC": "Chelsea",
+        "Crystal Palace FC": "Crystal Palace",
+        "Everton FC": "Everton",
+        "Fulham FC": "Fulham",
+        "Liverpool FC": "Liverpool",
+        "Manchester City FC": "Man City",
+        "Manchester United FC": "Man United",
+        "Newcastle United FC": "Newcastle",
+        "Nottingham Forest FC": "Nott'm Forest",
+        "Tottenham Hotspur FC": "Tottenham",
+        "West Ham United FC": "West Ham",
+        "Wolverhampton Wanderers FC": "Wolves",
+        "Sunderland AFC": "Sunderland",
+        "Leeds United FC": "Leeds",
+        "Burnley FC": "Burnley",
+        "Coventry City FC": "Coventry",
+        "Hull City AFC": "Hull",
+        "Leicester City FC": "Leicester",
+        "Southampton FC": "Southampton",
+        "Ipswich Town FC": "Ipswich",
+        "Luton Town FC": "Luton",
+        "Sheffield United FC": "Sheffield United",
+        "Watford FC": "Watford",
+        "Norwich City FC": "Norwich",
+        "West Bromwich Albion FC": "West Brom"
+      },
+      "status": "experimental",
+      "promoted_to_default": false,
+      "news_used_in_probabilities": false,
+      "features_used": [
+        "past_match_results",
+        "opponent_strength",
+        "home_advantage"
+      ],
+      "model_version": "ensemble-reference-frozen-2026-11-06-4ab4f543dcb5"
+    }
+  },
+  "modelSha256": {
+    "xg": "70d8c2d1f2525ad92f33564a7f6d09cae3ffd8cbdd262f52c6c0dbb558f26896",
+    "reference": "b9dbae374656c85e2bd918e6ce7ce5873ccd5686b9e112c6f6dbb701779ea6a5"
+  },
+  "dataSha256": "e68339c94ed0a120a651cda84a66b9a0e1a6c82a21672d51f72472ce2f60cbfc",
+  "providerResponseSha256": "c6e978c0c5a9e7fbe54d5ad16edfd1d3cd4f92afa12baf752ab321bdd553f025",
+  "sourceHashes": {
+    "xgSnapshotSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+    "selectionFileSha256": "9f0d191dd41195802775b70792411d2a1253223e1924431a57e88d32e5bdbef4",
+    "trainingInputsGzipSha256": "3993d0681abfebc01c489d20f2eef3420c40b8a95d24cdfaecd8ed911511a98b",
+    "fixtureResponseBytesSha256": "f3476cacf4dc263bd1e7586587309909f04e52da957791e6a241778d8891ccd0",
+    "implementation": {
+      "research/xg_prospective.py": "fce81bc50c66a353b7da4f881ea13f3e2a92b34edfa45055288b2d9baa414e09",
+      "research/xg_model.py": "9898904fb0c588749b2aa2de14e2d259af0c921beaf3045cf34cced4a71d593d",
+      "research/models.py": "5e7b3b9013e75df0a08c6cec00a9b0e1a445adc299ef47935218cd79198e10bb",
+      "research/export_model.py": "8883071778ccdde03ecf2e41408f716518b1c0b1b084e4d749f5b0b71b26bdc6"
+    }
+  },
+  "training": {
+    "matches": 4270,
+    "latestTrainingMatch": "2026-11-02",
+    "xg": {
+      "goal_weight": 0.0,
+      "goals_per_xg": 0.8901233183738967,
+      "training_games": 1121,
+      "xg_games": 1111,
+      "missing_xg_games": 10,
+      "weighted_coverage": 0.958621315073622,
+      "earliest_xg_date": "2023-11-06",
+      "latest_xg_date": "2026-10-25",
+      "cutoff_exclusive": "2026-11-05"
+    },
+    "referencePoissonMatches": 1121
+  },
+  "fixtures": [
+    {
+      "fixtureId": 560632,
+      "utcDate": "2026-11-07T12:30:00Z",
+      "homeId": 341,
+      "awayId": 73,
+      "home": "Leeds",
+      "away": "Tottenham",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.4491189530020299,
+          0.2804320803501626,
+          0.2704489666478075
+        ],
+        "reference": [
+          0.46030222047926944,
+          0.26933204579814146,
+          0.2703657337225891
+        ]
+      },
+      "predictionsSha256": "3d5d56b0dfb57a0deeffac9721b08cc7ef45e980bc049049af851401994c16bb",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560633,
+      "utcDate": "2026-11-07T15:00:00Z",
+      "homeId": 63,
+      "awayId": 67,
+      "home": "Fulham",
+      "away": "Newcastle",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.4270045302843549,
+          0.27022371637549586,
+          0.30277175334014916
+        ],
+        "reference": [
+          0.40323699303439353,
+          0.26500047948919714,
+          0.33176252747640933
+        ]
+      },
+      "predictionsSha256": "6ae4d90eb99d94cecc67d395890290a0219f2125d4cc723777f62f011abb2d25",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560640,
+      "utcDate": "2026-11-07T15:00:00Z",
+      "homeId": 57,
+      "awayId": 322,
+      "home": "Arsenal",
+      "away": "Hull",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.7379927448915811,
+          0.1778064641504119,
+          0.084200790958007
+        ],
+        "reference": [
+          0.6495168838357273,
+          0.23489062133195932,
+          0.11559249483231351
+        ]
+      },
+      "predictionsSha256": "af63ba88b1816204ded98bcd63a847cd2193c293b2ed14a23b4b8482d5a1bad9",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560641,
+      "utcDate": "2026-11-07T17:30:00Z",
+      "homeId": 351,
+      "awayId": 65,
+      "home": "Nott'm Forest",
+      "away": "Man City",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.26247301467478473,
+          0.257487509704182,
+          0.4800394756210334
+        ],
+        "reference": [
+          0.2169595857722065,
+          0.25158821562768163,
+          0.5314521986001118
+        ]
+      },
+      "predictionsSha256": "69ab061dff85809b812e43cfd736619008806a1aa6b534c20092a36f86035ff3",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560635,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 354,
+      "awayId": 64,
+      "home": "Crystal Palace",
+      "away": "Liverpool",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.30552529500580755,
+          0.25913548262643105,
+          0.4353392223677614
+        ],
+        "reference": [
+          0.2553977992967405,
+          0.25157404062728206,
+          0.49302816007597744
+        ]
+      },
+      "predictionsSha256": "fa184c35a772014edc652fb5b8a78d1cc79c99ceac51a2f2607480be81e461df",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560636,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 71,
+      "awayId": 61,
+      "home": "Sunderland",
+      "away": "Chelsea",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.30533793390728536,
+          0.25870788675699424,
+          0.43595417933572034
+        ],
+        "reference": [
+          0.29742573338141554,
+          0.2648627504275287,
+          0.4377115161910558
+        ]
+      },
+      "predictionsSha256": "132730c29b5fb16d95d3a1110f58ccc1a2083408cea17558204cf82d66f5bc35",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560637,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 349,
+      "awayId": 1044,
+      "home": "Ipswich",
+      "away": "Bournemouth",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.19254780713640604,
+          0.2180377234206707,
+          0.5894144694429234
+        ],
+        "reference": [
+          0.24046255462360058,
+          0.23329944810134712,
+          0.5262379972750523
+        ]
+      },
+      "predictionsSha256": "48781a621f6a1b13ef8c93808cb460d3e5172f6ecb65ee176089293e401ee975",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560638,
+      "utcDate": "2026-11-08T14:00:00Z",
+      "homeId": 397,
+      "awayId": 402,
+      "home": "Brighton",
+      "away": "Brentford",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.4860718979312862,
+          0.2514362735857097,
+          0.2624918284830041
+        ],
+        "reference": [
+          0.49094189797417526,
+          0.2492850846179394,
+          0.25977301740788533
+        ]
+      },
+      "predictionsSha256": "31609b5655278857d973677846f9bff8bed4f3d031a14cbbea2aa301242d1cf2",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    },
+    {
+      "fixtureId": 560639,
+      "utcDate": "2026-11-08T16:30:00Z",
+      "homeId": 66,
+      "awayId": 58,
+      "home": "Man United",
+      "away": "Aston Villa",
+      "competition": "PL",
+      "season": 2026,
+      "status": "TIMED",
+      "predictions": {
+        "xg": [
+          0.46298003519839626,
+          0.2596794322610669,
+          0.2773405325405368
+        ],
+        "reference": [
+          0.42045393968157746,
+          0.25964405554239156,
+          0.319902004776031
+        ]
+      },
+      "predictionsSha256": "a6b2ed3f5b566b575ee15de448081dee9c61d6d0a0a0a7c2ea5ec6fa7b97e603",
+      "unseenTeams": {
+        "xg": [],
+        "reference": []
+      }
+    }
+  ],
+  "limitations": [
+    "Small paired prospective experiment; no default-model promotion.",
+    "All weights are frozen at registration and are not refitted for these fixtures.",
+    "Historical xG coverage may be stale; missing xG uses verified actual goals.",
+    "A changed kickoff or team identity excludes the complete pair."
+  ],
+  "packetSha256": "9a66a0c946cf34175a9159276e266c15f7eec804a6cadfa729b565838552b3f7"
+}

@@ -1,0 +1,7225 @@
+{
+  "schemaVersion": 1,
+  "provider": "Understat league-summary xG via two pinned public caches",
+  "aggregation": "Direct archived league-summary values; not sums of shot xG",
+  "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+  "normalizedMatchesBytes": 613991,
+  "primarySource": {
+    "repo": "elliot-gautier-129/footy-prediction",
+    "revision": "90233c5edc2cd4a07011ea642b27ea479d106bf5",
+    "files": [
+      {
+        "path": "README.md",
+        "sha": "68476fafcb52f1148b9812cdc626761f3796f898",
+        "size": 9401,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/README.md",
+        "sha256": "814137e03c94c67a992bd01e57c632699029f3aeda65eb08078d460e5e40b3f9"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_1920.csv",
+        "sha": "7e70b4ba0f40465f6c215ae3ea817deaab51ad13",
+        "size": 74533,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_1920.csv",
+        "sha256": "0d6d302ded2c3d4f450d0d9840baa54f3968d8c4c2f6d49fc84f0e6e2d080c2e"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_2021.csv",
+        "sha": "6d6ff05a38a789fd9132f28e15b1fe141822db3f",
+        "size": 75080,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2021.csv",
+        "sha256": "9d4ce295d0ed9000f73847e0205dce2a39626404ae14e2b82b4acef23b813bf1"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_2122.csv",
+        "sha": "79afe5b1a34c756b6e75425fd426eb69ef165a40",
+        "size": 73600,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2122.csv",
+        "sha256": "11842ab7340d26ce84a8ae8bf24fa025bc71bddff39274af080bf07b6c00562d"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_2223.csv",
+        "sha": "4ad8152fd3c76c7e333abe05799f26b3077a444b",
+        "size": 74622,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2223.csv",
+        "sha256": "5d8b9cac43f3a9219fe4a6e344f047763a2d6fb140ec5a038d58883952ac1da6"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_2324.csv",
+        "sha": "c252e5408fde7449171bb0d0afc6b77f931eb7e6",
+        "size": 74851,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2324.csv",
+        "sha256": "fb0a926ada8950984c146dd2d4de5eecfec1e5282428e1659937509cf6defe82"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_2425.csv",
+        "sha": "19a7180c38073f62203fc9f71b2cd025adad43d4",
+        "size": 74731,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2425.csv",
+        "sha256": "0cbf28491e41c215861e1beff4c84d8979c745098f166ab6534cd7cafefb7e3d"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_2526.csv",
+        "sha": "4ce495d6dea19c8d8021b2d214d3439b32ec97a0",
+        "size": 74361,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2526.csv",
+        "sha256": "5ab8c8b7ec5be260ed444774c06cd0a904abca5474b9a32639ce3f9b9ca39573"
+      },
+      {
+        "path": "data/raw/understat/eng/eng_2627.csv",
+        "sha": "0ea0770e24f3005958e7b5dcfbbab3fc6dce7715",
+        "size": 68068,
+        "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2627.csv",
+        "sha256": "dd45e298a5e7d0e670df01c5b3f6d68947cbef3dc9fc14ee7c155e09b93fd69f"
+      }
+    ]
+  },
+  "recentSource": {
+    "repository": "CameronNichol47/epl-match-prediction-dashboard",
+    "revision": "647420c6bb756db992374b04a5ba0ee6235a2624",
+    "sourceUrl": "https://github.com/CameronNichol47/epl-match-prediction-dashboard/tree/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed",
+    "pipelineUrl": "https://github.com/CameronNichol47/epl-match-prediction-dashboard/blob/647420c6bb756db992374b04a5ba0ee6235a2624/src/scraping.py",
+    "source": "Secondary Understat-derived CSV cache; not a direct provider response",
+    "pinnedFilesVerified": true,
+    "inputTeamRows": 806,
+    "matches": 454,
+    "bothTeamCopies": 352,
+    "firstDate": "2025-08-15",
+    "lastDate": "2026-10-25",
+    "referenceScoresVerified": true,
+    "bySeason": {
+      "2025": 374,
+      "2026": 80
+    },
+    "usedColumns": [
+      "Comp",
+      "Date",
+      "GA",
+      "GF",
+      "Opponent",
+      "Venue",
+      "XG_against",
+      "XG_for"
+    ],
+    "inputFiles": [
+      {
+        "file": "Arsenal.csv",
+        "sha256": "8db412043d54df7f72c48c647aebd88809c07ecce471e24d6534efcf68c935a8",
+        "gitBlobSha1": "ed4934972b186408b89785169c5af120d1eccb30",
+        "bytes": 12688,
+        "rawRows": 46
+      },
+      {
+        "file": "Aston Villa.csv",
+        "sha256": "b3e4a01df184485cb2171facf79d81983079f2e2bd259347caf2d5fd82a321b8",
+        "gitBlobSha1": "49e81b79427425d0000ddd12927c9c00fe3ab09d",
+        "bytes": 13009,
+        "rawRows": 46
+      },
+      {
+        "file": "Bournemouth.csv",
+        "sha256": "022d3d5959e7b511070dc7ca3b6f86c484a28a1989bb74e2e0b5fbe76542c68e",
+        "gitBlobSha1": "54ec5b58a20b2c40718a94d7a16f948a9d987df3",
+        "bytes": 13072,
+        "rawRows": 46
+      },
+      {
+        "file": "Brentford.csv",
+        "sha256": "38075b74a5fae5d37170886b7f007f1134dda0bfdd4c30e87ee4ccfd8922dcf5",
+        "gitBlobSha1": "542d923f95ee8020205a6126526daed8cdcfafa7",
+        "bytes": 12966,
+        "rawRows": 46
+      },
+      {
+        "file": "Brighton.csv",
+        "sha256": "dc855a244c9909d14d2faec5db2e5f4dc3b935067de4ef52946dd5a0145708e1",
+        "gitBlobSha1": "461e604c9f1244560b10a64b6c12eb16494c3295",
+        "bytes": 12863,
+        "rawRows": 46
+      },
+      {
+        "file": "Chelsea.csv",
+        "sha256": "06bf19292a7d7ef5821d56474e8cd46f9620c6b3442bcc6c081026237917474f",
+        "gitBlobSha1": "a137bb98a51e84d7d8952d3eda810dabcec6e69e",
+        "bytes": 12775,
+        "rawRows": 46
+      },
+      {
+        "file": "Coventry.csv",
+        "sha256": "998baf017ffa67b0a4781e123c4439b085f8aab60dd23d3431776d22e89664c6",
+        "gitBlobSha1": "adc8fb48b11affba53cc3ac3489a55eae40f6d61",
+        "bytes": 904,
+        "rawRows": 8
+      },
+      {
+        "file": "Crystal Palace.csv",
+        "sha256": "9f455bc149082a500594085023428c2119c5894459ab1d4838b677b8851fa8a1",
+        "gitBlobSha1": "dbb04f9a374090f952fd0baad4a758283fbe99d9",
+        "bytes": 13042,
+        "rawRows": 46
+      },
+      {
+        "file": "Everton.csv",
+        "sha256": "11c7637706c4634e0a9a2c21e163462b21c8f32720efbe6ead90e6235dac45dc",
+        "gitBlobSha1": "0ba496bd3b911f4a924afcf43b1681d49d648df8",
+        "bytes": 13107,
+        "rawRows": 46
+      },
+      {
+        "file": "Fulham.csv",
+        "sha256": "73f6018214639912afe5e6e140c40c7a7f1480616568e3018239bbdd8ef05927",
+        "gitBlobSha1": "43ab5d84e66affa3a4d162fdbe4c33d37a8cfb4a",
+        "bytes": 13085,
+        "rawRows": 46
+      },
+      {
+        "file": "Hull.csv",
+        "sha256": "a45fa57a3ec323cb8a1d850d5c385921664132e9f69b0a83b17127fcf45bfeb9",
+        "gitBlobSha1": "7de136a37d339ed6b6e3e6ed85baeb91967b4836",
+        "bytes": 872,
+        "rawRows": 8
+      },
+      {
+        "file": "Ipswich.csv",
+        "sha256": "5ce022984cd7458cf24dad6d50f3f7db87473d6576e647f9a4a0687d61348778",
+        "gitBlobSha1": "7a14c5f2a6bf4309c8ed08df7de0dfd3fc8caa32",
+        "bytes": 917,
+        "rawRows": 8
+      },
+      {
+        "file": "Leeds United.csv",
+        "sha256": "ee77923f177ba1f45c49dadf76a8ec4c896ec50992e47855642bf188912629a0",
+        "gitBlobSha1": "9c226a4fbe1d9bbec3c012b46051a57552e5f90c",
+        "bytes": 13058,
+        "rawRows": 46
+      },
+      {
+        "file": "Liverpool.csv",
+        "sha256": "75bb2ce3e99de1323ab162356673549cba2ed6ffa2f076268585b96c6add4074",
+        "gitBlobSha1": "6482cba5a0640886b7b900b4d6823ebef48a3705",
+        "bytes": 12783,
+        "rawRows": 46
+      },
+      {
+        "file": "Manchester City.csv",
+        "sha256": "fdae91feb0d4802db79c3fca0c8d660aba34798234ad8af6b47ced5c18702c94",
+        "gitBlobSha1": "b256b329078ea1a103e092ed74d7696ee7912281",
+        "bytes": 12684,
+        "rawRows": 46
+      },
+      {
+        "file": "Manchester Utd.csv",
+        "sha256": "cc697bb5ef3fd709dc899881a8598fd89639aa4e723174b03f9b4bdc86fb96e1",
+        "gitBlobSha1": "ff5c294ff8c58064440a7202c59b9d830ea14615",
+        "bytes": 12990,
+        "rawRows": 46
+      },
+      {
+        "file": "Newcastle.csv",
+        "sha256": "d4140bfaa0cadd21f1842a3db76f26b215387f6f7c3f3924c3851580f93fab34",
+        "gitBlobSha1": "be6684ad78fd5449f77d7e29899a8287c136d94f",
+        "bytes": 13033,
+        "rawRows": 46
+      },
+      {
+        "file": "Nottingham.csv",
+        "sha256": "d3c59455ed239ae622dc33feab9b04451f3eaf3ffd4acb08b39131c39b6607e6",
+        "gitBlobSha1": "8ca44954b206bacb2cc22d7104caeff11af0013b",
+        "bytes": 13076,
+        "rawRows": 46
+      },
+      {
+        "file": "Sunderland.csv",
+        "sha256": "509482a14134ae6c036ade384647c4947652befacc0aa54bb21971681f4cc709",
+        "gitBlobSha1": "7e7775a59eb9e48d82bc4fc17d5f16c3e1afbc16",
+        "bytes": 13098,
+        "rawRows": 46
+      },
+      {
+        "file": "Tottenham.csv",
+        "sha256": "e8a3622b73d5df8f0cc444f4d5eecd22622d2bdc0c28034421942f09cd0a5b5f",
+        "gitBlobSha1": "f75b6bdae33aea071b27b4c30c43fa4c950860fc",
+        "bytes": 13133,
+        "rawRows": 46
+      }
+    ],
+    "availabilityCaveat": "Pinned October 2026 snapshot supports retrospective research; it does not prove historical 24-hour availability."
+  },
+  "recentSourceInputs": [
+    {
+      "path": "data/processed/Arsenal.csv",
+      "sha": "ed4934972b186408b89785169c5af120d1eccb30",
+      "size": 12688,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Arsenal.csv",
+      "sha256": "8db412043d54df7f72c48c647aebd88809c07ecce471e24d6534efcf68c935a8"
+    },
+    {
+      "path": "data/processed/Aston Villa.csv",
+      "sha": "49e81b79427425d0000ddd12927c9c00fe3ab09d",
+      "size": 13009,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Aston%20Villa.csv",
+      "sha256": "b3e4a01df184485cb2171facf79d81983079f2e2bd259347caf2d5fd82a321b8"
+    },
+    {
+      "path": "data/processed/Bournemouth.csv",
+      "sha": "54ec5b58a20b2c40718a94d7a16f948a9d987df3",
+      "size": 13072,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Bournemouth.csv",
+      "sha256": "022d3d5959e7b511070dc7ca3b6f86c484a28a1989bb74e2e0b5fbe76542c68e"
+    },
+    {
+      "path": "data/processed/Brentford.csv",
+      "sha": "542d923f95ee8020205a6126526daed8cdcfafa7",
+      "size": 12966,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Brentford.csv",
+      "sha256": "38075b74a5fae5d37170886b7f007f1134dda0bfdd4c30e87ee4ccfd8922dcf5"
+    },
+    {
+      "path": "data/processed/Brighton.csv",
+      "sha": "461e604c9f1244560b10a64b6c12eb16494c3295",
+      "size": 12863,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Brighton.csv",
+      "sha256": "dc855a244c9909d14d2faec5db2e5f4dc3b935067de4ef52946dd5a0145708e1"
+    },
+    {
+      "path": "data/processed/Chelsea.csv",
+      "sha": "a137bb98a51e84d7d8952d3eda810dabcec6e69e",
+      "size": 12775,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Chelsea.csv",
+      "sha256": "06bf19292a7d7ef5821d56474e8cd46f9620c6b3442bcc6c081026237917474f"
+    },
+    {
+      "path": "data/processed/Coventry.csv",
+      "sha": "adc8fb48b11affba53cc3ac3489a55eae40f6d61",
+      "size": 904,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Coventry.csv",
+      "sha256": "998baf017ffa67b0a4781e123c4439b085f8aab60dd23d3431776d22e89664c6"
+    },
+    {
+      "path": "data/processed/Crystal Palace.csv",
+      "sha": "dbb04f9a374090f952fd0baad4a758283fbe99d9",
+      "size": 13042,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Crystal%20Palace.csv",
+      "sha256": "9f455bc149082a500594085023428c2119c5894459ab1d4838b677b8851fa8a1"
+    },
+    {
+      "path": "data/processed/Everton.csv",
+      "sha": "0ba496bd3b911f4a924afcf43b1681d49d648df8",
+      "size": 13107,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Everton.csv",
+      "sha256": "11c7637706c4634e0a9a2c21e163462b21c8f32720efbe6ead90e6235dac45dc"
+    },
+    {
+      "path": "data/processed/Fulham.csv",
+      "sha": "43ab5d84e66affa3a4d162fdbe4c33d37a8cfb4a",
+      "size": 13085,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Fulham.csv",
+      "sha256": "73f6018214639912afe5e6e140c40c7a7f1480616568e3018239bbdd8ef05927"
+    },
+    {
+      "path": "data/processed/Hull.csv",
+      "sha": "7de136a37d339ed6b6e3e6ed85baeb91967b4836",
+      "size": 872,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Hull.csv",
+      "sha256": "a45fa57a3ec323cb8a1d850d5c385921664132e9f69b0a83b17127fcf45bfeb9"
+    },
+    {
+      "path": "data/processed/Ipswich.csv",
+      "sha": "7a14c5f2a6bf4309c8ed08df7de0dfd3fc8caa32",
+      "size": 917,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Ipswich.csv",
+      "sha256": "5ce022984cd7458cf24dad6d50f3f7db87473d6576e647f9a4a0687d61348778"
+    },
+    {
+      "path": "data/processed/Leeds United.csv",
+      "sha": "9c226a4fbe1d9bbec3c012b46051a57552e5f90c",
+      "size": 13058,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Leeds%20United.csv",
+      "sha256": "ee77923f177ba1f45c49dadf76a8ec4c896ec50992e47855642bf188912629a0"
+    },
+    {
+      "path": "data/processed/Liverpool.csv",
+      "sha": "6482cba5a0640886b7b900b4d6823ebef48a3705",
+      "size": 12783,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Liverpool.csv",
+      "sha256": "75bb2ce3e99de1323ab162356673549cba2ed6ffa2f076268585b96c6add4074"
+    },
+    {
+      "path": "data/processed/Manchester City.csv",
+      "sha": "b256b329078ea1a103e092ed74d7696ee7912281",
+      "size": 12684,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Manchester%20City.csv",
+      "sha256": "fdae91feb0d4802db79c3fca0c8d660aba34798234ad8af6b47ced5c18702c94"
+    },
+    {
+      "path": "data/processed/Manchester Utd.csv",
+      "sha": "ff5c294ff8c58064440a7202c59b9d830ea14615",
+      "size": 12990,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Manchester%20Utd.csv",
+      "sha256": "cc697bb5ef3fd709dc899881a8598fd89639aa4e723174b03f9b4bdc86fb96e1"
+    },
+    {
+      "path": "data/processed/Newcastle.csv",
+      "sha": "be6684ad78fd5449f77d7e29899a8287c136d94f",
+      "size": 13033,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Newcastle.csv",
+      "sha256": "d4140bfaa0cadd21f1842a3db76f26b215387f6f7c3f3924c3851580f93fab34"
+    },
+    {
+      "path": "data/processed/Nottingham.csv",
+      "sha": "8ca44954b206bacb2cc22d7104caeff11af0013b",
+      "size": 13076,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Nottingham.csv",
+      "sha256": "d3c59455ed239ae622dc33feab9b04451f3eaf3ffd4acb08b39131c39b6607e6"
+    },
+    {
+      "path": "data/processed/Sunderland.csv",
+      "sha": "7e7775a59eb9e48d82bc4fc17d5f16c3e1afbc16",
+      "size": 13098,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Sunderland.csv",
+      "sha256": "509482a14134ae6c036ade384647c4947652befacc0aa54bb21971681f4cc709"
+    },
+    {
+      "path": "data/processed/Tottenham.csv",
+      "sha": "f75b6bdae33aea071b27b4c30c43fa4c950860fc",
+      "size": 13133,
+      "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/647420c6bb756db992374b04a5ba0ee6235a2624/data/processed/Tottenham.csv",
+      "sha256": "e8a3622b73d5df8f0cc444f4d5eecd22622d2bdc0c28034421942f09cd0a5b5f"
+    }
+  ],
+  "overlap": {
+    "primaryMatches": 2700,
+    "recentMatches": 454,
+    "overlappingMatches": 414,
+    "recentOnlyMatches": 40,
+    "combinedMatches": 2740,
+    "xgAgreementTolerance": 0.0001,
+    "maximumOverlapDifference": 0.0,
+    "overlapEvidence": [
+      {
+        "fixture": [
+          "2025-08-15",
+          "Liverpool",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28778,
+        "primaryXg": [
+          2.33007,
+          1.57303
+        ],
+        "recentXg": [
+          2.33007,
+          1.57303
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-16",
+          "Aston Villa",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28779,
+        "primaryXg": [
+          0.318601,
+          1.40098
+        ],
+        "recentXg": [
+          0.318601,
+          1.40098
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-16",
+          "Brighton",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28780,
+        "primaryXg": [
+          1.44008,
+          0.902883
+        ],
+        "recentXg": [
+          1.44008,
+          0.902883
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-16",
+          "Sunderland",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28781,
+        "primaryXg": [
+          0.724368,
+          0.558948
+        ],
+        "recentXg": [
+          0.724368,
+          0.558948
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-16",
+          "Tottenham",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28782,
+        "primaryXg": [
+          1.97858,
+          0.734138
+        ],
+        "recentXg": [
+          1.97858,
+          0.734138
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-16",
+          "Wolves",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28783,
+        "primaryXg": [
+          0.519436,
+          2.29903
+        ],
+        "recentXg": [
+          0.519436,
+          2.29903
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-17",
+          "Chelsea",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28784,
+        "primaryXg": [
+          1.36793,
+          1.03414
+        ],
+        "recentXg": [
+          1.36793,
+          1.03414
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-17",
+          "Man United",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28786,
+        "primaryXg": [
+          1.37653,
+          1.3304
+        ],
+        "recentXg": [
+          1.37653,
+          1.3304
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-17",
+          "Nott'm Forest",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28785,
+        "primaryXg": [
+          1.7555,
+          1.32516
+        ],
+        "recentXg": [
+          1.7555,
+          1.32516
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-18",
+          "Leeds",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28787,
+        "primaryXg": [
+          2.3812,
+          0.674338
+        ],
+        "recentXg": [
+          2.3812,
+          0.674338
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-22",
+          "West Ham",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28788,
+        "primaryXg": [
+          0.978572,
+          3.94997
+        ],
+        "recentXg": [
+          0.978572,
+          3.94997
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-23",
+          "Arsenal",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28793,
+        "primaryXg": [
+          2.73761,
+          0.156761
+        ],
+        "recentXg": [
+          2.73761,
+          0.156761
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-23",
+          "Bournemouth",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28792,
+        "primaryXg": [
+          1.78462,
+          0.373367
+        ],
+        "recentXg": [
+          1.78462,
+          0.373367
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-23",
+          "Brentford",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28790,
+        "primaryXg": [
+          1.12964,
+          0.976852
+        ],
+        "recentXg": [
+          1.12964,
+          0.976852
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-23",
+          "Burnley",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28791,
+        "primaryXg": [
+          1.00381,
+          1.12127
+        ],
+        "recentXg": [
+          1.00381,
+          1.12127
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-23",
+          "Man City",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28789,
+        "primaryXg": [
+          1.2475,
+          1.28015
+        ],
+        "recentXg": [
+          1.2475,
+          1.28015
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-24",
+          "Crystal Palace",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28794,
+        "primaryXg": [
+          1.10188,
+          1.32987
+        ],
+        "recentXg": [
+          1.10188,
+          1.32987
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-24",
+          "Everton",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28795,
+        "primaryXg": [
+          1.80116,
+          2.08487
+        ],
+        "recentXg": [
+          1.80116,
+          2.08487
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-24",
+          "Fulham",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28796,
+        "primaryXg": [
+          1.65333,
+          1.54603
+        ],
+        "recentXg": [
+          1.65333,
+          1.54603
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-25",
+          "Newcastle",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28797,
+        "primaryXg": [
+          1.96342,
+          0.646559
+        ],
+        "recentXg": [
+          1.96342,
+          0.646559
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-30",
+          "Chelsea",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28798,
+        "primaryXg": [
+          2.4324,
+          0.736228
+        ],
+        "recentXg": [
+          2.4324,
+          0.736228
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-30",
+          "Leeds",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28803,
+        "primaryXg": [
+          0.6773,
+          0.303635
+        ],
+        "recentXg": [
+          0.6773,
+          0.303635
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-30",
+          "Man United",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28802,
+        "primaryXg": [
+          4.02237,
+          1.32618
+        ],
+        "recentXg": [
+          4.02237,
+          1.32618
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-30",
+          "Sunderland",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28801,
+        "primaryXg": [
+          1.57127,
+          1.44604
+        ],
+        "recentXg": [
+          1.57127,
+          1.44604
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-30",
+          "Tottenham",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28799,
+        "primaryXg": [
+          0.17067,
+          2.1201
+        ],
+        "recentXg": [
+          0.17067,
+          2.1201
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-30",
+          "Wolves",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28800,
+        "primaryXg": [
+          0.943257,
+          2.03791
+        ],
+        "recentXg": [
+          0.943257,
+          2.03791
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-31",
+          "Aston Villa",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28807,
+        "primaryXg": [
+          1.20586,
+          2.59713
+        ],
+        "recentXg": [
+          1.20586,
+          2.59713
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-31",
+          "Brighton",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28805,
+        "primaryXg": [
+          2.20864,
+          2.13418
+        ],
+        "recentXg": [
+          2.20864,
+          2.13418
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-31",
+          "Liverpool",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28806,
+        "primaryXg": [
+          0.481404,
+          0.485679
+        ],
+        "recentXg": [
+          0.481404,
+          0.485679
+        ]
+      },
+      {
+        "fixture": [
+          "2025-08-31",
+          "Nott'm Forest",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28804,
+        "primaryXg": [
+          0.716018,
+          2.236
+        ],
+        "recentXg": [
+          0.716018,
+          2.236
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "Arsenal",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28808,
+        "primaryXg": [
+          2.8817,
+          0.293681
+        ],
+        "recentXg": [
+          2.8817,
+          0.293681
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "Bournemouth",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28810,
+        "primaryXg": [
+          1.44187,
+          0.624923
+        ],
+        "recentXg": [
+          1.44187,
+          0.624923
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "Brentford",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28815,
+        "primaryXg": [
+          1.17533,
+          0.755999
+        ],
+        "recentXg": [
+          1.17533,
+          0.755999
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "Crystal Palace",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28811,
+        "primaryXg": [
+          1.75805,
+          0.354129
+        ],
+        "recentXg": [
+          1.75805,
+          0.354129
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "Everton",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28812,
+        "primaryXg": [
+          1.8927,
+          0.354327
+        ],
+        "recentXg": [
+          1.8927,
+          0.354327
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "Fulham",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28813,
+        "primaryXg": [
+          1.13979,
+          0.830398
+        ],
+        "recentXg": [
+          1.13979,
+          0.830398
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "Newcastle",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28809,
+        "primaryXg": [
+          1.19186,
+          0.375942
+        ],
+        "recentXg": [
+          1.19186,
+          0.375942
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-13",
+          "West Ham",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28814,
+        "primaryXg": [
+          0.793248,
+          1.51402
+        ],
+        "recentXg": [
+          0.793248,
+          1.51402
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-14",
+          "Burnley",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28816,
+        "primaryXg": [
+          0.168041,
+          2.79492
+        ],
+        "recentXg": [
+          0.168041,
+          2.79492
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-14",
+          "Man City",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28817,
+        "primaryXg": [
+          1.99725,
+          1.51915
+        ],
+        "recentXg": [
+          1.99725,
+          1.51915
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-20",
+          "Brighton",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28821,
+        "primaryXg": [
+          1.40466,
+          1.19181
+        ],
+        "recentXg": [
+          1.40466,
+          1.19181
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-20",
+          "Burnley",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28822,
+        "primaryXg": [
+          1.14159,
+          0.830779
+        ],
+        "recentXg": [
+          1.14159,
+          0.830779
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-20",
+          "Fulham",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28825,
+        "primaryXg": [
+          1.52431,
+          0.826556
+        ],
+        "recentXg": [
+          1.52431,
+          0.826556
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-20",
+          "Liverpool",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28818,
+        "primaryXg": [
+          1.06166,
+          0.721371
+        ],
+        "recentXg": [
+          1.06166,
+          0.721371
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-20",
+          "Man United",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28824,
+        "primaryXg": [
+          1.34458,
+          0.469843
+        ],
+        "recentXg": [
+          1.34458,
+          0.469843
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-20",
+          "West Ham",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28819,
+        "primaryXg": [
+          0.466365,
+          2.33565
+        ],
+        "recentXg": [
+          0.466365,
+          2.33565
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-20",
+          "Wolves",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28820,
+        "primaryXg": [
+          1.5661,
+          0.456988
+        ],
+        "recentXg": [
+          1.5661,
+          0.456988
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-21",
+          "Arsenal",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28827,
+        "primaryXg": [
+          0.718575,
+          1.1227
+        ],
+        "recentXg": [
+          0.718575,
+          1.1227
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-21",
+          "Bournemouth",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28823,
+        "primaryXg": [
+          0.55066,
+          0.153629
+        ],
+        "recentXg": [
+          0.55066,
+          0.153629
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-21",
+          "Sunderland",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28826,
+        "primaryXg": [
+          0.938312,
+          0.939354
+        ],
+        "recentXg": [
+          0.938312,
+          0.939354
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-27",
+          "Brentford",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28828,
+        "primaryXg": [
+          2.78726,
+          2.23609
+        ],
+        "recentXg": [
+          2.78726,
+          2.23609
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-27",
+          "Chelsea",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28829,
+        "primaryXg": [
+          2.02653,
+          2.4751
+        ],
+        "recentXg": [
+          2.02653,
+          2.4751
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-27",
+          "Crystal Palace",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28830,
+        "primaryXg": [
+          3.53323,
+          3.10176
+        ],
+        "recentXg": [
+          3.53323,
+          3.10176
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-27",
+          "Leeds",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28832,
+        "primaryXg": [
+          2.04728,
+          1.06033
+        ],
+        "recentXg": [
+          2.04728,
+          1.06033
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-27",
+          "Man City",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28833,
+        "primaryXg": [
+          3.22133,
+          0.509491
+        ],
+        "recentXg": [
+          3.22133,
+          0.509491
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-27",
+          "Nott'm Forest",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28834,
+        "primaryXg": [
+          1.4203,
+          1.94154
+        ],
+        "recentXg": [
+          1.4203,
+          1.94154
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-27",
+          "Tottenham",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28835,
+        "primaryXg": [
+          0.818711,
+          1.15951
+        ],
+        "recentXg": [
+          0.818711,
+          1.15951
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-28",
+          "Aston Villa",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28831,
+        "primaryXg": [
+          1.36575,
+          0.952612
+        ],
+        "recentXg": [
+          1.36575,
+          0.952612
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-28",
+          "Newcastle",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28836,
+        "primaryXg": [
+          0.739851,
+          2.07048
+        ],
+        "recentXg": [
+          0.739851,
+          2.07048
+        ]
+      },
+      {
+        "fixture": [
+          "2025-09-29",
+          "Everton",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28837,
+        "primaryXg": [
+          0.909703,
+          0.775766
+        ],
+        "recentXg": [
+          0.909703,
+          0.775766
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-03",
+          "Bournemouth",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28838,
+        "primaryXg": [
+          1.33458,
+          0.84335
+        ],
+        "recentXg": [
+          1.33458,
+          0.84335
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-04",
+          "Arsenal",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28839,
+        "primaryXg": [
+          3.0585,
+          0.864549
+        ],
+        "recentXg": [
+          3.0585,
+          0.864549
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-04",
+          "Chelsea",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28842,
+        "primaryXg": [
+          1.23721,
+          2.05981
+        ],
+        "recentXg": [
+          1.23721,
+          2.05981
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-04",
+          "Leeds",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28844,
+        "primaryXg": [
+          1.48051,
+          0.688198
+        ],
+        "recentXg": [
+          1.48051,
+          0.688198
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-04",
+          "Man United",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28845,
+        "primaryXg": [
+          1.9298,
+          0.807119
+        ],
+        "recentXg": [
+          1.9298,
+          0.807119
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-05",
+          "Aston Villa",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28840,
+        "primaryXg": [
+          1.73572,
+          0.502292
+        ],
+        "recentXg": [
+          1.73572,
+          0.502292
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-05",
+          "Brentford",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28841,
+        "primaryXg": [
+          0.693758,
+          1.09647
+        ],
+        "recentXg": [
+          0.693758,
+          1.09647
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-05",
+          "Everton",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28843,
+        "primaryXg": [
+          2.13876,
+          2.17789
+        ],
+        "recentXg": [
+          2.13876,
+          2.17789
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-05",
+          "Newcastle",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28846,
+        "primaryXg": [
+          3.81662,
+          0.337689
+        ],
+        "recentXg": [
+          3.81662,
+          0.337689
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-05",
+          "Wolves",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28847,
+        "primaryXg": [
+          0.369404,
+          1.39158
+        ],
+        "recentXg": [
+          0.369404,
+          1.39158
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-18",
+          "Brighton",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28848,
+        "primaryXg": [
+          0.857104,
+          1.28313
+        ],
+        "recentXg": [
+          0.857104,
+          1.28313
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-18",
+          "Burnley",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28849,
+        "primaryXg": [
+          0.509647,
+          2.33152
+        ],
+        "recentXg": [
+          0.509647,
+          2.33152
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-18",
+          "Crystal Palace",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28850,
+        "primaryXg": [
+          4.56284,
+          2.0471
+        ],
+        "recentXg": [
+          4.56284,
+          2.0471
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-18",
+          "Fulham",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28851,
+        "primaryXg": [
+          0.502332,
+          2.07823
+        ],
+        "recentXg": [
+          0.502332,
+          2.07823
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-18",
+          "Man City",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28853,
+        "primaryXg": [
+          2.4799,
+          0.794622
+        ],
+        "recentXg": [
+          2.4799,
+          0.794622
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-18",
+          "Nott'm Forest",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28854,
+        "primaryXg": [
+          2.0555,
+          2.5583
+        ],
+        "recentXg": [
+          2.0555,
+          2.5583
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-18",
+          "Sunderland",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28855,
+        "primaryXg": [
+          1.02481,
+          0.676323
+        ],
+        "recentXg": [
+          1.02481,
+          0.676323
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-19",
+          "Liverpool",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28852,
+        "primaryXg": [
+          2.60972,
+          2.53117
+        ],
+        "recentXg": [
+          2.60972,
+          2.53117
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-19",
+          "Tottenham",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28856,
+        "primaryXg": [
+          1.51461,
+          0.352231
+        ],
+        "recentXg": [
+          1.51461,
+          0.352231
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-20",
+          "West Ham",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28857,
+        "primaryXg": [
+          0.260251,
+          3.46635
+        ],
+        "recentXg": [
+          0.260251,
+          3.46635
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-24",
+          "Leeds",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28864,
+        "primaryXg": [
+          2.2214,
+          0.498653
+        ],
+        "recentXg": [
+          2.2214,
+          0.498653
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-25",
+          "Brentford",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28861,
+        "primaryXg": [
+          3.27126,
+          2.11838
+        ],
+        "recentXg": [
+          3.27126,
+          2.11838
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-25",
+          "Chelsea",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28862,
+        "primaryXg": [
+          1.21332,
+          1.5506
+        ],
+        "recentXg": [
+          1.21332,
+          1.5506
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-25",
+          "Man United",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28865,
+        "primaryXg": [
+          1.96231,
+          0.947154
+        ],
+        "recentXg": [
+          1.96231,
+          0.947154
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-25",
+          "Newcastle",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28866,
+        "primaryXg": [
+          2.76806,
+          1.52001
+        ],
+        "recentXg": [
+          2.76806,
+          1.52001
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-26",
+          "Arsenal",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28859,
+        "primaryXg": [
+          0.856175,
+          0.350534
+        ],
+        "recentXg": [
+          0.856175,
+          0.350534
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-26",
+          "Aston Villa",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28860,
+        "primaryXg": [
+          0.843906,
+          1.36914
+        ],
+        "recentXg": [
+          0.843906,
+          1.36914
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-26",
+          "Bournemouth",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28858,
+        "primaryXg": [
+          0.656601,
+          0.305493
+        ],
+        "recentXg": [
+          0.656601,
+          0.305493
+        ]
+      },
+      {
+        "fixture": [
+          "2025-10-26",
+          "Everton",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28863,
+        "primaryXg": [
+          1.4032,
+          2.09327
+        ],
+        "recentXg": [
+          1.4032,
+          2.09327
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-01",
+          "Brighton",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28868,
+        "primaryXg": [
+          2.64127,
+          0.35919
+        ],
+        "recentXg": [
+          2.64127,
+          0.35919
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-01",
+          "Burnley",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28869,
+        "primaryXg": [
+          0.679177,
+          2.51649
+        ],
+        "recentXg": [
+          0.679177,
+          2.51649
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-01",
+          "Crystal Palace",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28870,
+        "primaryXg": [
+          0.734558,
+          0.820498
+        ],
+        "recentXg": [
+          0.734558,
+          0.820498
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-01",
+          "Fulham",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28871,
+        "primaryXg": [
+          1.91207,
+          0.209934
+        ],
+        "recentXg": [
+          1.91207,
+          0.209934
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-01",
+          "Liverpool",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28872,
+        "primaryXg": [
+          1.47021,
+          0.43502
+        ],
+        "recentXg": [
+          1.47021,
+          0.43502
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-01",
+          "Nott'm Forest",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28874,
+        "primaryXg": [
+          1.55066,
+          0.91622
+        ],
+        "recentXg": [
+          1.55066,
+          0.91622
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-01",
+          "Tottenham",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28876,
+        "primaryXg": [
+          0.146954,
+          3.34251
+        ],
+        "recentXg": [
+          0.146954,
+          3.34251
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-02",
+          "Man City",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28873,
+        "primaryXg": [
+          2.48999,
+          0.899846
+        ],
+        "recentXg": [
+          2.48999,
+          0.899846
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-02",
+          "West Ham",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28877,
+        "primaryXg": [
+          1.41383,
+          0.523615
+        ],
+        "recentXg": [
+          1.41383,
+          0.523615
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-03",
+          "Sunderland",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28875,
+        "primaryXg": [
+          1.18068,
+          1.00741
+        ],
+        "recentXg": [
+          1.18068,
+          1.00741
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-08",
+          "Chelsea",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28880,
+        "primaryXg": [
+          3.98342,
+          0.111462
+        ],
+        "recentXg": [
+          3.98342,
+          0.111462
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-08",
+          "Everton",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28882,
+        "primaryXg": [
+          2.30607,
+          0.424478
+        ],
+        "recentXg": [
+          2.30607,
+          0.424478
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-08",
+          "Sunderland",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28885,
+        "primaryXg": [
+          1.20495,
+          2.32943
+        ],
+        "recentXg": [
+          1.20495,
+          2.32943
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-08",
+          "Tottenham",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28886,
+        "primaryXg": [
+          1.35532,
+          0.820256
+        ],
+        "recentXg": [
+          1.35532,
+          0.820256
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-09",
+          "Aston Villa",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28878,
+        "primaryXg": [
+          1.88282,
+          2.00992
+        ],
+        "recentXg": [
+          1.88282,
+          2.00992
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-09",
+          "Brentford",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28879,
+        "primaryXg": [
+          2.73729,
+          0.432277
+        ],
+        "recentXg": [
+          2.73729,
+          0.432277
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-09",
+          "Crystal Palace",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28881,
+        "primaryXg": [
+          0.839547,
+          0.637037
+        ],
+        "recentXg": [
+          0.839547,
+          0.637037
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-09",
+          "Man City",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28883,
+        "primaryXg": [
+          1.59542,
+          1.0281
+        ],
+        "recentXg": [
+          1.59542,
+          1.0281
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-09",
+          "Nott'm Forest",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28884,
+        "primaryXg": [
+          2.49097,
+          0.419461
+        ],
+        "recentXg": [
+          2.49097,
+          0.419461
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-22",
+          "Bournemouth",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28888,
+        "primaryXg": [
+          3.48299,
+          0.390782
+        ],
+        "recentXg": [
+          3.48299,
+          0.390782
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-22",
+          "Brighton",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28890,
+        "primaryXg": [
+          0.977488,
+          2.19979
+        ],
+        "recentXg": [
+          0.977488,
+          2.19979
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-22",
+          "Burnley",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28891,
+        "primaryXg": [
+          0.660943,
+          1.72093
+        ],
+        "recentXg": [
+          0.660943,
+          1.72093
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-22",
+          "Fulham",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28892,
+        "primaryXg": [
+          2.83729,
+          0.222768
+        ],
+        "recentXg": [
+          2.83729,
+          0.222768
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-22",
+          "Liverpool",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28894,
+        "primaryXg": [
+          1.79273,
+          1.19459
+        ],
+        "recentXg": [
+          1.79273,
+          1.19459
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-22",
+          "Newcastle",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28896,
+        "primaryXg": [
+          2.40555,
+          2.45648
+        ],
+        "recentXg": [
+          2.40555,
+          2.45648
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-22",
+          "Wolves",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28897,
+        "primaryXg": [
+          1.66409,
+          1.44933
+        ],
+        "recentXg": [
+          1.66409,
+          1.44933
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-23",
+          "Arsenal",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28889,
+        "primaryXg": [
+          2.27827,
+          0.0300672
+        ],
+        "recentXg": [
+          2.27827,
+          0.0300672
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-23",
+          "Leeds",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28893,
+        "primaryXg": [
+          1.84668,
+          1.35978
+        ],
+        "recentXg": [
+          1.84668,
+          1.35978
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-24",
+          "Man United",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28895,
+        "primaryXg": [
+          2.2737,
+          0.155063
+        ],
+        "recentXg": [
+          2.2737,
+          0.155063
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-29",
+          "Brentford",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28899,
+        "primaryXg": [
+          3.72106,
+          0.874025
+        ],
+        "recentXg": [
+          3.72106,
+          0.874025
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-29",
+          "Everton",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28902,
+        "primaryXg": [
+          1.01125,
+          2.45882
+        ],
+        "recentXg": [
+          1.01125,
+          2.45882
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-29",
+          "Man City",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28903,
+        "primaryXg": [
+          2.85292,
+          1.75142
+        ],
+        "recentXg": [
+          2.85292,
+          1.75142
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-29",
+          "Sunderland",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28905,
+        "primaryXg": [
+          1.16955,
+          1.79274
+        ],
+        "recentXg": [
+          1.16955,
+          1.79274
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-29",
+          "Tottenham",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28906,
+        "primaryXg": [
+          1.04396,
+          0.494736
+        ],
+        "recentXg": [
+          1.04396,
+          0.494736
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-30",
+          "Aston Villa",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28898,
+        "primaryXg": [
+          1.15486,
+          0.692588
+        ],
+        "recentXg": [
+          1.15486,
+          0.692588
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-30",
+          "Chelsea",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28900,
+        "primaryXg": [
+          0.791914,
+          1.22828
+        ],
+        "recentXg": [
+          0.791914,
+          1.22828
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-30",
+          "Crystal Palace",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28901,
+        "primaryXg": [
+          2.13561,
+          1.47768
+        ],
+        "recentXg": [
+          2.13561,
+          1.47768
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-30",
+          "Nott'm Forest",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28904,
+        "primaryXg": [
+          0.960325,
+          2.0572
+        ],
+        "recentXg": [
+          0.960325,
+          2.0572
+        ]
+      },
+      {
+        "fixture": [
+          "2025-11-30",
+          "West Ham",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28907,
+        "primaryXg": [
+          0.364152,
+          1.56793
+        ],
+        "recentXg": [
+          0.364152,
+          1.56793
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-02",
+          "Bournemouth",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28908,
+        "primaryXg": [
+          0.635415,
+          1.19573
+        ],
+        "recentXg": [
+          0.635415,
+          1.19573
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-02",
+          "Fulham",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28912,
+        "primaryXg": [
+          0.972635,
+          1.96225
+        ],
+        "recentXg": [
+          0.972635,
+          1.96225
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-02",
+          "Newcastle",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28916,
+        "primaryXg": [
+          1.88558,
+          1.05205
+        ],
+        "recentXg": [
+          1.88558,
+          1.05205
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-03",
+          "Arsenal",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28909,
+        "primaryXg": [
+          2.63126,
+          0.588716
+        ],
+        "recentXg": [
+          2.63126,
+          0.588716
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-03",
+          "Brighton",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28910,
+        "primaryXg": [
+          1.96298,
+          3.15745
+        ],
+        "recentXg": [
+          1.96298,
+          3.15745
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-03",
+          "Burnley",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28911,
+        "primaryXg": [
+          1.16852,
+          0.987797
+        ],
+        "recentXg": [
+          1.16852,
+          0.987797
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-03",
+          "Leeds",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28913,
+        "primaryXg": [
+          2.2047,
+          0.964018
+        ],
+        "recentXg": [
+          2.2047,
+          0.964018
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-03",
+          "Liverpool",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28914,
+        "primaryXg": [
+          1.37633,
+          0.712662
+        ],
+        "recentXg": [
+          1.37633,
+          0.712662
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-03",
+          "Wolves",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28917,
+        "primaryXg": [
+          1.02461,
+          1.12389
+        ],
+        "recentXg": [
+          1.02461,
+          1.12389
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-04",
+          "Man United",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28915,
+        "primaryXg": [
+          2.27674,
+          1.36584
+        ],
+        "recentXg": [
+          2.27674,
+          1.36584
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-06",
+          "Aston Villa",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28919,
+        "primaryXg": [
+          2.71986,
+          1.85965
+        ],
+        "recentXg": [
+          2.71986,
+          1.85965
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-06",
+          "Bournemouth",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28918,
+        "primaryXg": [
+          1.41931,
+          0.672602
+        ],
+        "recentXg": [
+          1.41931,
+          0.672602
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-06",
+          "Everton",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28921,
+        "primaryXg": [
+          1.25348,
+          0.31234
+        ],
+        "recentXg": [
+          1.25348,
+          0.31234
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-06",
+          "Leeds",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28923,
+        "primaryXg": [
+          1.79333,
+          2.04805
+        ],
+        "recentXg": [
+          1.79333,
+          2.04805
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-06",
+          "Man City",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28924,
+        "primaryXg": [
+          2.41605,
+          0.626486
+        ],
+        "recentXg": [
+          2.41605,
+          0.626486
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-06",
+          "Newcastle",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28925,
+        "primaryXg": [
+          1.80708,
+          1.58375
+        ],
+        "recentXg": [
+          1.80708,
+          1.58375
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-06",
+          "Tottenham",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28926,
+        "primaryXg": [
+          2.42388,
+          0.470563
+        ],
+        "recentXg": [
+          2.42388,
+          0.470563
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-07",
+          "Brighton",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28920,
+        "primaryXg": [
+          2.10077,
+          1.7064
+        ],
+        "recentXg": [
+          2.10077,
+          1.7064
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-07",
+          "Fulham",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28922,
+        "primaryXg": [
+          0.766771,
+          1.71109
+        ],
+        "recentXg": [
+          0.766771,
+          1.71109
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-08",
+          "Wolves",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28927,
+        "primaryXg": [
+          0.262147,
+          4.04708
+        ],
+        "recentXg": [
+          0.262147,
+          4.04708
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-13",
+          "Arsenal",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28928,
+        "primaryXg": [
+          1.61796,
+          0.61997
+        ],
+        "recentXg": [
+          1.61796,
+          0.61997
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-13",
+          "Burnley",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28930,
+        "primaryXg": [
+          2.05486,
+          1.65053
+        ],
+        "recentXg": [
+          2.05486,
+          1.65053
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-13",
+          "Chelsea",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28931,
+        "primaryXg": [
+          2.64457,
+          1.34
+        ],
+        "recentXg": [
+          2.64457,
+          1.34
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-13",
+          "Liverpool",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28933,
+        "primaryXg": [
+          2.4127,
+          1.69004
+        ],
+        "recentXg": [
+          2.4127,
+          1.69004
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-14",
+          "Brentford",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28929,
+        "primaryXg": [
+          0.697006,
+          1.63409
+        ],
+        "recentXg": [
+          0.697006,
+          1.63409
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-14",
+          "Crystal Palace",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28932,
+        "primaryXg": [
+          1.30092,
+          1.35317
+        ],
+        "recentXg": [
+          1.30092,
+          1.35317
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-14",
+          "Nott'm Forest",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28935,
+        "primaryXg": [
+          2.32658,
+          0.380246
+        ],
+        "recentXg": [
+          2.32658,
+          0.380246
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-14",
+          "Sunderland",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28936,
+        "primaryXg": [
+          0.630045,
+          0.169329
+        ],
+        "recentXg": [
+          0.630045,
+          0.169329
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-14",
+          "West Ham",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28937,
+        "primaryXg": [
+          1.27701,
+          0.595093
+        ],
+        "recentXg": [
+          1.27701,
+          0.595093
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-15",
+          "Man United",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28934,
+        "primaryXg": [
+          3.21204,
+          2.35196
+        ],
+        "recentXg": [
+          3.21204,
+          2.35196
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Bournemouth",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28938,
+        "primaryXg": [
+          1.81847,
+          0.480528
+        ],
+        "recentXg": [
+          1.81847,
+          0.480528
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Brighton",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28940,
+        "primaryXg": [
+          0.919272,
+          1.31044
+        ],
+        "recentXg": [
+          0.919272,
+          1.31044
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Everton",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28941,
+        "primaryXg": [
+          0.213273,
+          1.84723
+        ],
+        "recentXg": [
+          0.213273,
+          1.84723
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Leeds",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28943,
+        "primaryXg": [
+          2.90786,
+          1.53058
+        ],
+        "recentXg": [
+          2.90786,
+          1.53058
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Man City",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28944,
+        "primaryXg": [
+          3.58188,
+          1.02143
+        ],
+        "recentXg": [
+          3.58188,
+          1.02143
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Newcastle",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28945,
+        "primaryXg": [
+          2.87863,
+          1.0261
+        ],
+        "recentXg": [
+          2.87863,
+          1.0261
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Tottenham",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28946,
+        "primaryXg": [
+          1.34905,
+          1.23164
+        ],
+        "recentXg": [
+          1.34905,
+          1.23164
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-20",
+          "Wolves",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28947,
+        "primaryXg": [
+          1.26823,
+          1.56309
+        ],
+        "recentXg": [
+          1.26823,
+          1.56309
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-21",
+          "Aston Villa",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28939,
+        "primaryXg": [
+          1.86917,
+          1.30455
+        ],
+        "recentXg": [
+          1.86917,
+          1.30455
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-22",
+          "Fulham",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28942,
+        "primaryXg": [
+          1.70568,
+          0.486296
+        ],
+        "recentXg": [
+          1.70568,
+          0.486296
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-26",
+          "Man United",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28954,
+        "primaryXg": [
+          0.940811,
+          1.12998
+        ],
+        "recentXg": [
+          0.940811,
+          1.12998
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-27",
+          "Arsenal",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28948,
+        "primaryXg": [
+          2.54318,
+          0.710064
+        ],
+        "recentXg": [
+          2.54318,
+          0.710064
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-27",
+          "Brentford",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28949,
+        "primaryXg": [
+          2.8513,
+          2.56183
+        ],
+        "recentXg": [
+          2.8513,
+          2.56183
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-27",
+          "Burnley",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28950,
+        "primaryXg": [
+          1.24948,
+          1.25204
+        ],
+        "recentXg": [
+          1.24948,
+          1.25204
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-27",
+          "Chelsea",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28951,
+        "primaryXg": [
+          1.97155,
+          2.05918
+        ],
+        "recentXg": [
+          1.97155,
+          2.05918
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-27",
+          "Liverpool",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28953,
+        "primaryXg": [
+          1.56502,
+          0.780664
+        ],
+        "recentXg": [
+          1.56502,
+          0.780664
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-27",
+          "Nott'm Forest",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28955,
+        "primaryXg": [
+          0.600141,
+          1.46468
+        ],
+        "recentXg": [
+          0.600141,
+          1.46468
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-27",
+          "West Ham",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28957,
+        "primaryXg": [
+          1.13719,
+          1.11436
+        ],
+        "recentXg": [
+          1.13719,
+          1.11436
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-28",
+          "Crystal Palace",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28952,
+        "primaryXg": [
+          0.929681,
+          0.870768
+        ],
+        "recentXg": [
+          0.929681,
+          0.870768
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-28",
+          "Sunderland",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28956,
+        "primaryXg": [
+          0.805957,
+          2.60653
+        ],
+        "recentXg": [
+          0.805957,
+          2.60653
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-30",
+          "Arsenal",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28958,
+        "primaryXg": [
+          4.41335,
+          2.94195
+        ],
+        "recentXg": [
+          4.41335,
+          2.94195
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-30",
+          "Burnley",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28960,
+        "primaryXg": [
+          1.32551,
+          2.49248
+        ],
+        "recentXg": [
+          1.32551,
+          2.49248
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-30",
+          "Chelsea",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28961,
+        "primaryXg": [
+          2.33294,
+          3.49142
+        ],
+        "recentXg": [
+          2.33294,
+          3.49142
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-30",
+          "Man United",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28964,
+        "primaryXg": [
+          1.13306,
+          1.21784
+        ],
+        "recentXg": [
+          1.13306,
+          1.21784
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-30",
+          "Nott'm Forest",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28965,
+        "primaryXg": [
+          1.75445,
+          1.69525
+        ],
+        "recentXg": [
+          1.75445,
+          1.69525
+        ]
+      },
+      {
+        "fixture": [
+          "2025-12-30",
+          "West Ham",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28967,
+        "primaryXg": [
+          2.27644,
+          3.08914
+        ],
+        "recentXg": [
+          2.27644,
+          3.08914
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-01",
+          "Brentford",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28959,
+        "primaryXg": [
+          0.556304,
+          0.608309
+        ],
+        "recentXg": [
+          0.556304,
+          0.608309
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-01",
+          "Crystal Palace",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28962,
+        "primaryXg": [
+          2.35346,
+          1.75434
+        ],
+        "recentXg": [
+          2.35346,
+          1.75434
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-01",
+          "Liverpool",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28963,
+        "primaryXg": [
+          1.67833,
+          0.15936
+        ],
+        "recentXg": [
+          1.67833,
+          0.15936
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-01",
+          "Sunderland",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28966,
+        "primaryXg": [
+          0.962141,
+          2.44247
+        ],
+        "recentXg": [
+          0.962141,
+          2.44247
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-03",
+          "Aston Villa",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28972,
+        "primaryXg": [
+          1.42988,
+          0.8982
+        ],
+        "recentXg": [
+          1.42988,
+          0.8982
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-03",
+          "Bournemouth",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28971,
+        "primaryXg": [
+          0.947846,
+          1.28
+        ],
+        "recentXg": [
+          0.947846,
+          1.28
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-03",
+          "Brighton",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28973,
+        "primaryXg": [
+          1.4717,
+          0.254551
+        ],
+        "recentXg": [
+          1.4717,
+          0.254551
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-04",
+          "Everton",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28974,
+        "primaryXg": [
+          1.00566,
+          3.05179
+        ],
+        "recentXg": [
+          1.00566,
+          3.05179
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-04",
+          "Fulham",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28975,
+        "primaryXg": [
+          0.609182,
+          1.7188
+        ],
+        "recentXg": [
+          0.609182,
+          1.7188
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-04",
+          "Leeds",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28976,
+        "primaryXg": [
+          0.970138,
+          1.94781
+        ],
+        "recentXg": [
+          0.970138,
+          1.94781
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-04",
+          "Man City",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28977,
+        "primaryXg": [
+          1.03049,
+          2.03726
+        ],
+        "recentXg": [
+          1.03049,
+          2.03726
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-04",
+          "Newcastle",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28968,
+        "primaryXg": [
+          2.72764,
+          1.27825
+        ],
+        "recentXg": [
+          2.72764,
+          1.27825
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-04",
+          "Tottenham",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28969,
+        "primaryXg": [
+          1.4175,
+          0.467481
+        ],
+        "recentXg": [
+          1.4175,
+          0.467481
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-06",
+          "West Ham",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 28987,
+        "primaryXg": [
+          1.73697,
+          1.26683
+        ],
+        "recentXg": [
+          1.73697,
+          1.26683
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Bournemouth",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 28979,
+        "primaryXg": [
+          1.19014,
+          1.6261
+        ],
+        "recentXg": [
+          1.19014,
+          1.6261
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Brentford",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 28981,
+        "primaryXg": [
+          3.86096,
+          1.50644
+        ],
+        "recentXg": [
+          3.86096,
+          1.50644
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Burnley",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28982,
+        "primaryXg": [
+          0.31971,
+          2.52488
+        ],
+        "recentXg": [
+          0.31971,
+          2.52488
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Crystal Palace",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 28983,
+        "primaryXg": [
+          1.32505,
+          2.07015
+        ],
+        "recentXg": [
+          1.32505,
+          2.07015
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Everton",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 28978,
+        "primaryXg": [
+          1.63321,
+          0.71329
+        ],
+        "recentXg": [
+          1.63321,
+          0.71329
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Fulham",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 28984,
+        "primaryXg": [
+          1.06013,
+          2.45107
+        ],
+        "recentXg": [
+          1.06013,
+          2.45107
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Man City",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 28985,
+        "primaryXg": [
+          2.95904,
+          1.33162
+        ],
+        "recentXg": [
+          2.95904,
+          1.33162
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-07",
+          "Newcastle",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 28986,
+        "primaryXg": [
+          2.43495,
+          2.35318
+        ],
+        "recentXg": [
+          2.43495,
+          2.35318
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-08",
+          "Arsenal",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28980,
+        "primaryXg": [
+          0.701832,
+          0.318642
+        ],
+        "recentXg": [
+          0.701832,
+          0.318642
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-17",
+          "Chelsea",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 28990,
+        "primaryXg": [
+          1.62263,
+          1.47521
+        ],
+        "recentXg": [
+          1.62263,
+          1.47521
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-17",
+          "Leeds",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 28991,
+        "primaryXg": [
+          2.16898,
+          0.258796
+        ],
+        "recentXg": [
+          2.16898,
+          0.258796
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-17",
+          "Liverpool",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 28992,
+        "primaryXg": [
+          3.49045,
+          0.546971
+        ],
+        "recentXg": [
+          3.49045,
+          0.546971
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-17",
+          "Man United",
+          "Man City"
+        ],
+        "primarySourceMatchId": 28993,
+        "primaryXg": [
+          3.07278,
+          0.387015
+        ],
+        "recentXg": [
+          3.07278,
+          0.387015
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-17",
+          "Nott'm Forest",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 28994,
+        "primaryXg": [
+          0.318481,
+          2.86323
+        ],
+        "recentXg": [
+          0.318481,
+          2.86323
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-17",
+          "Sunderland",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 28995,
+        "primaryXg": [
+          1.84601,
+          1.15169
+        ],
+        "recentXg": [
+          1.84601,
+          1.15169
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-17",
+          "Tottenham",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 28996,
+        "primaryXg": [
+          1.65292,
+          2.76761
+        ],
+        "recentXg": [
+          1.65292,
+          2.76761
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-18",
+          "Aston Villa",
+          "Everton"
+        ],
+        "primarySourceMatchId": 28988,
+        "primaryXg": [
+          0.905393,
+          0.745859
+        ],
+        "recentXg": [
+          0.905393,
+          0.745859
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-18",
+          "Wolves",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 28997,
+        "primaryXg": [
+          0.390216,
+          0.813313
+        ],
+        "recentXg": [
+          0.390216,
+          0.813313
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-19",
+          "Brighton",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 28989,
+        "primaryXg": [
+          0.995777,
+          1.69737
+        ],
+        "recentXg": [
+          0.995777,
+          1.69737
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-24",
+          "Bournemouth",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 28998,
+        "primaryXg": [
+          3.31474,
+          0.937335
+        ],
+        "recentXg": [
+          3.31474,
+          0.937335
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-24",
+          "Burnley",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29001,
+        "primaryXg": [
+          1.54884,
+          2.59093
+        ],
+        "recentXg": [
+          1.54884,
+          2.59093
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-24",
+          "Fulham",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29004,
+        "primaryXg": [
+          1.13243,
+          1.94652
+        ],
+        "recentXg": [
+          1.13243,
+          1.94652
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-24",
+          "Man City",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 29005,
+        "primaryXg": [
+          1.0654,
+          0.542683
+        ],
+        "recentXg": [
+          1.0654,
+          0.542683
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-24",
+          "West Ham",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29007,
+        "primaryXg": [
+          2.18675,
+          0.713838
+        ],
+        "recentXg": [
+          2.18675,
+          0.713838
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-25",
+          "Arsenal",
+          "Man United"
+        ],
+        "primarySourceMatchId": 28999,
+        "primaryXg": [
+          1.42411,
+          0.640902
+        ],
+        "recentXg": [
+          1.42411,
+          0.640902
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-25",
+          "Brentford",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29000,
+        "primaryXg": [
+          2.00413,
+          1.38958
+        ],
+        "recentXg": [
+          2.00413,
+          1.38958
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-25",
+          "Crystal Palace",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29002,
+        "primaryXg": [
+          2.41793,
+          3.08817
+        ],
+        "recentXg": [
+          2.41793,
+          3.08817
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-25",
+          "Newcastle",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29006,
+        "primaryXg": [
+          1.95484,
+          1.32143
+        ],
+        "recentXg": [
+          1.95484,
+          1.32143
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-26",
+          "Everton",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29003,
+        "primaryXg": [
+          0.889916,
+          1.6766
+        ],
+        "recentXg": [
+          0.889916,
+          1.6766
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-31",
+          "Brighton",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29010,
+        "primaryXg": [
+          1.42825,
+          1.28126
+        ],
+        "recentXg": [
+          1.42825,
+          1.28126
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-31",
+          "Chelsea",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 29009,
+        "primaryXg": [
+          2.66133,
+          1.72585
+        ],
+        "recentXg": [
+          2.66133,
+          1.72585
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-31",
+          "Leeds",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29015,
+        "primaryXg": [
+          0.17871,
+          3.54427
+        ],
+        "recentXg": [
+          0.17871,
+          3.54427
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-31",
+          "Liverpool",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29014,
+        "primaryXg": [
+          3.09973,
+          0.284319
+        ],
+        "recentXg": [
+          3.09973,
+          0.284319
+        ]
+      },
+      {
+        "fixture": [
+          "2026-01-31",
+          "Wolves",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29017,
+        "primaryXg": [
+          2.10353,
+          1.59116
+        ],
+        "recentXg": [
+          2.10353,
+          1.59116
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-01",
+          "Aston Villa",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29008,
+        "primaryXg": [
+          2.15316,
+          0.314916
+        ],
+        "recentXg": [
+          2.15316,
+          0.314916
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-01",
+          "Man United",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29012,
+        "primaryXg": [
+          1.84362,
+          1.71998
+        ],
+        "recentXg": [
+          1.84362,
+          1.71998
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-01",
+          "Nott'm Forest",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29013,
+        "primaryXg": [
+          0.987254,
+          1.648
+        ],
+        "recentXg": [
+          0.987254,
+          1.648
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-01",
+          "Tottenham",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29016,
+        "primaryXg": [
+          1.49738,
+          2.03614
+        ],
+        "recentXg": [
+          1.49738,
+          2.03614
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-02",
+          "Sunderland",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29011,
+        "primaryXg": [
+          1.8865,
+          0.126371
+        ],
+        "recentXg": [
+          1.8865,
+          0.126371
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-06",
+          "Leeds",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29023,
+        "primaryXg": [
+          3.38179,
+          1.6608
+        ],
+        "recentXg": [
+          3.38179,
+          1.6608
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-07",
+          "Arsenal",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29019,
+        "primaryXg": [
+          1.19401,
+          0.427225
+        ],
+        "recentXg": [
+          1.19401,
+          0.427225
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-07",
+          "Bournemouth",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29018,
+        "primaryXg": [
+          1.82646,
+          0.646496
+        ],
+        "recentXg": [
+          1.82646,
+          0.646496
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-07",
+          "Fulham",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29022,
+        "primaryXg": [
+          2.20126,
+          1.88778
+        ],
+        "recentXg": [
+          2.20126,
+          1.88778
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-07",
+          "Man United",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29025,
+        "primaryXg": [
+          2.16576,
+          0.593404
+        ],
+        "recentXg": [
+          2.16576,
+          0.593404
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-07",
+          "Newcastle",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29026,
+        "primaryXg": [
+          3.3215,
+          1.65022
+        ],
+        "recentXg": [
+          3.3215,
+          1.65022
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-07",
+          "Wolves",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29027,
+        "primaryXg": [
+          1.11372,
+          3.76278
+        ],
+        "recentXg": [
+          1.11372,
+          3.76278
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-08",
+          "Brighton",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29020,
+        "primaryXg": [
+          0.737798,
+          0.928404
+        ],
+        "recentXg": [
+          0.737798,
+          0.928404
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-08",
+          "Liverpool",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29024,
+        "primaryXg": [
+          1.26652,
+          2.41476
+        ],
+        "recentXg": [
+          1.26652,
+          2.41476
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-10",
+          "Chelsea",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29030,
+        "primaryXg": [
+          3.21176,
+          1.28948
+        ],
+        "recentXg": [
+          3.21176,
+          1.28948
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-10",
+          "Everton",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29032,
+        "primaryXg": [
+          2.33114,
+          1.4121
+        ],
+        "recentXg": [
+          2.33114,
+          1.4121
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-10",
+          "Tottenham",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29036,
+        "primaryXg": [
+          1.68925,
+          2.46991
+        ],
+        "recentXg": [
+          1.68925,
+          2.46991
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-10",
+          "West Ham",
+          "Man United"
+        ],
+        "primarySourceMatchId": 29037,
+        "primaryXg": [
+          1.30746,
+          0.735767
+        ],
+        "recentXg": [
+          1.30746,
+          0.735767
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-11",
+          "Aston Villa",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29028,
+        "primaryXg": [
+          0.576138,
+          0.481306
+        ],
+        "recentXg": [
+          0.576138,
+          0.481306
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-11",
+          "Crystal Palace",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29031,
+        "primaryXg": [
+          2.1276,
+          0.691273
+        ],
+        "recentXg": [
+          2.1276,
+          0.691273
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-11",
+          "Man City",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29033,
+        "primaryXg": [
+          1.67722,
+          1.05283
+        ],
+        "recentXg": [
+          1.67722,
+          1.05283
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-11",
+          "Nott'm Forest",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 29034,
+        "primaryXg": [
+          3.69094,
+          0.406959
+        ],
+        "recentXg": [
+          3.69094,
+          0.406959
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-11",
+          "Sunderland",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 29035,
+        "primaryXg": [
+          0.693794,
+          3.08172
+        ],
+        "recentXg": [
+          0.693794,
+          3.08172
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-12",
+          "Brentford",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29029,
+        "primaryXg": [
+          1.81154,
+          0.78418
+        ],
+        "recentXg": [
+          1.81154,
+          0.78418
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-18",
+          "Wolves",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29087,
+        "primaryXg": [
+          0.173119,
+          2.01018
+        ],
+        "recentXg": [
+          0.173119,
+          2.01018
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-21",
+          "Aston Villa",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29038,
+        "primaryXg": [
+          1.25439,
+          1.27855
+        ],
+        "recentXg": [
+          1.25439,
+          1.27855
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-21",
+          "Brentford",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29039,
+        "primaryXg": [
+          1.69023,
+          1.37203
+        ],
+        "recentXg": [
+          1.69023,
+          1.37203
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-21",
+          "Chelsea",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29040,
+        "primaryXg": [
+          2.51534,
+          1.01255
+        ],
+        "recentXg": [
+          2.51534,
+          1.01255
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-21",
+          "Man City",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29043,
+        "primaryXg": [
+          2.22648,
+          0.507954
+        ],
+        "recentXg": [
+          2.22648,
+          0.507954
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-21",
+          "West Ham",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29047,
+        "primaryXg": [
+          2.34412,
+          0.522731
+        ],
+        "recentXg": [
+          2.34412,
+          0.522731
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-22",
+          "Crystal Palace",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 29041,
+        "primaryXg": [
+          2.03559,
+          1.67749
+        ],
+        "recentXg": [
+          2.03559,
+          1.67749
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-22",
+          "Nott'm Forest",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 29044,
+        "primaryXg": [
+          0.934768,
+          2.39634
+        ],
+        "recentXg": [
+          0.934768,
+          2.39634
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-22",
+          "Sunderland",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29045,
+        "primaryXg": [
+          1.7609,
+          2.16696
+        ],
+        "recentXg": [
+          1.7609,
+          2.16696
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-22",
+          "Tottenham",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29046,
+        "primaryXg": [
+          0.383264,
+          3.31701
+        ],
+        "recentXg": [
+          0.383264,
+          3.31701
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-23",
+          "Everton",
+          "Man United"
+        ],
+        "primarySourceMatchId": 29042,
+        "primaryXg": [
+          0.560924,
+          1.4547
+        ],
+        "recentXg": [
+          0.560924,
+          1.4547
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-27",
+          "Wolves",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29057,
+        "primaryXg": [
+          1.50771,
+          1.31328
+        ],
+        "recentXg": [
+          1.50771,
+          1.31328
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-28",
+          "Bournemouth",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29048,
+        "primaryXg": [
+          1.82434,
+          1.07887
+        ],
+        "recentXg": [
+          1.82434,
+          1.07887
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-28",
+          "Burnley",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29051,
+        "primaryXg": [
+          0.823824,
+          2.44595
+        ],
+        "recentXg": [
+          0.823824,
+          2.44595
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-28",
+          "Leeds",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29053,
+        "primaryXg": [
+          1.37824,
+          2.46834
+        ],
+        "recentXg": [
+          1.37824,
+          2.46834
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-28",
+          "Liverpool",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 29054,
+        "primaryXg": [
+          2.09939,
+          1.3517
+        ],
+        "recentXg": [
+          2.09939,
+          1.3517
+        ]
+      },
+      {
+        "fixture": [
+          "2026-02-28",
+          "Newcastle",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29056,
+        "primaryXg": [
+          1.11889,
+          2.40731
+        ],
+        "recentXg": [
+          1.11889,
+          2.40731
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-01",
+          "Arsenal",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29049,
+        "primaryXg": [
+          1.71598,
+          1.35268
+        ],
+        "recentXg": [
+          1.71598,
+          1.35268
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-01",
+          "Brighton",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29050,
+        "primaryXg": [
+          1.20107,
+          0.83055
+        ],
+        "recentXg": [
+          1.20107,
+          0.83055
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-01",
+          "Fulham",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29052,
+        "primaryXg": [
+          2.3207,
+          0.952091
+        ],
+        "recentXg": [
+          2.3207,
+          0.952091
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-01",
+          "Man United",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29055,
+        "primaryXg": [
+          2.34609,
+          0.384699
+        ],
+        "recentXg": [
+          2.34609,
+          0.384699
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-03",
+          "Bournemouth",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29058,
+        "primaryXg": [
+          2.3177,
+          0.673328
+        ],
+        "recentXg": [
+          2.3177,
+          0.673328
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-03",
+          "Everton",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29061,
+        "primaryXg": [
+          1.15845,
+          0.762229
+        ],
+        "recentXg": [
+          1.15845,
+          0.762229
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-03",
+          "Leeds",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29063,
+        "primaryXg": [
+          0.888232,
+          0.843856
+        ],
+        "recentXg": [
+          0.888232,
+          0.843856
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-03",
+          "Wolves",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 29067,
+        "primaryXg": [
+          0.636033,
+          2.17217
+        ],
+        "recentXg": [
+          0.636033,
+          2.17217
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-04",
+          "Aston Villa",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29059,
+        "primaryXg": [
+          1.06854,
+          3.38883
+        ],
+        "recentXg": [
+          1.06854,
+          3.38883
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-04",
+          "Brighton",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29060,
+        "primaryXg": [
+          0.919228,
+          0.514803
+        ],
+        "recentXg": [
+          0.919228,
+          0.514803
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-04",
+          "Fulham",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 29062,
+        "primaryXg": [
+          0.628123,
+          1.49528
+        ],
+        "recentXg": [
+          0.628123,
+          1.49528
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-04",
+          "Man City",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29064,
+        "primaryXg": [
+          2.72655,
+          1.23642
+        ],
+        "recentXg": [
+          2.72655,
+          1.23642
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-04",
+          "Newcastle",
+          "Man United"
+        ],
+        "primarySourceMatchId": 29065,
+        "primaryXg": [
+          1.96637,
+          1.80571
+        ],
+        "recentXg": [
+          1.96637,
+          1.80571
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-05",
+          "Tottenham",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29066,
+        "primaryXg": [
+          1.29615,
+          1.91515
+        ],
+        "recentXg": [
+          1.29615,
+          1.91515
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-14",
+          "Arsenal",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29068,
+        "primaryXg": [
+          1.90855,
+          1.17847
+        ],
+        "recentXg": [
+          1.90855,
+          1.17847
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-14",
+          "Burnley",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29070,
+        "primaryXg": [
+          1.67695,
+          2.36979
+        ],
+        "recentXg": [
+          1.67695,
+          2.36979
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-14",
+          "Chelsea",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29071,
+        "primaryXg": [
+          1.72508,
+          1.03251
+        ],
+        "recentXg": [
+          1.72508,
+          1.03251
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-14",
+          "Sunderland",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29076,
+        "primaryXg": [
+          0.659083,
+          1.12832
+        ],
+        "recentXg": [
+          0.659083,
+          1.12832
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-14",
+          "West Ham",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29077,
+        "primaryXg": [
+          0.488982,
+          1.9546
+        ],
+        "recentXg": [
+          0.488982,
+          1.9546
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-15",
+          "Crystal Palace",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29072,
+        "primaryXg": [
+          0.525205,
+          1.13558
+        ],
+        "recentXg": [
+          0.525205,
+          1.13558
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-15",
+          "Liverpool",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29073,
+        "primaryXg": [
+          1.30076,
+          1.15636
+        ],
+        "recentXg": [
+          1.30076,
+          1.15636
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-15",
+          "Man United",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29074,
+        "primaryXg": [
+          1.67823,
+          1.21071
+        ],
+        "recentXg": [
+          1.67823,
+          1.21071
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-15",
+          "Nott'm Forest",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29075,
+        "primaryXg": [
+          0.821011,
+          0.933988
+        ],
+        "recentXg": [
+          0.821011,
+          0.933988
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-16",
+          "Brentford",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 29069,
+        "primaryXg": [
+          2.7966,
+          1.80044
+        ],
+        "recentXg": [
+          2.7966,
+          1.80044
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-20",
+          "Bournemouth",
+          "Man United"
+        ],
+        "primarySourceMatchId": 29078,
+        "primaryXg": [
+          1.76664,
+          1.74574
+        ],
+        "recentXg": [
+          1.76664,
+          1.74574
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-21",
+          "Brighton",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 29080,
+        "primaryXg": [
+          3.42956,
+          0.956801
+        ],
+        "recentXg": [
+          3.42956,
+          0.956801
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-21",
+          "Everton",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29081,
+        "primaryXg": [
+          1.44532,
+          1.35143
+        ],
+        "recentXg": [
+          1.44532,
+          1.35143
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-21",
+          "Fulham",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29082,
+        "primaryXg": [
+          3.48438,
+          1.92556
+        ],
+        "recentXg": [
+          3.48438,
+          1.92556
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-21",
+          "Leeds",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29083,
+        "primaryXg": [
+          0.417296,
+          0.302221
+        ],
+        "recentXg": [
+          0.417296,
+          0.302221
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-22",
+          "Aston Villa",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 29079,
+        "primaryXg": [
+          2.48528,
+          0.760054
+        ],
+        "recentXg": [
+          2.48528,
+          0.760054
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-22",
+          "Newcastle",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29085,
+        "primaryXg": [
+          1.26705,
+          2.66657
+        ],
+        "recentXg": [
+          1.26705,
+          2.66657
+        ]
+      },
+      {
+        "fixture": [
+          "2026-03-22",
+          "Tottenham",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29086,
+        "primaryXg": [
+          1.6189,
+          1.54408
+        ],
+        "recentXg": [
+          1.6189,
+          1.54408
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-11",
+          "Arsenal",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29092,
+        "primaryXg": [
+          3.16346,
+          1.39461
+        ],
+        "recentXg": [
+          3.16346,
+          1.39461
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-11",
+          "Brentford",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29093,
+        "primaryXg": [
+          2.26302,
+          1.57033
+        ],
+        "recentXg": [
+          2.26302,
+          1.57033
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-11",
+          "Burnley",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29094,
+        "primaryXg": [
+          0.812029,
+          1.07182
+        ],
+        "recentXg": [
+          0.812029,
+          1.07182
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-11",
+          "Liverpool",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29097,
+        "primaryXg": [
+          2.01499,
+          1.42024
+        ],
+        "recentXg": [
+          2.01499,
+          1.42024
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-12",
+          "Chelsea",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29095,
+        "primaryXg": [
+          1.22108,
+          2.40839
+        ],
+        "recentXg": [
+          1.22108,
+          2.40839
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-12",
+          "Crystal Palace",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29096,
+        "primaryXg": [
+          3.13933,
+          1.27299
+        ],
+        "recentXg": [
+          3.13933,
+          1.27299
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-12",
+          "Nott'm Forest",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29089,
+        "primaryXg": [
+          0.85045,
+          1.36297
+        ],
+        "recentXg": [
+          0.85045,
+          1.36297
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-12",
+          "Sunderland",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29090,
+        "primaryXg": [
+          1.77584,
+          1.01598
+        ],
+        "recentXg": [
+          1.77584,
+          1.01598
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-13",
+          "Man United",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29088,
+        "primaryXg": [
+          1.36555,
+          2.95118
+        ],
+        "recentXg": [
+          1.36555,
+          2.95118
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-18",
+          "Brentford",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29099,
+        "primaryXg": [
+          2.33552,
+          0.790707
+        ],
+        "recentXg": [
+          2.33552,
+          0.790707
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-18",
+          "Chelsea",
+          "Man United"
+        ],
+        "primarySourceMatchId": 29100,
+        "primaryXg": [
+          1.28109,
+          0.436043
+        ],
+        "recentXg": [
+          1.28109,
+          0.436043
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-18",
+          "Leeds",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 29103,
+        "primaryXg": [
+          3.55804,
+          0.568627
+        ],
+        "recentXg": [
+          3.55804,
+          0.568627
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-18",
+          "Newcastle",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29105,
+        "primaryXg": [
+          1.61167,
+          3.36662
+        ],
+        "recentXg": [
+          1.61167,
+          3.36662
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-18",
+          "Tottenham",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29107,
+        "primaryXg": [
+          1.56052,
+          1.1373
+        ],
+        "recentXg": [
+          1.56052,
+          1.1373
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-19",
+          "Aston Villa",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29098,
+        "primaryXg": [
+          3.90223,
+          1.56008
+        ],
+        "recentXg": [
+          3.90223,
+          1.56008
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-19",
+          "Everton",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 29102,
+        "primaryXg": [
+          1.4784,
+          1.38333
+        ],
+        "recentXg": [
+          1.4784,
+          1.38333
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-19",
+          "Man City",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29104,
+        "primaryXg": [
+          2.61528,
+          2.28964
+        ],
+        "recentXg": [
+          2.61528,
+          2.28964
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-19",
+          "Nott'm Forest",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29106,
+        "primaryXg": [
+          1.4425,
+          0.601418
+        ],
+        "recentXg": [
+          1.4425,
+          0.601418
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-20",
+          "Crystal Palace",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 29101,
+        "primaryXg": [
+          0.733442,
+          0.622445
+        ],
+        "recentXg": [
+          0.733442,
+          0.622445
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-21",
+          "Brighton",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29110,
+        "primaryXg": [
+          2.51784,
+          0.297865
+        ],
+        "recentXg": [
+          2.51784,
+          0.297865
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-22",
+          "Bournemouth",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29108,
+        "primaryXg": [
+          1.91355,
+          1.21601
+        ],
+        "recentXg": [
+          1.91355,
+          1.21601
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-22",
+          "Burnley",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29111,
+        "primaryXg": [
+          0.973776,
+          3.40888
+        ],
+        "recentXg": [
+          0.973776,
+          3.40888
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-24",
+          "Sunderland",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29115,
+        "primaryXg": [
+          0.614323,
+          1.54208
+        ],
+        "recentXg": [
+          0.614323,
+          1.54208
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-25",
+          "Arsenal",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29109,
+        "primaryXg": [
+          0.639189,
+          0.868897
+        ],
+        "recentXg": [
+          0.639189,
+          0.868897
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-25",
+          "Fulham",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29112,
+        "primaryXg": [
+          1.24069,
+          0.906156
+        ],
+        "recentXg": [
+          1.24069,
+          0.906156
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-25",
+          "Liverpool",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29113,
+        "primaryXg": [
+          1.45071,
+          2.19912
+        ],
+        "recentXg": [
+          1.45071,
+          2.19912
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-25",
+          "West Ham",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29116,
+        "primaryXg": [
+          1.8356,
+          1.1144
+        ],
+        "recentXg": [
+          1.8356,
+          1.1144
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-25",
+          "Wolves",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29117,
+        "primaryXg": [
+          0.762656,
+          1.06403
+        ],
+        "recentXg": [
+          0.762656,
+          1.06403
+        ]
+      },
+      {
+        "fixture": [
+          "2026-04-27",
+          "Man United",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29114,
+        "primaryXg": [
+          1.84852,
+          1.30383
+        ],
+        "recentXg": [
+          1.84852,
+          1.30383
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-01",
+          "Leeds",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29124,
+        "primaryXg": [
+          2.09546,
+          0.434597
+        ],
+        "recentXg": [
+          2.09546,
+          0.434597
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-02",
+          "Arsenal",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29119,
+        "primaryXg": [
+          4.09079,
+          0.696714
+        ],
+        "recentXg": [
+          4.09079,
+          0.696714
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-02",
+          "Brentford",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 29121,
+        "primaryXg": [
+          2.27374,
+          0.753895
+        ],
+        "recentXg": [
+          2.27374,
+          0.753895
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-02",
+          "Newcastle",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29126,
+        "primaryXg": [
+          3.12933,
+          1.87112
+        ],
+        "recentXg": [
+          3.12933,
+          1.87112
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-02",
+          "Wolves",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29127,
+        "primaryXg": [
+          1.96131,
+          0.923954
+        ],
+        "recentXg": [
+          1.96131,
+          0.923954
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-03",
+          "Aston Villa",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29120,
+        "primaryXg": [
+          0.609494,
+          1.12225
+        ],
+        "recentXg": [
+          0.609494,
+          1.12225
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-03",
+          "Bournemouth",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29118,
+        "primaryXg": [
+          2.29626,
+          0.678329
+        ],
+        "recentXg": [
+          2.29626,
+          0.678329
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-03",
+          "Man United",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 29125,
+        "primaryXg": [
+          2.55612,
+          1.02814
+        ],
+        "recentXg": [
+          2.55612,
+          1.02814
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-04",
+          "Chelsea",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29122,
+        "primaryXg": [
+          2.17132,
+          2.31019
+        ],
+        "recentXg": [
+          2.17132,
+          2.31019
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-04",
+          "Everton",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29123,
+        "primaryXg": [
+          1.68558,
+          1.41706
+        ],
+        "recentXg": [
+          1.68558,
+          1.41706
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-09",
+          "Brighton",
+          "Wolves"
+        ],
+        "primarySourceMatchId": 29128,
+        "primaryXg": [
+          2.22427,
+          0.515647
+        ],
+        "recentXg": [
+          2.22427,
+          0.515647
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-09",
+          "Fulham",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29131,
+        "primaryXg": [
+          1.24334,
+          0.998003
+        ],
+        "recentXg": [
+          1.24334,
+          0.998003
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-09",
+          "Liverpool",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29132,
+        "primaryXg": [
+          0.623191,
+          0.597184
+        ],
+        "recentXg": [
+          0.623191,
+          0.597184
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-09",
+          "Man City",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29133,
+        "primaryXg": [
+          4.37429,
+          0.670038
+        ],
+        "recentXg": [
+          4.37429,
+          0.670038
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-09",
+          "Sunderland",
+          "Man United"
+        ],
+        "primarySourceMatchId": 29135,
+        "primaryXg": [
+          1.2376,
+          0.535981
+        ],
+        "recentXg": [
+          1.2376,
+          0.535981
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-10",
+          "Burnley",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29129,
+        "primaryXg": [
+          1.71234,
+          1.75493
+        ],
+        "recentXg": [
+          1.71234,
+          1.75493
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-10",
+          "Crystal Palace",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29130,
+        "primaryXg": [
+          3.28826,
+          2.10265
+        ],
+        "recentXg": [
+          3.28826,
+          2.10265
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-10",
+          "Nott'm Forest",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29134,
+        "primaryXg": [
+          1.46434,
+          1.65067
+        ],
+        "recentXg": [
+          1.46434,
+          1.65067
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-10",
+          "West Ham",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29137,
+        "primaryXg": [
+          1.32011,
+          1.42953
+        ],
+        "recentXg": [
+          1.32011,
+          1.42953
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-11",
+          "Tottenham",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29136,
+        "primaryXg": [
+          1.49036,
+          1.86976
+        ],
+        "recentXg": [
+          1.49036,
+          1.86976
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-13",
+          "Man City",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29084,
+        "primaryXg": [
+          1.95679,
+          0.428862
+        ],
+        "recentXg": [
+          1.95679,
+          0.428862
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-15",
+          "Aston Villa",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 29140,
+        "primaryXg": [
+          2.5252,
+          1.55027
+        ],
+        "recentXg": [
+          2.5252,
+          1.55027
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-17",
+          "Brentford",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 29141,
+        "primaryXg": [
+          1.54564,
+          1.82274
+        ],
+        "recentXg": [
+          1.54564,
+          1.82274
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-17",
+          "Everton",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 29143,
+        "primaryXg": [
+          1.32181,
+          1.28383
+        ],
+        "recentXg": [
+          1.32181,
+          1.28383
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-17",
+          "Leeds",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 29144,
+        "primaryXg": [
+          0.747756,
+          2.23238
+        ],
+        "recentXg": [
+          0.747756,
+          2.23238
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-17",
+          "Man United",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 29145,
+        "primaryXg": [
+          4.28532,
+          1.84418
+        ],
+        "recentXg": [
+          4.28532,
+          1.84418
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-17",
+          "Newcastle",
+          "West Ham"
+        ],
+        "primarySourceMatchId": 29146,
+        "primaryXg": [
+          2.1336,
+          0.957771
+        ],
+        "recentXg": [
+          2.1336,
+          0.957771
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-17",
+          "Wolves",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 29147,
+        "primaryXg": [
+          1.49725,
+          1.48412
+        ],
+        "recentXg": [
+          1.49725,
+          1.48412
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-18",
+          "Arsenal",
+          "Burnley"
+        ],
+        "primarySourceMatchId": 29139,
+        "primaryXg": [
+          1.22695,
+          0.194884
+        ],
+        "recentXg": [
+          1.22695,
+          0.194884
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-19",
+          "Bournemouth",
+          "Man City"
+        ],
+        "primarySourceMatchId": 29138,
+        "primaryXg": [
+          1.71486,
+          1.26917
+        ],
+        "recentXg": [
+          1.71486,
+          1.26917
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-19",
+          "Chelsea",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 29142,
+        "primaryXg": [
+          1.09262,
+          2.15227
+        ],
+        "recentXg": [
+          1.09262,
+          2.15227
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Brighton",
+          "Man United"
+        ],
+        "primarySourceMatchId": 29148,
+        "primaryXg": [
+          0.702398,
+          2.32868
+        ],
+        "recentXg": [
+          0.702398,
+          2.32868
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Crystal Palace",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 29150,
+        "primaryXg": [
+          1.00492,
+          3.90645
+        ],
+        "recentXg": [
+          1.00492,
+          3.90645
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Fulham",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 29151,
+        "primaryXg": [
+          1.72878,
+          0.24232
+        ],
+        "recentXg": [
+          1.72878,
+          0.24232
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Liverpool",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 29152,
+        "primaryXg": [
+          2.99412,
+          1.46082
+        ],
+        "recentXg": [
+          2.99412,
+          1.46082
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Man City",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 29153,
+        "primaryXg": [
+          1.38085,
+          2.4397
+        ],
+        "recentXg": [
+          1.38085,
+          2.4397
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Nott'm Forest",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 29154,
+        "primaryXg": [
+          2.05852,
+          1.33684
+        ],
+        "recentXg": [
+          2.05852,
+          1.33684
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Sunderland",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 29155,
+        "primaryXg": [
+          2.33109,
+          0.920885
+        ],
+        "recentXg": [
+          2.33109,
+          0.920885
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "Tottenham",
+          "Everton"
+        ],
+        "primarySourceMatchId": 29156,
+        "primaryXg": [
+          1.40597,
+          0.268476
+        ],
+        "recentXg": [
+          1.40597,
+          0.268476
+        ]
+      },
+      {
+        "fixture": [
+          "2026-05-24",
+          "West Ham",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 29157,
+        "primaryXg": [
+          2.73135,
+          1.94969
+        ],
+        "recentXg": [
+          2.73135,
+          1.94969
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-21",
+          "Arsenal",
+          "Coventry"
+        ],
+        "primarySourceMatchId": 31180,
+        "primaryXg": [
+          1.85424,
+          0.558336
+        ],
+        "recentXg": [
+          1.85424,
+          0.558336
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-22",
+          "Brentford",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 31185,
+        "primaryXg": [
+          4.04155,
+          0.756284
+        ],
+        "recentXg": [
+          4.04155,
+          0.756284
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-22",
+          "Everton",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 31182,
+        "primaryXg": [
+          1.45085,
+          2.23095
+        ],
+        "recentXg": [
+          1.45085,
+          2.23095
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-22",
+          "Hull",
+          "Man United"
+        ],
+        "primarySourceMatchId": 31181,
+        "primaryXg": [
+          1.49627,
+          1.77874
+        ],
+        "recentXg": [
+          1.49627,
+          1.77874
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-22",
+          "Ipswich",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 31183,
+        "primaryXg": [
+          1.58452,
+          1.17743
+        ],
+        "recentXg": [
+          1.58452,
+          1.17743
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-22",
+          "Nott'm Forest",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 31184,
+        "primaryXg": [
+          0.656681,
+          0.466247
+        ],
+        "recentXg": [
+          0.656681,
+          0.466247
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-23",
+          "Brighton",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 31186,
+        "primaryXg": [
+          4.00327,
+          0.275249
+        ],
+        "recentXg": [
+          4.00327,
+          0.275249
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-23",
+          "Man City",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 31187,
+        "primaryXg": [
+          2.47444,
+          0.707541
+        ],
+        "recentXg": [
+          2.47444,
+          0.707541
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-23",
+          "Newcastle",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 31188,
+        "primaryXg": [
+          1.59465,
+          3.13133
+        ],
+        "recentXg": [
+          1.59465,
+          3.13133
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-24",
+          "Fulham",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 31189,
+        "primaryXg": [
+          1.41707,
+          2.58384
+        ],
+        "recentXg": [
+          1.41707,
+          2.58384
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-28",
+          "Crystal Palace",
+          "Man City"
+        ],
+        "primarySourceMatchId": 31190,
+        "primaryXg": [
+          0.926624,
+          2.56662
+        ],
+        "recentXg": [
+          0.926624,
+          2.56662
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-29",
+          "Bournemouth",
+          "Everton"
+        ],
+        "primarySourceMatchId": 31193,
+        "primaryXg": [
+          2.25803,
+          1.66352
+        ],
+        "recentXg": [
+          2.25803,
+          1.66352
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-29",
+          "Coventry",
+          "Hull"
+        ],
+        "primarySourceMatchId": 31192,
+        "primaryXg": [
+          1.18233,
+          0.459726
+        ],
+        "recentXg": [
+          1.18233,
+          0.459726
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-29",
+          "Liverpool",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 31191,
+        "primaryXg": [
+          1.27921,
+          2.87937
+        ],
+        "recentXg": [
+          1.27921,
+          2.87937
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-29",
+          "Tottenham",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 31194,
+        "primaryXg": [
+          1.12037,
+          1.00952
+        ],
+        "recentXg": [
+          1.12037,
+          1.00952
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-30",
+          "Chelsea",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 31196,
+        "primaryXg": [
+          3.8289,
+          1.79173
+        ],
+        "recentXg": [
+          3.8289,
+          1.79173
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-30",
+          "Leeds",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 31197,
+        "primaryXg": [
+          1.14993,
+          1.61344
+        ],
+        "recentXg": [
+          1.14993,
+          1.61344
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-30",
+          "Man United",
+          "Ipswich"
+        ],
+        "primarySourceMatchId": 31198,
+        "primaryXg": [
+          4.86612,
+          1.80548
+        ],
+        "recentXg": [
+          4.86612,
+          1.80548
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-30",
+          "Sunderland",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 31195,
+        "primaryXg": [
+          1.56229,
+          1.02405
+        ],
+        "recentXg": [
+          1.56229,
+          1.02405
+        ]
+      },
+      {
+        "fixture": [
+          "2026-08-31",
+          "Aston Villa",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 31199,
+        "primaryXg": [
+          0.281925,
+          1.52441
+        ],
+        "recentXg": [
+          0.281925,
+          1.52441
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-04",
+          "Ipswich",
+          "Liverpool"
+        ],
+        "primarySourceMatchId": 31200,
+        "primaryXg": [
+          0.597972,
+          0.744139
+        ],
+        "recentXg": [
+          0.597972,
+          0.744139
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-05",
+          "Brentford",
+          "Sunderland"
+        ],
+        "primarySourceMatchId": 31205,
+        "primaryXg": [
+          1.58584,
+          2.15489
+        ],
+        "recentXg": [
+          1.58584,
+          2.15489
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-05",
+          "Brighton",
+          "Leeds"
+        ],
+        "primarySourceMatchId": 31206,
+        "primaryXg": [
+          2.22026,
+          2.23407
+        ],
+        "recentXg": [
+          2.22026,
+          2.23407
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-05",
+          "Fulham",
+          "Crystal Palace"
+        ],
+        "primarySourceMatchId": 31204,
+        "primaryXg": [
+          2.88274,
+          2.35981
+        ],
+        "recentXg": [
+          2.88274,
+          2.35981
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-05",
+          "Hull",
+          "Aston Villa"
+        ],
+        "primarySourceMatchId": 31207,
+        "primaryXg": [
+          0.812385,
+          1.63526
+        ],
+        "recentXg": [
+          0.812385,
+          1.63526
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-05",
+          "Man City",
+          "Coventry"
+        ],
+        "primarySourceMatchId": 31202,
+        "primaryXg": [
+          2.19038,
+          1.49306
+        ],
+        "recentXg": [
+          2.19038,
+          1.49306
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-05",
+          "Newcastle",
+          "Bournemouth"
+        ],
+        "primarySourceMatchId": 31201,
+        "primaryXg": [
+          0.771636,
+          1.63891
+        ],
+        "recentXg": [
+          0.771636,
+          1.63891
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-05",
+          "Nott'm Forest",
+          "Tottenham"
+        ],
+        "primarySourceMatchId": 31203,
+        "primaryXg": [
+          0.831692,
+          1.48446
+        ],
+        "recentXg": [
+          0.831692,
+          1.48446
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-06",
+          "Arsenal",
+          "Chelsea"
+        ],
+        "primarySourceMatchId": 31209,
+        "primaryXg": [
+          2.80555,
+          0.430508
+        ],
+        "recentXg": [
+          2.80555,
+          0.430508
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-06",
+          "Everton",
+          "Man United"
+        ],
+        "primarySourceMatchId": 31208,
+        "primaryXg": [
+          1.05629,
+          0.872225
+        ],
+        "recentXg": [
+          1.05629,
+          0.872225
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-12",
+          "Aston Villa",
+          "Nott'm Forest"
+        ],
+        "primarySourceMatchId": 31211,
+        "primaryXg": [
+          1.08786,
+          2.79451
+        ],
+        "recentXg": [
+          1.08786,
+          2.79451
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-12",
+          "Bournemouth",
+          "Brentford"
+        ],
+        "primarySourceMatchId": 31210,
+        "primaryXg": [
+          2.54949,
+          0.794238
+        ],
+        "recentXg": [
+          2.54949,
+          0.794238
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-12",
+          "Chelsea",
+          "Hull"
+        ],
+        "primarySourceMatchId": 31212,
+        "primaryXg": [
+          1.21374,
+          1.80363
+        ],
+        "recentXg": [
+          1.21374,
+          1.80363
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-12",
+          "Crystal Palace",
+          "Ipswich"
+        ],
+        "primarySourceMatchId": 31213,
+        "primaryXg": [
+          0.937888,
+          2.03423
+        ],
+        "recentXg": [
+          0.937888,
+          2.03423
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-12",
+          "Liverpool",
+          "Fulham"
+        ],
+        "primarySourceMatchId": 31214,
+        "primaryXg": [
+          1.79832,
+          0.922453
+        ],
+        "recentXg": [
+          1.79832,
+          0.922453
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-12",
+          "Sunderland",
+          "Arsenal"
+        ],
+        "primarySourceMatchId": 31216,
+        "primaryXg": [
+          2.07033,
+          1.98905
+        ],
+        "recentXg": [
+          2.07033,
+          1.98905
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-12",
+          "Tottenham",
+          "Everton"
+        ],
+        "primarySourceMatchId": 31215,
+        "primaryXg": [
+          0.736856,
+          1.60056
+        ],
+        "recentXg": [
+          0.736856,
+          1.60056
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-13",
+          "Coventry",
+          "Brighton"
+        ],
+        "primarySourceMatchId": 31217,
+        "primaryXg": [
+          1.04812,
+          2.76518
+        ],
+        "recentXg": [
+          1.04812,
+          2.76518
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-13",
+          "Man United",
+          "Man City"
+        ],
+        "primarySourceMatchId": 31218,
+        "primaryXg": [
+          0.943406,
+          1.14073
+        ],
+        "recentXg": [
+          0.943406,
+          1.14073
+        ]
+      },
+      {
+        "fixture": [
+          "2026-09-14",
+          "Leeds",
+          "Newcastle"
+        ],
+        "primarySourceMatchId": 31219,
+        "primaryXg": [
+          2.2902,
+          0.793165
+        ],
+        "recentXg": [
+          2.2902,
+          0.793165
+        ]
+      }
+    ],
+    "overlapPreference": "Direct league-summary cache with Understat match IDs",
+    "recentSourceMatchIds": "Unavailable; never fabricated as Understat IDs"
+  },
+  "join": {
+    "source": "Validated Understat match observations",
+    "providerMixing": false,
+    "referenceMatches": 4270,
+    "archiveMatches": 2740,
+    "matched": 2740,
+    "unmatchedArchiveMatches": 0,
+    "scoreConflicts": [],
+    "bySeason": {
+      "2015": {
+        "referenceMatches": 380,
+        "matched": 0,
+        "missing": 380,
+        "scoreConflicts": 0
+      },
+      "2016": {
+        "referenceMatches": 380,
+        "matched": 0,
+        "missing": 380,
+        "scoreConflicts": 0
+      },
+      "2017": {
+        "referenceMatches": 380,
+        "matched": 0,
+        "missing": 380,
+        "scoreConflicts": 0
+      },
+      "2018": {
+        "referenceMatches": 380,
+        "matched": 0,
+        "missing": 380,
+        "scoreConflicts": 0
+      },
+      "2019": {
+        "referenceMatches": 380,
+        "matched": 380,
+        "missing": 0,
+        "scoreConflicts": 0
+      },
+      "2020": {
+        "referenceMatches": 380,
+        "matched": 380,
+        "missing": 0,
+        "scoreConflicts": 0
+      },
+      "2021": {
+        "referenceMatches": 380,
+        "matched": 380,
+        "missing": 0,
+        "scoreConflicts": 0
+      },
+      "2022": {
+        "referenceMatches": 380,
+        "matched": 380,
+        "missing": 0,
+        "scoreConflicts": 0
+      },
+      "2023": {
+        "referenceMatches": 380,
+        "matched": 380,
+        "missing": 0,
+        "scoreConflicts": 0
+      },
+      "2024": {
+        "referenceMatches": 380,
+        "matched": 380,
+        "missing": 0,
+        "scoreConflicts": 0
+      },
+      "2025": {
+        "referenceMatches": 380,
+        "matched": 380,
+        "missing": 0,
+        "scoreConflicts": 0
+      },
+      "2026": {
+        "referenceMatches": 90,
+        "matched": 80,
+        "missing": 10,
+        "scoreConflicts": 0
+      }
+    },
+    "unmatchedArchiveSample": [],
+    "excludedNearDateCandidates": []
+  },
+  "referenceSources": [
+    {
+      "season": 2015,
+      "rows": 380,
+      "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1516/E0.csv"
+    },
+    {
+      "season": 2016,
+      "rows": 380,
+      "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1617/E0.csv"
+    },
+    {
+      "season": 2017,
+      "rows": 380,
+      "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1718/E0.csv"
+    },
+    {
+      "season": 2018,
+      "rows": 380,
+      "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1819/E0.csv"
+    },
+    {
+      "season": 2019,
+      "rows": 380,
+      "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+    },
+    {
+      "season": 2020,
+      "rows": 380,
+      "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+    },
+    {
+      "season": 2021,
+      "rows": 380,
+      "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+      "shotsRows": 379,
+      "xgRows": 0,
+      "invalidStatisticsRows": 1,
+      "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+    },
+    {
+      "season": 2022,
+      "rows": 380,
+      "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+    },
+    {
+      "season": 2023,
+      "rows": 380,
+      "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+    },
+    {
+      "season": 2024,
+      "rows": 380,
+      "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+    },
+    {
+      "season": 2025,
+      "rows": 380,
+      "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+    },
+    {
+      "season": 2026,
+      "rows": 90,
+      "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+      "shotsRows": 90,
+      "xgRows": 90,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+    }
+  ],
+  "retrospectiveOnly": true,
+  "prospectiveValidationRequired": true,
+  "lastAvailableMatch": "2026-10-25",
+  "stalenessCaveat": "Last completed league round, 31 October through 2 November2026, has ten matches without this source xG; missing observations must fall back to verified goals or remain missing, never zero."
+}
