@@ -525,6 +525,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 </div>
 <p id="qualityStatus" class="status" role="status" aria-live="polite">Загружаю качество прогнозов…</p>
 <details class="quality-panel quality-help" id="xgResearch"><summary>Кандидат с качеством моментов · xG</summary>
+<p class="research-note" id="xgDataStatus" role="status" aria-live="polite">Открой блок, чтобы проверить свежесть истории xG.</p>
+<button type="button" id="refreshXgData" class="secondary">Проверить данные xG</button>
 <p class="research-note">Обучили отдельного кандидата на качестве моментов в прошлых матчах. На 369 матчах сезона 2025/26 он угадал 182 исхода, прежний кандидат — 175. Это историческая проверка; устойчивый прирост точности ещё не подтверждён.</p>
 <p class="research-note">Следующая проверка — заранее сохранённые прогнозы на будущие матчи. Основная модель пока прежняя.</p>
 <p><a href="https://github.com/FoXsYsOfficial1909/Footpredict/blob/main/docs/research/xg-results-2026-11-06.md" target="_blank" rel="noopener noreferrer">Данные и результаты исследования</a> · <a href="https://github.com/FoXsYsOfficial1909/Footpredict/actions/workflows/xg-prospective.yml" target="_blank" rel="noopener noreferrer">Проверка будущих матчей</a></p>
@@ -1574,6 +1576,7 @@ if(document.getElementById('tab-history')?.getAttribute('aria-selected')==='true
 <script type="module" src="./research-ui.js"></script>
 <script type="module" src="./automation-ui.js?v=1.7"></script>
 <script type="module" src="./quality-ui.js?v=1.7"></script>
+<script type="module" src="./xg-data-ui.js?v=1.0"></script>
 <script type="module" src="./training-ui.js"></script>
 </body>
 </html>
