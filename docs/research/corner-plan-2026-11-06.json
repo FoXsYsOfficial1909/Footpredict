@@ -1,0 +1,28 @@
+{
+  "protocol": "corner-research-1",
+  "registeredBeforeEvaluation": true,
+  "target": "Total regulation-time corners: P(total >= 9), P(total >= 10), P(total >= 11)",
+  "seasons": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "selectionSeasons": [2023, 2024],
+  "auditSeasons": [2025],
+  "recentMonitoringSeasons": [2026],
+  "expectedValidationTargets": 760,
+  "expectedAuditTargets": 380,
+  "lines": [8.5, 9.5, 10.5],
+  "baseline": {"halfLife": 365, "windowDays": 1095, "smoothing": 0.5},
+  "models": [
+    {"id": "corners-poisson-365", "family": "poisson", "halfLife": 365, "ridge": 0.03, "windowDays": 1095},
+    {"id": "corners-poisson-180", "family": "poisson", "halfLife": 180, "ridge": 0.03, "windowDays": 1095},
+    {"id": "corners-nb-180", "family": "negative_binomial", "halfLife": 180, "ridge": 0.03, "windowDays": 1095}
+  ],
+  "sourcePolicy": "Use validated Football-Data HC/AC counts and original fixture identities. Missing or invalid corners remain unknown; zero is a valid observed count. Keep original goal labels unchanged. Closed seasons must contain 380 results. Pin source bytes and report common corner coverage explicitly.",
+  "dataFence": "All training corners and empirical reference probabilities use only fixtures strictly before target date minus one calendar day. Final weights use only records strictly before as-of date minus one calendar day. Target corners, target shots, actual lineup or live-match state never enter their own pre-match forecast.",
+  "meanModel": "Weighted team attack/defence corner-count Poisson regression with pooled home advantage and ridge shrinkage. Rates and intercept bounds are corner-specific. Total mean is home plus away mean.",
+  "distribution": "Poisson total or negative-binomial total; the latter fits one bounded past-only overdispersion parameter using the trained total means. No claim of independent negative-binomial side counts. Evaluate exact survival probabilities, not truncated renormalized score grids.",
+  "selectionRule": "Select minimum mean binary log loss across the three thresholds on identical complete-corner validation fixtures. Persist selection before evaluating only that recipe on the audit. Threshold accuracy is secondary; do not mix corner and 1X2 accuracy denominators.",
+  "auditGate": "Require lower mean binary log loss and Brier than the past-only empirical league reference. Report each threshold, current-season monitoring, paired day-clustered confidence intervals and predictive interval coverage. A historical pass does not establish prospective calibration.",
+  "caveat": "These seasons were inspected previously for other outcomes. This is retrospective development of a new target, not an untouched external holdout. Future corner forecasts require their own frozen comparison and final-corner settlement.",
+  "default1X2Changed": false,
+  "weatherUsed": false,
+  "injuriesOrWorkloadUsed": false
+}
