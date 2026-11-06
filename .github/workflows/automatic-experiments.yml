@@ -1,0 +1,140 @@
+name: Automatic bounded experiments
+
+on:
+  workflow_run:
+    workflows: ['Refresh verified xG data', 'Nightly candidate training']
+    types: [completed]
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/automatic-experiments.yml'
+      - 'research/auto_experiment.py'
+      - 'research/prediction_cache.py'
+      - 'research/xg_model.py'
+      - 'research/xg_data.py'
+      - 'research/performance.py'
+      - 'research/models.py'
+      - 'research/evaluate.py'
+      - 'research/data.py'
+      - 'scripts/prepare_experiments.py'
+      - 'scripts/publish_experiments.py'
+      - 'docs/research/automatic-experiment-plan-2026-11-06.json'
+      - 'requirements-research.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: footpredict-automatic-experiments
+  cancel-in-progress: false
+
+jobs:
+  experiment:
+    # workflow_run can carry untrusted fork metadata. Only successful source
+    # workflows on this repository's main branch may start this write job.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Record the actual checked-out source
+        id: source
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/auto-experiments
+          key: ${{ runner.os }}-automatic-experiments-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ${{ runner.os }}-automatic-experiments-v1-
+      - run: python -m pip install -r requirements-research.txt
+      - name: Restore the last scientific evaluation
+        run: python -m scripts.publish_experiments restore --state-dir artifacts/experiment-state
+      - name: Prepare verified current inputs
+        id: prepare
+        continue-on-error: true
+        run: |
+          python -m scripts.prepare_experiments \
+            --data-dir data/auto-experiments/csv \
+            --output artifacts/experiment-inputs
+      - name: Evaluate only changed inputs using the registered candidates
+        id: experiment
+        if: steps.prepare.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python -m research.auto_experiment \
+            --data-dir data/auto-experiments/csv \
+            --xg-matches artifacts/experiment-inputs/xg-matches.json \
+            --xg-manifest artifacts/experiment-inputs/xg-manifest.json \
+            --output artifacts/experiments \
+            --cache-dir data/auto-experiments/cache \
+            --state-dir artifacts/experiment-state \
+            --plan docs/research/automatic-experiment-plan-2026-11-06.json
+      - name: Record a visible failure if no evaluation report was produced
+        if: always() && hashFiles('artifacts/experiments/report.json') == ''
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          import json
+          from pathlib import Path
+          output = Path('artifacts/experiments')
+          output.mkdir(parents=True, exist_ok=True)
+          report = {'schemaVersion': 1, 'protocol': 'automatic-experiments-1',
+              'status': 'failed', 'generatedAt': datetime.now(timezone.utc).isoformat(),
+              'inputFingerprint': None, 'promotedToDefault': False,
+              'prospectiveValidationRequired': True, 'errorType': 'InputOrExecutionFailure',
+              'message': 'Experiment inputs or execution were not completed. See the failed workflow step; previous results remain available.'}
+          (output / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
+          (output / 'report.md').write_text('# Automatic experiments\n\nThe check failed. Previous successful results are preserved.\n')
+          PY
+      - name: Retain reports and source provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiments-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/experiments/
+            artifacts/experiment-inputs/
+            artifacts/experiment-state/
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Publish the check and retain the previous successful result
+        if: always() && hashFiles('artifacts/experiments/report.json') != ''
+        run: |
+          python -m scripts.publish_experiments publish \
+            --output artifacts/experiments \
+            --state-dir artifacts/experiment-state \
+            --repository '${{ github.repository }}' \
+            --run-id '${{ github.run_id }}' \
+            --run-attempt '${{ github.run_attempt }}' \
+            --commit '${{ steps.source.outputs.sha }}'
+      - name: Scientific evaluation summary
+        if: always() && hashFiles('artifacts/experiments/report.md') != ''
+        run: cat artifacts/experiments/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve a failed conclusion
+        if: always() && hashFiles('artifacts/experiments/report.json') != ''
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('artifacts/experiments/report.json').read_text())
+          if report['status'] == 'failed':
+              raise SystemExit('The experiment check failed; the previous scientific result was retained.')
+          PY

@@ -1,0 +1,34 @@
+{
+  "inputFingerprint": "bf29abe6d2d7d5758b7fcd96560e4fbdecbbd84645d9bca73c977f92a2acc75b",
+  "scientificResultsExactlyIdentical": true,
+  "cold": {
+    "durationSeconds": 12.748231901001418,
+    "cacheStats": {
+      "hits": 0,
+      "misses": 2750,
+      "corrupt": 0,
+      "fits": 830
+    }
+  },
+  "unchanged": {
+    "durationSeconds": 0.1976704120024806,
+    "cacheStats": {
+      "hits": 0,
+      "misses": 0,
+      "corrupt": 0,
+      "fits": 0
+    },
+    "evaluatedAt": "2026-11-06T10:56:11.558402+00:00",
+    "generatedAt": "2026-11-06T10:57:23.901526+00:00"
+  },
+  "cachedHistoryWithFreshState": {
+    "durationSeconds": 6.758507363003446,
+    "cacheStats": {
+      "hits": 2750,
+      "misses": 0,
+      "corrupt": 0,
+      "fits": 0
+    }
+  },
+  "selectedChallenger": null
+}

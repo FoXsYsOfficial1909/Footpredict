@@ -1,0 +1,903 @@
+{
+  "schemaVersion": 1,
+  "protocol": "automatic-experiments-1",
+  "status": "success",
+  "generatedAt": "2026-11-06T10:56:11.558402+00:00",
+  "evaluatedAt": "2026-11-06T10:56:11.558402+00:00",
+  "inputFingerprint": "bf29abe6d2d7d5758b7fcd96560e4fbdecbbd84645d9bca73c977f92a2acc75b",
+  "dataSha256": "e68339c94ed0a120a651cda84a66b9a0e1a6c82a21672d51f72472ce2f60cbfc",
+  "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
+  "codeSha256": "15c9305863f0eef10c6a853eec1f0d6e47dafb3ec52d383380f5e31fc7048c78",
+  "evaluationCutoffExclusive": "2026-11-05",
+  "selection": {
+    "baseline": {
+      "n": 736,
+      "brier": 0.5666267515820934,
+      "logloss": 0.9559174598094762,
+      "accuracy": 0.5625
+    },
+    "validation": [
+      {
+        "id": "xg50-180",
+        "settings": {
+          "id": "xg50-180",
+          "goalWeight": 0.5,
+          "halfLife": 180,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5672803183656919,
+          "logloss": 0.9565334393972584,
+          "accuracy": 0.5570652173913043
+        }
+      },
+      {
+        "id": "xg100-365",
+        "settings": {
+          "id": "xg100-365",
+          "goalWeight": 0.0,
+          "halfLife": 365,
+          "ridge": 0.03,
+          "windowDays": 1095,
+          "poissonWeight": 0.75
+        },
+        "metrics": {
+          "n": 736,
+          "brier": 0.5689446354962806,
+          "logloss": 0.9593027609440764,
+          "accuracy": 0.5625
+        }
+      }
+    ],
+    "chosen": null,
+    "inputFingerprint": "bf29abe6d2d7d5758b7fcd96560e4fbdecbbd84645d9bca73c977f92a2acc75b",
+    "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
+    "codeSha256": "15c9305863f0eef10c6a853eec1f0d6e47dafb3ec52d383380f5e31fc7048c78",
+    "auditComputedAfterSelection": true
+  },
+  "sourceFreshness": {
+    "season": 2026,
+    "completedMatches": 90,
+    "matchedXg": 80,
+    "missingXg": 10,
+    "latestXgDate": "2026-10-25",
+    "latestResultDate": "2026-11-02",
+    "dataAgeDays": 12,
+    "incomplete": true,
+    "sourceStatus": "stale",
+    "sourceCheckedAt": "2026-11-06T04:05:14.787131Z",
+    "sourceDataStatus": "stale",
+    "cohortCutoffExclusive": "2026-11-05",
+    "eligibleForEvaluation": {
+      "season": 2026,
+      "completedMatches": 90,
+      "matchedXg": 80,
+      "missingXg": 10,
+      "latestXgDate": "2026-10-25",
+      "latestResultDate": "2026-11-02",
+      "dataAgeDays": 12,
+      "incomplete": true
+    }
+  },
+  "checkedSources": {
+    "csv": [
+      {
+        "season": 2015,
+        "rows": 380,
+        "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1516/E0.csv"
+      },
+      {
+        "season": 2016,
+        "rows": 380,
+        "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1617/E0.csv"
+      },
+      {
+        "season": 2017,
+        "rows": 380,
+        "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1718/E0.csv"
+      },
+      {
+        "season": 2018,
+        "rows": 380,
+        "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1819/E0.csv"
+      },
+      {
+        "season": 2019,
+        "rows": 380,
+        "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+      },
+      {
+        "season": 2020,
+        "rows": 380,
+        "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+      },
+      {
+        "season": 2021,
+        "rows": 380,
+        "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+        "shotsRows": 379,
+        "xgRows": 0,
+        "invalidStatisticsRows": 1,
+        "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+      },
+      {
+        "season": 2022,
+        "rows": 380,
+        "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+      },
+      {
+        "season": 2023,
+        "rows": 380,
+        "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+      },
+      {
+        "season": 2024,
+        "rows": 380,
+        "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+      },
+      {
+        "season": 2025,
+        "rows": 380,
+        "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+      },
+      {
+        "season": 2026,
+        "rows": 90,
+        "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+        "shotsRows": 90,
+        "xgRows": 90,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+      }
+    ],
+    "xgNormalizedSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+    "join": {
+      "source": "Validated Understat match observations",
+      "providerMixing": false,
+      "referenceMatches": 4270,
+      "archiveMatches": 2740,
+      "matched": 2740,
+      "unmatchedArchiveMatches": 0,
+      "scoreConflicts": [],
+      "bySeason": {
+        "2015": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2016": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2017": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2018": {
+          "referenceMatches": 380,
+          "matched": 0,
+          "missing": 380,
+          "scoreConflicts": 0
+        },
+        "2019": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2020": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2021": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2022": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2023": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2024": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2025": {
+          "referenceMatches": 380,
+          "matched": 380,
+          "missing": 0,
+          "scoreConflicts": 0
+        },
+        "2026": {
+          "referenceMatches": 90,
+          "matched": 80,
+          "missing": 10,
+          "scoreConflicts": 0
+        }
+      },
+      "unmatchedArchiveSample": [],
+      "excludedNearDateCandidates": []
+    },
+    "xgSource": {
+      "schemaVersion": 1,
+      "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+      "preparedAt": "2026-11-06T10:53:10.189076+00:00",
+      "sourceUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json",
+      "sourceReportSha256": "e9c27fb4f8834aedf8cab3b8ffebd06c539dc60ea4d0a89148341af4150279fe",
+      "acceptedSource": {
+        "schemaVersion": 1,
+        "status": "success",
+        "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+        "acceptedAt": "2026-11-06T04:05:14.787131Z",
+        "dataLastMatchDate": "2026-10-25",
+        "matchCount": 2740,
+        "sourceManifest": {
+          "seedFile": "docs/research/xg-2026-11-06/xg-matches.json",
+          "seedSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+          "sources": [],
+          "referenceSources": [
+            {
+              "season": 2019,
+              "rows": 380,
+              "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+              "shotsRows": 380,
+              "xgRows": 0,
+              "invalidStatisticsRows": 0,
+              "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+            },
+            {
+              "season": 2020,
+              "rows": 380,
+              "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+              "shotsRows": 380,
+              "xgRows": 0,
+              "invalidStatisticsRows": 0,
+              "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+            },
+            {
+              "season": 2021,
+              "rows": 380,
+              "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+              "shotsRows": 379,
+              "xgRows": 0,
+              "invalidStatisticsRows": 1,
+              "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+            },
+            {
+              "season": 2022,
+              "rows": 380,
+              "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+              "shotsRows": 380,
+              "xgRows": 0,
+              "invalidStatisticsRows": 0,
+              "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+            },
+            {
+              "season": 2023,
+              "rows": 380,
+              "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+              "shotsRows": 380,
+              "xgRows": 0,
+              "invalidStatisticsRows": 0,
+              "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+            },
+            {
+              "season": 2024,
+              "rows": 380,
+              "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+              "shotsRows": 380,
+              "xgRows": 0,
+              "invalidStatisticsRows": 0,
+              "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+            },
+            {
+              "season": 2025,
+              "rows": 380,
+              "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+              "shotsRows": 380,
+              "xgRows": 0,
+              "invalidStatisticsRows": 0,
+              "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+            },
+            {
+              "season": 2026,
+              "rows": 90,
+              "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+              "shotsRows": 90,
+              "xgRows": 90,
+              "invalidStatisticsRows": 0,
+              "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+            }
+          ]
+        },
+        "datasetUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json"
+      },
+      "sourceFreshness": {
+        "sourceStatus": "stale",
+        "sourceCheckedAt": "2026-11-06T04:05:14.787131Z",
+        "lastAcceptedAt": "2026-11-06T04:05:14.787131Z",
+        "dataLastMatchDate": "2026-10-25",
+        "dataAgeDays": 12,
+        "season": 2026,
+        "completedMatches": 90,
+        "matchedXg": 80,
+        "missingXg": 10,
+        "status": "stale"
+      },
+      "referenceSources": [
+        {
+          "season": 2015,
+          "url": "https://www.football-data.co.uk/mmz4281/1516/E0.csv",
+          "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+          "rows": 380,
+          "first_date": "2015-08-08",
+          "last_date": "2016-05-17",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2016,
+          "url": "https://www.football-data.co.uk/mmz4281/1617/E0.csv",
+          "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+          "rows": 380,
+          "first_date": "2016-08-13",
+          "last_date": "2017-05-21",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2017,
+          "url": "https://www.football-data.co.uk/mmz4281/1718/E0.csv",
+          "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+          "rows": 380,
+          "first_date": "2017-08-11",
+          "last_date": "2018-05-13",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2018,
+          "url": "https://www.football-data.co.uk/mmz4281/1819/E0.csv",
+          "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+          "rows": 380,
+          "first_date": "2018-08-10",
+          "last_date": "2019-05-12",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2019,
+          "url": "https://www.football-data.co.uk/mmz4281/1920/E0.csv",
+          "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+          "rows": 380,
+          "first_date": "2019-08-09",
+          "last_date": "2020-07-26",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2020,
+          "url": "https://www.football-data.co.uk/mmz4281/2021/E0.csv",
+          "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+          "rows": 380,
+          "first_date": "2020-09-12",
+          "last_date": "2021-05-23",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2021,
+          "url": "https://www.football-data.co.uk/mmz4281/2122/E0.csv",
+          "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+          "rows": 380,
+          "first_date": "2021-08-13",
+          "last_date": "2022-05-22",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2022,
+          "url": "https://www.football-data.co.uk/mmz4281/2223/E0.csv",
+          "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+          "rows": 380,
+          "first_date": "2022-08-05",
+          "last_date": "2023-05-28",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2023,
+          "url": "https://www.football-data.co.uk/mmz4281/2324/E0.csv",
+          "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+          "rows": 380,
+          "first_date": "2023-08-11",
+          "last_date": "2024-05-19",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2024,
+          "url": "https://www.football-data.co.uk/mmz4281/2425/E0.csv",
+          "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+          "rows": 380,
+          "first_date": "2024-08-16",
+          "last_date": "2025-05-25",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2025,
+          "url": "https://www.football-data.co.uk/mmz4281/2526/E0.csv",
+          "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+          "rows": 380,
+          "first_date": "2025-08-15",
+          "last_date": "2026-05-24",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        },
+        {
+          "season": 2026,
+          "url": "https://www.football-data.co.uk/mmz4281/2627/E0.csv",
+          "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+          "rows": 90,
+          "first_date": "2026-08-21",
+          "last_date": "2026-11-02",
+          "used_columns": [
+            "Date",
+            "HomeTeam",
+            "AwayTeam",
+            "FTHG",
+            "FTAG",
+            "FTR"
+          ],
+          "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+        }
+      ],
+      "join": {
+        "source": "Validated Understat match observations",
+        "providerMixing": false,
+        "referenceMatches": 4270,
+        "archiveMatches": 2740,
+        "matched": 2740,
+        "unmatchedArchiveMatches": 0,
+        "scoreConflicts": [],
+        "bySeason": {
+          "2015": {
+            "referenceMatches": 380,
+            "matched": 0,
+            "missing": 380,
+            "scoreConflicts": 0
+          },
+          "2016": {
+            "referenceMatches": 380,
+            "matched": 0,
+            "missing": 380,
+            "scoreConflicts": 0
+          },
+          "2017": {
+            "referenceMatches": 380,
+            "matched": 0,
+            "missing": 380,
+            "scoreConflicts": 0
+          },
+          "2018": {
+            "referenceMatches": 380,
+            "matched": 0,
+            "missing": 380,
+            "scoreConflicts": 0
+          },
+          "2019": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2020": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2021": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2022": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2023": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2024": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2025": {
+            "referenceMatches": 380,
+            "matched": 380,
+            "missing": 0,
+            "scoreConflicts": 0
+          },
+          "2026": {
+            "referenceMatches": 90,
+            "matched": 80,
+            "missing": 10,
+            "scoreConflicts": 0
+          }
+        },
+        "unmatchedArchiveSample": [],
+        "excludedNearDateCandidates": []
+      },
+      "promotedToDefault": false
+    }
+  },
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true,
+  "retrospectiveOnly": true,
+  "passesRetrospectiveGate": false,
+  "retrospectiveAudit": {
+    "commonMatches": 369,
+    "targets": 380,
+    "metrics": {
+      "baseline": {
+        "n": 369,
+        "brier": 0.6144798539092975,
+        "logloss": 1.023549366286128,
+        "accuracy": 0.4932249322493225
+      }
+    },
+    "errorAnalysis": {
+      "commonMatches": 369,
+      "incorrectTopOutcomes": 187,
+      "confusionMatrix": {
+        "labels": [
+          "home",
+          "draw",
+          "away"
+        ],
+        "rows": "predicted",
+        "columns": "actual",
+        "counts": [
+          [
+            121,
+            65,
+            52
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            33,
+            37,
+            61
+          ]
+        ]
+      },
+      "incorrectWithConfidenceAtLeast60Percent": 18,
+      "largestProbabilityErrors": [
+        {
+          "date": "2026-02-11",
+          "home": "Crystal Palace",
+          "away": "Burnley",
+          "actual": 2,
+          "probabilities": [
+            0.6788245570153836,
+            0.19573991292835494,
+            0.1254355300562615
+          ],
+          "logloss": 2.0759633571327627
+        },
+        {
+          "date": "2025-11-22",
+          "home": "Liverpool",
+          "away": "Nott'm Forest",
+          "actual": 2,
+          "probabilities": [
+            0.6600190112979268,
+            0.20000492443194678,
+            0.1399760642701264
+          ],
+          "logloss": 1.9662838404888807
+        },
+        {
+          "date": "2026-01-17",
+          "home": "Liverpool",
+          "away": "Burnley",
+          "actual": 1,
+          "probabilities": [
+            0.7704117340021728,
+            0.1542356421932209,
+            0.0753526238046064
+          ],
+          "logloss": 1.8692737019343577
+        },
+        {
+          "date": "2026-04-11",
+          "home": "Arsenal",
+          "away": "Bournemouth",
+          "actual": 2,
+          "probabilities": [
+            0.6133603012390446,
+            0.22895839244460198,
+            0.15768130631635335
+          ],
+          "logloss": 1.8471793315680234
+        },
+        {
+          "date": "2025-10-19",
+          "home": "Liverpool",
+          "away": "Man United",
+          "actual": 2,
+          "probabilities": [
+            0.6399569613411381,
+            0.2004249767545075,
+            0.15961806190435437
+          ],
+          "logloss": 1.8349714305428686
+        }
+      ]
+    }
+  },
+  "recentMonitoring": {
+    "commonMatches": 79,
+    "targets": 90,
+    "metrics": {
+      "baseline": {
+        "n": 79,
+        "brier": 0.6229355198352662,
+        "logloss": 1.0349923365270606,
+        "accuracy": 0.46835443037974683
+      }
+    },
+    "errorAnalysis": {
+      "commonMatches": 79,
+      "incorrectTopOutcomes": 42,
+      "confusionMatrix": {
+        "labels": [
+          "home",
+          "draw",
+          "away"
+        ],
+        "rows": "predicted",
+        "columns": "actual",
+        "counts": [
+          [
+            27,
+            18,
+            15
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            5,
+            10
+          ]
+        ]
+      },
+      "incorrectWithConfidenceAtLeast60Percent": 0,
+      "largestProbabilityErrors": [
+        {
+          "date": "2026-10-24",
+          "home": "Chelsea",
+          "away": "Tottenham",
+          "actual": 2,
+          "probabilities": [
+            0.5329874946145345,
+            0.24501270209949036,
+            0.22199980328597507
+          ],
+          "logloss": 1.5050787832094616
+        },
+        {
+          "date": "2026-10-31",
+          "home": "Man City",
+          "away": "Brighton",
+          "actual": 2,
+          "probabilities": [
+            0.5375888685191278,
+            0.23824131986901945,
+            0.22416981161185276
+          ],
+          "logloss": 1.495351426777411
+        },
+        {
+          "date": "2026-08-29",
+          "home": "Liverpool",
+          "away": "Nott'm Forest",
+          "actual": 1,
+          "probabilities": [
+            0.587604053385177,
+            0.2306181820381623,
+            0.18177776457666078
+          ],
+          "logloss": 1.466991827602497
+        },
+        {
+          "date": "2026-10-10",
+          "home": "Man United",
+          "away": "Tottenham",
+          "actual": 1,
+          "probabilities": [
+            0.5849462085526155,
+            0.23465578062698633,
+            0.18039801082039814
+          ],
+          "logloss": 1.4496356019418624
+        },
+        {
+          "date": "2026-09-12",
+          "home": "Liverpool",
+          "away": "Fulham",
+          "actual": 1,
+          "probabilities": [
+            0.5626036258238964,
+            0.23701228600521584,
+            0.20038408817088774
+          ],
+          "logloss": 1.4396432995061808
+        }
+      ]
+    }
+  },
+  "cacheStats": {
+    "hits": 0,
+    "misses": 2750,
+    "corrupt": 0,
+    "fits": 830
+  },
+  "durationSeconds": 12.748231901001418
+}
