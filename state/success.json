@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "status": "success",
+  "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+  "acceptedAt": "2026-11-06T04:05:14.787131Z",
+  "dataLastMatchDate": "2026-10-25",
+  "matchCount": 2740,
+  "sourceManifest": {
+    "seedFile": "docs/research/xg-2026-11-06/xg-matches.json",
+    "seedSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+    "sources": [],
+    "referenceSources": [
+      {
+        "season": 2019,
+        "rows": 380,
+        "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+      },
+      {
+        "season": 2020,
+        "rows": 380,
+        "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+      },
+      {
+        "season": 2021,
+        "rows": 380,
+        "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+        "shotsRows": 379,
+        "xgRows": 0,
+        "invalidStatisticsRows": 1,
+        "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+      },
+      {
+        "season": 2022,
+        "rows": 380,
+        "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+      },
+      {
+        "season": 2023,
+        "rows": 380,
+        "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+      },
+      {
+        "season": 2024,
+        "rows": 380,
+        "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+      },
+      {
+        "season": 2025,
+        "rows": 380,
+        "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+        "shotsRows": 380,
+        "xgRows": 0,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+      },
+      {
+        "season": 2026,
+        "rows": 90,
+        "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+        "shotsRows": 90,
+        "xgRows": 90,
+        "invalidStatisticsRows": 0,
+        "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+      }
+    ]
+  }
+}
