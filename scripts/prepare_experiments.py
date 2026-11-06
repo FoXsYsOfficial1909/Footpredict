@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 from datetime import date, datetime, timezone
 import hashlib
+import gzip
 import json
 from pathlib import Path
 import re
@@ -79,8 +80,16 @@ def prepare(data_dir, output, *, as_of=None, fetch=fetch_bytes, download=downloa
         'sourceUrl': expected_url, 'sourceReportSha256': hashlib.sha256(latest_bytes).hexdigest(),
         'acceptedSource': accepted, 'sourceFreshness': freshness, 'referenceSources': references,
         'join': joined, 'promotedToDefault': False}
+    reference_body = (json.dumps([{'date': o.match.day.isoformat(), 'season': o.match.season,
+        'home': o.match.home, 'away': o.match.away, 'homeGoals': o.match.home_goals,
+        'awayGoals': o.match.away_goals} for o in original],
+        ensure_ascii=False, separators=(',', ':'), allow_nan=False) + '\n').encode()
+    compressed = gzip.compress(reference_body, mtime=0)
+    manifest['referenceSnapshotSha256'] = hashlib.sha256(compressed).hexdigest()
+    manifest['referenceSnapshotUncompressedSha256'] = hashlib.sha256(reference_body).hexdigest()
+    manifest['referenceSnapshotRows'] = len(original)
     # Stage and validate all input before replacing any prior successful output.
-    for name, data in [('xg-matches.json', body), ('xg-manifest.json',
+    for name, data in [('xg-matches.json', body), ('reference-results.json.gz', compressed), ('xg-manifest.json',
             (json.dumps(manifest, ensure_ascii=False, indent=2, allow_nan=False) + '\n').encode())]:
         target = output / name
         temporary_path = output / (name + '.tmp')

@@ -28,6 +28,6 @@ All scientific results were exactly identical. These are local calculation times
 
 ## Reports and persistence
 
-Readable summaries and 90-day input/result artifacts are available in [GitHub Actions](https://github.com/FoXsYsOfficial1909/Footpredict/actions/workflows/automatic-experiments.yml). The dedicated `experiment-reports` branch contains `latest.json`, immutable `reports/<sha256>.json`, per-run provenance and the last verified successful state. Prediction files and original CSVs use Actions Cache; losing that cache changes speed, not results.
+Readable summaries and 90-day input/result artifacts are available in [GitHub Actions](https://github.com/FoXsYsOfficial1909/Footpredict/actions/workflows/automatic-experiments.yml). Artifacts include the exact normalized xG bytes and compressed original result observations, so later provider corrections do not erase the evaluated inputs. The dedicated `experiment-reports` branch contains `latest.json`, immutable `reports/<sha256>.json`, per-run provenance and the last verified successful state. Prediction files and original CSVs also use Actions Cache; losing that cache changes speed, not results.
 
 The 24-hour future comparison remains separate. Nine games cannot establish a reliable accuracy improvement. Additional outcomes can update monitoring and motivate new prespecified hypotheses, while historical gains still need prospective confirmation.

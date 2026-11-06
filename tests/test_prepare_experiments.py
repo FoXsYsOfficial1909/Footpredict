@@ -1,5 +1,6 @@
 from datetime import date, timedelta
 import hashlib
+import gzip
 import json
 from pathlib import Path
 import tempfile
@@ -42,6 +43,11 @@ class PrepareExperimentsTests(unittest.TestCase):
             self.assertEqual(freshness['status'], 'stale')
             self.assertEqual(freshness['dataAgeDays'], 12)
             self.assertEqual((freshness['completedMatches'], freshness['matchedXg'], freshness['missingXg']), (2, 1, 1))
+            compressed = (Path(directory) / 'inputs/reference-results.json.gz').read_bytes()
+            self.assertEqual(hashlib.sha256(compressed).hexdigest(), result['referenceSnapshotSha256'])
+            saved = json.loads(gzip.decompress(compressed))
+            self.assertEqual(len(saved), result['referenceSnapshotRows'])
+            self.assertEqual(saved[-1]['homeGoals'], 0)
 
     def test_bad_archive_cannot_replace_previous_inputs(self):
         self.inputs()
