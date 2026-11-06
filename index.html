@@ -1587,6 +1587,7 @@ function openHistory(){if(historyOpened)return;historyOpened=true;historyAction(
 window.addEventListener('footpredict:tab-selected',event=>{if(event.detail?.tab==='history')openHistory();});
 if(document.getElementById('tab-history')?.getAttribute('aria-selected')==='true')openHistory();
 function openPremierLeague(){
+  clearSelectionData();
   const now=new Date(),year=now.getUTCMonth()>=6?now.getUTCFullYear():now.getUTCFullYear()-1;
   $('provider').value='fd';leagues=[{id:'PL',label:'Английская Премьер-лига',year,endYear:year+1}];
   resetSelect($('competition'),'Выбери соревнование');chooseOption($('competition'),'PL','Английская Премьер-лига');$('competition').value='PL';

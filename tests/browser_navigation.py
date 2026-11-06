@@ -55,6 +55,8 @@ with sync_playwright() as playwright:
         page.click('#tab-data');page.click('#exitOwnerMode')
         page.wait_for_function("!document.getElementById('loadMatches').disabled",timeout=35000)
         assert page.get_by_role('tab').count()==3 and page.locator('#calculator').is_hidden()
+        assert page.locator('#results').is_hidden() and page.locator('#matchResearch').is_hidden()
+        assert page.locator('#homeName').input_value()=='Хозяева'
         assert page.locator('#provider').input_value()=='fd' and page.locator('#competition').input_value()=='PL'
         assert requests and all(method=='GET' for method,_ in requests)
         assert all('/v1/research/' not in url for _,url in requests)
