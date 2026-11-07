@@ -1,3 +1,5 @@
+import {translateSourceText} from './source-translations.js';
+
 const $ = id => document.getElementById(id);
 let selected = null, packet = null, context = null, generation = 0, evidenceRevision = 0, controller = null;
 const pending = new Set();
@@ -28,6 +30,25 @@ function articleLink(text, address) {
     }
   } catch { /* Untrusted source values never become executable URLs. */ }
   return anchor;
+}
+
+function sourceMessage(value, {kind='availability', quoted=false, address=null, labelUnavailable=true}={}) {
+  const translation=translateSourceText(value,{kind});
+  const wrapper=node('div',undefined,'source-message');
+  if(translation.status==='empty')return wrapper;
+  const translated=translation.status==='translated';
+  const text=translated?translation.text:translation.original;
+  const content=quoted?'«'+text+'»':text;
+  if(translated)wrapper.append(node('span','Перевод','research-note'));
+  wrapper.append(address?articleLink(content,address):node('p',content,'research-note'));
+  if(translated){
+    const original=node('details',undefined,'source-original research-form-details');
+    original.append(node('summary','Оригинал источника'),node('p',translation.original,'research-note'));
+    wrapper.append(original);
+  }else if(translation.status==='unavailable'&&labelUnavailable){
+    wrapper.append(node('p','Сообщение источника · перевод пока недоступен','research-note'));
+  }
+  return wrapper;
 }
 
 function status(message, error = false) {
@@ -84,7 +105,7 @@ function playerAvailability(team, index) {
     const item=node('li');item.append(node('strong',name),node('span',' · '+state));
     if(full){
       const news=report.news || report.reason;
-      if(news)item.append(node('p',news,'research-note'));
+      if(news)item.append(sourceMessage(news));
       if(report.stale || report.newsStale)item.append(node('p','Сообщение давно не обновлялось; актуальность требует проверки.','research-note'));
       const date=report.newsAdded || report.newsAddedAt || report.publishedAt;
       item.append(node('p',date?'Дата сообщения: '+dateText(date):'Дата сообщения не указана.','research-note'));
@@ -222,7 +243,7 @@ function render(data) {
     const quote = node('blockquote',undefined,'research-quote');
     quote.append(node('p',(fact.subject?fact.subject+' · ':'')+fact.team),
       node('span',(fact.sourceType==='official_club'?'Официальный клуб':'Сообщение прессы')+' · '+(categoryLabels[fact.category]||'Сообщение'),'evidence-label'),
-      node('p','«'+fact.quote+'»'),articleLink((fact.source||'Источник')+' · '+publicationText(fact),fact.url),
+      sourceMessage(fact.quote,{kind:'news',quoted:true}),articleLink((fact.source||'Источник')+' · '+publicationText(fact),fact.url),
       node('p',fact.extractionMethod==='ai_selection_cached'?'Использован ранее проверенный выбор ИИ'+(fact.aiSelectedAt?' от '+dateText(fact.aiSelectedAt):'')+'. Цитата сверена с текущим текстом источника.':
         fact.extractionMethod==='ai_selection'?'Фрагмент выбран ИИ; цитата взята из источника.':'Короткий фрагмент выбран по тексту источника.','research-note'));
     ai.append(quote);
@@ -246,9 +267,11 @@ function render(data) {
   }
   $('researchNewsTitle').textContent = 'Новости и источники · '+(data.articles?.length || 0);
   const news = $('researchNews');news.replaceChildren();
+  if((data.articles||[]).some(article=>[article.title,article.summary].some(value=>value&&translateSourceText(value,{kind:'news'}).status==='unavailable')))
+    news.append(node('p','Новости пока показаны на языке источника.','research-note'));
   for(const article of data.articles || []) {
-    const item = node('article',undefined,'research-article');item.append(articleLink(article.title,article.url),node('p',article.source+' · '+article.team+' · '+publicationText(article)));
-    if(article.summary)item.append(node('p',article.summary));news.append(item);
+    const item = node('article',undefined,'research-article');item.append(sourceMessage(article.title,{kind:'news',address:article.url,labelUnavailable:false}),node('p',article.source+' · '+article.team+' · '+publicationText(article)));
+    if(article.summary)item.append(sourceMessage(article.summary,{kind:'news',labelUnavailable:false}));news.append(item);
   }
   const errors = $('researchErrors');errors.replaceChildren();
   for(const error of data.sourceErrors || []) errors.append(node('li',error.source+': '+(error.reason === 'rate_limited' || error.reason === 'rate_limit_cooldown' ? 'временное ограничение запросов' : 'данные не получены')));

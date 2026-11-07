@@ -74,6 +74,7 @@ python3 tests/browser_smoke.py
 python3 tests/browser_quality.py
 python3 tests/browser_availability.py
 python3 tests/browser_player_context.py
+python3 tests/browser_source_translation.py
 python3 tests/browser_navigation.py
 python3 tests/browser_training.py
 ```
