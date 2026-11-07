@@ -5,7 +5,7 @@
     "schemaVersion": 1,
     "protocol": "automatic-experiments-1",
     "status": "unchanged",
-    "generatedAt": "2026-11-07T01:23:07.830071+00:00",
+    "generatedAt": "2026-11-07T02:24:42.420423+00:00",
     "evaluatedAt": "2026-11-06T11:01:03.639467+00:00",
     "inputFingerprint": "eea832c02a225003c8506e26eb56b6cc649e45e49d5c794a513cfea180910673",
     "dataSha256": "e68339c94ed0a120a651cda84a66b9a0e1a6c82a21672d51f72472ce2f60cbfc",
@@ -71,7 +71,7 @@
       "dataAgeDays": 13,
       "incomplete": true,
       "sourceStatus": "stale",
-      "sourceCheckedAt": "2026-11-06T04:05:14.787131Z",
+      "sourceCheckedAt": "2026-11-07T02:24:00.664083Z",
       "sourceDataStatus": "stale",
       "cohortCutoffExclusive": "2026-11-06",
       "eligibleForEvaluation": {
@@ -285,9 +285,9 @@
       "xgSource": {
         "schemaVersion": 1,
         "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
-        "preparedAt": "2026-11-07T01:23:07.375821+00:00",
+        "preparedAt": "2026-11-07T02:24:41.943553+00:00",
         "sourceUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json",
-        "sourceReportSha256": "e9c27fb4f8834aedf8cab3b8ffebd06c539dc60ea4d0a89148341af4150279fe",
+        "sourceReportSha256": "fceb7fe68130473dc5dfbb42fb52c90182d23ac829dfade14e9616b13a3e4616",
         "acceptedSource": {
           "schemaVersion": 1,
           "status": "success",
@@ -378,7 +378,7 @@
         },
         "sourceFreshness": {
           "sourceStatus": "stale",
-          "sourceCheckedAt": "2026-11-06T04:05:14.787131Z",
+          "sourceCheckedAt": "2026-11-07T02:24:00.664083Z",
           "lastAcceptedAt": "2026-11-06T04:05:14.787131Z",
           "dataLastMatchDate": "2026-10-25",
           "dataAgeDays": 13,
@@ -905,15 +905,15 @@
       "corrupt": 0,
       "fits": 0
     },
-    "durationSeconds": 0.2702523259999978,
+    "durationSeconds": 0.289570053000034,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "42323757149",
+    "runId": "42329086234",
     "runAttempt": "1",
     "sourceCommit": "399da48743e8591d7d0f65873a188649f797f706",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42323757149",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42323757149#artifacts",
-    "reportSha256": "97948e9c4dc9d8d0b5a08a9ded1825d220d832544da5e8f1fb36e10f2808e411",
-    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/97948e9c4dc9d8d0b5a08a9ded1825d220d832544da5e8f1fb36e10f2808e411.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42329086234",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42329086234#artifacts",
+    "reportSha256": "dd0b05c339d575632197bc61572ae7042a114d9eb882178e999477d3a9a9672b",
+    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/dd0b05c339d575632197bc61572ae7042a114d9eb882178e999477d3a9a9672b.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
