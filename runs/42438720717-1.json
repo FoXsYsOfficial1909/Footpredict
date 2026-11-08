@@ -1,0 +1,382 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-08T02:29:10.230860Z",
+  "status": "stale",
+  "dataStatus": "stale",
+  "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
+  "lastSuccessfulAcceptedAt": "2026-11-06T04:05:14.787131Z",
+  "lastSuccessfulAvailable": true,
+  "dataLastMatchDate": "2026-10-25",
+  "dataAgeDays": 14,
+  "retainedPreviousSnapshot": true,
+  "newMatchesAdded": 0,
+  "coverage": {
+    "season": 2026,
+    "completedMatches": 90,
+    "matchedXg": 80,
+    "missingXg": 10,
+    "latestResultDate": "2026-11-02",
+    "latestXgDate": "2026-10-25",
+    "missingFixtures": [
+      {
+        "date": "2026-10-31",
+        "home": "Aston Villa",
+        "away": "Fulham"
+      },
+      {
+        "date": "2026-10-31",
+        "home": "Bournemouth",
+        "away": "Leeds"
+      },
+      {
+        "date": "2026-10-31",
+        "home": "Brentford",
+        "away": "Nott'm Forest"
+      },
+      {
+        "date": "2026-10-31",
+        "home": "Chelsea",
+        "away": "Man United"
+      },
+      {
+        "date": "2026-10-31",
+        "home": "Coventry",
+        "away": "Sunderland"
+      },
+      {
+        "date": "2026-10-31",
+        "home": "Hull",
+        "away": "Ipswich"
+      },
+      {
+        "date": "2026-10-31",
+        "home": "Man City",
+        "away": "Brighton"
+      },
+      {
+        "date": "2026-10-31",
+        "home": "Tottenham",
+        "away": "Crystal Palace"
+      },
+      {
+        "date": "2026-11-01",
+        "home": "Liverpool",
+        "away": "Arsenal"
+      },
+      {
+        "date": "2026-11-02",
+        "home": "Newcastle",
+        "away": "Everton"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "provider": "Understat league-summary cache",
+      "repository": "elliot-gautier-129/footy-prediction",
+      "revision": "90233c5edc2cd4a07011ea642b27ea479d106bf5",
+      "sourceCommittedAt": "2026-10-24T21:35:48Z",
+      "files": [
+        {
+          "path": "data/raw/understat/eng/eng_1920.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_1920.csv",
+          "gitBlobSha1": "7e70b4ba0f40465f6c215ae3ea817deaab51ad13",
+          "sha256": "0d6d302ded2c3d4f450d0d9840baa54f3968d8c4c2f6d49fc84f0e6e2d080c2e",
+          "bytes": 74533
+        },
+        {
+          "path": "data/raw/understat/eng/eng_2021.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2021.csv",
+          "gitBlobSha1": "6d6ff05a38a789fd9132f28e15b1fe141822db3f",
+          "sha256": "9d4ce295d0ed9000f73847e0205dce2a39626404ae14e2b82b4acef23b813bf1",
+          "bytes": 75080
+        },
+        {
+          "path": "data/raw/understat/eng/eng_2122.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2122.csv",
+          "gitBlobSha1": "79afe5b1a34c756b6e75425fd426eb69ef165a40",
+          "sha256": "11842ab7340d26ce84a8ae8bf24fa025bc71bddff39274af080bf07b6c00562d",
+          "bytes": 73600
+        },
+        {
+          "path": "data/raw/understat/eng/eng_2223.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2223.csv",
+          "gitBlobSha1": "4ad8152fd3c76c7e333abe05799f26b3077a444b",
+          "sha256": "5d8b9cac43f3a9219fe4a6e344f047763a2d6fb140ec5a038d58883952ac1da6",
+          "bytes": 74622
+        },
+        {
+          "path": "data/raw/understat/eng/eng_2324.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2324.csv",
+          "gitBlobSha1": "c252e5408fde7449171bb0d0afc6b77f931eb7e6",
+          "sha256": "fb0a926ada8950984c146dd2d4de5eecfec1e5282428e1659937509cf6defe82",
+          "bytes": 74851
+        },
+        {
+          "path": "data/raw/understat/eng/eng_2425.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2425.csv",
+          "gitBlobSha1": "19a7180c38073f62203fc9f71b2cd025adad43d4",
+          "sha256": "0cbf28491e41c215861e1beff4c84d8979c745098f166ab6534cd7cafefb7e3d",
+          "bytes": 74731
+        },
+        {
+          "path": "data/raw/understat/eng/eng_2526.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2526.csv",
+          "gitBlobSha1": "4ce495d6dea19c8d8021b2d214d3439b32ec97a0",
+          "sha256": "5ab8c8b7ec5be260ed444774c06cd0a904abca5474b9a32639ce3f9b9ca39573",
+          "bytes": 74361
+        },
+        {
+          "path": "data/raw/understat/eng/eng_2627.csv",
+          "url": "https://raw.githubusercontent.com/elliot-gautier-129/footy-prediction/90233c5edc2cd4a07011ea642b27ea479d106bf5/data/raw/understat/eng/eng_2627.csv",
+          "gitBlobSha1": "0ea0770e24f3005958e7b5dcfbbab3fc6dce7715",
+          "sha256": "dd45e298a5e7d0e670df01c5b3f6d68947cbef3dc9fc14ee7c155e09b93fd69f",
+          "bytes": 68068
+        }
+      ],
+      "lastDataDate": "2026-09-14",
+      "status": "verified",
+      "matches": 2700
+    },
+    {
+      "provider": "Understat league-summary cache",
+      "repository": "CameronNichol47/epl-match-prediction-dashboard",
+      "revision": "2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10",
+      "sourceCommittedAt": "2026-11-07T02:08:34Z",
+      "files": [
+        {
+          "path": "data/processed/Arsenal.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Arsenal.csv",
+          "gitBlobSha1": "ed4934972b186408b89785169c5af120d1eccb30",
+          "sha256": "8db412043d54df7f72c48c647aebd88809c07ecce471e24d6534efcf68c935a8",
+          "bytes": 12688
+        },
+        {
+          "path": "data/processed/Aston Villa.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Aston%20Villa.csv",
+          "gitBlobSha1": "49e81b79427425d0000ddd12927c9c00fe3ab09d",
+          "sha256": "b3e4a01df184485cb2171facf79d81983079f2e2bd259347caf2d5fd82a321b8",
+          "bytes": 13009
+        },
+        {
+          "path": "data/processed/Bournemouth.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Bournemouth.csv",
+          "gitBlobSha1": "54ec5b58a20b2c40718a94d7a16f948a9d987df3",
+          "sha256": "022d3d5959e7b511070dc7ca3b6f86c484a28a1989bb74e2e0b5fbe76542c68e",
+          "bytes": 13072
+        },
+        {
+          "path": "data/processed/Brentford.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Brentford.csv",
+          "gitBlobSha1": "542d923f95ee8020205a6126526daed8cdcfafa7",
+          "sha256": "38075b74a5fae5d37170886b7f007f1134dda0bfdd4c30e87ee4ccfd8922dcf5",
+          "bytes": 12966
+        },
+        {
+          "path": "data/processed/Brighton.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Brighton.csv",
+          "gitBlobSha1": "461e604c9f1244560b10a64b6c12eb16494c3295",
+          "sha256": "dc855a244c9909d14d2faec5db2e5f4dc3b935067de4ef52946dd5a0145708e1",
+          "bytes": 12863
+        },
+        {
+          "path": "data/processed/Chelsea.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Chelsea.csv",
+          "gitBlobSha1": "a137bb98a51e84d7d8952d3eda810dabcec6e69e",
+          "sha256": "06bf19292a7d7ef5821d56474e8cd46f9620c6b3442bcc6c081026237917474f",
+          "bytes": 12775
+        },
+        {
+          "path": "data/processed/Coventry.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Coventry.csv",
+          "gitBlobSha1": "adc8fb48b11affba53cc3ac3489a55eae40f6d61",
+          "sha256": "998baf017ffa67b0a4781e123c4439b085f8aab60dd23d3431776d22e89664c6",
+          "bytes": 904
+        },
+        {
+          "path": "data/processed/Crystal Palace.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Crystal%20Palace.csv",
+          "gitBlobSha1": "dbb04f9a374090f952fd0baad4a758283fbe99d9",
+          "sha256": "9f455bc149082a500594085023428c2119c5894459ab1d4838b677b8851fa8a1",
+          "bytes": 13042
+        },
+        {
+          "path": "data/processed/Everton.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Everton.csv",
+          "gitBlobSha1": "0ba496bd3b911f4a924afcf43b1681d49d648df8",
+          "sha256": "11c7637706c4634e0a9a2c21e163462b21c8f32720efbe6ead90e6235dac45dc",
+          "bytes": 13107
+        },
+        {
+          "path": "data/processed/Fulham.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Fulham.csv",
+          "gitBlobSha1": "43ab5d84e66affa3a4d162fdbe4c33d37a8cfb4a",
+          "sha256": "73f6018214639912afe5e6e140c40c7a7f1480616568e3018239bbdd8ef05927",
+          "bytes": 13085
+        },
+        {
+          "path": "data/processed/Hull.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Hull.csv",
+          "gitBlobSha1": "7de136a37d339ed6b6e3e6ed85baeb91967b4836",
+          "sha256": "a45fa57a3ec323cb8a1d850d5c385921664132e9f69b0a83b17127fcf45bfeb9",
+          "bytes": 872
+        },
+        {
+          "path": "data/processed/Ipswich.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Ipswich.csv",
+          "gitBlobSha1": "7a14c5f2a6bf4309c8ed08df7de0dfd3fc8caa32",
+          "sha256": "5ce022984cd7458cf24dad6d50f3f7db87473d6576e647f9a4a0687d61348778",
+          "bytes": 917
+        },
+        {
+          "path": "data/processed/Leeds United.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Leeds%20United.csv",
+          "gitBlobSha1": "9c226a4fbe1d9bbec3c012b46051a57552e5f90c",
+          "sha256": "ee77923f177ba1f45c49dadf76a8ec4c896ec50992e47855642bf188912629a0",
+          "bytes": 13058
+        },
+        {
+          "path": "data/processed/Liverpool.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Liverpool.csv",
+          "gitBlobSha1": "6482cba5a0640886b7b900b4d6823ebef48a3705",
+          "sha256": "75bb2ce3e99de1323ab162356673549cba2ed6ffa2f076268585b96c6add4074",
+          "bytes": 12783
+        },
+        {
+          "path": "data/processed/Manchester City.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Manchester%20City.csv",
+          "gitBlobSha1": "b256b329078ea1a103e092ed74d7696ee7912281",
+          "sha256": "fdae91feb0d4802db79c3fca0c8d660aba34798234ad8af6b47ced5c18702c94",
+          "bytes": 12684
+        },
+        {
+          "path": "data/processed/Manchester Utd.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Manchester%20Utd.csv",
+          "gitBlobSha1": "ff5c294ff8c58064440a7202c59b9d830ea14615",
+          "sha256": "cc697bb5ef3fd709dc899881a8598fd89639aa4e723174b03f9b4bdc86fb96e1",
+          "bytes": 12990
+        },
+        {
+          "path": "data/processed/Newcastle.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Newcastle.csv",
+          "gitBlobSha1": "be6684ad78fd5449f77d7e29899a8287c136d94f",
+          "sha256": "d4140bfaa0cadd21f1842a3db76f26b215387f6f7c3f3924c3851580f93fab34",
+          "bytes": 13033
+        },
+        {
+          "path": "data/processed/Nottingham.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Nottingham.csv",
+          "gitBlobSha1": "8ca44954b206bacb2cc22d7104caeff11af0013b",
+          "sha256": "d3c59455ed239ae622dc33feab9b04451f3eaf3ffd4acb08b39131c39b6607e6",
+          "bytes": 13076
+        },
+        {
+          "path": "data/processed/Sunderland.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Sunderland.csv",
+          "gitBlobSha1": "7e7775a59eb9e48d82bc4fc17d5f16c3e1afbc16",
+          "sha256": "509482a14134ae6c036ade384647c4947652befacc0aa54bb21971681f4cc709",
+          "bytes": 13098
+        },
+        {
+          "path": "data/processed/Tottenham.csv",
+          "url": "https://raw.githubusercontent.com/CameronNichol47/epl-match-prediction-dashboard/2bbcb37a6e1c74f0fe24ef7be3d2a85e8aa7dd10/data/processed/Tottenham.csv",
+          "gitBlobSha1": "f75b6bdae33aea071b27b4c30c43fa4c950860fc",
+          "sha256": "e8a3622b73d5df8f0cc444f4d5eecd22622d2bdc0c28034421942f09cd0a5b5f",
+          "bytes": 13133
+        }
+      ],
+      "lastDataDate": "2026-10-25",
+      "status": "verified",
+      "matches": 454
+    },
+    {
+      "provider": "Understat direct",
+      "url": "https://understat.com/getLeagueData/EPL/2026",
+      "status": "unavailable",
+      "error": "Understat returned its HTML maintenance page instead of league data"
+    }
+  ],
+  "referenceSources": [
+    {
+      "season": 2019,
+      "rows": 380,
+      "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/1920/E0.csv"
+    },
+    {
+      "season": 2020,
+      "rows": 380,
+      "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2021/E0.csv"
+    },
+    {
+      "season": 2021,
+      "rows": 380,
+      "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+      "shotsRows": 379,
+      "xgRows": 0,
+      "invalidStatisticsRows": 1,
+      "source": "https://www.football-data.co.uk/mmz4281/2122/E0.csv"
+    },
+    {
+      "season": 2022,
+      "rows": 380,
+      "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2223/E0.csv"
+    },
+    {
+      "season": 2023,
+      "rows": 380,
+      "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2324/E0.csv"
+    },
+    {
+      "season": 2024,
+      "rows": 380,
+      "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2425/E0.csv"
+    },
+    {
+      "season": 2025,
+      "rows": 380,
+      "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+      "shotsRows": 380,
+      "xgRows": 0,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2526/E0.csv"
+    },
+    {
+      "season": 2026,
+      "rows": 90,
+      "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+      "shotsRows": 90,
+      "xgRows": 90,
+      "invalidStatisticsRows": 0,
+      "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
+    }
+  ],
+  "referenceUnavailable": false,
+  "error": null,
+  "promotedToDefault": false,
+  "repository": "FoXsYsOfficial1909/Footpredict",
+  "sourceCommit": "6b75a03ba30e1852b94975288a4c55af1148f8fa",
+  "runId": "42438720717",
+  "runAttempt": "1",
+  "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42438720717",
+  "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/runs/42438720717-1.json"
+}
