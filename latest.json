@@ -4,14 +4,14 @@
     "schemaVersion": 1,
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
-    "asOf": "2026-11-08",
-    "generatedAt": "2026-11-08T01:27:35.401297+00:00",
-    "trainingCutoffExclusive": "2026-11-07",
+    "asOf": "2026-11-09",
+    "generatedAt": "2026-11-09T01:30:20.803725+00:00",
+    "trainingCutoffExclusive": "2026-11-08",
     "latestTrainingMatch": "2026-11-02",
     "trainingMatches": 4270,
     "poissonTrainingMatches": 1120,
-    "modelVersion": "ensemble-candidate-2026-11-08-ff7d45e74347",
-    "modelSha256": "f060bd601941d1aede351000640cd93ed8bfb57ab262b55787d826911040bbd3",
+    "modelVersion": "ensemble-candidate-2026-11-09-2b2fb98bd558",
+    "modelSha256": "68d82dfa9ed4a8fba087d00e0ff2df59956017f3fe3b56d5b4641f192c0c1198",
     "dataSha256": "ec9a385058d85c58d814ab824789af8c621e76f646e5f0743cd2fe00279b4961",
     "settingsSha256": "bdc6f29f3ab8db55cbdcd861fee4cd280103b18c5dcf231a96575decff8b96cd",
     "codeSha256": "6ed1ce83bc2a28c2008c6e13d20999da3a06cf3a5de270ec0087e8c7b086f893",
@@ -43,38 +43,38 @@
           "accuracy": 0.4
         }
       },
-      "poissonFitSeconds": 0.14766308699999797
+      "poissonFitSeconds": 0.12302620600000225
     },
-    "durationSeconds": 3.0156428319999975,
+    "durationSeconds": 2.3465875680000003,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 1.4915145439999975,
+    "computeSeconds": 1.2442181860000012,
     "timings": {
-      "referencePreparationSeconds": 1.3152038939999997,
-      "historicalValidationSeconds": 0.15972238399999839,
-      "finalFitSeconds": 0.005315722000005962,
-      "dataLoadSeconds": 1.5241086050000021
+      "referencePreparationSeconds": 1.0964707390000008,
+      "historicalValidationSeconds": 0.1340389970000011,
+      "finalFitSeconds": 0.00432443099999702,
+      "dataLoadSeconds": 1.102352334999999
     },
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "42434317241",
+    "runId": "42545875139",
     "runAttempt": "1",
     "sourceCommit": "6b75a03ba30e1852b94975288a4c55af1148f8fa",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42434317241",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42434317241#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/f060bd601941d1aede351000640cd93ed8bfb57ab262b55787d826911040bbd3.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42545875139",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42545875139#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/68d82dfa9ed4a8fba087d00e0ff2df59956017f3fe3b56d5b4641f192c0c1198.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
-    "asOf": "2026-11-08",
-    "generatedAt": "2026-11-08T01:27:35.401297+00:00",
-    "trainingCutoffExclusive": "2026-11-07",
+    "asOf": "2026-11-09",
+    "generatedAt": "2026-11-09T01:30:20.803725+00:00",
+    "trainingCutoffExclusive": "2026-11-08",
     "latestTrainingMatch": "2026-11-02",
     "trainingMatches": 4270,
     "poissonTrainingMatches": 1120,
-    "modelVersion": "ensemble-candidate-2026-11-08-ff7d45e74347",
-    "modelSha256": "f060bd601941d1aede351000640cd93ed8bfb57ab262b55787d826911040bbd3",
+    "modelVersion": "ensemble-candidate-2026-11-09-2b2fb98bd558",
+    "modelSha256": "68d82dfa9ed4a8fba087d00e0ff2df59956017f3fe3b56d5b4641f192c0c1198",
     "dataSha256": "ec9a385058d85c58d814ab824789af8c621e76f646e5f0743cd2fe00279b4961",
     "settingsSha256": "bdc6f29f3ab8db55cbdcd861fee4cd280103b18c5dcf231a96575decff8b96cd",
     "codeSha256": "6ed1ce83bc2a28c2008c6e13d20999da3a06cf3a5de270ec0087e8c7b086f893",
@@ -106,24 +106,24 @@
           "accuracy": 0.4
         }
       },
-      "poissonFitSeconds": 0.14766308699999797
+      "poissonFitSeconds": 0.12302620600000225
     },
-    "durationSeconds": 3.0156428319999975,
+    "durationSeconds": 2.3465875680000003,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 1.4915145439999975,
+    "computeSeconds": 1.2442181860000012,
     "timings": {
-      "referencePreparationSeconds": 1.3152038939999997,
-      "historicalValidationSeconds": 0.15972238399999839,
-      "finalFitSeconds": 0.005315722000005962,
-      "dataLoadSeconds": 1.5241086050000021
+      "referencePreparationSeconds": 1.0964707390000008,
+      "historicalValidationSeconds": 0.1340389970000011,
+      "finalFitSeconds": 0.00432443099999702,
+      "dataLoadSeconds": 1.102352334999999
     },
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "42434317241",
+    "runId": "42545875139",
     "runAttempt": "1",
     "sourceCommit": "6b75a03ba30e1852b94975288a4c55af1148f8fa",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42434317241",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42434317241#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/f060bd601941d1aede351000640cd93ed8bfb57ab262b55787d826911040bbd3.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42545875139",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42545875139#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/68d82dfa9ed4a8fba087d00e0ff2df59956017f3fe3b56d5b4641f192c0c1198.json"
   }
 }
