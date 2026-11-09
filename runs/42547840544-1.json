@@ -1,0 +1,706 @@
+{
+  "schemaVersion": 1,
+  "protocol": "corner-candidate-1",
+  "status": "success",
+  "asOf": "2026-11-09",
+  "trainingCutoffExclusive": "2026-11-08",
+  "latestTrainingMatch": "2026-11-02",
+  "trainingMatches": 4270,
+  "pairedCornerMatches": 4270,
+  "modelTrainingMatches": 1120,
+  "modelVersion": "corners-league-2026-11-09-6cce221dfc86",
+  "modelSha256": "9c164b2e722d2b94c0a34abe87f90b494a97cf012be779ac0e3cc6fd3a6b5c51",
+  "settings": {
+    "id": "empirical-league",
+    "family": "empirical",
+    "halfLife": 365,
+    "windowDays": 1095,
+    "smoothing": 0.5
+  },
+  "settingsSha256": "600dc75b15fc879bc8a0bb18325f04282a973799e47b75a7c10b0f0db06db8b0",
+  "servingPolicy": "empirical_league",
+  "researchSelection": {
+    "protocol": "corner-fixed-selection-1",
+    "planSha256": "7713b8b942d0069fc0fa8b7928b2b074bbe8c82b2422c0c99ce4fbd83b25861d",
+    "dataSha256": "a91a01c629307ff9e901e23422bb0d49688122a97fa37d55ec41acf460ff621e",
+    "implementationSha256": "07930110e305dd08fe8f4a5c8594d99a4ccd8c79b9eeaac19e7008133c69980a",
+    "baseline": {
+      "halfLife": 365,
+      "windowDays": 1095,
+      "smoothing": 0.5
+    },
+    "validation": [
+      {
+        "id": "corners-poisson-365",
+        "settings": {
+          "id": "corners-poisson-365",
+          "family": "poisson",
+          "halfLife": 365,
+          "ridge": 0.03,
+          "windowDays": 1095
+        },
+        "metrics": {
+          "n": 760,
+          "brier": 0.228631525637894,
+          "logloss": 0.6498466369270571,
+          "accuracy": 0.6241228070175439,
+          "meanAbsoluteError": 2.779505404727025,
+          "predictiveIntervalCoverage": 0.8184210526315789,
+          "meanPredictiveIntervalWidth": 8.282894736842104,
+          "byLine": {
+            "8.5": {
+              "n": 760,
+              "brier": 0.19865312262865945,
+              "logloss": 0.5873085304451579,
+              "accuracy": 0.7210526315789474
+            },
+            "9.5": {
+              "n": 760,
+              "brier": 0.23776022700177268,
+              "logloss": 0.6697172751775203,
+              "accuracy": 0.6144736842105263
+            },
+            "10.5": {
+              "n": 760,
+              "brier": 0.24948122728324978,
+              "logloss": 0.6925141051584932,
+              "accuracy": 0.5368421052631579
+            }
+          }
+        }
+      },
+      {
+        "id": "corners-poisson-180",
+        "settings": {
+          "id": "corners-poisson-180",
+          "family": "poisson",
+          "halfLife": 180,
+          "ridge": 0.03,
+          "windowDays": 1095
+        },
+        "metrics": {
+          "n": 760,
+          "brier": 0.22986751322563795,
+          "logloss": 0.6540479843390411,
+          "accuracy": 0.6214912280701754,
+          "meanAbsoluteError": 2.79783133237843,
+          "predictiveIntervalCoverage": 0.8131578947368421,
+          "meanPredictiveIntervalWidth": 8.298684210526316,
+          "byLine": {
+            "8.5": {
+              "n": 760,
+              "brier": 0.19959420649741058,
+              "logloss": 0.5913592165893198,
+              "accuracy": 0.7197368421052631
+            },
+            "9.5": {
+              "n": 760,
+              "brier": 0.2396098764121128,
+              "logloss": 0.6753280813375991,
+              "accuracy": 0.5947368421052631
+            },
+            "10.5": {
+              "n": 760,
+              "brier": 0.25039845676739053,
+              "logloss": 0.6954566550902045,
+              "accuracy": 0.55
+            }
+          }
+        }
+      },
+      {
+        "id": "corners-nb-180",
+        "settings": {
+          "id": "corners-nb-180",
+          "family": "negative_binomial",
+          "halfLife": 180,
+          "ridge": 0.03,
+          "windowDays": 1095
+        },
+        "metrics": {
+          "n": 760,
+          "brier": 0.22972549585566715,
+          "logloss": 0.6536226384297931,
+          "accuracy": 0.6210526315789473,
+          "meanAbsoluteError": 2.79783133237843,
+          "predictiveIntervalCoverage": 0.8144736842105263,
+          "meanPredictiveIntervalWidth": 8.368421052631579,
+          "byLine": {
+            "8.5": {
+              "n": 760,
+              "brier": 0.19951333105801805,
+              "logloss": 0.5910019131149475,
+              "accuracy": 0.7197368421052631
+            },
+            "9.5": {
+              "n": 760,
+              "brier": 0.2394331825281792,
+              "logloss": 0.6748156433942041,
+              "accuracy": 0.5921052631578947
+            },
+            "10.5": {
+              "n": 760,
+              "brier": 0.25022997398080415,
+              "logloss": 0.6950503587802276,
+              "accuracy": 0.5513157894736842
+            }
+          }
+        }
+      }
+    ],
+    "chosen": {
+      "id": "corners-poisson-365",
+      "settings": {
+        "id": "corners-poisson-365",
+        "family": "poisson",
+        "halfLife": 365,
+        "ridge": 0.03,
+        "windowDays": 1095
+      },
+      "metrics": {
+        "n": 760,
+        "brier": 0.228631525637894,
+        "logloss": 0.6498466369270571,
+        "accuracy": 0.6241228070175439,
+        "meanAbsoluteError": 2.779505404727025,
+        "predictiveIntervalCoverage": 0.8184210526315789,
+        "meanPredictiveIntervalWidth": 8.282894736842104,
+        "byLine": {
+          "8.5": {
+            "n": 760,
+            "brier": 0.19865312262865945,
+            "logloss": 0.5873085304451579,
+            "accuracy": 0.7210526315789474
+          },
+          "9.5": {
+            "n": 760,
+            "brier": 0.23776022700177268,
+            "logloss": 0.6697172751775203,
+            "accuracy": 0.6144736842105263
+          },
+          "10.5": {
+            "n": 760,
+            "brier": 0.24948122728324978,
+            "logloss": 0.6925141051584932,
+            "accuracy": 0.5368421052631579
+          }
+        }
+      }
+    },
+    "auditDeferred": true,
+    "retrospectiveOnly": true,
+    "promotedToDefault": false,
+    "servingPolicy": "empirical_league",
+    "frozenAt": "2026-11-06T17:46:16.747656+00:00",
+    "reason": "The selected team model did not improve audit Brier or log loss versus the empirical league reference.",
+    "passesRetrospectiveGate": false,
+    "researchAudit": {
+      "targets": 380,
+      "metrics": {
+        "challenger": {
+          "n": 380,
+          "brier": 0.2464745064523658,
+          "logloss": 0.6906444071021167,
+          "accuracy": 0.5938596491228071,
+          "meanAbsoluteError": 2.6825376489754316,
+          "predictiveIntervalCoverage": 0.8184210526315789,
+          "meanPredictiveIntervalWidth": 8.089473684210526,
+          "byLine": {
+            "8.5": {
+              "n": 380,
+              "brier": 0.23234439288646977,
+              "logloss": 0.6624348002418441,
+              "accuracy": 0.6526315789473685
+            },
+            "9.5": {
+              "n": 380,
+              "brier": 0.25490291998300135,
+              "logloss": 0.7069054155043889,
+              "accuracy": 0.5815789473684211
+            },
+            "10.5": {
+              "n": 380,
+              "brier": 0.2521762064876263,
+              "logloss": 0.7025930055601171,
+              "accuracy": 0.5473684210526316
+            }
+          }
+        },
+        "baseline": {
+          "n": 380,
+          "brier": 0.24009875400270383,
+          "logloss": 0.6732026311342088,
+          "accuracy": 0.5956140350877194,
+          "meanAbsoluteError": 2.6458610030990624,
+          "predictiveIntervalCoverage": 0.8552631578947368,
+          "meanPredictiveIntervalWidth": 9.0,
+          "byLine": {
+            "8.5": {
+              "n": 380,
+              "brier": 0.22572119375511013,
+              "logloss": 0.6441462462258943,
+              "accuracy": 0.6605263157894737
+            },
+            "9.5": {
+              "n": 380,
+              "brier": 0.24680859577506692,
+              "logloss": 0.686783657648531,
+              "accuracy": 0.5631578947368421
+            },
+            "10.5": {
+              "n": 380,
+              "brier": 0.24776647247793437,
+              "logloss": 0.6886779895282008,
+              "accuracy": 0.5631578947368421
+            }
+          }
+        }
+      },
+      "challengerMinusBaseline": {
+        "brier": {
+          "difference": 0.006375752449662035,
+          "ci95": [
+            -0.004033223724780691,
+            0.017600727934469745
+          ],
+          "method": "paired resampling of calendar-day clusters; mean over three event lines",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": 0.017441775967908035,
+          "ci95": [
+            -0.006425652167842907,
+            0.04337820865104962
+          ],
+          "method": "paired resampling of calendar-day clusters; mean over three event lines",
+          "samples": 1500
+        }
+      }
+    },
+    "researchRecentMonitoring": {
+      "targets": 90,
+      "metrics": {
+        "challenger": {
+          "n": 90,
+          "brier": 0.2508456759608845,
+          "logloss": 0.696830772031451,
+          "accuracy": 0.5333333333333333,
+          "meanAbsoluteError": 2.6440360386118815,
+          "predictiveIntervalCoverage": 0.8222222222222222,
+          "meanPredictiveIntervalWidth": 8.0,
+          "byLine": {
+            "8.5": {
+              "n": 90,
+              "brier": 0.25609443126761516,
+              "logloss": 0.7114840329446743,
+              "accuracy": 0.5333333333333333
+            },
+            "9.5": {
+              "n": 90,
+              "brier": 0.2528162098255402,
+              "logloss": 0.6999313674601525,
+              "accuracy": 0.5444444444444444
+            },
+            "10.5": {
+              "n": 90,
+              "brier": 0.24362638678949797,
+              "logloss": 0.6790769156895263,
+              "accuracy": 0.5222222222222223
+            }
+          }
+        },
+        "baseline": {
+          "n": 90,
+          "brier": 0.2555016610373404,
+          "logloss": 0.7050722558544558,
+          "accuracy": 0.5407407407407407,
+          "meanAbsoluteError": 2.6540231689068445,
+          "predictiveIntervalCoverage": 0.8444444444444444,
+          "meanPredictiveIntervalWidth": 8.78888888888889,
+          "byLine": {
+            "8.5": {
+              "n": 90,
+              "brier": 0.2647279507765611,
+              "logloss": 0.7252436277637547,
+              "accuracy": 0.5444444444444444
+            },
+            "9.5": {
+              "n": 90,
+              "brier": 0.2593914192238051,
+              "logloss": 0.7120873615518343,
+              "accuracy": 0.4666666666666667
+            },
+            "10.5": {
+              "n": 90,
+              "brier": 0.24238561311165507,
+              "logloss": 0.6778857782477784,
+              "accuracy": 0.6111111111111112
+            }
+          }
+        }
+      },
+      "challengerMinusBaseline": {
+        "brier": {
+          "difference": -0.004655985076455959,
+          "ci95": [
+            -0.027883394041238376,
+            0.016919592069450408
+          ],
+          "method": "paired resampling of calendar-day clusters; mean over three event lines",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": -0.008241483823004717,
+          "ci95": [
+            -0.05867808973625333,
+            0.03896349124283218
+          ],
+          "method": "paired resampling of calendar-day clusters; mean over three event lines",
+          "samples": 1500
+        }
+      }
+    }
+  },
+  "dataSha256": "a91a01c629307ff9e901e23422bb0d49688122a97fa37d55ec41acf460ff621e",
+  "codeSha256": "9637e6eb57de431698dbfcccb8a0d95764abc8cce4d348d3fadfad36bf2fcd65",
+  "sourceCoverage": {
+    "resultMatches": 4270,
+    "pairedCornerMatches": 4270,
+    "missingCornerMatches": 0,
+    "latestResultDate": "2026-11-02",
+    "latestCornerDate": "2026-11-02"
+  },
+  "evaluation": {
+    "kind": "rolling_historical_corner_procedure",
+    "targets": 121,
+    "commonMatches": 121,
+    "from": "2026-05-09",
+    "to": "2026-11-02",
+    "lines": [
+      8.5,
+      9.5,
+      10.5
+    ],
+    "metrics": {
+      "challenger": {
+        "n": 121,
+        "brier": 0.2506961281311956,
+        "logloss": 0.6951005178955995,
+        "accuracy": 0.5537190082644629,
+        "meanAbsoluteError": 2.8072649439094093,
+        "predictiveIntervalCoverage": 0.8429752066115702,
+        "meanPredictiveIntervalWidth": 8.84297520661157,
+        "byLine": {
+          "8.5": {
+            "n": 121,
+            "brier": 0.252931339583185,
+            "logloss": 0.7006299338394688,
+            "accuracy": 0.5785123966942148
+          },
+          "9.5": {
+            "n": 121,
+            "brier": 0.25407273078424847,
+            "logloss": 0.7013759309256863,
+            "accuracy": 0.5041322314049587
+          },
+          "10.5": {
+            "n": 121,
+            "brier": 0.2450843140261533,
+            "logloss": 0.6832956889216435,
+            "accuracy": 0.5785123966942148
+          }
+        }
+      },
+      "baseline": {
+        "n": 121,
+        "brier": 0.2506961281311956,
+        "logloss": 0.6951005178955995,
+        "accuracy": 0.5537190082644629,
+        "meanAbsoluteError": 2.8072649439094093,
+        "predictiveIntervalCoverage": 0.8429752066115702,
+        "meanPredictiveIntervalWidth": 8.84297520661157,
+        "byLine": {
+          "8.5": {
+            "n": 121,
+            "brier": 0.252931339583185,
+            "logloss": 0.7006299338394688,
+            "accuracy": 0.5785123966942148
+          },
+          "9.5": {
+            "n": 121,
+            "brier": 0.25407273078424847,
+            "logloss": 0.7013759309256863,
+            "accuracy": 0.5041322314049587
+          },
+          "10.5": {
+            "n": 121,
+            "brier": 0.2450843140261533,
+            "logloss": 0.6832956889216435,
+            "accuracy": 0.5785123966942148
+          }
+        }
+      }
+    }
+  },
+  "dataSources": [
+    {
+      "season": 2015,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "bd3502a18c38a1597fd9af62e2366b4015006d3528dd4d18b311bd6237bbc085",
+      "url": "https://www.football-data.co.uk/mmz4281/1516/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2016,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "9625a7652b5f98fbd3e2e4d378c851fc246693f3343e34a72428d5b6e864d3e0",
+      "url": "https://www.football-data.co.uk/mmz4281/1617/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2017,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "4f3389365ef3f7ac966764ed8ba67cf3b79f5aebed18dd224099c4b2c98bc67b",
+      "url": "https://www.football-data.co.uk/mmz4281/1718/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2018,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "7c096b3c2ecd54c6993d22eeea73450c2bde11e3457238b226b8f43c62dfc35e",
+      "url": "https://www.football-data.co.uk/mmz4281/1819/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2019,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "100037618b94f94057400bb02bf6bac4ef74ddaa58cde4b38370839c39caee61",
+      "url": "https://www.football-data.co.uk/mmz4281/1920/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2020,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "5afe63f69401457b8354eaacee24f9a3e520b3c3af6329564a9783e20d789c62",
+      "url": "https://www.football-data.co.uk/mmz4281/2021/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2021,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "335afcbabeb2939fa10ab39ba3e8215072d0b577cb8d0705c1e44c56e934e703",
+      "url": "https://www.football-data.co.uk/mmz4281/2122/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2022,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "8442792d3b614c94ea3cf381bd2736805889cc1713169035368fff19c3d02380",
+      "url": "https://www.football-data.co.uk/mmz4281/2223/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2023,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "b2e057b0ed959f198b0f63d2391c01239f3608e6de5db68edab3f88e04d07ff3",
+      "url": "https://www.football-data.co.uk/mmz4281/2324/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2024,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "d0c8ce4a96d886cf60cf101f570f4a3893844226f91c7bd769eb568c49edbfa4",
+      "url": "https://www.football-data.co.uk/mmz4281/2425/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2025,
+      "rows": 380,
+      "cornerRows": 380,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "3e3a8352f9ada6789c508d6ca184424421fed56a30400904a4a327c583407e62",
+      "url": "https://www.football-data.co.uk/mmz4281/2526/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    },
+    {
+      "season": 2026,
+      "rows": 90,
+      "cornerRows": 90,
+      "missingCornerRows": 0,
+      "invalidCornerRows": 0,
+      "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
+      "url": "https://www.football-data.co.uk/mmz4281/2627/E0.csv",
+      "used_columns": [
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR",
+        "HC",
+        "AC"
+      ],
+      "not_used": "Target-match statistics and future corner counts never enter their own prediction."
+    }
+  ],
+  "durationSeconds": 1.8860540739999863,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true,
+  "limitations": [
+    "The persisted corner recipe is fixed; no new search or selection occurs.",
+    "Monitoring evaluates rolling historical fits, not the final weights on future matches.",
+    "Corner event accuracy is not comparable to three-way match-outcome accuracy.",
+    "Target and immediately preceding calendar-day observations are excluded.",
+    "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
+  ],
+  "computeSeconds": 0.10939323300002002,
+  "generatedAt": "2026-11-09T01:52:53.951411+00:00",
+  "repository": "FoXsYsOfficial1909/Footpredict",
+  "runId": "42547840544",
+  "runAttempt": "1",
+  "sourceCommit": "6b75a03ba30e1852b94975288a4c55af1148f8fa",
+  "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42547840544",
+  "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42547840544#artifacts",
+  "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/9c164b2e722d2b94c0a34abe87f90b494a97cf012be779ac0e3cc6fd3a6b5c51.json"
+}
