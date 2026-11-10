@@ -2,22 +2,22 @@
   "schemaVersion": 1,
   "latestAttempt": {
     "schemaVersion": 1,
-    "generatedAt": "2026-11-09T02:32:38.614770Z",
+    "generatedAt": "2026-11-10T02:29:55.826693Z",
     "status": "stale",
     "dataStatus": "stale",
     "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
     "lastSuccessfulAcceptedAt": "2026-11-06T04:05:14.787131Z",
     "lastSuccessfulAvailable": true,
     "dataLastMatchDate": "2026-10-25",
-    "dataAgeDays": 15,
+    "dataAgeDays": 16,
     "retainedPreviousSnapshot": true,
     "newMatchesAdded": 0,
     "coverage": {
       "season": 2026,
-      "completedMatches": 90,
+      "completedMatches": 100,
       "matchedXg": 80,
-      "missingXg": 10,
-      "latestResultDate": "2026-11-02",
+      "missingXg": 20,
+      "latestResultDate": "2026-11-08",
       "latestXgDate": "2026-10-25",
       "missingFixtures": [
         {
@@ -69,6 +69,56 @@
           "date": "2026-11-02",
           "home": "Newcastle",
           "away": "Everton"
+        },
+        {
+          "date": "2026-11-06",
+          "home": "Everton",
+          "away": "Coventry"
+        },
+        {
+          "date": "2026-11-07",
+          "home": "Arsenal",
+          "away": "Hull"
+        },
+        {
+          "date": "2026-11-07",
+          "home": "Fulham",
+          "away": "Newcastle"
+        },
+        {
+          "date": "2026-11-07",
+          "home": "Leeds",
+          "away": "Tottenham"
+        },
+        {
+          "date": "2026-11-07",
+          "home": "Nott'm Forest",
+          "away": "Man City"
+        },
+        {
+          "date": "2026-11-08",
+          "home": "Brighton",
+          "away": "Brentford"
+        },
+        {
+          "date": "2026-11-08",
+          "home": "Crystal Palace",
+          "away": "Liverpool"
+        },
+        {
+          "date": "2026-11-08",
+          "home": "Ipswich",
+          "away": "Bournemouth"
+        },
+        {
+          "date": "2026-11-08",
+          "home": "Man United",
+          "away": "Aston Villa"
+        },
+        {
+          "date": "2026-11-08",
+          "home": "Sunderland",
+          "away": "Chelsea"
         }
       ]
     },
@@ -364,10 +414,10 @@
       },
       {
         "season": 2026,
-        "rows": 90,
-        "sha256": "c429b75f681dc7aaec5641a23320402409530b4b01a9f147bb7e386fe508159b",
-        "shotsRows": 90,
-        "xgRows": 90,
+        "rows": 100,
+        "sha256": "d598a5f681e1a9a4acf9dad9fb203b68da6f67e2d195678dbe99e95fbba14593",
+        "shotsRows": 100,
+        "xgRows": 100,
         "invalidStatisticsRows": 0,
         "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
       }
@@ -377,10 +427,10 @@
     "promotedToDefault": false,
     "repository": "FoXsYsOfficial1909/Footpredict",
     "sourceCommit": "6b75a03ba30e1852b94975288a4c55af1148f8fa",
-    "runId": "42551494933",
+    "runId": "42743115399",
     "runAttempt": "1",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42551494933",
-    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/runs/42551494933-1.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42743115399",
+    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/runs/42743115399-1.json"
   },
   "lastAccepted": {
     "schemaVersion": 1,
