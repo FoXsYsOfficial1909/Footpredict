@@ -5,6 +5,7 @@ import {comparisonReport,comparisonEvidence,NIGHTLY_COMPARISON_PROTOCOL} from '.
 import {loadNightlyModel} from './nightly-model.mjs';
 import {getPlayerContext,PLAYER_CONTEXT_VERSION} from './player-context.mjs';
 import {getSiteAsset} from './site-assets.mjs';
+import {researchTrainingPage} from './research-export.mjs';
 import {AUTOMATION_VERSION, runAutomation, automationStatus, dailyReport, shadowHistory, shadowEvidence} from './automation.mjs';
 
 const PRIOR_SEASON_WEIGHT = 0.35;
@@ -516,6 +517,11 @@ export default {
       if(u.search)fail(400,'Неизвестный параметр сведений об игроках.');
       if(req.method!=='GET')fail(405,'Метод не разрешён.');
       return reply(await getPlayerContext(positiveId(playerContextMatch[1]),env,researchServices(env)));
+    }
+    if(u.pathname==='/v1/research/training'){
+      if(req.method!=='GET')fail(405,'Метод не разрешён.');
+      if([...u.searchParams.keys()].some(k=>k!=='after')||u.searchParams.getAll('after').length>1)fail(400,'Неизвестный параметр архива.');
+      return reply(await researchTrainingPage(env,u.searchParams.get('after')));
     }
     const researchMatch=u.pathname.match(/^\/v1\/research\/(\d{1,12})(\/(?:refresh|stored))?$/);
     if(researchMatch){

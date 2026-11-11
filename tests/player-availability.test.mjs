@@ -34,6 +34,18 @@ test('official structured reports retain attribution and uncertainty without FPL
   assert.equal(JSON.stringify(result).includes('chance_of_playing'),false);
 });
 
+test('season minutes are captured at source time for the entire registered squad, not invented for old records',()=>{
+ const data=input();data.bootstrap.elements[0].minutes=600;data.bootstrap.elements[1].minutes=300;
+ const result=parse(data),team=result.teams[0];
+ assert.equal(team.importance.status,'available');assert.equal(team.importance.totalMinutes,900);
+ assert.equal(team.roster.length,2);assert.equal(team.roster[0].seasonMinutes,600);
+ assert.equal(team.importance.asOf,result.fetchedAt);
+ assert.equal(parse().teams[0].importance.status,'unknown');
+ assert.equal(parse().teams[0].roster[0].seasonMinutes,null);
+ const departed=input();departed.bootstrap.elements[0].news='has returned to Getafe CF';
+ assert.equal(parse(departed).teams[0].excludedPlayers,1);
+});
+
 test('wrong season, unknown clubs, reversed opponents or a shifted kickoff never attach reports',()=>{
   const wrongYear={...fixture,utcDate:'2025-11-07T15:00:00Z'};
   for(const target of [wrongYear,{...fixture,utcDate:'2027-11-07T15:00:00Z'},

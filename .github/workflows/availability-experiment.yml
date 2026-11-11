@@ -1,0 +1,77 @@
+name: Availability correction experiment
+
+on:
+  schedule:
+    - cron: '13 2 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/availability-experiment.yml'
+      - 'research/availability_experiment.py'
+      - 'research/player_features.py'
+      - 'research/features.py'
+      - 'research/features_time.py'
+      - 'scripts/publish_availability.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: footpredict-availability-experiment
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - run: python -m pip install -r requirements-research.txt
+      - run: python -m unittest tests.test_features tests.test_player_features tests.test_availability_experiment
+      - name: Restore original observations, models and frozen forecasts
+        run: python -m scripts.publish_availability restore --state-dir data/availability
+      - name: Read dated archives, fit only sufficient data and compare frozen pairs
+        id: evaluate
+        continue-on-error: true
+        run: python -m research.availability_experiment --state-dir data/availability --output artifacts/availability
+      - name: Record an explicit failed check
+        if: steps.evaluate.outcome == 'failure'
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import json
+          root=Path('artifacts/availability');root.mkdir(parents=True,exist_ok=True)
+          report={'schemaVersion':1,'protocol':'availability-residual-1','status':'failed',
+              'generatedAt':datetime.now(timezone.utc).isoformat(),'promotedToDefault':False,
+              'message':'Input or evaluation failed. Previous observations and forecasts are preserved.'}
+          (root/'report.json').write_text(json.dumps(report))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: availability-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/availability/
+          retention-days: 90
+      - name: Publish the check without changing the main prediction
+        if: always() && hashFiles('artifacts/availability/report.json') != ''
+        run: |
+          python -m scripts.publish_availability publish --state-dir data/availability --output artifacts/availability \
+            --repository '${{ github.repository }}' --run-id '${{ github.run_id }}' \
+            --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
+      - name: Evaluation summary
+        if: always() && hashFiles('artifacts/availability/report.md') != ''
+        run: cat artifacts/availability/report.md >> "$GITHUB_STEP_SUMMARY"
+      - if: steps.evaluate.outcome == 'failure'
+        run: exit 1

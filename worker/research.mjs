@@ -9,7 +9,7 @@ import {getPlayerAvailability} from './player-availability.mjs';
 import {getConfirmedLineups} from './confirmed-lineups.mjs';
 export {cleanText} from './text.mjs';
 export {normalizeModelAnswer} from './ai-response.mjs';
-export const RESEARCH_VERSION = 'research-0.8.0';
+export const RESEARCH_VERSION = 'research-0.9.0';
 const DAY = 86400000;
 const MAX_FEED_BYTES = 500000;
 const NEWS_AGE_DAYS = 10;

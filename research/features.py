@@ -1,19 +1,13 @@
 """Point-in-time feature rows. Unknown availability stays null, never 'healthy'."""
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import hashlib
 import json
 import math
+from research.features_time import instant
+from research.player_features import structured_player_features
 
-FEATURE_VERSION = 'apl-evidence-features-2'
-
-
-def instant(value):
-    result = datetime.fromisoformat(str(value).replace('Z', '+00:00'))
-    if result.tzinfo is None:
-        raise ValueError('A timezone is required')
-    return result.astimezone(timezone.utc)
+FEATURE_VERSION = 'apl-evidence-features-3'
 
 
 def digest(value):
@@ -55,6 +49,8 @@ def feature_row(packet):
         raise ValueError('Invalid forecast probabilities')
     if instant(candidate['generatedAt']) > cutoff:
         raise ValueError('Forecast was generated after the snapshot cutoff')
+    if instant(candidate['asOf'] + 'T00:00:00Z') > cutoff:
+        raise ValueError('Model training cutoff postdates the source snapshot')
     if instant(candidate['asOf'] + 'T00:00:00Z') >= kickoff:
         raise ValueError('Model training cutoff must precede kickoff')
     features = {'horizon_hours': (kickoff - cutoff).total_seconds() / 3600}
@@ -97,11 +93,13 @@ def feature_row(packet):
         team_reports = [report for report in reports if report.get('team') == team['name']] if reports is not None else None
         features[prefix + 'source_availability_reports'] = len(team_reports) if team_reports is not None else None
         features[prefix + 'official_availability_reports'] = sum(report.get('sourceType') == 'official_club' for report in team_reports) if team_reports is not None else None
+    player_features, player_context = structured_player_features(packet)
+    features.update(player_features)
     return {'schema_version': FEATURE_VERSION, 'fixture_id': fixture['id'], 'kickoff': fixture['kickoff'],
             'home': fixture['home'], 'away': fixture['away'], 'collected_at': packet['collectedAt'],
             'snapshot_sha256': digest(packet), 'features': features,
             'forecast': {'model_version': candidate['modelVersion'], 'generated_at': candidate['generatedAt'],
                          'training_cutoff': candidate['asOf'], 'probabilities': probabilities,
                          'news_used_in_probabilities': candidate.get('newsUsedInProbabilities', False)},
-            'target': None,
+            'target': None, 'player_context': player_context,
             'interpretation': 'Reports and missingness describe available sources, not confirmed player health. No outcome is a feature.'}

@@ -1,0 +1,33 @@
+{
+  "protocol": "availability-residual-1",
+  "registeredOn": "2026-11-11",
+  "baselineModelVersion": "ensemble-v2-experimental-0.1",
+  "source": "Dated original research snapshots; FPL registered-player season minutes and provider statuses",
+  "features": ["reported_loss_minutes_share", "doubtful_minutes_share", "uncertain_minutes_share"],
+  "transformation": "Away minus home shares; additive logit offset [delta, 0, -delta]",
+  "ridge": 10.0,
+  "coefficientBounds": [-4.0, 4.0],
+  "minimumTrainingMatches": 60,
+  "requireAllThreeOutcomeClasses": true,
+  "forecastHorizonHours": [24, 168],
+  "freezeNewProspectiveForecastWithinHours": [24, 48],
+  "trainingResultSafetyHours": 4,
+  "prospectiveEvidenceGate": {
+    "minimumSettledPairs": 60,
+    "minimumDistinctKickoffDays": 10,
+    "metrics": ["brier", "logLoss"],
+    "confidence": 0.95,
+    "bootstrapBlocks": "UTC kickoff day",
+    "bootstrapSamples": 1000,
+    "rule": "Upper confidence bound of paired candidate-minus-baseline error must be below zero for both metrics"
+  },
+  "automaticPromotion": false,
+  "lineupsUsedInCorrection": false,
+  "notes": [
+    "The threshold permits a first fit; it does not promise accuracy or automatic production use.",
+    "Missing old minutes remain missing. Stale/undated reports form a separate uncertainty feature.",
+    "Minutes are a player-role proxy inside the registered FPL squad, not full replacement quality.",
+    "Provider-published XIs are extracted only in the separate late window; no day-ahead leakage.",
+    "Changing the feature semantics or recipe requires a new protocol and prospective cohort."
+  ]
+}

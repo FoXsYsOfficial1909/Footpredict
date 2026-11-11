@@ -8,7 +8,7 @@ export const PLAYER_AVAILABILITY_LIMITS = Object.freeze({cacheSeconds:3600, fail
   maxBytes:3000000, maxFixtures:500, maxPlayers:1500, newsAgeDays:14});
 const BOOTSTRAP_URL='https://fantasy.premierleague.com/api/bootstrap-static/';
 const FIXTURES_URL='https://fantasy.premierleague.com/api/fixtures/';
-const CACHE_KEY='research:fpl:availability:v1';
+const CACHE_KEY='research:fpl:availability:v2';
 const DAY=86400000;
 const STATUS=Object.freeze({a:'available',i:'injured',d:'doubtful',s:'suspended',u:'unavailable'});
 const inflight=new WeakMap();
@@ -38,6 +38,7 @@ function selectedFixture(value={}) {
 
 function baseTeam(team) {
   return {team,name:team,status:'unknown',reports:[],registeredPlayerCount:0,excludedPlayers:0,
+    roster:null,importance:{status:'unknown',proxy:'registered_squad_season_minutes'},
     medicalStatus:'unknown',fixtureReadiness:'not_confirmed',absenceConfirmed:false,
     rosterCoverage:'FPL registered players only; not a complete first-team squad'};
 }
@@ -70,7 +71,7 @@ function validShape(bootstrap,fixtures) {
 }
 
 // Explicit departures must not appear as injuries to a club's present squad.
-const DEPARTED=/\b(?:has |have )?(?:joined|departed|left the club|left club|transferred|released by)\b|\b(?:contract (?:has )?expired|free agent|loaned (?:out |to ))\b/i;
+const DEPARTED=/\b(?:has |have )?(?:joined|departed|left the club|left club|transferred|released by)\b|\b(?:contract (?:has )?expired|free agent|loaned (?:out |to ))\b|\breturned to [A-Z][\w .'-]+(?:FC|CF|AFC)\b/i;
 
 /** Match the exact home/away clubs AND UTC kickoff before attaching any current FPL status. */
 export function parseAvailability(bootstrap,fixtures,options={}) {
@@ -93,6 +94,7 @@ export function parseAvailability(bootstrap,fixtures,options={}) {
   const teams=selected.names.map(baseTeam);
   for(let index=0;index<teams.length;index++) {
     const target=teams[index],players=bootstrap.elements.filter(player=>player.team===clubs[index].id);
+    target.roster=[];
     for(const player of players) {
       // 1–4 are football positions; any manager/coach or removed registry entry is excluded.
       const news=safeText(player.news,600);
@@ -105,9 +107,12 @@ export function parseAvailability(bootstrap,fixtures,options={}) {
       if(Number.isFinite(published)&&published>now) {target.excludedPlayers++;continue;}
       target.registeredPlayerCount++;
       const status=STATUS[player.status]||'unknown';
+      const freshness=!news?'status_only':!Number.isFinite(published)?'undated':now-published>PLAYER_AVAILABILITY_LIMITS.newsAgeDays*DAY?'stale':'recent';
+      target.roster.push({playerId:player.id,player:name,position:player.element_type,status,
+        seasonMinutes:Number.isInteger(player.minutes)&&player.minutes>=0&&player.minutes<=10000?player.minutes:null,
+        newsPublishedAt:news?iso(published):null,newsFreshness:freshness});
       // "Available" without news is not a report of medical fitness or a selected starting XI.
       if(status==='available'&&!news)continue;
-      const freshness=!news?'status_only':!Number.isFinite(published)?'undated':now-published>PLAYER_AVAILABILITY_LIMITS.newsAgeDays*DAY?'stale':'recent';
       target.reports.push({id:'fpl:'+player.id,playerId:player.id,player:name,team:target.team,status,
         providerStatus:typeof player.status==='string'?safeText(player.status,10):null,
         reason:news||null,news:news||null,publishedAt:news?iso(published):null,
@@ -117,6 +122,10 @@ export function parseAvailability(bootstrap,fixtures,options={}) {
         medicalStatus:'unknown',fixtureReadiness:'not_confirmed',absenceConfirmed:false});
     }
     target.status=!target.registeredPlayerCount?'unknown':target.reports.length?'reports_found':'no_supported_reports';
+    target.importance={status:target.roster.length&&target.roster.every(p=>p.seasonMinutes!==null)?'available':'unknown',
+      proxy:'registered_squad_season_minutes',asOf:fetchedAt,
+      totalMinutes:target.roster.every(p=>p.seasonMinutes!==null)?target.roster.reduce((n,p)=>n+p.seasonMinutes,0):null,
+      scope:'Current FPL registered squad only; minutes proxy is not replacement quality or medical fitness.'};
   }
   const result={source:PLAYER_AVAILABILITY_SOURCE,sourceType:'official_fpl_metadata',url:BOOTSTRAP_URL,
     fixtureUrl:FIXTURES_URL,status:teams.every(team=>team.registeredPlayerCount)?'available':'partial',
@@ -133,7 +142,7 @@ export function parseAvailability(bootstrap,fixtures,options={}) {
 
 function compact(bootstrap,fixtures) {
   if(!validShape(bootstrap,fixtures))throw Object.assign(new Error('Invalid FPL schema'),{reason:'invalid_source_schema'});
-  const fields=['id','team','first_name','second_name','status','news','news_added','element_type','removed'];
+  const fields=['id','team','first_name','second_name','status','news','news_added','element_type','removed','minutes'];
   return {bootstrap:{teams:bootstrap.teams.map(team=>({id:team.id,name:safeText(team.name,100)})),
     events:bootstrap.events.map(event=>({id:event.id})),elements:bootstrap.elements.map(player=>Object.fromEntries(fields.map(field=>[field,player[field]])))},
     fixtures:fixtures.map(game=>Object.fromEntries(['id','event','team_h','team_a','kickoff_time','started','finished'].map(field=>[field,game[field]])))};
@@ -144,7 +153,7 @@ async function readCache(env,services) {
     const item=await env.FOOTPREDICT_CACHE?.get(CACHE_KEY,'json');
     const age=services.now()-timestamp(item?.fetchedAt);
     const ttl=item?.error?PLAYER_AVAILABILITY_LIMITS.failureSeconds:PLAYER_AVAILABILITY_LIMITS.cacheSeconds;
-    if(item?.version===1&&age>=0&&age<ttl*1000&&(item.error||validShape(item.bootstrap,item.fixtures)))return item;
+    if(item?.version===2&&age>=0&&age<ttl*1000&&(item.error||validShape(item.bootstrap,item.fixtures)))return item;
   } catch { /* Optional cache; failure is never evidence of a healthy squad. */ }
   return null;
 }
@@ -166,9 +175,9 @@ async function collect(env,services) {
   let item;
   try {
     const [bootstrap,fixtures]=await Promise.all([fetchJson(BOOTSTRAP_URL,services),fetchJson(FIXTURES_URL,services)]);
-    item={version:1,...compact(bootstrap,fixtures),fetchedAt:iso(services.now())};
+    item={version:2,...compact(bootstrap,fixtures),fetchedAt:iso(services.now())};
   } catch(error) {
-    item={version:1,fetchedAt:iso(services.now()),error:{source:PLAYER_AVAILABILITY_SOURCE,
+    item={version:2,fetchedAt:iso(services.now()),error:{source:PLAYER_AVAILABILITY_SOURCE,
       status:Number.isInteger(error?.status)?error.status:null,reason:error?.reason||'request_failed'}};
   }
   try {await services.cachePut(CACHE_KEY,item,item.error?PLAYER_AVAILABILITY_LIMITS.failureSeconds:PLAYER_AVAILABILITY_LIMITS.cacheSeconds);}catch{/* Optional cache. */}
