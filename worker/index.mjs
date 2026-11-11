@@ -16,11 +16,11 @@ const MIN_TEAM_SIDE_GAMES = 2;
 const FINISH_SAFETY_HOURS = 4;
 const DAY_MS = 86400000;
 
-function completedBefore(games,target,year) {
+function completedBefore(games,target,year,now=Date.now()) {
   const start = Date.parse(target.utcDate);
   // Kickoff is known; true final whistle time is not included in the API.
   // To avoid same-time match leakage, allow only games kicked off 4+ hours earlier.
-  const cutoff = Math.min(Date.now(),start) - FINISH_SAFETY_HOURS*3600000;
+  const cutoff = Math.min(now,start) - FINISH_SAFETY_HOURS*3600000;
   if (!Number.isFinite(cutoff)) return [];
   return games.filter(g => {
     const t = Date.parse(g.utcDate);
@@ -48,8 +48,8 @@ function summary(games,side,weights) {
   }
   return {count,sum,goals};
 }
-function estimateStats(games,target,year) {
-  const prior = completedBefore(games,target,year);
+function estimateStats(games,target,year,now=Date.now()) {
+  const prior = completedBefore(games,target,year,now);
   const home = prior.filter(g => g.homeTeam.id === target.homeTeam.id);
   const away = prior.filter(g => g.awayTeam.id === target.awayTeam.id);
   if (prior.length < MIN_LEAGUE_GAMES ||
@@ -276,6 +276,17 @@ function validateUpcoming(g,now=Date.now()){
   positiveId(g.id);positiveId(g.homeTeam?.id);positiveId(g.awayTeam?.id);
 }
 function normalized(g,year){return {id:g.id,utcDate:g.utcDate,status:g.status,homeTeam:{id:g.homeTeam?.id},awayTeam:{id:g.awayTeam?.id},score:g.score,__year:year};}
+// Offline batch registration uses exactly the production model, with an explicit clock.
+export function frozenV1Forecast(current,previous,game,year,now){
+  if(!Number.isFinite(now)||Date.parse(game.utcDate)<=now)throw new Error('A future fixture and explicit registration clock are required.');
+  const games=current.map(g=>normalized(g,year)).concat(previous.map(g=>normalized(g,year-1)));
+  const stats=estimateStats(games,game,year,now),result=predict(stats);
+  return {modelVersion:MODEL_VERSION,probabilities:result.prob,baseline:stats.baseCounts,
+    expectedGoals:[result.homeGoals,result.awayGoals],mostLikelyScore:result.score,stats,
+    inputs:completedBefore(games,game,year,now),
+    parameters:{priorSeasonWeight:PRIOR_SEASON_WEIGHT,halfLifeDays:HALF_LIFE_DAYS,regularizationGames:REGULARIZATION_GAMES,
+      minLeagueGames:MIN_LEAGUE_GAMES,minTeamSideGames:MIN_TEAM_SIDE_GAMES,finishSafetyHours:FINISH_SAFETY_HOURS,goalCap:5,poissonMax:20}};
+}
 async function getSaved(env,id){
   const d=primary(env),r=await d.prepare('SELECT snapshot,saved_at FROM predictions WHERE id=?1').bind(id).first();
   if(!r)return null;

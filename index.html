@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101827">
-<title>FootPredict 1.9.2 — прогнозы матчей АПЛ</title>
-<link rel="stylesheet" href="./research-ui.css">
+<title>FootPredict 1.10 — прогнозы матчей АПЛ</title>
+<link rel="stylesheet" href="./research-ui.css?v=1.10">
 <link rel="stylesheet" href="./quality-ui.css?v=1.8">
 <link rel="stylesheet" href="./navigation.css">
 <style>
@@ -379,7 +379,7 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 <main>
 <header class="app-header">
 <div class="brand"><span class="brand-mark" aria-hidden="true">⚽</span><div class="brand-copy"><h1>FootPredict</h1><div class="muted small">Прогнозы · история · результаты</div></div></div>
-<span class="version">v1.9.2</span>
+<span class="version">v1.10</span>
 </header>
 <nav class="app-tabs" role="tablist" aria-label="Разделы приложения"><a id="tab-matches" href="#matches" role="tab" aria-controls="matches" aria-selected="true" tabindex="0" data-app-tab="matches">Матчи</a><a id="tab-history" href="#history" role="tab" aria-controls="history" aria-selected="false" tabindex="-1" data-app-tab="history">История</a><a id="tab-quality" href="#quality" role="tab" aria-controls="quality" aria-selected="false" tabindex="-1" data-app-tab="quality">Качество</a><a id="tab-data" href="#data" role="tab" aria-controls="data" aria-selected="false" tabindex="-1" data-app-tab="data" class="owner-only">Инструменты</a></nav>
 <div id="matches" class="app-panel" role="tabpanel" aria-labelledby="tab-matches" data-app-panel><div class="workbench">
@@ -473,8 +473,18 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
  <p id="calcError" class="danger small" role="alert"></p>
 </section>
 </div>
-<div id="history" class="app-panel" role="tabpanel" aria-labelledby="tab-history" data-app-panel hidden><section class="card" id="predictionHistory">
-<div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-title"><h2>История прогнозов</h2></div></div>
+<div id="history" class="app-panel" role="tabpanel" aria-labelledby="tab-history" data-app-panel hidden>
+<section class="card" id="hundredSeries" aria-labelledby="hundredTitle">
+<h2 id="hundredTitle">Проверяем 100 матчей</h2>
+<p id="hundredSummary" class="status" role="status">Загружаю зафиксированные прогнозы…</p>
+<p id="hundredFrozen" class="research-note"></p>
+<p class="research-note">Чемпионшип · Бразилия · АПЛ · Ла Лига. Эта серия оценивается отдельно от прежних прогнозов.</p>
+<div id="hundredRows" class="list"></div>
+<div class="research-actions"><button type="button" id="hundredMore" hidden>Ещё 10 матчей</button><button type="button" id="hundredCsv" class="secondary" disabled>Скачать все 100 · CSV</button></div>
+<p id="hundredChecked" class="research-note"></p>
+</section>
+<section class="card" id="predictionHistory">
+<div class="section-heading"><span class="section-number" aria-hidden="true">04</span><div class="section-title"><h2>Архив прежних прогнозов</h2></div></div>
 <p class="section-hint">Заранее сохранённые прогнозы и подтверждённые результаты матчей.</p>
 <div class="history-overview hidden" id="historyOverview" aria-label="Сводка загруженных прогнозов">
 <div class="overview-stat"><span class="overview-label">Загружено</span><strong class="overview-value" id="historyTotal">0</strong></div>
@@ -633,7 +643,7 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 <p class="research-note"><a href="https://github.com/FoXsYsOfficial1909/Footpredict/actions/workflows/automatic-experiments.yml" target="_blank" rel="noopener noreferrer">Отчёты автоматической проверки моделей</a></p>
 </section>
 </div>
-<p class="credit"><a href="#data" id="ownerToolsLink">Инструменты владельца</a> · FootPredict 1.9.2 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, <a href="https://fantasy.premierleague.com/">Fantasy Premier League</a>, ESPN и BBC Sport</p>
+<p class="credit"><a href="#data" id="ownerToolsLink">Инструменты владельца</a> · FootPredict 1.10 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, <a href="https://fantasy.premierleague.com/">Fantasy Premier League</a>, ESPN и BBC Sport</p>
 </main>
 <script>
 (() => {
@@ -1618,5 +1628,6 @@ openPremierLeague();
 <script type="module" src="./corners-ui.js?v=1.0"></script>
 <script type="module" src="./training-ui.js"></script>
 <script type="module" src="./availability-training-ui.js?v=1"></script>
+<script type="module" src="./hundred-ui.js?v=1"></script>
 </body>
 </html>

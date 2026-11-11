@@ -1,0 +1,71 @@
+name: Frozen hundred match results
+
+on:
+  schedule:
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/hundred-results.yml'
+      - 'research/hundred.py'
+      - 'scripts/publish_hundred.py'
+      - 'docs/research/hundred-2026-11-11/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frozen-hundred-results
+  cancel-in-progress: false
+
+jobs:
+  settle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest tests.test_hundred
+      - name: Verify all one hundred frozen probabilities against original inputs
+        run: python -m research.hundred verify
+      - name: Restore previous observations for persistent review flags
+        run: python -m scripts.publish_hundred restore --output artifacts/hundred-previous.json
+      - name: Read current results without recomputing forecasts
+        id: settle
+        continue-on-error: true
+        run: python -m research.hundred settle --previous artifacts/hundred-previous.json --output artifacts/hundred
+      - name: Preserve an explicit failed observation
+        if: steps.settle.outcome == 'failure'
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime,timezone
+          from pathlib import Path
+          from research.hundred import REGISTERED_SHA,PROTOCOL
+          root=Path('artifacts/hundred');root.mkdir(parents=True,exist_ok=True)
+          (root/'report.json').write_text(json.dumps({'schemaVersion':1,'protocol':PROTOCOL,
+              'packetSha256':REGISTERED_SHA,'status':'failed','checkedAt':datetime.now(timezone.utc).isoformat(),
+              'forecastsChanged':False,'message':'Results could not be verified; previous observations are preserved.'}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hundred-results-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/hundred/
+          retention-days: 90
+      - name: Publish the separate result observation
+        if: always() && hashFiles('artifacts/hundred/report.json') != ''
+        run: |
+          python -m scripts.publish_hundred publish --output artifacts/hundred \
+            --repository '${{ github.repository }}' --run-id '${{ github.run_id }}' \
+            --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
+      - name: Check summary
+        if: always() && hashFiles('artifacts/hundred/report.md') != ''
+        run: cat artifacts/hundred/report.md >> "$GITHUB_STEP_SUMMARY"
+      - if: steps.settle.outcome == 'failure'
+        run: exit 1

@@ -52,7 +52,7 @@ test('health does not expose secret values',async()=>{
 test('the public Worker site serves only bundled assets and supports same-origin API reads',async()=>{
   const index=await worker.fetch(request('/app/'),env);
   assert.equal(index.status,200);assert.match(index.headers.get('Content-Type'),/^text\/html/);
-  assert.match(await index.text(),/FootPredict 1\.9/);
+  assert.match(await index.text(),/FootPredict 1\.10/);
   const script=await worker.fetch(request('/app/research-ui.js?v=1.9'),env);
   assert.equal(script.status,200);assert.match(await script.text(),/\/v1\/player-context\//);
   const head=await worker.fetch(request('/app/','HEAD'),env);

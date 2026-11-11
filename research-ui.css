@@ -43,6 +43,13 @@
 .automation-forecast { padding:12px 0; border-bottom:1px solid #2d455a; }
 .automation-forecast h3 { font-size:15px; color:var(--text); }
 .research-source-errors { font-size:12px; color:#e4c899; padding-left:18px; }
+.hundred-row { padding:15px; border:1px solid var(--line); border-radius:14px; background:var(--field); }
+.hundred-row h3 { color:var(--text); font-size:15px; margin-bottom:7px; overflow-wrap:anywhere; }
+.hundred-probabilities { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:12px 0; }
+.hundred-probabilities div { padding:8px; border:1px solid var(--line); border-radius:9px; font-variant-numeric:tabular-nums; }
+.hundred-probabilities span { display:block; font-size:12px; color:var(--muted); }
+.hundred-probabilities strong { font-size:17px; }
+.hundred-probabilities .is-leading { border-color:#327252; background:#143429; }
 @media(max-width:600px) {
   .research-team-grid { grid-template-columns:1fr; }
   .research-actions { display:grid; grid-template-columns:1fr; }

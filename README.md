@@ -51,6 +51,8 @@ source /workspace/.venvs/footpredict/bin/activate
 
 Историческая проверка: [карточка модели](docs/model-card.md). Проверка исходной серии: [аудит результатов](docs/results-audit.md). Архитектура, API и восстановление: [автоматическая работа](docs/automation.md).
 
+[Новая серия из 100 будущих матчей](docs/research/hundred-2026-11-11/README.md) зафиксирована 11 ноября 2026 до начала игр. Прогнозы, CSV и исходные данные неизменны; автоматическая сверка результатов работает каждые шесть часов. Серия видна во вкладке «История» и оценивается отдельно от прежних архивов.
+
 Статусы FPL, игровые минуты и сохранённые составы теперь читаются [экспериментальным обучением поправки](docs/availability-learning.md). Оно запускается ежедневно отдельно от посещений сайта. Для первой попытки нужны 60 пригодных завершённых матчей; старые карточки без минут остаются неполными. Основные вероятности v1 не меняются, объявленные составы не попадают в прогноз за сутки.
 
 Раздел [«Качество прогнозов»](https://foxsysofficial1909.github.io/Footpredict/#qualityDashboard) показывает размер выборки, долю совпадений, Brier и Log Loss, сравнение на общих матчах и разбор ошибок. Исторический эксперимент доступен отдельным режимом. Открытие раздела читает только сохранённые данные. Определения, исключения и API: [оценка качества](docs/quality.md).
@@ -78,6 +80,7 @@ python3 tests/browser_availability.py
 python3 tests/browser_player_context.py
 python3 tests/browser_source_translation.py
 python3 tests/browser_availability_learning.py
+python3 tests/browser_hundred.py
 python3 tests/browser_navigation.py
 python3 tests/browser_training.py
 ```
