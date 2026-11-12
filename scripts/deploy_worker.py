@@ -17,6 +17,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 import uuid
@@ -91,6 +92,16 @@ class Client:
 def hashes(modules):return {name:hashlib.sha256(body).hexdigest() for name,body in sorted(modules.items())}
 
 
+def confirmed_modules(client, expected):
+    """The content API can briefly return the previous version after a successful PUT."""
+    target=hashes(expected)
+    for attempt in range(6):
+        observed=client.modules()
+        if hashes(observed)==target:return observed
+        if attempt<5:time.sleep(2)
+    raise RuntimeError('Deployed modules do not match tested files')
+
+
 def save_backup(client,directory):
     directory=Path(directory)
     directory.mkdir(mode=0o700,parents=True,exist_ok=False)
@@ -158,8 +169,7 @@ def main():
     private_write(args.backup_dir/'upload-response.json',response)
     result=json.loads(response)
     if result.get('success') is not True:raise RuntimeError('Cloudflare did not confirm success')
-    deployed=client.modules();after=client.settings()
-    if hashes(deployed)!=hashes(modules):raise RuntimeError('Deployed modules do not match tested files')
+    deployed=confirmed_modules(client,modules);after=client.settings()
     if args.rollback:
         verify_settings(original,after)
     else:verify_settings(before,after,args.add_ai_binding)

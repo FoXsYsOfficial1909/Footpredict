@@ -1,5 +1,6 @@
 import unittest
-from scripts.deploy_worker import binding_metadata,multipart,parse_modules,verify_settings
+from unittest.mock import Mock,patch
+from scripts.deploy_worker import binding_metadata,multipart,parse_modules,verify_settings,confirmed_modules
 
 
 class DeploySafetyTests(unittest.TestCase):
@@ -26,6 +27,17 @@ class DeploySafetyTests(unittest.TestCase):
         verify_settings(self.settings,after,True)
         after={**after,'bindings':[item for item in after['bindings'] if item['name']!='ADMIN_TOKEN']}
         with self.assertRaises(RuntimeError):verify_settings(self.settings,after,True)
+
+    def test_eventual_source_visibility_does_not_cause_a_false_failed_deployment(self):
+        expected={'worker.js':b'export default {};'}
+        client=Mock();client.modules.side_effect=[{'worker.js':b'previous source'},expected]
+        with patch('scripts.deploy_worker.time.sleep'):
+            self.assertEqual(confirmed_modules(client,expected),expected)
+
+    def test_a_persistent_source_mismatch_is_never_accepted(self):
+        client=Mock();client.modules.return_value={'worker.js':b'different source'}
+        with patch('scripts.deploy_worker.time.sleep'),self.assertRaisesRegex(RuntimeError,'do not match'):
+            confirmed_modules(client,{'worker.js':b'expected source'})
 
 
 if __name__=='__main__':unittest.main()
