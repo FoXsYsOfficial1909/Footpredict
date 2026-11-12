@@ -1,0 +1,31 @@
+{
+  "protocol": "mixed-v1-calibration-1",
+  "registeredOn": "2026-11-12",
+  "purpose": "Use existing finished matches while the fixed future cohort is pending; never rewrite its forecasts",
+  "inputCohortSha256": "115bccbb92bcb85c69e4141d50d86cc185c70a62fdfbad6e2630517db820b39d",
+  "leagues": ["BSA", "ELC", "PD", "PL"],
+  "model": "poisson-1.0.0",
+  "replayLeadHours": 24,
+  "resultSafetyHours": 4,
+  "trainingCutoffExclusive": "2026-07-01",
+  "validationPeriod": ["2026-07-01", "2026-09-16"],
+  "auditPeriod": ["2026-09-16", "2026-11-12"],
+  "candidate": {
+    "source": "v1",
+    "mode": "temperature_bias",
+    "halfLife": 730,
+    "windowDays": 1460,
+    "ridge": 0.05
+  },
+  "candidateCount": 1,
+  "primaryMetrics": ["brier", "logloss"],
+  "preliminaryGate": "Both probability metrics must improve over v1 in validation and retrospective audit; report all outcomes even if the gate fails",
+  "automaticPromotion": false,
+  "limitations": [
+    "Historical final scores are observed now; this is retrospective development, not an untouched prospective test.",
+    "Some EPL periods have already been studied in earlier experiments.",
+    "First-season predictions lack older-season data; missing early histories are excluded by the production model's own minimums.",
+    "New calibration is not an injury model. It cannot create missing historical availability information.",
+    "Original one-hundred-match forecasts and inputs remain immutable."
+  ]
+}

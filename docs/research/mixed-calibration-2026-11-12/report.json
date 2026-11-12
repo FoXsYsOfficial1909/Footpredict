@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "protocol": "mixed-v1-calibration-1",
+  "planSha256": "e31d09bb46c2636ec85da34a3392a16f39d1cd28e4c0a2d6493fa0d2a3841001",
+  "sourceCohortSha256": "115bccbb92bcb85c69e4141d50d86cc185c70a62fdfbad6e2630517db820b39d",
+  "sourceMatches": 2434,
+  "replayedMatches": 2202,
+  "excludedMatches": 232,
+  "calibration": {
+    "mode": "temperature_bias",
+    "parameters": [
+      0.9011467797339368,
+      0.04425405168741945,
+      -0.047057968200689984
+    ],
+    "trainingRows": 1684,
+    "latestTrainingMatch": "2026-05-31",
+    "cutoffExclusive": "2026-07-01"
+  },
+  "settings": {
+    "source": "v1",
+    "mode": "temperature_bias",
+    "halfLife": 730,
+    "windowDays": 1460,
+    "ridge": 0.05
+  },
+  "results": {
+    "validation": {
+      "period": [
+        "2026-07-01",
+        "2026-09-16"
+      ],
+      "matches": 223,
+      "metrics": {
+        "v1": {
+          "n": 223,
+          "brier": 0.6455083077925516,
+          "logloss": 1.0673105746312006,
+          "accuracy": 0.4260089686098655
+        },
+        "base": {
+          "n": 223,
+          "brier": 0.6705186426238925,
+          "logloss": 1.1036454304900758,
+          "accuracy": 0.3991031390134529
+        },
+        "calibrated": {
+          "n": 223,
+          "brier": 0.6464718190315731,
+          "logloss": 1.0683150749359644,
+          "accuracy": 0.4080717488789238
+        }
+      },
+      "pairedIntervals": {
+        "brier": {
+          "difference": 0.000963511239021488,
+          "ci95": [
+            -0.0019308819800915099,
+            0.004070961889158616
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": 0.001004500304764018,
+          "ci95": [
+            -0.00285022461901078,
+            0.0051939231006999775
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      },
+      "byLeague": {
+        "BSA": {
+          "matches": 89,
+          "metrics": {
+            "v1": {
+              "n": 89,
+              "brier": 0.6410069766854121,
+              "logloss": 1.061221386171803,
+              "accuracy": 0.4157303370786517
+            },
+            "base": {
+              "n": 89,
+              "brier": 0.6659181771663863,
+              "logloss": 1.096945143921969,
+              "accuracy": 0.4157303370786517
+            },
+            "calibrated": {
+              "n": 89,
+              "brier": 0.6402632601823688,
+              "logloss": 1.0599892155652852,
+              "accuracy": 0.4044943820224719
+            }
+          }
+        },
+        "ELC": {
+          "matches": 62,
+          "metrics": {
+            "v1": {
+              "n": 62,
+              "brier": 0.6474824526560256,
+              "logloss": 1.0705138003046482,
+              "accuracy": 0.45161290322580644
+            },
+            "base": {
+              "n": 62,
+              "brier": 0.656735331971031,
+              "logloss": 1.0837416070391386,
+              "accuracy": 0.41935483870967744
+            },
+            "calibrated": {
+              "n": 62,
+              "brier": 0.6482035884964827,
+              "logloss": 1.071144713246496,
+              "accuracy": 0.43548387096774194
+            }
+          }
+        },
+        "PD": {
+          "matches": 43,
+          "metrics": {
+            "v1": {
+              "n": 43,
+              "brier": 0.6180168718203788,
+              "logloss": 1.02739006774783,
+              "accuracy": 0.46511627906976744
+            },
+            "base": {
+              "n": 43,
+              "brier": 0.6707518662514523,
+              "logloss": 1.1034693285328847,
+              "accuracy": 0.4186046511627907
+            },
+            "calibrated": {
+              "n": 43,
+              "brier": 0.6223207676998588,
+              "logloss": 1.0337667877700534,
+              "accuracy": 0.46511627906976744
+            }
+          }
+        },
+        "PL": {
+          "matches": 29,
+          "metrics": {
+            "v1": {
+              "n": 29,
+              "brier": 0.6958653158547407,
+              "logloss": 1.13834228418698,
+              "accuracy": 0.3448275862068966
+            },
+            "base": {
+              "n": 29,
+              "brier": 0.7137592657345951,
+              "logloss": 1.1670224974790002,
+              "accuracy": 0.27586206896551724
+            },
+            "calibrated": {
+              "n": 29,
+              "brier": 0.6976334479287642,
+              "logloss": 1.1390440493108516,
+              "accuracy": 0.27586206896551724
+            }
+          }
+        }
+      }
+    },
+    "audit": {
+      "period": [
+        "2026-09-16",
+        "2026-11-12"
+      ],
+      "matches": 295,
+      "metrics": {
+        "v1": {
+          "n": 295,
+          "brier": 0.5958711060302124,
+          "logloss": 0.9980369327661793,
+          "accuracy": 0.5288135593220339
+        },
+        "base": {
+          "n": 295,
+          "brier": 0.6378014627131691,
+          "logloss": 1.0575466925072496,
+          "accuracy": 0.48135593220338985
+        },
+        "calibrated": {
+          "n": 295,
+          "brier": 0.597571611205166,
+          "logloss": 1.0001327580470516,
+          "accuracy": 0.5186440677966102
+        }
+      },
+      "pairedIntervals": {
+        "brier": {
+          "difference": 0.0017005051749535561,
+          "ci95": [
+            -0.001772438118366123,
+            0.005224629980924836
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": 0.0020958252808720096,
+          "ci95": [
+            -0.0030291851670005442,
+            0.0069614429769548234
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      },
+      "byLeague": {
+        "BSA": {
+          "matches": 73,
+          "metrics": {
+            "v1": {
+              "n": 73,
+              "brier": 0.5579403406547536,
+              "logloss": 0.9431043656832445,
+              "accuracy": 0.589041095890411
+            },
+            "base": {
+              "n": 73,
+              "brier": 0.6012965515071744,
+              "logloss": 1.0074514721218775,
+              "accuracy": 0.5616438356164384
+            },
+            "calibrated": {
+              "n": 73,
+              "brier": 0.5591324370120749,
+              "logloss": 0.9450897742679499,
+              "accuracy": 0.589041095890411
+            }
+          }
+        },
+        "ELC": {
+          "matches": 97,
+          "metrics": {
+            "v1": {
+              "n": 97,
+              "brier": 0.6226542400034519,
+              "logloss": 1.0364921322408198,
+              "accuracy": 0.5051546391752577
+            },
+            "base": {
+              "n": 97,
+              "brier": 0.6470320572692673,
+              "logloss": 1.0696288060607706,
+              "accuracy": 0.4536082474226804
+            },
+            "calibrated": {
+              "n": 97,
+              "brier": 0.6233043206492846,
+              "logloss": 1.0369782292976228,
+              "accuracy": 0.4639175257731959
+            }
+          }
+        },
+        "PD": {
+          "matches": 65,
+          "metrics": {
+            "v1": {
+              "n": 65,
+              "brier": 0.5571938254204867,
+              "logloss": 0.9446330076062475,
+              "accuracy": 0.5692307692307692
+            },
+            "base": {
+              "n": 65,
+              "brier": 0.6563605581005528,
+              "logloss": 1.0840906413704459,
+              "accuracy": 0.4307692307692308
+            },
+            "calibrated": {
+              "n": 65,
+              "brier": 0.5651415911429797,
+              "logloss": 0.9549638661548647,
+              "accuracy": 0.5692307692307692
+            }
+          }
+        },
+        "PL": {
+          "matches": 60,
+          "metrics": {
+            "v1": {
+              "n": 60,
+              "brier": 0.6406211913074867,
+              "logloss": 1.0605565691563408,
+              "accuracy": 0.45
+            },
+            "base": {
+              "n": 60,
+              "brier": 0.6471872901451048,
+              "logloss": 1.070207182462797,
+              "accuracy": 0.48333333333333334
+            },
+            "calibrated": {
+              "n": 60,
+              "brier": 0.6378705812728033,
+              "logloss": 1.0564678426730705,
+              "accuracy": 0.4666666666666667
+            }
+          }
+        }
+      }
+    }
+  },
+  "preliminaryGatePassed": false,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true,
+  "retrospective": true,
+  "limitations": [
+    "Historical final scores are observed now; this is retrospective development, not an untouched prospective test.",
+    "Some EPL periods have already been studied in earlier experiments.",
+    "First-season predictions lack older-season data; missing early histories are excluded by the production model's own minimums.",
+    "New calibration is not an injury model. It cannot create missing historical availability information.",
+    "Original one-hundred-match forecasts and inputs remain immutable."
+  ],
+  "replaySha256": "375d5bb47609c8b90d80b22caed9c5c084063dd4753ff00d2a4b818cd09539d8"
+}
