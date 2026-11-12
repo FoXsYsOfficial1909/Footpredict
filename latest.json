@@ -4,14 +4,14 @@
     "schemaVersion": 1,
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
-    "asOf": "2026-11-11",
-    "generatedAt": "2026-11-11T01:25:35.276602+00:00",
-    "trainingCutoffExclusive": "2026-11-10",
+    "asOf": "2026-11-12",
+    "generatedAt": "2026-11-12T01:34:08.212969+00:00",
+    "trainingCutoffExclusive": "2026-11-11",
     "latestTrainingMatch": "2026-11-08",
     "trainingMatches": 4280,
-    "poissonTrainingMatches": 1130,
-    "modelVersion": "ensemble-candidate-2026-11-11-35ac17478d1b",
-    "modelSha256": "671ecbb3b84db6d38e86642bf03124abcf430eb976021f0dcc6e1f603b55a036",
+    "poissonTrainingMatches": 1125,
+    "modelVersion": "ensemble-candidate-2026-11-12-381d030f7a25",
+    "modelSha256": "247f4bd293d6e7828cdee20d8a7836a1f3d044b61c0fc950ad5282a5369f9c1a",
     "dataSha256": "27b90c2997b7b0fc274f77c6fdd14a4a81963a552df8159527e683adcf82cbfa",
     "settingsSha256": "bdc6f29f3ab8db55cbdcd861fee4cd280103b18c5dcf231a96575decff8b96cd",
     "codeSha256": "6ed1ce83bc2a28c2008c6e13d20999da3a06cf3a5de270ec0087e8c7b086f893",
@@ -43,38 +43,38 @@
           "accuracy": 0.43119266055045874
         }
       },
-      "poissonFitSeconds": 0.18011468699999966
+      "poissonFitSeconds": 0.14443431000000118
     },
-    "durationSeconds": 2.9653054170000033,
+    "durationSeconds": 2.652942192000001,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 1.7894116900000014,
+    "computeSeconds": 1.4904663640000066,
     "timings": {
-      "referencePreparationSeconds": 1.5741224929999973,
-      "historicalValidationSeconds": 0.19475408499999958,
-      "finalFitSeconds": 0.007313723000002881,
-      "dataLoadSeconds": 1.175857152000006
+      "referencePreparationSeconds": 1.317243401000006,
+      "historicalValidationSeconds": 0.1564478199999968,
+      "finalFitSeconds": 0.0057762579999973696,
+      "dataLoadSeconds": 1.1624534639999986
     },
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "42938824757",
+    "runId": "43135351311",
     "runAttempt": "1",
-    "sourceCommit": "6b75a03ba30e1852b94975288a4c55af1148f8fa",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42938824757",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42938824757#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/671ecbb3b84db6d38e86642bf03124abcf430eb976021f0dcc6e1f603b55a036.json"
+    "sourceCommit": "20e2d2d35e90413a810f2e2225e9b05effead378",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43135351311",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43135351311#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/247f4bd293d6e7828cdee20d8a7836a1f3d044b61c0fc950ad5282a5369f9c1a.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
-    "asOf": "2026-11-11",
-    "generatedAt": "2026-11-11T01:25:35.276602+00:00",
-    "trainingCutoffExclusive": "2026-11-10",
+    "asOf": "2026-11-12",
+    "generatedAt": "2026-11-12T01:34:08.212969+00:00",
+    "trainingCutoffExclusive": "2026-11-11",
     "latestTrainingMatch": "2026-11-08",
     "trainingMatches": 4280,
-    "poissonTrainingMatches": 1130,
-    "modelVersion": "ensemble-candidate-2026-11-11-35ac17478d1b",
-    "modelSha256": "671ecbb3b84db6d38e86642bf03124abcf430eb976021f0dcc6e1f603b55a036",
+    "poissonTrainingMatches": 1125,
+    "modelVersion": "ensemble-candidate-2026-11-12-381d030f7a25",
+    "modelSha256": "247f4bd293d6e7828cdee20d8a7836a1f3d044b61c0fc950ad5282a5369f9c1a",
     "dataSha256": "27b90c2997b7b0fc274f77c6fdd14a4a81963a552df8159527e683adcf82cbfa",
     "settingsSha256": "bdc6f29f3ab8db55cbdcd861fee4cd280103b18c5dcf231a96575decff8b96cd",
     "codeSha256": "6ed1ce83bc2a28c2008c6e13d20999da3a06cf3a5de270ec0087e8c7b086f893",
@@ -106,24 +106,24 @@
           "accuracy": 0.43119266055045874
         }
       },
-      "poissonFitSeconds": 0.18011468699999966
+      "poissonFitSeconds": 0.14443431000000118
     },
-    "durationSeconds": 2.9653054170000033,
+    "durationSeconds": 2.652942192000001,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 1.7894116900000014,
+    "computeSeconds": 1.4904663640000066,
     "timings": {
-      "referencePreparationSeconds": 1.5741224929999973,
-      "historicalValidationSeconds": 0.19475408499999958,
-      "finalFitSeconds": 0.007313723000002881,
-      "dataLoadSeconds": 1.175857152000006
+      "referencePreparationSeconds": 1.317243401000006,
+      "historicalValidationSeconds": 0.1564478199999968,
+      "finalFitSeconds": 0.0057762579999973696,
+      "dataLoadSeconds": 1.1624534639999986
     },
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "42938824757",
+    "runId": "43135351311",
     "runAttempt": "1",
-    "sourceCommit": "6b75a03ba30e1852b94975288a4c55af1148f8fa",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42938824757",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/42938824757#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/671ecbb3b84db6d38e86642bf03124abcf430eb976021f0dcc6e1f603b55a036.json"
+    "sourceCommit": "20e2d2d35e90413a810f2e2225e9b05effead378",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43135351311",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43135351311#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/247f4bd293d6e7828cdee20d8a7836a1f3d044b61c0fc950ad5282a5369f9c1a.json"
   }
 }
