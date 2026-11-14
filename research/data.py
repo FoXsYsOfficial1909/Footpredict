@@ -43,6 +43,9 @@ ALIASES = {
     'Norwich City FC': 'Norwich', 'West Bromwich Albion FC': 'West Brom',
 }
 
+DIVISIONS = {'E0': {'league': 'PL', 'closed_season_matches': 380},
+             'E1': {'league': 'ELC', 'closed_season_matches': 552}}
+
 
 def canonical(name):
     return ALIASES.get(name.strip(), name.strip())
@@ -57,15 +60,21 @@ def parse_day(value):
     raise ValueError('Unrecognized match date: ' + value)
 
 
-def parse_csv(body, season):
+def parse_csv(body, season, *, division=None):
+    if division is not None and division not in DIVISIONS:
+        raise ValueError('Unsupported match division')
     rows = csv.DictReader(io.StringIO(body.decode('utf-8-sig')))
     required = {'Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR'}
+    if division is not None:
+        required.add('Div')
     if not required.issubset(rows.fieldnames or []):
         raise ValueError('Match CSV is missing required columns')
     matches, seen = [], set()
     for row in rows:
         if not (row.get('Date') or '').strip():
             continue
+        if division is not None and row['Div'].strip() != division:
+            raise ValueError('Match CSV contains another division')
         day = parse_day(row['Date'])
         if not date(season, 7, 1) <= day <= date(season + 1, 7, 31):
             raise ValueError('Match outside declared season')
@@ -86,12 +95,14 @@ def parse_csv(body, season):
     return sorted(matches, key=lambda m: m.key)
 
 
-def download_season(season, directory, refresh=False):
+def download_season(season, directory, refresh=False, *, division='E0'):
+    if division not in DIVISIONS:
+        raise ValueError('Unsupported match division')
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     code = f'{season % 100:02d}{(season + 1) % 100:02d}'
-    url = f'https://www.football-data.co.uk/mmz4281/{code}/E0.csv'
-    path = directory / (str(season) + '-E0.csv')
+    url = f'https://www.football-data.co.uk/mmz4281/{code}/{division}.csv'
+    path = directory / (str(season) + '-' + division + '.csv')
     if path.exists() and not refresh:
         body = path.read_bytes()
     else:
@@ -100,24 +111,25 @@ def download_season(season, directory, refresh=False):
             body = response.read(3_000_001)
         if len(body) > 3_000_000:
             raise ValueError('CSV size limit exceeded')
-        parse_csv(body, season)  # Do not cache a malformed or unexpected response.
+        parse_csv(body, season, division=division)  # Validate before caching.
         temporary = path.with_suffix('.csv.tmp')
         temporary.write_bytes(body)
         temporary.replace(path)
-    matches = parse_csv(body, season)
-    metadata = {'season': season, 'url': url, 'sha256': hashlib.sha256(body).hexdigest(),
+    matches = parse_csv(body, season, division=division)
+    metadata = {'season': season, 'division': division, 'league': DIVISIONS[division]['league'],
+                'url': url, 'sha256': hashlib.sha256(body).hexdigest(),
                 'rows': len(matches), 'first_date': matches[0].day.isoformat() if matches else None,
                 'last_date': matches[-1].day.isoformat() if matches else None,
-                'used_columns': ['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR'],
+                'used_columns': ['Div', 'Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR'],
                 'not_used': 'Odds, target-match shots, cards, corners and every other post-match field'}
     path.with_suffix('.manifest.json').write_text(json.dumps(metadata, indent=2))
     return matches, metadata
 
 
-def load_seasons(seasons, directory):
+def load_seasons(seasons, directory, *, division='E0'):
     matches, manifests = [], []
     for season in seasons:
-        rows, manifest = download_season(season, directory)
+        rows, manifest = download_season(season, directory, division=division)
         matches.extend(rows)
         manifests.append(manifest)
     matches.sort(key=lambda m: m.key)

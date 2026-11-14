@@ -11,9 +11,12 @@ on:
       - 'research/evaluate.py'
       - 'research/export_model.py'
       - 'research/data.py'
+      - 'research/championship.py'
       - 'scripts/publish_training.py'
       - 'requirements-research.txt'
       - 'docs/research/selection.json'
+      - 'docs/research/championship-plan-2026-11-14.json'
+      - 'docs/research/championship-2026-11-14/selection.json'
   schedule:
     - cron: '23 0 * * *'
   workflow_dispatch:
@@ -92,5 +95,75 @@ jobs:
               --run-attempt "$TRAINING_RUN_ATTEMPT" --commit "$TRAINING_COMMIT"
           fi
       - name: Preserve a failed workflow conclusion
+        if: steps.train.outcome != 'success'
+        run: exit 1
+
+  championship:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/championship
+          key: ${{ runner.os }}-championship-csv-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ${{ runner.os }}-championship-csv-v1-
+      - run: python -m pip install -r requirements-research.txt
+      - run: python -m unittest tests.test_championship tests.test_data
+      - name: Refresh ELC weights with frozen ELC settings
+        id: train
+        continue-on-error: true
+        run: python -m research.championship refresh --data-dir data/championship --output artifacts/championship
+      - name: Save Championship weights, inputs and monitoring
+        id: artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: championship-candidate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/championship/
+          retention-days: 90
+          if-no-files-found: warn
+      - name: Preserve a failed artifact observation
+        if: always() && steps.train.outcome == 'success' && steps.artifact.outcome != 'success'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('artifacts/championship/attempt.json')
+          report=json.loads(path.read_text())
+          report.update(status='failed',errorType='ArtifactUploadFailure',message='The model artifact was not saved.')
+          path.write_text(json.dumps(report,indent=2))
+          PY
+      - name: Publish to the separate Championship archive
+        if: always()
+        env:
+          TRAINING_REPOSITORY: ${{ github.repository }}
+          TRAINING_RUN_ID: ${{ github.run_id }}
+          TRAINING_RUN_ATTEMPT: ${{ github.run_attempt }}
+          TRAINING_COMMIT: ${{ github.sha }}
+        run: |
+          if test -f artifacts/championship/attempt.json; then
+            python -m scripts.publish_training --output artifacts/championship \
+              --branch championship-training-reports \
+              --repository "$TRAINING_REPOSITORY" --run-id "$TRAINING_RUN_ID" \
+              --run-attempt "$TRAINING_RUN_ATTEMPT" --commit "$TRAINING_COMMIT"
+          fi
+      - name: Championship summary
+        if: always()
+        run: |
+          if test -f artifacts/championship/report.md; then
+            cat artifacts/championship/report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Preserve a failed Championship conclusion
         if: steps.train.outcome != 'success'
         run: exit 1

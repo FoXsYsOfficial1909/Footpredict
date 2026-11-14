@@ -1,0 +1,36 @@
+{
+  "league": "ELC",
+  "division": "E1",
+  "protocol": "championship-selection-1",
+  "planSha256": "13f86f1b3f95b55ed97b5051b8e752f99bf3a5702bb35a59f6652d94737ec479",
+  "candidateId": "glm-730-r0.03-w0.75",
+  "glm": {
+    "half_life": 730,
+    "ridge": 0.03,
+    "window_days": 1095
+  },
+  "elo": {
+    "k": 30,
+    "home_advantage": 80,
+    "draw_weight": 0.9
+  },
+  "glm_weight": 0.75,
+  "validation": {
+    "n": 1061,
+    "brier": 0.6177735641577966,
+    "logloss": 1.0290010212404144,
+    "accuracy": 0.4665409990574929
+  },
+  "selectionSeasons": [
+    2023,
+    2024
+  ],
+  "coverage": {
+    "targets": 1104,
+    "commonMatches": 1061,
+    "excludedFromAll": 43
+  },
+  "selectionDataSha256": "acc8f5586421d0ea90af0cb54d2b87273679bda37dcebc4c65b89ebb3841c446",
+  "chosenBeforeAudit": true,
+  "promotedToDefault": false
+}

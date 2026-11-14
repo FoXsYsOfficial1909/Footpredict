@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "league": "ELC",
+  "division": "E1",
+  "dataSha256": "6ddef4dd2df36256d6b899d552deb0da08f4833241f4a4dfa5bec8389af01d52",
+  "compressedSha256": "a37a23a697ca2a8b99028154b3b2b15435260e30c091dc5f060f1c7718171ed9",
+  "uncompressedSha256": "6ddef4dd2df36256d6b899d552deb0da08f4833241f4a4dfa5bec8389af01d52",
+  "sourceMatches": 6252,
+  "dataSources": [
+    {
+      "season": 2015,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1516/E1.csv",
+      "sha256": "3bd30151b05c5a570d222f8b02d430622d62b7822c564a33fa04a3dbf7391cf5",
+      "rows": 552,
+      "first_date": "2015-08-07",
+      "last_date": "2016-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2016,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1617/E1.csv",
+      "sha256": "78c37fc070b9937d72dbc351fac746605f6346b36176f02d4828de57aa135f98",
+      "rows": 552,
+      "first_date": "2016-08-05",
+      "last_date": "2017-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2017,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1718/E1.csv",
+      "sha256": "04d07d578d818bdcd6b95d43e79f10a6a26be01b45be6190b09ebdeaeba0a7ce",
+      "rows": 552,
+      "first_date": "2017-08-04",
+      "last_date": "2018-05-06",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2018,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1819/E1.csv",
+      "sha256": "112eedf787e26e00aac1442ef86e7fee5d4a43f86552ff2dac31ceb95a849487",
+      "rows": 552,
+      "first_date": "2018-08-03",
+      "last_date": "2019-05-05",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2019,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1920/E1.csv",
+      "sha256": "f31450c623c0b74b89692584a85924cc652d33ec89757acf4b2dda5e26261d57",
+      "rows": 552,
+      "first_date": "2019-08-02",
+      "last_date": "2020-07-22",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2020,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2021/E1.csv",
+      "sha256": "cf93295e310c60e5b97ae7466d772f8ec6a908ad401e38fceb7e8617369d5073",
+      "rows": 552,
+      "first_date": "2020-09-11",
+      "last_date": "2021-05-08",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2021,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2122/E1.csv",
+      "sha256": "a181451be4801b9f838daf5f6aaf21e9f09d36042be9e6c15388e71001e772ea",
+      "rows": 552,
+      "first_date": "2021-08-06",
+      "last_date": "2022-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2022,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2223/E1.csv",
+      "sha256": "cd38ab0586ea8cb4d573c363ff70749117f116da5b2741e5b0ea37da05860b1b",
+      "rows": 552,
+      "first_date": "2022-07-29",
+      "last_date": "2023-05-08",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2023,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2324/E1.csv",
+      "sha256": "5737f6cc95c95092b28317f41d3123e2fb09345434efc1c84bbdf15830849ab3",
+      "rows": 552,
+      "first_date": "2023-08-04",
+      "last_date": "2024-05-04",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2024,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2425/E1.csv",
+      "sha256": "f34c340446c916374be66bdc2fb25b87ee7f2662712ca009653d03ac705535f9",
+      "rows": 552,
+      "first_date": "2024-08-09",
+      "last_date": "2025-05-03",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2025,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2526/E1.csv",
+      "sha256": "98954c319950f19158624b17a154ef1c56eb7b8d169ef317f28f06d11d0b9a74",
+      "rows": 552,
+      "first_date": "2025-08-08",
+      "last_date": "2026-05-02",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2026,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2627/E1.csv",
+      "sha256": "bdd804d2f60d84045368c8dea5abd76b29ad369dadf3c6ef6547873b72f34e4d",
+      "rows": 180,
+      "first_date": "2026-08-14",
+      "last_date": "2026-11-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    }
+  ]
+}

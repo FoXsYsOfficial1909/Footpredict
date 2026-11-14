@@ -1,0 +1,272 @@
+[
+  {
+    "id": "glm-180-r0.03-w0.5",
+    "glm": {
+      "half_life": 180,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 0.5,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6211215254715767,
+      "logloss": 1.033498506252806,
+      "accuracy": 0.471253534401508
+    }
+  },
+  {
+    "id": "glm-180-r0.03-w0.75",
+    "glm": {
+      "half_life": 180,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 0.75,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6210987968143958,
+      "logloss": 1.03307110092894,
+      "accuracy": 0.46182846371347785
+    }
+  },
+  {
+    "id": "glm-180-r0.03-w1.0",
+    "glm": {
+      "half_life": 180,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 1.0,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6228659445285762,
+      "logloss": 1.0351849953155272,
+      "accuracy": 0.4637134778510839
+    }
+  },
+  {
+    "id": "glm-180-r0.15-w0.5",
+    "glm": {
+      "half_life": 180,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 0.5,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6214172717137689,
+      "logloss": 1.0340296069807011,
+      "accuracy": 0.472196041470311
+    }
+  },
+  {
+    "id": "glm-180-r0.15-w0.75",
+    "glm": {
+      "half_life": 180,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 0.75,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6209894382469289,
+      "logloss": 1.0331447104632632,
+      "accuracy": 0.4665409990574929
+    }
+  },
+  {
+    "id": "glm-180-r0.15-w1.0",
+    "glm": {
+      "half_life": 180,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 1.0,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6219828291976135,
+      "logloss": 1.0342683846673872,
+      "accuracy": 0.46748350612629597
+    }
+  },
+  {
+    "id": "glm-365-r0.03-w0.5",
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 0.5,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6196791790399331,
+      "logloss": 1.0316984041644148,
+      "accuracy": 0.471253534401508
+    }
+  },
+  {
+    "id": "glm-365-r0.03-w0.75",
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 0.75,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6186130182073692,
+      "logloss": 1.0300104055240182,
+      "accuracy": 0.46936852026390197
+    }
+  },
+  {
+    "id": "glm-365-r0.03-w1.0",
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 1.0,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6191218944397929,
+      "logloss": 1.0305434401544498,
+      "accuracy": 0.46748350612629597
+    }
+  },
+  {
+    "id": "glm-365-r0.15-w0.5",
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 0.5,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6203713335676446,
+      "logloss": 1.032735675708314,
+      "accuracy": 0.4740810556079171
+    }
+  },
+  {
+    "id": "glm-365-r0.15-w0.75",
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 0.75,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6190976442564343,
+      "logloss": 1.0308472486001237,
+      "accuracy": 0.46748350612629597
+    }
+  },
+  {
+    "id": "glm-365-r0.15-w1.0",
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 1.0,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.61902992151521,
+      "logloss": 1.0306821613758945,
+      "accuracy": 0.46936852026390197
+    }
+  },
+  {
+    "id": "glm-730-r0.03-w0.5",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 0.5,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6191402644681931,
+      "logloss": 1.0310354935327735,
+      "accuracy": 0.470311027332705
+    }
+  },
+  {
+    "id": "glm-730-r0.03-w0.75",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 0.75,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6177735641577966,
+      "logloss": 1.0290010212404144,
+      "accuracy": 0.4665409990574929
+    }
+  },
+  {
+    "id": "glm-730-r0.03-w1.0",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "glm_weight": 1.0,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6179611794510789,
+      "logloss": 1.0291361146977853,
+      "accuracy": 0.4740810556079171
+    }
+  },
+  {
+    "id": "glm-730-r0.15-w0.5",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 0.5,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6200940168998104,
+      "logloss": 1.0324064320691457,
+      "accuracy": 0.471253534401508
+    }
+  },
+  {
+    "id": "glm-730-r0.15-w0.75",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 0.75,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6186248680004431,
+      "logloss": 1.0303094787271907,
+      "accuracy": 0.470311027332705
+    }
+  },
+  {
+    "id": "glm-730-r0.15-w1.0",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.15,
+      "window_days": 1095
+    },
+    "glm_weight": 1.0,
+    "metrics": {
+      "n": 1061,
+      "brier": 0.6183238181682351,
+      "logloss": 1.029877608348119,
+      "accuracy": 0.46936852026390197
+    }
+  }
+]

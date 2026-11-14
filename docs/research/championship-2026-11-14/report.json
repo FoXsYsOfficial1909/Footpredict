@@ -1,0 +1,1434 @@
+{
+  "schemaVersion": 1,
+  "protocol": "championship-selection-1",
+  "league": "ELC",
+  "division": "E1",
+  "asOf": "2026-11-14",
+  "completedAt": "2026-11-14T17:11:04.946803+00:00",
+  "planSha256": "13f86f1b3f95b55ed97b5051b8e752f99bf3a5702bb35a59f6652d94737ec479",
+  "codeSha256": "5f2cca247ad0b0b97214760a67c1a5ae4c94a97bb5080a19b1fcedd4b601550c",
+  "sourceMatches": 6252,
+  "dataSources": [
+    {
+      "season": 2015,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1516/E1.csv",
+      "sha256": "3bd30151b05c5a570d222f8b02d430622d62b7822c564a33fa04a3dbf7391cf5",
+      "rows": 552,
+      "first_date": "2015-08-07",
+      "last_date": "2016-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2016,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1617/E1.csv",
+      "sha256": "78c37fc070b9937d72dbc351fac746605f6346b36176f02d4828de57aa135f98",
+      "rows": 552,
+      "first_date": "2016-08-05",
+      "last_date": "2017-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2017,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1718/E1.csv",
+      "sha256": "04d07d578d818bdcd6b95d43e79f10a6a26be01b45be6190b09ebdeaeba0a7ce",
+      "rows": 552,
+      "first_date": "2017-08-04",
+      "last_date": "2018-05-06",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2018,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1819/E1.csv",
+      "sha256": "112eedf787e26e00aac1442ef86e7fee5d4a43f86552ff2dac31ceb95a849487",
+      "rows": 552,
+      "first_date": "2018-08-03",
+      "last_date": "2019-05-05",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2019,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1920/E1.csv",
+      "sha256": "f31450c623c0b74b89692584a85924cc652d33ec89757acf4b2dda5e26261d57",
+      "rows": 552,
+      "first_date": "2019-08-02",
+      "last_date": "2020-07-22",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2020,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2021/E1.csv",
+      "sha256": "cf93295e310c60e5b97ae7466d772f8ec6a908ad401e38fceb7e8617369d5073",
+      "rows": 552,
+      "first_date": "2020-09-11",
+      "last_date": "2021-05-08",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2021,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2122/E1.csv",
+      "sha256": "a181451be4801b9f838daf5f6aaf21e9f09d36042be9e6c15388e71001e772ea",
+      "rows": 552,
+      "first_date": "2021-08-06",
+      "last_date": "2022-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2022,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2223/E1.csv",
+      "sha256": "cd38ab0586ea8cb4d573c363ff70749117f116da5b2741e5b0ea37da05860b1b",
+      "rows": 552,
+      "first_date": "2022-07-29",
+      "last_date": "2023-05-08",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2023,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2324/E1.csv",
+      "sha256": "5737f6cc95c95092b28317f41d3123e2fb09345434efc1c84bbdf15830849ab3",
+      "rows": 552,
+      "first_date": "2023-08-04",
+      "last_date": "2024-05-04",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2024,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2425/E1.csv",
+      "sha256": "f34c340446c916374be66bdc2fb25b87ee7f2662712ca009653d03ac705535f9",
+      "rows": 552,
+      "first_date": "2024-08-09",
+      "last_date": "2025-05-03",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2025,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2526/E1.csv",
+      "sha256": "98954c319950f19158624b17a154ef1c56eb7b8d169ef317f28f06d11d0b9a74",
+      "rows": 552,
+      "first_date": "2025-08-08",
+      "last_date": "2026-05-02",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2026,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2627/E1.csv",
+      "sha256": "bdd804d2f60d84045368c8dea5abd76b29ad369dadf3c6ef6547873b72f34e4d",
+      "rows": 180,
+      "first_date": "2026-08-14",
+      "last_date": "2026-11-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    }
+  ],
+  "dataSha256": "6ddef4dd2df36256d6b899d552deb0da08f4833241f4a4dfa5bec8389af01d52",
+  "candidateCount": 18,
+  "selection": {
+    "league": "ELC",
+    "division": "E1",
+    "protocol": "championship-selection-1",
+    "planSha256": "13f86f1b3f95b55ed97b5051b8e752f99bf3a5702bb35a59f6652d94737ec479",
+    "candidateId": "glm-730-r0.03-w0.75",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "elo": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "glm_weight": 0.75,
+    "validation": {
+      "n": 1061,
+      "brier": 0.6177735641577966,
+      "logloss": 1.0290010212404144,
+      "accuracy": 0.4665409990574929
+    },
+    "selectionSeasons": [
+      2023,
+      2024
+    ],
+    "coverage": {
+      "targets": 1104,
+      "commonMatches": 1061,
+      "excludedFromAll": 43
+    },
+    "selectionDataSha256": "acc8f5586421d0ea90af0cb54d2b87273679bda37dcebc4c65b89ebb3841c446",
+    "chosenBeforeAudit": true,
+    "promotedToDefault": false
+  },
+  "selectionSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
+  "results": {
+    "audit": {
+      "seasons": [
+        2025
+      ],
+      "targets": 552,
+      "commonMatches": 533,
+      "excludedFromAll": 19,
+      "metrics": {
+        "candidate": {
+          "n": 533,
+          "brier": 0.6421363335526952,
+          "logloss": 1.06315098216945,
+          "accuracy": 0.450281425891182
+        },
+        "transferred": {
+          "n": 533,
+          "brier": 0.640858942859944,
+          "logloss": 1.0611024420504538,
+          "accuracy": 0.4521575984990619
+        },
+        "v1": {
+          "n": 533,
+          "brier": 0.6453337177743311,
+          "logloss": 1.0660563139372885,
+          "accuracy": 0.4277673545966229
+        },
+        "base": {
+          "n": 533,
+          "brier": 0.6586335086600382,
+          "logloss": 1.0869746460562375,
+          "accuracy": 0.4165103189493433
+        }
+      },
+      "pairedIntervals": {
+        "v1": {
+          "brier": {
+            "difference": -0.003197384221635823,
+            "ci95": [
+              -0.016508923058445774,
+              0.010467518341404167
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.002905331767838599,
+            "ci95": [
+              -0.020961317871573553,
+              0.01644580102842563
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "transferred": {
+          "brier": {
+            "difference": 0.0012773906927512658,
+            "ci95": [
+              -0.0004960658145719267,
+              0.003163355637192378
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": 0.0020485401189961703,
+            "ci95": [
+              -0.0005560842652968168,
+              0.004584863520955694
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "base": {
+          "brier": {
+            "difference": -0.016497175107342974,
+            "ci95": [
+              -0.029705695996897718,
+              -0.0019860831995665166
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.023823663886787413,
+            "ci95": [
+              -0.042754792104814254,
+              -0.004400094739449712
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      },
+      "errors": {
+        "candidate": {
+          "byActualOutcome": {
+            "home": {
+              "n": 222,
+              "brier": 0.45845313388762365,
+              "logloss": 0.8056961096100601,
+              "accuracy": 0.8648648648648649
+            },
+            "draw": {
+              "n": 140,
+              "brier": 0.8311713356036646,
+              "logloss": 1.3227938844964047,
+              "accuracy": 0.007142857142857143
+            },
+            "away": {
+              "n": 171,
+              "brier": 0.7258367431346262,
+              "logloss": 1.1848175048736072,
+              "accuracy": 0.27485380116959063
+            }
+          },
+          "meanProbabilities": [
+            0.4368064762050633,
+            0.2685159744234882,
+            0.2946775493714483
+          ],
+          "observedOutcomeShares": [
+            0.4165103189493433,
+            0.2626641651031895,
+            0.32082551594746717
+          ],
+          "largestLogLoss": [
+            {
+              "date": "2025-11-01",
+              "home": "Leicester",
+              "away": "Blackburn",
+              "actual": 2,
+              "probabilities": [
+                0.6176983182615813,
+                0.22950306733057266,
+                0.15279861440784606
+              ],
+              "logloss": 1.8786344703023103
+            },
+            {
+              "date": "2026-01-24",
+              "home": "Leicester",
+              "away": "Oxford",
+              "actual": 2,
+              "probabilities": [
+                0.6058579664074268,
+                0.23069691312836665,
+                0.1634451204642064
+              ],
+              "logloss": 1.8112779996426325
+            },
+            {
+              "date": "2026-04-11",
+              "home": "Coventry",
+              "away": "Sheffield Weds",
+              "actual": 1,
+              "probabilities": [
+                0.7504485799448023,
+                0.16416204911144736,
+                0.08538937094375038
+              ],
+              "logloss": 1.806901234673596
+            },
+            {
+              "date": "2025-09-20",
+              "home": "Sheffield United",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.5284755275147635,
+                0.2981703681043186,
+                0.173354104380918
+              ],
+              "logloss": 1.7524189302873354
+            },
+            {
+              "date": "2026-04-11",
+              "home": "Middlesbrough",
+              "away": "Portsmouth",
+              "actual": 2,
+              "probabilities": [
+                0.5930969996921343,
+                0.2323629685878955,
+                0.17454003171997023
+              ],
+              "logloss": 1.745601155512313
+            },
+            {
+              "date": "2026-01-31",
+              "home": "Leicester",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.5887886243208726,
+                0.23645843586217394,
+                0.1747529398169534
+              ],
+              "logloss": 1.7443820750228645
+            },
+            {
+              "date": "2026-03-11",
+              "home": "Middlesbrough",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.5690533806104492,
+                0.25494654022637686,
+                0.17600007916317392
+              ],
+              "logloss": 1.7372708341533254
+            },
+            {
+              "date": "2025-09-30",
+              "home": "Leicester",
+              "away": "Wrexham",
+              "actual": 1,
+              "probabilities": [
+                0.6828367301422458,
+                0.1838602228260705,
+                0.13330304703168372
+              ],
+              "logloss": 1.693579468613887
+            },
+            {
+              "date": "2025-08-09",
+              "home": "Sheffield United",
+              "away": "Bristol City",
+              "actual": 2,
+              "probabilities": [
+                0.5441199781907335,
+                0.2702235777810336,
+                0.18565644402823284
+              ],
+              "logloss": 1.6838573883326688
+            },
+            {
+              "date": "2025-08-23",
+              "home": "Sheffield United",
+              "away": "Millwall",
+              "actual": 2,
+              "probabilities": [
+                0.5215228989084404,
+                0.28470047308762697,
+                0.1937766280039327
+              ],
+              "logloss": 1.6410491853329783
+            }
+          ]
+        },
+        "transferred": {
+          "byActualOutcome": {
+            "home": {
+              "n": 222,
+              "brier": 0.4580073111646564,
+              "logloss": 0.804993911766632,
+              "accuracy": 0.8738738738738738
+            },
+            "draw": {
+              "n": 140,
+              "brier": 0.8297959818060407,
+              "logloss": 1.3202769575848055,
+              "accuracy": 0.007142857142857143
+            },
+            "away": {
+              "n": 171,
+              "brier": 0.7235599766839222,
+              "logloss": 1.181404556367408,
+              "accuracy": 0.26900584795321636
+            }
+          },
+          "meanProbabilities": [
+            0.43601442154186165,
+            0.2690674876597468,
+            0.2949180907983911
+          ],
+          "observedOutcomeShares": [
+            0.4165103189493433,
+            0.2626641651031895,
+            0.32082551594746717
+          ],
+          "largestLogLoss": [
+            {
+              "date": "2026-04-11",
+              "home": "Coventry",
+              "away": "Sheffield Weds",
+              "actual": 1,
+              "probabilities": [
+                0.7754611318311828,
+                0.1521115433152383,
+                0.07242732485357889
+              ],
+              "logloss": 1.8831411896627648
+            },
+            {
+              "date": "2025-11-01",
+              "home": "Leicester",
+              "away": "Blackburn",
+              "actual": 2,
+              "probabilities": [
+                0.5971439211297479,
+                0.23944778735393776,
+                0.16340829151631422
+              ],
+              "logloss": 1.8115033541697576
+            },
+            {
+              "date": "2026-03-11",
+              "home": "Middlesbrough",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.5752419804455329,
+                0.2549274072247302,
+                0.16983061232973698
+              ],
+              "logloss": 1.7729537367267842
+            },
+            {
+              "date": "2026-04-11",
+              "home": "Middlesbrough",
+              "away": "Portsmouth",
+              "actual": 2,
+              "probabilities": [
+                0.5967133064352321,
+                0.2328287331580957,
+                0.17045796040667213
+              ],
+              "logloss": 1.7692665791908722
+            },
+            {
+              "date": "2025-09-20",
+              "home": "Sheffield United",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.5183206115929705,
+                0.30636716571227735,
+                0.17531222269475213
+              ],
+              "logloss": 1.7411867650431876
+            },
+            {
+              "date": "2026-01-24",
+              "home": "Leicester",
+              "away": "Oxford",
+              "actual": 2,
+              "probabilities": [
+                0.5797347625632854,
+                0.2398882741921443,
+                0.18037696324457025
+              ],
+              "logloss": 1.7127063777085534
+            },
+            {
+              "date": "2025-09-21",
+              "home": "Bristol City",
+              "away": "Oxford",
+              "actual": 2,
+              "probabilities": [
+                0.5662124202170132,
+                0.24766495919652182,
+                0.18612262058646484
+              ],
+              "logloss": 1.6813495720142002
+            },
+            {
+              "date": "2025-09-30",
+              "home": "Leicester",
+              "away": "Wrexham",
+              "actual": 1,
+              "probabilities": [
+                0.6770382593335285,
+                0.1863050913039958,
+                0.1366566493624758
+              ],
+              "logloss": 1.680369673224148
+            },
+            {
+              "date": "2025-08-09",
+              "home": "Sheffield United",
+              "away": "Bristol City",
+              "actual": 2,
+              "probabilities": [
+                0.5427507513469138,
+                0.27065132354260696,
+                0.18659792511047935
+              ],
+              "logloss": 1.6787991100815225
+            },
+            {
+              "date": "2026-01-31",
+              "home": "Leicester",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.5681785918720709,
+                0.24224124259542787,
+                0.18958016553250132
+              ],
+              "logloss": 1.662943306803802
+            }
+          ]
+        },
+        "v1": {
+          "byActualOutcome": {
+            "home": {
+              "n": 222,
+              "brier": 0.4957098751660399,
+              "logloss": 0.855829846465348,
+              "accuracy": 0.7477477477477478
+            },
+            "draw": {
+              "n": 140,
+              "brier": 0.8522387899419557,
+              "logloss": 1.3572104313494768,
+              "accuracy": 0.0
+            },
+            "away": {
+              "n": 171,
+              "brier": 0.670186249678268,
+              "logloss": 1.1006101112534552,
+              "accuracy": 0.36257309941520466
+            }
+          },
+          "meanProbabilities": [
+            0.4173288601138926,
+            0.2596894934815573,
+            0.3229816464045509
+          ],
+          "observedOutcomeShares": [
+            0.4165103189493433,
+            0.2626641651031895,
+            0.32082551594746717
+          ],
+          "largestLogLoss": [
+            {
+              "date": "2026-04-11",
+              "home": "Coventry",
+              "away": "Sheffield Weds",
+              "actual": 1,
+              "probabilities": [
+                0.7750702052001311,
+                0.14724156950369846,
+                0.07768822529617031
+              ],
+              "logloss": 1.915680711035474
+            },
+            {
+              "date": "2025-12-26",
+              "home": "Sheffield Weds",
+              "away": "Hull",
+              "actual": 1,
+              "probabilities": [
+                0.1245985359607072,
+                0.16748147960387227,
+                0.7079199844354206
+              ],
+              "logloss": 1.7868825033593978
+            },
+            {
+              "date": "2025-10-21",
+              "home": "Ipswich",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.6095634119625367,
+                0.22260817523388857,
+                0.1678284128035748
+              ],
+              "logloss": 1.7848131738742903
+            },
+            {
+              "date": "2026-03-11",
+              "home": "Middlesbrough",
+              "away": "Charlton",
+              "actual": 2,
+              "probabilities": [
+                0.5721920062593874,
+                0.2546880212931402,
+                0.17311997244747235
+              ],
+              "logloss": 1.7537704424768037
+            },
+            {
+              "date": "2025-10-21",
+              "home": "Preston",
+              "away": "Birmingham",
+              "actual": 2,
+              "probabilities": [
+                0.5490741595708157,
+                0.2677945764549606,
+                0.1831312639742238
+              ],
+              "logloss": 1.69755209379323
+            },
+            {
+              "date": "2025-10-31",
+              "home": "Wrexham",
+              "away": "Coventry",
+              "actual": 0,
+              "probabilities": [
+                0.18588256152525268,
+                0.19567052078245722,
+                0.6184469176922901
+              ],
+              "logloss": 1.682640194328501
+            },
+            {
+              "date": "2026-02-10",
+              "home": "Birmingham",
+              "away": "West Brom",
+              "actual": 1,
+              "probabilities": [
+                0.6656704658001267,
+                0.19468259711558822,
+                0.13964693708428513
+              ],
+              "logloss": 1.6363847536723948
+            },
+            {
+              "date": "2026-04-11",
+              "home": "Middlesbrough",
+              "away": "Portsmouth",
+              "actual": 2,
+              "probabilities": [
+                0.5627953601149545,
+                0.24236519961304834,
+                0.19483944027199718
+              ],
+              "logloss": 1.63557944280507
+            },
+            {
+              "date": "2025-12-13",
+              "home": "Birmingham",
+              "away": "Charlton",
+              "actual": 1,
+              "probabilities": [
+                0.6663882577263812,
+                0.19609895028736032,
+                0.13751279198625838
+              ],
+              "logloss": 1.629135898739802
+            },
+            {
+              "date": "2025-11-28",
+              "home": "Oxford",
+              "away": "Ipswich",
+              "actual": 0,
+              "probabilities": [
+                0.19862106559712997,
+                0.2239358783475854,
+                0.5774430560552846
+              ],
+              "logloss": 1.6163564625171374
+            }
+          ]
+        }
+      }
+    },
+    "monitoring": {
+      "seasons": [
+        2026
+      ],
+      "targets": 180,
+      "commonMatches": 159,
+      "excludedFromAll": 21,
+      "metrics": {
+        "candidate": {
+          "n": 159,
+          "brier": 0.6545718571763162,
+          "logloss": 1.0798951382286617,
+          "accuracy": 0.41509433962264153
+        },
+        "transferred": {
+          "n": 159,
+          "brier": 0.6508098167520712,
+          "logloss": 1.0747115278619215,
+          "accuracy": 0.4276729559748428
+        },
+        "v1": {
+          "n": 159,
+          "brier": 0.6323835465615516,
+          "logloss": 1.0498359582474992,
+          "accuracy": 0.48427672955974843
+        },
+        "base": {
+          "n": 159,
+          "brier": 0.6506716951174104,
+          "logloss": 1.0748956008987893,
+          "accuracy": 0.44025157232704404
+        }
+      },
+      "pairedIntervals": {
+        "v1": {
+          "brier": {
+            "difference": 0.022188310614764548,
+            "ci95": [
+              -0.011150060204931627,
+              0.053243791631549235
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": 0.0300591799811626,
+            "ci95": [
+              -0.016642845923280206,
+              0.07385244526023779
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "transferred": {
+          "brier": {
+            "difference": 0.003762040424245149,
+            "ci95": [
+              0.0011051482669889366,
+              0.006683341176941797
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": 0.005183610366740106,
+            "ci95": [
+              0.0008125446130407372,
+              0.009579458914051635
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "base": {
+          "brier": {
+            "difference": 0.0039001620589057184,
+            "ci95": [
+              -0.030918552934155307,
+              0.03418603407114834
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": 0.004999537329872676,
+            "ci95": [
+              -0.0397518950923295,
+              0.0484334028532711
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      },
+      "errors": {
+        "candidate": {
+          "byActualOutcome": {
+            "home": {
+              "n": 70,
+              "brier": 0.4946075201459007,
+              "logloss": 0.8572513916507197,
+              "accuracy": 0.7571428571428571
+            },
+            "draw": {
+              "n": 37,
+              "brier": 0.8589004227968301,
+              "logloss": 1.354021893527105,
+              "accuracy": 0.0
+            },
+            "away": {
+              "n": 52,
+              "brier": 0.7245208314872795,
+              "logloss": 1.184556144275076,
+              "accuracy": 0.25
+            }
+          },
+          "meanProbabilities": [
+            0.42882840458407334,
+            0.2646918003379365,
+            0.3064797950779901
+          ],
+          "observedOutcomeShares": [
+            0.44025157232704404,
+            0.23270440251572327,
+            0.3270440251572327
+          ],
+          "largestLogLoss": [
+            {
+              "date": "2026-10-13",
+              "home": "Wolves",
+              "away": "Bolton",
+              "actual": 2,
+              "probabilities": [
+                0.7040830209112534,
+                0.1729012355346844,
+                0.1230157435540623
+              ],
+              "logloss": 2.095442935426066
+            },
+            {
+              "date": "2026-09-05",
+              "home": "Burnley",
+              "away": "Bristol City",
+              "actual": 2,
+              "probabilities": [
+                0.5939719415171016,
+                0.25774583362693543,
+                0.14828222485596299
+              ],
+              "logloss": 1.908637896388358
+            },
+            {
+              "date": "2026-10-31",
+              "home": "West Ham",
+              "away": "West Brom",
+              "actual": 2,
+              "probabilities": [
+                0.6371672124804075,
+                0.2023281481819646,
+                0.16050463933762785
+              ],
+              "logloss": 1.8294324312994317
+            },
+            {
+              "date": "2026-10-09",
+              "home": "West Ham",
+              "away": "QPR",
+              "actual": 1,
+              "probabilities": [
+                0.7085343434761118,
+                0.1670762945001053,
+                0.124389362023783
+              ],
+              "logloss": 1.7893047175970311
+            },
+            {
+              "date": "2026-09-20",
+              "home": "Norwich",
+              "away": "Bolton",
+              "actual": 2,
+              "probabilities": [
+                0.6091975163347185,
+                0.22021094466136382,
+                0.1705915390039176
+              ],
+              "logloss": 1.768483240676628
+            },
+            {
+              "date": "2026-10-17",
+              "home": "Southampton",
+              "away": "Bolton",
+              "actual": 1,
+              "probabilities": [
+                0.6645624072030741,
+                0.18974356772149614,
+                0.1456940250754297
+              ],
+              "logloss": 1.6620817619819144
+            },
+            {
+              "date": "2026-10-24",
+              "home": "Lincoln",
+              "away": "Burnley",
+              "actual": 0,
+              "probabilities": [
+                0.20007698366782892,
+                0.2656665192208961,
+                0.5342564971112749
+              ],
+              "logloss": 1.609053068157015
+            },
+            {
+              "date": "2026-11-04",
+              "home": "Cardiff",
+              "away": "West Ham",
+              "actual": 1,
+              "probabilities": [
+                0.21298579783592372,
+                0.20660162984357971,
+                0.5804125723204967
+              ],
+              "logloss": 1.5769628334430126
+            },
+            {
+              "date": "2026-11-07",
+              "home": "Preston",
+              "away": "Southampton",
+              "actual": 0,
+              "probabilities": [
+                0.20700098769471437,
+                0.2376586035281785,
+                0.5553404087771072
+              ],
+              "logloss": 1.5750317142561014
+            },
+            {
+              "date": "2026-10-16",
+              "home": "Burnley",
+              "away": "Wolves",
+              "actual": 2,
+              "probabilities": [
+                0.5412017602538234,
+                0.24974482063646042,
+                0.20905341910971614
+              ],
+              "logloss": 1.5651654658494702
+            }
+          ]
+        },
+        "transferred": {
+          "byActualOutcome": {
+            "home": {
+              "n": 70,
+              "brier": 0.4955293815758106,
+              "logloss": 0.8580143865381135,
+              "accuracy": 0.7571428571428571
+            },
+            "draw": {
+              "n": 37,
+              "brier": 0.8580455320344332,
+              "logloss": 1.3566354542858468,
+              "accuracy": 0.0
+            },
+            "away": {
+              "n": 52,
+              "brier": 0.7123849897692025,
+              "logloss": 1.1658195012269477,
+              "accuracy": 0.28846153846153844
+            }
+          },
+          "meanProbabilities": [
+            0.4268403955644739,
+            0.26403835944225357,
+            0.3091212449932727
+          ],
+          "observedOutcomeShares": [
+            0.44025157232704404,
+            0.23270440251572327,
+            0.3270440251572327
+          ],
+          "largestLogLoss": [
+            {
+              "date": "2026-10-13",
+              "home": "Wolves",
+              "away": "Bolton",
+              "actual": 2,
+              "probabilities": [
+                0.7059115595361166,
+                0.17224231213513697,
+                0.1218461283287464
+              ],
+              "logloss": 2.1049962734924916
+            },
+            {
+              "date": "2026-10-31",
+              "home": "West Ham",
+              "away": "West Brom",
+              "actual": 2,
+              "probabilities": [
+                0.6419087064110597,
+                0.20097028780157905,
+                0.1571210057873613
+              ],
+              "logloss": 1.8507390330003315
+            },
+            {
+              "date": "2026-10-09",
+              "home": "West Ham",
+              "away": "QPR",
+              "actual": 1,
+              "probabilities": [
+                0.7092580508480085,
+                0.1662675585779293,
+                0.12447439057406222
+              ],
+              "logloss": 1.7941569895167568
+            },
+            {
+              "date": "2026-09-20",
+              "home": "Norwich",
+              "away": "Bolton",
+              "actual": 2,
+              "probabilities": [
+                0.6141509940838343,
+                0.21927938352171714,
+                0.16656962239444853
+              ],
+              "logloss": 1.792341904443829
+            },
+            {
+              "date": "2026-09-05",
+              "home": "Burnley",
+              "away": "Bristol City",
+              "actual": 2,
+              "probabilities": [
+                0.5675748766460448,
+                0.2580722373472425,
+                0.1743528860067127
+              ],
+              "logloss": 1.7466739530481625
+            },
+            {
+              "date": "2026-11-07",
+              "home": "Preston",
+              "away": "Southampton",
+              "actual": 0,
+              "probabilities": [
+                0.18805061864257616,
+                0.22972130306652586,
+                0.582228078290898
+              ],
+              "logloss": 1.6710441042941429
+            },
+            {
+              "date": "2026-10-17",
+              "home": "Southampton",
+              "away": "Bolton",
+              "actual": 1,
+              "probabilities": [
+                0.6653062642598151,
+                0.18980712036256314,
+                0.14488661537762165
+              ],
+              "logloss": 1.661746878427985
+            },
+            {
+              "date": "2026-11-04",
+              "home": "Cardiff",
+              "away": "West Ham",
+              "actual": 1,
+              "probabilities": [
+                0.2252723719137257,
+                0.21003748361528374,
+                0.5646901444709906
+              ],
+              "logloss": 1.560469270786608
+            },
+            {
+              "date": "2026-10-17",
+              "home": "Middlesbrough",
+              "away": "Cardiff",
+              "actual": 1,
+              "probabilities": [
+                0.6333617183750129,
+                0.2115794305517472,
+                0.15505885107323997
+              ],
+              "logloss": 1.5531547928358307
+            },
+            {
+              "date": "2026-10-20",
+              "home": "Wolves",
+              "away": "Portsmouth",
+              "actual": 1,
+              "probabilities": [
+                0.6011836654778873,
+                0.21799960408464536,
+                0.18081673043746743
+              ],
+              "logloss": 1.523262032320177
+            }
+          ]
+        },
+        "v1": {
+          "byActualOutcome": {
+            "home": {
+              "n": 70,
+              "brier": 0.48631688221575,
+              "logloss": 0.8414552646453415,
+              "accuracy": 0.7714285714285715
+            },
+            "draw": {
+              "n": 37,
+              "brier": 0.8736345936777999,
+              "logloss": 1.407718090169166,
+              "accuracy": 0.0
+            },
+            "away": {
+              "n": 52,
+              "brier": 0.6573523496558776,
+              "logloss": 1.0757015288446026,
+              "accuracy": 0.4423076923076923
+            }
+          },
+          "meanProbabilities": [
+            0.4279191227733901,
+            0.24779547946787092,
+            0.3242853977587389
+          ],
+          "observedOutcomeShares": [
+            0.44025157232704404,
+            0.23270440251572327,
+            0.3270440251572327
+          ],
+          "largestLogLoss": [
+            {
+              "date": "2026-10-17",
+              "home": "Southampton",
+              "away": "Bolton",
+              "actual": 1,
+              "probabilities": [
+                0.662764485126617,
+                0.17260150255882234,
+                0.1646340123145606
+              ],
+              "logloss": 1.7567697949314065
+            },
+            {
+              "date": "2026-11-03",
+              "home": "QPR",
+              "away": "Burnley",
+              "actual": 1,
+              "probabilities": [
+                0.6363496047743972,
+                0.18180391461783038,
+                0.18184648060777248
+              ],
+              "logloss": 1.7048265649192584
+            },
+            {
+              "date": "2026-09-20",
+              "home": "Norwich",
+              "away": "Bolton",
+              "actual": 2,
+              "probabilities": [
+                0.6062084145466551,
+                0.20933441373159084,
+                0.18445717172175416
+              ],
+              "logloss": 1.6903379740376712
+            },
+            {
+              "date": "2026-09-15",
+              "home": "Middlesbrough",
+              "away": "Millwall",
+              "actual": 1,
+              "probabilities": [
+                0.5748220285183371,
+                0.20037809050669944,
+                0.2247998809749634
+              ],
+              "logloss": 1.6075492445571422
+            },
+            {
+              "date": "2026-10-13",
+              "home": "Wolves",
+              "away": "Bolton",
+              "actual": 2,
+              "probabilities": [
+                0.594426485474558,
+                0.19837524194785838,
+                0.20719827257758353
+              ],
+              "logloss": 1.5740791056123364
+            },
+            {
+              "date": "2026-09-12",
+              "home": "Watford",
+              "away": "Stoke",
+              "actual": 2,
+              "probabilities": [
+                0.5569696400308204,
+                0.2332489123082496,
+                0.20978144766093001
+              ],
+              "logloss": 1.5616890156195486
+            },
+            {
+              "date": "2026-10-17",
+              "home": "Middlesbrough",
+              "away": "Cardiff",
+              "actual": 1,
+              "probabilities": [
+                0.5951430360826235,
+                0.21423127294298486,
+                0.19062569097439155
+              ],
+              "logloss": 1.5406991328251602
+            },
+            {
+              "date": "2026-09-08",
+              "home": "Wrexham",
+              "away": "Burnley",
+              "actual": 1,
+              "probabilities": [
+                0.534012129377781,
+                0.21609664742842435,
+                0.24989122319379464
+              ],
+              "logloss": 1.5320295295719426
+            },
+            {
+              "date": "2026-10-09",
+              "home": "West Ham",
+              "away": "QPR",
+              "actual": 1,
+              "probabilities": [
+                0.5640641517627225,
+                0.21896722872449959,
+                0.21696861951277788
+              ],
+              "logloss": 1.518833200890296
+            },
+            {
+              "date": "2026-09-08",
+              "home": "Cardiff",
+              "away": "Stoke",
+              "actual": 1,
+              "probabilities": [
+                0.5632393255266115,
+                0.22142081575018824,
+                0.21533985872320024
+              ],
+              "logloss": 1.5076902443818814
+            }
+          ]
+        }
+      }
+    }
+  },
+  "pointGatePassed": false,
+  "historicalGatePassed": false,
+  "durationSeconds": 14.456627599000058,
+  "predictionsSha256": {
+    "audit": "ae2b759e1d31987dccfb38d15bc800b97e11a9c2932d95245c99c02d6eab37db",
+    "monitoring": "7680084f8be6590b701e91c28c6628eefec6cb65a797665289bc1e34a83d0014"
+  },
+  "promotedToDefault": false,
+  "originalHundredChanged": false,
+  "prospectiveValidationRequired": true,
+  "retrospective": true,
+  "limitations": [
+    "Retrospective development: recent ELC periods were inspected in the previous four-league experiment; no historical period is claimed to be an untouched prospective test.",
+    "CSV dates lack reliable publication timestamps, so the immediately preceding calendar day is conservatively excluded.",
+    "The CSV v1 reference uses the same past-only date fence as the candidate. It is a dated replay of the production formula, not the original one-hundred-match packet or exactly the timestamp-based online calculation.",
+    "Model settings are selected on earlier ELC seasons only. Earlier evaluation results can subsequently train later rolling forecasts once they cross the information fence.",
+    "Promoted teams may have little same-division history; primary comparisons include only fixtures eligible for v1, with exclusions and team-history coverage reported.",
+    "Only goals and prior results are used; dated injuries, lineups and xG are not supplied by this archive.",
+    "A historical improvement requires a separate future frozen comparison before changing the public model. Original one-hundred-match probabilities remain immutable."
+  ]
+}
