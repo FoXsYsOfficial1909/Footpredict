@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "protocol": "elc-blend-selection-1",
+  "planSha256": "50bb136c1c66f2cd66883d13eaadf9f0aef1a73fff19389fcee9c03764ff7d23",
+  "selectionSha256": "1c549d205105785a93fd410b81dd2222f314ffbaa7cddc8b22fb9ca9842d4fc0",
+  "selection": {
+    "schemaVersion": 1,
+    "protocol": "elc-blend-selection-1",
+    "planSha256": "50bb136c1c66f2cd66883d13eaadf9f0aef1a73fff19389fcee9c03764ff7d23",
+    "shotWeight": 1.0,
+    "validation": {
+      "n": 1061,
+      "brier": 0.6155351533186771,
+      "logloss": 1.0258016828843066,
+      "accuracy": 0.47785108388312914
+    },
+    "trials": [
+      {
+        "shotWeight": 0.0,
+        "metrics": {
+          "n": 1061,
+          "brier": 0.6324450388369788,
+          "logloss": 1.0488798639797892,
+          "accuracy": 0.4655984919886899
+        }
+      },
+      {
+        "shotWeight": 0.25,
+        "metrics": {
+          "n": 1061,
+          "brier": 0.6259391419861847,
+          "logloss": 1.0397700089895365,
+          "accuracy": 0.47973609802073514
+        }
+      },
+      {
+        "shotWeight": 0.5,
+        "metrics": {
+          "n": 1061,
+          "brier": 0.6209521954495364,
+          "logloss": 1.0330266321039945,
+          "accuracy": 0.47879359095193214
+        }
+      },
+      {
+        "shotWeight": 0.75,
+        "metrics": {
+          "n": 1061,
+          "brier": 0.6174841992270339,
+          "logloss": 1.0284042235846085,
+          "accuracy": 0.470311027332705
+        }
+      },
+      {
+        "shotWeight": 1.0,
+        "metrics": {
+          "n": 1061,
+          "brier": 0.6155351533186771,
+          "logloss": 1.0258016828843066,
+          "accuracy": 0.47785108388312914
+        }
+      }
+    ],
+    "selectionDataSha256": "17f66f3e823444b031b9edef9961b7b379714eb2b9df72ef9c37eac4ffc9f5cf",
+    "selectedBeforeLaterMetrics": true,
+    "promotedToDefault": false
+  },
+  "results": {
+    "validation": {
+      "matches": 1061,
+      "metrics": {
+        "blend": {
+          "n": 1061,
+          "brier": 0.6155351533186771,
+          "logloss": 1.0258016828843066,
+          "accuracy": 0.47785108388312914
+        },
+        "v1": {
+          "n": 1061,
+          "brier": 0.6324450388369788,
+          "logloss": 1.0488798639797892,
+          "accuracy": 0.4655984919886899
+        },
+        "shots": {
+          "n": 1061,
+          "brier": 0.6155351533186771,
+          "logloss": 1.0258016828843066,
+          "accuracy": 0.47785108388312914
+        },
+        "base": {
+          "n": 1061,
+          "brier": 0.6473356590665021,
+          "logloss": 1.0706632626987465,
+          "accuracy": 0.4505183788878417
+        }
+      },
+      "pairedIntervals": {
+        "brier": {
+          "difference": -0.01690988551830175,
+          "ci95": [
+            -0.024984753699078006,
+            -0.00944917002665274
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": -0.023078181095482334,
+          "ci95": [
+            -0.03544040176812462,
+            -0.0121001322252767
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      }
+    },
+    "audit": {
+      "matches": 533,
+      "metrics": {
+        "blend": {
+          "n": 533,
+          "brier": 0.6402470571866342,
+          "logloss": 1.0602239720565236,
+          "accuracy": 0.4427767354596623
+        },
+        "v1": {
+          "n": 533,
+          "brier": 0.6453337177743311,
+          "logloss": 1.0660563139372885,
+          "accuracy": 0.4277673545966229
+        },
+        "shots": {
+          "n": 533,
+          "brier": 0.6402470571866342,
+          "logloss": 1.0602239720565236,
+          "accuracy": 0.4427767354596623
+        },
+        "base": {
+          "n": 533,
+          "brier": 0.6586335086600382,
+          "logloss": 1.0869746460562375,
+          "accuracy": 0.4165103189493433
+        }
+      },
+      "pairedIntervals": {
+        "brier": {
+          "difference": -0.005086660587696851,
+          "ci95": [
+            -0.018011816294471097,
+            0.008283191696181875
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": -0.005832341880765043,
+          "ci95": [
+            -0.023359277031048238,
+            0.011825025860885309
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      }
+    },
+    "monitoring": {
+      "matches": 159,
+      "metrics": {
+        "blend": {
+          "n": 159,
+          "brier": 0.6461010460590505,
+          "logloss": 1.0674537832704514,
+          "accuracy": 0.44025157232704404
+        },
+        "v1": {
+          "n": 159,
+          "brier": 0.6323835465615516,
+          "logloss": 1.0498359582474992,
+          "accuracy": 0.48427672955974843
+        },
+        "shots": {
+          "n": 159,
+          "brier": 0.6461010460590505,
+          "logloss": 1.0674537832704514,
+          "accuracy": 0.44025157232704404
+        },
+        "base": {
+          "n": 159,
+          "brier": 0.6506716951174104,
+          "logloss": 1.0748956008987893,
+          "accuracy": 0.44025157232704404
+        }
+      },
+      "pairedIntervals": {
+        "brier": {
+          "difference": 0.013717499497498786,
+          "ci95": [
+            -0.015018065945821795,
+            0.041313594831483565
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": 0.017617825022952185,
+          "ci95": [
+            -0.02378045122514845,
+            0.05648634342305321
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      }
+    }
+  },
+  "sourcePredictionSha256": {
+    "validation": "17f66f3e823444b031b9edef9961b7b379714eb2b9df72ef9c37eac4ffc9f5cf",
+    "audit": "aa666a2d1e87b0e1232381fc144678230721f4844c0ea76cadf95ffe73e9f827",
+    "monitoring": "d64f356f79e7cf5e94bd224e5e7f480633963983240acd13b833ddf3eec1a5b6"
+  },
+  "pointGatePassed": false,
+  "historicalGatePassed": false,
+  "retrospective": true,
+  "prospectiveValidationRequired": true,
+  "promotedToDefault": false,
+  "limitations": [
+    "All historical periods have already been inspected. This is further retrospective development, not an untouched test.",
+    "The zero-shot baseline is an eligible selection outcome. A duplicate probability vector is not a second independent model or additional evidence.",
+    "Historical CSV v1 uses a conservative date fence. The future control is the actual timestamp-based production-v1 forecast from the original packet; this source difference must remain explicit.",
+    "The v1 control was registered on November 11 and the new shot model later, with different historical source coverage. The future comparison does not claim simultaneous registration or identical input histories.",
+    "The future packet is an experimental frozen comparison even when historical gates fail. It does not replace public probabilities or establish a validated accuracy increase.",
+    "A prospective sample of at most 36 games is small; report all eligible outcomes and uncertainty without promoting a winner automatically.",
+    "Shots on target are not measured xG. Player availability, lineups, weather and odds are not new inputs in this model."
+  ]
+}

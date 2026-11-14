@@ -1,0 +1,39 @@
+{
+  "protocol": "elc-blend-selection-1",
+  "registeredOn": "2026-11-14",
+  "registeredBeforeBlendMetrics": true,
+  "sourceStudy": "docs/research/championship-shots-2026-11-14",
+  "sourceReportSha256": "5158570294aa411fe36fc136dc9e11772167386b339000d2cdb4a94be9a747e8",
+  "sourcePredictionSha256": {
+    "validation": "17f66f3e823444b031b9edef9961b7b379714eb2b9df72ef9c37eac4ffc9f5cf",
+    "audit": "aa666a2d1e87b0e1232381fc144678230721f4844c0ea76cadf95ffe73e9f827",
+    "monitoring": "d64f356f79e7cf5e94bd224e5e7f480633963983240acd13b833ddf3eec1a5b6"
+  },
+  "shotWeights": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "maximumCandidates": 5,
+  "formula": "(1 - shotWeight) * v1 + shotWeight * shots",
+  "selectionPeriod": "validation",
+  "selectionRule": "Minimum mean validation Log Loss on 1061 earlier out-of-sample forecasts; exact ties prefer the smaller shot weight. Persist the choice before calculating either later-period result. Do not reselect using audit, monitoring or future outcomes.",
+  "expectedMatches": {"validation": 1061, "audit": 533, "monitoring": 159},
+  "pointGate": "Both Brier and Log Loss improve over v1 in every historical period",
+  "historicalGate": "Point gate plus upper bounds below zero for both audit paired UTC-day bootstrap intervals against v1",
+  "bootstrapSamples": 1500,
+  "futureProtocol": "elc-shots-future-1",
+  "futureSourceCohortSha256": "115bccbb92bcb85c69e4141d50d86cc185c70a62fdfbad6e2630517db820b39d",
+  "futureSelection": "All ELC members of the original one-hundred-match packet still at least 24 hours from kickoff at the actual new registration; retain an explicit exclusion list, never replace a member or filter by model confidence",
+  "minimumLeadHours": 24,
+  "futureModelSource": "Frozen shot-study model.json, with its exact weights copied into the new packet; never substitute later daily models",
+  "futureReference": "Original production-v1 and league-baseline probabilities frozen on 2026-11-11; do not overwrite or re-register the original hundred",
+  "teamIdentityPolicy": "An explicit one-to-one mapping of ELC provider IDs and official names to E1 CSV names, validated against all 180 current-season historical fixtures and scores; reject missing or unknown teams",
+  "resultSource": "Reuse the existing hundred-results observations on the identical fixture IDs, after strict source cohort, full membership, status, score and four-hour publication-fence checks; no extra football-provider requests",
+  "automaticPromotion": false,
+  "limitations": [
+    "All historical periods have already been inspected. This is further retrospective development, not an untouched test.",
+    "The zero-shot baseline is an eligible selection outcome. A duplicate probability vector is not a second independent model or additional evidence.",
+    "Historical CSV v1 uses a conservative date fence. The future control is the actual timestamp-based production-v1 forecast from the original packet; this source difference must remain explicit.",
+    "The v1 control was registered on November 11 and the new shot model later, with different historical source coverage. The future comparison does not claim simultaneous registration or identical input histories.",
+    "The future packet is an experimental frozen comparison even when historical gates fail. It does not replace public probabilities or establish a validated accuracy increase.",
+    "A prospective sample of at most 36 games is small; report all eligible outcomes and uncertainty without promoting a winner automatically.",
+    "Shots on target are not measured xG. Player availability, lineups, weather and odds are not new inputs in this model."
+  ]
+}

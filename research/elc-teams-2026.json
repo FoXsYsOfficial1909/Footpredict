@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "league": "ELC",
+  "division": "E1",
+  "season": 2026,
+  "teams": [
+    {"id": 59, "name": "Blackburn Rovers FC", "csv": "Blackburn"},
+    {"id": 60, "name": "Bolton Wanderers FC", "csv": "Bolton"},
+    {"id": 68, "name": "Norwich City FC", "csv": "Norwich"},
+    {"id": 69, "name": "Queens Park Rangers FC", "csv": "QPR"},
+    {"id": 70, "name": "Stoke City FC", "csv": "Stoke"},
+    {"id": 72, "name": "Swansea City AFC", "csv": "Swansea"},
+    {"id": 74, "name": "West Bromwich Albion FC", "csv": "West Brom"},
+    {"id": 76, "name": "Wolverhampton Wanderers FC", "csv": "Wolves"},
+    {"id": 325, "name": "Portsmouth FC", "csv": "Portsmouth"},
+    {"id": 328, "name": "Burnley FC", "csv": "Burnley"},
+    {"id": 332, "name": "Birmingham City FC", "csv": "Birmingham"},
+    {"id": 340, "name": "Southampton FC", "csv": "Southampton"},
+    {"id": 342, "name": "Derby County FC", "csv": "Derby"},
+    {"id": 343, "name": "Middlesbrough FC", "csv": "Middlesbrough"},
+    {"id": 346, "name": "Watford FC", "csv": "Watford"},
+    {"id": 348, "name": "Charlton Athletic FC", "csv": "Charlton"},
+    {"id": 356, "name": "Sheffield United FC", "csv": "Sheffield United"},
+    {"id": 384, "name": "Millwall FC", "csv": "Millwall"},
+    {"id": 387, "name": "Bristol City FC", "csv": "Bristol City"},
+    {"id": 404, "name": "Wrexham AFC", "csv": "Wrexham"},
+    {"id": 563, "name": "West Ham United FC", "csv": "West Ham"},
+    {"id": 715, "name": "Cardiff City FC", "csv": "Cardiff"},
+    {"id": 1081, "name": "Preston North End FC", "csv": "Preston"},
+    {"id": 1126, "name": "Lincoln City FC", "csv": "Lincoln"}
+  ]
+}

@@ -11,6 +11,12 @@ on:
       - 'research/hundred.py'
       - 'scripts/publish_hundred.py'
       - 'docs/research/hundred-2026-11-11/**'
+      - 'research/elc_future.py'
+      - 'research/elc-teams-2026.json'
+      - 'scripts/publish_elc_comparison.py'
+      - 'docs/research/elc-future-2026-11-14/**'
+      - 'docs/research/elc-blend-plan-2026-11-14.json'
+      - 'docs/research/elc-blend-2026-11-14/selection.json'
 
 permissions:
   contents: read
@@ -52,11 +58,19 @@ jobs:
               'packetSha256':REGISTERED_SHA,'status':'failed','checkedAt':datetime.now(timezone.utc).isoformat(),
               'forecastsChanged':False,'message':'Results could not be verified; previous observations are preserved.'}))
           PY
+      - name: Evaluate frozen ELC candidate on the same verified results
+        id: elc
+        continue-on-error: true
+        run: |
+          python -m research.elc_future settle --source artifacts/hundred/report.json \
+            --previous-source artifacts/hundred-previous.json --output artifacts/elc-comparison
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: hundred-results-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/hundred/
+          path: |
+            artifacts/hundred/
+            artifacts/elc-comparison/
           retention-days: 90
       - name: Publish the separate result observation
         if: always() && hashFiles('artifacts/hundred/report.json') != ''
@@ -64,8 +78,17 @@ jobs:
           python -m scripts.publish_hundred publish --output artifacts/hundred \
             --repository '${{ github.repository }}' --run-id '${{ github.run_id }}' \
             --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
+      - name: Publish separate ELC comparison and retain prior successful results
+        if: always() && hashFiles('artifacts/elc-comparison/report.json') != ''
+        run: |
+          python -m scripts.publish_elc_comparison --output artifacts/elc-comparison \
+            --repository '${{ github.repository }}' --run-id '${{ github.run_id }}' \
+            --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
       - name: Check summary
         if: always() && hashFiles('artifacts/hundred/report.md') != ''
         run: cat artifacts/hundred/report.md >> "$GITHUB_STEP_SUMMARY"
-      - if: steps.settle.outcome == 'failure'
+      - name: ELC comparison summary
+        if: always() && hashFiles('artifacts/elc-comparison/report.md') != ''
+        run: cat artifacts/elc-comparison/report.md >> "$GITHUB_STEP_SUMMARY"
+      - if: steps.settle.outcome == 'failure' || steps.elc.outcome == 'failure'
         run: exit 1

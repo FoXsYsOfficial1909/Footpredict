@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "protocol": "elc-blend-selection-1",
+  "planSha256": "50bb136c1c66f2cd66883d13eaadf9f0aef1a73fff19389fcee9c03764ff7d23",
+  "shotWeight": 1.0,
+  "validation": {
+    "n": 1061,
+    "brier": 0.6155351533186771,
+    "logloss": 1.0258016828843066,
+    "accuracy": 0.47785108388312914
+  },
+  "trials": [
+    {
+      "shotWeight": 0.0,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6324450388369788,
+        "logloss": 1.0488798639797892,
+        "accuracy": 0.4655984919886899
+      }
+    },
+    {
+      "shotWeight": 0.25,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6259391419861847,
+        "logloss": 1.0397700089895365,
+        "accuracy": 0.47973609802073514
+      }
+    },
+    {
+      "shotWeight": 0.5,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6209521954495364,
+        "logloss": 1.0330266321039945,
+        "accuracy": 0.47879359095193214
+      }
+    },
+    {
+      "shotWeight": 0.75,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6174841992270339,
+        "logloss": 1.0284042235846085,
+        "accuracy": 0.470311027332705
+      }
+    },
+    {
+      "shotWeight": 1.0,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6155351533186771,
+        "logloss": 1.0258016828843066,
+        "accuracy": 0.47785108388312914
+      }
+    }
+  ],
+  "selectionDataSha256": "17f66f3e823444b031b9edef9961b7b379714eb2b9df72ef9c37eac4ffc9f5cf",
+  "selectedBeforeLaterMetrics": true,
+  "promotedToDefault": false
+}
