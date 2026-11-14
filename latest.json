@@ -687,7 +687,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.6950105450000024,
+    "durationSeconds": 1.3687633480000017,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -697,14 +697,14 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.08600230500000094,
-    "generatedAt": "2026-11-14T17:14:57.256975+00:00",
+    "computeSeconds": 0.1038261720000051,
+    "generatedAt": "2026-11-14T17:41:50.079867+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43620024921",
+    "runId": "43622480221",
     "runAttempt": "1",
-    "sourceCommit": "1e568e3b5ecff00ba86ec9f97bc4c1f64bb1997b",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024921",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024921#artifacts",
+    "sourceCommit": "85547b51eeaa9c4a585b08894d290e7631bc6473",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480221",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480221#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/ed46d02768a03caee8a822935829ecfd790e03126b37baaf38059127f7587d54.json"
   },
   "latestSuccessful": {
@@ -1393,7 +1393,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.6950105450000024,
+    "durationSeconds": 1.3687633480000017,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -1403,14 +1403,14 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.08600230500000094,
-    "generatedAt": "2026-11-14T17:14:57.256975+00:00",
+    "computeSeconds": 0.1038261720000051,
+    "generatedAt": "2026-11-14T17:41:50.079867+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43620024921",
+    "runId": "43622480221",
     "runAttempt": "1",
-    "sourceCommit": "1e568e3b5ecff00ba86ec9f97bc4c1f64bb1997b",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024921",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024921#artifacts",
+    "sourceCommit": "85547b51eeaa9c4a585b08894d290e7631bc6473",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480221",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480221#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/ed46d02768a03caee8a822935829ecfd790e03126b37baaf38059127f7587d54.json"
   }
 }
