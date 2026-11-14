@@ -17,6 +17,10 @@ on:
       - 'docs/research/elc-future-2026-11-14/**'
       - 'docs/research/elc-blend-plan-2026-11-14.json'
       - 'docs/research/elc-blend-2026-11-14/selection.json'
+      - 'research/transfer_future.py'
+      - 'docs/research/transfer-policy-plan-2026-11-14.json'
+      - 'docs/research/transfer-policy-2026-11-14/selection.json'
+      - 'docs/research/elc-transfer-future-2026-11-14/**'
 
 permissions:
   contents: read
@@ -64,6 +68,12 @@ jobs:
         run: |
           python -m research.elc_future settle --source artifacts/hundred/report.json \
             --previous-source artifacts/hundred-previous.json --output artifacts/elc-comparison
+      - name: Evaluate the frozen conditional policy on the same results
+        id: transfer
+        continue-on-error: true
+        run: |
+          python -m research.transfer_future settle --source artifacts/hundred/report.json \
+            --previous-source artifacts/hundred-previous.json --output artifacts/elc-transfer
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -71,6 +81,7 @@ jobs:
           path: |
             artifacts/hundred/
             artifacts/elc-comparison/
+            artifacts/elc-transfer/
           retention-days: 90
       - name: Publish the separate result observation
         if: always() && hashFiles('artifacts/hundred/report.json') != ''
@@ -84,11 +95,20 @@ jobs:
           python -m scripts.publish_elc_comparison --output artifacts/elc-comparison \
             --repository '${{ github.repository }}' --run-id '${{ github.run_id }}' \
             --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
+      - name: Publish the conditional policy to its own archive
+        if: always() && hashFiles('artifacts/elc-transfer/report.json') != ''
+        run: |
+          python -m scripts.publish_elc_comparison --comparison transfer --output artifacts/elc-transfer \
+            --repository '${{ github.repository }}' --run-id '${{ github.run_id }}' \
+            --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
       - name: Check summary
         if: always() && hashFiles('artifacts/hundred/report.md') != ''
         run: cat artifacts/hundred/report.md >> "$GITHUB_STEP_SUMMARY"
       - name: ELC comparison summary
         if: always() && hashFiles('artifacts/elc-comparison/report.md') != ''
         run: cat artifacts/elc-comparison/report.md >> "$GITHUB_STEP_SUMMARY"
-      - if: steps.settle.outcome == 'failure' || steps.elc.outcome == 'failure'
+      - name: Conditional policy summary
+        if: always() && hashFiles('artifacts/elc-transfer/report.md') != ''
+        run: cat artifacts/elc-transfer/report.md >> "$GITHUB_STEP_SUMMARY"
+      - if: steps.settle.outcome == 'failure' || steps.elc.outcome == 'failure' || steps.transfer.outcome == 'failure'
         run: exit 1

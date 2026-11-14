@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "protocol": "elc-transfer-policy-1",
+  "planSha256": "1004a44a4bcc977ba30d4b6df295821c9e81a589d7df93868ee7420be0838623",
+  "weight": 1.0,
+  "eligibility": {
+    "E1GamesExclusiveMaximum": 20,
+    "E0GamesInclusiveMinimum": 20,
+    "windowDays": 1095
+  },
+  "trials": [
+    {
+      "weight": 0.0,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6324450388369788,
+        "logloss": 1.0488798639797892,
+        "accuracy": 0.4655984919886899
+      }
+    },
+    {
+      "weight": 0.25,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6314828191886211,
+        "logloss": 1.0475340995720253,
+        "accuracy": 0.4665409990574929
+      }
+    },
+    {
+      "weight": 0.5,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6306759992136632,
+        "logloss": 1.0464054376234284,
+        "accuracy": 0.46748350612629597
+      }
+    },
+    {
+      "weight": 0.75,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6300245789121048,
+        "logloss": 1.0454745034751545,
+        "accuracy": 0.46936852026390197
+      }
+    },
+    {
+      "weight": 1.0,
+      "metrics": {
+        "n": 1061,
+        "brier": 0.6295285582839462,
+        "logloss": 1.0447410236471466,
+        "accuracy": 0.46842601319509897
+      }
+    }
+  ],
+  "validation": {
+    "n": 1061,
+    "brier": 0.6295285582839462,
+    "logloss": 1.0447410236471466,
+    "accuracy": 0.46842601319509897
+  },
+  "validationApplicableMatches": 45,
+  "selectionDataSha256": "598ab36d9380bada104fd8ea22fd41e42139c6ce12a2bc73b84dc4d193109564",
+  "selectedBeforeLaterPolicyMetrics": true,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true
+}

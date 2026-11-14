@@ -1,0 +1,37 @@
+{
+  "protocol": "elc-transfer-policy-1",
+  "registeredOn": "2026-11-14",
+  "registeredBeforePolicyMetrics": true,
+  "sourceStudy": "docs/research/cross-division-2026-11-14",
+  "sourceReportSha256": "1fb51d2cf6f867d29de8f6b1ad15205f170460f2b1bf7f717fd266ed3ed16f33",
+  "sourceModelSha256": "6ff5fdacbb54ba1f7c1623b199c85c798c6ebf03510dad76ba3f5127690ba1e3",
+  "sourceDataSha256": "da5b5851caa67063c04231c29c69b67a162553679d1f3b2d665209dd20fb1ded",
+  "sourcePredictionSha256": {
+    "validation": "598ab36d9380bada104fd8ea22fd41e42139c6ce12a2bc73b84dc4d193109564",
+    "audit": "0bc88509338e779fefd3d82235874e55c832960bda9ecac052affb56fb4ac0d8",
+    "monitoring": "814a57dde417cb18ce972bb62885dfb31e112366a93b628d774155831ee559ec"
+  },
+  "expectedMatches": {"validation": 1061, "audit": 533, "monitoring": 159},
+  "eligibility": {"E1GamesExclusiveMaximum": 20, "E0GamesInclusiveMinimum": 20, "windowDays": 1095},
+  "eligibilityOrigin": "The low-ELC-history subgroup was specified before the preceding joint-model forecasts; its threshold is retained without search. Choosing to use that subgroup as a policy after inspecting its results is further retrospective development.",
+  "weights": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "maximumCandidates": 5,
+  "formula": "For eligible fixtures: (1-weight)*v1+weight*joint. For every other fixture: exactly v1.",
+  "selectionRule": "Minimum validation Log Loss on the identical earlier 1061 forecasts; exact ties prefer smaller weight. Freeze this one weight before computing later-period policy metrics.",
+  "bootstrapSamples": 1500,
+  "researchSignal": "No worse Brier and Log Loss than v1 in every period, strictly better in periods with changed predictions. A period with zero eligible fixtures is no evidence for the adjustment.",
+  "futureProtocol": "elc-transfer-future-1",
+  "futureSourcePacketSha256": "700408138bd35bfbec3ff1e807ae99020856f83b7f9c636a1a4c0bde6c346d6c",
+  "futureSelection": "Use members of the existing 36-match ELC packet still at least 24 hours from kickoff at the actual new registration. Keep the old packet unchanged, mark applicable and changed fixtures explicitly, and report their scores separately from the full overlapping cohort.",
+  "minimumLeadHours": 24,
+  "automaticPromotion": false,
+  "existingFrozenPredictionsMayChange": false,
+  "limitations": [
+    "Every historical period was inspected previously, including subgroup outcomes. This policy is a new development hypothesis, not an untouched historical confirmation.",
+    "The earlier training group contains only 45 applicable games. The intermediate audit contains zero; matching v1 there is mechanical baseline reuse, not a successful test of the adjustment.",
+    "The same 36 future match IDs overlap the previous experiment. Only changed forecasts can provide evidence about this new adjustment; do not count the overlapping series as more independent games.",
+    "The v1 reference is its original November 11 forecast, the previous shot candidate was registered later on November 14, and this candidate later again. Input coverage and registration dates differ.",
+    "The joint model assumes some persistence of club strength across seasons; current squad and coach changes are not numeric inputs.",
+    "Shots on target remain a proxy rather than measured xG. The public model, original hundred and existing 36-match packet remain immutable."
+  ]
+}

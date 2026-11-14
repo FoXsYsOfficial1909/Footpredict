@@ -167,8 +167,10 @@ def freeze(directory=DIRECTORY):
     return packet, checksum
 
 
-def settle(packet, source, now):
+def settle(packet, source, now, *, packet_sha=REGISTERED_SHA, protocol=PROTOCOL):
     now = instant(now) if isinstance(now, str) else now
+    if packet.get('protocol') != protocol or packet.get('sourceCohortSha256') != ORIGINAL_SHA:
+        raise ValueError('Different future comparison identity')
     checked = instant(source['checkedAt'])
     if (source.get('schemaVersion') != 1 or source.get('protocol') != 'hundred-future-1'
             or source.get('packetSha256') != ORIGINAL_SHA or source.get('forecastsChanged') is not False
@@ -196,7 +198,7 @@ def settle(packet, source, now):
             raise ValueError('An unsettled source cannot contain a final outcome')
         results.append({**fixture, 'status': status, 'outcome': outcome, 'score': score, 'reason': observed.get('reason')})
     counts = {key: sum(r['status'] == key for r in results) for key in ('pending', 'settled', 'review', 'unavailable')}
-    return {'schemaVersion': 1, 'protocol': PROTOCOL, 'packetSha256': REGISTERED_SHA,
+    return {'schemaVersion': 1, 'protocol': protocol, 'packetSha256': packet_sha,
         'sourceCohortSha256': ORIGINAL_SHA, 'sourceResultsSha256': sha(source),
         'checkedAt': source['checkedAt'], 'status': 'complete' if not counts['pending'] and not counts['unavailable'] else 'active',
         'finalized': source.get('finalized', False), 'forecastCount': len(results), 'counts': counts,
@@ -205,29 +207,41 @@ def settle(packet, source, now):
         'promotedToDefault': False, 'note': 'Small experimental future cohort; the candidate equals shots when weight is 1. No duplicated-model evidence.'}
 
 
-def settle_files(source_path, output, *, previous_source=None):
+def settle_files(source_path, output, *, previous_source=None, packet_loader=None, result_fn=None,
+                 protocol=PROTOCOL, packet_sha=REGISTERED_SHA):
     output = Path(output); output.mkdir(parents=True, exist_ok=True)
     (output/'report.md').unlink(missing_ok=True)
     try:
-        packet = verify_files()
+        packet = (packet_loader or verify_files)()
         path = Path(source_path)
         if not path.exists() and previous_source:
             path = Path(previous_source)
             previous = json.loads(path.read_text())
             if previous.get('finalized') is not True:raise ValueError('Missing current result observation')
         source = json.loads(path.read_text())
-        report = settle(packet, source, datetime.now(timezone.utc))
+        report = (result_fn or settle)(packet, source, datetime.now(timezone.utc))
+        if report['protocol'] != protocol or report['packetSha256'] != packet_sha:
+            raise ValueError('Result adapter returned another cohort identity')
         lines = ['# Будущая проверка Чемпионшипа', '', f"Дата настоящей сверки источника: {report['checkedAt']}.", '',
             '| Модель | Матчей | Brier ↓ | Log Loss ↓ | Совпал исход |', '| --- | ---: | ---: | ---: | ---: |']
         for name, metrics in report['metrics'].items():
             values = [f"{metrics[k]:.6f}" if metrics[k] is not None else '—' for k in ('brier', 'logLoss')]
             accuracy = f"{metrics['accuracy']:.1%}" if metrics['accuracy'] is not None else '—'
             lines.append(f"| {name} | {metrics['n']} | {values[0]} | {values[1]} | {accuracy} |")
+        if 'applicableMatches' in report:
+            lines += ['', f"Поправка применима к {report['applicableMatches']} играм и меняет {report['changedMatches']} прогнозов. "
+                      f"Из применимых завершено: {report['applicableCounts']['settled']}. Остальные прогнозы повторяют v1.", '',
+                      '| Только применимые игры | Матчей | Brier ↓ | Log Loss ↓ | Совпал исход |',
+                      '| --- | ---: | ---: | ---: | ---: |']
+            for name, metrics in report['applicableMetrics'].items():
+                values = [f"{metrics[k]:.6f}" if metrics[k] is not None else '—' for k in ('brier', 'logLoss')]
+                accuracy = f"{metrics['accuracy']:.1%}" if metrics['accuracy'] is not None else '—'
+                lines.append(f"| {name} | {metrics['n']} | {values[0]} | {values[1]} | {accuracy} |")
         lines += ['', 'Вероятности зафиксированы до матчей. Это отдельная малая экспериментальная серия; '
             'основные прогнозы и исходная сотня не изменяются. Дополнительных запросов к поставщику: 0.']
         (output/'report.md').write_text('\n'.join(lines)+'\n')
     except Exception as error:
-        report = {'schemaVersion': 1, 'protocol': PROTOCOL, 'packetSha256': REGISTERED_SHA,
+        report = {'schemaVersion': 1, 'protocol': protocol, 'packetSha256': packet_sha,
             'sourceCohortSha256': ORIGINAL_SHA, 'status': 'failed', 'checkedAt': datetime.now(timezone.utc).isoformat(),
             'forecastsChanged': False, 'errorType': type(error).__name__,
             'message': 'The future comparison could not verify its result source.'}
