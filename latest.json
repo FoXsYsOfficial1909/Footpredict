@@ -5,7 +5,7 @@
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
     "asOf": "2026-11-14",
-    "generatedAt": "2026-11-14T17:14:52.984384+00:00",
+    "generatedAt": "2026-11-14T17:41:56.456929+00:00",
     "trainingCutoffExclusive": "2026-11-13",
     "latestTrainingMatch": "2026-11-08",
     "trainingMatches": 4280,
@@ -43,24 +43,24 @@
           "accuracy": 0.43119266055045874
         }
       },
-      "poissonFitSeconds": 0.08585896700000006
+      "poissonFitSeconds": 0.13135147900000277
     },
-    "durationSeconds": 2.2772965569999997,
+    "durationSeconds": 2.535493083999995,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 0.9824473660000024,
+    "computeSeconds": 1.362936138000002,
     "timings": {
-      "referencePreparationSeconds": 0.8790349719999995,
-      "historicalValidationSeconds": 0.09339672000000121,
-      "finalFitSeconds": 0.003391917999998384,
-      "dataLoadSeconds": 1.2948378540000007
+      "referencePreparationSeconds": 1.205687165999997,
+      "historicalValidationSeconds": 0.14238980300000037,
+      "finalFitSeconds": 0.005138665000004039,
+      "dataLoadSeconds": 1.1725360040000012
     },
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43620024951",
+    "runId": "43622480143",
     "runAttempt": "1",
-    "sourceCommit": "1e568e3b5ecff00ba86ec9f97bc4c1f64bb1997b",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024951",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024951#artifacts",
+    "sourceCommit": "85547b51eeaa9c4a585b08894d290e7631bc6473",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480143",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480143#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/65b3262f6a37937810d61417ff8a07f01342ce41e1d48de8b8d370ee4e3f4352.json"
   },
   "latestSuccessful": {
@@ -68,7 +68,7 @@
     "protocol": "nightly-fixed-settings-1",
     "status": "success",
     "asOf": "2026-11-14",
-    "generatedAt": "2026-11-14T17:14:52.984384+00:00",
+    "generatedAt": "2026-11-14T17:41:56.456929+00:00",
     "trainingCutoffExclusive": "2026-11-13",
     "latestTrainingMatch": "2026-11-08",
     "trainingMatches": 4280,
@@ -106,24 +106,24 @@
           "accuracy": 0.43119266055045874
         }
       },
-      "poissonFitSeconds": 0.08585896700000006
+      "poissonFitSeconds": 0.13135147900000277
     },
-    "durationSeconds": 2.2772965569999997,
+    "durationSeconds": 2.535493083999995,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
-    "computeSeconds": 0.9824473660000024,
+    "computeSeconds": 1.362936138000002,
     "timings": {
-      "referencePreparationSeconds": 0.8790349719999995,
-      "historicalValidationSeconds": 0.09339672000000121,
-      "finalFitSeconds": 0.003391917999998384,
-      "dataLoadSeconds": 1.2948378540000007
+      "referencePreparationSeconds": 1.205687165999997,
+      "historicalValidationSeconds": 0.14238980300000037,
+      "finalFitSeconds": 0.005138665000004039,
+      "dataLoadSeconds": 1.1725360040000012
     },
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43620024951",
+    "runId": "43622480143",
     "runAttempt": "1",
-    "sourceCommit": "1e568e3b5ecff00ba86ec9f97bc4c1f64bb1997b",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024951",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43620024951#artifacts",
+    "sourceCommit": "85547b51eeaa9c4a585b08894d290e7631bc6473",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480143",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480143#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/65b3262f6a37937810d61417ff8a07f01342ce41e1d48de8b8d370ee4e3f4352.json"
   }
 }
