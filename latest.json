@@ -5,14 +5,14 @@
     "schemaVersion": 1,
     "protocol": "corner-candidate-1",
     "status": "success",
-    "asOf": "2026-11-13",
-    "trainingCutoffExclusive": "2026-11-12",
+    "asOf": "2026-11-14",
+    "trainingCutoffExclusive": "2026-11-13",
     "latestTrainingMatch": "2026-11-08",
     "trainingMatches": 4280,
     "pairedCornerMatches": 4280,
     "modelTrainingMatches": 1120,
-    "modelVersion": "corners-league-2026-11-13-5d18a8b19a41",
-    "modelSha256": "4028e41e141931c25a05e96af93aec8a6e917c834f9815a969e5e327d56a8554",
+    "modelVersion": "corners-league-2026-11-14-18974cf1ce08",
+    "modelSha256": "ed46d02768a03caee8a822935829ecfd790e03126b37baaf38059127f7587d54",
     "settings": {
       "id": "empirical-league",
       "family": "empirical",
@@ -687,7 +687,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.9700277769999985,
+    "durationSeconds": 2.4563341879999996,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -697,28 +697,28 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.10161305099999396,
-    "generatedAt": "2026-11-13T01:52:47.386437+00:00",
+    "computeSeconds": 0.07590159800000151,
+    "generatedAt": "2026-11-14T01:47:01.967061+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43348079464",
+    "runId": "43542597916",
     "runAttempt": "1",
     "sourceCommit": "13ed3330463f50fabec525eca2222cdf36fd4b92",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43348079464",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43348079464#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/4028e41e141931c25a05e96af93aec8a6e917c834f9815a969e5e327d56a8554.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43542597916",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43542597916#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/ed46d02768a03caee8a822935829ecfd790e03126b37baaf38059127f7587d54.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "corner-candidate-1",
     "status": "success",
-    "asOf": "2026-11-13",
-    "trainingCutoffExclusive": "2026-11-12",
+    "asOf": "2026-11-14",
+    "trainingCutoffExclusive": "2026-11-13",
     "latestTrainingMatch": "2026-11-08",
     "trainingMatches": 4280,
     "pairedCornerMatches": 4280,
     "modelTrainingMatches": 1120,
-    "modelVersion": "corners-league-2026-11-13-5d18a8b19a41",
-    "modelSha256": "4028e41e141931c25a05e96af93aec8a6e917c834f9815a969e5e327d56a8554",
+    "modelVersion": "corners-league-2026-11-14-18974cf1ce08",
+    "modelSha256": "ed46d02768a03caee8a822935829ecfd790e03126b37baaf38059127f7587d54",
     "settings": {
       "id": "empirical-league",
       "family": "empirical",
@@ -1393,7 +1393,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.9700277769999985,
+    "durationSeconds": 2.4563341879999996,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -1403,14 +1403,14 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.10161305099999396,
-    "generatedAt": "2026-11-13T01:52:47.386437+00:00",
+    "computeSeconds": 0.07590159800000151,
+    "generatedAt": "2026-11-14T01:47:01.967061+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43348079464",
+    "runId": "43542597916",
     "runAttempt": "1",
     "sourceCommit": "13ed3330463f50fabec525eca2222cdf36fd4b92",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43348079464",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43348079464#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/4028e41e141931c25a05e96af93aec8a6e917c834f9815a969e5e327d56a8554.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43542597916",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43542597916#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/ed46d02768a03caee8a822935829ecfd790e03126b37baaf38059127f7587d54.json"
   }
 }
