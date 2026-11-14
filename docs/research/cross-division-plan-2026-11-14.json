@@ -1,0 +1,45 @@
+{
+  "protocol": "cross-division-research-1",
+  "registeredOn": "2026-11-14",
+  "registeredBeforeCandidateForecasts": true,
+  "asOf": "2026-11-14",
+  "divisions": ["E0", "E1"],
+  "sourceMatches": {"E0": 4280, "E1": 6252},
+  "sourceELCStudy": "docs/research/championship-shots-2026-11-14",
+  "sourceELCDataSha256": "1cf5e7aa9fb2ed74f75caa889dc47f60bbb321b5d798a3399b30c567e3eebfa3",
+  "sourcePredictionSha256": {
+    "validation": "17f66f3e823444b031b9edef9961b7b379714eb2b9df72ef9c37eac4ffc9f5cf",
+    "audit": "aa666a2d1e87b0e1232381fc144678230721f4844c0ea76cadf95ffe73e9f827",
+    "monitoring": "d64f356f79e7cf5e94bd224e5e7f480633963983240acd13b833ddf3eec1a5b6"
+  },
+  "expectedCommonMatches": {"validation": 1061, "audit": 533, "monitoring": 159},
+  "candidateCount": 1,
+  "candidate": {
+    "half_life": 730,
+    "ridge": 0.03,
+    "window_days": 1095,
+    "goal_weight": 0.5,
+    "poisson_weight": 0.75,
+    "elo": {"k": 30, "home_advantage": 80, "draw_weight": 0.9}
+  },
+  "method": "Joint attack/defence likelihood with club parameters shared across E0/E1, separate scoring intercepts and home advantages per division, and a separate past-only goals-per-shot scale for each division. All other settings retain the fixed ELC shot recipe. Keep E1-only Elo as the unchanged 25% component to isolate the new attack/defence history.",
+  "informationFence": "Both divisions exclude the target day and the immediately preceding calendar day; all shot scales, likelihood terms, team overlap and history diagnostics are computed only from earlier observations inside the same 1095-day window.",
+  "dataValidation": "Validate E0 and E1 codes, complete closed-season counts (380 and 552), source SHA-256, shared canonical club names, unique fixtures and the rule that a club can occupy only one division per season. Missing shots fall back to verified goals without dropping a fixture. Preserve the original E1 data and target outcomes exactly.",
+  "identifiability": "Relative club strengths across divisions are connected only by clubs with earlier matches in both divisions. Report those bridge clubs; do not infer a reliable division-strength gap from scoring averages or invent a manual promotion adjustment.",
+  "subgroup": "Report, without selecting on it, matches where at least one club has fewer than 20 earlier E1 matches but at least 20 earlier E0 matches inside the training window.",
+  "primaryMetrics": ["brier", "logloss"],
+  "pointGate": "Both errors improve over the fixed E1-only shot model and v1 in every reported period",
+  "historicalGate": "Point gate plus audit paired UTC-day bootstrap interval upper bounds below zero for both errors against both references",
+  "bootstrapSamples": 1500,
+  "automaticPromotion": false,
+  "existingFrozenPredictionsMayChange": false,
+  "limitations": [
+    "All ELC evaluation periods have been inspected in earlier experiments. This is retrospective development, not an untouched test or a new prospective score.",
+    "A shared club strength assumes useful persistence across seasons. Transfers, coaches and current roster changes are not modelled.",
+    "Same-division goals and home advantages remain separate. Cross-division strength is learned indirectly from clubs moving between divisions, not from direct inter-division league matches.",
+    "Clubs arriving from League One receive no additional lower-division history in this two-division experiment.",
+    "Shots on target are a proxy rather than measured xG. Dates lack reliable result-publication timestamps, so the previous calendar day is excluded conservatively.",
+    "The fixed E1-only Elo component remains unchanged; this experiment does not tune a new shared Elo or search for new mixture weights.",
+    "No historical result can authorize an automatic public-model change. The existing 100-match and 36-match packets remain byte-for-byte unchanged."
+  ]
+}

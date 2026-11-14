@@ -1,0 +1,443 @@
+{
+  "schemaVersion": 1,
+  "protocol": "cross-division-research-1",
+  "asOf": "2026-11-14",
+  "completedAt": "2026-11-14T19:37:53.825579+00:00",
+  "planSha256": "74e4861c9dc581ff7d845f2663854ea813cd90991fc24b7a6c3214e5503a681f",
+  "codeSha256": "89cd1d96f36562b75c3e2637919be58ceb4ad1dd80fcf374942c5e91d174fa0f",
+  "dataSha256": "da5b5851caa67063c04231c29c69b67a162553679d1f3b2d665209dd20fb1ded",
+  "sourceMatches": {
+    "E0": 4280,
+    "E1": 6252
+  },
+  "candidateCount": 1,
+  "results": {
+    "validation": {
+      "matches": 1061,
+      "metrics": {
+        "joint": {
+          "n": 1061,
+          "brier": 0.6170090378092814,
+          "logloss": 1.0283326613031913,
+          "accuracy": 0.4816211121583412
+        },
+        "shots": {
+          "n": 1061,
+          "brier": 0.6155351533186771,
+          "logloss": 1.0258016828843066,
+          "accuracy": 0.47785108388312914
+        },
+        "v1": {
+          "n": 1061,
+          "brier": 0.6324450388369788,
+          "logloss": 1.0488798639797892,
+          "accuracy": 0.4655984919886899
+        },
+        "base": {
+          "n": 1061,
+          "brier": 0.6473356590665021,
+          "logloss": 1.0706632626987465,
+          "accuracy": 0.4505183788878417
+        }
+      },
+      "pairedIntervals": {
+        "shots": {
+          "brier": {
+            "difference": 0.0014738844906042807,
+            "ci95": [
+              -0.0004147112713223814,
+              0.003408979098254803
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": 0.0025309784188845335,
+            "ci95": [
+              5.8205844540638346e-05,
+              0.005165639831742103
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "v1": {
+          "brier": {
+            "difference": -0.015436001027697467,
+            "ci95": [
+              -0.023935415167357085,
+              -0.007425097626973209
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.020547202676597796,
+            "ci95": [
+              -0.033749314016806906,
+              -0.009233762148214177
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      },
+      "lowELCHistoryWithPL": {
+        "matches": 45,
+        "metrics": {
+          "joint": {
+            "n": 45,
+            "brier": 0.5242942414368988,
+            "logloss": 0.8935080051424317,
+            "accuracy": 0.6444444444444445
+          },
+          "shots": {
+            "n": 45,
+            "brier": 0.5430454525046351,
+            "logloss": 0.9203965617450915,
+            "accuracy": 0.5777777777777777
+          },
+          "v1": {
+            "n": 45,
+            "brier": 0.5930583718095134,
+            "logloss": 0.9910926627631758,
+            "accuracy": 0.5777777777777777
+          },
+          "base": {
+            "n": 45,
+            "brier": 0.6261798895483325,
+            "logloss": 1.0376212945879426,
+            "accuracy": 0.4888888888888889
+          }
+        }
+      }
+    },
+    "audit": {
+      "matches": 533,
+      "metrics": {
+        "joint": {
+          "n": 533,
+          "brier": 0.6392124031776302,
+          "logloss": 1.0588426700919038,
+          "accuracy": 0.4352720450281426
+        },
+        "shots": {
+          "n": 533,
+          "brier": 0.6402470571866342,
+          "logloss": 1.0602239720565236,
+          "accuracy": 0.4427767354596623
+        },
+        "v1": {
+          "n": 533,
+          "brier": 0.6453337177743311,
+          "logloss": 1.0660563139372885,
+          "accuracy": 0.4277673545966229
+        },
+        "base": {
+          "n": 533,
+          "brier": 0.6586335086600382,
+          "logloss": 1.0869746460562375,
+          "accuracy": 0.4165103189493433
+        }
+      },
+      "pairedIntervals": {
+        "shots": {
+          "brier": {
+            "difference": -0.001034654009004022,
+            "ci95": [
+              -0.0030245281415661753,
+              0.0009228603804041849
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.001381301964619788,
+            "ci95": [
+              -0.004257536405066012,
+              0.001250595034541887
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "v1": {
+          "brier": {
+            "difference": -0.006121314596700874,
+            "ci95": [
+              -0.018519975366016874,
+              0.00633385742177996
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.0072136438453848295,
+            "ci95": [
+              -0.02382370539931085,
+              0.009311607540499268
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      },
+      "lowELCHistoryWithPL": {
+        "matches": 0,
+        "metrics": {
+          "joint": {
+            "n": 0,
+            "brier": null,
+            "logloss": null,
+            "accuracy": null
+          },
+          "shots": {
+            "n": 0,
+            "brier": null,
+            "logloss": null,
+            "accuracy": null
+          },
+          "v1": {
+            "n": 0,
+            "brier": null,
+            "logloss": null,
+            "accuracy": null
+          },
+          "base": {
+            "n": 0,
+            "brier": null,
+            "logloss": null,
+            "accuracy": null
+          }
+        }
+      }
+    },
+    "monitoring": {
+      "matches": 159,
+      "metrics": {
+        "joint": {
+          "n": 159,
+          "brier": 0.6386967977265892,
+          "logloss": 1.056913391278181,
+          "accuracy": 0.44654088050314467
+        },
+        "shots": {
+          "n": 159,
+          "brier": 0.6461010460590505,
+          "logloss": 1.0674537832704514,
+          "accuracy": 0.44025157232704404
+        },
+        "v1": {
+          "n": 159,
+          "brier": 0.6323835465615516,
+          "logloss": 1.0498359582474992,
+          "accuracy": 0.48427672955974843
+        },
+        "base": {
+          "n": 159,
+          "brier": 0.6506716951174104,
+          "logloss": 1.0748956008987893,
+          "accuracy": 0.44025157232704404
+        }
+      },
+      "pairedIntervals": {
+        "shots": {
+          "brier": {
+            "difference": -0.007404248332461344,
+            "ci95": [
+              -0.014143031128491478,
+              -0.0013367534280843995
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.010540391992270245,
+            "ci95": [
+              -0.020009085606049082,
+              -0.0011589455392591221
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "v1": {
+          "brier": {
+            "difference": 0.00631325116503745,
+            "ci95": [
+              -0.02049727192250815,
+              0.031185500129351503
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": 0.007077433030681938,
+            "ci95": [
+              -0.029424195961434457,
+              0.04061622444557629
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      },
+      "lowELCHistoryWithPL": {
+        "matches": 22,
+        "metrics": {
+          "joint": {
+            "n": 22,
+            "brier": 0.6423998496727426,
+            "logloss": 1.0661962409558157,
+            "accuracy": 0.5
+          },
+          "shots": {
+            "n": 22,
+            "brier": 0.6795060078018208,
+            "logloss": 1.1205192422256613,
+            "accuracy": 0.4090909090909091
+          },
+          "v1": {
+            "n": 22,
+            "brier": 0.6720498401234832,
+            "logloss": 1.106981056323968,
+            "accuracy": 0.5
+          },
+          "base": {
+            "n": 22,
+            "brier": 0.6770654005996835,
+            "logloss": 1.112933795506719,
+            "accuracy": 0.3181818181818182
+          }
+        }
+      }
+    }
+  },
+  "pointGatePassed": false,
+  "historicalGatePassed": false,
+  "currentELCClubHistory": {
+    "Birmingham": {
+      "E0": 0,
+      "E1": 91
+    },
+    "Blackburn": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Bolton": {
+      "E0": 0,
+      "E1": 15
+    },
+    "Bristol City": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Burnley": {
+      "E0": 64,
+      "E1": 61
+    },
+    "Cardiff": {
+      "E0": 0,
+      "E1": 91
+    },
+    "Charlton": {
+      "E0": 0,
+      "E1": 61
+    },
+    "Derby": {
+      "E0": 0,
+      "E1": 107
+    },
+    "Lincoln": {
+      "E0": 0,
+      "E1": 15
+    },
+    "Middlesbrough": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Millwall": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Norwich": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Portsmouth": {
+      "E0": 0,
+      "E1": 107
+    },
+    "Preston": {
+      "E0": 0,
+      "E1": 137
+    },
+    "QPR": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Sheffield United": {
+      "E0": 26,
+      "E1": 107
+    },
+    "Southampton": {
+      "E0": 38,
+      "E1": 91
+    },
+    "Stoke": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Swansea": {
+      "E0": 0,
+      "E1": 137
+    },
+    "Watford": {
+      "E0": 0,
+      "E1": 137
+    },
+    "West Brom": {
+      "E0": 0,
+      "E1": 137
+    },
+    "West Ham": {
+      "E0": 102,
+      "E1": 15
+    },
+    "Wolves": {
+      "E0": 102,
+      "E1": 15
+    },
+    "Wrexham": {
+      "E0": 0,
+      "E1": 61
+    }
+  },
+  "fitCounts": {
+    "validation": 230,
+    "audit": 113,
+    "monitoring": 34
+  },
+  "modelSha256": "6ff5fdacbb54ba1f7c1623b199c85c798c6ebf03510dad76ba3f5127690ba1e3",
+  "modelVersion": "cross-division-experimental-2026-11-14-d3b5cfe128ab",
+  "durationSeconds": 8.862071384999581,
+  "predictionSha256": {
+    "validation": "598ab36d9380bada104fd8ea22fd41e42139c6ce12a2bc73b84dc4d193109564",
+    "audit": "0bc88509338e779fefd3d82235874e55c832960bda9ecac052affb56fb4ac0d8",
+    "monitoring": "814a57dde417cb18ce972bb62885dfb31e112366a93b628d774155831ee559ec"
+  },
+  "fitsSha256": "5df3b523e4fbd7644f035c6b95f83ea802698ac01030ebd23de5b4d61d548434",
+  "retrospective": true,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true,
+  "existingFrozenPredictionsChanged": false,
+  "limitations": [
+    "All ELC evaluation periods have been inspected in earlier experiments. This is retrospective development, not an untouched test or a new prospective score.",
+    "A shared club strength assumes useful persistence across seasons. Transfers, coaches and current roster changes are not modelled.",
+    "Same-division goals and home advantages remain separate. Cross-division strength is learned indirectly from clubs moving between divisions, not from direct inter-division league matches.",
+    "Clubs arriving from League One receive no additional lower-division history in this two-division experiment.",
+    "Shots on target are a proxy rather than measured xG. Dates lack reliable result-publication timestamps, so the previous calendar day is excluded conservatively.",
+    "The fixed E1-only Elo component remains unchanged; this experiment does not tune a new shared Elo or search for new mixture weights.",
+    "No historical result can authorize an automatic public-model change. The existing 100-match and 36-match packets remain byte-for-byte unchanged."
+  ]
+}
