@@ -1,0 +1,1672 @@
+[
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-15",
+    "training_games": 557,
+    "latest_training_date": "2026-05-31",
+    "iterations": 24,
+    "loss": 0.8830856772899663,
+    "converged": true,
+    "trainingSha256": "0a47f3d9d3c15d8bf76cc3568b2e64e81acef68324b6e60b563283c8008f9346"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-16",
+    "training_games": 557,
+    "latest_training_date": "2026-05-31",
+    "iterations": 1,
+    "loss": 0.8830856772867688,
+    "converged": true,
+    "trainingSha256": "0a47f3d9d3c15d8bf76cc3568b2e64e81acef68324b6e60b563283c8008f9346"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-20",
+    "training_games": 562,
+    "latest_training_date": "2026-07-17",
+    "iterations": 22,
+    "loss": 0.8835838168090003,
+    "converged": true,
+    "trainingSha256": "7a4f17f679d066adc8191b39548eafaf2e40c4b45bdeb8863d47fe3be160aca4"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-21",
+    "training_games": 562,
+    "latest_training_date": "2026-07-17",
+    "iterations": 0,
+    "loss": 0.8835838168090002,
+    "converged": true,
+    "trainingSha256": "7a4f17f679d066adc8191b39548eafaf2e40c4b45bdeb8863d47fe3be160aca4"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-22",
+    "training_games": 563,
+    "latest_training_date": "2026-07-21",
+    "iterations": 13,
+    "loss": 0.8840068973115396,
+    "converged": true,
+    "trainingSha256": "dc1b04a4ca05ed8b52ceb6c07e2b448768c5f5f97cf6dfa018d5db9289724da9"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-24",
+    "training_games": 569,
+    "latest_training_date": "2026-07-23",
+    "iterations": 18,
+    "loss": 0.881467961198041,
+    "converged": true,
+    "trainingSha256": "b15e0eb366dea85b319453e2f246f17eb19e9f837d26aed436b542ff24810811"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-25",
+    "training_games": 569,
+    "latest_training_date": "2026-07-23",
+    "iterations": 1,
+    "loss": 0.8814679611831017,
+    "converged": true,
+    "trainingSha256": "b15e0eb366dea85b319453e2f246f17eb19e9f837d26aed436b542ff24810811"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-28",
+    "training_games": 579,
+    "latest_training_date": "2026-07-26",
+    "iterations": 25,
+    "loss": 0.8871457677946312,
+    "converged": true,
+    "trainingSha256": "6911723f6f80e6373ca4379875714d194bcd91d93aa66b52f3704673775b5e25"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-07-29",
+    "training_games": 579,
+    "latest_training_date": "2026-07-26",
+    "iterations": 1,
+    "loss": 0.8871457677845531,
+    "converged": true,
+    "trainingSha256": "6911723f6f80e6373ca4379875714d194bcd91d93aa66b52f3704673775b5e25"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-07",
+    "training_games": 585,
+    "latest_training_date": "2026-07-31",
+    "iterations": 20,
+    "loss": 0.8879131790415694,
+    "converged": true,
+    "trainingSha256": "86805bf6ab9b00a72b6d99065abb3edeaa3a870a788afe279c739eb4a9fe4ed7"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-08",
+    "training_games": 585,
+    "latest_training_date": "2026-07-31",
+    "iterations": 1,
+    "loss": 0.8879131790278798,
+    "converged": true,
+    "trainingSha256": "86805bf6ab9b00a72b6d99065abb3edeaa3a870a788afe279c739eb4a9fe4ed7"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-14",
+    "training_games": 595,
+    "latest_training_date": "2026-08-09",
+    "iterations": 13,
+    "loss": 0.8901637177668885,
+    "converged": true,
+    "trainingSha256": "e1931c761cc0263d396d5d3505486dcaecdcbf5deb5135214108474010973bec"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-15",
+    "training_games": 595,
+    "latest_training_date": "2026-08-09",
+    "iterations": 1,
+    "loss": 0.8901637177599303,
+    "converged": true,
+    "trainingSha256": "e1931c761cc0263d396d5d3505486dcaecdcbf5deb5135214108474010973bec"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-16",
+    "training_games": 597,
+    "latest_training_date": "2026-08-15",
+    "iterations": 16,
+    "loss": 0.8906071923559357,
+    "converged": true,
+    "trainingSha256": "5a05c4eca0cef0ec666bd05f71a98ef2fec047b89e07b4c5224c760d7f711241"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-21",
+    "training_games": 605,
+    "latest_training_date": "2026-08-17",
+    "iterations": 32,
+    "loss": 0.8890735139141047,
+    "converged": true,
+    "trainingSha256": "452c53e7c71f758a6b788d75faf6b85b52b9c19b7fa69e2484dea1f6b28d59ec"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-22",
+    "training_games": 605,
+    "latest_training_date": "2026-08-17",
+    "iterations": 1,
+    "loss": 0.8890735139047771,
+    "converged": true,
+    "trainingSha256": "452c53e7c71f758a6b788d75faf6b85b52b9c19b7fa69e2484dea1f6b28d59ec"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-23",
+    "training_games": 608,
+    "latest_training_date": "2026-08-22",
+    "iterations": 14,
+    "loss": 0.8897807680451365,
+    "converged": true,
+    "trainingSha256": "d0ad751a520778c6b82657c562964001a5708a799775872ceb05dd560c9731d6"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-28",
+    "training_games": 615,
+    "latest_training_date": "2026-08-24",
+    "iterations": 15,
+    "loss": 0.8890136655490297,
+    "converged": true,
+    "trainingSha256": "97b5cc1c4cfcfad42dd7efadb652929fc763a33a3feed8d518821590b1920037"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-29",
+    "training_games": 615,
+    "latest_training_date": "2026-08-24",
+    "iterations": 1,
+    "loss": 0.8890136655438833,
+    "converged": true,
+    "trainingSha256": "97b5cc1c4cfcfad42dd7efadb652929fc763a33a3feed8d518821590b1920037"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-08-30",
+    "training_games": 617,
+    "latest_training_date": "2026-08-29",
+    "iterations": 18,
+    "loss": 0.8889159697847633,
+    "converged": true,
+    "trainingSha256": "6dd18e6cddf8a344cc54d10e5224ae231ef5a21296c4869bc2c54de8f52bd07a"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-01",
+    "training_games": 625,
+    "latest_training_date": "2026-08-31",
+    "iterations": 35,
+    "loss": 0.8856785430460152,
+    "converged": true,
+    "trainingSha256": "e325bf7a63d0fd4729f3d3af70771d8296f953b982fb3b9f8e68a38c90f84ca5"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-04",
+    "training_games": 626,
+    "latest_training_date": "2026-09-02",
+    "iterations": 10,
+    "loss": 0.885156939572191,
+    "converged": true,
+    "trainingSha256": "4418e802304b489611618527cb89b6c7c13827f80ee450b8abee6dc6d8d8f318"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-05",
+    "training_games": 626,
+    "latest_training_date": "2026-09-02",
+    "iterations": 0,
+    "loss": 0.8851569395721909,
+    "converged": true,
+    "trainingSha256": "4418e802304b489611618527cb89b6c7c13827f80ee450b8abee6dc6d8d8f318"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-06",
+    "training_games": 628,
+    "latest_training_date": "2026-09-05",
+    "iterations": 13,
+    "loss": 0.8847297060967115,
+    "converged": true,
+    "trainingSha256": "568b6d6f82340ce4c7785844e47d313bdcfb87f039300e85fe3413ac7c3390c6"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-10",
+    "training_games": 636,
+    "latest_training_date": "2026-09-07",
+    "iterations": 18,
+    "loss": 0.8878222393457623,
+    "converged": true,
+    "trainingSha256": "bf0131d6909980c78f7633ac6e651a23c17beb9d8ee836afed23b96459c0a883"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-11",
+    "training_games": 636,
+    "latest_training_date": "2026-09-07",
+    "iterations": 1,
+    "loss": 0.8878222393288714,
+    "converged": true,
+    "trainingSha256": "bf0131d6909980c78f7633ac6e651a23c17beb9d8ee836afed23b96459c0a883"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-12",
+    "training_games": 636,
+    "latest_training_date": "2026-09-07",
+    "iterations": 1,
+    "loss": 0.8878222393142641,
+    "converged": true,
+    "trainingSha256": "bf0131d6909980c78f7633ac6e651a23c17beb9d8ee836afed23b96459c0a883"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-13",
+    "training_games": 642,
+    "latest_training_date": "2026-09-12",
+    "iterations": 24,
+    "loss": 0.8866659411508663,
+    "converged": true,
+    "trainingSha256": "1b6756e86b851caa26c7097e015de40061bdf3af232905d4257dfc66953bbd95"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-15",
+    "training_games": 646,
+    "latest_training_date": "2026-09-14",
+    "iterations": 28,
+    "loss": 0.8866221608671919,
+    "converged": true,
+    "trainingSha256": "073a69a34302bc9580ec47955b37e6f769bc2f06183b7171732422ac54988c05"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-18",
+    "training_games": 647,
+    "latest_training_date": "2026-09-16",
+    "iterations": 16,
+    "loss": 0.885686727831513,
+    "converged": true,
+    "trainingSha256": "52bc83417124d8513a651e2231bbe8b094a60a263b56643fcf2c85e17417e2ed"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-09-19",
+    "training_games": 647,
+    "latest_training_date": "2026-09-16",
+    "iterations": 1,
+    "loss": 0.8856867278135263,
+    "converged": true,
+    "trainingSha256": "52bc83417124d8513a651e2231bbe8b094a60a263b56643fcf2c85e17417e2ed"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-01",
+    "training_games": 657,
+    "latest_training_date": "2026-09-20",
+    "iterations": 18,
+    "loss": 0.8852728061249673,
+    "converged": true,
+    "trainingSha256": "70c0a70e68cc1286138c5034d30fc95e7c15085e6fd3b639b761b044a26de002"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-02",
+    "training_games": 657,
+    "latest_training_date": "2026-09-20",
+    "iterations": 0,
+    "loss": 0.8852728061249675,
+    "converged": true,
+    "trainingSha256": "70c0a70e68cc1286138c5034d30fc95e7c15085e6fd3b639b761b044a26de002"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-06",
+    "training_games": 659,
+    "latest_training_date": "2026-10-03",
+    "iterations": 14,
+    "loss": 0.8858609840768752,
+    "converged": true,
+    "trainingSha256": "2b9c3c05ff077dbe26f281d8b3b35142a2370dd319f32392879848318b60bd22"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-07",
+    "training_games": 659,
+    "latest_training_date": "2026-10-03",
+    "iterations": 1,
+    "loss": 0.8858609840728442,
+    "converged": true,
+    "trainingSha256": "2b9c3c05ff077dbe26f281d8b3b35142a2370dd319f32392879848318b60bd22"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-09",
+    "training_games": 667,
+    "latest_training_date": "2026-10-08",
+    "iterations": 17,
+    "loss": 0.8848881888532075,
+    "converged": true,
+    "trainingSha256": "d96662bb466dbb3ebf9d027e8ed0b3a5d1aff34d07c9aeaab1ead70af9c00d5d"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-10",
+    "training_games": 669,
+    "latest_training_date": "2026-10-09",
+    "iterations": 16,
+    "loss": 0.8829728838781287,
+    "converged": true,
+    "trainingSha256": "3335fd28b7b25aa4cd3bf0afdf6437a20a0631d5c6fc271470c0c43eb3a5e0e9"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-11",
+    "training_games": 670,
+    "latest_training_date": "2026-10-10",
+    "iterations": 18,
+    "loss": 0.8845175380533575,
+    "converged": true,
+    "trainingSha256": "26bcd2e7e7fb21499990ed8181e11869e464bcb5084b85c463f9260eaefe9c2e"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-15",
+    "training_games": 679,
+    "latest_training_date": "2026-10-13",
+    "iterations": 17,
+    "loss": 0.881918780445715,
+    "converged": true,
+    "trainingSha256": "bdd12140bb7b6a0be8166726c8ea82b88b8c4b91208510d71186bf305ce71147"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-16",
+    "training_games": 679,
+    "latest_training_date": "2026-10-13",
+    "iterations": 1,
+    "loss": 0.8819187804420358,
+    "converged": true,
+    "trainingSha256": "bdd12140bb7b6a0be8166726c8ea82b88b8c4b91208510d71186bf305ce71147"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-17",
+    "training_games": 680,
+    "latest_training_date": "2026-10-16",
+    "iterations": 14,
+    "loss": 0.8816339718114851,
+    "converged": true,
+    "trainingSha256": "c3f7f250e18938b1493e9125a834e07df3681f7ef1edfe16b3c88aa617719531"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-18",
+    "training_games": 683,
+    "latest_training_date": "2026-10-17",
+    "iterations": 23,
+    "loss": 0.8832769938984736,
+    "converged": true,
+    "trainingSha256": "d996a2a57945fbbc0ed42bc8c95010db4b158ea084ce77cac0da6c5cdfb7d81b"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-22",
+    "training_games": 689,
+    "latest_training_date": "2026-10-19",
+    "iterations": 15,
+    "loss": 0.8833655696762178,
+    "converged": true,
+    "trainingSha256": "f8b68306b698af33e8217088b76312a357d588b5522aeb27c3c6a395e8c0b12f"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-23",
+    "training_games": 689,
+    "latest_training_date": "2026-10-19",
+    "iterations": 1,
+    "loss": 0.883365569653289,
+    "converged": true,
+    "trainingSha256": "f8b68306b698af33e8217088b76312a357d588b5522aeb27c3c6a395e8c0b12f"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-25",
+    "training_games": 696,
+    "latest_training_date": "2026-10-24",
+    "iterations": 17,
+    "loss": 0.8837215823109045,
+    "converged": true,
+    "trainingSha256": "5e0a26dc1d8424f1d054fd257e5539553eb7f4e348aee67f7cb562372a955d8a"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-27",
+    "training_games": 699,
+    "latest_training_date": "2026-10-26",
+    "iterations": 19,
+    "loss": 0.884573200435194,
+    "converged": true,
+    "trainingSha256": "fea70c18069265b3e8c5f6115f3b7774c1c4cfcce6c5b72c5e474911a33f5ac5"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-28",
+    "training_games": 699,
+    "latest_training_date": "2026-10-26",
+    "iterations": 1,
+    "loss": 0.884573200429746,
+    "converged": true,
+    "trainingSha256": "fea70c18069265b3e8c5f6115f3b7774c1c4cfcce6c5b72c5e474911a33f5ac5"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-29",
+    "training_games": 702,
+    "latest_training_date": "2026-10-28",
+    "iterations": 22,
+    "loss": 0.8839299396126972,
+    "converged": true,
+    "trainingSha256": "d01abb5e17f0c06097246f343377f32602b714e4ceb0a9433495ad5294f7e1a9"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-10-30",
+    "training_games": 706,
+    "latest_training_date": "2026-10-29",
+    "iterations": 18,
+    "loss": 0.8824441838510076,
+    "converged": true,
+    "trainingSha256": "f68318fe6273f855bff3778cd5e339813c387073c64d1ef99cba9a77583ecfc3"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-11-01",
+    "training_games": 709,
+    "latest_training_date": "2026-10-31",
+    "iterations": 16,
+    "loss": 0.8830035288200779,
+    "converged": true,
+    "trainingSha256": "4d23d6faa07d3afa38bd54cfae5eeb97949ec36c1488fd7a1537de6bc873cefa"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-11-02",
+    "training_games": 709,
+    "latest_training_date": "2026-10-31",
+    "iterations": 1,
+    "loss": 0.883003528805787,
+    "converged": true,
+    "trainingSha256": "4d23d6faa07d3afa38bd54cfae5eeb97949ec36c1488fd7a1537de6bc873cefa"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-11-03",
+    "training_games": 710,
+    "latest_training_date": "2026-11-02",
+    "iterations": 12,
+    "loss": 0.8829172589971748,
+    "converged": true,
+    "trainingSha256": "7ed4a269871b39afa73b817e6ed3dc32cbdef938693308662a1755243c8fdf4b"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-11-04",
+    "training_games": 711,
+    "latest_training_date": "2026-11-03",
+    "iterations": 15,
+    "loss": 0.8827809240304223,
+    "converged": true,
+    "trainingSha256": "9cd418fe3933107aac1f435f1c31a49f478d3b63a97e4a3344da145bd8bcda38"
+  },
+  {
+    "league": "BSA",
+    "cutoffExclusive": "2026-11-05",
+    "training_games": 714,
+    "latest_training_date": "2026-11-04",
+    "iterations": 22,
+    "loss": 0.8825481658638783,
+    "converged": true,
+    "trainingSha256": "1364cc5c2c662d3582b97ad8e3ed861e81b7c0d939a90d3ba2dec93a12fe68af"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-08-14",
+    "training_games": 556,
+    "latest_training_date": "2026-05-23",
+    "iterations": 23,
+    "loss": 0.906153344025042,
+    "converged": true,
+    "trainingSha256": "8e2a1eee6f61bd251ada7ac1a7290002b37f5252836b02ceebe4d8a3619483af"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-08-15",
+    "training_games": 557,
+    "latest_training_date": "2026-08-14",
+    "iterations": 28,
+    "loss": 0.9056910005546096,
+    "converged": true,
+    "trainingSha256": "afd3ab15b863181cd5396f9a1350f33eafc9bcca274a491ab6fbe680d95e1a7d"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-08-21",
+    "training_games": 568,
+    "latest_training_date": "2026-08-17",
+    "iterations": 48,
+    "loss": 0.9065732584173067,
+    "converged": true,
+    "trainingSha256": "9a59a3a7f3ee56e8ddef130ec0a6e22da20c51935e02a07cf679a535bec4ff0f"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-08-27",
+    "training_games": 580,
+    "latest_training_date": "2026-08-23",
+    "iterations": 51,
+    "loss": 0.9046680849447208,
+    "converged": true,
+    "trainingSha256": "27a1ef8761ae052bf9209411df719b3511d5f23dda6eb5809563f480dae75f8e"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-08-28",
+    "training_games": 580,
+    "latest_training_date": "2026-08-23",
+    "iterations": 1,
+    "loss": 0.9046680849284896,
+    "converged": true,
+    "trainingSha256": "27a1ef8761ae052bf9209411df719b3511d5f23dda6eb5809563f480dae75f8e"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-08-31",
+    "training_games": 592,
+    "latest_training_date": "2026-08-29",
+    "iterations": 37,
+    "loss": 0.8979761733437926,
+    "converged": true,
+    "trainingSha256": "8ed9a6a42cccfe8cdcf7d8a72d4222b34c0efa59f42214e1cbccb8abf0dd6e92"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-01",
+    "training_games": 592,
+    "latest_training_date": "2026-08-29",
+    "iterations": 1,
+    "loss": 0.8979761732557769,
+    "converged": true,
+    "trainingSha256": "8ed9a6a42cccfe8cdcf7d8a72d4222b34c0efa59f42214e1cbccb8abf0dd6e92"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-04",
+    "training_games": 604,
+    "latest_training_date": "2026-09-02",
+    "iterations": 39,
+    "loss": 0.8989132433235825,
+    "converged": true,
+    "trainingSha256": "1d69835fc140704716855715ac5f5676e90b10aeab232ebd5e1ac2e50f633f73"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-05",
+    "training_games": 604,
+    "latest_training_date": "2026-09-02",
+    "iterations": 1,
+    "loss": 0.8989132433190582,
+    "converged": true,
+    "trainingSha256": "1d69835fc140704716855715ac5f5676e90b10aeab232ebd5e1ac2e50f633f73"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-07",
+    "training_games": 616,
+    "latest_training_date": "2026-09-06",
+    "iterations": 26,
+    "loss": 0.8976816579377617,
+    "converged": true,
+    "trainingSha256": "031304df42002c717c2a1edd390644239d282daf012272786bfac2e58be1b9af"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-08",
+    "training_games": 616,
+    "latest_training_date": "2026-09-06",
+    "iterations": 1,
+    "loss": 0.8976816579100901,
+    "converged": true,
+    "trainingSha256": "031304df42002c717c2a1edd390644239d282daf012272786bfac2e58be1b9af"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-10",
+    "training_games": 625,
+    "latest_training_date": "2026-09-09",
+    "iterations": 31,
+    "loss": 0.8981640522107437,
+    "converged": true,
+    "trainingSha256": "652c65f425f947d5755ec98b8ec68eb66878a22c00069f630c92433f4319e3e6"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-11",
+    "training_games": 625,
+    "latest_training_date": "2026-09-09",
+    "iterations": 1,
+    "loss": 0.8981640521907012,
+    "converged": true,
+    "trainingSha256": "652c65f425f947d5755ec98b8ec68eb66878a22c00069f630c92433f4319e3e6"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-12",
+    "training_games": 626,
+    "latest_training_date": "2026-09-11",
+    "iterations": 32,
+    "loss": 0.8941151163345846,
+    "converged": true,
+    "trainingSha256": "830e40c9a3f6107e4c68ee7ddb934b899604b44ede94002a937fb054882d2d81"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-14",
+    "training_games": 637,
+    "latest_training_date": "2026-09-13",
+    "iterations": 44,
+    "loss": 0.8938793416845457,
+    "converged": true,
+    "trainingSha256": "2f819d4ca4405b835be5f8f189502072534e9e28a1ee7bf5ee40053a0ea0f6ad"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-17",
+    "training_games": 639,
+    "latest_training_date": "2026-09-15",
+    "iterations": 24,
+    "loss": 0.893994846473086,
+    "converged": true,
+    "trainingSha256": "0dfe810f487c7348964a1c2bc71e0ad3417f71d947edc60591f6d3632e2f4c28"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-18",
+    "training_games": 639,
+    "latest_training_date": "2026-09-15",
+    "iterations": 0,
+    "loss": 0.8939948464730859,
+    "converged": true,
+    "trainingSha256": "0dfe810f487c7348964a1c2bc71e0ad3417f71d947edc60591f6d3632e2f4c28"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-09-19",
+    "training_games": 640,
+    "latest_training_date": "2026-09-18",
+    "iterations": 12,
+    "loss": 0.8943900971976094,
+    "converged": true,
+    "trainingSha256": "1d462298245ea8caa075a9e96f4b8d48d52216f77d58d9edd25377e8a1568f74"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-08",
+    "training_games": 651,
+    "latest_training_date": "2026-09-20",
+    "iterations": 32,
+    "loss": 0.8939488861231907,
+    "converged": true,
+    "trainingSha256": "df6c289e54261bb27bca7870fb4309a67762e0502cfd1ff3f4602c60b43ec41a"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-09",
+    "training_games": 651,
+    "latest_training_date": "2026-09-20",
+    "iterations": 1,
+    "loss": 0.8939488861090702,
+    "converged": true,
+    "trainingSha256": "df6c289e54261bb27bca7870fb4309a67762e0502cfd1ff3f4602c60b43ec41a"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-10",
+    "training_games": 652,
+    "latest_training_date": "2026-10-09",
+    "iterations": 15,
+    "loss": 0.8951832904454734,
+    "converged": true,
+    "trainingSha256": "56b06f68d4be871b0d46f94b79cf7bf2516650b60ee37a82ad48a7a7c3f4be95"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-12",
+    "training_games": 663,
+    "latest_training_date": "2026-10-11",
+    "iterations": 19,
+    "loss": 0.897736265714652,
+    "converged": true,
+    "trainingSha256": "7fd4b2e2da232003f0f68c950a6c11cd87f9d47f586daab12177fd7dcb0d4ad6"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-13",
+    "training_games": 663,
+    "latest_training_date": "2026-10-11",
+    "iterations": 1,
+    "loss": 0.8977362657097958,
+    "converged": true,
+    "trainingSha256": "7fd4b2e2da232003f0f68c950a6c11cd87f9d47f586daab12177fd7dcb0d4ad6"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-15",
+    "training_games": 675,
+    "latest_training_date": "2026-10-14",
+    "iterations": 37,
+    "loss": 0.890325625524144,
+    "converged": true,
+    "trainingSha256": "6a1345e32703ac323cb71d080ba2ace1e62aa141dc69869ae854d75bf77fb1e4"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-16",
+    "training_games": 675,
+    "latest_training_date": "2026-10-14",
+    "iterations": 1,
+    "loss": 0.890325625516282,
+    "converged": true,
+    "trainingSha256": "6a1345e32703ac323cb71d080ba2ace1e62aa141dc69869ae854d75bf77fb1e4"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-19",
+    "training_games": 687,
+    "latest_training_date": "2026-10-17",
+    "iterations": 25,
+    "loss": 0.8936103660457534,
+    "converged": true,
+    "trainingSha256": "df2af1fa5a5d2bd2571f65742dc5f598a9936fad89973adef161a9120da047b5"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-22",
+    "training_games": 688,
+    "latest_training_date": "2026-10-20",
+    "iterations": 13,
+    "loss": 0.8941520401313052,
+    "converged": true,
+    "trainingSha256": "aff3e8e596dc95e99eeec0ebfcc64a29b89e08bef976b86bb603d4debd447bb8"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-23",
+    "training_games": 688,
+    "latest_training_date": "2026-10-20",
+    "iterations": 1,
+    "loss": 0.8941520401258608,
+    "converged": true,
+    "trainingSha256": "aff3e8e596dc95e99eeec0ebfcc64a29b89e08bef976b86bb603d4debd447bb8"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-29",
+    "training_games": 700,
+    "latest_training_date": "2026-10-24",
+    "iterations": 28,
+    "loss": 0.8923841869426459,
+    "converged": true,
+    "trainingSha256": "eadb0077af7ee6da5bd0a03a5e8add47893196b45cbfe30224db3ade90e4a94b"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-10-30",
+    "training_games": 700,
+    "latest_training_date": "2026-10-24",
+    "iterations": 1,
+    "loss": 0.8923841869398884,
+    "converged": true,
+    "trainingSha256": "eadb0077af7ee6da5bd0a03a5e8add47893196b45cbfe30224db3ade90e4a94b"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-11-02",
+    "training_games": 712,
+    "latest_training_date": "2026-10-31",
+    "iterations": 23,
+    "loss": 0.8870391812007039,
+    "converged": true,
+    "trainingSha256": "51d7fba09b10e0e337fab5dd4d05dfdf9d86ae7fb9ce86c2f4f5f2483b25b4a5"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-11-03",
+    "training_games": 712,
+    "latest_training_date": "2026-10-31",
+    "iterations": 0,
+    "loss": 0.8870391812007038,
+    "converged": true,
+    "trainingSha256": "51d7fba09b10e0e337fab5dd4d05dfdf9d86ae7fb9ce86c2f4f5f2483b25b4a5"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-11-05",
+    "training_games": 724,
+    "latest_training_date": "2026-11-04",
+    "iterations": 22,
+    "loss": 0.8858909708842487,
+    "converged": true,
+    "trainingSha256": "76650eafa6002ef7fa2d015dd16af38d120e1aaaf5461fb3ea3af2644f3f1055"
+  },
+  {
+    "league": "ELC",
+    "cutoffExclusive": "2026-11-06",
+    "training_games": 724,
+    "latest_training_date": "2026-11-04",
+    "iterations": 1,
+    "loss": 0.8858909708796361,
+    "converged": true,
+    "trainingSha256": "76650eafa6002ef7fa2d015dd16af38d120e1aaaf5461fb3ea3af2644f3f1055"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-14",
+    "training_games": 380,
+    "latest_training_date": "2026-05-24",
+    "iterations": 23,
+    "loss": 0.8534471050705901,
+    "converged": true,
+    "trainingSha256": "efab5ab23b8cdf95c9b62ca959a1d3c265206431f483090fc71bb918fba44f82"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-15",
+    "training_games": 380,
+    "latest_training_date": "2026-05-24",
+    "iterations": 1,
+    "loss": 0.853447105067466,
+    "converged": true,
+    "trainingSha256": "efab5ab23b8cdf95c9b62ca959a1d3c265206431f483090fc71bb918fba44f82"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-19",
+    "training_games": 385,
+    "latest_training_date": "2026-08-17",
+    "iterations": 30,
+    "loss": 0.8523958964999526,
+    "converged": true,
+    "trainingSha256": "5bbef7c764a1440f4a87c025ea1cf546451af57e908fa30ecc0238b4d7d67026"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-20",
+    "training_games": 386,
+    "latest_training_date": "2026-08-19",
+    "iterations": 40,
+    "loss": 0.8514483635770822,
+    "converged": true,
+    "trainingSha256": "4dc3d3cac2ddc5caead23aedb1bb901faeca97e8bb98f4b420028326dbebc8f4"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-21",
+    "training_games": 387,
+    "latest_training_date": "2026-08-20",
+    "iterations": 13,
+    "loss": 0.8521590278394109,
+    "converged": true,
+    "trainingSha256": "e71acdda734585f94110a25ed65673e2bbb6b0d36fff80ffe8a2fcdc7d348e56"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-22",
+    "training_games": 388,
+    "latest_training_date": "2026-08-21",
+    "iterations": 25,
+    "loss": 0.8538848091174523,
+    "converged": true,
+    "trainingSha256": "02e64291191523a5b2f6cee17f0b117cf13c543912659ddc7560959378716c0d"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-23",
+    "training_games": 391,
+    "latest_training_date": "2026-08-22",
+    "iterations": 28,
+    "loss": 0.8554017771877805,
+    "converged": true,
+    "trainingSha256": "0432eb392fa30cee577b6617cace634d4850ec4c5a72f8b462d4fcf3cff365bd"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-24",
+    "training_games": 394,
+    "latest_training_date": "2026-08-23",
+    "iterations": 36,
+    "loss": 0.850181631113891,
+    "converged": true,
+    "trainingSha256": "391da4744256dd33978d7b030db2ea428358b78693dab495661e54aca9650d48"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-25",
+    "training_games": 396,
+    "latest_training_date": "2026-08-24",
+    "iterations": 27,
+    "loss": 0.8524360047748588,
+    "converged": true,
+    "trainingSha256": "a790ab98a5a63931f0ba0155e48787e9ac2c1d3d0cde83005d7be66184caaac1"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-26",
+    "training_games": 397,
+    "latest_training_date": "2026-08-25",
+    "iterations": 22,
+    "loss": 0.8535090595823746,
+    "converged": true,
+    "trainingSha256": "db3ade62ec01f6e4735850a20323fcbc24d4dd8f6f8700df904302906c68ea9b"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-27",
+    "training_games": 398,
+    "latest_training_date": "2026-08-26",
+    "iterations": 15,
+    "loss": 0.8497101153860334,
+    "converged": true,
+    "trainingSha256": "aa7f5345b01d336577ad5ea6a058785fe692b5923e5c8ea5545b4997103a277d"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-28",
+    "training_games": 400,
+    "latest_training_date": "2026-08-27",
+    "iterations": 21,
+    "loss": 0.8505720120137772,
+    "converged": true,
+    "trainingSha256": "fadb75d39090d019a8cde922d474f7966169aeb59bfc369281760d17db97046e"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-29",
+    "training_games": 402,
+    "latest_training_date": "2026-08-28",
+    "iterations": 35,
+    "loss": 0.8506649796586625,
+    "converged": true,
+    "trainingSha256": "3a0fb83a99d70f46b0ea020603338678da5a76084841af9d83b73afc145906da"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-08-30",
+    "training_games": 405,
+    "latest_training_date": "2026-08-29",
+    "iterations": 29,
+    "loss": 0.8475941515405743,
+    "converged": true,
+    "trainingSha256": "3c65579f5f4e6c65cbc28b560444f37bf9b70487f2b313f5d2c0812d36ed6964"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-02",
+    "training_games": 410,
+    "latest_training_date": "2026-08-31",
+    "iterations": 37,
+    "loss": 0.8399775847354478,
+    "converged": true,
+    "trainingSha256": "a4056e359ee84c3866b48bd98f1512ce987649db35ed3e727ab48ee34f311986"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-03",
+    "training_games": 410,
+    "latest_training_date": "2026-08-31",
+    "iterations": 1,
+    "loss": 0.8399775847071855,
+    "converged": true,
+    "trainingSha256": "a4056e359ee84c3866b48bd98f1512ce987649db35ed3e727ab48ee34f311986"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-04",
+    "training_games": 411,
+    "latest_training_date": "2026-09-03",
+    "iterations": 23,
+    "loss": 0.8422425659900153,
+    "converged": true,
+    "trainingSha256": "0ccaaed52ba827dcd33f001324a1fe0ff25c90a36c43130ff6b4e1dbcf31cfb2"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-05",
+    "training_games": 412,
+    "latest_training_date": "2026-09-04",
+    "iterations": 27,
+    "loss": 0.8439542699262956,
+    "converged": true,
+    "trainingSha256": "01b9d02788f08c845b4f3360d9c3389b2a22d1cd3e1ba19212b8a43b3a477804"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-06",
+    "training_games": 415,
+    "latest_training_date": "2026-09-05",
+    "iterations": 35,
+    "loss": 0.8418810516359507,
+    "converged": true,
+    "trainingSha256": "6d22c681478c6eabbf2a004e22394b333deb1efa1b2d0ade1ab071764b4ed1bd"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-10",
+    "training_games": 421,
+    "latest_training_date": "2026-09-07",
+    "iterations": 25,
+    "loss": 0.8355697285295987,
+    "converged": true,
+    "trainingSha256": "80d0b1872c632e83d835dd6446c2f3027277559d6c6e2070020b1a66d871b048"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-11",
+    "training_games": 421,
+    "latest_training_date": "2026-09-07",
+    "iterations": 1,
+    "loss": 0.835569728513465,
+    "converged": true,
+    "trainingSha256": "80d0b1872c632e83d835dd6446c2f3027277559d6c6e2070020b1a66d871b048"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-12",
+    "training_games": 422,
+    "latest_training_date": "2026-09-11",
+    "iterations": 31,
+    "loss": 0.8364595270214684,
+    "converged": true,
+    "trainingSha256": "a0c6bdbd5660600705bcd5af1288ebb5e23ceea63052d01293420d925791108d"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-13",
+    "training_games": 426,
+    "latest_training_date": "2026-09-12",
+    "iterations": 33,
+    "loss": 0.835985727716971,
+    "converged": true,
+    "trainingSha256": "ca8b0682cdf633ae199dd3b653fd05afda7d046ceff15bda5b6804bdd68474f8"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-14",
+    "training_games": 430,
+    "latest_training_date": "2026-09-13",
+    "iterations": 28,
+    "loss": 0.8347353033259485,
+    "converged": true,
+    "trainingSha256": "c6e7aaca57592936faa763a4717e83c18932b888588443d4b9c483867f349821"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-15",
+    "training_games": 431,
+    "latest_training_date": "2026-09-14",
+    "iterations": 23,
+    "loss": 0.8354605103274567,
+    "converged": true,
+    "trainingSha256": "6de3ab54bdfe01133354e35ea1c9d78f0b0a4429206c005cc1345c5367c04a4e"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-16",
+    "training_games": 434,
+    "latest_training_date": "2026-09-15",
+    "iterations": 17,
+    "loss": 0.8357309166971454,
+    "converged": true,
+    "trainingSha256": "a51ed3cdddafd9861fcfee9c2c8e86645a018369cca75f463eb89f0a085dc2d0"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-17",
+    "training_games": 437,
+    "latest_training_date": "2026-09-16",
+    "iterations": 27,
+    "loss": 0.8233275650472149,
+    "converged": true,
+    "trainingSha256": "ce1c6279ba0bad0ca688b38237ea19592e82b721de35e390614b988a094c80ff"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-18",
+    "training_games": 439,
+    "latest_training_date": "2026-09-17",
+    "iterations": 27,
+    "loss": 0.8226169508785289,
+    "converged": true,
+    "trainingSha256": "be470e8b15cb41ad9f063b609844993c2eb9f352ef6a19c85cea80546ff90656"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-09-19",
+    "training_games": 440,
+    "latest_training_date": "2026-09-18",
+    "iterations": 27,
+    "loss": 0.8229744530279728,
+    "converged": true,
+    "trainingSha256": "4b9c97004741044e5f45b96fa750fbb9d4336bf71c7f24f756f4d747ee05dc29"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-08",
+    "training_games": 449,
+    "latest_training_date": "2026-09-20",
+    "iterations": 30,
+    "loss": 0.8176980208436699,
+    "converged": true,
+    "trainingSha256": "926a6a10e69a9710754dab3d7a49e28691ae9461b2329b239e4685d2d5620a66"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-09",
+    "training_games": 449,
+    "latest_training_date": "2026-09-20",
+    "iterations": 1,
+    "loss": 0.8176980208239313,
+    "converged": true,
+    "trainingSha256": "926a6a10e69a9710754dab3d7a49e28691ae9461b2329b239e4685d2d5620a66"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-10",
+    "training_games": 450,
+    "latest_training_date": "2026-10-09",
+    "iterations": 23,
+    "loss": 0.8184067828057038,
+    "converged": true,
+    "trainingSha256": "c41a8163a5d676e7443612221bfcf6c41aeb01245f7008a890f21419ee073945"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-11",
+    "training_games": 453,
+    "latest_training_date": "2026-10-10",
+    "iterations": 23,
+    "loss": 0.8178646661678005,
+    "converged": true,
+    "trainingSha256": "eb4a30cbfad1afe304093322d4ff907bf6667f36fd8bc904f19d8e014c8302d7"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-15",
+    "training_games": 458,
+    "latest_training_date": "2026-10-12",
+    "iterations": 34,
+    "loss": 0.8123911428936836,
+    "converged": true,
+    "trainingSha256": "19b723977cf1ebbcefc5c8029cab601455a124a4dcac80992756a370761dc7f4"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-16",
+    "training_games": 458,
+    "latest_training_date": "2026-10-12",
+    "iterations": 1,
+    "loss": 0.8123911428855295,
+    "converged": true,
+    "trainingSha256": "19b723977cf1ebbcefc5c8029cab601455a124a4dcac80992756a370761dc7f4"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-17",
+    "training_games": 459,
+    "latest_training_date": "2026-10-16",
+    "iterations": 22,
+    "loss": 0.8135266112894546,
+    "converged": true,
+    "trainingSha256": "5f405fbcb02812f76015f5e827c22169bcf2d2cc1806be03b14d06619198d5ca"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-18",
+    "training_games": 463,
+    "latest_training_date": "2026-10-17",
+    "iterations": 18,
+    "loss": 0.8141627155172885,
+    "converged": true,
+    "trainingSha256": "a9d3b378144768ae71827ba66790ea3b2fb8adcf31d41fcc3f1471a3bb5163c6"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-20",
+    "training_games": 468,
+    "latest_training_date": "2026-10-19",
+    "iterations": 24,
+    "loss": 0.8101254135138619,
+    "converged": true,
+    "trainingSha256": "962622e19a7cbd8f6318cb7bd95cc70cefd2ccb73fd482667f1e5e259b698974"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-22",
+    "training_games": 469,
+    "latest_training_date": "2026-10-21",
+    "iterations": 12,
+    "loss": 0.8094840321140314,
+    "converged": true,
+    "trainingSha256": "2b53584a3f9b6aeb76b9bb5a4878809efc277a9cb72a6f7cdc5b3e1e10219035"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-23",
+    "training_games": 469,
+    "latest_training_date": "2026-10-21",
+    "iterations": 1,
+    "loss": 0.8094840321110452,
+    "converged": true,
+    "trainingSha256": "2b53584a3f9b6aeb76b9bb5a4878809efc277a9cb72a6f7cdc5b3e1e10219035"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-24",
+    "training_games": 470,
+    "latest_training_date": "2026-10-23",
+    "iterations": 23,
+    "loss": 0.810712244658244,
+    "converged": true,
+    "trainingSha256": "cc44d51e238396e7f4ba33c0b70f9f9b4b7a82b3530d925ecc2c215ad50aecba"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-25",
+    "training_games": 474,
+    "latest_training_date": "2026-10-24",
+    "iterations": 21,
+    "loss": 0.8131783799227764,
+    "converged": true,
+    "trainingSha256": "a42d4750b2257fdc35e2efd0b495df304ffdb0d5de5eca107ff8bed1c0585902"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-29",
+    "training_games": 479,
+    "latest_training_date": "2026-10-26",
+    "iterations": 18,
+    "loss": 0.815625667931503,
+    "converged": true,
+    "trainingSha256": "8461f3136af5f489125934f6acd44fcd04f9c046bf72d8b4a6b609f965d71296"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-30",
+    "training_games": 479,
+    "latest_training_date": "2026-10-26",
+    "iterations": 1,
+    "loss": 0.8156256679138129,
+    "converged": true,
+    "trainingSha256": "8461f3136af5f489125934f6acd44fcd04f9c046bf72d8b4a6b609f965d71296"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-10-31",
+    "training_games": 480,
+    "latest_training_date": "2026-10-30",
+    "iterations": 19,
+    "loss": 0.8178603044133564,
+    "converged": true,
+    "trainingSha256": "941727a312a9c208516dcee35b9621f78cc48bf5f78beaf67d0cbfff0c641a6e"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-11-01",
+    "training_games": 484,
+    "latest_training_date": "2026-10-31",
+    "iterations": 20,
+    "loss": 0.811190160708539,
+    "converged": true,
+    "trainingSha256": "f0e84b0e662e4b6a98c13bd867333119e268d2e417232af3313fcf46e233d6fc"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-11-05",
+    "training_games": 489,
+    "latest_training_date": "2026-11-02",
+    "iterations": 16,
+    "loss": 0.812302921489579,
+    "converged": true,
+    "trainingSha256": "eff7442fc04231538f5f21e6f0a4681be90608933267c31e6f02411f2edf2c2d"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-11-06",
+    "training_games": 489,
+    "latest_training_date": "2026-11-02",
+    "iterations": 1,
+    "loss": 0.8123029214802581,
+    "converged": true,
+    "trainingSha256": "eff7442fc04231538f5f21e6f0a4681be90608933267c31e6f02411f2edf2c2d"
+  },
+  {
+    "league": "PD",
+    "cutoffExclusive": "2026-11-07",
+    "training_games": 490,
+    "latest_training_date": "2026-11-06",
+    "iterations": 21,
+    "loss": 0.8142037844797865,
+    "converged": true,
+    "trainingSha256": "37662345400e585ad81ff0786c1ea5940d4a2a5da010f947c95439fc31f9f743"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-08-21",
+    "training_games": 380,
+    "latest_training_date": "2026-05-24",
+    "iterations": 24,
+    "loss": 0.8737400012928729,
+    "converged": true,
+    "trainingSha256": "9fc38afe514585790272de9da00d5b0fe588cbf14a437aa8d6bd541316d3a484"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-08-22",
+    "training_games": 381,
+    "latest_training_date": "2026-08-21",
+    "iterations": 31,
+    "loss": 0.8706520916566063,
+    "converged": true,
+    "trainingSha256": "6f85718e9c4eaaeba43472d2c18a8c42613c65faf9332abfe53c0c2d757b53b9"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-08-23",
+    "training_games": 386,
+    "latest_training_date": "2026-08-22",
+    "iterations": 44,
+    "loss": 0.869904691442375,
+    "converged": true,
+    "trainingSha256": "724881c58792a83517904539bdaed5f541bbfb36a98df76f9a8e7d130fddde4d"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-08-27",
+    "training_games": 390,
+    "latest_training_date": "2026-08-24",
+    "iterations": 34,
+    "loss": 0.8662627150053853,
+    "converged": true,
+    "trainingSha256": "ff283a838fb12097c1ecc429b24863beab388f6038b38a5aa2dcdf32c2053077"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-08-28",
+    "training_games": 390,
+    "latest_training_date": "2026-08-24",
+    "iterations": 1,
+    "loss": 0.8662627149958305,
+    "converged": true,
+    "trainingSha256": "ff283a838fb12097c1ecc429b24863beab388f6038b38a5aa2dcdf32c2053077"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-08-29",
+    "training_games": 391,
+    "latest_training_date": "2026-08-28",
+    "iterations": 26,
+    "loss": 0.8636930078797268,
+    "converged": true,
+    "trainingSha256": "789cb63534bdd009ad22b44e9d758dcf6251b9937eebbd8cd9a463baa5e7c3ff"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-08-30",
+    "training_games": 395,
+    "latest_training_date": "2026-08-29",
+    "iterations": 45,
+    "loss": 0.8641334474144916,
+    "converged": true,
+    "trainingSha256": "372c104516db538e7bb7e19a28e87084ba1254da92e97012a1e0b8c1cff3303d"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-04",
+    "training_games": 400,
+    "latest_training_date": "2026-08-31",
+    "iterations": 35,
+    "loss": 0.8562157351179168,
+    "converged": true,
+    "trainingSha256": "f01392ff0479ae5f5f033d24c0aeb293c0c4a272b844cfc5fe68df42fbdd1d3e"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-05",
+    "training_games": 401,
+    "latest_training_date": "2026-09-04",
+    "iterations": 36,
+    "loss": 0.8577838959412517,
+    "converged": true,
+    "trainingSha256": "148bf5c3ca6e9696b9de79fafed5a00e160afaa243db3710351ecfc2935bc29d"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-11",
+    "training_games": 410,
+    "latest_training_date": "2026-09-06",
+    "iterations": 48,
+    "loss": 0.8597217622174318,
+    "converged": true,
+    "trainingSha256": "80347878dd4c3359f7ada3755201dff879ac67c634ce1b89f91686ee20190e12"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-12",
+    "training_games": 410,
+    "latest_training_date": "2026-09-06",
+    "iterations": 1,
+    "loss": 0.8597217622110198,
+    "converged": true,
+    "trainingSha256": "80347878dd4c3359f7ada3755201dff879ac67c634ce1b89f91686ee20190e12"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-13",
+    "training_games": 417,
+    "latest_training_date": "2026-09-12",
+    "iterations": 53,
+    "loss": 0.8618402256677166,
+    "converged": true,
+    "trainingSha256": "951e0908e8e20d395f0e4bf7e7c4c8bc615ac3a5b51f8a18dfb9be6acdbbada8"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-17",
+    "training_games": 420,
+    "latest_training_date": "2026-09-14",
+    "iterations": 45,
+    "loss": 0.8576002305492254,
+    "converged": true,
+    "trainingSha256": "43ad137db482ff43e2c65782f3249df8d5a617e2da8d39f11a0f0b8b6d9f5873"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-18",
+    "training_games": 420,
+    "latest_training_date": "2026-09-14",
+    "iterations": 1,
+    "loss": 0.8576002305439586,
+    "converged": true,
+    "trainingSha256": "43ad137db482ff43e2c65782f3249df8d5a617e2da8d39f11a0f0b8b6d9f5873"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-09-19",
+    "training_games": 421,
+    "latest_training_date": "2026-09-18",
+    "iterations": 26,
+    "loss": 0.857075372879441,
+    "converged": true,
+    "trainingSha256": "09240d60ac62bfa9df877a6a0e95a5604f775f2daf48e0f66c3c31131afdce70"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-09",
+    "training_games": 430,
+    "latest_training_date": "2026-09-20",
+    "iterations": 39,
+    "loss": 0.8641221506564062,
+    "converged": true,
+    "trainingSha256": "13a58e1764afe5bbc71244bd60f3dd7f8404001b5777fd03289e5d02afd7a5e6"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-10",
+    "training_games": 430,
+    "latest_training_date": "2026-09-20",
+    "iterations": 0,
+    "loss": 0.8641221506564064,
+    "converged": true,
+    "trainingSha256": "13a58e1764afe5bbc71244bd60f3dd7f8404001b5777fd03289e5d02afd7a5e6"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-11",
+    "training_games": 436,
+    "latest_training_date": "2026-10-10",
+    "iterations": 36,
+    "loss": 0.8612922182333486,
+    "converged": true,
+    "trainingSha256": "19b5edba2ca46dfe3edaf613e10a399d3a9ffd19ea4eadc179f98b67adc219a9"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-16",
+    "training_games": 440,
+    "latest_training_date": "2026-10-12",
+    "iterations": 48,
+    "loss": 0.8619261863247771,
+    "converged": true,
+    "trainingSha256": "0491a58afe09f02dc0eee0982fa9307d8ec9e16160880874a5aeb91186d0b51c"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-17",
+    "training_games": 440,
+    "latest_training_date": "2026-10-12",
+    "iterations": 1,
+    "loss": 0.8619261863182842,
+    "converged": true,
+    "trainingSha256": "0491a58afe09f02dc0eee0982fa9307d8ec9e16160880874a5aeb91186d0b51c"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-18",
+    "training_games": 445,
+    "latest_training_date": "2026-10-17",
+    "iterations": 25,
+    "loss": 0.8636977667227618,
+    "converged": true,
+    "trainingSha256": "ccd1c749eb3aee8decc1e1642227965551229709c184c31064c79cac8fc84db3"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-22",
+    "training_games": 450,
+    "latest_training_date": "2026-10-19",
+    "iterations": 21,
+    "loss": 0.8593626640370575,
+    "converged": true,
+    "trainingSha256": "f9a4354555b8c62da94ded926aebc07c92b280ef3f6765cb6b49aaf845c9a344"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-23",
+    "training_games": 450,
+    "latest_training_date": "2026-10-19",
+    "iterations": 1,
+    "loss": 0.8593626639851385,
+    "converged": true,
+    "trainingSha256": "f9a4354555b8c62da94ded926aebc07c92b280ef3f6765cb6b49aaf845c9a344"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-24",
+    "training_games": 451,
+    "latest_training_date": "2026-10-23",
+    "iterations": 22,
+    "loss": 0.8602823696505506,
+    "converged": true,
+    "trainingSha256": "e9f56abe694f6cbfb79c848dfe835a39fa81a3708761dc81b077d49cb100aeb5"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-30",
+    "training_games": 460,
+    "latest_training_date": "2026-10-25",
+    "iterations": 26,
+    "loss": 0.8667530447291036,
+    "converged": true,
+    "trainingSha256": "262502d1754baa9cb897a7caa1f27341cf207b5eac0c87b0ad99be5b1f9d984f"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-10-31",
+    "training_games": 460,
+    "latest_training_date": "2026-10-25",
+    "iterations": 1,
+    "loss": 0.8667530446774822,
+    "converged": true,
+    "trainingSha256": "262502d1754baa9cb897a7caa1f27341cf207b5eac0c87b0ad99be5b1f9d984f"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-11-01",
+    "training_games": 468,
+    "latest_training_date": "2026-10-31",
+    "iterations": 21,
+    "loss": 0.869480393281353,
+    "converged": true,
+    "trainingSha256": "771fcd1039be9b5b38040f273e499725e41f03d8e28bec333753462bc7f266bf"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-11-05",
+    "training_games": 470,
+    "latest_training_date": "2026-11-02",
+    "iterations": 23,
+    "loss": 0.8710846104659234,
+    "converged": true,
+    "trainingSha256": "0cc2545ae31dbe095c4f450c4c97429d1ae5405f06d10ce3890d3c0e7b7b1322"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-11-06",
+    "training_games": 470,
+    "latest_training_date": "2026-11-02",
+    "iterations": 1,
+    "loss": 0.8710846104547605,
+    "converged": true,
+    "trainingSha256": "0cc2545ae31dbe095c4f450c4c97429d1ae5405f06d10ce3890d3c0e7b7b1322"
+  },
+  {
+    "league": "PL",
+    "cutoffExclusive": "2026-11-07",
+    "training_games": 471,
+    "latest_training_date": "2026-11-06",
+    "iterations": 13,
+    "loss": 0.869970267913469,
+    "converged": true,
+    "trainingSha256": "670b41d29933cc8a02bf55b73a42b736c96772f39b0d45f7b624c5f2cea0cb98"
+  }
+]

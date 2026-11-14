@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "protocol": "league-strength-replay-1",
+  "planSha256": "d27735f7046754568ce41a9a6a542056e29fef0a7582230a84dc374d95ddf6a4",
+  "sourceCohortSha256": "115bccbb92bcb85c69e4141d50d86cc185c70a62fdfbad6e2630517db820b39d",
+  "inputSha256": {
+    "BSA": "11400c9b8c57f43a43c56a6833de799cb60075feaad5e674c7d6a85e8581e420",
+    "PD": "d4b032b11cd976dd978b222d2c0352180e1572cc24aec54299599bf2484748c3",
+    "ELC": "de78ce79665d25fb344909cb3b3b42f5daf26c5e785fb7ec097c3590b4c09304",
+    "PL": "82b039ec59f82115a50fc91945e27d5938a34f831e8d89934921c461e94afdaa"
+  },
+  "settings": {
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "elo": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "glm_weight": 0.75
+  },
+  "sourceMatches": 2434,
+  "referenceReplayedMatches": 2202,
+  "targetMatches": 518,
+  "evaluatedMatches": 518,
+  "excluded": [],
+  "fits": {
+    "total": 167,
+    "byLeague": {
+      "BSA": 54,
+      "ELC": 34,
+      "PD": 49,
+      "PL": 30
+    },
+    "fittingAndPredictionSeconds": 0.5129716270002973
+  },
+  "results": {
+    "validation": {
+      "period": [
+        "2026-07-01",
+        "2026-09-16"
+      ],
+      "matches": 223,
+      "metrics": {
+        "v1": {
+          "n": 223,
+          "brier": 0.6455083077925516,
+          "logloss": 1.0673105746312006,
+          "accuracy": 0.4260089686098655
+        },
+        "base": {
+          "n": 223,
+          "brier": 0.6705186426238925,
+          "logloss": 1.1036454304900758,
+          "accuracy": 0.3991031390134529
+        },
+        "candidate": {
+          "n": 223,
+          "brier": 0.6231368624694593,
+          "logloss": 1.0347866430500374,
+          "accuracy": 0.4349775784753363
+        }
+      },
+      "pairedIntervals": {
+        "brier": {
+          "difference": -0.022371445323092525,
+          "ci95": [
+            -0.042470779235074856,
+            -0.0032429584383340325
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": -0.03252393158116318,
+          "ci95": [
+            -0.060969281973372494,
+            -0.004932213055021456
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      },
+      "byLeague": {
+        "BSA": {
+          "matches": 89,
+          "metrics": {
+            "v1": {
+              "n": 89,
+              "brier": 0.6410069766854121,
+              "logloss": 1.061221386171803,
+              "accuracy": 0.4157303370786517
+            },
+            "base": {
+              "n": 89,
+              "brier": 0.6659181771663863,
+              "logloss": 1.096945143921969,
+              "accuracy": 0.4157303370786517
+            },
+            "candidate": {
+              "n": 89,
+              "brier": 0.6221599001669961,
+              "logloss": 1.0306695815342286,
+              "accuracy": 0.42696629213483145
+            }
+          }
+        },
+        "ELC": {
+          "matches": 62,
+          "metrics": {
+            "v1": {
+              "n": 62,
+              "brier": 0.6474824526560256,
+              "logloss": 1.0705138003046482,
+              "accuracy": 0.45161290322580644
+            },
+            "base": {
+              "n": 62,
+              "brier": 0.656735331971031,
+              "logloss": 1.0837416070391386,
+              "accuracy": 0.41935483870967744
+            },
+            "candidate": {
+              "n": 62,
+              "brier": 0.6398960987823942,
+              "logloss": 1.0609896185047742,
+              "accuracy": 0.43548387096774194
+            }
+          }
+        },
+        "PD": {
+          "matches": 43,
+          "metrics": {
+            "v1": {
+              "n": 43,
+              "brier": 0.6180168718203788,
+              "logloss": 1.02739006774783,
+              "accuracy": 0.46511627906976744
+            },
+            "base": {
+              "n": 43,
+              "brier": 0.6707518662514523,
+              "logloss": 1.1034693285328847,
+              "accuracy": 0.4186046511627907
+            },
+            "candidate": {
+              "n": 43,
+              "brier": 0.5892908716477663,
+              "logloss": 0.986650320297236,
+              "accuracy": 0.46511627906976744
+            }
+          }
+        },
+        "PL": {
+          "matches": 29,
+          "metrics": {
+            "v1": {
+              "n": 29,
+              "brier": 0.6958653158547407,
+              "logloss": 1.13834228418698,
+              "accuracy": 0.3448275862068966
+            },
+            "base": {
+              "n": 29,
+              "brier": 0.7137592657345951,
+              "logloss": 1.1670224974790002,
+              "accuracy": 0.27586206896551724
+            },
+            "candidate": {
+              "n": 29,
+              "brier": 0.6404904693263569,
+              "logloss": 1.0627761559839615,
+              "accuracy": 0.41379310344827586
+            }
+          }
+        }
+      }
+    },
+    "audit": {
+      "period": [
+        "2026-09-16",
+        "2026-11-12"
+      ],
+      "matches": 295,
+      "metrics": {
+        "v1": {
+          "n": 295,
+          "brier": 0.5958711060302124,
+          "logloss": 0.9980369327661793,
+          "accuracy": 0.5288135593220339
+        },
+        "base": {
+          "n": 295,
+          "brier": 0.6378014627131691,
+          "logloss": 1.0575466925072496,
+          "accuracy": 0.48135593220338985
+        },
+        "candidate": {
+          "n": 295,
+          "brier": 0.5911767992812264,
+          "logloss": 0.9924014355649853,
+          "accuracy": 0.5288135593220339
+        }
+      },
+      "pairedIntervals": {
+        "brier": {
+          "difference": -0.004694306748986107,
+          "ci95": [
+            -0.022702726185812323,
+            0.011275687980451992
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        },
+        "logloss": {
+          "difference": -0.005635497201194165,
+          "ci95": [
+            -0.031934094590102095,
+            0.019190828822255795
+          ],
+          "method": "paired resampling of calendar-day clusters",
+          "samples": 1500
+        }
+      },
+      "byLeague": {
+        "BSA": {
+          "matches": 73,
+          "metrics": {
+            "v1": {
+              "n": 73,
+              "brier": 0.5579403406547536,
+              "logloss": 0.9431043656832445,
+              "accuracy": 0.589041095890411
+            },
+            "base": {
+              "n": 73,
+              "brier": 0.6012965515071744,
+              "logloss": 1.0074514721218775,
+              "accuracy": 0.5616438356164384
+            },
+            "candidate": {
+              "n": 73,
+              "brier": 0.5330442343681017,
+              "logloss": 0.9090332558385683,
+              "accuracy": 0.6164383561643836
+            }
+          }
+        },
+        "ELC": {
+          "matches": 97,
+          "metrics": {
+            "v1": {
+              "n": 97,
+              "brier": 0.6226542400034519,
+              "logloss": 1.0364921322408198,
+              "accuracy": 0.5051546391752577
+            },
+            "base": {
+              "n": 97,
+              "brier": 0.6470320572692673,
+              "logloss": 1.0696288060607706,
+              "accuracy": 0.4536082474226804
+            },
+            "candidate": {
+              "n": 97,
+              "brier": 0.6430324524322852,
+              "logloss": 1.0643019355483918,
+              "accuracy": 0.4536082474226804
+            }
+          }
+        },
+        "PD": {
+          "matches": 65,
+          "metrics": {
+            "v1": {
+              "n": 65,
+              "brier": 0.5571938254204867,
+              "logloss": 0.9446330076062475,
+              "accuracy": 0.5692307692307692
+            },
+            "base": {
+              "n": 65,
+              "brier": 0.6563605581005528,
+              "logloss": 1.0840906413704459,
+              "accuracy": 0.4307692307692308
+            },
+            "candidate": {
+              "n": 65,
+              "brier": 0.5444174025451209,
+              "logloss": 0.9265582520899878,
+              "accuracy": 0.6
+            }
+          }
+        },
+        "PL": {
+          "matches": 60,
+          "metrics": {
+            "v1": {
+              "n": 60,
+              "brier": 0.6406211913074867,
+              "logloss": 1.0605565691563408,
+              "accuracy": 0.45
+            },
+            "base": {
+              "n": 60,
+              "brier": 0.6471872901451048,
+              "logloss": 1.070207182462797,
+              "accuracy": 0.48333333333333334
+            },
+            "candidate": {
+              "n": 60,
+              "brier": 0.628727460462097,
+              "logloss": 1.0489236946901994,
+              "accuracy": 0.4666666666666667
+            }
+          }
+        }
+      }
+    }
+  },
+  "aggregateGatePassed": true,
+  "allLeagueAuditGatePassed": false,
+  "preliminaryGatePassed": false,
+  "historicalAdvantageGatePassed": false,
+  "promotedToDefault": false,
+  "originalHundredChanged": false,
+  "prospectiveValidationRequired": true,
+  "retrospective": true,
+  "limitations": [
+    "These historical periods have already been inspected. This is retrospective development, not an untouched test or evidence of future accuracy.",
+    "The recipe was selected earlier using EPL data; transfer to the other leagues is an experiment, not a new parameter search.",
+    "Production v1 retains its exact 24-hour replay and four-hour result fence. The date-based candidate conservatively excludes the entire boundary date, potentially losing up to 24 additional hours of otherwise available results.",
+    "Only the two frozen seasons per league are available; promoted clubs can have little history. Coverage and all exclusions must be reported.",
+    "Historical final scores and kickoff times are observed now; contemporaneous result-publication and rescheduling logs are unavailable.",
+    "Player availability, confirmed lineups, weather, xG and betting odds are not used.",
+    "The original one-hundred-match packet, probabilities and source inputs remain immutable. Any later candidate series must have its own actual registration timestamp and exclude fixtures less than 24 hours away."
+  ],
+  "replaySha256": "375d5bb47609c8b90d80b22caed9c5c084063dd4753ff00d2a4b818cd09539d8",
+  "predictionsSha256": "e4c0613737a2ce4dd55d5ef2bf3347cb0ea80267a21b3f404b24626ff75379b5",
+  "fitsSha256": "92748e3f3f5454fb3f4f2b3cc28d7729365aa23263841a65e9ca0593ec1523d1",
+  "completedAt": "2026-11-14T15:05:29.970425+00:00",
+  "codeSha256": "58a0d474e92534a136595f36613553fd0417cb63a71423d92d9a238600337981"
+}

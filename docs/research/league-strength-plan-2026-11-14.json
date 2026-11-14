@@ -1,0 +1,38 @@
+{
+  "protocol": "league-strength-replay-1",
+  "registeredOn": "2026-11-14",
+  "settingsRegisteredBeforeThisRun": true,
+  "purpose": "Evaluate the existing fixed attack/defence plus Elo recipe independently in each league without retuning on these results",
+  "inputCohortSha256": "115bccbb92bcb85c69e4141d50d86cc185c70a62fdfbad6e2630517db820b39d",
+  "leagues": ["BSA", "ELC", "PD", "PL"],
+  "candidateCount": 1,
+  "settingsSource": "docs/research/selection.json",
+  "candidate": {
+    "glm": {"half_life": 365, "ridge": 0.03, "window_days": 1095},
+    "elo": {"k": 30, "home_advantage": 80, "draw_weight": 0.9},
+    "glm_weight": 0.75
+  },
+  "replayLeadHours": 24,
+  "resultSafetyHours": 4,
+  "candidateInformationFence": "UTC midnight at the start of the date containing simulatedForecastAt minus four hours; exclude the entire boundary date",
+  "minimumTrainingMatches": 100,
+  "unseenTeamPolicy": "exclude and report; never silently use a neutral team rating",
+  "validationPeriod": ["2026-07-01", "2026-09-16"],
+  "auditPeriod": ["2026-09-16", "2026-11-12"],
+  "refitting": "Rolling past-only fits, once per league and distinct cutoff date; earlier evaluation results can train later forecasts only after the information fence",
+  "primaryMetrics": ["brier", "logloss"],
+  "preliminaryGate": "Both aggregate probability metrics improve over production v1 in both periods and neither audit metric worsens in any league",
+  "historicalAdvantageGate": "Preliminary gate plus upper bounds below zero for both audit paired calendar-day bootstrap intervals",
+  "bootstrapSamples": 1500,
+  "automaticPromotion": false,
+  "futureComparisonMinimumLeadHours": 24,
+  "limitations": [
+    "These historical periods have already been inspected. This is retrospective development, not an untouched test or evidence of future accuracy.",
+    "The recipe was selected earlier using EPL data; transfer to the other leagues is an experiment, not a new parameter search.",
+    "Production v1 retains its exact 24-hour replay and four-hour result fence. The date-based candidate conservatively excludes the entire boundary date, potentially losing up to 24 additional hours of otherwise available results.",
+    "Only the two frozen seasons per league are available; promoted clubs can have little history. Coverage and all exclusions must be reported.",
+    "Historical final scores and kickoff times are observed now; contemporaneous result-publication and rescheduling logs are unavailable.",
+    "Player availability, confirmed lineups, weather, xG and betting odds are not used.",
+    "The original one-hundred-match packet, probabilities and source inputs remain immutable. Any later candidate series must have its own actual registration timestamp and exclude fixtures less than 24 hours away."
+  ]
+}
