@@ -35,8 +35,8 @@ def optional(value,maximum):
     return result
 
 
-def parse_performance(body,season):
-    matches={m.key:m for m in parse_csv(body,season)}
+def parse_performance(body,season,*,division=None):
+    matches={m.key:m for m in parse_csv(body,season,division=division)}
     result=[]
     for row in csv.DictReader(io.StringIO(body.decode('utf-8-sig'))):
         if not (row.get('Date') or '').strip():continue

@@ -12,11 +12,15 @@ on:
       - 'research/export_model.py'
       - 'research/data.py'
       - 'research/championship.py'
+      - 'research/championship_shots.py'
+      - 'research/performance.py'
       - 'scripts/publish_training.py'
       - 'requirements-research.txt'
       - 'docs/research/selection.json'
       - 'docs/research/championship-plan-2026-11-14.json'
       - 'docs/research/championship-2026-11-14/selection.json'
+      - 'docs/research/championship-shots-plan-2026-11-14.json'
+      - 'docs/research/championship-shots-2026-11-14/report.json'
   schedule:
     - cron: '23 0 * * *'
   workflow_dispatch:
@@ -119,18 +123,27 @@ jobs:
           key: ${{ runner.os }}-championship-csv-v1-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: ${{ runner.os }}-championship-csv-v1-
       - run: python -m pip install -r requirements-research.txt
-      - run: python -m unittest tests.test_championship tests.test_data
+      - run: python -m unittest tests.test_championship tests.test_championship_shots tests.test_data
       - name: Refresh ELC weights with frozen ELC settings
         id: train
         continue-on-error: true
         run: python -m research.championship refresh --data-dir data/championship --output artifacts/championship
+      - name: Refresh shots candidate from the same cached sources
+        id: shots
+        if: steps.train.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python -m research.championship_shots --refresh --data-dir data/championship \
+            --goal-report artifacts/championship/report.json --output artifacts/championship-shots
       - name: Save Championship weights, inputs and monitoring
         id: artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: championship-candidate-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/championship/
+          path: |
+            artifacts/championship/
+            artifacts/championship-shots/
           retention-days: 90
           if-no-files-found: warn
       - name: Preserve a failed artifact observation
@@ -139,10 +152,11 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          path=Path('artifacts/championship/attempt.json')
-          report=json.loads(path.read_text())
-          report.update(status='failed',errorType='ArtifactUploadFailure',message='The model artifact was not saved.')
-          path.write_text(json.dumps(report,indent=2))
+          for path in (Path('artifacts/championship/attempt.json'),Path('artifacts/championship-shots/attempt.json')):
+              if not path.exists():continue
+              report=json.loads(path.read_text())
+              report.update(status='failed',errorType='ArtifactUploadFailure',message='The model artifact was not saved.')
+              path.write_text(json.dumps(report,indent=2))
           PY
       - name: Publish to the separate Championship archive
         if: always()
@@ -158,12 +172,21 @@ jobs:
               --repository "$TRAINING_REPOSITORY" --run-id "$TRAINING_RUN_ID" \
               --run-attempt "$TRAINING_RUN_ATTEMPT" --commit "$TRAINING_COMMIT"
           fi
+          if test -f artifacts/championship-shots/attempt.json; then
+            python -m scripts.publish_training --output artifacts/championship-shots \
+              --branch championship-shots-training-reports \
+              --repository "$TRAINING_REPOSITORY" --run-id "$TRAINING_RUN_ID" \
+              --run-attempt "$TRAINING_RUN_ATTEMPT" --commit "$TRAINING_COMMIT"
+          fi
       - name: Championship summary
         if: always()
         run: |
           if test -f artifacts/championship/report.md; then
             cat artifacts/championship/report.md >> "$GITHUB_STEP_SUMMARY"
           fi
+          if test -f artifacts/championship-shots/report.md; then
+            cat artifacts/championship-shots/report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Preserve a failed Championship conclusion
-        if: steps.train.outcome != 'success'
+        if: steps.train.outcome != 'success' || steps.shots.outcome != 'success'
         run: exit 1

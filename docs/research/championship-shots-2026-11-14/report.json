@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "protocol": "championship-shots-1",
+  "league": "ELC",
+  "division": "E1",
+  "asOf": "2026-11-14",
+  "completedAt": "2026-11-14T17:37:51.374919+00:00",
+  "planSha256": "340c17901e701530cae346309aaa8ec06409fbc75103b3fcd4371a56f335df25",
+  "codeSha256": "eef3e2ad973384bd50922cf6ac1ff3e049d69603a25fd703f3d527612d72a00a",
+  "dataSha256": "1cf5e7aa9fb2ed74f75caa889dc47f60bbb321b5d798a3399b30c567e3eebfa3",
+  "goalSelectionSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
+  "candidateCount": 1,
+  "settings": {
+    "goal_weight": 0.5,
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "elo": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "glm_weight": 0.75
+  },
+  "coverage": {
+    "matches": 6252,
+    "completeShotMatches": 6250,
+    "goalFallbackMatches": 2,
+    "invalidStatisticsMatches": 1
+  },
+  "results": {
+    "validation": {
+      "seasons": [
+        2023,
+        2024
+      ],
+      "targets": 1104,
+      "commonMatches": 1061,
+      "excludedFromAll": 43,
+      "metrics": {
+        "shots": {
+          "n": 1061,
+          "brier": 0.6155351533186771,
+          "logloss": 1.0258016828843066,
+          "accuracy": 0.47785108388312914
+        },
+        "goals": {
+          "n": 1061,
+          "brier": 0.6177735641577966,
+          "logloss": 1.0290010212404144,
+          "accuracy": 0.4665409990574929
+        },
+        "v1": {
+          "n": 1061,
+          "brier": 0.6324450388369788,
+          "logloss": 1.0488798639797892,
+          "accuracy": 0.4655984919886899
+        },
+        "base": {
+          "n": 1061,
+          "brier": 0.6473356590665021,
+          "logloss": 1.0706632626987465,
+          "accuracy": 0.4505183788878417
+        }
+      },
+      "pairedIntervals": {
+        "goals": {
+          "brier": {
+            "difference": -0.002238410839119528,
+            "ci95": [
+              -0.004804692410439809,
+              0.00010342844467331221
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.003199338356107727,
+            "ci95": [
+              -0.006678382024740741,
+              0.0002514605124929509
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "v1": {
+          "brier": {
+            "difference": -0.01690988551830175,
+            "ci95": [
+              -0.024984753699078006,
+              -0.00944917002665274
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.023078181095482334,
+            "ci95": [
+              -0.03544040176812462,
+              -0.0121001322252767
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      }
+    },
+    "audit": {
+      "seasons": [
+        2025
+      ],
+      "targets": 552,
+      "commonMatches": 533,
+      "excludedFromAll": 19,
+      "metrics": {
+        "shots": {
+          "n": 533,
+          "brier": 0.6402470571866342,
+          "logloss": 1.0602239720565236,
+          "accuracy": 0.4427767354596623
+        },
+        "goals": {
+          "n": 533,
+          "brier": 0.6421363335526952,
+          "logloss": 1.06315098216945,
+          "accuracy": 0.450281425891182
+        },
+        "v1": {
+          "n": 533,
+          "brier": 0.6453337177743311,
+          "logloss": 1.0660563139372885,
+          "accuracy": 0.4277673545966229
+        },
+        "base": {
+          "n": 533,
+          "brier": 0.6586335086600382,
+          "logloss": 1.0869746460562375,
+          "accuracy": 0.4165103189493433
+        }
+      },
+      "pairedIntervals": {
+        "goals": {
+          "brier": {
+            "difference": -0.0018892763660610305,
+            "ci95": [
+              -0.004737104947207636,
+              0.0009997351350341478
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.0029270101129264406,
+            "ci95": [
+              -0.007024121634812905,
+              0.0011160941811764163
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "v1": {
+          "brier": {
+            "difference": -0.005086660587696851,
+            "ci95": [
+              -0.018011816294471097,
+              0.008283191696181875
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.005832341880765043,
+            "ci95": [
+              -0.023359277031048238,
+              0.011825025860885309
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      }
+    },
+    "monitoring": {
+      "seasons": [
+        2026
+      ],
+      "targets": 180,
+      "commonMatches": 159,
+      "excludedFromAll": 21,
+      "metrics": {
+        "shots": {
+          "n": 159,
+          "brier": 0.6461010460590505,
+          "logloss": 1.0674537832704514,
+          "accuracy": 0.44025157232704404
+        },
+        "goals": {
+          "n": 159,
+          "brier": 0.6545718571763162,
+          "logloss": 1.0798951382286617,
+          "accuracy": 0.41509433962264153
+        },
+        "v1": {
+          "n": 159,
+          "brier": 0.6323835465615516,
+          "logloss": 1.0498359582474992,
+          "accuracy": 0.48427672955974843
+        },
+        "base": {
+          "n": 159,
+          "brier": 0.6506716951174104,
+          "logloss": 1.0748956008987893,
+          "accuracy": 0.44025157232704404
+        }
+      },
+      "pairedIntervals": {
+        "goals": {
+          "brier": {
+            "difference": -0.008470811117265761,
+            "ci95": [
+              -0.015142426412434995,
+              -0.0018014129938745804
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": -0.012441354958210415,
+            "ci95": [
+              -0.022162750625871697,
+              -0.0029904119072375205
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        },
+        "v1": {
+          "brier": {
+            "difference": 0.013717499497498786,
+            "ci95": [
+              -0.015018065945821795,
+              0.041313594831483565
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          },
+          "logloss": {
+            "difference": 0.017617825022952185,
+            "ci95": [
+              -0.02378045122514845,
+              0.05648634342305321
+            ],
+            "method": "paired resampling of calendar-day clusters",
+            "samples": 1500
+          }
+        }
+      }
+    }
+  },
+  "fitCounts": {
+    "validation": 230,
+    "audit": 113,
+    "monitoring": 34
+  },
+  "modelSha256": "00665f7ea4aaefbb77406986690b067b95a693a56a5d30df8359a06e765deb6b",
+  "modelVersion": "ELC-shots-experimental-2026-11-14-4e0beb13fa2e",
+  "durationSeconds": 13.076700036999682,
+  "pointGatePassed": false,
+  "historicalGatePassed": false,
+  "predictionSha256": {
+    "validation": "17f66f3e823444b031b9edef9961b7b379714eb2b9df72ef9c37eac4ffc9f5cf",
+    "audit": "aa666a2d1e87b0e1232381fc144678230721f4844c0ea76cadf95ffe73e9f827",
+    "monitoring": "d64f356f79e7cf5e94bd224e5e7f480633963983240acd13b833ddf3eec1a5b6"
+  },
+  "fitsSha256": "f727976a6b1e7e576e5a00fe9de37550c62fddf84621ff73a6443c4a6aa17c79",
+  "retrospective": true,
+  "prospectiveValidationRequired": true,
+  "promotedToDefault": false,
+  "originalHundredChanged": false,
+  "limitations": [
+    "All historical periods were inspected in the preceding ELC experiment. This is further retrospective development, not an untouched test or proof of future accuracy.",
+    "Only one fixed shot recipe is evaluated; neither its mixture weight nor decay is retuned after inspecting later results.",
+    "Shots on target do not identify shot location or chance quality and must not be presented as measured xG.",
+    "CSV publication times are unavailable, so the immediately preceding calendar day is excluded conservatively.",
+    "Same-division history can be sparse for promoted or relegated clubs; the common v1 eligibility rule and all excluded counts remain visible.",
+    "The archive contains missing and inconsistent statistics. Such fixtures retain verified goals and are never removed to improve measured accuracy.",
+    "Player availability, lineups, weather and betting odds are not numeric inputs in this experiment.",
+    "The original one-hundred-match series, public model and goal-only study remain unchanged. Any prospective comparison requires its own actual registration before kickoff."
+  ]
+}

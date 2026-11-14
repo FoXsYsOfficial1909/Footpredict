@@ -1,0 +1,20 @@
+{
+  "protocol": "championship-shots-1",
+  "planSha256": "340c17901e701530cae346309aaa8ec06409fbc75103b3fcd4371a56f335df25",
+  "goalSelectionSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
+  "candidate": {
+    "goal_weight": 0.5,
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "elo": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "glm_weight": 0.75
+  },
+  "candidateCount": 1
+}

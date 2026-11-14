@@ -13,7 +13,8 @@ import uuid
 from research.nightly import sha
 
 BRANCH='training-reports'
-BRANCH_LEAGUES={BRANCH:'PL','championship-training-reports':'ELC'}
+BRANCH_LEAGUES={BRANCH:'PL','championship-training-reports':'ELC','championship-shots-training-reports':'ELC'}
+BRANCH_METHODS={BRANCH:'goals','championship-training-reports':'goals','championship-shots-training-reports':'shots_on_target'}
 
 
 def merge_latest(previous,attempt,*,repository,run_id,run_attempt,commit,branch=BRANCH):
@@ -21,6 +22,7 @@ def merge_latest(previous,attempt,*,repository,run_id,run_attempt,commit,branch=
     expected=BRANCH_LEAGUES[branch]
     if attempt.get('league','PL')!=expected or attempt.get('division', 'E0')!=('E1' if expected=='ELC' else 'E0'):
         raise ValueError('Training report league does not match the publication branch')
+    if attempt.get('method','goals')!=BRANCH_METHODS[branch]:raise ValueError('Training method does not match the publication branch')
     if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repository):raise ValueError('Invalid repository')
     if not str(run_id).isdigit() or not str(run_attempt).isdigit() or not re.fullmatch(r'[0-9a-f]{40}',commit):raise ValueError('Invalid run metadata')
     if attempt.get('schemaVersion')!=1 or attempt.get('status') not in ('success','failed') or attempt.get('promotedToDefault') is not False:
@@ -38,6 +40,7 @@ def merge_latest(previous,attempt,*,repository,run_id,run_attempt,commit,branch=
     previous=previous or {}
     old=previous.get('latestAttempt')
     if old and old.get('league','PL')!=expected:raise ValueError('Previous report belongs to another league')
+    if old and old.get('method','goals')!=BRANCH_METHODS[branch]:raise ValueError('Previous report belongs to another method')
     if old and datetime.fromisoformat(old['generatedAt'].replace('Z','+00:00'))>datetime.fromisoformat(report['generatedAt'].replace('Z','+00:00')):
         raise ValueError('Refusing to replace a newer report')
     return {'schemaVersion':1,'latestAttempt':report,'latestSuccessful':report if report['status']=='success' else previous.get('latestSuccessful')}
@@ -57,6 +60,8 @@ def save_public_model(output,worktree,attempt):
         raise ValueError('Model checksum or version mismatch')
     if model.get('league','PL')!=attempt.get('league','PL') or model.get('division','E0')!=attempt.get('division','E0'):
         raise ValueError('Model and training report describe different leagues')
+    if model.get('method','goals')!=attempt.get('method','goals'):
+        raise ValueError('Model and training report describe different training methods')
     body=json.dumps(model,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
     target=Path(worktree)/'models'/(checksum+'.json');target.parent.mkdir(exist_ok=True)
     if target.exists() and target.read_bytes()!=body:raise ValueError('Immutable model archive differs')

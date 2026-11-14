@@ -1,0 +1,42 @@
+{
+  "protocol": "championship-shots-1",
+  "registeredOn": "2026-11-14",
+  "registeredBeforeShotForecasts": true,
+  "league": "ELC",
+  "division": "E1",
+  "asOf": "2026-11-14",
+  "sourceStudy": "docs/research/championship-2026-11-14",
+  "sourceGoalDataSha256": "6ddef4dd2df36256d6b899d552deb0da08f4833241f4a4dfa5bec8389af01d52",
+  "goalSelectionSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
+  "candidateCount": 1,
+  "candidate": {
+    "goal_weight": 0.5,
+    "glm": {"half_life": 730, "ridge": 0.03, "window_days": 1095},
+    "elo": {"k": 30, "home_advantage": 80, "draw_weight": 0.9},
+    "glm_weight": 0.75
+  },
+  "method": "Reuse the existing ShotPoisson method: train attack/defence on half actual goals plus half prior shots on target multiplied by a goals-per-shot scale fitted exclusively on prior league games. Blend the resulting Poisson probabilities with fixed Elo. This is a shot proxy, not xG.",
+  "validationSeasons": [2023, 2024],
+  "auditSeasons": [2025],
+  "monitoringSeasons": [2026],
+  "expectedCommonMatches": {"validation": 1061, "audit": 533, "monitoring": 159},
+  "informationFence": "Every historical forecast excludes results and statistics on or after the day immediately preceding kickoff; the shot scale, attack/defence, goal-only reference and Elo all obey that same conservative date fence.",
+  "missingShotPolicy": "Retain every verified result. If either club's shots on target are missing or invalid, train that fixture using its actual goals without substituting zero shots. Report coverage and fallback counts.",
+  "sourcePolicy": "Use the exact E1 CSV bytes pinned by the previous study, verify every raw SHA-256, enforce E1, and match all normalized identities and scores against the frozen 6252-result archive. Persist a new normalized shots snapshot for offline reproduction. No odds or target-match statistics are predictors.",
+  "primaryMetrics": ["brier", "logloss"],
+  "pointGate": "Both metrics improve over the same-recipe goal-only model and v1 in every reported period, on identical fixtures.",
+  "historicalGate": "Point gate plus both audit calendar-day paired bootstrap upper bounds below zero against both the goal-only model and v1.",
+  "bootstrapSamples": 1500,
+  "automaticPromotion": false,
+  "originalHundredMayChange": false,
+  "limitations": [
+    "All historical periods were inspected in the preceding ELC experiment. This is further retrospective development, not an untouched test or proof of future accuracy.",
+    "Only one fixed shot recipe is evaluated; neither its mixture weight nor decay is retuned after inspecting later results.",
+    "Shots on target do not identify shot location or chance quality and must not be presented as measured xG.",
+    "CSV publication times are unavailable, so the immediately preceding calendar day is excluded conservatively.",
+    "Same-division history can be sparse for promoted or relegated clubs; the common v1 eligibility rule and all excluded counts remain visible.",
+    "The archive contains missing and inconsistent statistics. Such fixtures retain verified goals and are never removed to improve measured accuracy.",
+    "Player availability, lineups, weather and betting odds are not numeric inputs in this experiment.",
+    "The original one-hundred-match series, public model and goal-only study remain unchanged. Any prospective comparison requires its own actual registration before kickoff."
+  ]
+}
