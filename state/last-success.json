@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "inputFingerprint": "a019d3572a673ad6f3db02ba7b3cabeb0198cb017dc182774311075e7ee894c7",
-  "reportSha256": "fd3edc50f3ffe2ebd1aa297e07bacaded8d05ea87e4bb9ee7a5daf3b4a3adb1c",
+  "inputFingerprint": "c4fede19666702fe14d21fd41901595dd6593143ca6a97af96c01c16ee4a1120",
+  "reportSha256": "79c117b08b87bd98c68ccc57956e95d080bd6d9b33798e3a8cd9939693d7fa3e",
   "report": {
     "schemaVersion": 1,
     "protocol": "automatic-experiments-1",
     "status": "success",
-    "generatedAt": "2026-11-14T17:14:52.418942+00:00",
-    "evaluatedAt": "2026-11-14T17:14:52.418942+00:00",
-    "inputFingerprint": "a019d3572a673ad6f3db02ba7b3cabeb0198cb017dc182774311075e7ee894c7",
+    "generatedAt": "2026-11-14T17:41:55.740935+00:00",
+    "evaluatedAt": "2026-11-14T17:41:55.740935+00:00",
+    "inputFingerprint": "c4fede19666702fe14d21fd41901595dd6593143ca6a97af96c01c16ee4a1120",
     "dataSha256": "22d6a26a90dd6d76faf221517a0460d83ef54ed312e28f2e7434e80e85d4caa0",
     "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
-    "codeSha256": "7493dcdb4874de5d200794cca44e2cdb1306f419ab74444d270aee832c352b24",
+    "codeSha256": "5f1ea7f91efe67801f9e9aa331ebb3557098a5bb8df62372b0d56a1d5ac1762e",
     "evaluationCutoffExclusive": "2026-11-13",
     "selection": {
       "baseline": {
@@ -57,9 +57,9 @@
         }
       ],
       "chosen": null,
-      "inputFingerprint": "a019d3572a673ad6f3db02ba7b3cabeb0198cb017dc182774311075e7ee894c7",
+      "inputFingerprint": "c4fede19666702fe14d21fd41901595dd6593143ca6a97af96c01c16ee4a1120",
       "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
-      "codeSha256": "7493dcdb4874de5d200794cca44e2cdb1306f419ab74444d270aee832c352b24",
+      "codeSha256": "5f1ea7f91efe67801f9e9aa331ebb3557098a5bb8df62372b0d56a1d5ac1762e",
       "auditComputedAfterSelection": true
     },
     "sourceFreshness": {
@@ -286,7 +286,7 @@
       "xgSource": {
         "schemaVersion": 1,
         "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
-        "preparedAt": "2026-11-14T17:14:51.947982+00:00",
+        "preparedAt": "2026-11-14T17:41:55.259458+00:00",
         "sourceUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json",
         "sourceReportSha256": "5bd68c59628de0becf334d99905e17c3f4972c407b96c8b9aa9d5af8bf2f911b",
         "acceptedSource": {
@@ -942,6 +942,6 @@
       "corrupt": 0,
       "fits": 833
     },
-    "durationSeconds": 19.247329543000006
+    "durationSeconds": 19.487957755000004
   }
 }
