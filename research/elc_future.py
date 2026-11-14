@@ -156,7 +156,7 @@ def freeze(directory=DIRECTORY):
     checksum = hashlib.sha256(raw).hexdigest()
     with (directory/'packet.sha256').open('x') as stream:stream.write(checksum+'\n')
     with (directory/'forecasts.csv').open('x', encoding='utf-8-sig', newline='') as stream:
-        writer = csv.writer(stream, delimiter=';')
+        writer = csv.writer(stream, delimiter=';', lineterminator='\n')
         writer.writerow(['fixtureId', 'kickoffUTC', 'home', 'away', 'v1P1', 'v1Draw', 'v1P2',
                          'candidateP1', 'candidateDraw', 'candidateP2'])
         for fixture in packet['fixtures']:
