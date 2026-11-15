@@ -130,7 +130,7 @@ with sync_playwright() as playwright:
             assert '<img src=x' in page.locator('#qualityFixtures').inner_text()
         assert not errors,errors
         fresh=browser.new_page()
-        fresh.route('**/*.workers.dev/**',lambda route:route.fulfill(status=503,content_type='application/json',body='{}'))
+        fresh.route('**/v1/quality',lambda route:route.fulfill(status=503,content_type='application/json',body='{}'))
         fresh.goto(BASE.split('#')[0]+'#qualityNightly',wait_until='networkidle',timeout=60000)
         fresh.wait_for_function("!document.getElementById('refreshQuality').disabled")
         assert fresh.locator('#qualityResult').is_hidden()
