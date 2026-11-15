@@ -1,0 +1,4305 @@
+{
+  "schemaVersion": 1,
+  "protocol": "quality-diagnostic-1",
+  "inputManifestSha256": "e1947a06e18a14b7dce1ba3f5ae9d16688c95849fd41e9d5514ffea6558219a1",
+  "league": "PL",
+  "mainMetric": "logLoss",
+  "probabilityOrder": [
+    "P1",
+    "X",
+    "P2"
+  ],
+  "brierFormula": "mean(sum((p[k]-1{actual=k})**2 for k in 0..2)); no division by 3; range 0..2",
+  "selection": {
+    "glm": {
+      "half_life": 365,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "elo": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "glm_weight": 0.75,
+    "validation": {
+      "n": 736,
+      "brier": 0.5709614997461899,
+      "logloss": 0.9613428503572878,
+      "accuracy": 0.5570652173913043
+    },
+    "chosen_before_test": true
+  },
+  "history": {
+    "parameterEstimationSeasons": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "settingSelectionSeasons": [
+      2023,
+      2024
+    ],
+    "originalLaterEvaluationSeasons": [
+      2025
+    ]
+  },
+  "results": {
+    "validation": {
+      "completedMatches": 760,
+      "checkedCommonMatches": 736,
+      "excludedFromEveryModel": 24,
+      "coverage": 0.968421052631579,
+      "from": "2023-08-11",
+      "to": "2025-05-25",
+      "excludedFixtures": [
+        {
+          "date": "2023-08-11",
+          "home": "Burnley",
+          "away": "Man City",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-08-12",
+          "home": "Brighton",
+          "away": "Luton",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-08-12",
+          "home": "Sheffield United",
+          "away": "Crystal Palace",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-08-18",
+          "home": "Nott'm Forest",
+          "away": "Sheffield United",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-08-25",
+          "home": "Chelsea",
+          "away": "Luton",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-08-27",
+          "home": "Burnley",
+          "away": "Aston Villa",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-08-27",
+          "home": "Sheffield United",
+          "away": "Man City",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-09-01",
+          "home": "Luton",
+          "away": "West Ham",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-09-16",
+          "home": "Tottenham",
+          "away": "Sheffield United",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-09-18",
+          "home": "Nott'm Forest",
+          "away": "Burnley",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-09-23",
+          "home": "Luton",
+          "away": "Wolves",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2023-09-30",
+          "home": "Newcastle",
+          "away": "Burnley",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-17",
+          "home": "Ipswich",
+          "away": "Liverpool",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-17",
+          "home": "Newcastle",
+          "away": "Southampton",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-19",
+          "home": "Leicester",
+          "away": "Tottenham",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-24",
+          "home": "Fulham",
+          "away": "Leicester",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-24",
+          "home": "Man City",
+          "away": "Ipswich",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-24",
+          "home": "Southampton",
+          "away": "Nott'm Forest",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-31",
+          "home": "Brentford",
+          "away": "Southampton",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-31",
+          "home": "Ipswich",
+          "away": "Fulham",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-08-31",
+          "home": "Leicester",
+          "away": "Aston Villa",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-09-14",
+          "home": "Brighton",
+          "away": "Ipswich",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-09-14",
+          "home": "Crystal Palace",
+          "away": "Leicester",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2024-09-14",
+          "home": "Southampton",
+          "away": "Man United",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        }
+      ],
+      "metrics": {
+        "v1": {
+          "n": 736,
+          "brier": 0.591770238385645,
+          "logLoss": 0.9942623469495452,
+          "accuracy": 0.5285326086956522,
+          "correct": 389,
+          "topEligible": 736,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5285326086956522
+        },
+        "candidate": {
+          "n": 736,
+          "brier": 0.5709614997461899,
+          "logLoss": 0.9613428503572878,
+          "accuracy": 0.5570652173913043,
+          "correct": 410,
+          "topEligible": 736,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5570652173913043
+        },
+        "base": {
+          "n": 736,
+          "brier": 0.6494033083080023,
+          "logLoss": 1.0723216208722328,
+          "accuracy": 0.4361413043478261,
+          "correct": 321,
+          "topEligible": 736,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4361413043478261
+        },
+        "glm": {
+          "n": 736,
+          "brier": 0.5711168887195565,
+          "logLoss": 0.9615133454140756,
+          "accuracy": 0.5529891304347826,
+          "correct": 407,
+          "topEligible": 736,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5529891304347826
+        },
+        "elo": {
+          "n": 736,
+          "brier": 0.5848103021975272,
+          "logLoss": 0.9816511271556717,
+          "accuracy": 0.5557065217391305,
+          "correct": 409,
+          "topEligible": 736,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5557065217391305
+        }
+      },
+      "calibration": {
+        "v1": {
+          "P1": {
+            "n": 736,
+            "meanProbability": 0.4345439980075398,
+            "observedFrequency": 0.4361413043478261,
+            "meanProbabilityMinusFrequency": -0.0015973063402863197,
+            "binaryBrier": 0.2185717965531635,
+            "ece": 0.03194109983508612,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 4,
+                "meanProbability": 0.07876794506694446,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.4898908364545973
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 22,
+                "meanProbability": 0.15632426717152556,
+                "observedFrequency": 0.13636363636363635,
+                "observedFrequencyWilson95": [
+                  0.04749003714055253,
+                  0.33334987166571717
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 99,
+                "meanProbability": 0.257123443895745,
+                "observedFrequency": 0.1717171717171717,
+                "observedFrequencyWilson95": [
+                  0.11006660978136851,
+                  0.2578925698591243
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 180,
+                "meanProbability": 0.35610561923566236,
+                "observedFrequency": 0.35,
+                "observedFrequencyWilson95": [
+                  0.28411585057863636,
+                  0.42215279879784745
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 204,
+                "meanProbability": 0.45276082116857963,
+                "observedFrequency": 0.4803921568627451,
+                "observedFrequencyWilson95": [
+                  0.41283044718134293,
+                  0.5486786759484094
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 144,
+                "meanProbability": 0.5461228066292872,
+                "observedFrequency": 0.5486111111111112,
+                "observedFrequencyWilson95": [
+                  0.46712268302595106,
+                  0.6275733522518093
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 61,
+                "meanProbability": 0.6423724164917192,
+                "observedFrequency": 0.7213114754098361,
+                "observedFrequencyWilson95": [
+                  0.5982856941182984,
+                  0.8181145610743403
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 21,
+                "meanProbability": 0.7365836880219276,
+                "observedFrequency": 0.8095238095238095,
+                "observedFrequencyWilson95": [
+                  0.5999943530979508,
+                  0.9233243494723822
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 1,
+                "meanProbability": 0.8580779399470077,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.7934506856227626
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 736,
+            "meanProbability": 0.22860584384258095,
+            "observedFrequency": 0.2296195652173913,
+            "meanProbabilityMinusFrequency": -0.0010137213748103446,
+            "binaryBrier": 0.17644890649332542,
+            "ece": 0.01520695880837728,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 1,
+                "meanProbability": 0.09802703809040306,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.20654931437723745,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 98,
+                "meanProbability": 0.17574603444441464,
+                "observedFrequency": 0.12244897959183673,
+                "observedFrequencyWilson95": [
+                  0.07145200242109419,
+                  0.201928398283032
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 637,
+                "meanProbability": 0.23694311248743571,
+                "observedFrequency": 0.24489795918367346,
+                "observedFrequencyWilson95": [
+                  0.21309787335349048,
+                  0.2797564113894475
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 736,
+            "meanProbability": 0.3368501581498793,
+            "observedFrequency": 0.3342391304347826,
+            "meanProbabilityMinusFrequency": 0.002611027715096692,
+            "binaryBrier": 0.19674953533915612,
+            "ece": 0.03299831048867772,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 6,
+                "meanProbability": 0.07935758572152155,
+                "observedFrequency": 0.16666666666666666,
+                "observedFrequencyWilson95": [
+                  0.030053369748306635,
+                  0.5635028221864702
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 94,
+                "meanProbability": 0.1614475002208558,
+                "observedFrequency": 0.13829787234042554,
+                "observedFrequencyWilson95": [
+                  0.08263778119593643,
+                  0.22236031654688312
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 226,
+                "meanProbability": 0.25566141258620917,
+                "observedFrequency": 0.22566371681415928,
+                "observedFrequencyWilson95": [
+                  0.17601290726134927,
+                  0.28448477389574806
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 201,
+                "meanProbability": 0.3489984686255983,
+                "observedFrequency": 0.3283582089552239,
+                "observedFrequencyWilson95": [
+                  0.26718604898418286,
+                  0.39596807812834445
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 127,
+                "meanProbability": 0.44414509212677533,
+                "observedFrequency": 0.44881889763779526,
+                "observedFrequencyWilson95": [
+                  0.3650850529495865,
+                  0.5355580603482004
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 56,
+                "meanProbability": 0.5413466019977792,
+                "observedFrequency": 0.6785714285714286,
+                "observedFrequencyWilson95": [
+                  0.5482263990973855,
+                  0.7859900520744849
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 17,
+                "meanProbability": 0.6401375194444759,
+                "observedFrequency": 0.7647058823529411,
+                "observedFrequencyWilson95": [
+                  0.5273820188043501,
+                  0.9044495567791988
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 8,
+                "meanProbability": 0.738436821257273,
+                "observedFrequency": 0.75,
+                "observedFrequencyWilson95": [
+                  0.40927543031016883,
+                  0.9285207872478909
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 1,
+                "meanProbability": 0.8296656124026669,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.20654931437723745,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "candidate": {
+          "P1": {
+            "n": 736,
+            "meanProbability": 0.4403373272479573,
+            "observedFrequency": 0.4361413043478261,
+            "meanProbabilityMinusFrequency": 0.004196022900131213,
+            "binaryBrier": 0.2080005401373305,
+            "ece": 0.03491656264090273,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 11,
+                "meanProbability": 0.08335402678658575,
+                "observedFrequency": 0.09090909090909091,
+                "observedFrequencyWilson95": [
+                  0.016232172885884855,
+                  0.37735843645159567
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 60,
+                "meanProbability": 0.16017893689099097,
+                "observedFrequency": 0.11666666666666667,
+                "observedFrequencyWilson95": [
+                  0.0576772064005603,
+                  0.2217878802417086
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 104,
+                "meanProbability": 0.250991633819875,
+                "observedFrequency": 0.20192307692307693,
+                "observedFrequencyWilson95": [
+                  0.13603525270294686,
+                  0.2890467085575533
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 141,
+                "meanProbability": 0.35008355782648437,
+                "observedFrequency": 0.3617021276595745,
+                "observedFrequencyWilson95": [
+                  0.28703330525926596,
+                  0.4437067720808837
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 157,
+                "meanProbability": 0.4493858374627911,
+                "observedFrequency": 0.4585987261146497,
+                "observedFrequencyWilson95": [
+                  0.38257508234352977,
+                  0.5365999854821583
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 100,
+                "meanProbability": 0.5451607101442874,
+                "observedFrequency": 0.58,
+                "observedFrequencyWilson95": [
+                  0.4820648670304296,
+                  0.6720161732564526
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 103,
+                "meanProbability": 0.6473744208580006,
+                "observedFrequency": 0.5825242718446602,
+                "observedFrequencyWilson95": [
+                  0.4860016272725327,
+                  0.6731126359324475
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 42,
+                "meanProbability": 0.7444641995078999,
+                "observedFrequency": 0.8095238095238095,
+                "observedFrequencyWilson95": [
+                  0.6669922598996131,
+                  0.9001799171835226
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 18,
+                "meanProbability": 0.8377234195439243,
+                "observedFrequency": 0.9444444444444444,
+                "observedFrequencyWilson95": [
+                  0.7424269921812741,
+                  0.990124809021697
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 736,
+            "meanProbability": 0.23731603765617887,
+            "observedFrequency": 0.2296195652173913,
+            "meanProbabilityMinusFrequency": 0.007696472438787572,
+            "binaryBrier": 0.17520828999967578,
+            "ece": 0.010815440156726346,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 4,
+                "meanProbability": 0.08470710208184128,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.4898908364545973
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 101,
+                "meanProbability": 0.16735038788087428,
+                "observedFrequency": 0.1485148514851485,
+                "observedFrequencyWilson95": [
+                  0.09211601417099889,
+                  0.23067097488236532
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 625,
+                "meanProbability": 0.24891386600136553,
+                "observedFrequency": 0.2416,
+                "observedFrequencyWilson95": [
+                  0.20968520684050224,
+                  0.276671814521063
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 6,
+                "meanProbability": 0.3087033132997547,
+                "observedFrequency": 0.5,
+                "observedFrequencyWilson95": [
+                  0.1876163064826506,
+                  0.8123836935173494
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 736,
+            "meanProbability": 0.3223466350958638,
+            "observedFrequency": 0.3342391304347826,
+            "meanProbabilityMinusFrequency": -0.011892495338918785,
+            "binaryBrier": 0.18775266960918363,
+            "ece": 0.028176433186844846,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 49,
+                "meanProbability": 0.06988728680774128,
+                "observedFrequency": 0.061224489795918366,
+                "observedFrequencyWilson95": [
+                  0.02104014667296747,
+                  0.16520487835726402
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 143,
+                "meanProbability": 0.15013665722367975,
+                "observedFrequency": 0.13286713286713286,
+                "observedFrequencyWilson95": [
+                  0.08673738553944374,
+                  0.1982057031272665
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 163,
+                "meanProbability": 0.24800106506726502,
+                "observedFrequency": 0.24539877300613497,
+                "observedFrequencyWilson95": [
+                  0.18570158324610508,
+                  0.31682014854239016
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 161,
+                "meanProbability": 0.3455532998442397,
+                "observedFrequency": 0.391304347826087,
+                "observedFrequencyWilson95": [
+                  0.3192915887834325,
+                  0.4683831852060942
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 101,
+                "meanProbability": 0.44619065281848985,
+                "observedFrequency": 0.42574257425742573,
+                "observedFrequencyWilson95": [
+                  0.33377697396334577,
+                  0.5231498547099002
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 68,
+                "meanProbability": 0.5471536729609685,
+                "observedFrequency": 0.5588235294117647,
+                "observedFrequencyWilson95": [
+                  0.44081865304588186,
+                  0.6705376603046981
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 37,
+                "meanProbability": 0.6370018763636224,
+                "observedFrequency": 0.7837837837837838,
+                "observedFrequencyWilson95": [
+                  0.6280485160803084,
+                  0.8861348800661442
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 12,
+                "meanProbability": 0.7370861533997077,
+                "observedFrequency": 0.8333333333333334,
+                "observedFrequencyWilson95": [
+                  0.5519691377470266,
+                  0.9530348578161463
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 2,
+                "meanProbability": 0.804520275419788,
+                "observedFrequency": 0.5,
+                "observedFrequencyWilson95": [
+                  0.09453120573423074,
+                  0.9054687942657693
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "base": {
+          "P1": {
+            "n": 736,
+            "meanProbability": 0.4376580777407243,
+            "observedFrequency": 0.4361413043478261,
+            "meanProbabilityMinusFrequency": 0.0015167733928981852,
+            "binaryBrier": 0.2472098091176061,
+            "ece": 0.018144305428102733,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 120,
+                "meanProbability": 0.39067556842537277,
+                "observedFrequency": 0.44166666666666665,
+                "observedFrequencyWilson95": [
+                  0.3559974669953786,
+                  0.5309547690868035
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 615,
+                "meanProbability": 0.4467178557876936,
+                "observedFrequency": 0.43577235772357725,
+                "observedFrequencyWilson95": [
+                  0.3971015355856926,
+                  0.47524056613685894
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 1,
+                "meanProbability": 0.5037956966968065,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.7934506856227626
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 736,
+            "meanProbability": 0.23502366523757817,
+            "observedFrequency": 0.2296195652173913,
+            "meanProbabilityMinusFrequency": 0.005404100020186875,
+            "binaryBrier": 0.17780505435642652,
+            "ece": 0.00851165843469441,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 35,
+                "meanProbability": 0.1958976715274635,
+                "observedFrequency": 0.22857142857142856,
+                "observedFrequencyWilson95": [
+                  0.12065879834191687,
+                  0.3901731689199025
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 701,
+                "meanProbability": 0.23697717419600045,
+                "observedFrequency": 0.2296718972895863,
+                "observedFrequencyWilson95": [
+                  0.20005795300730075,
+                  0.262232473787224
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 736,
+            "meanProbability": 0.3273182570216975,
+            "observedFrequency": 0.3342391304347826,
+            "meanProbabilityMinusFrequency": -0.006920873413085116,
+            "binaryBrier": 0.2243884448339697,
+            "ece": 0.023480782698461166,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 106,
+                "meanProbability": 0.2906810429334996,
+                "observedFrequency": 0.39622641509433965,
+                "observedFrequencyWilson95": [
+                  0.30831473858285496,
+                  0.4913965886682431
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 630,
+                "meanProbability": 0.33348261367780696,
+                "observedFrequency": 0.3238095238095238,
+                "observedFrequencyWilson95": [
+                  0.2884335475034684,
+                  0.3613211397127224
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "glm": {
+          "P1": {
+            "n": 736,
+            "meanProbability": 0.4437746209420557,
+            "observedFrequency": 0.4361413043478261,
+            "meanProbabilityMinusFrequency": 0.007633316594229611,
+            "binaryBrier": 0.20819422102317822,
+            "ece": 0.017985836509620986,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 13,
+                "meanProbability": 0.07189387827604297,
+                "observedFrequency": 0.07692307692307693,
+                "observedFrequencyWilson95": [
+                  0.013710421242556586,
+                  0.3331395092109959
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 73,
+                "meanProbability": 0.15703892029901023,
+                "observedFrequency": 0.1232876712328767,
+                "observedFrequencyWilson95": [
+                  0.06623751038902924,
+                  0.21800304355022015
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 101,
+                "meanProbability": 0.2520063857792579,
+                "observedFrequency": 0.2376237623762376,
+                "observedFrequencyWilson95": [
+                  0.1651996364458167,
+                  0.32927515819965236
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 131,
+                "meanProbability": 0.3504045815030725,
+                "observedFrequency": 0.3511450381679389,
+                "observedFrequencyWilson95": [
+                  0.2747078882294117,
+                  0.4360635589123729
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 143,
+                "meanProbability": 0.4487360430780445,
+                "observedFrequency": 0.46153846153846156,
+                "observedFrequencyWilson95": [
+                  0.3819068047183386,
+                  0.5431824712372215
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 99,
+                "meanProbability": 0.5433810182857752,
+                "observedFrequency": 0.5454545454545454,
+                "observedFrequencyWilson95": [
+                  0.4475069462953531,
+                  0.6400063980621171
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 101,
+                "meanProbability": 0.651758335480296,
+                "observedFrequency": 0.6138613861386139,
+                "observedFrequencyWilson95": [
+                  0.5164020139158059,
+                  0.702976848785217
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 50,
+                "meanProbability": 0.7536754062634867,
+                "observedFrequency": 0.72,
+                "observedFrequencyWilson95": [
+                  0.5833487630404344,
+                  0.8252582933408878
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 19,
+                "meanProbability": 0.8367351788180969,
+                "observedFrequency": 0.8947368421052632,
+                "observedFrequencyWilson95": [
+                  0.6860591728889099,
+                  0.9706414397011299
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 6,
+                "meanProbability": 0.9151181181081626,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.6096657120978346,
+                  1
+                ]
+              }
+            ]
+          },
+          "X": {
+            "n": 736,
+            "meanProbability": 0.22057031807202518,
+            "observedFrequency": 0.2296195652173913,
+            "meanProbabilityMinusFrequency": -0.009049247145366118,
+            "binaryBrier": 0.17517098636547276,
+            "ece": 0.012071293075033209,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 14,
+                "meanProbability": 0.07943663586553466,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  1.3877787807814457e-17,
+                  0.2153108027376358
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 169,
+                "meanProbability": 0.16698402260603618,
+                "observedFrequency": 0.17751479289940827,
+                "observedFrequencyWilson95": [
+                  0.12726835134026734,
+                  0.24209591610047046
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 546,
+                "meanProbability": 0.23964783427199557,
+                "observedFrequency": 0.2490842490842491,
+                "observedFrequencyWilson95": [
+                  0.21464563759218272,
+                  0.2870288985774285
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 7,
+                "meanProbability": 0.3085176951376213,
+                "observedFrequency": 0.42857142857142855,
+                "observedFrequencyWilson95": [
+                  0.15821985525146975,
+                  0.7495416354723428
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 736,
+            "meanProbability": 0.33565506098591913,
+            "observedFrequency": 0.3342391304347826,
+            "meanProbabilityMinusFrequency": 0.001415930551136535,
+            "binaryBrier": 0.18775168133090542,
+            "ece": 0.018929126138408036,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 56,
+                "meanProbability": 0.06730262735428054,
+                "observedFrequency": 0.07142857142857142,
+                "observedFrequencyWilson95": [
+                  0.028126036578876953,
+                  0.16975448060863452
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 136,
+                "meanProbability": 0.15105077821910037,
+                "observedFrequency": 0.13970588235294118,
+                "observedFrequencyWilson95": [
+                  0.09129764663248371,
+                  0.20790874876377421
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 150,
+                "meanProbability": 0.2503782839841269,
+                "observedFrequency": 0.24666666666666667,
+                "observedFrequencyWilson95": [
+                  0.18458162955288543,
+                  0.3214032942602734
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 149,
+                "meanProbability": 0.34726316047613814,
+                "observedFrequency": 0.3624161073825503,
+                "observedFrequencyWilson95": [
+                  0.28958778804895696,
+                  0.4421603886803745
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 103,
+                "meanProbability": 0.4465177059715227,
+                "observedFrequency": 0.4077669902912621,
+                "observedFrequencyWilson95": [
+                  0.3178425371515976,
+                  0.5043238745604832
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 73,
+                "meanProbability": 0.5505670899746754,
+                "observedFrequency": 0.5342465753424658,
+                "observedFrequencyWilson95": [
+                  0.42098945719045805,
+                  0.6440795833605193
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 46,
+                "meanProbability": 0.6452049223365214,
+                "observedFrequency": 0.717391304347826,
+                "observedFrequencyWilson95": [
+                  0.574514387694541,
+                  0.8267579761812937
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 18,
+                "meanProbability": 0.7424755307566555,
+                "observedFrequency": 0.7777777777777778,
+                "observedFrequencyWilson95": [
+                  0.5478541568378739,
+                  0.9099907189139831
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 5,
+                "meanProbability": 0.8409222286235138,
+                "observedFrequency": 0.8,
+                "observedFrequencyWilson95": [
+                  0.37553462976252533,
+                  0.9637758913675698
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "elo": {
+          "P1": {
+            "n": 736,
+            "meanProbability": 0.43002544616566235,
+            "observedFrequency": 0.4361413043478261,
+            "meanProbabilityMinusFrequency": -0.006115858182163758,
+            "binaryBrier": 0.21183208940840853,
+            "ece": 0.03665519915712227,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 3,
+                "meanProbability": 0.09659154718838824,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  5.551115123125783e-17,
+                  0.5614970317550454
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 38,
+                "meanProbability": 0.1679767177274953,
+                "observedFrequency": 0.07894736842105263,
+                "observedFrequencyWilson95": [
+                  0.027214595506987724,
+                  0.20799371457771454
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 112,
+                "meanProbability": 0.25586798134787175,
+                "observedFrequency": 0.19642857142857142,
+                "observedFrequencyWilson95": [
+                  0.13344971267029,
+                  0.2795411051917831
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 167,
+                "meanProbability": 0.3527447524108569,
+                "observedFrequency": 0.3473053892215569,
+                "observedFrequencyWilson95": [
+                  0.2792622113997369,
+                  0.42221540210199043
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 178,
+                "meanProbability": 0.45235658228865616,
+                "observedFrequency": 0.4550561797752809,
+                "observedFrequencyWilson95": [
+                  0.3836208329424423,
+                  0.5283904316846364
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 141,
+                "meanProbability": 0.5483460428514146,
+                "observedFrequency": 0.6099290780141844,
+                "observedFrequencyWilson95": [
+                  0.5275248525529771,
+                  0.6865022654586989
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 71,
+                "meanProbability": 0.6398074156118874,
+                "observedFrequency": 0.6619718309859155,
+                "observedFrequencyWilson95": [
+                  0.5461661814275548,
+                  0.7611501157481005
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 24,
+                "meanProbability": 0.7239834543784843,
+                "observedFrequency": 0.9166666666666666,
+                "observedFrequencyWilson95": [
+                  0.741511978067893,
+                  0.9768411847029567
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 2,
+                "meanProbability": 0.8110288980924207,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.34238022750665303,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 736,
+            "meanProbability": 0.28755319640863986,
+            "observedFrequency": 0.2296195652173913,
+            "meanProbabilityMinusFrequency": 0.05793363119124856,
+            "binaryBrier": 0.1792700995393337,
+            "ece": 0.05793363119124859,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 10,
+                "meanProbability": 0.18335028957681548,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.2775327998628892
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 396,
+                "meanProbability": 0.27385163767289966,
+                "observedFrequency": 0.2222222222222222,
+                "observedFrequencyWilson95": [
+                  0.18405384502443242,
+                  0.26572807441714963
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 330,
+                "meanProbability": 0.3071527307349168,
+                "observedFrequency": 0.24545454545454545,
+                "observedFrequencyWilson95": [
+                  0.20212643799676094,
+                  0.2946406783660015
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 736,
+            "meanProbability": 0.2824213574256978,
+            "observedFrequency": 0.3342391304347826,
+            "meanProbabilityMinusFrequency": -0.0518177730090848,
+            "binaryBrier": 0.19370811324978493,
+            "ece": 0.05400885131170952,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 37,
+                "meanProbability": 0.07584640041529443,
+                "observedFrequency": 0.05405405405405406,
+                "observedFrequencyWilson95": [
+                  0.014950976833157673,
+                  0.17704654350813104
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 182,
+                "meanProbability": 0.15337398392701476,
+                "observedFrequency": 0.15934065934065933,
+                "observedFrequencyWilson95": [
+                  0.1132933202060965,
+                  0.2194712804009229
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 214,
+                "meanProbability": 0.24753262140159782,
+                "observedFrequency": 0.2757009345794392,
+                "observedFrequencyWilson95": [
+                  0.2201834518919726,
+                  0.3391290842996903
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 161,
+                "meanProbability": 0.34600249722474286,
+                "observedFrequency": 0.4161490683229814,
+                "observedFrequencyWilson95": [
+                  0.3428305638229763,
+                  0.49337569039751583
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 96,
+                "meanProbability": 0.44479949949179526,
+                "observedFrequency": 0.5520833333333334,
+                "observedFrequencyWilson95": [
+                  0.4525163859774741,
+                  0.6476424069540183
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 37,
+                "meanProbability": 0.5403665124881619,
+                "observedFrequency": 0.7567567567567568,
+                "observedFrequencyWilson95": [
+                  0.5988270787855735,
+                  0.8663864701088361
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 9,
+                "meanProbability": 0.6410045809812368,
+                "observedFrequency": 0.8888888888888888,
+                "observedFrequencyWilson95": [
+                  0.5650002944233439,
+                  0.9801091123614551
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        }
+      },
+      "fullCoverageMetrics": {
+        "v1": {
+          "n": 736,
+          "brier": 0.591770238385645,
+          "logLoss": 0.9942623469495452,
+          "accuracy": 0.5285326086956522,
+          "correct": 389,
+          "topEligible": 736,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5285326086956522
+        },
+        "candidate": {
+          "n": 760,
+          "brier": 0.5663687486635213,
+          "logLoss": 0.9548638140947738,
+          "accuracy": 0.5618421052631579,
+          "correct": 427,
+          "topEligible": 760,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5618421052631579
+        },
+        "base": {
+          "n": 760,
+          "brier": 0.6502269761984724,
+          "logLoss": 1.0735888411337076,
+          "accuracy": 0.4342105263157895,
+          "correct": 330,
+          "topEligible": 760,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4342105263157895
+        },
+        "glm": {
+          "n": 760,
+          "brier": 0.5661346565174743,
+          "logLoss": 0.9543680975389265,
+          "accuracy": 0.5592105263157895,
+          "correct": 425,
+          "topEligible": 760,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5592105263157895
+        },
+        "elo": {
+          "n": 760,
+          "brier": 0.5818612753129924,
+          "logLoss": 0.9773497392092827,
+          "accuracy": 0.5592105263157895,
+          "correct": 425,
+          "topEligible": 760,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5592105263157895
+        }
+      }
+    },
+    "held_out": {
+      "completedMatches": 380,
+      "checkedCommonMatches": 369,
+      "excludedFromEveryModel": 11,
+      "coverage": 0.9710526315789474,
+      "from": "2025-08-15",
+      "to": "2026-05-24",
+      "excludedFixtures": [
+        {
+          "date": "2025-08-16",
+          "home": "Sunderland",
+          "away": "West Ham",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-08-16",
+          "home": "Tottenham",
+          "away": "Burnley",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-08-18",
+          "home": "Leeds",
+          "away": "Everton",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-08-23",
+          "home": "Arsenal",
+          "away": "Leeds",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-08-23",
+          "home": "Burnley",
+          "away": "Sunderland",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-08-30",
+          "home": "Leeds",
+          "away": "Newcastle",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-08-30",
+          "home": "Man United",
+          "away": "Burnley",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-08-30",
+          "home": "Sunderland",
+          "away": "Brentford",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-09-13",
+          "home": "Crystal Palace",
+          "away": "Sunderland",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-09-13",
+          "home": "Fulham",
+          "away": "Leeds",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        },
+        {
+          "date": "2025-09-14",
+          "home": "Burnley",
+          "away": "Liverpool",
+          "reason": "insufficient_past_home_or_away_history_for_v1"
+        }
+      ],
+      "metrics": {
+        "v1": {
+          "n": 369,
+          "brier": 0.6323295798593116,
+          "logLoss": 1.0500596498795645,
+          "accuracy": 0.48509485094850946,
+          "correct": 179,
+          "topEligible": 369,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.48509485094850946
+        },
+        "candidate": {
+          "n": 369,
+          "brier": 0.6158458026144642,
+          "logLoss": 1.025578651007119,
+          "accuracy": 0.4742547425474255,
+          "correct": 175,
+          "topEligible": 369,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4742547425474255
+        },
+        "base": {
+          "n": 369,
+          "brier": 0.6590031422251011,
+          "logLoss": 1.0880616617848256,
+          "accuracy": 0.4173441734417344,
+          "correct": 154,
+          "topEligible": 369,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4173441734417344
+        },
+        "glm": {
+          "n": 369,
+          "brier": 0.6184626587857894,
+          "logLoss": 1.0300995353565798,
+          "accuracy": 0.46883468834688347,
+          "correct": 173,
+          "topEligible": 369,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.46883468834688347
+        },
+        "elo": {
+          "n": 369,
+          "brier": 0.6183675205036344,
+          "logLoss": 1.0284728218207893,
+          "accuracy": 0.4878048780487805,
+          "correct": 180,
+          "topEligible": 369,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4878048780487805
+        }
+      },
+      "calibration": {
+        "v1": {
+          "P1": {
+            "n": 369,
+            "meanProbability": 0.4405312277489458,
+            "observedFrequency": 0.4173441734417344,
+            "meanProbabilityMinusFrequency": 0.023187054307211408,
+            "binaryBrier": 0.22839541184639858,
+            "ece": 0.05971133542633156,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 4,
+                "meanProbability": 0.16180336547477409,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.4898908364545973
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 40,
+                "meanProbability": 0.2645108268543172,
+                "observedFrequency": 0.25,
+                "observedFrequencyWilson95": [
+                  0.14187118639096302,
+                  0.40193961420768026
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 99,
+                "meanProbability": 0.35477537902098516,
+                "observedFrequency": 0.26262626262626265,
+                "observedFrequencyWilson95": [
+                  0.185981496830867,
+                  0.35700437152456627
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 122,
+                "meanProbability": 0.4525866193937393,
+                "observedFrequency": 0.5,
+                "observedFrequencyWilson95": [
+                  0.41264128779993825,
+                  0.5873587122000617
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 68,
+                "meanProbability": 0.5513954632210399,
+                "observedFrequency": 0.5,
+                "observedFrequencyWilson95": [
+                  0.38438064984606757,
+                  0.6156193501539324
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 32,
+                "meanProbability": 0.6390453858643327,
+                "observedFrequency": 0.59375,
+                "observedFrequencyWilson95": [
+                  0.42260024875382873,
+                  0.7448036515733456
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 4,
+                "meanProbability": 0.7614256418715339,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.5101091635454027,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 369,
+            "meanProbability": 0.24526542886181935,
+            "observedFrequency": 0.2764227642276423,
+            "meanProbabilityMinusFrequency": -0.031157335365822936,
+            "binaryBrier": 0.20146971057846075,
+            "ece": 0.03115733536582291,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 26,
+                "meanProbability": 0.1857072956586321,
+                "observedFrequency": 0.3076923076923077,
+                "observedFrequencyWilson95": [
+                  0.16501315595463767,
+                  0.4998825832219837
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 335,
+                "meanProbability": 0.2484423934854277,
+                "observedFrequency": 0.2656716417910448,
+                "observedFrequencyWilson95": [
+                  0.22122406078556187,
+                  0.315432402250503
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 8,
+                "meanProbability": 0.30579396815857945,
+                "observedFrequency": 0.625,
+                "observedFrequencyWilson95": [
+                  0.30574239460262737,
+                  0.8631557141764026
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 369,
+            "meanProbability": 0.31420334338923483,
+            "observedFrequency": 0.3062330623306233,
+            "meanProbabilityMinusFrequency": 0.007970281058611528,
+            "binaryBrier": 0.2024644574344523,
+            "ece": 0.04083079585535365,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 4,
+                "meanProbability": 0.08226148232960472,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.4898908364545973
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 51,
+                "meanProbability": 0.16902842329677845,
+                "observedFrequency": 0.17647058823529413,
+                "observedFrequencyWilson95": [
+                  0.09572403469126317,
+                  0.3025414252430807
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 129,
+                "meanProbability": 0.25613072545060156,
+                "observedFrequency": 0.27906976744186046,
+                "observedFrequencyWilson95": [
+                  0.20891608790783595,
+                  0.362000999980087
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 106,
+                "meanProbability": 0.347170793140249,
+                "observedFrequency": 0.29245283018867924,
+                "observedFrequencyWilson95": [
+                  0.21433337400446412,
+                  0.3850892804977318
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 60,
+                "meanProbability": 0.4461559370002057,
+                "observedFrequency": 0.48333333333333334,
+                "observedFrequencyWilson95": [
+                  0.36175049539732784,
+                  0.6069218996740751
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 15,
+                "meanProbability": 0.5249765792294504,
+                "observedFrequency": 0.3333333333333333,
+                "observedFrequencyWilson95": [
+                  0.1517632443971473,
+                  0.5828645226148023
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 4,
+                "meanProbability": 0.6266414071813575,
+                "observedFrequency": 0.75,
+                "observedFrequencyWilson95": [
+                  0.30064184258240184,
+                  0.9544127391902995
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "candidate": {
+          "P1": {
+            "n": 369,
+            "meanProbability": 0.428342508281899,
+            "observedFrequency": 0.4173441734417344,
+            "meanProbabilityMinusFrequency": 0.010998334840164603,
+            "binaryBrier": 0.22003152689426378,
+            "ece": 0.0557376818858505,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 1,
+                "meanProbability": 0.09752949396924009,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.7934506856227626
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 18,
+                "meanProbability": 0.17184346414425233,
+                "observedFrequency": 0.1111111111111111,
+                "observedFrequencyWilson95": [
+                  0.03101952264561239,
+                  0.32799765130178804
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 54,
+                "meanProbability": 0.2547403757192825,
+                "observedFrequency": 0.24074074074074073,
+                "observedFrequencyWilson95": [
+                  0.14644291495284428,
+                  0.36947524183502795
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 94,
+                "meanProbability": 0.35679215077666465,
+                "observedFrequency": 0.4148936170212766,
+                "observedFrequencyWilson95": [
+                  0.32055034593510945,
+                  0.5159197947102598
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 94,
+                "meanProbability": 0.4496856354631872,
+                "observedFrequency": 0.3617021276595745,
+                "observedFrequencyWilson95": [
+                  0.27176918645474224,
+                  0.4624947920939829
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 55,
+                "meanProbability": 0.5471936948182392,
+                "observedFrequency": 0.509090909090909,
+                "observedFrequencyWilson95": [
+                  0.380762598469722,
+                  0.6362322215099672
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 43,
+                "meanProbability": 0.640648387299525,
+                "observedFrequency": 0.6976744186046512,
+                "observedFrequencyWilson95": [
+                  0.5489463582227039,
+                  0.8139799986415182
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 9,
+                "meanProbability": 0.7597566650454096,
+                "observedFrequency": 0.7777777777777778,
+                "observedFrequencyWilson95": [
+                  0.45258896910698887,
+                  0.9367748928821533
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 1,
+                "meanProbability": 0.8214376577762135,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.20654931437723745,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 369,
+            "meanProbability": 0.24960121219037643,
+            "observedFrequency": 0.2764227642276423,
+            "meanProbabilityMinusFrequency": -0.026821552037265856,
+            "binaryBrier": 0.1998229258441937,
+            "ece": 0.02682155203726582,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 18,
+                "meanProbability": 0.1701531505427031,
+                "observedFrequency": 0.2222222222222222,
+                "observedFrequencyWilson95": [
+                  0.09000928108601694,
+                  0.45214584316212625
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 341,
+                "meanProbability": 0.2520398198879867,
+                "observedFrequency": 0.2756598240469208,
+                "observedFrequencyWilson95": [
+                  0.2309303062678067,
+                  0.3253875433224456
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 10,
+                "meanProbability": 0.30945120066767895,
+                "observedFrequency": 0.4,
+                "observedFrequencyWilson95": [
+                  0.16818032970623614,
+                  0.6873262302663417
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 369,
+            "meanProbability": 0.3220562795277246,
+            "observedFrequency": 0.3062330623306233,
+            "meanProbabilityMinusFrequency": 0.01582321719710128,
+            "binaryBrier": 0.19599134987600664,
+            "ece": 0.05296012185033358,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 9,
+                "meanProbability": 0.07490489585562236,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.2991450484195441
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 62,
+                "meanProbability": 0.15939987367676633,
+                "observedFrequency": 0.11290322580645161,
+                "observedFrequencyWilson95": [
+                  0.05577863529399969,
+                  0.21519742052641772
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 107,
+                "meanProbability": 0.2558985708768688,
+                "observedFrequency": 0.2897196261682243,
+                "observedFrequencyWilson95": [
+                  0.212243263652366,
+                  0.3817714626172012
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 95,
+                "meanProbability": 0.34998312269738746,
+                "observedFrequency": 0.30526315789473685,
+                "observedFrequencyWilson95": [
+                  0.22172919278467978,
+                  0.40393396069911497
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 57,
+                "meanProbability": 0.44598214559038313,
+                "observedFrequency": 0.38596491228070173,
+                "observedFrequencyWilson95": [
+                  0.2706272388614066,
+                  0.5157026708419042
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 31,
+                "meanProbability": 0.5495855728584671,
+                "observedFrequency": 0.6451612903225806,
+                "observedFrequencyWilson95": [
+                  0.46947954064368874,
+                  0.788833409061346
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 7,
+                "meanProbability": 0.6377444098125676,
+                "observedFrequency": 0.42857142857142855,
+                "observedFrequencyWilson95": [
+                  0.15821985525146975,
+                  0.7495416354723428
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 1,
+                "meanProbability": 0.7299412490411987,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.20654931437723745,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "base": {
+          "P1": {
+            "n": 369,
+            "meanProbability": 0.43627990774396525,
+            "observedFrequency": 0.4173441734417344,
+            "meanProbabilityMinusFrequency": 0.018935734302230833,
+            "binaryBrier": 0.24399544174966636,
+            "ece": 0.04098919715529208,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 48,
+                "meanProbability": 0.3943986688252125,
+                "observedFrequency": 0.4791666666666667,
+                "observedFrequencyWilson95": [
+                  0.34471316176951616,
+                  0.616707676966572
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 312,
+                "meanProbability": 0.4407689501823131,
+                "observedFrequency": 0.40705128205128205,
+                "observedFrequencyWilson95": [
+                  0.3539890342522116,
+                  0.462374529237637
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 9,
+                "meanProbability": 0.5040263774479211,
+                "observedFrequency": 0.4444444444444444,
+                "observedFrequencyWilson95": [
+                  0.18877852109766452,
+                  0.733348706504507
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 369,
+            "meanProbability": 0.2523612519993648,
+            "observedFrequency": 0.2764227642276423,
+            "meanProbabilityMinusFrequency": -0.02406151222827746,
+            "binaryBrier": 0.20123535186246225,
+            "ece": 0.02406151222827746,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 369,
+                "meanProbability": 0.2523612519993648,
+                "observedFrequency": 0.2764227642276423,
+                "observedFrequencyWilson95": [
+                  0.2332721508213022,
+                  0.3241804980286978
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 369,
+            "meanProbability": 0.31135884025666993,
+            "observedFrequency": 0.3062330623306233,
+            "meanProbabilityMinusFrequency": 0.005125777926046626,
+            "binaryBrier": 0.21377234861297253,
+            "ece": 0.05360296498464064,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 86,
+                "meanProbability": 0.29134836032196976,
+                "observedFrequency": 0.3953488372093023,
+                "observedFrequencyWilson95": [
+                  0.2986242725154595,
+                  0.501022792032719
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 283,
+                "meanProbability": 0.3174397634877095,
+                "observedFrequency": 0.2791519434628975,
+                "observedFrequencyWilson95": [
+                  0.23011322706669995,
+                  0.33410597432099737
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "glm": {
+          "P1": {
+            "n": 369,
+            "meanProbability": 0.4281128893978215,
+            "observedFrequency": 0.4173441734417344,
+            "meanProbabilityMinusFrequency": 0.010768715956087083,
+            "binaryBrier": 0.22071245750541676,
+            "ece": 0.0526556107268593,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 2,
+                "meanProbability": 0.09494955342574224,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.6576197724933469
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 20,
+                "meanProbability": 0.16660718480062658,
+                "observedFrequency": 0.1,
+                "observedFrequencyWilson95": [
+                  0.027866481213768224,
+                  0.3010336452284873
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 55,
+                "meanProbability": 0.2533688732708977,
+                "observedFrequency": 0.2727272727272727,
+                "observedFrequencyWilson95": [
+                  0.17280751939105832,
+                  0.40232198111670814
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 92,
+                "meanProbability": 0.35450465639259876,
+                "observedFrequency": 0.40217391304347827,
+                "observedFrequencyWilson95": [
+                  0.3078495879261849,
+                  0.5043402491079584
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 91,
+                "meanProbability": 0.4505346780459903,
+                "observedFrequency": 0.3626373626373626,
+                "observedFrequencyWilson95": [
+                  0.2712851224889446,
+                  0.46511707639261596
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 54,
+                "meanProbability": 0.5492101579772745,
+                "observedFrequency": 0.5185185185185185,
+                "observedFrequencyWilson95": [
+                  0.3885170019812708,
+                  0.6460602725338812
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 42,
+                "meanProbability": 0.6483339659169299,
+                "observedFrequency": 0.6904761904761905,
+                "observedFrequencyWilson95": [
+                  0.5397400606391092,
+                  0.8092889714120513
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 10,
+                "meanProbability": 0.7523741237181655,
+                "observedFrequency": 0.7,
+                "observedFrequencyWilson95": [
+                  0.39677814746114537,
+                  0.8922087325936989
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 3,
+                "meanProbability": 0.8307083094210043,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.4385029682449546,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 369,
+            "meanProbability": 0.23549392683909,
+            "observedFrequency": 0.2764227642276423,
+            "meanProbabilityMinusFrequency": -0.04092883738855227,
+            "binaryBrier": 0.2007494702024964,
+            "ece": 0.0409288373885523,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 52,
+                "meanProbability": 0.17695558976555803,
+                "observedFrequency": 0.23076923076923078,
+                "observedFrequencyWilson95": [
+                  0.13724260925492748,
+                  0.3613378255809984
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 308,
+                "meanProbability": 0.24310039292074745,
+                "observedFrequency": 0.2824675324675325,
+                "observedFrequencyWilson95": [
+                  0.23510809283986375,
+                  0.33518637503892856
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 9,
+                "meanProbability": 0.31340525735833047,
+                "observedFrequency": 0.3333333333333333,
+                "observedFrequencyWilson95": [
+                  0.1205838183869109,
+                  0.6457978644196036
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 369,
+            "meanProbability": 0.33639318376308847,
+            "observedFrequency": 0.3062330623306233,
+            "meanProbabilityMinusFrequency": 0.03016012143246516,
+            "binaryBrier": 0.19700073107787622,
+            "ece": 0.051828419354459795,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 9,
+                "meanProbability": 0.07165557468277824,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.2991450484195441
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 55,
+                "meanProbability": 0.15743841691735547,
+                "observedFrequency": 0.12727272727272726,
+                "observedFrequencyWilson95": [
+                  0.06304210427364634,
+                  0.24017027655909076
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 95,
+                "meanProbability": 0.25446638073942973,
+                "observedFrequency": 0.29473684210526313,
+                "observedFrequencyWilson95": [
+                  0.21247932282989435,
+                  0.39294940651788923
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 97,
+                "meanProbability": 0.34611298860226913,
+                "observedFrequency": 0.26804123711340205,
+                "observedFrequencyWilson95": [
+                  0.1899755567554991,
+                  0.36377941142664155
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 63,
+                "meanProbability": 0.4443412348053818,
+                "observedFrequency": 0.3968253968253968,
+                "observedFrequencyWilson95": [
+                  0.2853191151904645,
+                  0.5201908148834254
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 33,
+                "meanProbability": 0.546990357868835,
+                "observedFrequency": 0.48484848484848486,
+                "observedFrequencyWilson95": [
+                  0.32504042108133696,
+                  0.6478162455108585
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 14,
+                "meanProbability": 0.6305637759390121,
+                "observedFrequency": 0.6428571428571429,
+                "observedFrequencyWilson95": [
+                  0.38764423103907397,
+                  0.8365526824644587
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 3,
+                "meanProbability": 0.7352443919191299,
+                "observedFrequency": 0.6666666666666666,
+                "observedFrequencyWilson95": [
+                  0.2076596008020477,
+                  0.9385080552796037
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        },
+        "elo": {
+          "P1": {
+            "n": 369,
+            "meanProbability": 0.4290313649341315,
+            "observedFrequency": 0.4173441734417344,
+            "meanProbabilityMinusFrequency": 0.011687191492397109,
+            "binaryBrier": 0.22067323501395403,
+            "ece": 0.035102283913993775,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 8,
+                "meanProbability": 0.16694215426068548,
+                "observedFrequency": 0.25,
+                "observedFrequencyWilson95": [
+                  0.071479212752109,
+                  0.5907245696898311
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 56,
+                "meanProbability": 0.2545235822370276,
+                "observedFrequency": 0.14285714285714285,
+                "observedFrequencyWilson95": [
+                  0.07420788536920624,
+                  0.25735921228705333
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 87,
+                "meanProbability": 0.3502888459692374,
+                "observedFrequency": 0.3563218390804598,
+                "observedFrequencyWilson95": [
+                  0.263727303130343,
+                  0.46106795748578355
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 109,
+                "meanProbability": 0.4490196932654458,
+                "observedFrequency": 0.46788990825688076,
+                "observedFrequencyWilson95": [
+                  0.37691328555456316,
+                  0.5610527769799256
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 72,
+                "meanProbability": 0.5493065611435909,
+                "observedFrequency": 0.5277777777777778,
+                "observedFrequencyWilson95": [
+                  0.4140067049007661,
+                  0.6387348966216531
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 33,
+                "meanProbability": 0.6311898546929402,
+                "observedFrequency": 0.6060606060606061,
+                "observedFrequencyWilson95": [
+                  0.43683440819940234,
+                  0.7531689256552291
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 4,
+                "meanProbability": 0.7315255122181725,
+                "observedFrequency": 1.0,
+                "observedFrequencyWilson95": [
+                  0.5101091635454027,
+                  1
+                ]
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "X": {
+            "n": 369,
+            "meanProbability": 0.29192306824423564,
+            "observedFrequency": 0.2764227642276423,
+            "meanProbabilityMinusFrequency": 0.015500304016593358,
+            "binaryBrier": 0.19991302372519812,
+            "ece": 0.022773371515848337,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 2,
+                "meanProbability": 0.18765327942436996,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  0,
+                  0.6576197724933469
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 179,
+                "meanProbability": 0.2774196594770249,
+                "observedFrequency": 0.2849162011173184,
+                "observedFrequencyWilson95": [
+                  0.22385358198700706,
+                  0.3550165468303796
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 188,
+                "meanProbability": 0.3068414179621636,
+                "observedFrequency": 0.2712765957446808,
+                "observedFrequencyWilson95": [
+                  0.21277362978120035,
+                  0.338939537285672
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          },
+          "P2": {
+            "n": 369,
+            "meanProbability": 0.27904556682163284,
+            "observedFrequency": 0.3062330623306233,
+            "meanProbabilityMinusFrequency": -0.027187495508990467,
+            "binaryBrier": 0.19778126176448224,
+            "ece": 0.03551052757951745,
+            "bins": [
+              {
+                "lowerInclusive": 0.0,
+                "upper": 0.1,
+                "upperInclusive": false,
+                "n": 7,
+                "meanProbability": 0.079484035666803,
+                "observedFrequency": 0.0,
+                "observedFrequencyWilson95": [
+                  5.551115123125783e-17,
+                  0.35433043506668743
+                ]
+              },
+              {
+                "lowerInclusive": 0.1,
+                "upper": 0.2,
+                "upperInclusive": false,
+                "n": 94,
+                "meanProbability": 0.15512669319159655,
+                "observedFrequency": 0.1595744680851064,
+                "observedFrequencyWilson95": [
+                  0.09915613688605254,
+                  0.24672442569542472
+                ]
+              },
+              {
+                "lowerInclusive": 0.2,
+                "upper": 0.3,
+                "upperInclusive": false,
+                "n": 120,
+                "meanProbability": 0.24821318826950303,
+                "observedFrequency": 0.2833333333333333,
+                "observedFrequencyWilson95": [
+                  0.21040628091756453,
+                  0.36970202453054035
+                ]
+              },
+              {
+                "lowerInclusive": 0.3,
+                "upper": 0.4,
+                "upperInclusive": false,
+                "n": 90,
+                "meanProbability": 0.3451780006730203,
+                "observedFrequency": 0.36666666666666664,
+                "observedFrequencyWilson95": [
+                  0.27447254779029884,
+                  0.46977695236018824
+                ]
+              },
+              {
+                "lowerInclusive": 0.4,
+                "upper": 0.5,
+                "upperInclusive": false,
+                "n": 49,
+                "meanProbability": 0.4489531209642453,
+                "observedFrequency": 0.5510204081632653,
+                "observedFrequencyWilson95": [
+                  0.413151082194979,
+                  0.6814715893131335
+                ]
+              },
+              {
+                "lowerInclusive": 0.5,
+                "upper": 0.6,
+                "upperInclusive": false,
+                "n": 7,
+                "meanProbability": 0.5321316514447779,
+                "observedFrequency": 0.42857142857142855,
+                "observedFrequencyWilson95": [
+                  0.15821985525146975,
+                  0.7495416354723428
+                ]
+              },
+              {
+                "lowerInclusive": 0.6,
+                "upper": 0.7,
+                "upperInclusive": false,
+                "n": 2,
+                "meanProbability": 0.6271448036155804,
+                "observedFrequency": 0.5,
+                "observedFrequencyWilson95": [
+                  0.09453120573423074,
+                  0.9054687942657693
+                ]
+              },
+              {
+                "lowerInclusive": 0.7,
+                "upper": 0.8,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.8,
+                "upper": 0.9,
+                "upperInclusive": false,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              },
+              {
+                "lowerInclusive": 0.9,
+                "upper": 1.0,
+                "upperInclusive": true,
+                "n": 0,
+                "meanProbability": null,
+                "observedFrequency": null,
+                "observedFrequencyWilson95": null
+              }
+            ]
+          }
+        }
+      },
+      "fullCoverageMetrics": {
+        "v1": {
+          "n": 369,
+          "brier": 0.6323295798593116,
+          "logLoss": 1.0500596498795645,
+          "accuracy": 0.48509485094850946,
+          "correct": 179,
+          "topEligible": 369,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.48509485094850946
+        },
+        "candidate": {
+          "n": 380,
+          "brier": 0.6137301414492983,
+          "logLoss": 1.022776048584445,
+          "accuracy": 0.4763157894736842,
+          "correct": 181,
+          "topEligible": 380,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4763157894736842
+        },
+        "base": {
+          "n": 380,
+          "brier": 0.6569692265934693,
+          "logLoss": 1.085166699359636,
+          "accuracy": 0.4263157894736842,
+          "correct": 162,
+          "topEligible": 380,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4263157894736842
+        },
+        "glm": {
+          "n": 380,
+          "brier": 0.6168463605985677,
+          "logLoss": 1.0288486686846983,
+          "accuracy": 0.47368421052631576,
+          "correct": 180,
+          "topEligible": 380,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.47368421052631576
+        },
+        "elo": {
+          "n": 380,
+          "brier": 0.6157654445838567,
+          "logLoss": 1.024637265656657,
+          "accuracy": 0.4921052631578947,
+          "correct": 187,
+          "topEligible": 380,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.4921052631578947
+        }
+      }
+    }
+  },
+  "liveSnapshot": {
+    "observedAt": "2026-11-15T06:28:50.744Z",
+    "legacyArchives": {
+      "v1": {
+        "registered": 12,
+        "pending": 0,
+        "modelVersion": "poisson-1.0.0",
+        "leagues": [
+          "BL1",
+          "PL"
+        ],
+        "metrics": {
+          "n": 12,
+          "brier": 0.7811170062400419,
+          "logLoss": 1.2546907723113045,
+          "accuracy": 0.16666666666666666,
+          "correct": 2,
+          "topEligible": 12,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.16666666666666666
+        }
+      },
+      "v2": {
+        "registered": 27,
+        "pending": 7,
+        "modelVersion": "ensemble-v2-experimental-0.1",
+        "leagues": [
+          "PL"
+        ],
+        "metrics": {
+          "n": 20,
+          "brier": 0.5972893152475066,
+          "logLoss": 1.0016366568090374,
+          "accuracy": 0.55,
+          "correct": 11,
+          "topEligible": 20,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.55
+        }
+      }
+    },
+    "legacyArchivesComparable": false,
+    "legacyPairedMatches": 1,
+    "nightlyComparison": {
+      "totals": {
+        "registered": 17,
+        "pending": 7,
+        "settled": 10,
+        "review": 0,
+        "excluded": 0
+      },
+      "metrics": {
+        "v1": {
+          "n": 10,
+          "brier": 0.5699446210573273,
+          "logLoss": 0.9743654631990648,
+          "accuracy": 0.5,
+          "correct": 5,
+          "topEligible": 10,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.5
+        },
+        "v2": {
+          "n": 10,
+          "brier": 0.5400959031921004,
+          "logLoss": 0.9287221990604466,
+          "accuracy": 0.6,
+          "correct": 6,
+          "topEligible": 10,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.6
+        },
+        "candidate": {
+          "n": 10,
+          "brier": 0.5452432686730254,
+          "logLoss": 0.9354210593264385,
+          "accuracy": 0.6,
+          "correct": 6,
+          "topEligible": 10,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.6
+        },
+        "base": {
+          "n": 10,
+          "brier": 0.6179515867732355,
+          "logLoss": 1.0283189840128768,
+          "accuracy": 0.6,
+          "correct": 6,
+          "topEligible": 10,
+          "topTies": 0,
+          "uniqueTopAccuracy": 0.6
+        }
+      },
+      "versions": [
+        {
+          "modelVersion": "ensemble-candidate-2026-11-14-9cdd9c846c27",
+          "modelSha256": "65b3262f6a37937810d61417ff8a07f01342ce41e1d48de8b8d370ee4e3f4352",
+          "totals": {
+            "registered": 4,
+            "pending": 4,
+            "settled": 0,
+            "review": 0,
+            "excluded": 0
+          },
+          "metrics": {
+            "v1": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            },
+            "v2": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            },
+            "candidate": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            },
+            "base": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            }
+          }
+        },
+        {
+          "modelVersion": "ensemble-candidate-2026-11-14-b7137ce44c46",
+          "modelSha256": "c87fd105b966ac2dbae69c37d3ac56155c6da625203e96c10548a43f3a3ab6b8",
+          "totals": {
+            "registered": 3,
+            "pending": 3,
+            "settled": 0,
+            "review": 0,
+            "excluded": 0
+          },
+          "metrics": {
+            "v1": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            },
+            "v2": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            },
+            "candidate": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            },
+            "base": {
+              "n": 0,
+              "brier": null,
+              "logLoss": null,
+              "accuracy": null,
+              "correct": 0,
+              "topEligible": 0,
+              "topTies": 0,
+              "uniqueTopAccuracy": null
+            }
+          }
+        },
+        {
+          "modelVersion": "ensemble-candidate-2026-11-05-e8c1378f0743",
+          "modelSha256": "8013ef2faea1d6ddcc20569e2c23676637e0bc0f82826df67bc70d141fed5987",
+          "totals": {
+            "registered": 10,
+            "pending": 0,
+            "settled": 10,
+            "review": 0,
+            "excluded": 0
+          },
+          "metrics": {
+            "v1": {
+              "n": 10,
+              "brier": 0.5699446210573273,
+              "logLoss": 0.9743654631990648,
+              "accuracy": 0.5,
+              "correct": 5,
+              "topEligible": 10,
+              "topTies": 0,
+              "uniqueTopAccuracy": 0.5
+            },
+            "v2": {
+              "n": 10,
+              "brier": 0.5400959031921004,
+              "logLoss": 0.9287221990604466,
+              "accuracy": 0.6,
+              "correct": 6,
+              "topEligible": 10,
+              "topTies": 0,
+              "uniqueTopAccuracy": 0.6
+            },
+            "candidate": {
+              "n": 10,
+              "brier": 0.5452432686730254,
+              "logLoss": 0.9354210593264385,
+              "accuracy": 0.6,
+              "correct": 6,
+              "topEligible": 10,
+              "topTies": 0,
+              "uniqueTopAccuracy": 0.6
+            },
+            "base": {
+              "n": 10,
+              "brier": 0.6179515867732355,
+              "logLoss": 1.0283189840128768,
+              "accuracy": 0.6,
+              "correct": 6,
+              "topEligible": 10,
+              "topTies": 0,
+              "uniqueTopAccuracy": 0.6
+            }
+          }
+        }
+      ],
+      "liveMetricsIndependentlyReproduced": true
+    },
+    "note": "Legacy v1 and v2 percentages use different fixtures and leagues. Nightly models are compared on shared fixtures; ten settled games are too few to establish improvement. Newer versions have no settled fixtures."
+  },
+  "publishedMetricsReproduced": true,
+  "referenceProbabilitiesRebuilt": true,
+  "outcomesMatchedToPinnedResultArchive": true,
+  "newTrainingPerformed": false,
+  "independentTest": false,
+  "promotedToDefault": false,
+  "limitations": [
+    "This audit recalculates proper scores and calibration from exact persisted predictions, not a new model fit.",
+    "All historical periods were inspected before; this is not a new independent test or proof of future advantage.",
+    "v1 and base are rebuilt from the pinned past-only match archive. The learned candidate uses its persisted historical predictions; its original fits are not rerun.",
+    "Equal-width ten-bin calibration and its intervals are descriptive and unstable for small bins; no calibrator is fitted.",
+    "Historical accuracy preserves first-argmax ties; uniqueTopAccuracy separately follows future-cohort tie handling.",
+    "Comparison excludes the same missing-v1 fixtures from every method. Full coverage and excluded fixture identities remain visible.",
+    "No injuries, lineups, weather, betting odds or target-match post-game statistics are added."
+  ]
+}

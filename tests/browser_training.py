@@ -1,5 +1,6 @@
 """Check the published training summary without starting training or research."""
 import copy
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
@@ -26,7 +27,8 @@ with sync_playwright() as playwright:
         assert reports==[]
         page.locator('#trainingStatus > summary').click()
         page.wait_for_function("!document.getElementById('downloadTraining').disabled",timeout=35000)
-        assert 'Последний цикл обучения завершён' in page.locator('#trainingMessage').inner_text()
+        initial_message=page.locator('#trainingMessage').inner_text()
+        assert 'Последний цикл обучения завершён' in initial_message or 'Данные проверены: изменений нет' in initial_message
         with page.expect_download() as event:page.click('#downloadTraining')
         packet=json.loads(Path(event.value.path()).read_text())
         assert packet['latestSuccessful']['promotedToDefault'] is False
@@ -36,7 +38,40 @@ with sync_playwright() as playwright:
         page.set_viewport_size({'width':390,'height':844})
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.locator('#trainingStatus').screenshot(path=str(OUTPUT/'training-mobile.png'))
+        unchanged=copy.deepcopy(packet)
+        unchanged['latestCheck']={'schemaVersion':1,'protocol':'continuous-training-1','status':'unchanged',
+            'checkedAt':datetime.now(timezone.utc).isoformat(),'asOf':packet['latestSuccessful']['asOf'],
+            'league':'PL','division':'E0','method':'goals','promotedToDefault':False,
+            'runUrl':packet['latestAttempt']['runUrl']}
+        page.route(PATTERN,lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(unchanged)))
+        page.click('#refreshTraining');page.wait_for_function("!document.getElementById('refreshTraining').disabled")
+        assert 'Повторное обучение не требовалось' in page.locator('#trainingMessage').inner_text()
+        unchanged_body=page.locator('#trainingBody').inner_text()
+        assert 'Последняя проверка данных:' in unchanged_body
+        assert 'Последнее успешное обучение:' in unchanged_body
+        assert packet['latestSuccessful']['modelVersion'] in unchanged_body
+        assert '03:43, 09:43, 15:43 и 21:43 МСК' in unchanged_body
+        expected_fit_date=page.evaluate("value=>new Date(value).toLocaleString('ru-RU',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Moscow'})+' МСК'",packet['latestSuccessful']['generatedAt'])
+        assert expected_fit_date in unchanged_body
+        with page.expect_download() as event:page.click('#downloadTraining')
+        after_check=json.loads(Path(event.value.path()).read_text())
+        assert after_check['latestSuccessful']==packet['latestSuccessful']
+        assert after_check['latestAttempt']==packet['latestAttempt']
+        failed_check=copy.deepcopy(unchanged);failed_check['latestCheck']['status']='failed'
+        page.route(PATTERN,lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(failed_check)))
+        page.click('#refreshTraining');page.wait_for_function("!document.getElementById('refreshTraining').disabled")
+        assert 'Последняя проверка данных завершилась ошибкой' in page.locator('#trainingMessage').inner_text()
+        assert 'Предыдущий успешный результат сохранён' in page.locator('#trainingMessage').inner_text()
+        assert packet['latestSuccessful']['modelVersion'] in page.locator('#trainingBody').inner_text()
+        first_failure={'schemaVersion':1,'latestCheck':failed_check['latestCheck'],'latestSuccessful':None}
+        page.route(PATTERN,lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(first_failure)))
+        page.click('#refreshTraining');page.wait_for_function("!document.getElementById('refreshTraining').disabled")
+        assert 'Последняя проверка данных завершилась ошибкой' in page.locator('#trainingMessage').inner_text()
+        assert 'Последний цикл обучения завершён' not in page.locator('#trainingMessage').inner_text()
+        assert 'Успешный кандидат пока не опубликован' in page.locator('#trainingBody').inner_text()
+        assert page.locator('#trainingBody table').count()==0
         failure=copy.deepcopy(packet);failure['latestAttempt']={**failure['latestAttempt'],'status':'failed'}
+        failure.pop('latestCheck',None)
         page.route(PATTERN,lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(failure)))
         page.click('#refreshTraining');page.wait_for_function("!document.getElementById('refreshTraining').disabled")
         assert 'Предыдущий успешный результат сохранён' in page.locator('#trainingMessage').inner_text()
@@ -51,6 +86,8 @@ with sync_playwright() as playwright:
         assert page.evaluate('window.__trainingXss || 0')==0
         assert not errors,errors
         result={'modelVersion':packet['latestSuccessful']['modelVersion'],'trainingMatches':packet['latestSuccessful']['trainingMatches'],
-            'commonMatches':packet['latestSuccessful']['evaluation']['commonMatches'],'lazyLoading':True,'failureRetainsCandidate':True,'mobileOverflow':False,'jsErrors':errors}
+            'commonMatches':packet['latestSuccessful']['evaluation']['commonMatches'],'lazyLoading':True,'failureRetainsCandidate':True,
+            'unchangedRetainsOriginalFit':True,'failedCheckRetainsCandidate':True,'firstFailedCheckIsNotTraining':True,
+            'mobileOverflow':False,'jsErrors':errors}
         (OUTPUT/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));print('TRAINING_PASS',json.dumps(result,ensure_ascii=False))
     finally:browser.close()

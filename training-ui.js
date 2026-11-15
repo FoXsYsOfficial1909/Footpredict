@@ -8,15 +8,28 @@ const date=value=>Number.isFinite(Date.parse(value))?new Date(value).toLocaleStr
 function link(text,address){const a=el('a',text);try{const url=new URL(address);if(url.protocol==='https:'&&url.hostname==='github.com'&&url.pathname.startsWith('/FoXsYsOfficial1909/Footpredict/actions/runs/')){a.href=url.href;a.target='_blank';a.rel='noopener noreferrer';}}catch{}return a;}
 
 function render(data){
-  if(data.schemaVersion!==1||!data.latestAttempt||!['success','failed'].includes(data.latestAttempt.status))throw new Error('Invalid report');
-  const attempt=data.latestAttempt,success=data.latestSuccessful,target=$('trainingBody');target.replaceChildren();
-  $('trainingMessage').textContent=attempt.status==='success'?'Последний цикл обучения завершён.':'Последний цикл завершился ошибкой. Предыдущий успешный результат сохранён.';
-  $('trainingMessage').classList.toggle('danger',attempt.status!=='success');
-  target.append(note('Последняя попытка: '+date(attempt.generatedAt)+'. Плановый запуск — каждую ночь около 03:23 МСК; возможна задержка расписания.'));
-  if(Date.now()-Date.parse(attempt.generatedAt)>36*3600000)target.append(note('Отчёт старше 36 часов. Проверь состояние последнего запуска.'));
-  target.append(link('Открыть последний запуск',attempt.runUrl));
+  const attempt=data.latestAttempt,check=data.latestCheck,success=data.latestSuccessful;
+  if(data.schemaVersion!==1||(!attempt&&!check)||(attempt&&!['success','failed'].includes(attempt.status))||
+      (check&&(check.schemaVersion!==1||check.protocol!=='continuous-training-1'||!['trained','unchanged','failed'].includes(check.status)||
+        !Number.isFinite(Date.parse(check.checkedAt))||check.league!=='PL'||check.division!=='E0'||check.method!=='goals'||check.promotedToDefault!==false)))throw new Error('Invalid report');
+  const target=$('trainingBody');target.replaceChildren();
+  const failed=check?check.status==='failed':attempt.status==='failed';
+  $('trainingMessage').textContent=failed?
+    (check?'Последняя проверка данных завершилась ошибкой.':'Последний цикл завершился ошибкой.')+(success?' Предыдущий успешный результат сохранён.':' Успешный кандидат пока не опубликован.'):
+    check?.status==='unchanged'?'Данные проверены: изменений нет. Повторное обучение не требовалось.':'Последний цикл обучения завершён.';
+  $('trainingMessage').classList.toggle('danger',failed);
+  target.append(note('Проверка данных — каждые 6 часов, ежедневно: около 03:43, 09:43, 15:43 и 21:43 МСК; возможна задержка расписания.'));
+  if(check){
+    target.append(note('Последняя проверка данных: '+date(check.checkedAt)+'.'),link('Открыть последнюю проверку',check.runUrl));
+    if(Date.now()-Date.parse(check.checkedAt)>12*3600000)target.append(note('Проверка данных старше 12 часов. Проверь состояние последнего запуска.'));
+  }
+  if(attempt){
+    target.append(note('Последняя попытка обучения: '+date(attempt.generatedAt)+'.'),link('Открыть последнее обучение',attempt.runUrl));
+    if(!check&&Date.now()-Date.parse(attempt.generatedAt)>36*3600000)target.append(note('Отчёт обучения старше 36 часов. Проверь состояние последнего запуска.'));
+  }
   if(!success){target.append(note('Успешный кандидат пока не опубликован.'));return;}
   target.append(el('h3','Кандидат на '+success.asOf),note('Версия: '+success.modelVersion),
+    note('Последнее успешное обучение: '+date(success.generatedAt)+'.'),
     note('Использовано '+success.trainingMatches+' матчей. Последний матч в обучении: '+success.latestTrainingMatch+'.'),
     note('Обучение и проверка: '+number(success.computeSeconds??success.durationSeconds)+' с; цикл с подготовкой данных: '+number(success.durationSeconds)+' с.'));
   const evaluation=success.evaluation;

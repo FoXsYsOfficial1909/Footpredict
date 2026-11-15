@@ -43,7 +43,41 @@ def merge_latest(previous,attempt,*,repository,run_id,run_attempt,commit,branch=
     if old and old.get('method','goals')!=BRANCH_METHODS[branch]:raise ValueError('Previous report belongs to another method')
     if old and datetime.fromisoformat(old['generatedAt'].replace('Z','+00:00'))>datetime.fromisoformat(report['generatedAt'].replace('Z','+00:00')):
         raise ValueError('Refusing to replace a newer report')
-    return {'schemaVersion':1,'latestAttempt':report,'latestSuccessful':report if report['status']=='success' else previous.get('latestSuccessful')}
+    result={'schemaVersion':1,'latestAttempt':report,'latestSuccessful':report if report['status']=='success' else previous.get('latestSuccessful')}
+    if previous.get('latestCheck'):result['latestCheck']=previous['latestCheck']
+    return result
+
+
+def merge_check(previous,check,*,repository,run_id,run_attempt,commit,branch=BRANCH):
+    if (branch not in BRANCH_LEAGUES or not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+',repository)
+            or not str(run_id).isdigit() or not str(run_attempt).isdigit() or not re.fullmatch('[0-9a-f]{40}',commit)):
+        raise ValueError('Invalid check publication scope or metadata')
+    league=BRANCH_LEAGUES[branch];division='E0' if league=='PL' else 'E1'
+    if (check.get('schemaVersion')!=1 or check.get('protocol')!='continuous-training-1'
+            or check.get('status') not in ('trained','unchanged','failed') or check.get('league')!=league
+            or check.get('division')!=division or check.get('method')!=BRANCH_METHODS[branch]
+            or check.get('promotedToDefault') is not False):
+        raise ValueError('Invalid data check or another league/method')
+    checked=datetime.fromisoformat(check['checkedAt'].replace('Z','+00:00'))
+    if checked.tzinfo is None:raise ValueError('Check time must include its timezone')
+    datetime.fromisoformat(check['asOf'])
+    previous=previous or {'schemaVersion':1,'latestAttempt':None,'latestSuccessful':None}
+    success=previous.get('latestSuccessful')
+    for old in (previous.get('latestAttempt'),success,previous.get('latestCheck')):
+        if old and (old.get('league','PL')!=league or old.get('method','goals')!=BRANCH_METHODS[branch]):
+            raise ValueError('Cannot replace another training archive')
+    old_check=previous.get('latestCheck')
+    if old_check and datetime.fromisoformat(old_check['checkedAt'].replace('Z','+00:00'))>checked:
+        raise ValueError('Cannot replace a newer source check')
+    if check['status']!='failed':
+        fingerprint=check.get('trainingFingerprint','')
+        if (not re.fullmatch('[0-9a-f]{64}',fingerprint) or not success
+                or success.get('trainingFingerprint')!=fingerprint
+                or success.get('modelSha256')!=check.get('modelSha256')):
+            raise ValueError('An unchanged or trained check must identify saved successful weights')
+    view={**check,'repository':repository,'runId':str(run_id),'runAttempt':str(run_attempt),'sourceCommit':commit,
+          'runUrl':f'https://github.com/{repository}/actions/runs/{run_id}'}
+    return {**previous,'latestCheck':view}
 
 
 def git(*args,cwd=None):
@@ -72,8 +106,11 @@ def save_public_model(output,worktree,attempt):
 def publish(output,repository,run_id,run_attempt,commit,*,branch=BRANCH):
     if branch not in BRANCH_LEAGUES:raise ValueError('Unsupported training report branch')
     root=Path(git('rev-parse','--show-toplevel'))
-    output=Path(output).resolve();attempt=json.loads((output/'attempt.json').read_text())
-    if attempt['status']=='success' and sha(json.loads((output/'model.json').read_text()))!=attempt['modelSha256']:
+    output=Path(output).resolve()
+    attempt=json.loads((output/'attempt.json').read_text()) if (output/'attempt.json').exists() else None
+    check=json.loads((output/'check.json').read_text()) if (output/'check.json').exists() else None
+    if not attempt and not check:raise ValueError('No completed attempt or source check')
+    if attempt and attempt['status']=='success' and sha(json.loads((output/'model.json').read_text()))!=attempt['modelSha256']:
         raise ValueError('Model checksum mismatch')
     remote=git('ls-remote','--heads','origin','refs/heads/'+branch,cwd=root)
     if remote:git('fetch','--no-tags','origin',branch,cwd=root)
@@ -87,18 +124,24 @@ def publish(output,repository,run_id,run_attempt,commit,*,branch=BRANCH):
             git('rm','-rf','--ignore-unmatch','.',cwd=worktree)
         latest=worktree/'latest.json'
         previous=json.loads(latest.read_text()) if latest.exists() else None
-        merged=merge_latest(previous,attempt,repository=repository,run_id=run_id,run_attempt=run_attempt,commit=commit,branch=branch)
-        if attempt['status']=='success':save_public_model(output,worktree,attempt)
-        archive=worktree/'runs'/(str(run_id)+'-'+str(run_attempt)+'.json');archive.parent.mkdir(exist_ok=True)
-        encoded=json.dumps(merged['latestAttempt'],ensure_ascii=False,indent=2)+'\n'
-        if archive.exists() and archive.read_text()!=encoded:raise ValueError('Attempt archive already exists with different data')
-        archive.write_text(encoded);latest.write_text(json.dumps(merged,ensure_ascii=False,indent=2)+'\n')
-        git('add','latest.json','runs',*(['models'] if attempt['status']=='success' else []),cwd=worktree)
+        metadata=dict(repository=repository,run_id=run_id,run_attempt=run_attempt,commit=commit,branch=branch)
+        merged=merge_latest(previous,attempt,**metadata) if attempt else previous
+        if check:merged=merge_check(merged,check,**metadata)
+        added=['latest.json']
+        if attempt and attempt['status']=='success':save_public_model(output,worktree,attempt);added.append('models')
+        for name,view in [('runs',merged.get('latestAttempt') if attempt else None),('checks',merged.get('latestCheck') if check else None)]:
+            if view is None:continue
+            archive=worktree/name/(str(run_id)+'-'+str(run_attempt)+'.json');archive.parent.mkdir(exist_ok=True)
+            encoded=json.dumps(view,ensure_ascii=False,indent=2)+'\n'
+            if archive.exists() and archive.read_text()!=encoded:raise ValueError('Immutable attempt or check archive changed')
+            archive.write_text(encoded);added.append(name)
+        latest.write_text(json.dumps(merged,ensure_ascii=False,indent=2)+'\n')
+        git('add',*added,cwd=worktree)
         if not git('diff','--cached','--name-only',cwd=worktree):return
         git('-c','user.name=github-actions[bot]','-c','user.email=41898282+github-actions[bot]@users.noreply.github.com',
             'commit','-m','Record training attempt '+str(run_id)+'/'+str(run_attempt),cwd=worktree)
         git('push','origin','HEAD:refs/heads/'+branch,cwd=worktree)
-        print(json.dumps({'publishedBranch':branch,'status':attempt['status'],'runId':str(run_id)}))
+        print(json.dumps({'publishedBranch':branch,'status':check['status'] if check else attempt['status'],'runId':str(run_id)}))
     finally:
         if worktree.exists():git('worktree','remove','--force',str(worktree),cwd=root)
         if orphan:

@@ -63,7 +63,10 @@ def load_history(directory, as_of, *, offline=False):
             raise ValueError('Offline Championship history is incomplete')
         rows, source = download_season(year, directory, refresh=year == season and not offline, division='E1')
         if year < season and len(rows) != DIVISIONS['E1']['closed_season_matches']:
-            raise ValueError('A closed Championship season must contain 552 regular-season matches')
+            if offline:raise ValueError('A closed Championship season must contain 552 regular-season matches')
+            rows, source = download_season(year, directory, refresh=True, division='E1')
+            if len(rows) != DIVISIONS['E1']['closed_season_matches']:
+                raise ValueError('A closed Championship season must contain 552 regular-season matches')
         matches.extend(rows)
         sources.append(source)
     cutoff = as_of - timedelta(days=1)

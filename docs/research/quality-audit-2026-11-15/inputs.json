@@ -1,0 +1,51 @@
+{
+  "protocol": "quality-diagnostic-1",
+  "snapshotOrigin": "Persisted October 28 EPL chronological experiment; previously inspected history, not an independent test.",
+  "league": "PL",
+  "rawFiles": {
+    "validation-predictions.json": {
+      "rawSha256": "81c6c078b6d4a32399d3d02b4032bb4bb79ef79c470379c2e9fc762fdfb3ed2e",
+      "gzipSha256": "7175e1ecf925d295a08675635435b282a1187cbbf13c33e5a00fdccf748786fb",
+      "matches": 760
+    },
+    "held-out-predictions.json": {
+      "rawSha256": "ad97841d98c0dfab75e33beeb184b6c5c0953690097e19215943442cd1576271",
+      "gzipSha256": "d4c9f39ad918fb2f7cb82d65f344a6685740ee64c24861b505f1ff98db4aacf0",
+      "matches": 380
+    }
+  },
+  "requiredMatches": {
+    "validation": 760,
+    "held_out": 380
+  },
+  "outcomeOrder": [
+    "P1",
+    "X",
+    "P2"
+  ],
+  "primaryMetric": "logLoss",
+  "brierFormula": "mean(sum((p[k]-1{actual=k})**2 for k in 0..2)); no division by 3; range 0..2",
+  "historicalAccuracyPolicy": "argmax, first outcome wins exact ties (matches original saved report)",
+  "supplementaryAccuracyPolicy": "unique maximum with 1e-12 tolerance; tied tops have no single pick and remain in proper-score metrics",
+  "independentTest": false,
+  "promotedToDefault": false,
+  "summary.json": {
+    "sha256": "5e99b957acde91729fe701f384391ba73c0ad388acbaca18c932582a15f04103"
+  },
+  "selection.json": {
+    "sha256": "fd342506f33047ad29c069b38b817317b7cd886d5c56e023fa2db9a1a6f5049d"
+  },
+  "matchSource": {
+    "path": "docs/research/cross-division-2026-11-14/training-data.json.gz",
+    "gzipSha256": "797641f4f0945de795ed202eb7107751172c6027a6cc3d993d4d8ded54cd40cd",
+    "use": "Only E0 dates, seasons, clubs and goals; statistics columns ignored. Outcomes, v1 and base independently reconstructed."
+  },
+  "liveSnapshot": {
+    "file": "live-quality.json.gz",
+    "rawSha256": "f670390e1ee01c65af7c118d67ade3fd24a0c81b9d1838780f9c101a3f697a7f",
+    "gzipSha256": "cd8e47ea97a6264e7674dc1177e8b8c0a595b482023a0a6931378db51f6141d2",
+    "endpoint": "https://footpredict-api.wzjp5747md.workers.dev/v1/quality",
+    "observedAt": "2026-11-15T06:28:50.744Z",
+    "note": "Read-only public API snapshot supplied by parent. Recomputed separately, never pooled with historical seasons."
+  }
+}
