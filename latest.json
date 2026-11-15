@@ -721,7 +721,7 @@
   "latestCheck": {
     "schemaVersion": 1,
     "protocol": "continuous-training-1",
-    "checkedAt": "2026-11-15T14:19:04.172798+00:00",
+    "checkedAt": "2026-11-15T23:10:37.713335+00:00",
     "asOf": "2026-11-15",
     "league": "ELC",
     "division": "E1",
@@ -735,9 +735,9 @@
     "modelSha256": "f11d62bf28613cc4f4283258832d87477a23e5890d40f23204e47a8deb85aa0d",
     "reason": "inputs_and_daily_cutoff_unchanged",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43723659129",
+    "runId": "43773331422",
     "runAttempt": "1",
     "sourceCommit": "7eb79711c263baeaadb3e45a57021b95701bf863",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43723659129"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43773331422"
   }
 }
