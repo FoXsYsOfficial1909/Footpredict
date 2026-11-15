@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "protocol": "dixon-oof-1",
+  "planSha256": "ce6349289a801c55326282b9dfc35d510812e83c8d1cc5045e8364735b55b8e0",
+  "fittedRho": 0.03089299207424029,
+  "selectedRho": 0.03089299207424029,
+  "selectedMethod": "one_oof_fitted_rho",
+  "validationMatches": 736,
+  "excludedFromEveryModel": 24,
+  "trials": [
+    {
+      "rho": 0.0,
+      "method": "independence_rho_zero",
+      "metrics": {
+        "n": 736,
+        "brier": 0.5709614997461899,
+        "logLoss": 0.9613428503572878,
+        "accuracy": 0.5570652173913043,
+        "correct": 410,
+        "topEligible": 736,
+        "topTies": 0,
+        "uniqueTopAccuracy": 0.5570652173913043
+      }
+    },
+    {
+      "rho": 0.03089299207424029,
+      "method": "one_oof_fitted_rho",
+      "metrics": {
+        "n": 736,
+        "brier": 0.5709108918377646,
+        "logLoss": 0.9613425098960725,
+        "accuracy": 0.5570652173913043,
+        "correct": 410,
+        "topEligible": 736,
+        "topTies": 0,
+        "uniqueTopAccuracy": 0.5570652173913043
+      }
+    }
+  ],
+  "validationDataSha256": "5a4efa932501b6ee9d21e61aa69d426ee0b58e7493675896b511d3b13cbee6d4",
+  "chosenBeforeLaterMetrics": true,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true
+}

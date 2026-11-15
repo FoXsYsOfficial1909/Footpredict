@@ -188,15 +188,72 @@ function view(){
   $('qualityLive').hidden=historical;$('qualityHistorical').hidden=!historical;
 }
 
-function renderOverview(){
-  const c=report.cohorts.v1,m=c.metrics,target=$('qualityOverview');target.replaceChildren();
-  for(const [label,value] of [['Завершено',String(m.n)],['Верных исходов',String(m.correct??0)],['Точность',m.topEligible?percent(m.accuracy):'—']]){
-    const item=el('div',undefined,'overview-stat');
-    item.append(el('span',label,'overview-label'),el('strong',value,'overview-value'));target.append(item);
+export function describeQualityOverview(data){
+  const nightly=Object.hasOwn(data||{},'nightly');
+  const source=nightly?data.nightly:data?.prospective;
+  const keys=nightly?['v1','candidate','base']:['v1','v2','base'];
+  const names=nightly?['Основная v1','Кандидат','База']:['Основная v1','v2','База'];
+  const unavailable={state:'unavailable',nightly,models:[]};
+  const count=value=>Number.isSafeInteger(value)&&value>=0;
+  const t=source?.totals,p=source?.policy;
+  if(data?.schemaVersion!==1||source?.protocol!==(nightly?'nightly-live-1':'paired-live-1')||
+    !['active','not_started'].includes(source.status)||!t||
+    !['registered','settled','pending','review','excluded'].every(k=>count(t[k]))||
+    t.registered!==t.settled+t.pending+t.review+t.excluded||
+    p?.minimumHorizonHours!==24||p.sharedRegistrationTime!==true||p.automaticPromotion!==false)return unavailable;
+  const models=keys.map((key,index)=>({key,label:names[index],metrics:source.models?.[key]}));
+  for(const {metrics:m} of models){
+    if(!m||m.n!==t.settled||!count(m.correct)||!count(m.topEligible)||!count(m.ties)||
+      m.topEligible+m.ties!==m.n||m.correct>m.topEligible)return unavailable;
+    if(m.n===0){if(m.brier!==null||m.logLoss!==null||m.accuracy!==null)return unavailable;}
+    else if(!Number.isFinite(m.brier)||m.brier<0||m.brier>2||!Number.isFinite(m.logLoss)||m.logLoss<0||
+      (m.topEligible===0?m.accuracy!==null:!Number.isFinite(m.accuracy)||Math.abs(m.accuracy-m.correct/m.topEligible)>1e-9))return unavailable;
   }
-  target.append(note(m.topEligible?'Доля совпадений среди '+m.topEligible+' прогнозов с однозначным наиболее вероятным исходом. Небольшая выборка не гарантирует такую же точность дальше.':'Ждём подтверждённые результаты. Ожидающие матчи не считаются ошибками.'));
-  if(c.leagues?.length>1)target.append(note('Общая история: '+c.leagues.map(league=>({PL:'АПЛ',BL1:'Бундеслига'}[league]||league)).join(', ')+'.'));
-  if(c.pending)target.append(note('Ожидают результата: '+c.pending+'.'));
+  let period=null,settledVersionCount=null;
+  // A truncated fixture list cannot establish the aggregate evaluation period.
+  if(Array.isArray(source.fixtures)&&source.fixtureScope?.total===t.registered&&
+    source.fixtureScope.returned===t.registered&&source.fixtures.length===t.registered){
+    const settled=source.fixtures.filter(f=>f.state==='settled');
+    const days=settled.map(f=>Date.parse(f.kickoff));
+    if(settled.length===t.settled&&days.length&&days.every(Number.isFinite)){
+      period={from:new Date(Math.min(...days)).toISOString(),to:new Date(Math.max(...days)).toISOString()};
+    }
+  }
+  if(nightly&&Array.isArray(source.versions)&&source.versions.every(v=>count(v.totals?.settled))&&
+    source.versions.reduce((n,v)=>n+v.totals.settled,0)===t.settled){
+    settledVersionCount=source.versions.filter(v=>v.totals.settled>0).length;
+  }
+  return {state:t.settled?'scored':'waiting',nightly,totals:{...t},models,period,settledVersionCount,
+    listTruncated:source.fixtureScope?.returned<source.fixtureScope?.total};
+}
+
+function renderOverview(){
+  const overview=describeQualityOverview(report),target=$('qualityOverview');target.replaceChildren();
+  const full=node=>{node.style.gridColumn='1 / -1';target.append(node);return node;};
+  full(el('h3','Модели на одних и тех же матчах'));
+  if(overview.state==='unavailable'){
+    full(note('Совместная проверка пока недоступна или её данные неполны. Достоверное сравнение появится после успешной сверки.'));
+    full(note('Прежние архивы сохранены отдельно в инструментах владельца. Их разные наборы игр не используются вместо совместной проверки.'));
+    return;
+  }
+  const t=overview.totals;
+  for(const [label,value] of [['Завершено',t.settled],['Ожидают',t.pending],['Зафиксировано',t.registered]]){
+    const item=el('div',undefined,'overview-stat');
+    item.append(el('span',label,'overview-label'),el('strong',String(value),'overview-value'));target.append(item);
+  }
+  const table=el('div');full(table);
+  metricTable(table,overview.models,'Одна общая выборка · прогнозы сохранены минимум за сутки до игры.');
+  if(overview.state==='waiting')full(note(t.registered?'Ждём подтверждённые результаты новой серии. Ожидающие матчи не считаются ошибками.':'Новая совместная серия ещё не набрала матчей. Прошедшие игры в неё не добавляются.'));
+  else full(note('Сравниваем исходы и вероятности на '+t.settled+' одинаковых завершённых матчах. Для Brier и Log Loss меньше — лучше. Малая выборка не подтверждает устойчивого преимущества.'));
+  if(overview.period)full(note('Период завершённых игр: '+date(overview.period.from)+' — '+date(overview.period.to)+'.'));
+  if(overview.nightly){
+    full(note('Кандидат — процедура обновления весов; версия фиксируется отдельно для каждого матча. Новое обучение не меняет старые прогнозы.'));
+    if(overview.settledVersionCount!==null&&t.settled)full(note('Версий кандидата с завершёнными играми: '+overview.settledVersionCount+'. Новые веса оцениваются только после своих будущих матчей.'));
+  }
+  if(t.review+t.excluded)full(note('Требуют проверки или исключены у всех моделей: '+(t.review+t.excluded)+'.'));
+  if(overview.listTruncated)full(note('Список матчей в подробностях сокращён; сводные метрики учитывают всю совместную серию.'));
+  const ties=overview.models.filter(model=>model.metrics.ties).map(model=>model.label+': '+model.metrics.ties).join(', ');
+  if(ties)full(note('Равные максимумы исключены только из доли совпадений: '+ties+'. Все общие матчи остаются в Brier и Log Loss.'));
 }
 
 async function refresh(){
@@ -220,6 +277,7 @@ async function refresh(){
   }finally{button.disabled=false;$('refreshQualityPublic').disabled=false;}
 }
 
+if(typeof document!=='undefined'){
 $('qualityView').addEventListener('change',view);
 for(const id of ['qualityFilter','qualityModelFilter'])$(id).addEventListener('change',()=>renderFixtures(true));
 $('moreQualityFixtures').addEventListener('click',()=>{shown+=20;renderFixtures();});
@@ -234,3 +292,4 @@ let opened=false;
 function open(){if(opened)return;opened=true;refresh();}
 window.addEventListener('footpredict:tab-selected',event=>{if(event.detail?.tab==='quality')open();});
 if(document.getElementById('tab-quality')?.getAttribute('aria-selected')==='true')open();
+}

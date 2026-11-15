@@ -2,7 +2,7 @@ name: Availability correction experiment
 
 on:
   schedule:
-    - cron: '13 2 * * *'
+    - cron: '13 */6 * * *'
   workflow_dispatch:
   push:
     branches: [main]

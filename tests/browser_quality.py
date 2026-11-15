@@ -37,6 +37,17 @@ with sync_playwright() as playwright:
         report=json.loads(Path(event.value.path()).read_text())
         assert report['schemaVersion']==1 and report['generatedAt']
         assert len(report['fixtures'])==report['fixtureScope']['returned']
+        overview=page.locator('#qualityOverview')
+        shared=report.get('nightly',report.get('prospective'))
+        if shared:
+            assert overview.locator('table').count()==1
+            assert 'Модели на одних и тех же матчах' in overview.inner_text()
+            names=['v1','candidate','base'] if 'nightly' in report else ['v1','v2','base']
+            shared_accuracy=overview.locator('tbody tr').last.locator('td').all_inner_texts()
+            expected_accuracy=[f"{shared['models'][key]['accuracy']*100:.1f}".replace('.',',')+'%'
+                               if shared['models'][key]['accuracy'] is not None else '—' for key in names]
+            assert shared_accuracy==expected_accuracy,(shared_accuracy,expected_accuracy)
+            assert overview.locator('tbody tr').first.locator('td').all_inner_texts()==[str(shared['totals']['settled'])]*3
         m=report['cohorts']['v1']['metrics']
         if m['topEligible']:
             assert f"{m['accuracy']*100:.1f}".replace('.',',')+'%' in page.locator('[data-model=v1]').inner_text()
@@ -65,6 +76,40 @@ with sync_playwright() as playwright:
         page.select_option('#qualityView','live');page.select_option('#qualityFilter','errors');page.select_option('#qualityModelFilter','all')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),'Mobile overflow in saved view'
         page.locator('#qualityDashboard').screenshot(path=str(OUTPUT/'quality-mobile.png'))
+
+        # The public view has the same shared comparison, not a percentage selected from a legacy archive.
+        public=browser.new_page(viewport={'width':390,'height':844})
+        public.route('**/v1/quality',lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(report)))
+        public.goto(BASE.split('#')[0]+'#quality',wait_until='networkidle',timeout=60000)
+        public.wait_for_function("document.querySelector('#qualityOverview table')!==null",timeout=35000)
+        assert not public.locator('body').evaluate("el=>el.classList.contains('owner-mode')")
+        assert public.locator('#qualityOverview table').is_visible()
+        assert public.locator('.quality-archive').is_hidden()
+        assert public.evaluate('document.documentElement.scrollWidth <= innerWidth'),'Mobile overflow in public shared overview'
+        public.locator('#qualityDashboard').screenshot(path=str(OUTPUT/'quality-public-mobile.png'))
+        public.close()
+
+        # No scored joint games must not fall back to the more flattering old archive.
+        waiting=copy.deepcopy(report)
+        shared_key='nightly' if 'nightly' in waiting else 'prospective'
+        pending=waiting[shared_key]
+        pending['totals'].update(settled=0,pending=pending['totals']['registered'],review=0,excluded=0)
+        pending['fixtures']=[];pending['fixtureScope']['returned']=0
+        if 'versions' in pending:pending['versions']=[]
+        for model in pending['models'].values():
+            model.update(n=0,correct=0,topEligible=0,ties=0,accuracy=None,brier=None,logLoss=None)
+        page.route('**/v1/quality',lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(waiting)))
+        page.click('#refreshQuality');page.wait_for_function("!document.getElementById('refreshQuality').disabled")
+        assert page.locator('#qualityOverview tbody tr').last.locator('td').all_inner_texts()==['—']*3
+        assert 'Ждём подтверждённые результаты новой серии' in page.locator('#qualityOverview').inner_text()
+        assert page.locator('[data-model=v1]').inner_text()  # The old archive remains separately available.
+        malformed=copy.deepcopy(report);malformed[shared_key]['models']['base']['n']+=1
+        page.route('**/v1/quality',lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(malformed)))
+        page.click('#refreshQuality');page.wait_for_function("!document.getElementById('refreshQuality').disabled")
+        assert 'Совместная проверка пока недоступна' in page.locator('#qualityOverview').inner_text()
+        assert page.locator('#qualityOverview table').count()==0
+        page.route('**/v1/quality',lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(report)))
+        page.click('#refreshQuality');page.wait_for_function("!document.getElementById('refreshQuality').disabled")
 
         # A failed refresh preserves the previous dated report, never a fake zero.
         page.route('**/v1/quality',lambda route:route.fulfill(status=503,content_type='application/json',body='{}'))
@@ -95,6 +140,7 @@ with sync_playwright() as playwright:
         assert requests and all(method=='GET' for method,_ in requests),requests
         assert all('/v1/research/' not in url and '/fd/' not in url and '/af/' not in url for _,url in requests),requests
         result={'cohorts':report['cohorts'],'paired':report['paired'],'fixtureScope':report['fixtureScope'],
+                'sharedOverview':True,'waitingNeverUsesLegacyAccuracy':True,'publicMobileOverflow':False,
                 'api_reads':len(requests),'js_errors':errors,'provider_requests':0,'writes':0}
         (OUTPUT/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
         print('QUALITY_PASS',json.dumps(result,ensure_ascii=False),flush=True)
