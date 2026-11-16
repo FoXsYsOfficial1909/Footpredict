@@ -2,14 +2,14 @@
   "schemaVersion": 1,
   "latestAttempt": {
     "schemaVersion": 1,
-    "generatedAt": "2026-11-15T08:25:38.106336Z",
+    "generatedAt": "2026-11-16T08:33:51.941221Z",
     "status": "stale",
     "dataStatus": "stale",
     "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
     "lastSuccessfulAcceptedAt": "2026-11-06T04:05:14.787131Z",
     "lastSuccessfulAvailable": true,
     "dataLastMatchDate": "2026-10-25",
-    "dataAgeDays": 21,
+    "dataAgeDays": 22,
     "retainedPreviousSnapshot": true,
     "newMatchesAdded": 0,
     "coverage": {
@@ -426,11 +426,11 @@
     "error": null,
     "promotedToDefault": false,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "sourceCommit": "e21dc72c9d24ff82d513ee97a62ef784626ce029",
-    "runId": "43694431458",
+    "sourceCommit": "7eb79711c263baeaadb3e45a57021b95701bf863",
+    "runId": "43832175891",
     "runAttempt": "1",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43694431458",
-    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/runs/43694431458-1.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43832175891",
+    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/runs/43832175891-1.json"
   },
   "lastAccepted": {
     "schemaVersion": 1,
