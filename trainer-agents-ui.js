@@ -89,7 +89,7 @@ function renderDashboard(target,view){
       (a*100).toFixed(1).replace('.',',')+'% ('+Math.round(a*m.topEligible)+'/'+m.topEligible+')'];
   }),'Одни и те же завершённые матчи для всех трёх моделей.'));
   target.append(note('Log Loss и Brier: меньше — лучше. Brier — сумма трёх квадратов ошибок, шкала 0–2. '+
-    '«Прежняя» — v1; при нехватке истории используются прошлые частоты лиги. Таких завершённых игр: '+view.v1FallbackSettled+'.'));
+    '«Прежняя» — v1 на той же истории CSV; при нехватке истории используются прошлые частоты лиги. Таких завершённых игр: '+view.v1FallbackSettled+'.'));
   const ties=methods.filter(([key])=>view.metrics[key].topTies).map(([key,label])=>label+': '+view.metrics[key].topTies);
   if(ties.length)target.append(note('Равные максимумы исключены только из доли совпадений ('+ties.join('; ')+'). В Log Loss и Brier остаются все завершённые игры.'));
   target.append(note('Эта серия пересекается с прежними проверками АПЛ. Её нельзя считать дополнительными независимыми матчами.'));
