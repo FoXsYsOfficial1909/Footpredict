@@ -12,10 +12,41 @@ import uuid
 
 from research.nightly import sha
 from research.trainer_agents import BRANCH,PROTOCOL,POLICY,validate_state
+from research.quality_diagnostic import metrics
 from scripts.publish_training import git
 
 STATE_FILES=('state.json','model.json','monitoring.json','training-data.json.gz',
              'feature-rows.json.gz','feature-rows-manifest.json')
+DASHBOARD_PROTOCOL='neural-agent-dashboard-1'
+DASHBOARD_LIMIT=100
+
+
+def prospective_dashboard(state,report):
+    """A bounded display of frozen forecasts; metrics always cover the full series."""
+    validate_state(state)
+    rows=[];scored=[];counts=dict.fromkeys(('registered','settled','pending','review','unavailable'),0)
+    fallback=0
+    for key,f in state['forecasts'].items():
+        if (type(f.get('v1_available')) is not bool
+                or any(not isinstance(f.get(k),str) or not 1<=len(f[k])<=200 for k in ('home','away','modelVersion'))):
+            raise ValueError('Incomplete neural display provenance')
+        observed=state['observations'].get(key,{});status=observed.get('status','pending')
+        counts['registered']+=1;counts[status]+=1
+        row={k:f[k] for k in ('fixtureId','home','away','kickoff','registeredAt','modelVersion',
+                              'candidate','base','frequency','v1_available')}
+        row['status']=status
+        if status=='settled':
+            row.update({k:observed[k] for k in ('score','actual','checkedAt')})
+            scored.append({**f,**observed});fallback+=not f['v1_available']
+        rows.append(row)
+    scores={method:metrics(scored,method) for method in ('candidate','base','frequency')}
+    summary=report['prospective']
+    if any(summary[k]!=v for k,v in counts.items()) or summary['metrics']!=scores:
+        raise ValueError('Neural display cannot disagree with the full saved series')
+    return {'schemaVersion':1,'protocol':DASHBOARD_PROTOCOL,'league':'PL',
+        'counts':counts,'metrics':scores,'v1FallbackSettled':fallback,
+        'selection':'latest_kickoff_then_fixture_id','maximumShown':DASHBOARD_LIMIT,
+        'rows':sorted(rows,key=lambda r:(datetime.fromisoformat(r['kickoff'].replace('Z','+00:00')),r['fixtureId']))[-DASHBOARD_LIMIT:]}
 
 
 def canonical(value):
@@ -81,6 +112,9 @@ def validate_report(report):
             if not re.fullmatch('[0-9a-f]{64}',report.get(key,'')):raise ValueError('Missing trainer provenance')
         if report['roles']['trainer']['fits'] not in (0,2):raise ValueError('Exceeded the neural fit budget')
         if report['roles']['examiner']['publicPromotionAllowed'] is not False:raise ValueError('Unapproved neural promotion')
+        if ('prospectiveDashboardSha256' in report
+                and not re.fullmatch('[0-9a-f]{64}',report['prospectiveDashboardSha256'])):
+            raise ValueError('Invalid neural display checksum')
     return report
 
 
@@ -103,12 +137,18 @@ def merge_latest(previous,report,*,repository,run_id,attempt,commit):
 
 def publish(directory,output,*,repository,run_id,attempt,commit):
     directory=Path(directory);output=Path(output);report=validate_report(json.loads((output/'report.json').read_text()))
+    state=None;dashboard=None
+    if report['status']=='success':
+        state=validate_state(json.loads((directory/'state.json').read_text()))
+        dashboard=prospective_dashboard(state,report)
+        report={**report,'prospectiveDashboardSha256':sha(dashboard)}
     with branch_tree(create=True) as tree:
         latest=tree/'latest.json';previous=json.loads(latest.read_text()) if latest.exists() else None
         result=merge_latest(previous,report,repository=repository,run_id=run_id,attempt=attempt,commit=commit)
         if report['status']=='success':
-            state=validate_state(json.loads((directory/'state.json').read_text()));old=tree/'state/state.json'
+            old=tree/'state/state.json'
             merge_state(json.loads(old.read_text()) if old.exists() else None,state)
+            immutable(tree/'dashboards'/(report['prospectiveDashboardSha256']+'.json'),canonical(dashboard))
             model=json.loads((directory/'model.json').read_text())
             if sha(model)!=report['modelSha256'] or state['training']['modelSha256']!=report['modelSha256']:
                 raise ValueError('Published trainer model or state does not match its report')

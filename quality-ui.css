@@ -30,10 +30,12 @@
 .quality-help summary { min-height:44px; padding-block:10px; cursor:pointer; }
 .quality-archive > summary { cursor:pointer; min-height:46px; padding-block:12px; color:#c5d7e8; font-weight:650; }
 .quality-archive[open] > summary { margin-bottom:14px; }
+#trainerAgentsComparison .research-note { overflow-wrap:anywhere; }
 @media(max-width:600px) {
   .quality-models,.quality-picks { grid-template-columns:1fr; }
   .quality-controls { display:grid; grid-template-columns:1fr; }
   .quality-controls .field { min-width:0; }
   .quality-model,.quality-fixture,.quality-panel { padding:14px; }
   .quality-number { font-size:27px; }
+  #trainerAgentsFixtures .accuracy-table th,#trainerAgentsFixtures .accuracy-table td { padding-inline:3px; }
 }

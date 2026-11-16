@@ -1,0 +1,55 @@
+{
+  "protocol": "neural-elc-posthoc-diagnostic-1",
+  "asOf": "2026-11-16",
+  "source": "docs/research/neural-2026-11-16/monitoring-predictions.json",
+  "sourceSha256": "40d815683273852c4f7061a42b0d24837a05371c50bcb6386aa961713f5ad6c0",
+  "division": "E1",
+  "matches": 180,
+  "posthoc": true,
+  "independentTest": false,
+  "newTrainingPerformed": false,
+  "settingsChanged": false,
+  "logLossDifference": 0.013197900813706875,
+  "byActualOutcome": {
+    "P1": {
+      "matches": 78,
+      "actualFrequency": 0.43333333333333335,
+      "meanProbabilities": {
+        "base": 0.4244755598746622,
+        "neural": 0.43525332282555246
+      },
+      "conditionalLogLoss": {
+        "base": 0.8491493109895034,
+        "neural": 0.8402269442168474
+      },
+      "contributionToTotalDifference": -0.0038663589348176043
+    },
+    "X": {
+      "matches": 46,
+      "actualFrequency": 0.25555555555555554,
+      "meanProbabilities": {
+        "base": 0.251852587322016,
+        "neural": 0.2605883500042253
+      },
+      "conditionalLogLoss": {
+        "base": 1.3804673111471353,
+        "neural": 1.3402450795771983
+      },
+      "contributionToTotalDifference": -0.010279014734539451
+    },
+    "P2": {
+      "matches": 56,
+      "actualFrequency": 0.3111111111111111,
+      "meanProbabilities": {
+        "base": 0.32367185280332184,
+        "neural": 0.3041583271702223
+      },
+      "conditionalLogLoss": {
+        "base": 1.0800860154803624,
+        "neural": 1.167975112033068
+      },
+      "contributionToTotalDifference": 0.02734327448306393
+    }
+  },
+  "limitation": "Describes already observed games; outcome groups are not deployment filters or independent evidence."
+}
