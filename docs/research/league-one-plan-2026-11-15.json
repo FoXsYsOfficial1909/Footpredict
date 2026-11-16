@@ -1,0 +1,48 @@
+{
+  "protocol": "league-one-research-1",
+  "registeredOn": "2026-11-15",
+  "registeredBeforeCandidateForecasts": true,
+  "asOf": "2026-11-15",
+  "divisions": ["E0","E1","E2"],
+  "sourceMatches": {"E0":4280,"E1":6252,"E2":3470},
+  "sourceJointStudy": "docs/research/cross-division-2026-11-14",
+  "sourceJointDataSha256": "da5b5851caa67063c04231c29c69b67a162553679d1f3b2d665209dd20fb1ded",
+  "sourceJointCompressedSha256": "797641f4f0945de795ed202eb7107751172c6027a6cc3d993d4d8ded54cd40cd",
+  "sourceJointReportSha256": "1fb51d2cf6f867d29de8f6b1ad15205f170460f2b1bf7f717fd266ed3ed16f33",
+  "sourceE2Snapshot": "docs/research/league-one-data-2026-11-15/training-data.json.gz",
+  "sourceE2DataSha256": "fbf0464efca60b683faf73b834dd4633d5246ccbfdbbee335b7dab29d3b53290",
+  "sourceE2CompressedSha256": "0cca3ea709651393f0448c68d198f52d489afd53d854e785e252cba8be9d2cba",
+  "sourcePredictionSha256": {
+    "validation":"598ab36d9380bada104fd8ea22fd41e42139c6ce12a2bc73b84dc4d193109564",
+    "audit":"0bc88509338e779fefd3d82235874e55c832960bda9ecac052affb56fb4ac0d8",
+    "monitoring":"814a57dde417cb18ce972bb62885dfb31e112366a93b628d774155831ee559ec"
+  },
+  "expectedCommonMatches": {"validation":1061,"audit":533,"monitoring":159},
+  "candidateCount": 1,
+  "candidate": {
+    "half_life":730,"ridge":0.03,"window_days":1095,"goal_weight":0.5,
+    "poisson_weight":0.75,
+    "elo":{"k":30,"home_advantage":80,"draw_weight":0.9}
+  },
+  "primaryMetric": "Log Loss on identical common E1 fixtures, compared with the frozen two-division model",
+  "secondaryMetrics": ["Brier mean sum of three class errors (0-2)","unique-top accuracy and ties","per-class ten-bin calibration","full cohort coverage and exclusions"],
+  "subgroup": {"E1GamesExclusiveMaximum":20,"E2GamesInclusiveMinimum":20,"windowDays":1095},
+  "subgroupRule": "At least one club has fewer than 20 prior E1 games and at least 20 prior E2 games inside the same1095-day window. Report all three periods separately, including empty groups. This is a prespecified diagnostic, not a selection rule or permission to invent a conditional deployment after seeing results.",
+  "method": "One fixed three-division model with shared club attack/defence and separate scoring intercept, home advantage and goals-per-shot-on-target scale per division. Preserve the unchanged E1-only Elo25%component and previous source scores/reference vectors. No parameter search, blend search or subset selection.",
+  "informationFence": "For every forecast, all three leagues exclude target day and immediately preceding day. All statistics, scales, membership bridges and counts use only earlier matches inside1095days. Require a connected bridge graph linking E2/E1/E0; do not infer league-quality gaps from scoring averages.",
+  "E2SourceRange": "2020/21 through2026/27: six complete552-game seasons and158 current games, latest2026-11-04. Earliest evaluation is2023/24, whose1095-day window begins after2019/20; no earlier E2 games can be consumed. No cancelled2019/20 fixtures are synthesized and no target games are removed for this source choice.",
+  "pointGate": "Both Log Loss and Brier must improve versus joint2 in every period and versus v1 and shots in both later periods. Accuracy does not select the candidate; disclose its movement.",
+  "historicalGate": "Point gate plus the audit95%paired UTC-day-cluster Log Loss interval versus joint2 lies wholly below zero. All periods remain previously inspected historical research, not independent proof.",
+  "bootstrapSamples":1500,
+  "automaticPromotion":false,
+  "existingFrozenPredictionsMayChange":false,
+  "limitations":[
+    "Every E1 evaluation period has already been inspected during development. This is a new data hypothesis tested on familiar history; future pre-match registration remains necessary.",
+    "Extra matches do not prove higher accuracy. A subgroup benefit alone does not justify changing forecasts outside that subgroup or selecting a new policy post hoc.",
+    "Cross-league club-strength persistence is an assumption; squad changes, coaches and player availability are not numeric inputs.",
+    "The separate scoring intercepts and home advantages are not direct estimates of division-quality gaps. Cross-division comparisons depend on earlier bridge clubs.",
+    "Missing or inconsistent shot statistics fall back to verified goals without deleting matches. Shots on target are a proxy, not measured xG.",
+    "Current E2 source endsNovember4, E0November8 and E1November7. The historical source is pinned and does not claim coverage of later results.",
+    "No automatic deployment, new daily job or rewriting of original100/ELC36 packets follows from historical metrics."
+  ]
+}

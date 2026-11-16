@@ -1,0 +1,1675 @@
+{
+  "schemaVersion": 1,
+  "protocol": "league-one-comparison-coverage-audit-1",
+  "checkedAt": "2026-11-16T12:17:41.780270+00:00",
+  "auditOnly": true,
+  "newModelForecastsCalculated": false,
+  "primaryStudyUnchanged": true,
+  "sourceArchive": "docs/research/cross-division-2026-11-14/training-data.json.gz",
+  "sourceCompressedSha256": "797641f4f0945de795ed202eb7107751172c6027a6cc3d993d4d8ded54cd40cd",
+  "sourceDataSha256": "da5b5851caa67063c04231c29c69b67a162553679d1f3b2d665209dd20fb1ded",
+  "sourceE1Matches": 6252,
+  "primaryStudyPlanSha256": "11c83da75f7baa98a34a25206e0b7f678f2c36294c8bd1d1774527951f6150dd",
+  "v1EligibilityParameters": {
+    "minimumPriorLeagueGames": 15,
+    "minimumPriorHomeSideGames": 2,
+    "minimumPriorAwaySideGames": 2,
+    "previousSeasonWeight": 0.35,
+    "halfLifeDays": 120,
+    "minimumLeagueScoringMean": 0.25,
+    "fence": "Only earlier dates strictly before target match date minus one day, current and previous season"
+  },
+  "periods": {
+    "validation": {
+      "seasons": [
+        2023,
+        2024
+      ],
+      "completedTargets": 1104,
+      "pairedTargets": 1061,
+      "excludedFromEveryComparedModel": 43,
+      "pairedCoverage": 0.9610507246376812,
+      "reasonCounts": {
+        "fewer_than_2_prior_home_matches_for_home_club": 24,
+        "fewer_than_2_prior_away_matches_for_away_club": 24
+      },
+      "excludedFixtures": [
+        {
+          "date": "2023-08-04",
+          "cutoffExclusive": "2023-08-03",
+          "season": 2023,
+          "home": "Sheffield Weds",
+          "away": "Southampton",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-05",
+          "cutoffExclusive": "2023-08-04",
+          "season": 2023,
+          "home": "Plymouth",
+          "away": "Huddersfield",
+          "actual": 0,
+          "regulationScore": {
+            "home": 3,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-06",
+          "cutoffExclusive": "2023-08-05",
+          "season": 2023,
+          "home": "Leeds",
+          "away": "Cardiff",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 553,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-06",
+          "cutoffExclusive": "2023-08-05",
+          "season": 2023,
+          "home": "Leicester",
+          "away": "Coventry",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 553,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-06",
+          "cutoffExclusive": "2023-08-05",
+          "season": 2023,
+          "home": "Sunderland",
+          "away": "Ipswich",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 553,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-12",
+          "cutoffExclusive": "2023-08-11",
+          "season": 2023,
+          "home": "Birmingham",
+          "away": "Leeds",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-12",
+          "cutoffExclusive": "2023-08-11",
+          "season": 2023,
+          "home": "Huddersfield",
+          "away": "Leicester",
+          "actual": 2,
+          "regulationScore": {
+            "home": 0,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-12",
+          "cutoffExclusive": "2023-08-11",
+          "season": 2023,
+          "home": "Hull",
+          "away": "Sheffield Weds",
+          "actual": 0,
+          "regulationScore": {
+            "home": 4,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-12",
+          "cutoffExclusive": "2023-08-11",
+          "season": 2023,
+          "home": "Ipswich",
+          "away": "Stoke",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-12",
+          "cutoffExclusive": "2023-08-11",
+          "season": 2023,
+          "home": "Southampton",
+          "away": "Norwich",
+          "actual": 1,
+          "regulationScore": {
+            "home": 4,
+            "away": 4
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-12",
+          "cutoffExclusive": "2023-08-11",
+          "season": 2023,
+          "home": "Watford",
+          "away": "Plymouth",
+          "actual": 1,
+          "regulationScore": {
+            "home": 0,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-18",
+          "cutoffExclusive": "2023-08-17",
+          "season": 2023,
+          "home": "Leeds",
+          "away": "West Brom",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-19",
+          "cutoffExclusive": "2023-08-18",
+          "season": 2023,
+          "home": "Leicester",
+          "away": "Cardiff",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-19",
+          "cutoffExclusive": "2023-08-18",
+          "season": 2023,
+          "home": "Plymouth",
+          "away": "Southampton",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-19",
+          "cutoffExclusive": "2023-08-18",
+          "season": 2023,
+          "home": "QPR",
+          "away": "Ipswich",
+          "actual": 2,
+          "regulationScore": {
+            "home": 0,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-19",
+          "cutoffExclusive": "2023-08-18",
+          "season": 2023,
+          "home": "Sheffield Weds",
+          "away": "Preston",
+          "actual": 2,
+          "regulationScore": {
+            "home": 0,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-26",
+          "cutoffExclusive": "2023-08-25",
+          "season": 2023,
+          "home": "Birmingham",
+          "away": "Plymouth",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-26",
+          "cutoffExclusive": "2023-08-25",
+          "season": 2023,
+          "home": "Cardiff",
+          "away": "Sheffield Weds",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-26",
+          "cutoffExclusive": "2023-08-25",
+          "season": 2023,
+          "home": "Ipswich",
+          "away": "Leeds",
+          "actual": 2,
+          "regulationScore": {
+            "home": 3,
+            "away": 4
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-26",
+          "cutoffExclusive": "2023-08-25",
+          "season": 2023,
+          "home": "Rotherham",
+          "away": "Leicester",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2023-08-26",
+          "cutoffExclusive": "2023-08-25",
+          "season": 2023,
+          "home": "Southampton",
+          "away": "QPR",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 25,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-09",
+          "cutoffExclusive": "2024-08-08",
+          "season": 2024,
+          "home": "Blackburn",
+          "away": "Derby",
+          "actual": 0,
+          "regulationScore": {
+            "home": 4,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-09",
+          "cutoffExclusive": "2024-08-08",
+          "season": 2024,
+          "home": "Preston",
+          "away": "Sheffield United",
+          "actual": 2,
+          "regulationScore": {
+            "home": 0,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-10",
+          "cutoffExclusive": "2024-08-09",
+          "season": 2024,
+          "home": "Leeds",
+          "away": "Portsmouth",
+          "actual": 1,
+          "regulationScore": {
+            "home": 3,
+            "away": 3
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-10",
+          "cutoffExclusive": "2024-08-09",
+          "season": 2024,
+          "home": "Oxford",
+          "away": "Norwich",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-12",
+          "cutoffExclusive": "2024-08-11",
+          "season": 2024,
+          "home": "Luton",
+          "away": "Burnley",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 4
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 562,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-16",
+          "cutoffExclusive": "2024-08-15",
+          "season": 2024,
+          "home": "Coventry",
+          "away": "Oxford",
+          "actual": 0,
+          "regulationScore": {
+            "home": 3,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-17",
+          "cutoffExclusive": "2024-08-16",
+          "season": 2024,
+          "home": "Burnley",
+          "away": "Cardiff",
+          "actual": 0,
+          "regulationScore": {
+            "home": 5,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-17",
+          "cutoffExclusive": "2024-08-16",
+          "season": 2024,
+          "home": "Derby",
+          "away": "Middlesbrough",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-17",
+          "cutoffExclusive": "2024-08-16",
+          "season": 2024,
+          "home": "Portsmouth",
+          "away": "Luton",
+          "actual": 1,
+          "regulationScore": {
+            "home": 0,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-17",
+          "cutoffExclusive": "2024-08-16",
+          "season": 2024,
+          "home": "Sheffield United",
+          "away": "QPR",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-24",
+          "cutoffExclusive": "2024-08-23",
+          "season": 2024,
+          "home": "Blackburn",
+          "away": "Oxford",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-24",
+          "cutoffExclusive": "2024-08-23",
+          "season": 2024,
+          "home": "Middlesbrough",
+          "away": "Portsmouth",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-24",
+          "cutoffExclusive": "2024-08-23",
+          "season": 2024,
+          "home": "Norwich",
+          "away": "Sheffield United",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-24",
+          "cutoffExclusive": "2024-08-23",
+          "season": 2024,
+          "home": "Preston",
+          "away": "Luton",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-24",
+          "cutoffExclusive": "2024-08-23",
+          "season": 2024,
+          "home": "Sunderland",
+          "away": "Burnley",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-24",
+          "cutoffExclusive": "2024-08-23",
+          "season": 2024,
+          "home": "Watford",
+          "away": "Derby",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-30",
+          "cutoffExclusive": "2024-08-29",
+          "season": 2024,
+          "home": "Luton",
+          "away": "QPR",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-31",
+          "cutoffExclusive": "2024-08-30",
+          "season": 2024,
+          "home": "Burnley",
+          "away": "Blackburn",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-31",
+          "cutoffExclusive": "2024-08-30",
+          "season": 2024,
+          "home": "Derby",
+          "away": "Bristol City",
+          "actual": 0,
+          "regulationScore": {
+            "home": 3,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-31",
+          "cutoffExclusive": "2024-08-30",
+          "season": 2024,
+          "home": "Oxford",
+          "away": "Preston",
+          "actual": 0,
+          "regulationScore": {
+            "home": 3,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-08-31",
+          "cutoffExclusive": "2024-08-30",
+          "season": 2024,
+          "home": "Portsmouth",
+          "away": "Sunderland",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 3
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2024-09-01",
+          "cutoffExclusive": "2024-08-31",
+          "season": 2024,
+          "home": "Sheffield United",
+          "away": "Watford",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 589,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        }
+      ],
+      "oldCohortSha256": "598ab36d9380bada104fd8ea22fd41e42139c6ce12a2bc73b84dc4d193109564",
+      "newPredictionSha256": "75229dd4dffb71a42041a634df2fce5eb1eee8cc4f9ea6cdef798526623a3137"
+    },
+    "audit": {
+      "seasons": [
+        2025
+      ],
+      "completedTargets": 552,
+      "pairedTargets": 533,
+      "excludedFromEveryComparedModel": 19,
+      "pairedCoverage": 0.9655797101449275,
+      "reasonCounts": {
+        "fewer_than_2_prior_home_matches_for_home_club": 12,
+        "fewer_than_2_prior_away_matches_for_away_club": 12
+      },
+      "excludedFixtures": [
+        {
+          "date": "2025-08-08",
+          "cutoffExclusive": "2025-08-07",
+          "season": 2025,
+          "home": "Birmingham",
+          "away": "Ipswich",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-09",
+          "cutoffExclusive": "2025-08-08",
+          "season": 2025,
+          "home": "Charlton",
+          "away": "Watford",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-09",
+          "cutoffExclusive": "2025-08-08",
+          "season": 2025,
+          "home": "Southampton",
+          "away": "Wrexham",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-10",
+          "cutoffExclusive": "2025-08-09",
+          "season": 2025,
+          "home": "Leicester",
+          "away": "Sheffield Weds",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 553,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-16",
+          "cutoffExclusive": "2025-08-15",
+          "season": 2025,
+          "home": "Blackburn",
+          "away": "Birmingham",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-16",
+          "cutoffExclusive": "2025-08-15",
+          "season": 2025,
+          "home": "Bristol City",
+          "away": "Charlton",
+          "actual": 1,
+          "regulationScore": {
+            "home": 0,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-16",
+          "cutoffExclusive": "2025-08-15",
+          "season": 2025,
+          "home": "Preston",
+          "away": "Leicester",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-16",
+          "cutoffExclusive": "2025-08-15",
+          "season": 2025,
+          "home": "Wrexham",
+          "away": "West Brom",
+          "actual": 2,
+          "regulationScore": {
+            "home": 2,
+            "away": 3
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-17",
+          "cutoffExclusive": "2025-08-16",
+          "season": 2025,
+          "home": "Ipswich",
+          "away": "Southampton",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-23",
+          "cutoffExclusive": "2025-08-22",
+          "season": 2025,
+          "home": "Birmingham",
+          "away": "Oxford",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-23",
+          "cutoffExclusive": "2025-08-22",
+          "season": 2025,
+          "home": "Charlton",
+          "away": "Leicester",
+          "actual": 2,
+          "regulationScore": {
+            "home": 0,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-23",
+          "cutoffExclusive": "2025-08-22",
+          "season": 2025,
+          "home": "Preston",
+          "away": "Ipswich",
+          "actual": 0,
+          "regulationScore": {
+            "home": 1,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-23",
+          "cutoffExclusive": "2025-08-22",
+          "season": 2025,
+          "home": "Southampton",
+          "away": "Stoke",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-23",
+          "cutoffExclusive": "2025-08-22",
+          "season": 2025,
+          "home": "Wrexham",
+          "away": "Sheffield Weds",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-29",
+          "cutoffExclusive": "2025-08-28",
+          "season": 2025,
+          "home": "Leicester",
+          "away": "Birmingham",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-30",
+          "cutoffExclusive": "2025-08-29",
+          "season": 2025,
+          "home": "Ipswich",
+          "away": "Derby",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-30",
+          "cutoffExclusive": "2025-08-29",
+          "season": 2025,
+          "home": "Millwall",
+          "away": "Wrexham",
+          "actual": 2,
+          "regulationScore": {
+            "home": 0,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-30",
+          "cutoffExclusive": "2025-08-29",
+          "season": 2025,
+          "home": "QPR",
+          "away": "Charlton",
+          "actual": 0,
+          "regulationScore": {
+            "home": 3,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2025-08-30",
+          "cutoffExclusive": "2025-08-29",
+          "season": 2025,
+          "home": "Watford",
+          "away": "Southampton",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        }
+      ],
+      "oldCohortSha256": "0bc88509338e779fefd3d82235874e55c832960bda9ecac052affb56fb4ac0d8",
+      "newPredictionSha256": "a6f0c1ec7f2e9f32491d32e13d310a6aa4a780e7cda0107c649092a0ccb492ce"
+    },
+    "monitoring": {
+      "seasons": [
+        2026
+      ],
+      "completedTargets": 180,
+      "pairedTargets": 159,
+      "excludedFromEveryComparedModel": 21,
+      "pairedCoverage": 0.8833333333333333,
+      "reasonCounts": {
+        "fewer_than_2_prior_home_matches_for_home_club": 12,
+        "fewer_than_2_prior_away_matches_for_away_club": 12
+      },
+      "excludedFixtures": [
+        {
+          "date": "2026-08-14",
+          "cutoffExclusive": "2026-08-13",
+          "season": 2026,
+          "home": "Wolves",
+          "away": "Blackburn",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-15",
+          "cutoffExclusive": "2026-08-14",
+          "season": 2026,
+          "home": "Bolton",
+          "away": "Preston",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-15",
+          "cutoffExclusive": "2026-08-14",
+          "season": 2026,
+          "home": "Middlesbrough",
+          "away": "Lincoln",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 552,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-16",
+          "cutoffExclusive": "2026-08-15",
+          "season": 2026,
+          "home": "Burnley",
+          "away": "West Ham",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 553,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-17",
+          "cutoffExclusive": "2026-08-16",
+          "season": 2026,
+          "home": "Cardiff",
+          "away": "Wrexham",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 561,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-22",
+          "cutoffExclusive": "2026-08-21",
+          "season": 2026,
+          "home": "Derby",
+          "away": "Cardiff",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-22",
+          "cutoffExclusive": "2026-08-21",
+          "season": 2026,
+          "home": "Lincoln",
+          "away": "Portsmouth",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 3
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-22",
+          "cutoffExclusive": "2026-08-21",
+          "season": 2026,
+          "home": "Preston",
+          "away": "Wolves",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 3
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-22",
+          "cutoffExclusive": "2026-08-21",
+          "season": 2026,
+          "home": "QPR",
+          "away": "Bolton",
+          "actual": 1,
+          "regulationScore": {
+            "home": 0,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-22",
+          "cutoffExclusive": "2026-08-21",
+          "season": 2026,
+          "home": "West Ham",
+          "away": "Charlton",
+          "actual": 2,
+          "regulationScore": {
+            "home": 1,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 0,
+          "priorAwaySideMatches": 23,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-23",
+          "cutoffExclusive": "2026-08-22",
+          "season": 2026,
+          "home": "West Brom",
+          "away": "Burnley",
+          "actual": 0,
+          "regulationScore": {
+            "home": 3,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 564,
+          "priorHomeSideMatches": 23,
+          "priorAwaySideMatches": 0,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-29",
+          "cutoffExclusive": "2026-08-28",
+          "season": 2026,
+          "home": "Bolton",
+          "away": "Lincoln",
+          "actual": 2,
+          "regulationScore": {
+            "home": 0,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-29",
+          "cutoffExclusive": "2026-08-28",
+          "season": 2026,
+          "home": "Cardiff",
+          "away": "Sheffield United",
+          "actual": 1,
+          "regulationScore": {
+            "home": 2,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-29",
+          "cutoffExclusive": "2026-08-28",
+          "season": 2026,
+          "home": "Norwich",
+          "away": "Burnley",
+          "actual": 0,
+          "regulationScore": {
+            "home": 4,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-29",
+          "cutoffExclusive": "2026-08-28",
+          "season": 2026,
+          "home": "Watford",
+          "away": "West Ham",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-08-29",
+          "cutoffExclusive": "2026-08-28",
+          "season": 2026,
+          "home": "Wolves",
+          "away": "Stoke",
+          "actual": 0,
+          "regulationScore": {
+            "home": 4,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 576,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-09-01",
+          "cutoffExclusive": "2026-08-31",
+          "season": 2026,
+          "home": "Lincoln",
+          "away": "Blackburn",
+          "actual": 1,
+          "regulationScore": {
+            "home": 0,
+            "away": 0
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-09-01",
+          "cutoffExclusive": "2026-08-31",
+          "season": 2026,
+          "home": "Sheffield United",
+          "away": "Bolton",
+          "actual": 0,
+          "regulationScore": {
+            "home": 3,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-09-01",
+          "cutoffExclusive": "2026-08-31",
+          "season": 2026,
+          "home": "West Ham",
+          "away": "Wolves",
+          "actual": 0,
+          "regulationScore": {
+            "home": 4,
+            "away": 2
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club",
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-09-02",
+          "cutoffExclusive": "2026-09-01",
+          "season": 2026,
+          "home": "Burnley",
+          "away": "Middlesbrough",
+          "actual": 1,
+          "regulationScore": {
+            "home": 1,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_home_matches_for_home_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 1,
+          "priorAwaySideMatches": 24,
+          "excludedFromEveryComparedModel": true
+        },
+        {
+          "date": "2026-09-02",
+          "cutoffExclusive": "2026-09-01",
+          "season": 2026,
+          "home": "QPR",
+          "away": "Cardiff",
+          "actual": 0,
+          "regulationScore": {
+            "home": 2,
+            "away": 1
+          },
+          "reasons": [
+            "fewer_than_2_prior_away_matches_for_away_club"
+          ],
+          "priorLeagueMatches": 588,
+          "priorHomeSideMatches": 24,
+          "priorAwaySideMatches": 1,
+          "excludedFromEveryComparedModel": true
+        }
+      ],
+      "oldCohortSha256": "814a57dde417cb18ce972bb62885dfb31e112366a93b628d774155831ee559ec",
+      "newPredictionSha256": "3953bf9f14d11f9e34ae468c8df3802ead1ab7fdab3d94ce75d4d398253475e8"
+    }
+  },
+  "totalCompletedTargets": 1836,
+  "totalPairedTargets": 1753,
+  "totalExcludedTargets": 83,
+  "limitations": [
+    "The primary comparison uses inherited v1-eligible cohorts; it does not evaluate every completed Championship target.",
+    "Early fixtures after promotion can lack two prior home or away Championship games and be excluded even when League One history exists.",
+    "The excluded targets are excluded from all five compared models. Their scores do not select or retune the new candidate.",
+    "No model forecasts or metrics were newly calculated for the83 excluded fixtures in this coverage audit."
+  ]
+}

@@ -44,7 +44,8 @@ ALIASES = {
 }
 
 DIVISIONS = {'E0': {'league': 'PL', 'closed_season_matches': 380},
-             'E1': {'league': 'ELC', 'closed_season_matches': 552}}
+             'E1': {'league': 'ELC', 'closed_season_matches': 552},
+             'E2': {'league': 'L1', 'closed_season_matches': 552}}
 
 
 def canonical(name):

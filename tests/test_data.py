@@ -41,11 +41,11 @@ class DataValidationTests(unittest.TestCase):
     def test_cached_divisions_are_separate_and_invalid_divisions_never_make_requests(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
-            for division in ('E0','E1'):
+            for division in ('E0','E1','E2'):
                 (root/f'2026-{division}.csv').write_text(
                     f'Div,Date,HomeTeam,AwayTeam,FTHG,FTAG,FTR\n{division},24/10/2026,Home,Away,2,1,H\n')
             with patch('research.data.urllib.request.urlopen') as request:
-                for division in ('E0','E1'):
+                for division in ('E0','E1','E2'):
                     _,manifest=download_season(2026,root,division=division)
                     self.assertEqual(manifest['division'],division)
                     self.assertTrue(manifest['url'].endswith('/'+division+'.csv'))

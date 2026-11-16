@@ -5,6 +5,7 @@ import math
 import numpy as np
 from scipy.optimize import minimize
 
+from research.data import DIVISIONS
 from research.models import score_probabilities
 from research.performance import Performance
 
@@ -46,8 +47,8 @@ class DivisionPoisson:
 
     def fit(self, games, cutoff):
         prior = [g for g in games if 0 < (cutoff-g.observation.match.day).days <= self.window_days]
-        if len(prior) < 100 or any(g.division not in ('E0', 'E1') for g in prior):
-            raise ValueError('At least 100 verified E0/E1 past games are required')
+        if len(prior) < 100 or any(g.division not in DIVISIONS for g in prior):
+            raise ValueError('At least 100 verified E0/E1/E2 past games are required')
         divisions = sorted({g.division for g in prior})
         teams = sorted({t for g in prior for t in (g.observation.match.home, g.observation.match.away)})
         tid, did = {t: i for i, t in enumerate(teams)}, {d: i for i, d in enumerate(divisions)}

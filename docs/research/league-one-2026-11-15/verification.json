@@ -1,0 +1,74 @@
+{
+  "verifiedAt": "2026-11-16T12:16:48.247416+00:00",
+  "independentStdlibVerification": true,
+  "E0E1SourceBytesUnchanged": true,
+  "rawE2CsvVerified": [
+    {
+      "season": 2020,
+      "rows": 552,
+      "rawSha256Verified": true
+    },
+    {
+      "season": 2021,
+      "rows": 552,
+      "rawSha256Verified": true
+    },
+    {
+      "season": 2022,
+      "rows": 552,
+      "rawSha256Verified": true
+    },
+    {
+      "season": 2023,
+      "rows": 552,
+      "rawSha256Verified": true
+    },
+    {
+      "season": 2024,
+      "rows": 552,
+      "rawSha256Verified": true
+    },
+    {
+      "season": 2025,
+      "rows": 552,
+      "rawSha256Verified": true
+    },
+    {
+      "season": 2026,
+      "rows": 158,
+      "rawSha256Verified": true
+    }
+  ],
+  "E2NormalizedRowsRebuilt": 3470,
+  "E2CompleteShotRows": 3469,
+  "E2GoalFallbackRows": 1,
+  "combinedRows": 14002,
+  "strictPastOnlyFitsVerified": 377,
+  "finalFitVerified": true,
+  "perDivisionScalesVerified": 1134,
+  "perClubHistoryCountsVerified": true,
+  "bridgeGraphsVerified": true,
+  "forecastsVerified": 1753,
+  "cohortSizes": {
+    "validation": 1061,
+    "audit": 533,
+    "monitoring": 159
+  },
+  "diagnosticSubgroups": {
+    "validation": 62,
+    "audit": 31,
+    "monitoring": 22
+  },
+  "oldReferenceVectorsUnchanged": true,
+  "E1EloComponentUnchanged": true,
+  "metricsAndPerClassCalibrationRecomputed": true,
+  "originalFuturePacketsUnchanged": true,
+  "historicalGatePassed": false,
+  "modelPromoted": false,
+  "confirmedDefects": [],
+  "limitations": [
+    "Previously inspected historical cohorts; no independent future validation.",
+    "Whole-sample validation errors worsen against two leagues; current three-league accuracy is lower than v1.",
+    "Diagnostic subgroup does not select a conditional policy; its latest22-game accuracy falls despite lower probability errors."
+  ]
+}

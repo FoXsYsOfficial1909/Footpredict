@@ -1,0 +1,476 @@
+{
+  "protocol": "league-one-research-1",
+  "status": "experimental",
+  "as_of": "2026-11-15",
+  "target_division": "E1",
+  "training_cutoff_exclusive": "2026-11-14",
+  "joint": {
+    "model_version": "division-poisson-experimental-1",
+    "status": "experimental",
+    "as_of": "2026-11-14",
+    "parameters": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095,
+      "goal_weight": 0.5
+    },
+    "divisions": {
+      "E0": {
+        "intercept": 0.19604325252226487,
+        "home_advantage": 0.16532213894134684,
+        "goals_per_shot_on_target": 0.32586947329308147
+      },
+      "E1": {
+        "intercept": 0.16572496165850367,
+        "home_advantage": 0.2214643648746295,
+        "goals_per_shot_on_target": 0.32243325109884674
+      },
+      "E2": {
+        "intercept": 0.17818034974882932,
+        "home_advantage": 0.1886617717343457,
+        "goals_per_shot_on_target": 0.3309896174333566
+      }
+    },
+    "teams": {
+      "AFC Wimbledon": {
+        "attack": -0.4624128721560689,
+        "defence": -0.3236471309521632
+      },
+      "Arsenal": {
+        "attack": 0.5772859393124139,
+        "defence": 0.8705169163941687
+      },
+      "Aston Villa": {
+        "attack": 0.427926806111903,
+        "defence": 0.3068351601466996
+      },
+      "Barnsley": {
+        "attack": -0.0892823204953279,
+        "defence": -0.3549723839922086
+      },
+      "Birmingham": {
+        "attack": 0.04991875419792034,
+        "defence": 0.16328213221710916
+      },
+      "Blackburn": {
+        "attack": -0.13869412567080536,
+        "defence": 0.06649360352301022
+      },
+      "Blackpool": {
+        "attack": -0.18599933896072757,
+        "defence": -0.24492784928677758
+      },
+      "Bolton": {
+        "attack": -0.003991024642560249,
+        "defence": -0.14870338423212948
+      },
+      "Bournemouth": {
+        "attack": 0.48312775586216583,
+        "defence": 0.35783442827457834
+      },
+      "Bradford": {
+        "attack": -0.2848381195976679,
+        "defence": 0.08288255515769119
+      },
+      "Brentford": {
+        "attack": 0.40602681672728985,
+        "defence": 0.2759752878617136
+      },
+      "Brighton": {
+        "attack": 0.5082981214424926,
+        "defence": 0.4290177906022087
+      },
+      "Bristol City": {
+        "attack": -0.000651850098468469,
+        "defence": 0.03832995601767692
+      },
+      "Bristol Rvs": {
+        "attack": -0.4194803531598699,
+        "defence": -0.4372866094522555
+      },
+      "Bromley": {
+        "attack": -0.39329438184341964,
+        "defence": -0.709305458032562
+      },
+      "Burnley": {
+        "attack": 0.10854797343911166,
+        "defence": 0.11576673319658445
+      },
+      "Burton": {
+        "attack": -0.35406625332988095,
+        "defence": -0.2382055313211777
+      },
+      "Cambridge": {
+        "attack": -0.3311080809418805,
+        "defence": -0.31516635719275754
+      },
+      "Cardiff": {
+        "attack": 0.11863015633133032,
+        "defence": -0.1369495945663949
+      },
+      "Carlisle": {
+        "attack": -0.395992871717506,
+        "defence": -0.48304111748502415
+      },
+      "Charlton": {
+        "attack": -0.19659744570810242,
+        "defence": -0.019326293758033335
+      },
+      "Chelsea": {
+        "attack": 0.5528984288513407,
+        "defence": 0.3161878961634199
+      },
+      "Cheltenham": {
+        "attack": -0.3211292358567772,
+        "defence": -0.23115918020664472
+      },
+      "Coventry": {
+        "attack": 0.2548970939887916,
+        "defence": 0.12978726713922553
+      },
+      "Crawley Town": {
+        "attack": -0.21516966013342367,
+        "defence": -0.3980732892482901
+      },
+      "Crystal Palace": {
+        "attack": 0.3057642834137388,
+        "defence": 0.28577861324139603
+      },
+      "Derby": {
+        "attack": -0.08440399090067964,
+        "defence": -0.0018481067146425155
+      },
+      "Doncaster": {
+        "attack": -0.2983494292668617,
+        "defence": -0.28146904877045015
+      },
+      "Everton": {
+        "attack": 0.23373135413390372,
+        "defence": 0.4037905815101958
+      },
+      "Exeter": {
+        "attack": -0.37649974514243684,
+        "defence": -0.2444765160497258
+      },
+      "Fleetwood Town": {
+        "attack": -0.22196914612381308,
+        "defence": -0.391473779232502
+      },
+      "Fulham": {
+        "attack": 0.3186911696667399,
+        "defence": 0.3625342851952667
+      },
+      "Huddersfield": {
+        "attack": -0.03774230142507206,
+        "defence": -0.10322801153263061
+      },
+      "Hull": {
+        "attack": 0.031070872138966216,
+        "defence": 0.04501003373685714
+      },
+      "Ipswich": {
+        "attack": 0.24840402969984723,
+        "defence": 0.10118245047549196
+      },
+      "Leeds": {
+        "attack": 0.3291444765244177,
+        "defence": 0.4448633702336252
+      },
+      "Leicester": {
+        "attack": 0.06960375375915373,
+        "defence": -0.009703030946114742
+      },
+      "Leyton Orient": {
+        "attack": -0.1759049868207641,
+        "defence": -0.20541919059748767
+      },
+      "Lincoln": {
+        "attack": -0.06358183168591997,
+        "defence": -0.014330017678010933
+      },
+      "Liverpool": {
+        "attack": 0.6433364101703849,
+        "defence": 0.44918588469524345
+      },
+      "Luton": {
+        "attack": -0.02288052585435277,
+        "defence": -0.10680859273864741
+      },
+      "Man City": {
+        "attack": 0.6874781518423148,
+        "defence": 0.5882551774708058
+      },
+      "Man United": {
+        "attack": 0.5157919734322927,
+        "defence": 0.31437075060685027
+      },
+      "Mansfield": {
+        "attack": -0.1970022966465411,
+        "defence": -0.17385223237131434
+      },
+      "Middlesbrough": {
+        "attack": 0.22475324346741926,
+        "defence": 0.15119860429258627
+      },
+      "Millwall": {
+        "attack": -0.021956687215869793,
+        "defence": 0.12621057660977364
+      },
+      "Milton Keynes Dons": {
+        "attack": -0.07647741449496454,
+        "defence": -0.3166935322994806
+      },
+      "Newcastle": {
+        "attack": 0.4707136418604317,
+        "defence": 0.2598804540798507
+      },
+      "Northampton": {
+        "attack": -0.4351831695995437,
+        "defence": -0.3353234389698591
+      },
+      "Norwich": {
+        "attack": 0.17462474397220706,
+        "defence": 0.03324605227876673
+      },
+      "Nott'm Forest": {
+        "attack": 0.3154063182118128,
+        "defence": 0.36617775668981994
+      },
+      "Notts County": {
+        "attack": -0.2699994924350471,
+        "defence": -0.007141157286245722
+      },
+      "Oxford": {
+        "attack": -0.10366638255784594,
+        "defence": -0.016713136244868382
+      },
+      "Peterboro": {
+        "attack": -0.12170139612327695,
+        "defence": -0.3859756877630339
+      },
+      "Plymouth": {
+        "attack": -0.04856601997523171,
+        "defence": -0.207563268363435
+      },
+      "Port Vale": {
+        "attack": -0.5010894403628855,
+        "defence": -0.2216136682202704
+      },
+      "Portsmouth": {
+        "attack": -0.06310915002710082,
+        "defence": 0.001802126790852014
+      },
+      "Preston": {
+        "attack": -0.17336182834335342,
+        "defence": -0.05424288559770054
+      },
+      "QPR": {
+        "attack": 0.02770290267339038,
+        "defence": 0.014306544241992049
+      },
+      "Reading": {
+        "attack": -0.10229743955351496,
+        "defence": -0.21122882417567035
+      },
+      "Rotherham": {
+        "attack": -0.3801884422839809,
+        "defence": -0.29703871089954265
+      },
+      "Sheffield United": {
+        "attack": 0.07918013334285452,
+        "defence": 0.02528971743853339
+      },
+      "Sheffield Weds": {
+        "attack": -0.16856175538448362,
+        "defence": -0.16271440801687406
+      },
+      "Shrewsbury": {
+        "attack": -0.5190592385955702,
+        "defence": -0.3535191501533643
+      },
+      "Southampton": {
+        "attack": 0.24840970574292662,
+        "defence": 0.03570731397597846
+      },
+      "Stevenage": {
+        "attack": -0.3494546439347097,
+        "defence": 0.05398985582982326
+      },
+      "Stockport": {
+        "attack": -0.006634820783935836,
+        "defence": -0.02849616650479056
+      },
+      "Stoke": {
+        "attack": -0.09393294417407072,
+        "defence": 0.0346577179711262
+      },
+      "Sunderland": {
+        "attack": 0.03807069623120316,
+        "defence": 0.32042944055712336
+      },
+      "Swansea": {
+        "attack": -0.020995529353705,
+        "defence": 0.04596307944340336
+      },
+      "Tottenham": {
+        "attack": 0.39882329509622205,
+        "defence": 0.2876004115130851
+      },
+      "Watford": {
+        "attack": -0.060702694403919726,
+        "defence": -0.03603089426393838
+      },
+      "West Brom": {
+        "attack": -0.027054318963122197,
+        "defence": 0.2031555429095662
+      },
+      "West Ham": {
+        "attack": 0.3534257855467251,
+        "defence": 0.1180738865263868
+      },
+      "Wigan": {
+        "attack": -0.43508871447805264,
+        "defence": -0.13090791000475077
+      },
+      "Wolves": {
+        "attack": 0.17890786372098674,
+        "defence": 0.17225935934077916
+      },
+      "Wrexham": {
+        "attack": -0.05066313421385832,
+        "defence": 0.04616838513901333
+      },
+      "Wycombe": {
+        "attack": -0.08135166315562657,
+        "defence": -0.10387629668659269
+      }
+    },
+    "fit": {
+      "trainingGames": 4382,
+      "latestTrainingDate": "2026-11-08",
+      "byDivision": {
+        "E0": {
+          "trainingGames": 1120,
+          "shotGames": 1120,
+          "goalFallbackGames": 0,
+          "goalsPerShotOnTarget": 0.32586947329308147
+        },
+        "E1": {
+          "trainingGames": 1644,
+          "shotGames": 1643,
+          "goalFallbackGames": 1,
+          "goalsPerShotOnTarget": 0.32243325109884674
+        },
+        "E2": {
+          "trainingGames": 1618,
+          "shotGames": 1618,
+          "goalFallbackGames": 0,
+          "goalsPerShotOnTarget": 0.3309896174333566
+        }
+      },
+      "bridgeTeams": [
+        "Birmingham",
+        "Bolton",
+        "Burnley",
+        "Cardiff",
+        "Charlton",
+        "Coventry",
+        "Derby",
+        "Huddersfield",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Lincoln",
+        "Luton",
+        "Oxford",
+        "Plymouth",
+        "Portsmouth",
+        "Rotherham",
+        "Sheffield United",
+        "Sheffield Weds",
+        "Southampton",
+        "Sunderland",
+        "West Ham",
+        "Wolves",
+        "Wrexham"
+      ],
+      "iterations": 98,
+      "loss": 0.904249507606406,
+      "converged": true
+    },
+    "goal_cap": 5,
+    "poisson_max": 20,
+    "is_xg": false,
+    "promoted_to_default": false
+  },
+  "elo": {
+    "parameters": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "ratings": {
+      "Brighton": 1525.9236602566523,
+      "Nott'm Forest": 1548.3772551859288,
+      "Birmingham": 1579.7047802288746,
+      "Reading": 1451.467544525251,
+      "Blackburn": 1486.1482187997549,
+      "Wolves": 1578.1197681649635,
+      "Bolton": 1434.6547943919388,
+      "Derby": 1428.7406836883335,
+      "Brentford": 1552.6557605728387,
+      "Ipswich": 1614.7746165197184,
+      "Cardiff": 1458.7558734810495,
+      "Fulham": 1546.2322834497584,
+      "Charlton": 1424.1917572099483,
+      "QPR": 1506.4809896187871,
+      "Hull": 1517.0271501050136,
+      "Huddersfield": 1446.70406550402,
+      "Leeds": 1654.5732352187035,
+      "Burnley": 1528.9631808006209,
+      "Rotherham": 1383.6837919915208,
+      "Milton Keynes Dons": 1478.4292433789556,
+      "Sheffield Weds": 1320.9733557869508,
+      "Bristol City": 1462.4145078277616,
+      "Preston": 1386.1115379353923,
+      "Middlesbrough": 1594.590691292796,
+      "Newcastle": 1525.111889878011,
+      "Norwich": 1525.5971985049537,
+      "Wigan": 1460.7578501303474,
+      "Barnsley": 1430.601664831548,
+      "Burton": 1479.209492635926,
+      "Aston Villa": 1528.2576838213245,
+      "Millwall": 1528.6455910227123,
+      "Sunderland": 1501.2057102914025,
+      "Sheffield United": 1501.8794492637771,
+      "Swansea": 1552.9603167197442,
+      "West Brom": 1554.8004741497448,
+      "Stoke": 1526.4345539201067,
+      "Luton": 1485.5643825794905,
+      "Watford": 1420.7484754131508,
+      "Bournemouth": 1554.7351999715966,
+      "Coventry": 1628.2396496697456,
+      "Wycombe": 1480.4958754925788,
+      "Blackpool": 1447.1080333342102,
+      "Peterboro": 1451.9825712295185,
+      "Southampton": 1624.6802874839555,
+      "Plymouth": 1462.407752689867,
+      "Leicester": 1455.9898226199882,
+      "Portsmouth": 1513.5146220177016,
+      "Oxford": 1447.6594052038288,
+      "Wrexham": 1519.332141591363,
+      "Lincoln": 1455.689289661838,
+      "West Ham": 1526.691869936035
+    },
+    "as_of": "2026-11-14",
+    "training_games": 6252,
+    "latest_training_date": "2026-11-07"
+  },
+  "poisson_weight": 0.75,
+  "data_sha256": "8cb0f083ee3ad6a113c15a9426c5000da652e2dd95a8b0d65a012cd65e431fcd",
+  "plan_sha256": "11c83da75f7baa98a34a25206e0b7f678f2c36294c8bd1d1774527951f6150dd",
+  "historical_gate_passed": false,
+  "promoted_to_default": false,
+  "model_version": "league-one-experimental-2026-11-15-e778c15e52af"
+}
