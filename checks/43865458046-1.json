@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "protocol": "continuous-training-1",
+  "checkedAt": "2026-11-16T12:19:46.440451+00:00",
+  "asOf": "2026-11-16",
+  "league": "PL",
+  "division": "E0",
+  "method": "goals",
+  "promotedToDefault": false,
+  "trainingFingerprint": "402fd18c538695241d54010a4f0cee660dada3f80f494171c3fcd33a1bea76ba",
+  "inputMatches": 4280,
+  "trainingCutoffExclusive": "2026-11-15",
+  "latestInputMatch": "2026-11-08",
+  "status": "trained",
+  "modelSha256": "706a09ac6f4075dc8478c92400d810a07b94ecc75e528a4970bafc5f62b1c374",
+  "reason": "inputs_settings_code_or_daily_cutoff_changed",
+  "repository": "FoXsYsOfficial1909/Footpredict",
+  "runId": "43865458046",
+  "runAttempt": "1",
+  "sourceCommit": "0a5fb0c422ffdb47aa6f9b8650fd119fd5227b74",
+  "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865458046"
+}
