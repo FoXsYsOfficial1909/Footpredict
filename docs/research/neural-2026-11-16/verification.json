@@ -1,0 +1,7 @@
+{
+  "identicalRepeat": true,
+  "independentStdlibForwardPassMatches": 4890,
+  "maximumProbabilityDifference": 2.220446049250313e-16,
+  "scope": "All 4890 frozen historical predictions. No retuning.",
+  "modelAndPredictionBytesIdentical": true
+}

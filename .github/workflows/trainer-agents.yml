@@ -1,0 +1,123 @@
+name: Autonomous trainer agents
+
+on:
+  schedule:
+    - cron: '53 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/trainer-agents.yml'
+      - 'research/trainer_agents.py'
+      - 'research/neural_features.py'
+      - 'research/neural_residual.py'
+      - 'research/neural_experiment.py'
+      - 'scripts/publish_trainer_agents.py'
+      - 'docs/research/neural-plan-2026-11-16.json'
+      - 'docs/research/neural-2026-11-16/**'
+      - 'requirements-research.txt'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: footpredict-trainer-agents
+  cancel-in-progress: false
+
+jobs:
+  agents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-research.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/trainer-agents/data
+          key: ${{ runner.os }}-trainer-csv-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ${{ runner.os }}-trainer-csv-v1-
+      - run: python -m pip install -r requirements-research.txt
+      - run: python -m unittest tests.test_neural_residual tests.test_neural_features tests.test_neural_experiment tests.test_trainer_agents
+      - name: Restore previous weights and immutable neural forecasts
+        id: restore
+        continue-on-error: true
+        run: python -m scripts.publish_trainer_agents restore --state-dir data/trainer-agents
+      - name: Check data, train, examine and observe within fixed budgets
+        id: cycle
+        if: steps.restore.outcome == 'success'
+        continue-on-error: true
+        run: python -m research.trainer_agents --state-dir data/trainer-agents --output artifacts/trainer-agents
+      - name: Record a failed cycle without replacing the last successful model
+        if: always() && (steps.restore.outcome != 'success' || steps.cycle.outcome != 'success')
+        run: |
+          python - <<'PY'
+          from datetime import datetime,timezone
+          import json
+          from pathlib import Path
+          from research.trainer_agents import PROTOCOL,POLICY
+          path=Path('artifacts/trainer-agents/report.json')
+          if not path.exists():
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_text(json.dumps({'schemaVersion':1,'protocol':PROTOCOL,'policy':POLICY,
+                  'status':'failed','checkedAt':datetime.now(timezone.utc).isoformat(),
+                  'roles':{},'promotedToDefault':False,'independentAdvantageEstablished':False,
+                  'message':'The trainer cycle failed. Previous published weights and forecasts are preserved.'}))
+          PY
+      - uses: actions/upload-artifact@v4
+        id: artifact
+        if: always()
+        with:
+          name: trainer-agents-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/trainer-agents/
+            data/trainer-agents/state.json
+            data/trainer-agents/model.json
+            data/trainer-agents/monitoring.json
+            data/trainer-agents/training-data.json.gz
+            data/trainer-agents/feature-rows.json.gz
+            data/trainer-agents/feature-rows-manifest.json
+          retention-days: 90
+          if-no-files-found: error
+      - name: Refuse success without the saved audit artifact
+        if: always() && steps.artifact.outcome != 'success'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('artifacts/trainer-agents/report.json')
+          if p.exists():
+              r=json.loads(p.read_text());r.update(status='failed',message='Trainer artifact could not be saved.')
+              p.write_text(json.dumps(r))
+          PY
+      - name: Publish the separate trainer journal
+        if: always() && hashFiles('artifacts/trainer-agents/report.json') != ''
+        run: |
+          python -m scripts.publish_trainer_agents publish --state-dir data/trainer-agents \
+            --output artifacts/trainer-agents --repository '${{ github.repository }}' \
+            --run-id '${{ github.run_id }}' --run-attempt '${{ github.run_attempt }}' --commit '${{ github.sha }}'
+      - name: Trainer summary
+        if: always() && hashFiles('artifacts/trainer-agents/report.json') != ''
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads(Path('artifacts/trainer-agents/report.json').read_text())
+          lines=['## Autonomous trainers','',f"Status: {r['status']}; checked: {r['checkedAt']}"]
+          lines.extend(f"- {k}: {v['status']}" for k,v in r['roles'].items())
+          if r['status']=='success':
+              lines.extend(['',f"Model: {r['modelVersion']}; trained: {r['trainedAt']}",
+                  f"Future PL forecasts: {r['prospective']['registered']}; settled: {r['prospective']['settled']}",
+                  'Public model promotion: disabled.'])
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('\n'.join(lines)+'\n')
+          PY
+      - if: steps.restore.outcome != 'success' || steps.cycle.outcome != 'success' || steps.artifact.outcome != 'success'
+        run: exit 1

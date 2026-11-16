@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "protocol": "neural-residual-1",
+  "planSha256": "0793284a9352000dd2d4e35774a08e49e6dd844500b21914c23282750e23e293",
+  "weight": 1.0,
+  "trials": [
+    {
+      "weight": 0.0,
+      "macro": {
+        "logLoss": 1.032764119430774,
+        "brier": 0.6200891914769872,
+        "uniqueTopAccuracy": 0.48917493007882024
+      }
+    },
+    {
+      "weight": 0.25,
+      "macro": {
+        "logLoss": 1.0225635443066408,
+        "brier": 0.6129961611409414,
+        "uniqueTopAccuracy": 0.5007214594457158
+      }
+    },
+    {
+      "weight": 0.5,
+      "macro": {
+        "logLoss": 1.015022040394467,
+        "brier": 0.6078068105185893,
+        "uniqueTopAccuracy": 0.5035183066361556
+      }
+    },
+    {
+      "weight": 0.75,
+      "macro": {
+        "logLoss": 1.0100478642501043,
+        "brier": 0.6045211396099311,
+        "uniqueTopAccuracy": 0.4991545893719807
+      }
+    },
+    {
+      "weight": 1.0,
+      "macro": {
+        "logLoss": 1.0076982336886522,
+        "brier": 0.603139148414967,
+        "uniqueTopAccuracy": 0.499650394101195
+      }
+    }
+  ],
+  "validationRowsSha256": "59ac6a817af430abcfe0963beda8b46a07b730e7fd0accf97ddbe2e5932b129d",
+  "earlyModelSha256": "eb398b7af49a359787729db63a4ad723816e293ab8ddbdc48a77395263d5a3ed",
+  "chosenBeforeLaterMetrics": true,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true
+}
