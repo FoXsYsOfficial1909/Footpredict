@@ -365,7 +365,7 @@
       }
     },
     "dataSha256": "24a0295f27fa07f0f6be20e26331ac92c558094b1124ba06d38fa8f4da01fbb9",
-    "codeSha256": "97f8d13e15813058521f4af8d361d5f75b5589f62bb38e8bdd13ebe6eaa3d8d6",
+    "codeSha256": "7191139681cd1d091270d3256eefd6f29683405c576491913538fa497cc4f38f",
     "sourceCoverage": {
       "resultMatches": 4280,
       "pairedCornerMatches": 4280,
@@ -687,7 +687,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.6453261519999955,
+    "durationSeconds": 1.306337052,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -697,14 +697,14 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.06369175099999325,
-    "generatedAt": "2026-11-16T07:19:59.782560+00:00",
+    "computeSeconds": 0.05207687499999736,
+    "generatedAt": "2026-11-16T12:19:15.852701+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43823021149",
+    "runId": "43865457976",
     "runAttempt": "1",
-    "sourceCommit": "7eb79711c263baeaadb3e45a57021b95701bf863",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43823021149",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43823021149#artifacts",
+    "sourceCommit": "0a5fb0c422ffdb47aa6f9b8650fd119fd5227b74",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457976",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457976#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/7b99e78bbf32f9160079ba2c7d0b6527a5674775c22f2b7a19cafd4eecb47427.json"
   },
   "latestSuccessful": {
@@ -1071,7 +1071,7 @@
       }
     },
     "dataSha256": "24a0295f27fa07f0f6be20e26331ac92c558094b1124ba06d38fa8f4da01fbb9",
-    "codeSha256": "97f8d13e15813058521f4af8d361d5f75b5589f62bb38e8bdd13ebe6eaa3d8d6",
+    "codeSha256": "7191139681cd1d091270d3256eefd6f29683405c576491913538fa497cc4f38f",
     "sourceCoverage": {
       "resultMatches": 4280,
       "pairedCornerMatches": 4280,
@@ -1393,7 +1393,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.6453261519999955,
+    "durationSeconds": 1.306337052,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -1403,14 +1403,14 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.06369175099999325,
-    "generatedAt": "2026-11-16T07:19:59.782560+00:00",
+    "computeSeconds": 0.05207687499999736,
+    "generatedAt": "2026-11-16T12:19:15.852701+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43823021149",
+    "runId": "43865457976",
     "runAttempt": "1",
-    "sourceCommit": "7eb79711c263baeaadb3e45a57021b95701bf863",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43823021149",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43823021149#artifacts",
+    "sourceCommit": "0a5fb0c422ffdb47aa6f9b8650fd119fd5227b74",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457976",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457976#artifacts",
     "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/7b99e78bbf32f9160079ba2c7d0b6527a5674775c22f2b7a19cafd4eecb47427.json"
   }
 }
