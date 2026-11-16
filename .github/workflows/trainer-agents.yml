@@ -85,7 +85,7 @@ jobs:
             data/trainer-agents/training-data.json.gz
             data/trainer-agents/feature-rows.json.gz
             data/trainer-agents/feature-rows-manifest.json
-          retention-days: 90
+          retention-days: 14
           if-no-files-found: error
       - name: Refuse success without the saved audit artifact
         if: always() && steps.artifact.outcome != 'success'

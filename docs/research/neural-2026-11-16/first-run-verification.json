@@ -1,0 +1,19 @@
+{
+  "runId": "43878517584",
+  "branchCommit": "21069d678fc238f68536777f8a1e1662630e5462",
+  "sourceMatches": 14007,
+  "trainingMatches": 13075,
+  "fits": 2,
+  "modelVersion": "neural-agent-2026-11-16-e85e33f591cd",
+  "modelSha256": "6cb03e572b3fd4a416d4cd4ac0ae397e3df5e56531605af1b9bd8297d4113755",
+  "dataSha256": "63097b3e330872357eef22b9145e9ac98ac39920ba8ab61d82bade714b3fe86f",
+  "registered": 5,
+  "settled": 0,
+  "leadHoursRange": [
+    118.74290759722221,
+    121.24290352722223
+  ],
+  "maximumIndependentForwardDifference": 1.1102230246251565e-16,
+  "dataAndModelChecksumsVerified": true,
+  "nullMetricsUntilResults": true
+}
