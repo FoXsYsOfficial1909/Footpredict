@@ -4,19 +4,19 @@
   "latestAttempt": {
     "schemaVersion": 1,
     "protocol": "automatic-experiments-1",
-    "status": "unchanged",
-    "generatedAt": "2026-11-16T08:34:47.041636+00:00",
-    "evaluatedAt": "2026-11-14T17:41:55.740935+00:00",
-    "inputFingerprint": "c4fede19666702fe14d21fd41901595dd6593143ca6a97af96c01c16ee4a1120",
+    "status": "success",
+    "generatedAt": "2026-11-16T12:19:26.844332+00:00",
+    "evaluatedAt": "2026-11-16T12:19:26.844332+00:00",
+    "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
     "dataSha256": "22d6a26a90dd6d76faf221517a0460d83ef54ed312e28f2e7434e80e85d4caa0",
     "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
-    "codeSha256": "5f1ea7f91efe67801f9e9aa331ebb3557098a5bb8df62372b0d56a1d5ac1762e",
-    "evaluationCutoffExclusive": "2026-11-13",
+    "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
+    "evaluationCutoffExclusive": "2026-11-15",
     "selection": {
       "baseline": {
         "n": 736,
-        "brier": 0.5666267510692533,
-        "logloss": 0.9559174590434631,
+        "brier": 0.5666267515820934,
+        "logloss": 0.9559174598094762,
         "accuracy": 0.5625
       },
       "validation": [
@@ -32,8 +32,8 @@
           },
           "metrics": {
             "n": 736,
-            "brier": 0.5672803200781691,
-            "logloss": 0.9565334416863314,
+            "brier": 0.5672803183656919,
+            "logloss": 0.9565334393972584,
             "accuracy": 0.5570652173913043
           }
         },
@@ -49,16 +49,16 @@
           },
           "metrics": {
             "n": 736,
-            "brier": 0.5689446350527352,
-            "logloss": 0.9593027609017332,
+            "brier": 0.5689446354962806,
+            "logloss": 0.9593027609440764,
             "accuracy": 0.5625
           }
         }
       ],
       "chosen": null,
-      "inputFingerprint": "c4fede19666702fe14d21fd41901595dd6593143ca6a97af96c01c16ee4a1120",
+      "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
       "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
-      "codeSha256": "5f1ea7f91efe67801f9e9aa331ebb3557098a5bb8df62372b0d56a1d5ac1762e",
+      "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
       "auditComputedAfterSelection": true
     },
     "sourceFreshness": {
@@ -285,7 +285,7 @@
       "xgSource": {
         "schemaVersion": 1,
         "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
-        "preparedAt": "2026-11-16T08:34:46.703921+00:00",
+        "preparedAt": "2026-11-16T12:19:26.493528+00:00",
         "sourceUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json",
         "sourceReportSha256": "b0062ca47e16aca5f47508ef226cbbf5f74aac12a7eb1fcdd94fb7d344029914",
         "acceptedSource": {
@@ -731,8 +731,8 @@
       "metrics": {
         "baseline": {
           "n": 369,
-          "brier": 0.6144798538959009,
-          "logloss": 1.0235493662533826,
+          "brier": 0.6144798539092975,
+          "logloss": 1.023549366286128,
           "accuracy": 0.4932249322493225
         }
       },
@@ -773,11 +773,11 @@
             "away": "Burnley",
             "actual": 2,
             "probabilities": [
-              0.6788245570170276,
-              0.19573991292725962,
-              0.1254355300557129
+              0.6788245570153836,
+              0.19573991292835494,
+              0.1254355300562615
             ],
-            "logloss": 2.0759633571371365
+            "logloss": 2.0759633571327627
           },
           {
             "date": "2025-11-22",
@@ -785,11 +785,11 @@
             "away": "Nott'm Forest",
             "actual": 2,
             "probabilities": [
-              0.6600190112920798,
-              0.20000492443468698,
-              0.13997606427323314
+              0.6600190112979268,
+              0.20000492443194678,
+              0.1399760642701264
             ],
-            "logloss": 1.966283840466686
+            "logloss": 1.9662838404888807
           },
           {
             "date": "2026-01-17",
@@ -797,11 +797,11 @@
             "away": "Burnley",
             "actual": 1,
             "probabilities": [
-              0.7704117340001952,
-              0.15423564219428854,
-              0.07535262380551616
+              0.7704117340021728,
+              0.1542356421932209,
+              0.0753526238046064
             ],
-            "logloss": 1.8692737019274357
+            "logloss": 1.8692737019343577
           },
           {
             "date": "2026-04-11",
@@ -809,11 +809,11 @@
             "away": "Bournemouth",
             "actual": 2,
             "probabilities": [
-              0.6133603012390495,
-              0.22895839244191085,
-              0.1576813063190396
+              0.6133603012390446,
+              0.22895839244460198,
+              0.15768130631635335
             ],
-            "logloss": 1.8471793315509877
+            "logloss": 1.8471793315680234
           },
           {
             "date": "2025-10-19",
@@ -821,11 +821,11 @@
             "away": "Man United",
             "actual": 2,
             "probabilities": [
-              0.639956961342171,
-              0.20042497675409676,
-              0.15961806190373226
+              0.6399569613411381,
+              0.2004249767545075,
+              0.15961806190435437
             ],
-            "logloss": 1.8349714305467661
+            "logloss": 1.8349714305428686
           }
         ]
       }
@@ -836,8 +836,8 @@
       "metrics": {
         "baseline": {
           "n": 89,
-          "brier": 0.6136230857371195,
-          "logloss": 1.0221213139490501,
+          "brier": 0.6136230857274514,
+          "logloss": 1.0221213139354182,
           "accuracy": 0.48314606741573035
         }
       },
@@ -878,11 +878,11 @@
             "away": "Tottenham",
             "actual": 2,
             "probabilities": [
-              0.5329874946145223,
-              0.2450127020994931,
-              0.22199980328598468
+              0.5329874946145345,
+              0.24501270209949036,
+              0.22199980328597507
             ],
-            "logloss": 1.5050787832094183
+            "logloss": 1.5050787832094616
           },
           {
             "date": "2026-10-31",
@@ -890,11 +890,11 @@
             "away": "Brighton",
             "actual": 2,
             "probabilities": [
-              0.5375888685171503,
-              0.23824131986953673,
-              0.22416981161331292
+              0.5375888685191278,
+              0.23824131986901945,
+              0.22416981161185276
             ],
-            "logloss": 1.4953514267708974
+            "logloss": 1.495351426777411
           },
           {
             "date": "2026-08-29",
@@ -902,11 +902,11 @@
             "away": "Nott'm Forest",
             "actual": 1,
             "probabilities": [
-              0.5876040533854191,
-              0.23061818203809503,
-              0.1817777645764858
+              0.587604053385177,
+              0.2306181820381623,
+              0.18177776457666078
             ],
-            "logloss": 1.4669918276027887
+            "logloss": 1.466991827602497
           },
           {
             "date": "2026-10-10",
@@ -914,11 +914,11 @@
             "away": "Tottenham",
             "actual": 1,
             "probabilities": [
-              0.5849462085512185,
-              0.2346557806273653,
-              0.1803980108214162
+              0.5849462085526155,
+              0.23465578062698633,
+              0.18039801082039814
             ],
-            "logloss": 1.4496356019402474
+            "logloss": 1.4496356019418624
           },
           {
             "date": "2026-09-12",
@@ -926,47 +926,47 @@
             "away": "Fulham",
             "actual": 1,
             "probabilities": [
-              0.5626036258240155,
-              0.23701228600529517,
-              0.20038408817068937
+              0.5626036258238964,
+              0.23701228600521584,
+              0.20038408817088774
             ],
-            "logloss": 1.4396432995058461
+            "logloss": 1.4396432995061808
           }
         ]
       }
     },
     "cacheStats": {
       "hits": 0,
-      "misses": 0,
+      "misses": 2760,
       "corrupt": 0,
-      "fits": 0
+      "fits": 833
     },
-    "durationSeconds": 0.19902446199999702,
+    "durationSeconds": 12.037383682000005,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43832309645",
+    "runId": "43865457970",
     "runAttempt": "1",
-    "sourceCommit": "7eb79711c263baeaadb3e45a57021b95701bf863",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43832309645",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43832309645#artifacts",
-    "reportSha256": "e3b86c38e1a043b12f11972d2b75b652b694aa15e84369f7209e8c7b85195376",
-    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/e3b86c38e1a043b12f11972d2b75b652b694aa15e84369f7209e8c7b85195376.json"
+    "sourceCommit": "0a5fb0c422ffdb47aa6f9b8650fd119fd5227b74",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457970",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457970#artifacts",
+    "reportSha256": "44bb7527343626b9fc548b4db4092caebaa4c1e7666283252090c46e4ff7cddc",
+    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/44bb7527343626b9fc548b4db4092caebaa4c1e7666283252090c46e4ff7cddc.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "automatic-experiments-1",
     "status": "success",
-    "generatedAt": "2026-11-14T17:41:55.740935+00:00",
-    "evaluatedAt": "2026-11-14T17:41:55.740935+00:00",
-    "inputFingerprint": "c4fede19666702fe14d21fd41901595dd6593143ca6a97af96c01c16ee4a1120",
+    "generatedAt": "2026-11-16T12:19:26.844332+00:00",
+    "evaluatedAt": "2026-11-16T12:19:26.844332+00:00",
+    "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
     "dataSha256": "22d6a26a90dd6d76faf221517a0460d83ef54ed312e28f2e7434e80e85d4caa0",
     "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
-    "codeSha256": "5f1ea7f91efe67801f9e9aa331ebb3557098a5bb8df62372b0d56a1d5ac1762e",
-    "evaluationCutoffExclusive": "2026-11-13",
+    "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
+    "evaluationCutoffExclusive": "2026-11-15",
     "selection": {
       "baseline": {
         "n": 736,
-        "brier": 0.5666267510692533,
-        "logloss": 0.9559174590434631,
+        "brier": 0.5666267515820934,
+        "logloss": 0.9559174598094762,
         "accuracy": 0.5625
       },
       "validation": [
@@ -982,8 +982,8 @@
           },
           "metrics": {
             "n": 736,
-            "brier": 0.5672803200781691,
-            "logloss": 0.9565334416863314,
+            "brier": 0.5672803183656919,
+            "logloss": 0.9565334393972584,
             "accuracy": 0.5570652173913043
           }
         },
@@ -999,16 +999,16 @@
           },
           "metrics": {
             "n": 736,
-            "brier": 0.5689446350527352,
-            "logloss": 0.9593027609017332,
+            "brier": 0.5689446354962806,
+            "logloss": 0.9593027609440764,
             "accuracy": 0.5625
           }
         }
       ],
       "chosen": null,
-      "inputFingerprint": "c4fede19666702fe14d21fd41901595dd6593143ca6a97af96c01c16ee4a1120",
+      "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
       "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
-      "codeSha256": "5f1ea7f91efe67801f9e9aa331ebb3557098a5bb8df62372b0d56a1d5ac1762e",
+      "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
       "auditComputedAfterSelection": true
     },
     "sourceFreshness": {
@@ -1018,12 +1018,12 @@
       "missingXg": 20,
       "latestXgDate": "2026-10-25",
       "latestResultDate": "2026-11-08",
-      "dataAgeDays": 20,
+      "dataAgeDays": 22,
       "incomplete": true,
       "sourceStatus": "stale",
-      "sourceCheckedAt": "2026-11-14T02:26:17.340410Z",
+      "sourceCheckedAt": "2026-11-16T08:33:51.941221Z",
       "sourceDataStatus": "stale",
-      "cohortCutoffExclusive": "2026-11-13",
+      "cohortCutoffExclusive": "2026-11-15",
       "eligibleForEvaluation": {
         "season": 2026,
         "completedMatches": 100,
@@ -1031,7 +1031,7 @@
         "missingXg": 20,
         "latestXgDate": "2026-10-25",
         "latestResultDate": "2026-11-08",
-        "dataAgeDays": 20,
+        "dataAgeDays": 22,
         "incomplete": true
       }
     },
@@ -1235,9 +1235,9 @@
       "xgSource": {
         "schemaVersion": 1,
         "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
-        "preparedAt": "2026-11-14T17:41:55.259458+00:00",
+        "preparedAt": "2026-11-16T12:19:26.493528+00:00",
         "sourceUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json",
-        "sourceReportSha256": "5bd68c59628de0becf334d99905e17c3f4972c407b96c8b9aa9d5af8bf2f911b",
+        "sourceReportSha256": "b0062ca47e16aca5f47508ef226cbbf5f74aac12a7eb1fcdd94fb7d344029914",
         "acceptedSource": {
           "schemaVersion": 1,
           "status": "success",
@@ -1328,10 +1328,10 @@
         },
         "sourceFreshness": {
           "sourceStatus": "stale",
-          "sourceCheckedAt": "2026-11-14T02:26:17.340410Z",
+          "sourceCheckedAt": "2026-11-16T08:33:51.941221Z",
           "lastAcceptedAt": "2026-11-06T04:05:14.787131Z",
           "dataLastMatchDate": "2026-10-25",
-          "dataAgeDays": 20,
+          "dataAgeDays": 22,
           "season": 2026,
           "completedMatches": 100,
           "matchedXg": 80,
@@ -1681,8 +1681,8 @@
       "metrics": {
         "baseline": {
           "n": 369,
-          "brier": 0.6144798538959009,
-          "logloss": 1.0235493662533826,
+          "brier": 0.6144798539092975,
+          "logloss": 1.023549366286128,
           "accuracy": 0.4932249322493225
         }
       },
@@ -1723,11 +1723,11 @@
             "away": "Burnley",
             "actual": 2,
             "probabilities": [
-              0.6788245570170276,
-              0.19573991292725962,
-              0.1254355300557129
+              0.6788245570153836,
+              0.19573991292835494,
+              0.1254355300562615
             ],
-            "logloss": 2.0759633571371365
+            "logloss": 2.0759633571327627
           },
           {
             "date": "2025-11-22",
@@ -1735,11 +1735,11 @@
             "away": "Nott'm Forest",
             "actual": 2,
             "probabilities": [
-              0.6600190112920798,
-              0.20000492443468698,
-              0.13997606427323314
+              0.6600190112979268,
+              0.20000492443194678,
+              0.1399760642701264
             ],
-            "logloss": 1.966283840466686
+            "logloss": 1.9662838404888807
           },
           {
             "date": "2026-01-17",
@@ -1747,11 +1747,11 @@
             "away": "Burnley",
             "actual": 1,
             "probabilities": [
-              0.7704117340001952,
-              0.15423564219428854,
-              0.07535262380551616
+              0.7704117340021728,
+              0.1542356421932209,
+              0.0753526238046064
             ],
-            "logloss": 1.8692737019274357
+            "logloss": 1.8692737019343577
           },
           {
             "date": "2026-04-11",
@@ -1759,11 +1759,11 @@
             "away": "Bournemouth",
             "actual": 2,
             "probabilities": [
-              0.6133603012390495,
-              0.22895839244191085,
-              0.1576813063190396
+              0.6133603012390446,
+              0.22895839244460198,
+              0.15768130631635335
             ],
-            "logloss": 1.8471793315509877
+            "logloss": 1.8471793315680234
           },
           {
             "date": "2025-10-19",
@@ -1771,11 +1771,11 @@
             "away": "Man United",
             "actual": 2,
             "probabilities": [
-              0.639956961342171,
-              0.20042497675409676,
-              0.15961806190373226
+              0.6399569613411381,
+              0.2004249767545075,
+              0.15961806190435437
             ],
-            "logloss": 1.8349714305467661
+            "logloss": 1.8349714305428686
           }
         ]
       }
@@ -1786,8 +1786,8 @@
       "metrics": {
         "baseline": {
           "n": 89,
-          "brier": 0.6136230857371195,
-          "logloss": 1.0221213139490501,
+          "brier": 0.6136230857274514,
+          "logloss": 1.0221213139354182,
           "accuracy": 0.48314606741573035
         }
       },
@@ -1828,11 +1828,11 @@
             "away": "Tottenham",
             "actual": 2,
             "probabilities": [
-              0.5329874946145223,
-              0.2450127020994931,
-              0.22199980328598468
+              0.5329874946145345,
+              0.24501270209949036,
+              0.22199980328597507
             ],
-            "logloss": 1.5050787832094183
+            "logloss": 1.5050787832094616
           },
           {
             "date": "2026-10-31",
@@ -1840,11 +1840,11 @@
             "away": "Brighton",
             "actual": 2,
             "probabilities": [
-              0.5375888685171503,
-              0.23824131986953673,
-              0.22416981161331292
+              0.5375888685191278,
+              0.23824131986901945,
+              0.22416981161185276
             ],
-            "logloss": 1.4953514267708974
+            "logloss": 1.495351426777411
           },
           {
             "date": "2026-08-29",
@@ -1852,11 +1852,11 @@
             "away": "Nott'm Forest",
             "actual": 1,
             "probabilities": [
-              0.5876040533854191,
-              0.23061818203809503,
-              0.1817777645764858
+              0.587604053385177,
+              0.2306181820381623,
+              0.18177776457666078
             ],
-            "logloss": 1.4669918276027887
+            "logloss": 1.466991827602497
           },
           {
             "date": "2026-10-10",
@@ -1864,11 +1864,11 @@
             "away": "Tottenham",
             "actual": 1,
             "probabilities": [
-              0.5849462085512185,
-              0.2346557806273653,
-              0.1803980108214162
+              0.5849462085526155,
+              0.23465578062698633,
+              0.18039801082039814
             ],
-            "logloss": 1.4496356019402474
+            "logloss": 1.4496356019418624
           },
           {
             "date": "2026-09-12",
@@ -1876,11 +1876,11 @@
             "away": "Fulham",
             "actual": 1,
             "probabilities": [
-              0.5626036258240155,
-              0.23701228600529517,
-              0.20038408817068937
+              0.5626036258238964,
+              0.23701228600521584,
+              0.20038408817088774
             ],
-            "logloss": 1.4396432995058461
+            "logloss": 1.4396432995061808
           }
         ]
       }
@@ -1891,14 +1891,14 @@
       "corrupt": 0,
       "fits": 833
     },
-    "durationSeconds": 19.487957755000004,
+    "durationSeconds": 12.037383682000005,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43622480124",
+    "runId": "43865457970",
     "runAttempt": "1",
-    "sourceCommit": "85547b51eeaa9c4a585b08894d290e7631bc6473",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480124",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43622480124#artifacts",
-    "reportSha256": "79c117b08b87bd98c68ccc57956e95d080bd6d9b33798e3a8cd9939693d7fa3e",
-    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/79c117b08b87bd98c68ccc57956e95d080bd6d9b33798e3a8cd9939693d7fa3e.json"
+    "sourceCommit": "0a5fb0c422ffdb47aa6f9b8650fd119fd5227b74",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457970",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457970#artifacts",
+    "reportSha256": "44bb7527343626b9fc548b4db4092caebaa4c1e7666283252090c46e4ff7cddc",
+    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/44bb7527343626b9fc548b4db4092caebaa4c1e7666283252090c46e4ff7cddc.json"
   }
 }
