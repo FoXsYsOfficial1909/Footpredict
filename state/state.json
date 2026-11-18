@@ -1005,11 +1005,11 @@
   },
   "observations": {},
   "training": {
-    "inputFingerprint": "ac081a04a6fdd1e2d25dfa65784ba1c43d5ad688575a82645ea4e9caed168d3b",
-    "modelSha256": "6cb03e572b3fd4a416d4cd4ac0ae397e3df5e56531605af1b9bd8297d4113755",
-    "modelVersion": "neural-agent-2026-11-16-e85e33f591cd",
-    "trainedAt": "2026-11-16T13:45:24.673276+00:00",
-    "monitoringEvaluatedAt": "2026-11-16T13:45:24.673276+00:00",
+    "inputFingerprint": "da7af4e2efc7b7ccefc5bac5cf74020fa4210eb43ef7d88729e41ea3d526feab",
+    "modelSha256": "b94fe95985d1f31fb84ca8aad05685aa9e489763231f4ff6f5eb3aa2a7f3d426",
+    "modelVersion": "neural-agent-2026-11-18-0c4a06ef73b1",
+    "trainedAt": "2026-11-18T16:57:50.200495+00:00",
+    "monitoringEvaluatedAt": "2026-11-18T16:57:50.200495+00:00",
     "trainingMatches": 13075
   }
 }
