@@ -92,16 +92,6 @@ class Client:
 def hashes(modules):return {name:hashlib.sha256(body).hexdigest() for name,body in sorted(modules.items())}
 
 
-def confirmed_modules(client, expected):
-    """The content API can briefly return the previous version after a successful PUT."""
-    target=hashes(expected)
-    for attempt in range(6):
-        observed=client.modules()
-        if hashes(observed)==target:return observed
-        if attempt<5:time.sleep(2)
-    raise RuntimeError('Deployed modules do not match tested files')
-
-
 def save_backup(client,directory):
     directory=Path(directory)
     directory.mkdir(mode=0o700,parents=True,exist_ok=False)
@@ -134,6 +124,24 @@ def verify_settings(before,after,added_ai=False):
     if added_ai and a['AI']['type']!='ai':raise RuntimeError('Unexpected AI binding type')
     for key in SETTINGS_FIELDS+('placement',):
         if before.get(key)!=after.get(key):raise RuntimeError('Worker setting changed: '+key)
+
+
+def confirmed_deployment(client, modules, settings, schedules, *, added_ai=False):
+    target=hashes(modules)
+    last_error=None
+    for attempt in range(6):
+        try:
+            if hashes(client.modules())!=target:
+                raise RuntimeError('Deployed modules do not match tested files')
+            after=client.settings()
+            verify_settings(settings,after,added_ai)
+            if client.schedules()!=schedules:
+                raise RuntimeError('Cron schedule changed unexpectedly')
+            return after
+        except RuntimeError as error:
+            last_error=error
+            if attempt<5:time.sleep(2)
+    raise RuntimeError('Deployment readback could not be verified: '+str(last_error))
 
 
 def main():
@@ -169,11 +177,10 @@ def main():
     private_write(args.backup_dir/'upload-response.json',response)
     result=json.loads(response)
     if result.get('success') is not True:raise RuntimeError('Cloudflare did not confirm success')
-    deployed=confirmed_modules(client,modules);after=client.settings()
-    if args.rollback:
-        verify_settings(original,after)
-    else:verify_settings(before,after,args.add_ai_binding)
-    if client.schedules()!=schedules:raise RuntimeError('Cron schedule changed unexpectedly')
+    # Source, versioned settings and schedule reads can briefly race a successful
+    # content deployment. Retry verification only; never repeat the upload.
+    after=confirmed_deployment(client,modules,original if args.rollback else before,
+                               schedules,added_ai=args.add_ai_binding)
     private_write(args.backup_dir/'settings-after.json',json.dumps(after,indent=2).encode())
     print('PASS: deployed modules read back byte-for-byte; existing bindings/settings and Cron schedules preserved.',flush=True)
 

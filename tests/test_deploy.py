@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock,patch
-from scripts.deploy_worker import binding_metadata,multipart,parse_modules,verify_settings,confirmed_modules
+from scripts.deploy_worker import binding_metadata,multipart,parse_modules,verify_settings,confirmed_deployment
 
 
 class DeploySafetyTests(unittest.TestCase):
@@ -31,13 +31,26 @@ class DeploySafetyTests(unittest.TestCase):
     def test_eventual_source_visibility_does_not_cause_a_false_failed_deployment(self):
         expected={'worker.js':b'export default {};'}
         client=Mock();client.modules.side_effect=[{'worker.js':b'previous source'},expected]
+        client.settings.return_value=self.settings
+        client.schedules.return_value={'schedules':[]}
         with patch('scripts.deploy_worker.time.sleep'):
-            self.assertEqual(confirmed_modules(client,expected),expected)
+            self.assertEqual(confirmed_deployment(client,expected,self.settings,{'schedules':[]}),self.settings)
 
     def test_a_persistent_source_mismatch_is_never_accepted(self):
         client=Mock();client.modules.return_value={'worker.js':b'different source'}
         with patch('scripts.deploy_worker.time.sleep'),self.assertRaisesRegex(RuntimeError,'do not match'):
-            confirmed_modules(client,{'worker.js':b'expected source'})
+            confirmed_deployment(client,{'worker.js':b'expected source'},self.settings,{})
+
+
+    def test_temporary_settings_read_error_does_not_resend_upload(self):
+        expected={'worker.js':b'export default {};'}
+        client=Mock()
+        client.modules.return_value=expected
+        client.settings.side_effect=[RuntimeError('temporary versioning read failure'),self.settings]
+        client.schedules.return_value={'schedules':[]}
+        with patch('scripts.deploy_worker.time.sleep'):
+            confirmed_deployment(client,expected,self.settings,{'schedules':[]})
+        client.request.assert_not_called()
 
 
 if __name__=='__main__':unittest.main()

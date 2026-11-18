@@ -66,7 +66,11 @@ with sync_playwright() as playwright:
                 entry = quality['nightly']['windows']['groups']['all'][period]
                 assert f'на {entry["paired"]} матчах' in page.locator('#v2AnalyticsBody').inner_text()
             page.select_option('#v2QualityLeague','PL')
-            assert page.locator('#v2AnalyticsBody table tbody tr').count() == 3
+            assert page.locator('#v2AnalyticsBody > .table-scroll tbody tr').count() == 3
+            calibration = page.locator('#v2AnalyticsBody details').filter(has_text='Калибровка основной модели')
+            calibration.locator('summary').click()
+            assert calibration.locator('tbody tr').count() > 0
+            calibration.locator('summary').click()
         assert sum(url.endswith('/v1/quality') for _,url in requests) == 1, requests
         assert all(method == 'GET' for method,_ in requests),requests
         page.screenshot(path=str(OUTPUT/'analytics-mobile.png'), full_page=True)
@@ -80,7 +84,7 @@ with sync_playwright() as playwright:
         item.get_by_role('link',name='Открыть матч').click()
         page.wait_for_selector('#v2MatchDetail .v2-match-score', timeout=35000)
         if row.get('homeId') is not None and row.get('awayId') is not None:
-            assert 'Сохранено до игры' in page.locator('#v2MatchDetail').inner_text()
+            page.wait_for_function("document.querySelector('#v2MatchDetail')?.textContent.includes('Сохранено до игры')",timeout=20000)
             p = row['models'][row.get('primaryModel','v1')]['probabilities']
             labels = page.locator('#v2MatchDetail .v2-prob-labels span').all_text_contents()
             assert len(labels) == 3
