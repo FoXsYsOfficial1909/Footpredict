@@ -79,6 +79,8 @@ with sync_playwright() as playwright:
         page.click('#v2Theme')
         assert page.evaluate("document.documentElement.dataset.theme") == 'light'
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+        if quality['nightly'].get('windows'):
+            assert page.locator('#v2AnalyticsBody > .table-scroll').evaluate('e=>e.scrollWidth<=e.clientWidth')
         page.screenshot(path=str(OUTPUT/'analytics-light-mobile.png'), full_page=True)
         page.click('#tab-history')
         item.get_by_role('link',name='Открыть матч').click()

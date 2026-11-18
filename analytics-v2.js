@@ -115,8 +115,8 @@ if (typeof document !== 'undefined') {
       ', ожидают сверки ' + summary.pending + ', требуют проверки ' + summary.review + ', исключено ' + summary.excluded +
       '. Для сравнения доступны все вероятности на ' + summary.paired + ' матчах.'));
     if (!summary.paired) { body.append(el('p','В этом периоде ещё нет результатов для сравнения.')); return; }
-    body.append(table(['Модель','Игры','Попадания','Log Loss ↓','Brier ↓'], keys.map(k => {
-      const m = summary.models[k]; return [modelNames[k],m.n,pct(m.accuracy),decimal(m.logLoss),decimal(m.brier)];
+    body.append(table(['Модель','Попадания','Log Loss ↓','Brier ↓'], keys.map(k => {
+      const m = summary.models[k]; return [modelNames[k],pct(m.accuracy),decimal(m.logLoss),decimal(m.brier)];
     }), 'Одни и те же матчи. Меньшая ошибка вероятностей лучше. Brier измеряется от 0 до 2.'));
     const ties=keys.filter(k=>summary.models[k].ties);
     if(ties.length)body.append(el('p','Равные максимумы исключены из доли попаданий · '+ties.map(k=>modelNames[k]+' '+summary.models[k].ties).join(', ')+'.'));

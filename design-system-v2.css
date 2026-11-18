@@ -51,3 +51,12 @@ html[data-theme=light] .app-tabs a:hover { background:#deece3; }
     font-size:11px;white-space:normal;padding:6px 4px;overflow-wrap:anywhere;
   }
 }
+
+.accuracy-table thead th,.accuracy-table tbody th { color:var(--muted); }
+#qualityOverview table td,.v2-series-table td { white-space:nowrap;overflow-wrap:normal; }
+@media(max-width:400px){
+  #v2Analytics { padding:12px; }
+  #v2Analytics .v2-filters { grid-template-columns:minmax(0,1fr); }
+  #v2Analytics .v2-series-table td { padding-inline:3px;white-space:nowrap;overflow-wrap:normal; }
+  #v2Analytics .v2-series-table th { padding-inline:3px;overflow-wrap:normal; }
+}
