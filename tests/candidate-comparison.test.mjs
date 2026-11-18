@@ -180,3 +180,22 @@ test('a failed nightly archive does not stop other scheduled work',async()=>{
   assert.ok(tick.outcomes.some(o=>o.id==='comparison:'+fixture.id&&o.outcome==='ok'));
   assert.equal((await report(state)).totals.registered,0);state.db.close();
 });
+
+test('a recorded default candidate remains the recorded preference after rollback',async()=>{
+  const state=await environment();
+  try{
+    const {MODEL_RELEASE}=await import('../worker/model-release.mjs');
+    const bundle=await state.services.loadNightly();
+    bundle.report={...bundle.report,codeSha256:MODEL_RELEASE.trainingCodeSha256};
+    state.setBundle(bundle);
+    state.services.publishedModel=async()=> 'candidate';
+    assert.equal((await register(state)).result.registered,true);
+    const first=await evidence(state);
+    assert.equal(first.primaryModel,'candidate');
+    assert.equal((await report(state)).fixtures[0].primaryModel,'candidate');
+    state.services.publishedModel=async()=> 'v1';
+    await register(state);
+    assert.deepEqual(await evidence(state),first);
+    assert.equal((await report(state)).fixtures[0].primaryModel,'candidate');
+  }finally{state.db.close();}
+});

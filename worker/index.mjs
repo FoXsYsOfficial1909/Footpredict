@@ -2,6 +2,7 @@ import {getResearch, storedResearch, researchLimits, RESEARCH_VERSION} from './r
 import {predictV2, modelV2Info} from './model-v2.mjs';
 import {qualityReport} from './quality.mjs';
 import {comparisonReport,comparisonEvidence,NIGHTLY_COMPARISON_PROTOCOL} from './comparison.mjs';
+import {checkRelease,publishedModel} from './model-release.mjs';
 import {loadNightlyModel} from './nightly-model.mjs';
 import {getPlayerContext,PLAYER_CONTEXT_VERSION} from './player-context.mjs';
 import {getSiteAsset} from './site-assets.mjs';
@@ -22,15 +23,22 @@ function completedBefore(games,target,year,now=Date.now()) {
   // To avoid same-time match leakage, allow only games kicked off 4+ hours earlier.
   const cutoff = Math.min(now,start) - FINISH_SAFETY_HOURS*3600000;
   if (!Number.isFinite(cutoff)) return [];
-  return games.filter(g => {
+  const eligible=games.filter(g => {
     const t = Date.parse(g.utcDate);
     return g.id !== target.id && g.status === 'FINISHED' && g.score?.duration === 'REGULAR' &&
       Number.isFinite(t) && t <= cutoff &&
       (g.__year === year || g.__year === year-1) &&
-      g.homeTeam?.id && g.awayTeam?.id &&
-      Number.isInteger(g.score?.fullTime?.home) && g.score.fullTime.home >= 0 &&
-      Number.isInteger(g.score?.fullTime?.away) && g.score.fullTime.away >= 0;
+      Number.isSafeInteger(g.id) && g.id>0 && Number.isSafeInteger(g.homeTeam?.id) && g.homeTeam.id>0 && Number.isSafeInteger(g.awayTeam?.id) && g.awayTeam.id>0 && g.homeTeam.id!==g.awayTeam.id &&
+      Number.isInteger(g.score?.fullTime?.home) && g.score.fullTime.home >= 0 && g.score.fullTime.home <= 30 &&
+      Number.isInteger(g.score?.fullTime?.away) && g.score.fullTime.away >= 0 && g.score.fullTime.away <= 30;
   });
+  const seen=new Map(),result=[];
+  for(const g of eligible){
+    const signature=JSON.stringify([g.utcDate,g.__year,g.homeTeam.id,g.awayTeam.id,g.score.fullTime.home,g.score.fullTime.away]);
+    if(seen.has(g.id)){if(seen.get(g.id)!==signature)throw new Error('Противоречивые дубликаты матча в истории. Расчёт остановлен.');continue;}
+    seen.set(g.id,signature);result.push(g);
+  }
+  return result;
 }
 function weight(g,target,year) {
   const ageDays = Math.max(0,(Date.parse(target.utcDate)-Date.parse(g.utcDate))/DAY_MS);
@@ -245,7 +253,7 @@ async function providerBudget(env,provider){
 async function upstream(env,provider,path,{fresh=false,ttl=300}={}){
   const key='fp10:cache:'+provider+':'+path;
   if(!fresh&&env.FOOTPREDICT_CACHE){
-    try{const cached=await env.FOOTPREDICT_CACHE.get(key,'json');if(cached&&Date.now()-Date.parse(cached.fetchedAt)<ttl*1000)return {...cached,source:'KV_CACHE'};}catch{/* Cache failure cannot fabricate data. */}
+    try{const cached=await env.FOOTPREDICT_CACHE.get(key,'json');if(cached&&Date.now()-Date.parse(cached.fetchedAt)>=0&&Date.now()-Date.parse(cached.fetchedAt)<ttl*1000)return {...cached,source:'KV_CACHE'};}catch{/* Cache failure cannot fabricate data. */}
   }
   const secret=provider==='fd'?env.FOOTBALL_DATA_KEY:env.API_FOOTBALL_KEY;
   if(!secret)fail(503,'Не настроен ключ '+(provider==='fd'?'FOOTBALL_DATA_KEY':'API_FOOTBALL_KEY'));
@@ -274,6 +282,7 @@ async function upstream(env,provider,path,{fresh=false,ttl=300}={}){
 function validateUpcoming(g,now=Date.now()){
   if(!g||!['TIMED','SCHEDULED'].includes(g.status)||!Number.isFinite(Date.parse(g.utcDate))||Date.parse(g.utcDate)<=now+BUFFER)fail(409,'Матч уже начался, статус не предматчевый или осталось меньше 5 минут.');
   positiveId(g.id);positiveId(g.homeTeam?.id);positiveId(g.awayTeam?.id);
+  if(g.homeTeam.id===g.awayTeam.id)fail(422,'Совпадают идентификаторы команд.');
 }
 function normalized(g,year){return {id:g.id,utcDate:g.utcDate,status:g.status,homeTeam:{id:g.homeTeam?.id},awayTeam:{id:g.awayTeam?.id},score:g.score,__year:year};}
 // Offline batch registration uses exactly the production model, with an explicit clock.
@@ -388,10 +397,12 @@ async function listHistory(env,cursor){
   let before='9999',beforeId='~';
   if(cursor){try{const x=JSON.parse(atob(cursor));if(typeof x[0]!=='string'||typeof x[1]!=='string'||x[0].length>40||x[1].length>100)throw 0;[before,beforeId]=x;}catch{fail(400,'Некорректная страница.');}}
   const d=primary(env);
-  const r=await d.prepare(`SELECT id,snapshot,saved_at FROM predictions
-    WHERE saved_at < ?1 OR (saved_at=?1 AND id<?2) ORDER BY saved_at DESC,id DESC LIMIT 21`).bind(before,beforeId).all();
-  const page=r.results.slice(0,20),items=[];
-  for(const row of page){const o=await d.prepare('SELECT payload FROM observations WHERE prediction_id=?1 ORDER BY seq DESC LIMIT 1').bind(row.id).first();items.push({prediction:{...JSON.parse(row.snapshot),savedAt:row.saved_at},latest:o?JSON.parse(o.payload):{status:'pending'}});}
+  const r=await d.prepare(`SELECT id,snapshot,saved_at,
+    (SELECT payload FROM observations WHERE prediction_id=p.id ORDER BY seq DESC LIMIT 1) AS latest
+    FROM predictions p WHERE saved_at < ?1 OR (saved_at=?1 AND id<?2) ORDER BY saved_at DESC,id DESC LIMIT 21`).bind(before,beforeId).all();
+  const page=r.results.slice(0,20);
+  const items=page.map(row=>({prediction:{...JSON.parse(row.snapshot),savedAt:row.saved_at},
+    latest:row.latest?JSON.parse(row.latest):{status:'pending'}}));
   const last=page.at(-1);
   return {items,nextCursor:r.results.length>20?btoa(JSON.stringify([last.saved_at,last.id])):null};
 }
@@ -452,6 +463,8 @@ async function runScheduled(env){
 function researchServices(env){
   const services={now:()=>Date.now(),fetch:(...args)=>fetch(...args),readLimited,settleV1:()=>runScheduled(env),
     predictCandidate:predictV2,
+    publishedModel:model=>publishedModel(primary(env),model,env.FOOTPREDICT_PUBLIC_MODEL==='poisson',Date.now()),
+    reviewRelease:db=>checkRelease(db,Date.now()),
     predictV1:(current,previous,game,year)=>{
       const games=current.map(g=>normalized(g,year)).concat(previous.map(g=>normalized(g,year-1)));
       const stats=estimateStats(games,game,year),result=predict(stats);
@@ -475,7 +488,7 @@ export default {
   const headers={'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Origin'};
   const origin=req.headers.get('Origin');
   const allowedOrigins=new Set([env.ALLOWED_ORIGIN,'http://127.0.0.1:8000',new URL(req.url).origin]);
-  if(origin&&allowedOrigins.has(origin)){headers['Access-Control-Allow-Origin']=origin;headers['Access-Control-Allow-Methods']='GET, POST, OPTIONS';headers['Access-Control-Allow-Headers']='Content-Type, Authorization';headers['Access-Control-Expose-Headers']='X-FootPredict-Source';}
+  if(origin&&allowedOrigins.has(origin)){headers['Access-Control-Allow-Origin']=origin;headers['Access-Control-Allow-Methods']='GET, POST, OPTIONS';headers['Access-Control-Allow-Headers']='Content-Type, Authorization';headers['Access-Control-Expose-Headers']='X-FootPredict-Source, X-FootPredict-Fetched-At';}
   const reply=(data,status=200)=>new Response(JSON.stringify(data),{status,headers});
   try{
     if(origin&&!allowedOrigins.has(origin))fail(403,'Этот origin не разрешён.');
@@ -502,7 +515,7 @@ export default {
     if(u.pathname==='/v1/candidate-comparison'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonReport(primary(env),Date.now(),NIGHTLY_COMPARISON_PROTOCOL));}
     const candidateComparisonMatch=u.pathname.match(/^\/v1\/candidate-comparison\/(\d{1,12})\/evidence$/);
     if(candidateComparisonMatch&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await comparisonEvidence(primary(env),positiveId(candidateComparisonMatch[1]),NIGHTLY_COMPARISON_PROTOCOL));}
-    if(u.pathname==='/v1/quality'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await qualityReport(primary(env)));}
+    if(u.pathname==='/v1/quality'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await qualityReport(primary(env),null,{paused:env.FOOTPREDICT_PUBLIC_MODEL==='poisson'}));}
     if(u.pathname==='/v1/automation/status'&&req.method==='GET'){if(u.search)fail(400,'Неизвестный параметр.');return reply(await automationStatus(env,researchServices(env)));}
     if(u.pathname==='/v1/automation/report'&&req.method==='GET'){
       if([...u.searchParams.keys()].some(key=>key!=='day')||u.searchParams.getAll('day').length>1)fail(400,'Неизвестный параметр.');
@@ -559,10 +572,12 @@ export default {
     if(proxy.legacyCacheKey&&env.FOOTPREDICT_CACHE){
       try{const old=await env.FOOTPREDICT_CACHE.get(proxy.legacyCacheKey,'json');if(old!==null&&old!==undefined){headers['X-FootPredict-Source']='LEGACY_KV_CACHE';return reply(old);}}catch{/* Continue with the current cache and provider checks. */}
     }
-    const r=await upstream(env,proxy.provider,proxy.path,{ttl:proxy.ttl});headers['X-FootPredict-Source']=r.source;return reply(r.data);
+    const r=await upstream(env,proxy.provider,proxy.path,{ttl:proxy.ttl});headers['X-FootPredict-Source']=r.source;headers['X-FootPredict-Fetched-At']=r.fetchedAt;return reply(r.data);
   }catch(e){if(e.status===429)headers['Retry-After']='60';return reply({error:e.status?'REQUEST_FAILED':'INTERNAL',message:e.status?e.message:req.method==='GET'?'Ошибка хранилища или конфигурации Worker. Не удалось загрузить данные.':'Ошибка хранилища или конфигурации. Запись не подтверждена; проверь историю перед повтором.'},e.status||503);}
  },
  async scheduled(event,env,ctx){
    ctx.waitUntil(runAutomation(env,researchServices(env),{reason:event.cron||'scheduled',scheduledTime:event.scheduledTime}));
  }
 };
+
+export {completedBefore};

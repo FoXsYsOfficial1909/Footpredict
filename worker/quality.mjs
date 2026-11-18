@@ -1,16 +1,19 @@
 import {scoreQuality,summarizeQuality as summarize} from './metrics.mjs';
 import {comparisonReport,NIGHTLY_COMPARISON_PROTOCOL} from './comparison.mjs';
 export {scoreQuality} from './metrics.mjs';
+import {qualityWindows} from './quality-windows.mjs';
 import {modelV2Info} from './model-v2.mjs';
 
-export const QUALITY_VERSION='quality-1.1.0';
+export const QUALITY_VERSION='quality-2.0.0';
 const V1='poisson-1.0.0',HOUR=3600000;
 const parse=value=>typeof value==='string'?JSON.parse(value):value;
 
 function distribution(values,counts=false){
   if(!Array.isArray(values)||values.length!==3||values.some(v=>typeof v!=='number'||!Number.isFinite(v)||v<0||(!counts&&v>1)))return null;
   const total=values.reduce((sum,v)=>sum+v,0);
-  return total>0&&Number.isFinite(total)&&(counts||Math.abs(total-1)<1e-6)?values.map(v=>v/total):null;
+  if(!(total>0&&Number.isFinite(total)))return null;
+  if(counts)return values.map(v=>v/total);
+  return Math.abs(total-1)<1e-8?values:null;
 }
 
 function forecast(row,key,now){
@@ -24,13 +27,14 @@ function forecast(row,key,now){
   else if(key==='v1'&&(row.provider!=='football-data.org'||row.trust!=='server-recorded'||row.market!=='1X2_REGULATION'||row.prediction_id!==`fd:${row.fixture_id}:${V1}`))reason='unverified_prediction';
   const score=key==='v1'?observation.result:observation.score;
   if(!reason&&state==='settled'){
-    if(!score||![score.home,score.away].every(v=>Number.isInteger(v)&&v>=0)||!Number.isFinite(checked)||checked<kickoff+4*HOUR||checked>now)reason='unverified_result';
+    if(!score||![score.home,score.away].every(v=>Number.isInteger(v)&&v>=0&&v<=30)||!Number.isFinite(checked)||checked<kickoff+4*HOUR||checked>now)reason='unverified_result';
     else if(key==='v1'&&Date.parse(observation.kickoffAt)!==kickoff)reason='changed_kickoff';
   }
   if(reason)state='excluded';
   return {fixtureId:row.fixture_id,key,modelVersion:row.model_version,kickoff:row.kickoff_at,savedAt:row.saved_at,
     homeId,awayId,home:row.home_name,away:row.away_name,league:row.league||'PL',probabilities,
     baseProbabilities:key==='v1'?distribution(parse(row.base_probabilities),true):null,
+    stats:key==='v1'?parse(row.stats)||null:null,
     state,reason,sourceStatus:observation.status,checkedAt:observation.checkedAt||null,
     score:state==='settled'?score:null,metrics:state==='settled'?scoreQuality(probabilities,score):null};
 }
@@ -72,6 +76,8 @@ export function buildQuality(v1Rows,v2Rows,now=Date.now()){
   const all=[...fixtures.values()].sort((a,b)=>Date.parse(b.kickoff)-Date.parse(a.kickoff)||b.fixtureId-a.fixtureId);
   return {schemaVersion:1,version:QUALITY_VERSION,generatedAt:new Date(now).toISOString(),
     cohorts:{v1:cohort(v1,'v1',V1),v2:cohort(v2,'v2',info.modelVersion)},paired,
+    windows:qualityWindows(v1.map(r=>({league:r.league,kickoff:r.kickoff,state:r.state,score:r.score,
+      models:{v1:r.probabilities,base:r.baseProbabilities}})),['v1','base'],now),
     fixtures:all.slice(0,200),fixtureScope:{total:all.length,returned:Math.min(200,all.length),limit:200},
     model:{modelVersion:info.modelVersion,asOf:info.asOf,newsUsedInProbabilities:info.newsUsedInProbabilities,promotedToDefault:info.promotedToDefault},
     historical:info.benchmark};
@@ -79,13 +85,13 @@ export function buildQuality(v1Rows,v2Rows,now=Date.now()){
 
 // Compact projections avoid parsing large immutable input snapshots. This route
 // reads existing ledgers only: no migration, provider request, quota or writes.
-export async function qualityReport(db,now=null){
+export async function qualityReport(db,now=null,{paused=false}={}){
   const v1=await db.prepare(`SELECT id AS prediction_id,fixture_id,model_version,kickoff_at,saved_at,
     json_extract(snapshot,'$.provider') AS provider,json_extract(snapshot,'$.trust') AS trust,
     json_extract(snapshot,'$.market') AS market,json_extract(snapshot,'$.league') AS league,
     json_extract(snapshot,'$.homeId') AS home_id,json_extract(snapshot,'$.awayId') AS away_id,
     json_extract(snapshot,'$.homeName') AS home_name,json_extract(snapshot,'$.awayName') AS away_name,
-    json_extract(snapshot,'$.probabilities') AS probabilities,json_extract(snapshot,'$.stats.baseCounts') AS base_probabilities,
+    json_extract(snapshot,'$.stats') AS stats,json_extract(snapshot,'$.probabilities') AS probabilities,json_extract(snapshot,'$.stats.baseCounts') AS base_probabilities,
     (SELECT payload FROM observations WHERE prediction_id=p.id ORDER BY seq DESC LIMIT 1) AS latest
     FROM predictions p WHERE model_version=?1`).bind(V1).all();
   const v2=await db.prepare(`SELECT fixture_id,model_version,kickoff_at,saved_at,probabilities,
@@ -94,5 +100,5 @@ export async function qualityReport(db,now=null){
     (SELECT payload FROM automation_results WHERE fixture_id=p.fixture_id ORDER BY seq DESC LIMIT 1) AS latest
     FROM automation_predictions p WHERE model_version=?1`).bind(modelV2Info().modelVersion).all();
   return {...buildQuality(v1.results,v2.results,now??Date.now()),prospective:await comparisonReport(db,now??Date.now()),
-    nightly:await comparisonReport(db,now??Date.now(),NIGHTLY_COMPARISON_PROTOCOL)};
+    nightly:await comparisonReport(db,now??Date.now(),NIGHTLY_COMPARISON_PROTOCOL,{includeRelease:true,paused})};
 }

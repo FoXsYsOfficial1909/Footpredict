@@ -1,4 +1,5 @@
-const API='https://footpredict-api.wzjp5747md.workers.dev';
+import {API,loadQuality} from './quality-data-v2.js';
+import {rounded,validProbabilities} from './forecast-display.js';
 const $=id=>document.getElementById(id);
 const percent=value=>typeof value==='number'?(value*100).toFixed(1).replace('.',',')+'%':'—';
 const decimal=value=>typeof value==='number'?value.toFixed(3).replace('.',','):'—';
@@ -92,10 +93,16 @@ function renderProspective(nightly=false){
       }
       for(const key of keys){
         const probabilities=fixture.models?.[key]?.probabilities;
-        item.append(note(names[key]+': '+(Array.isArray(probabilities)&&probabilities.length===3&&probabilities.every(p=>typeof p==='number'&&Number.isFinite(p))?
-          probabilities.map((p,i)=>labels[i]+' '+percent(p)).join(' · '):'неполная запись, исключена из сравнения')));
+        item.append(note(names[key]+': '+(validProbabilities(probabilities)?
+          rounded(probabilities).map((v,i)=>labels[i]+' '+v).join(' · '):'неполная запись, исключена из сравнения')));
       }
       item.append(note(fixture.state==='settled'?'Итог: '+fixture.latest.score.home+':'+fixture.latest.score.away:fixture.state==='pending'?'Ожидается результат':'Итог требует проверки.'));
+      if(Number.isSafeInteger(fixture.fixtureId)&&fixture.fixtureId>0){
+        const params=new URLSearchParams({match:String(fixture.fixtureId)});
+        if(Number.isInteger(fixture.year))params.set('season',String(fixture.year));
+        const link=el('a','Открыть матч');link.href='./?'+params.toString()+'#matches';
+        item.append(link);
+      }
       const button=el('button','Скачать исходный расчёт');button.type='button';
       button.addEventListener('click',async()=>{
         button.disabled=true;
@@ -138,10 +145,10 @@ function renderHistorical(){
 function modelDetail(record,key){
   const card=el('div',undefined,'quality-pick');card.append(el('h4',key));
   if(!record){card.append(note('Прогноз не сохранялся.'));return card;}
-  if(record.probabilities){
+  if(validProbabilities(record.probabilities)){
     const max=Math.max(...record.probabilities),tops=record.probabilities.map((p,i)=>Math.abs(p-max)<=1e-12?labels[i]:null).filter(Boolean);
     card.append(el('p',tops.join(' / ')+' · '+percent(max),'quality-pick-top'));
-    card.append(note(record.probabilities.map((p,i)=>labels[i]+' '+percent(p)).join(' · ')));
+    card.append(note(rounded(record.probabilities).map((v,i)=>labels[i]+' '+v).join(' · ')));
   }
   if(record.metrics){
     const m=record.metrics;
@@ -256,15 +263,13 @@ function renderOverview(){
   if(ties)full(note('Равные максимумы исключены только из доли совпадений: '+ties+'. Все общие матчи остаются в Brier и Log Loss.'));
 }
 
-async function refresh(){
+async function refresh(force=true){
   $('refreshQualityPublic').disabled=true;
   const button=$('refreshQuality');button.disabled=true;
   $('qualityStatus').textContent='Загружаю сохранённые прогнозы и последние результаты…';
   $('qualityStatus').classList.remove('danger');
   try{
-    const response=await fetch(API+'/v1/quality',{cache:'no-store',credentials:'omit'});
-    if(!response.ok)throw new Error('HTTP '+response.status);
-    const data=await response.json();
+    const data=await loadQuality({refresh:force===true});
     if(data.schemaVersion!==1||!data.cohorts?.v1||!data.cohorts?.v2||!data.paired||!Array.isArray(data.fixtures))throw new Error('Incomplete report');
     report=data;renderOverview();renderProspective(true);renderProspective();renderCohorts();renderPaired();renderHistorical();renderFixtures(true);view();
     $('qualityResult').hidden=false;$('downloadQuality').disabled=false;
@@ -281,15 +286,15 @@ if(typeof document!=='undefined'){
 $('qualityView').addEventListener('change',view);
 for(const id of ['qualityFilter','qualityModelFilter'])$(id).addEventListener('change',()=>renderFixtures(true));
 $('moreQualityFixtures').addEventListener('click',()=>{shown+=20;renderFixtures();});
-$('refreshQuality').addEventListener('click',refresh);
-$('refreshQualityPublic').addEventListener('click',refresh);
+$('refreshQuality').addEventListener('click',()=>refresh(true));
+$('refreshQualityPublic').addEventListener('click',()=>refresh(true));
 $('downloadQuality').addEventListener('click',()=>{
   if(!report)return;
   const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'})),link=el('a');
   link.href=url;link.download='footpredict-quality-'+report.generatedAt.slice(0,10)+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 let opened=false;
-function open(){if(opened)return;opened=true;refresh();}
+function open(){if(opened)return;opened=true;refresh(false);}
 window.addEventListener('footpredict:tab-selected',event=>{if(event.detail?.tab==='quality')open();});
 if(document.getElementById('tab-quality')?.getAttribute('aria-selected')==='true')open();
 }

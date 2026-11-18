@@ -119,15 +119,20 @@ class TrainerAgentTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);state=root/'state';source=root/'quality.json'
             source.write_text(json.dumps(self.quality()))
-            with patch('research.trainer_agents.feature_rows',return_value=rows), \
+            with patch('research.trainer_agents.prepare_rows',return_value=(rows,{'mode':'full'})), \
                  patch('research.trainer_agents.train',side_effect=lambda rows,*args:self.network(len(rows))) as fit:
                 first=run(state,root/'first',self.now.date(),snapshot=True,quality_path=source,now=self.now)
             self.assertEqual(fit.call_count,2);self.assertEqual(first['roles']['trainer']['fits'],2)
+            self.assertGreater(first['timingsSeconds']['total'],0)
+            self.assertTrue(all(v>=0 for v in first['timingsSeconds'].values()))
             original_model=(state/'model.json').read_bytes();original_forecasts=json.loads((state/'state.json').read_text())['forecasts']
             later=self.now+timedelta(minutes=20);source.write_text(json.dumps(self.quality(later)))
             with patch('research.trainer_agents.train') as fit:
                 second=run(state,root/'second',self.now.date(),snapshot=True,quality_path=source,now=later)
             fit.assert_not_called();self.assertEqual(second['roles']['trainer']['fits'],0)
+            self.assertEqual(second['featurePreparation']['mode'],'not_needed')
+            self.assertEqual(second['timingsSeconds']['features'],0)
+            self.assertEqual(second['timingsSeconds']['finalFit'],0)
             self.assertEqual(second['trainedAt'],first['trainedAt']);self.assertEqual(second['modelSha256'],first['modelSha256'])
             self.assertEqual(original_forecasts,json.loads((state/'state.json').read_text())['forecasts'])
             saved=(state/'state.json').read_bytes();source.write_text(json.dumps(self.quality(self.now-timedelta(hours=2))))

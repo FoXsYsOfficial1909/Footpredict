@@ -405,7 +405,8 @@ export async function runAutomation(env,services,{reason='scheduled',scheduledTi
     ON CONFLICT(key) DO UPDATE SET value=excluded.value`).bind(json(tick)).run();
   await meta();
   try {
-    // At the daily trigger, create the report before slow external feeds.
+    if(services.reviewRelease)try{const decision=await services.reviewRelease(db);if(decision)tick.modelRelease=decision.status;}
+    catch(error){tick.modelReleaseError=publicError(error);}
     if(reason==='50 4 * * *') {
       try {tick.reportCreated=await ensureReport(db,services.now());}
       catch(error){tick.reportError=publicError(error);}

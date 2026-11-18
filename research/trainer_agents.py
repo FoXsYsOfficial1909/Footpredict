@@ -11,6 +11,7 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import time
 
 import numpy as np
 
@@ -20,7 +21,8 @@ from research.evaluate import base_distribution
 from research.monitor import API, fetch
 from research.models import v1_statistics
 from research.neural_experiment import (PLAN, ROOT, DIVISIONS as ORDER, FEATURE_CODE, source_games,
-    feature_rows, train, predict, evaluate, validate_plan)
+    train, predict, evaluate, validate_plan)
+from research.neural_feature_cache import prepare_rows,implementation_sha as cache_implementation_sha
 from research.neural_features import FEATURE_NAMES, _coverage
 from research.neural_residual import predict_model
 from research.nightly import sha
@@ -84,7 +86,7 @@ def load_state(directory):
 
 def implementation_sha():
     names=(*FEATURE_CODE,'research/neural_residual.py','research/neural_experiment.py',
-           'research/trainer_agents.py','requirements-research.txt')
+           'research/trainer_agents.py','research/neural_feature_cache.py','requirements-research.txt')
     return sha({name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in names})
 
 
@@ -211,6 +213,9 @@ def observe_and_register(state,model,model_sha,games,quality,now,*,registration_
 
 
 def run(directory,output,as_of,*,snapshot=False,quality_path=None,now=None):
+    started=time.perf_counter()
+    timings={k:0. for k in ('loadData','fingerprint','restoreModel','features','monitoringFit',
+                            'monitoringEvaluation','finalFit','observer','persist')}
     fixed_clock=now is not None
     now=now or datetime.now(timezone.utc);directory=Path(directory);output=Path(output)
     if any((ROOT/'docs/research').resolve()==p.resolve() or (ROOT/'docs/research').resolve() in p.resolve().parents for p in (directory,output)):
@@ -225,25 +230,29 @@ def run(directory,output,as_of,*,snapshot=False,quality_path=None,now=None):
     report={'schemaVersion':1,'protocol':PROTOCOL,'startedAt':now.isoformat(),'checkedAt':now.isoformat(),'asOf':as_of.isoformat(),
         'status':'failed','roles':{},'policy':POLICY,'promotedToDefault':False,'independentAdvantageEstablished':False}
     try:
+        phase=time.perf_counter()
         if snapshot:games=source_games(plan);sources=[{'source':'pinned offline corpus','dataSha256':plan['sourceDataSha256']}]
         else:games,sources=load_live_sources(directory/'data',as_of)
+        timings['loadData']=time.perf_counter()-phase;phase=time.perf_counter()
         data=normalize(games);data_sha=sha(data)
         fingerprint=sha({'dataSha256':data_sha,'codeSha256':implementation_sha(),'planSha256':sha(plan),'blendWeight':selection['weight']})
         report['roles']['data']={'status':'checked','matches':len(games),'dataSha256':data_sha,
             'sources':len(sources),'sourceManifest':sources}
         old=state.get('training');same=old and old['inputFingerprint']==fingerprint
+        timings['fingerprint']=time.perf_counter()-phase;phase=time.perf_counter()
         if same:
             model=json.loads((directory/'model.json').read_text())
             if sha(model)!=old['modelSha256']:raise ValueError('Stored trainer model checksum changed')
             monitoring=json.loads((directory/'monitoring.json').read_text())
             trained=old
+            timings['restoreModel']=time.perf_counter()-phase
+            report['featurePreparation']={'mode':'not_needed','reason':'unchanged_training_inputs'}
         else:
             hashes={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in FEATURE_CODE}
-            feature_cache=directory/'feature-rows.json.gz';manifest_path=directory/'feature-rows-manifest.json'
-            manifest=json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
-            cached=feature_cache if (feature_cache.exists() and manifest.get('sourceDataSha256')==data_sha
-                    and manifest.get('codeHashes')==hashes) else None
-            rows=feature_rows(games,plan,cached)  # Live counts need not equal the earlier pinned research cohort.
+            feature_cache=directory/'feature-rows.json.gz'
+            rows,preparation=prepare_rows(games,plan,directory)
+            report['featurePreparation']=preparation
+            timings['features']=time.perf_counter()-phase
             eligible=[r for r in rows if r['season']>=2016 and r['date']<(as_of-timedelta(days=1)).isoformat()]
             targets=[]
             for d in ORDER:
@@ -252,10 +261,14 @@ def run(directory,output,as_of,*,snapshot=False,quality_path=None,now=None):
                 targets.extend(league[-POLICY['monitoringTargetsPerDivision']:])
             cutoff=min(r['cutoff_date'] for r in targets)
             earlier=[r for r in eligible if r['date']<cutoff]
+            phase=time.perf_counter()
             examiner=train(earlier,cutoff,plan)
+            timings['monitoringFit']=time.perf_counter()-phase;phase=time.perf_counter()
             observed=predict(sorted(targets,key=lambda r:(r['date'],r['division'],r['home'])),examiner,selection['weight'])
             monitoring=evaluate(observed,plan)
+            timings['monitoringEvaluation']=time.perf_counter()-phase;phase=time.perf_counter()
             network=train(eligible,(as_of-timedelta(days=1)).isoformat(),plan)
+            timings['finalFit']=time.perf_counter()-phase
             model={'schemaVersion':1,'protocol':PROTOCOL,'network':network,'blendWeight':selection['weight'],
                 'featureNames':list(FEATURE_NAMES),'dataSha256':data_sha,'asOf':as_of.isoformat(),
                 'trainingCutoffExclusive':(as_of-timedelta(days=1)).isoformat(),'promotedToDefault':False}
@@ -271,10 +284,12 @@ def run(directory,output,as_of,*,snapshot=False,quality_path=None,now=None):
             'kind':'rolling historical monitoring; not prospective','monitoring':monitoring,
             'recipeHistoricalGatePassed':study['historicalGatePassed'],
             'publicPromotionAllowed':False,'reason':'independent future evidence required'}
+        phase=time.perf_counter()
         quality=json.loads(Path(quality_path).read_text()) if quality_path else json.loads(fetch(API+'/v1/quality',3_000_000)[0])
         observed=now if fixed_clock else datetime.now(timezone.utc)
         prospective=observe_and_register(state,model,trained['modelSha256'],games,quality,observed,
             registration_clock=None if fixed_clock else lambda:datetime.now(timezone.utc))
+        timings['observer']=time.perf_counter()-phase;phase=time.perf_counter()
         # State advances only after every role verified its inputs; failed observers cannot replace local weights.
         if not same:
             dump(directory/'model.json',model);dump(directory/'monitoring.json',monitoring)
@@ -283,7 +298,7 @@ def run(directory,output,as_of,*,snapshot=False,quality_path=None,now=None):
             feature_cache.write_bytes(compressed)
             dump(directory/'feature-rows-manifest.json',{'protocol':'neural-features-1','featureNames':list(FEATURE_NAMES),
                 'sourceDataSha256':data_sha,'dataSha256':sha(rows),'compressedSha256':hashlib.sha256(compressed).hexdigest(),
-                'codeHashes':hashes})
+                'codeHashes':hashes,'incrementalCodeSha256':cache_implementation_sha()})
         report['roles']['observer']={'status':'checked',**prospective}
         state['training']=trained;validate_state(state);dump(directory/'state.json',state)
         dump(output/'quality-source.json',quality);dump(output/'model.json',model)
@@ -291,10 +306,12 @@ def run(directory,output,as_of,*,snapshot=False,quality_path=None,now=None):
             modelSha256=trained['modelSha256'],modelVersion=trained['modelVersion'],trainedAt=trained['trainedAt'],
             trainingMatches=trained['trainingMatches'],prospective=prospective,
             planSha256=sha(plan),codeSha256=implementation_sha())
+        timings['persist']=time.perf_counter()-phase
     except Exception as error:
         report['errorType']=type(error).__name__;report['message']='Trainer cycle failed; previous published model and forecasts are retained.'
         raise
     finally:
+        report['timingsSeconds']={**timings,'total':time.perf_counter()-started}
         report['checkedAt']=(now if fixed_clock else datetime.now(timezone.utc)).isoformat()
         dump(output/'report.json',report)
     return report

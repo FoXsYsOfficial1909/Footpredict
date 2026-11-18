@@ -10,6 +10,7 @@ on:
       - '.github/workflows/trainer-agents.yml'
       - 'research/trainer_agents.py'
       - 'research/neural_features.py'
+      - 'research/neural_feature_cache.py'
       - 'research/neural_residual.py'
       - 'research/neural_experiment.py'
       - 'scripts/publish_trainer_agents.py'
@@ -46,7 +47,7 @@ jobs:
           key: ${{ runner.os }}-trainer-csv-v1-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: ${{ runner.os }}-trainer-csv-v1-
       - run: python -m pip install -r requirements-research.txt
-      - run: python -m unittest tests.test_neural_residual tests.test_neural_features tests.test_neural_experiment tests.test_trainer_agents tests.test_trainer_dashboard
+      - run: python -m unittest tests.test_neural_residual tests.test_neural_features tests.test_neural_experiment tests.test_neural_feature_cache tests.test_trainer_agents tests.test_trainer_dashboard
       - name: Restore previous weights and immutable neural forecasts
         id: restore
         continue-on-error: true
@@ -117,6 +118,8 @@ jobs:
               lines.extend(['',f"Model: {r['modelVersion']}; trained: {r['trainedAt']}",
                   f"Future PL forecasts: {r['prospective']['registered']}; settled: {r['prospective']['settled']}",
                   'Public model promotion: disabled.'])
+              lines.extend(['',f"Feature preparation: {r.get('featurePreparation')}",
+                  f"Phase durations (seconds): {r.get('timingsSeconds')}"])
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('\n'.join(lines)+'\n')
           PY
       - if: steps.restore.outcome != 'success' || steps.cycle.outcome != 'success' || steps.artifact.outcome != 'success'

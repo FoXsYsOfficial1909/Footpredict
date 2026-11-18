@@ -1,3 +1,4 @@
+import {rounded} from './forecast-display.js';
 const REPORT='https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/trainer-agent-reports/latest.json';
 const ARCHIVE=REPORT.slice(0,-'latest.json'.length);
 const date=value=>Number.isFinite(Date.parse(value))?new Date(value).toLocaleString('ru-RU',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Moscow'})+' МСК':'—';
@@ -12,10 +13,8 @@ function probabilities(p){
 }
 
 export function probabilityPercentages(values){
-  const p=probabilities(values),sum=p.reduce((a,b)=>a+b,0),scaled=p.map(v=>v/sum*1000),units=scaled.map(Math.floor);
-  const order=[0,1,2].sort((a,b)=>(scaled[b]-units[b])-(scaled[a]-units[a])||a-b);
-  for(let i=0,left=1000-units.reduce((a,b)=>a+b,0);i<left;i++)units[order[i]]++;
-  return units.map(v=>(v/10).toFixed(1).replace('.',',')+'%');
+  probabilities(values);
+  return rounded(values).map(value=>value.replace('.',','));
 }
 
 export function validateTrainerDashboard(view,reference=null){
@@ -143,18 +142,29 @@ export function describeTrainerAgents(packet,now=Date.now()){
   return lines.join('\n');
 }
 
-if(typeof document!=='undefined'){
-  let loaded=false,requestId=0,cached=null,cachedDigest=null;
   async function read(url){
     const response=await fetch(url,{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(20000)});
     if(!response.ok)throw new Error('Report unavailable');
     const raw=await response.text();if(raw.length>500000)throw new Error('Report too large');return raw;
   }
+
+let pendingReport=null,lastReport=null,readAt=0;
+export function loadTrainerReport(refresh=false){
+  if(pendingReport)return pendingReport;
+  if(!refresh&&lastReport&&Date.now()-readAt<300000)return Promise.resolve(lastReport);
+  pendingReport=read(REPORT+'?t='+Date.now()).then(raw=>{
+    const packet=JSON.parse(raw);describeTrainerAgents(packet);
+    lastReport=packet;readAt=Date.now();return packet;
+  }).finally(()=>{pendingReport=null;});
+  return pendingReport;
+}
+if(typeof document!=='undefined'){
+  let loaded=false,requestId=0,cached=null,cachedDigest=null;
   async function refresh(){
     const token=++requestId,target=document.getElementById('trainerAgentsBody'),status=document.getElementById('trainerAgentsViewStatus');
     status.hidden=false;status.textContent='Обновляю проверку нейросети…';
     try{
-      const packet=JSON.parse(await read(REPORT+'?t='+Date.now())),message=describeTrainerAgents(packet);
+      const packet=await loadTrainerReport(true),message=describeTrainerAgents(packet);
       if(token!==requestId)return;target.textContent=message;
       const success=packet.latestSuccessful,digest=success?.prospectiveDashboardSha256;
       if(!digest){

@@ -1,3 +1,5 @@
+import {rounded} from './forecast-display.js';
+
 // Lazy, public view of the fixed hundred; viewing never recalculates predictions.
 export const HUNDRED_RESULTS='https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/hundred-results/latest.json';
 const PROTOCOL='hundred-future-1';
@@ -49,8 +51,9 @@ if(section){
       const row=map.get(f.fixtureId),card=el('article',undefined,'hundred-row');
       card.append(el('h3',f.home+' — '+f.away),el('p',names[f.league]+' · '+date(f.kickoff),'research-note'));
       const probs=el('div',undefined,'hundred-probabilities'),maximum=Math.max(...f.probabilities);
+      const percentages=rounded(f.probabilities);
       f.probabilities.forEach((p,i)=>{const box=el('div',undefined,Math.abs(p-maximum)<=1e-12?'is-leading':'');
-        box.append(el('span',['П1','Ничья','П2'][i]),el('strong',(p*100).toFixed(1).replace('.',',')+'%'));probs.append(box);});
+        box.append(el('span',['П1','Ничья','П2'][i]),el('strong',percentages[i].replace('.',',')));probs.append(box);});
       card.append(probs);
       card.append(el('p',row?.status==='settled'?'Результат: '+row.score.home+' : '+row.score.away:
         row?.status==='review'?'Перенос или изменение данных · требуется проверка':row?.status==='unavailable'?'Источник пока не подтвердил результат':

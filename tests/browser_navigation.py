@@ -20,8 +20,9 @@ with sync_playwright() as playwright:
         page.wait_for_function("!document.getElementById('loadMatches').disabled",timeout=35000)
         assert page.get_by_role('tab').count()==3
         assert page.locator('#calculator').is_hidden() and page.locator('#matchResearch').is_hidden()
-        assert page.locator('#loadCompetitions').is_hidden() and page.locator('#content button').count()>0
-        assert all('/competitions/PL/matches' in url for _,url in requests),requests
+        assert page.locator('#loadCompetitions').is_visible() and page.locator('#content button').count()>0
+        assert all('/competitions/PL/matches' in url or url.endswith('/v1/quality') for _,url in requests),requests
+        assert sum(url.endswith('/v1/quality') for _,url in requests)==1,requests
         page.screenshot(path=str(OUTPUT/'matches-mobile.png'),full_page=True)
         page.locator('#content button').first.click()
         page.wait_for_function("!document.getElementById('loadMatches').disabled",timeout=35000)

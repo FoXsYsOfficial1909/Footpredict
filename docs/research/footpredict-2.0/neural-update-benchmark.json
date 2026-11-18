@@ -1,0 +1,23 @@
+{
+  "dataSha256": "63097b3e330872357eef22b9145e9ac98ac39920ba8ab61d82bade714b3fe86f",
+  "modelSha256": "6cb03e572b3fd4a416d4cd4ac0ae397e3df5e56531605af1b9bd8297d4113755",
+  "sourceRows": 14007,
+  "featureSha256": "353f0bf9b91646258388a8d24b0359435989af5c6e599c81e1e1e14eea2d0f7b",
+  "trainingRows": 13075,
+  "preparation": {
+    "mode": "incremental",
+    "reason": "verified_cache",
+    "reusedRows": 14002,
+    "rebuiltRows": 5,
+    "totalRows": 14007,
+    "invalidatedFrom": {
+      "E2": "2026-11-14"
+    }
+  },
+  "fullPreparationSeconds": 63.83392221200006,
+  "incrementalPreparationSeconds": 1.4996597900000097,
+  "speedupPreparation": 42.565602303706264,
+  "fitSeconds": 1.494202151999957,
+  "featuresIdentical": true,
+  "modelWeightsIdenticalToPublished": true
+}

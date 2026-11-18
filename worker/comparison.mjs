@@ -1,3 +1,5 @@
+import {MODEL_RELEASE,releaseStatus,eligibleRecipe} from './model-release.mjs';
+import {qualityWindows} from './quality-windows.mjs';
 import {scoreQuality,summarizeQuality} from './metrics.mjs';
 import {predictEnsemble} from './model-v2.mjs';
 import {validateTrainingReport,verifyNightlyArtifact,NIGHTLY_MAX_AGE_HOURS,NIGHTLY_SETTINGS_SHA} from './nightly-model.mjs';
@@ -16,7 +18,8 @@ const SERIES={
 function series(protocol){if(!Object.hasOwn(SERIES,protocol))throw error(422,'Неизвестный протокол сравнения.');return SERIES[protocol];}
 function policy(config){return {minimumHorizonHours:24,sharedRegistrationTime:true,newsUsedInProbabilities:false,automaticPromotion:false,
   ...(config.nightly?{candidateSelection:'latest_verified_at_first_registration',maximumTrainingAgeHours:NIGHTLY_MAX_AGE_HOURS,
-    settingsSha256:NIGHTLY_SETTINGS_SHA,metricsScope:'nightly_refresh_procedure'}:{})};}
+    settingsSha256:NIGHTLY_SETTINGS_SHA,metricsScope:'nightly_refresh_procedure',
+    promotionProtocol:MODEL_RELEASE.protocol}:{})};}
 function validNightlySnapshot(model,savedAt){
   const generated=Date.parse(model?.trainingGeneratedAt),saved=Date.parse(savedAt),asOf=Date.parse(model?.asOf+'T00:00:00Z'),cutoff=Date.parse(model?.trainingCutoffExclusive+'T00:00:00Z');
   return !!model&&/^ensemble-candidate-\d{4}-\d{2}-\d{2}-[0-9a-f]{12}$/.test(model.modelVersion)&&model.modelVersion.startsWith('ensemble-candidate-'+model.asOf+'-')&&
@@ -95,6 +98,9 @@ export async function registerComparison(db,services,{fixtureId,kickoff},protoco
     ...(bundle?{candidateArtifact:{modelJson:bundle.modelJson,modelSha256:bundle.report.modelSha256,trainingReport:bundle.report,
       modelUrl:bundle.modelUrl,modelFetchedAt:bundle.modelFetchedAt,reportUrl:bundle.reportUrl,reportFetchedAt:bundle.reportFetchedAt}}:{}),
     policy:policy(config)};
+  if(config.nightly && eligibleRecipe(packet.models.candidate) && services.publishedModel)
+    packet.primaryModel=await services.publishedModel(packet.models.candidate);
+  if(!upcoming(g,services.now()))throw error(409,'Закрылось время регистрации совместного прогноза.');
   const payload=JSON.stringify(packet);
   if(payload.length>200000)throw error(422,'Снимок совместного расчёта слишком большой.');
   // One row freezes the entire comparison atomically. SQL-time guard prevents a
@@ -107,7 +113,7 @@ export async function registerComparison(db,services,{fixtureId,kickoff},protoco
 }
 
 export function observeComparison(packet,game,checkedAt){
-  const base={checkedAt,provider:'football-data.org',providerStatus:game?.status};
+  const base={checkedAt,kickoff:game?.utcDate||null,provider:'football-data.org',providerStatus:game?.status};
   if(!game||game.id!==packet.fixtureId||game.homeTeam?.id!==packet.homeId||game.awayTeam?.id!==packet.awayId||game.utcDate!==packet.kickoff||
     Date.parse(packet.kickoff)-Date.parse(packet.savedAt)<DAY)return {...base,status:'review_required',reason:'fixture_identity_or_time_changed'};
   if(game.status==='CANCELLED')return {...base,status:'cancelled'};
@@ -141,23 +147,24 @@ export async function settleComparisons(db,services,protocol=COMPARISON_PROTOCOL
   return {selected:rows.results.length,checked};
 }
 
-export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PROTOCOL){
+export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PROTOCOL,{paused=false,includeRelease=false}={}){
   const config=series(protocol);
   const exists=await db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?1").bind(config.predictions).first();
   const records=exists?(await db.prepare(`SELECT fixture_id,kickoff_at,saved_at,protocol,
     json_extract(payload,'$.home') AS home,json_extract(payload,'$.away') AS away,
-    json_extract(payload,'$.models') AS models,
+    json_extract(payload,'$.stats') AS stats,json_extract(payload,'$.year') AS year,json_extract(payload,'$.models') AS models,json_extract(payload,'$.league') AS league,
+    json_extract(payload,'$.primaryModel') AS primary_model,json_extract(payload,'$.homeId') AS home_id,json_extract(payload,'$.awayId') AS away_id,
     (SELECT payload FROM ${config.results} WHERE fixture_id=p.fixture_id AND checked_at<=?2 ORDER BY seq DESC LIMIT 1) AS latest
     FROM ${config.predictions} p WHERE protocol=?1 AND saved_at<=?2 ORDER BY kickoff_at DESC,fixture_id DESC`).bind(protocol,iso(now)).all()).results:[];
   const totals={registered:records.length,pending:0,settled:0,review:0,excluded:0},scored=Object.fromEntries(config.keys.map(k=>[k,[]])),versions=new Map();
-  const fixtures=[];
+  const fixtures=[],windowRows=[],releaseRows=[];
   for(const row of records){
     const models=parse(row.models),latest=parse(row.latest)||{status:'pending'};
     let state=latest.status==='settled'?'settled':latest.status==='pending'?'pending':'review';
     if(!config.keys.every(key=>valid(models?.[key]?.probabilities))||models.v1.modelVersion!==V1||models.v2.modelVersion!==V2||
       (config.nightly&&!validNightlySnapshot(models.candidate,row.saved_at))||
       !Number.isFinite(Date.parse(row.kickoff_at))||!Number.isFinite(Date.parse(row.saved_at))||Date.parse(row.kickoff_at)-Date.parse(row.saved_at)<DAY||Date.parse(row.saved_at)>now)state='excluded';
-    if(state==='settled'&&(!latest.score||![latest.score.home,latest.score.away].every(n=>Number.isInteger(n)&&n>=0)||
+    if(state==='settled'&&(!latest.score||![latest.score.home,latest.score.away].every(n=>Number.isInteger(n)&&n>=0&&n<=30)||
       !Number.isFinite(Date.parse(latest.checkedAt))||Date.parse(latest.checkedAt)<Date.parse(row.kickoff_at)+4*HOUR||Date.parse(latest.checkedAt)>now))state='excluded';
     totals[state]++;
     if(state==='settled')for(const key of Object.keys(scored))scored[key].push({metrics:scoreQuality(models[key].probabilities,latest.score)});
@@ -169,13 +176,21 @@ export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PRO
       const version=versions.get(id);version.totals.registered++;version.totals[state]++;
       if(state==='settled')for(const key of config.keys)version.scored[key].push({metrics:scoreQuality(models[key].probabilities,latest.score)});
     }
-    if(fixtures.length<100)fixtures.push({fixtureId:row.fixture_id,home:row.home,away:row.away,kickoff:row.kickoff_at,savedAt:row.saved_at,state,models,latest});
+    if(config.nightly&&includeRelease){
+      windowRows.push({kickoff:row.kickoff_at,league:row.league||'PL',state,score:latest.score,
+        models:{v1:models?.v1?.probabilities,candidate:models?.candidate?.probabilities,base:models?.base?.probabilities}});
+      releaseRows.push({fixtureId:row.fixture_id,kickoff:row.kickoff_at,savedAt:row.saved_at,state,models,league:row.league,
+        season:row.year,checkedAt:latest.checkedAt,observedKickoff:latest.kickoff,score:latest.score});
+    }
+    if(fixtures.length<100)fixtures.push({fixtureId:row.fixture_id,league:row.league,homeId:row.home_id,awayId:row.away_id,year:row.year,stats:parse(row.stats)||null,
+      primaryModel:config.nightly&&state!=='excluded'&&row.primary_model==='candidate'&&eligibleRecipe(models?.candidate)?'candidate':'v1',home:row.home,away:row.away,kickoff:row.kickoff_at,savedAt:row.saved_at,state,models,latest});
   }
   return {protocol,generatedAt:iso(now),status:exists?'active':'not_started',totals,
     models:Object.fromEntries(Object.entries(scored).map(([key,rows])=>[key,summarizeQuality(rows)])),fixtures,
     fixtureScope:{total:records.length,returned:fixtures.length,limit:100},
     ...(config.nightly?{versions:[...versions.values()].map(({scored,...version})=>({...version,
       models:Object.fromEntries(Object.entries(scored).map(([key,rows])=>[key,summarizeQuality(rows)]))}))}:{}),
+    ...(config.nightly&&includeRelease?{windows:qualityWindows(windowRows,['v1','candidate','base'],now),release:await releaseStatus(db,releaseRows,now,paused)}:{}),
     policy:policy(config)};
 }
 
