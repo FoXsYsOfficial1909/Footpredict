@@ -92,6 +92,38 @@ function publicTraining() {
   return details;
 }
 
+function renderGoalQuality(target, report) {
+  target.replaceChildren();
+  if (report?.protocol !== 'poisson-goal-markets-1') {
+    target.append(el('p','Журнал голевых рынков временно недоступен.','muted'));
+    return;
+  }
+  const n = report.counts;
+  target.append(el('p', 'АПЛ · зафиксировано ' + n.registered + ', сверено ' + n.settled + ', ожидают ' + n.pending +
+    '. Требуют проверки или исключены ' + (n.review + n.excluded) + '.', 'muted'));
+  if (n.settled) {
+    for (const [key, label] of [['over25','Тотал больше 2,5'], ['bothScore','Обе забьют']]) {
+      const m = report.markets[key];
+      target.append(el('h4',label), el('p','Фактическая частота · ' + pct(m.frequency),'muted small'));
+      target.append(table(['Модель','Средний шанс','Log Loss ↓','Brier ↓'], [
+        ['Пуассон', pct(m.model.meanProbability), decimal(m.model.logLoss), decimal(m.model.brier)],
+        ['Частоты АПЛ', pct(m.base.meanProbability), decimal(m.base.logLoss), decimal(m.base.brier)]
+      ]));
+      const calibration = el('details',undefined,'quality-help');
+      calibration.append(el('summary','Калибровка Пуассона'));
+      const rows = m.model.calibration.flatMap((b,i) => b.n ? [[(i*20)+'–'+((i+1)*20)+'%',b.n,pct(b.predicted),pct(b.observed)]] : []);
+      calibration.append(table(['Диапазон','Игры','Прогноз','Частота'], rows));
+      target.append(calibration);
+    }
+    target.append(el('p','Для Log Loss и Brier меньше — лучше. Шкала Brier от 0 до 2.','muted small'));
+  } else {
+    target.append(el('p','Вероятности фиксируются минимум за сутки до игры. Метрики появятся после сверки первых результатов.'));
+  }
+  const audit = el('a','Сравнение на истории АПЛ');
+  audit.href = 'https://github.com/FoXsYsOfficial1909/Footpredict/blob/main/docs/goal-markets-quality.md';
+  audit.target = '_blank'; audit.rel = 'noopener noreferrer'; target.append(audit);
+}
+
 if (typeof document !== 'undefined') {
   const section = el('section', undefined, 'quality-panel'); section.id = 'v2Analytics';
   section.append(el('h3','Качество по периоду и лиге'));
@@ -103,7 +135,10 @@ if (typeof document !== 'undefined') {
   const body = el('div'); body.id = 'v2AnalyticsBody'; body.setAttribute('aria-live','polite');
   const releaseInfo = el('details', undefined, 'quality-panel quality-help');
   releaseInfo.append(el('summary', 'Смена основной модели'), el('p', 'Загружаю решение…'));
-  section.append(controls, body, releaseInfo, publicTraining()); $('qualityOverview').after(section);
+  const goals = el('details', undefined, 'quality-panel quality-help'); goals.id = 'v2GoalQuality';
+  const goalBody = el('div'); goalBody.append(el('p','Загружаю журнал голевых рынков…','muted'));
+  goals.append(el('summary','Тотал 2,5 и «обе забьют»'), goalBody);
+  section.append(controls, body, goals, releaseInfo, publicTraining()); $('qualityOverview').after(section);
 
   function render() {
     const packet = peekQuality(); if (!packet) return;
@@ -189,6 +224,7 @@ if (typeof document !== 'undefined') {
   };
 
   function updateOverview(packet) {
+    renderGoalQuality(goalBody, packet.nightly?.goalMarkets);
     const m=packet.nightly?.models?.v1;
     const release=packet.nightly?.release;
     if(release){

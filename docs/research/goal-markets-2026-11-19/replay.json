@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 1,
+  "kind": "chronological-historical-replay",
+  "league": "PL",
+  "prospective": false,
+  "source": {
+    "file": "docs/research/league-one-2026-11-15/training-data.json.gz",
+    "sha256": "65e57e8081d3f61ef38c547d02203bdcdeca66742810ce3c3a899335b4a19596",
+    "available": 4280
+  },
+  "leadHours": 24,
+  "resultSafetyHours": 4,
+  "settings": {
+    "halfLifeDays": 120,
+    "priorSeasonWeight": 0.35,
+    "shrinkageGames": 5
+  },
+  "primaryMetric": "logLoss",
+  "periods": [
+    {
+      "season": 2025,
+      "from": "2025-08-15",
+      "to": "2026-05-24",
+      "completed": 380,
+      "coverage": 0.9710526315789474,
+      "skipped": [
+        {
+          "date": "2025-08-16",
+          "fixture": 3804,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-08-16",
+          "fixture": 3805,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-08-18",
+          "fixture": 3810,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-08-23",
+          "fixture": 3812,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-08-23",
+          "fixture": 3815,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-08-30",
+          "fixture": 3822,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-08-30",
+          "fixture": 3823,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-08-30",
+          "fixture": 3824,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-09-13",
+          "fixture": 3834,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-09-13",
+          "fixture": 3836,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2025-09-14",
+          "fixture": 3839,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        }
+      ],
+      "quality": {
+        "protocol": "poisson-goal-markets-1",
+        "league": "PL",
+        "brierScale": [
+          0,
+          2
+        ],
+        "counts": {
+          "registered": 369,
+          "pending": 0,
+          "settled": 369,
+          "review": 0,
+          "excluded": 0,
+          "withoutSnapshot": 0
+        },
+        "markets": {
+          "over25": {
+            "frequency": 0.5528455284552846,
+            "model": {
+              "meanProbability": 0.518196968091644,
+              "brier": 0.5177119542183201,
+              "logLoss": 0.711644077406863,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 42,
+                  "predicted": 0.3663761404983117,
+                  "observed": 0.5238095238095238
+                },
+                {
+                  "n": 268,
+                  "predicted": 0.5107982426898199,
+                  "observed": 0.5634328358208955
+                },
+                {
+                  "n": 59,
+                  "predicted": 0.6598805810850163,
+                  "observed": 0.5254237288135594
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            },
+            "base": {
+              "meanProbability": 0.5450545792685271,
+              "brier": 0.49817369056309607,
+              "logLoss": 0.691335597511835,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 369,
+                  "predicted": 0.5450545792685271,
+                  "observed": 0.5528455284552846
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            }
+          },
+          "bothScore": {
+            "frequency": 0.5718157181571816,
+            "model": {
+              "meanProbability": 0.5360350523859115,
+              "brier": 0.5025521754750172,
+              "logLoss": 0.6957482581456685,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 9,
+                  "predicted": 0.3859526848290519,
+                  "observed": 0.5555555555555556
+                },
+                {
+                  "n": 290,
+                  "predicted": 0.5152824743438038,
+                  "observed": 0.5655172413793104
+                },
+                {
+                  "n": 70,
+                  "predicted": 0.641306322960524,
+                  "observed": 0.6
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            },
+            "base": {
+              "meanProbability": 0.5444859648687066,
+              "brier": 0.49638360497955736,
+              "logLoss": 0.6895419732174283,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 369,
+                  "predicted": 0.5444859648687066,
+                  "observed": 0.5718157181571816
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "season": 2026,
+      "from": "2026-08-21",
+      "to": "2026-11-08",
+      "completed": 100,
+      "coverage": 0.89,
+      "skipped": [
+        {
+          "date": "2026-08-21",
+          "fixture": 4181,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-08-22",
+          "fixture": 4184,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-08-22",
+          "fixture": 4185,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-08-29",
+          "fixture": 4193,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-08-30",
+          "fixture": 4198,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-09-04",
+          "fixture": 4201,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-09-05",
+          "fixture": 4205,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-09-05",
+          "fixture": 4206,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-09-12",
+          "fixture": 4213,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-09-12",
+          "fixture": 4214,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        },
+        {
+          "date": "2026-09-13",
+          "fixture": 4218,
+          "reason": "Мало прошлых матчей: нужны минимум 15 игр лиги и по 2 домашних/гостевых встречи команд."
+        }
+      ],
+      "quality": {
+        "protocol": "poisson-goal-markets-1",
+        "league": "PL",
+        "brierScale": [
+          0,
+          2
+        ],
+        "counts": {
+          "registered": 89,
+          "pending": 0,
+          "settled": 89,
+          "review": 0,
+          "excluded": 0,
+          "withoutSnapshot": 0
+        },
+        "markets": {
+          "over25": {
+            "frequency": 0.4606741573033708,
+            "model": {
+              "meanProbability": 0.5248697315183494,
+              "brier": 0.516856281815278,
+              "logLoss": 0.711197712540152,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 12,
+                  "predicted": 0.36371535854173964,
+                  "observed": 0.3333333333333333
+                },
+                {
+                  "n": 58,
+                  "predicted": 0.5174507288133878,
+                  "observed": 0.4827586206896552
+                },
+                {
+                  "n": 19,
+                  "predicted": 0.6492989227081952,
+                  "observed": 0.47368421052631576
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            },
+            "base": {
+              "meanProbability": 0.5381678456657004,
+              "brier": 0.5091895924383634,
+              "logLoss": 0.7024127685815064,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 89,
+                  "predicted": 0.5381678456657004,
+                  "observed": 0.4606741573033708
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            }
+          },
+          "bothScore": {
+            "frequency": 0.5056179775280899,
+            "model": {
+              "meanProbability": 0.5490381518348029,
+              "brier": 0.509874541947653,
+              "logLoss": 0.7041800153842628,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 3,
+                  "predicted": 0.3860601932480234,
+                  "observed": 0.3333333333333333
+                },
+                {
+                  "n": 63,
+                  "predicted": 0.5233119245008009,
+                  "observed": 0.5079365079365079
+                },
+                {
+                  "n": 23,
+                  "predicted": 0.6407636386957798,
+                  "observed": 0.5217391304347826
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            },
+            "base": {
+              "meanProbability": 0.5375194280505666,
+              "brier": 0.5076764134037418,
+              "logLoss": 0.7008840291829845,
+              "calibration": [
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 89,
+                  "predicted": 0.5375194280505666,
+                  "observed": 0.5056179775280899
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                },
+                {
+                  "n": 0,
+                  "predicted": null,
+                  "observed": null
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import {getResearch, storedResearch, researchLimits, RESEARCH_VERSION} from './research.mjs';
 import {predictV2, modelV2Info} from './model-v2.mjs';
 import {qualityReport} from './quality.mjs';
+import {goalMarketSnapshot} from './goal-market-quality.mjs';
 import {comparisonReport,comparisonEvidence,NIGHTLY_COMPARISON_PROTOCOL} from './comparison.mjs';
 import {checkRelease,publishedModel} from './model-release.mjs';
 import {loadNightlyModel} from './nightly-model.mjs';
@@ -106,16 +107,18 @@ function predict(stats) {
   if (!(lh>0 && la>0)) throw new Error('Средние голы лиги должны быть больше нуля.');
   const h=Math.max(.05,Math.min(5,stats.homeScored*stats.awayConceded/lh));
   const a=Math.max(.05,Math.min(5,stats.awayScored*stats.homeConceded/la));
-  let p1=0,px=0,p2=0,best=-1,score='';
+  let p1=0,px=0,p2=0,over25=0,bothScore=0,best=-1,score='';
   for(let i=0;i<=20;i++) for(let j=0;j<=20;j++) {
     const p=poisson(i,h)*poisson(j,a);
     if(i>j) p1+=p;
     else if(i===j) px+=p;
     else p2+=p;
+    if(i+j>=3) over25+=p;
+    if(i>0&&j>0) bothScore+=p;
     if(p>best){best=p;score=i+' : '+j;}
   }
   const total=p1+px+p2;
-  return {prob:[p1/total,px/total,p2/total],homeGoals:h,awayGoals:a,score};
+  return {prob:[p1/total,px/total,p2/total],homeGoals:h,awayGoals:a,score,goalProbabilities:{over25:over25/total,bothScore:bothScore/total}};
 }
 
 const OLD = {
@@ -290,9 +293,10 @@ export function frozenV1Forecast(current,previous,game,year,now){
   if(!Number.isFinite(now)||Date.parse(game.utcDate)<=now)throw new Error('A future fixture and explicit registration clock are required.');
   const games=current.map(g=>normalized(g,year)).concat(previous.map(g=>normalized(g,year-1)));
   const stats=estimateStats(games,game,year,now),result=predict(stats);
+  const inputs=completedBefore(games,game,year,now);
   return {modelVersion:MODEL_VERSION,probabilities:result.prob,baseline:stats.baseCounts,
     expectedGoals:[result.homeGoals,result.awayGoals],mostLikelyScore:result.score,stats,
-    inputs:completedBefore(games,game,year,now),
+    inputs,goalMarkets:goalMarketSnapshot(result,inputs,g=>weight(g,game,year)),
     parameters:{priorSeasonWeight:PRIOR_SEASON_WEIGHT,halfLifeDays:HALF_LIFE_DAYS,regularizationGames:REGULARIZATION_GAMES,
       minLeagueGames:MIN_LEAGUE_GAMES,minTeamSideGames:MIN_TEAM_SIDE_GAMES,finishSafetyHours:FINISH_SAFETY_HOURS,goalCap:5,poissonMax:20}};
 }
@@ -465,13 +469,7 @@ function researchServices(env){
     predictCandidate:predictV2,
     publishedModel:model=>publishedModel(primary(env),model,env.FOOTPREDICT_PUBLIC_MODEL==='poisson',Date.now()),
     reviewRelease:db=>checkRelease(db,Date.now()),
-    predictV1:(current,previous,game,year)=>{
-      const games=current.map(g=>normalized(g,year)).concat(previous.map(g=>normalized(g,year-1)));
-      const stats=estimateStats(games,game,year),result=predict(stats);
-      return {modelVersion:MODEL_VERSION,probabilities:result.prob,baseline:stats.baseCounts,stats,inputs:completedBefore(games,game,year),
-        parameters:{priorSeasonWeight:PRIOR_SEASON_WEIGHT,halfLifeDays:HALF_LIFE_DAYS,regularizationGames:REGULARIZATION_GAMES,
-          minLeagueGames:MIN_LEAGUE_GAMES,minTeamSideGames:MIN_TEAM_SIDE_GAMES,finishSafetyHours:FINISH_SAFETY_HOURS,goalCap:5,poissonMax:20}};
-    },
+    predictV1:(current,previous,game,year)=>frozenV1Forecast(current,previous,game,year,Date.now()),
     upstream:(provider,path,options)=>upstream(env,provider,path,options),
     reserve:(name,limit)=>reserve(env,name,limit),
     budgetUsage:async name=>Number((await primary(env).prepare('SELECT n FROM budgets WHERE name=?1').bind(name).first())?.n||0),

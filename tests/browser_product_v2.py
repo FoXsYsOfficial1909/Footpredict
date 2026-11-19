@@ -100,6 +100,15 @@ with sync_playwright() as playwright:
             calibration.locator('summary').click()
         assert sum(url.endswith('/v1/quality') for _,url in requests) == 1, requests
         assert all(method == 'GET' for method,_ in requests),requests
+        goal_report=quality['nightly'].get('goalMarkets')
+        if goal_report:
+            goals=page.locator('#v2GoalQuality')
+            goals.locator(':scope > summary').click()
+            assert 'сверено '+str(goal_report['counts']['settled']) in goals.inner_text()
+            assert goals.get_by_role('link',name='Сравнение на истории АПЛ').is_visible()
+            assert goals.locator('h4').count() == (2 if goal_report['counts']['settled'] else 0)
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+            goals.locator(':scope > summary').click()
         page.screenshot(path=str(OUTPUT/'analytics-mobile.png'), full_page=True)
         page.locator('#v2PublicTraining > summary').click()
         page.wait_for_selector('#v2PublicTraining a', timeout=25000)

@@ -6,7 +6,7 @@ import {comparisonSchema,registerComparison,settleComparisons,comparisonReport,c
 import {predictV2} from '../worker/model-v2.mjs';
 import {runAutomation,automationStatus,claimJob,enqueue,automationStorage,dailyReport} from '../worker/automation.mjs';
 import {modelDigest} from '../worker/nightly-model.mjs';
-import worker from '../worker/index.mjs';
+import worker, {frozenV1Forecast} from '../worker/index.mjs';
 
 const start=Date.parse('2030-01-01T12:00:00Z'),DAY=86400000;
 const fixture={id:900001,utcDate:'2030-01-05T15:00:00Z',status:'TIMED',competition:{code:'PL'},season:{startDate:'2029-08-01'},homeTeam:{id:61,name:'Chelsea FC'},awayTeam:{id:66,name:'Manchester United FC'}};
@@ -198,4 +198,32 @@ test('a recorded default candidate remains the recorded preference after rollbac
     assert.deepEqual(await evidence(state),first);
     assert.equal((await report(state)).fixtures[0].primaryModel,'candidate');
   }finally{state.db.close();}
+});
+
+test('the goal markets are registered with the original forecast and settled from regulation time',async()=>{
+  const state=await environment();
+  try {
+    state.db.sqlite.exec('CREATE TABLE automation_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)');
+    const current=Array.from({length:18},(_,i)=>({...fixture,id:1000+i,
+      utcDate:new Date(start-(i+1)*DAY).toISOString(),status:'FINISHED',
+      score:{duration:'REGULAR',fullTime:{home:i%4,away:1}}
+    }));
+    const forecast=frozenV1Forecast(current,[],fixture,2029,start);
+    state.services.predictV1=()=>forecast;
+    await register(state);
+    const original=await evidence(state);
+    assert.deepEqual(original.goalMarkets,forecast.goalMarkets);
+    const goalReport=async()=> (await comparisonReport(state.db,state.services.now(),PROTOCOL,{includeRelease:true})).goalMarkets;
+    assert.equal((await goalReport()).counts.pending,1);
+    state.setTime(Date.parse(fixture.utcDate)+5*3600000);
+    state.setGames([{...fixture,status:'FINISHED',score:{duration:'PENALTY_SHOOTOUT',
+      fullTime:{home:4,away:3},regularTime:{home:1,away:1}}}]);
+    await settleComparisons(state.db,state.services,PROTOCOL);
+    const checked=await goalReport();
+    assert.equal(checked.counts.settled,1);
+    assert.equal(checked.markets.over25.frequency,0);
+    assert.equal(checked.markets.bothScore.frequency,1);
+    assert.ok(Math.abs(checked.markets.over25.model.brier-2*forecast.goalMarkets.model.over25**2)<1e-12);
+    assert.deepEqual(await evidence(state),original);
+  } finally {state.db.close();}
 });

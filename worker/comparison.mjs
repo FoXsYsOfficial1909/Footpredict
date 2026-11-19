@@ -1,4 +1,5 @@
 import {MODEL_RELEASE,releaseStatus,eligibleRecipe} from './model-release.mjs';
+import {summarizeGoalMarkets} from './goal-market-quality.mjs';
 import {qualityWindows} from './quality-windows.mjs';
 import {scoreQuality,summarizeQuality} from './metrics.mjs';
 import {predictEnsemble} from './model-v2.mjs';
@@ -95,6 +96,7 @@ export async function registerComparison(db,services,{fixtureId,kickoff},protoco
         dataSha256:bundle.report.dataSha256,codeSha256:bundle.report.codeSha256,sourceCommit:bundle.report.sourceCommit,
         trainingRunId:bundle.report.runId,unseenTeams:nightly.unseenTeams}}:{})},
     inputs:v1.inputs,stats:v1.stats,parameters:v1.parameters,sources,notices,
+    ...(config.nightly&&v1.goalMarkets?{goalMarkets:v1.goalMarkets}:{}),
     ...(bundle?{candidateArtifact:{modelJson:bundle.modelJson,modelSha256:bundle.report.modelSha256,trainingReport:bundle.report,
       modelUrl:bundle.modelUrl,modelFetchedAt:bundle.modelFetchedAt,reportUrl:bundle.reportUrl,reportFetchedAt:bundle.reportFetchedAt}}:{}),
     policy:policy(config)};
@@ -153,11 +155,12 @@ export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PRO
   const records=exists?(await db.prepare(`SELECT fixture_id,kickoff_at,saved_at,protocol,
     json_extract(payload,'$.home') AS home,json_extract(payload,'$.away') AS away,
     json_extract(payload,'$.stats') AS stats,json_extract(payload,'$.year') AS year,json_extract(payload,'$.models') AS models,json_extract(payload,'$.league') AS league,
+    ${config.nightly&&includeRelease?"json_extract(payload,'$.goalMarkets') AS goal_markets,":""}
     json_extract(payload,'$.primaryModel') AS primary_model,json_extract(payload,'$.homeId') AS home_id,json_extract(payload,'$.awayId') AS away_id,
     (SELECT payload FROM ${config.results} WHERE fixture_id=p.fixture_id AND checked_at<=?2 ORDER BY seq DESC LIMIT 1) AS latest
     FROM ${config.predictions} p WHERE protocol=?1 AND saved_at<=?2 ORDER BY kickoff_at DESC,fixture_id DESC`).bind(protocol,iso(now)).all()).results:[];
   const totals={registered:records.length,pending:0,settled:0,review:0,excluded:0},scored=Object.fromEntries(config.keys.map(k=>[k,[]])),versions=new Map();
-  const fixtures=[],windowRows=[],releaseRows=[];
+  const fixtures=[],windowRows=[],releaseRows=[],goalRows=[];
   for(const row of records){
     const models=parse(row.models),latest=parse(row.latest)||{status:'pending'};
     let state=latest.status==='settled'?'settled':latest.status==='pending'?'pending':'review';
@@ -177,6 +180,8 @@ export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PRO
       if(state==='settled')for(const key of config.keys)version.scored[key].push({metrics:scoreQuality(models[key].probabilities,latest.score)});
     }
     if(config.nightly&&includeRelease){
+      const matchesResult=latest.kickoff===row.kickoff_at&&latest.providerStatus==='FINISHED';
+      goalRows.push({forecast:parse(row.goal_markets),state:state==='settled'&&!matchesResult?'review':state,result:latest.score});
       windowRows.push({kickoff:row.kickoff_at,league:row.league||'PL',state,score:latest.score,
         models:{v1:models?.v1?.probabilities,candidate:models?.candidate?.probabilities,base:models?.base?.probabilities}});
       releaseRows.push({fixtureId:row.fixture_id,kickoff:row.kickoff_at,savedAt:row.saved_at,state,models,league:row.league,
@@ -190,7 +195,7 @@ export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PRO
     fixtureScope:{total:records.length,returned:fixtures.length,limit:100},
     ...(config.nightly?{versions:[...versions.values()].map(({scored,...version})=>({...version,
       models:Object.fromEntries(Object.entries(scored).map(([key,rows])=>[key,summarizeQuality(rows)]))}))}:{}),
-    ...(config.nightly&&includeRelease?{windows:qualityWindows(windowRows,['v1','candidate','base'],now),release:await releaseStatus(db,releaseRows,now,paused)}:{}),
+    ...(config.nightly&&includeRelease?{goalMarkets:summarizeGoalMarkets(goalRows),windows:qualityWindows(windowRows,['v1','candidate','base'],now),release:await releaseStatus(db,releaseRows,now,paused)}:{}),
     policy:policy(config)};
 }
 
