@@ -15,9 +15,18 @@ const iso = value => new Date(value).toISOString();
 const json = value => JSON.stringify(value);
 const parse = value => value ? JSON.parse(value) : null;
 
+function automationBinding(env) {
+  const db = env.FOOTPREDICT_DB;
+  if (!db) throw Object.assign(new Error('Не подключена база автоматических задач.'), {status:503});
+  return db;
+}
+
+function primarySession(db) {
+  return db.withSession ? db.withSession('first-primary') : db;
+}
+
 export async function automationStorage(env) {
-  const raw = env.FOOTPREDICT_DB;
-  if (!raw) throw Object.assign(new Error('Не подключена база автоматических задач.'), {status:503});
+  const raw = automationBinding(env);
   if (!initialization.has(raw)) {
     const promise = (async () => {
       await ensureResearchStorage(env);
@@ -58,7 +67,7 @@ export async function automationStorage(env) {
     promise.catch(() => initialization.delete(raw));
   }
   await initialization.get(raw);
-  return raw.withSession ? raw.withSession('first-primary') : raw;
+  return primarySession(raw);
 }
 
 export async function enqueue(db, id, kind, payload, dueAt) {
@@ -364,12 +373,12 @@ async function ensureReport(db,now) {
 }
 
 export async function automationStatus(env,services) {
-  return statusFromDb(await automationStorage(env),services.now());
+  return statusFromDb(primarySession(automationBinding(env)),services.now());
 }
 
 export async function dailyReport(env,day=null) {
   if(day&&!/^\d{4}-\d{2}-\d{2}$/.test(day))throw Object.assign(new Error('Нужна дата YYYY-MM-DD.'),{status:400});
-  const db=await automationStorage(env);
+  const db=primarySession(automationBinding(env));
   const row=day?await db.prepare('SELECT payload FROM automation_reports WHERE day=?1').bind(day).first():
     await db.prepare('SELECT payload FROM automation_reports ORDER BY day DESC LIMIT 1').first();
   return row?parse(row.payload):{status:'not_generated',message:'Первый отчёт появится после запуска расписания.'};
@@ -378,7 +387,7 @@ export async function dailyReport(env,day=null) {
 export async function shadowHistory(env,cursor=null) {
   const before=cursor?Number(cursor):Number.MAX_SAFE_INTEGER;
   if(!Number.isSafeInteger(before)||before<1)throw Object.assign(new Error('Некорректная страница.'),{status:400});
-  const db=await automationStorage(env);
+  const db=primarySession(automationBinding(env));
   const rows=await db.prepare(`SELECT p.*,(SELECT payload FROM automation_results WHERE fixture_id=p.fixture_id ORDER BY seq DESC LIMIT 1) AS latest
     FROM automation_predictions p WHERE fixture_id<?1 ORDER BY fixture_id DESC LIMIT 21`).bind(before).all();
   const page=rows.results.slice(0,20);
@@ -388,7 +397,7 @@ export async function shadowHistory(env,cursor=null) {
 }
 
 export async function shadowEvidence(env,fixtureId) {
-  const db=await automationStorage(env);
+  const db=primarySession(automationBinding(env));
   const row=await db.prepare(`SELECT s.payload FROM research_snapshots s JOIN automation_predictions p
     ON p.snapshot_id=s.id WHERE p.fixture_id=?1`).bind(fixtureId).first();
   if(!row)throw Object.assign(new Error('Для этого матча ещё нет зафиксированного снимка.'),{status:404});

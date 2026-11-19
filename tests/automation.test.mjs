@@ -80,6 +80,22 @@ test('persistent pipeline runs despite a settlement failure and never alters ori
   state.db.close();
 });
 
+test('automation views can open from a fresh read-only binding without initializing tables', async()=>{
+  const state=environment();
+  try {
+    await runAutomation(state.env,state.services);
+    const db={prepare(sql){
+      assert.match(sql.trim(),/^SELECT\b/i);
+      return state.db.prepare(sql);
+    }};
+    const env={FOOTPREDICT_DB:db};
+    assert.equal((await automationStatus(env,state.services)).state,'running');
+    assert.equal((await dailyReport(env)).day,'2026-10-28');
+    assert.equal((await shadowHistory(env)).items.length,1);
+    assert.equal((await shadowEvidence(env,fixture.id)).fixture.id,fixture.id);
+  } finally { state.db.close(); }
+});
+
 test('primary forecast is frozen across later model updates and cannot be backfilled after kickoff',async()=>{
   const state=environment();await runAutomation(state.env,state.services);
   const before=(await shadowHistory(state.env)).items[0];
