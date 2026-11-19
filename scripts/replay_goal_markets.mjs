@@ -3,7 +3,7 @@ import {readFileSync, writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {frozenV1Forecast} from '../worker/index.mjs';
-import {summarizeGoalMarkets} from '../worker/goal-market-quality.mjs';
+import {goalEvents, summarizeGoalMarkets} from '../worker/goal-market-quality.mjs';
 
 const sha = b => createHash('sha256').update(b).digest('hex');
 const sourcePlan = JSON.parse(readFileSync('docs/research/neural-plan-2026-11-16.json'));
@@ -36,31 +36,41 @@ for (const [i, [,day,year,home,away,h,a]] of games.entries()) {
   seasons.get(year).push(match);
 }
 
-function evaluate(year) {
+function evaluate(year, includeRows) {
   const current = seasons.get(year), previous = seasons.get(year-1);
-  const paired = [], skipped = [];
+  const paired = [], skipped = [], rows = [];
   for (const game of current) {
     const now = Date.parse(game.utcDate) - 86400000;
+    const day = game.utcDate.slice(0,10);
     let forecast;
     try { forecast = frozenV1Forecast(current, previous, game, year, now); }
     catch (error) {
       if (!/^(Мало прошлых матчей|Недостаточная суммарная статистическая масса|Слишком низкие средние голы)/.test(error.message))
         throw error;
-      skipped.push({date:game.utcDate.slice(0,10),fixture:game.id,reason:error.message});
+      skipped.push({date:day,fixture:game.id,reason:error.message});
       continue;
     }
     if (forecast.inputs.some(g => Date.parse(g.utcDate) > now - 4 * 3600000)) throw new Error('Future input in replay');
     paired.push({state:'settled',result:game.score.fullTime,forecast:forecast.goalMarkets});
+    if (includeRows) {
+      const {home, away} = game.score.fullTime;
+      const {model, base} = forecast.goalMarkets;
+      rows.push({day, fixture:game.id, poisson:model, base, events:goalEvents(home, away)});
+    }
   }
   const dates = current.map(g=>g.utcDate.slice(0,10)).sort();
   return {season:year,from:dates[0],to:dates.at(-1),completed:current.length,
-    coverage:paired.length/current.length,skipped,quality:summarizeGoalMarkets(paired)};
+    coverage:paired.length/current.length,skipped,quality:summarizeGoalMarkets(paired),
+    ...(includeRows ? {rows} : {})};
 }
 
+const includeRows = process.argv[2] === '--training-rows';
+const years = includeRows ? [...seasons.keys()].filter(year => seasons.has(year - 1)).sort() : [2025,2026];
 const report = {schemaVersion:1, kind:'chronological-historical-replay', league:'PL',
   prospective:false, source:{file:sourcePlan.sourceSnapshot,sha256:sha(compressed),available:games.length},
   leadHours:24, resultSafetyHours:4, settings:{halfLifeDays:120,priorSeasonWeight:.35,shrinkageGames:5},
-  primaryMetric:'logLoss', periods:[2025,2026].map(evaluate)};
+  primaryMetric:'logLoss', periods:years.map(year => evaluate(year, includeRows))};
 const output = JSON.stringify(report,null,2)+'\n';
-if (process.argv[2]) writeFileSync(process.argv[2], output);
+const location = process.argv[includeRows ? 3 : 2];
+if (location) writeFileSync(location, output);
 else process.stdout.write(output);

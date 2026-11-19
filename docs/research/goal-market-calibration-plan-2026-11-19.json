@@ -1,0 +1,16 @@
+{
+  "candidateVersion": "pl-goal-calibration-0.1.0",
+  "league": "PL",
+  "sourcePlan": "docs/research/neural-plan-2026-11-16.json",
+  "trainSeasons": [2016, 2017, 2018, 2019, 2020, 2021, 2022],
+  "validationSeasons": [2023, 2024],
+  "laterReplaySeasons": [2025, 2026],
+  "markets": ["over25", "bothScore"],
+  "model": "logit(base) + intercept + slope * (logit(poisson) - logit(base))",
+  "ridge": 0.01,
+  "primaryMetric": "logLoss",
+  "brierScale": [0, 2],
+  "bootstrapSamples": 1500,
+  "bootstrapSeed": 20261119,
+  "promotionPolicy": "Research only. A change to production needs a separate prospective comparison against Poisson and league frequencies."
+}
