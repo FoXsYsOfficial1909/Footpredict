@@ -94,6 +94,7 @@ with sync_playwright() as playwright:
         assert page.locator('#researchNews img').count()==0
         assert page.locator('#researchNews a').first.get_attribute('href') is None
         assert page.evaluate('window.__researchXss || 0')==0
+        page.locator('#v2CalendarSettings > summary').click()
         page.select_option('#competition','CL')
         assert page.locator('#loadResearch').is_disabled() and not page.locator('#researchResult').is_visible()
         log('SAFETY_PASS','Untrusted text/URL rendering, selection reset, source export and mobile layout verified. No prediction writes.')
