@@ -20,16 +20,25 @@ with sync_playwright() as playwright:
         page.wait_for_function("!document.getElementById('loadMatches').disabled",timeout=35000)
         assert page.get_by_role('tab').count()==3
         assert page.locator('#calculator').is_hidden() and page.locator('#matchResearch').is_hidden()
-        assert page.locator('#loadCompetitions').is_visible() and page.locator('#content button').count()>0
+        assert page.locator('#content .v2-toggle').count()>0
+        page.locator('#v2CalendarSettings > summary').click()
+        assert page.locator('#loadCompetitions').is_visible()
+        page.locator('#v2CalendarSettings > summary').click()
         assert all('/competitions/PL/matches' in url or url.endswith('/v1/quality') for _,url in requests),requests
         assert sum(url.endswith('/v1/quality') for _,url in requests)==1,requests
         page.screenshot(path=str(OUTPUT/'matches-mobile.png'),full_page=True)
-        page.locator('#content button').first.click()
+        page.locator('#content .v2-toggle').first.click()
         page.wait_for_function("!document.getElementById('loadMatches').disabled",timeout=35000)
-        assert page.locator('#results').is_visible() and page.locator('#matchResearch').is_visible()
+        assert page.locator('#v2MatchDetail .v2-market-table').is_visible()
+        assert page.locator('#results').is_hidden() and page.locator('#matchResearch').is_hidden()
+        page.select_option('#v2ForecastSection','context')
+        assert page.locator('#v2MatchDetail #matchResearch').is_visible()
+        assert page.locator('#v2MatchDetail #cornerForecast').is_visible()
         assert page.locator('#researchCoverage').is_hidden() and page.locator('#exportResearch').is_hidden()
         assert page.locator('#calculator').is_hidden()
-        page.locator('#results').screenshot(path=str(OUTPUT/'forecast-mobile.png'))
+        page.locator('#v2MatchDetail').screenshot(path=str(OUTPUT/'forecast-mobile.png'))
+        page.select_option('#v2ForecastSection','outcomes')
+        assert page.locator('#matchResearch').is_hidden()
         page.click('#tab-history')
         page.wait_for_function("!document.getElementById('historyStatus').textContent.startsWith('Загружаю')",timeout=35000)
         assert page.locator('#ownerPanel').is_hidden() and page.locator('#historyMode').is_hidden()

@@ -50,7 +50,7 @@ with sync_playwright() as playwright:
         page.click('#tab-matches')
         page.click('#loadCompetitions');idle();page.select_option('#competition','PL')
         page.click('#loadMatches');idle()
-        page.locator('#content button').first.click();idle()
+        page.locator('#content .v2-toggle').first.click();idle()
         assert page.locator('#results').is_visible() and page.locator('#loadResearch').is_enabled()
         original_score=page.locator('#score').inner_text()
         log('V1',{'match':page.locator('#matchName').inner_text(),'score':original_score})

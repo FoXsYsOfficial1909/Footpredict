@@ -60,3 +60,242 @@ html[data-theme=light] .app-tabs a:hover { background:#deece3; }
   #v2Analytics .v2-series-table td { padding-inline:3px;white-space:nowrap;overflow-wrap:normal; }
   #v2Analytics .v2-series-table th { padding-inline:3px;overflow-wrap:normal; }
 }
+
+.v2-overview-panel {
+  margin: 0 0 16px;
+}
+.v2-overview-panel > summary {
+  padding: 10px 0;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+.v2-overview-panel .v2-overview {
+  margin: 0 0 12px;
+}
+#content {
+  align-items: start;
+}
+#content .v2-match {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+#content .v2-match:has(.v2-match-panel) {
+  border-color: var(--green);
+}
+.v2-card-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 8px;
+  align-items: start;
+}
+.v2-card-header .v2-eyebrow {
+  margin: 0 0 5px;
+  letter-spacing: .035em;
+}
+.v2-match-teams {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+}
+.v2-match-teams > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 22px;
+}
+.v2-match-teams img {
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+#content .v2-match button.v2-favorite-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  font-size: 21px;
+  line-height: 1;
+}
+.v2-match .v2-card-time, .v2-match .v2-match-score {
+  margin: 0;
+  font-size: 12px;
+}
+.v2-match .v2-match-score {
+  color: var(--text);
+  font-weight: 650;
+}
+.v2-forecast-summary {
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: var(--panel2);
+}
+.v2-forecast-summary .v2-distribution {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 7px;
+  margin: 0;
+}
+.v2-forecast-summary .v2-segments {
+  height: 5px;
+}
+.v2-prob-labels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+.v2-prob-labels > div {
+  display: grid;
+  justify-items: center;
+}
+.v2-prob-labels span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+.v2-prob-labels strong {
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
+.v2-leading strong {
+  color: var(--green);
+}
+.v2-score-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 7px 0 0;
+  font-size: 12px;
+}
+.v2-score-summary strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.v2-score-summary .v2-saved {
+  margin-left: auto;
+  font-size: 11px;
+}
+.v2-best-market {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 3px 0;
+}
+.v2-best-market div {
+  display: grid;
+}
+.v2-best-market div:last-child {
+  justify-items: end;
+}
+.v2-best-market strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.v2-best-market div:last-child strong {
+  color: var(--green);
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.v2-best-market span, .v2-risk {
+  font-size: 11px;
+}
+.v2-risk-low { color: var(--green); }
+.v2-risk-medium { color: var(--yellow); }
+.v2-risk-high { color: var(--muted); }
+#content .v2-toggle {
+  width: 100%;
+}
+#v2MatchDetail {
+  min-width: 0;
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.v2-market-section, .v2-market-filter {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.v2-market-section select, .v2-market-filter select {
+  margin-top: 3px;
+  padding: 5px 9px;
+  font-size: 13px;
+}
+.v2-market-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.v2-market-table th, .v2-market-table td {
+  padding: 7px 4px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+}
+.v2-market-table th:first-child {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.v2-market-table tbody th {
+  font-weight: 600;
+}
+.v2-market-table thead th {
+  color: var(--muted);
+}
+.v2-market-chance {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.v2-quote {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+}
+.v2-market-note {
+  margin-bottom: 0;
+}
+.v2-match-panel .v2-more-markets {
+  margin-top: 8px;
+}
+.v2-match-panel .research-card {
+  margin: 0;
+  padding: 12px;
+}
+.v2-match-panel #cornerForecast {
+  margin-top: 12px;
+}
+body:not(.owner-mode) .v2-context-docked {
+  display: none;
+}
+@media (max-width: 700px) {
+  .v2-overview-panel {
+    margin: 0 0 9px;
+  }
+  #content {
+    gap: 10px;
+  }
+  #content .v2-match {
+    padding: 12px;
+  }
+  .v2-match h3 {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+  .v2-match-panel .v2-facts {
+    gap: 8px;
+  }
+}
+
+.v2-calendar-settings > summary {
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 9px 0;
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  #matchPicker .v2-filters { margin-block: 8px; }
+  #v2MatchCount { margin-block: 6px; }
+}

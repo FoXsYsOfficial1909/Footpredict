@@ -374,7 +374,7 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 #qualityOverview .overview-value { font-variant-numeric:tabular-nums; }
 #qualityOverview > .research-note { grid-column:1/-1; }
 </style>
-<link rel="stylesheet" href="./design-system-v2.css?v=2.0.1">
+<link rel="stylesheet" href="./design-system-v2.css?v=2.1">
 </head>
 <body>
 <a class="v2-skip" href="#matches">К содержимому</a>
@@ -385,14 +385,20 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 </header>
 <nav class="app-tabs" role="tablist" aria-label="Разделы приложения"><a id="tab-matches" href="#matches" role="tab" aria-controls="matches" aria-selected="true" tabindex="0" data-app-tab="matches">Матчи</a><a id="tab-history" href="#history" role="tab" aria-controls="history" aria-selected="false" tabindex="-1" data-app-tab="history">История</a><a id="tab-quality" href="#quality" role="tab" aria-controls="quality" aria-selected="false" tabindex="-1" data-app-tab="quality">Аналитика ИИ</a><a id="tab-data" href="#data" role="tab" aria-controls="data" aria-selected="false" tabindex="-1" data-app-tab="data" class="owner-only">Инструменты</a></nav>
 <div id="matches" class="app-panel" role="tabpanel" aria-labelledby="tab-matches" data-app-panel>
+<details id="v2Overview" class="v2-overview-panel" open>
+<summary>Сводка и актуальность</summary>
 <div class="v2-overview"><div class="v2-stat"><span>Матчей в загруженном окне</span><strong id="v2Available">—</strong></div><div class="v2-stat"><span>Матчей с прогнозом сегодня</span><strong id="v2Today">—</strong></div><div class="v2-stat"><span>Проверено в совместной серии АПЛ</span><strong id="v2Checked">—</strong></div><div class="v2-stat"><span>Попадания основной модели · серия АПЛ</span><strong id="v2Accuracy">—</strong></div></div>
-<p id="v2Freshness" class="muted small">Актуальность данных проверяется…</p><p class="muted small">Модель для новых матчей · <strong id="v2Model">Пуассон</strong></p><div class="workbench">
+<p id="v2Freshness" class="muted small">Актуальность данных проверяется…</p><p class="muted small">Модель для новых матчей · <strong id="v2Model">Пуассон</strong></p>
+</details>
+<div class="workbench">
 <section class="card picker-card" id="matchPicker">
 <div class="section-heading"><div class="section-title"><h2 id="calendarHeading">Матчи АПЛ</h2></div></div>
 <details class="source-settings owner-only"><summary>Источник данных и ручной режим</summary><div class="grid">
  <div class="field"><label for="provider">Источник</label><select id="provider"><option value="fd">football-data.org (автопрогноз)</option><option value="old">API-Football (ручной расчёт)</option></select></div>
  <div class="field hidden" id="countryField"><label for="country">Страна (на английском)</label><input id="country" value="England" placeholder="England"></div>
 </div></details>
+<details id="v2CalendarSettings" class="v2-calendar-settings" open>
+<summary>Соревнование и сезон</summary>
 <div class="grid picker-fields">
  <div class="field"><label for="competition">Соревнование</label><select id="competition" disabled><option value="">Сначала загрузи лиги</option></select></div>
  <div class="field"><label for="season">Сезон (год начала)</label><select id="season" disabled><option value="">Выбери соревнование</option></select></div>
@@ -402,12 +408,13 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
  <button type="button" id="loadTeams" disabled class="owner-only">Показать команды</button>
  <button type="button" id="loadMatches" disabled>Обновить матчи</button>
 </div>
+</details>
 <div id="status" class="status" role="status" aria-live="polite">Загружаю ближайшие матчи…</div>
 <div id="v2Filters" class="v2-filters">
-<label>Команда или чемпионат<input id="v2Search" type="search" placeholder="Например, Arsenal" autocomplete="off"></label>
-<label>Период<select id="v2Period"><option value="all">Всё окно</option><option value="today">Сегодня</option><option value="tomorrow">Завтра</option><option value="week" selected>Ближайшие 7 дней</option></select></label>
+<label>Поиск<input id="v2Search" type="search" placeholder="Команда или лига" autocomplete="off"></label>
+<label>Период<select id="v2Period"><option value="all">Всё окно</option><option value="today">Сегодня</option><option value="tomorrow">Завтра</option><option value="week" selected>7 дней</option></select></label>
 <details class="v2-more-filters"><summary>Все фильтры</summary><div class="v2-more-fields"><label>Статус<select id="v2Status"><option value="all">Все</option><option value="upcoming">Предстоящие</option><option value="live">Идут сейчас</option><option value="finished">Завершённые</option><option value="changed">Перенос и другие статусы</option></select></label>
-<label>Сортировка<select id="v2Sort"><option value="time">По времени</option><option value="probability">По вероятности исхода</option></select></label>
+<label>Сортировка<select id="v2Sort"><option value="time">По времени</option><option value="probability">По вероятности исхода</option><option value="market">По вероятности рынка</option></select></label>
 <label>Уверенность<select id="v2Confidence"><option value="all">Все уровни</option><option value="high">Высокая</option><option value="medium">Средняя</option><option value="low">Низкая</option><option value="insufficient">Недостаточно данных</option></select></label>
 <label class="v2-check"><input type="checkbox" id="v2Favorites">Только избранное</label></div></details></div><p id="v2MatchCount" class="muted small" role="status"></p>
 <div id="content" class="list"></div>
@@ -430,7 +437,6 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
  </section>
 </section>
 </div>
-<section id="v2MatchDetail" class="card" tabindex="-1" aria-label="Подробный анализ матча" hidden></section>
 <section class="card research-card" hidden id="matchResearch" aria-labelledby="researchTitle">
 <div class="research-heading"><div class="section-heading"><span class="section-number" aria-hidden="true">02</span><div class="section-title"><h2 id="researchTitle">Разбор матча</h2></div></div><span class="research-label">АПЛ · факты и источники</span></div>
 <p class="section-hint">Сведения об игроках и составы загружаются автоматически.</p>
@@ -666,7 +672,8 @@ body:not(.owner-mode) .record-meta { white-space:normal; }
 <p class="credit"><a href="#data" id="ownerToolsLink">Инструменты владельца</a> · FootPredict 2.0 · Данные: <a href="https://www.football-data.org/">football-data.org</a>, <a href="https://fantasy.premierleague.com/">Fantasy Premier League</a>, ESPN и BBC Sport</p>
 </main>
 <script type="module">
-import {renderExplorer,clearExplorer} from './product-v2.js?v=2.0';
+import {renderExplorer,clearExplorer} from './product-v2.js?v=2.1';
+import {predictScore as predict} from './forecast-markets.js';
 import {rounded,topOutcome,validProbabilities} from './forecast-display.js';
 (() => {
 'use strict';
@@ -1045,27 +1052,6 @@ function estimateStats(games,target,year) {
     })()
   };
 }
-function poisson(k,lambda) {
-  let p=Math.exp(-lambda);
-  for (let i=1;i<=k;i++) p*=lambda/i;
-  return p;
-}
-function predict(stats) {
-  const lh=stats.leagueHome,la=stats.leagueAway;
-  if (!(lh>0 && la>0)) throw new Error('Средние голы лиги должны быть больше нуля.');
-  const h=Math.max(.05,Math.min(5,stats.homeScored*stats.awayConceded/lh));
-  const a=Math.max(.05,Math.min(5,stats.awayScored*stats.homeConceded/la));
-  let p1=0,px=0,p2=0,best=-1,score='';
-  for(let i=0;i<=20;i++) for(let j=0;j<=20;j++) {
-    const p=poisson(i,h)*poisson(j,a);
-    if(i>j) p1+=p;
-    else if(i===j) px+=p;
-    else p2+=p;
-    if(p>best){best=p;score=i+' : '+j;}
-  }
-  const total=p1+px+p2;
-  return {prob:[p1/total,px/total,p2/total],homeGoals:h,awayGoals:a,score};
-}
 function number(id) {
   const text=$(id).value.trim().replace(',','.');
   const v=Number(text);
@@ -1116,31 +1102,18 @@ statIds.concat(['homeName','awayName']).forEach(id=>{
   });
 });
 
-function useSavedResult(record){
-  const percentages=rounded(record.probabilities);
-  [['p1','b1'],['px','bx'],['p2','b2']].forEach(([text,bar],i)=>{
-    $(text).textContent=percentages[i].replace('.',',');
-    $(bar).style.width=(record.probabilities[i]*100)+'%';
-  });
-  $('matchName').textContent=$('homeName').value+' — '+$('awayName').value;
-  $('predictionNotice').textContent='Исходные вероятности сохранены '+dateRu(record.savedAt)+'.';
-  $('score').replaceChildren();
-  $('expected').textContent='';
-  $('results').classList.add('show');
+function announceMatch(match,league){
+  window.dispatchEvent(new CustomEvent('footpredict:match-selected',{detail:{
+    fixtureId:match.id,league,apiBase:API,homeName:match.homeTeam.name,awayName:match.awayTeam.name,kickoff:match.utcDate
+  }}));
 }
-async function chooseMatch(match,season,year,history,record,previousAvailable=true) {
+function chooseMatch(match,all,year,previousAvailable){
   clearCalc();
   $('homeName').value=match.homeTeam.name||match.homeTeam.shortName||'Хозяева';
   $('awayName').value=match.awayTeam.name||match.awayTeam.shortName||'Гости';
-  let note='';
   const sel=selection();
-  window.dispatchEvent(new CustomEvent('footpredict:match-selected',{detail:{fixtureId:match.id,league:sel.league,apiBase:API,homeName:match.homeTeam.name,awayName:match.awayTeam.name,kickoff:match.utcDate}}));
-  let all=history||taggedRows(season,year);
-  if(!previousAvailable)note='Предыдущий сезон недоступен. Использован выбранный сезон.\n';
-  if(!history && year-1>1900){
-    try{all=all.concat(taggedRows(await loadSeason(sel.league,year-1),year-1));}
-    catch(e){note='Предыдущий сезон недоступен ('+e.message+'). Использован выбранный сезон.\n';}
-  }
+  const note=previousAvailable?'':'Предыдущий сезон недоступен. Использован выбранный сезон.\n';
+  announceMatch(match,sel.league);
   try {
     const stats=estimateStats(all,match,year);
     $('predictionNotice').textContent=stats.homeCount<5||stats.awayCount<5?'У одной из команд мало прошлых матчей. Надёжность этого прогноза ниже.':'';
@@ -1160,23 +1133,14 @@ async function chooseMatch(match,season,year,history,record,previousAvailable=tr
     calculate();
     if($('results').classList.contains('show')){
       const notice=$('predictionNotice');
-      const caution=notice.textContent;
-      if(record&&document.body.classList.contains('owner-mode'))
-        notice.textContent='Текущий предварительный расчёт для инструментов владельца. '+caution;
-      else if(record)useSavedResult(record);
-      else notice.textContent='Текущий предварительный расчёт. '+caution;
+      notice.textContent='Текущий расчёт для инструментов владельца. '+notice.textContent;
     }
     $("savePrediction").disabled=false;
-    setStatus('Прогноз рассчитан по историческим результатам, доступным до матча.');
-  } catch (e) {
+    setStatus('');
+  } catch(e){
     $('calcError').textContent=note+e.message;
-    if(record&&!document.body.classList.contains('owner-mode'))useSavedResult(record);
-    setStatus('Для нового расчёта недостаточно доступных результатов.',true);
-  }
-  if ($('results').classList.contains('show')) {
-    $('results').scrollIntoView({behavior:'smooth',block:'start'});
-  } else {
-    if(document.body.classList.contains('owner-mode')){ $('advancedSettings').open = true; $('calculator').scrollIntoView({behavior:'smooth',block:'start'}); }else{ $('status').scrollIntoView({behavior:'smooth',block:'center'}); }
+    setStatus('Для расчёта недостаточно доступных результатов.',true);
+    $('advancedSettings').open=true;
   }
 }
 
@@ -1218,9 +1182,15 @@ $('loadMatches').addEventListener('click',event=>guarded(async()=>{
     const competition=selectedCompetition();
     renderExplorer({all,history,league:competition?.label||s.league,leagueCode:s.league,
       country:competition?.country,archive:s.season<competition?.year,freshness,
+      providerFetchedAt:Number.isFinite(stamp)&&stamp<=seasonEntry.saved?stamp:null,
       targetId:Number(new URLSearchParams(location.search).get('match')),
-      preview:g=>{const stats=estimateStats(history,g,s.season);return {p:predict(stats).prob,stats};},
-      open:(g,row)=>guarded(()=>chooseMatch(g,all,s.season,history,row.record,previousAvailable))});
+      preview:g=>{
+        const stats=estimateStats(history,g,s.season),calculation=predict(stats);
+        return {p:calculation.prob,stats,calculation};
+      },
+      openOwner:g=>chooseMatch(g,history,s.season,previousAvailable),
+      loadContext:g=>announceMatch(g,s.league),
+      resetSelection:clearCalc});
     setStatus(previousAvailable?'':'Расписание загружено. Предыдущий сезон недоступен, для расчётов используется выбранный сезон.');
   } else {
     clearSelectionData();$('v2Filters').hidden=true;
@@ -1681,12 +1651,6 @@ function openPremierLeague(){
   $('season').value=String(year);
   updateControls();if(location.hash===''||location.hash==='#matches')$('loadMatches').click();
 }
-window.addEventListener('footpredict:readonly-detail',clearCalc);
-window.addEventListener('footpredict:visible-record',e=>{
-  const record=e.detail;
-  if(record?.fixtureId===selectedSnapshot?.match?.id&&$('results').classList.contains('show')&&
-      !document.body.classList.contains('owner-mode'))useSavedResult(record);
-});
 window.addEventListener('footpredict:tab-selected',e=>{
   if(e.detail.tab==='matches'&&!busy&&!$('content').children.length&&selection().league&&!document.body.classList.contains('owner-mode'))$('loadMatches').click();
 });
@@ -1702,7 +1666,7 @@ openPremierLeague();
 <script type="module" src="./automation-ui.js?v=1.8"></script>
 <script type="module" src="./quality-ui.js?v=1.11"></script>
 <script type="module" src="./trainer-agents-ui.js?v=1.13"></script>
-<script type="module" src="./product-v2.js?v=2.0"></script>
+<script type="module" src="./product-v2.js?v=2.1"></script>
 <script type="module" src="./analytics-v2.js?v=2.0.1"></script>
 <script type="module" src="./xg-data-ui.js?v=1.0"></script>
 <script type="module" src="./corners-ui.js?v=1.0"></script>
