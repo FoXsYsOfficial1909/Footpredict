@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
 import {frozenV1Forecast} from '../worker/index.mjs';
-import {summarizeGoalMarkets} from '../worker/goal-market-quality.mjs';
+import {freezeBothScoreCandidate,summarizeGoalMarkets} from '../worker/goal-market-quality.mjs';
 import {predictScore,forecastMarkets,marketQuote,riskLevel} from '../forecast-markets.js';
 
 const stats = {homeScored:1.8,homeConceded:1.07,awayScored:1.3,awayConceded:1.5,leagueHome:1.5,leagueAway:1.2};
@@ -75,4 +77,31 @@ test('the Worker records the probabilities used by the card and only counts save
   assert.equal(summary.markets.over25.frequency,0);
   assert.equal(summary.markets.bothScore.frequency,1);
   close(summary.markets.over25.base.brier,2*model.goalMarkets.base.over25**2);
+});
+
+test('the live btts correction matches the trained artifact and its own paired cohort',()=>{
+  const artifact=readFileSync(new URL('../docs/research/goal-markets-2026-11-19/calibration.json',import.meta.url));
+  const trained=JSON.parse(artifact);
+  const forecast={protocol:'poisson-goal-markets-1',modelVersion:'poisson-1.0.0',
+    model:{over25:.67,bothScore:.64},base:{over25:.50,bothScore:.47}};
+  const early='2026-11-19T19:24:59.999Z',savedAt='2026-11-19T19:25:00Z';
+  assert.equal(freezeBothScoreCandidate(forecast,early),forecast);
+  const frozen=freezeBothScoreCandidate(forecast,savedAt),candidate=frozen.bothScoreCandidate;
+  assert.equal(candidate.modelVersion,trained.candidateVersion);
+  assert.equal(candidate.artifactSha256,createHash('sha256').update(artifact).digest('hex'));
+  for(const key of ['intercept','slope']) assert.equal(candidate[key],trained.models.bothScore[key]);
+  close(candidate.probability,.5067450768843828);
+  const settled={state:'settled',result:{home:1,away:1},forecast:frozen,savedAt};
+  const records=[settled,{...settled,savedAt:early},{...settled,forecast},
+    {...settled,forecast:{...frozen,bothScoreCandidate:{...candidate,probability:.9}}}];
+  const trial=rows=>summarizeGoalMarkets(rows,{includeBothScoreTrial:true}).bothScoreTrial;
+  const report=trial(records);
+  assert.deepEqual(report.counts,{eligible:3,registered:2,pending:0,settled:1,review:0,excluded:1,withoutCandidate:1});
+  close(report.coverage,2/3);
+  close(report.models.model.logLoss,-Math.log(.64));
+  close(report.models.base.logLoss,-Math.log(.47));
+  close(report.models.candidate.brier,2*(1-candidate.probability)**2);
+  assert.deepEqual(report.models.candidate.calibration[5],{n:1,predicted:candidate.probability,observed:1});
+  assert.equal(trial(Array(99).fill(settled)).reviewReady,false);
+  assert.equal(trial(Array(100).fill(settled)).reviewReady,true);
 });

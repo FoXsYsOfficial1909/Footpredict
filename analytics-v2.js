@@ -92,6 +92,32 @@ function publicTraining() {
   return details;
 }
 
+function renderBothScoreTrial(report) {
+  const trial = el('section'); trial.id = 'v2BothScoreTrial';
+  trial.append(el('h4','Обе забьют · проверка обученной поправки'));
+  const n = report.counts;
+  trial.append(el('p',`Записано ${n.registered} из ${n.eligible} прогнозов совместной серии · сверено ${n.settled} · ожидают ${n.pending}.`, 'muted'));
+  if (n.review + n.excluded) trial.append(el('p',`Требуют проверки или исключены ${n.review + n.excluded}.`, 'muted small'));
+  trial.append(el('p',report.reviewReady ? 'Набралась выборка для первого разбора.' :
+    `Первый разбор после ${report.firstReviewMatches} игр.`, 'muted small'));
+  if (!n.settled) return trial;
+
+  const variants = [['model','Пуассон'], ['base','Частоты АПЛ'], ['candidate','Обученная поправка']];
+  trial.append(el('p','Фактическая частота · ' + pct(report.frequency), 'muted small'));
+  trial.append(table(['Модель','Средний шанс','Log Loss ↓','Brier ↓'], variants.map(([key, label]) => {
+    const m = report.models[key];
+    return [label, pct(m.meanProbability), decimal(m.logLoss), decimal(m.brier)];
+  }), 'Три предматчевых прогноза на одних играх'));
+  const calibration = el('details',undefined,'quality-help');
+  calibration.append(el('summary','Калибровка трёх прогнозов'));
+  for (const [key, label] of variants) {
+    const rows = report.models[key].calibration.flatMap((b,i) => b.n ? [[`${i*10}–${(i+1)*10}%`,b.n,pct(b.predicted),pct(b.observed)]] : []);
+    calibration.append(table(['Диапазон','Игры','Прогноз','Частота'], rows, label));
+  }
+  trial.append(calibration);
+  return trial;
+}
+
 function renderGoalQuality(target, report) {
   target.replaceChildren();
   if (report?.protocol !== 'poisson-goal-markets-1') {
@@ -118,6 +144,9 @@ function renderGoalQuality(target, report) {
     target.append(el('p','Для Log Loss и Brier меньше — лучше. Шкала Brier от 0 до 2.','muted small'));
   } else {
     target.append(el('p','Вероятности фиксируются минимум за сутки до игры. Метрики появятся после сверки первых результатов.'));
+  }
+  if (report.bothScoreTrial?.protocol === 'pl-btts-calibration-live-1') {
+    target.append(renderBothScoreTrial(report.bothScoreTrial));
   }
   const audit = el('a','Сравнение на истории АПЛ');
   audit.href = 'https://github.com/FoXsYsOfficial1909/Footpredict/blob/main/docs/goal-markets-quality.md';

@@ -212,9 +212,12 @@ test('the goal markets are registered with the original forecast and settled fro
     state.services.predictV1=()=>forecast;
     await register(state);
     const original=await evidence(state);
-    assert.deepEqual(original.goalMarkets,forecast.goalMarkets);
+    const {bothScoreCandidate, ...comparators}=original.goalMarkets;
+    assert.deepEqual(comparators,forecast.goalMarkets);
+    assert.ok(bothScoreCandidate.probability>0&&bothScoreCandidate.probability<1);
     const goalReport=async()=> (await comparisonReport(state.db,state.services.now(),PROTOCOL,{includeRelease:true})).goalMarkets;
     assert.equal((await goalReport()).counts.pending,1);
+    assert.equal((await goalReport()).bothScoreTrial.counts.pending,1);
     state.setTime(Date.parse(fixture.utcDate)+5*3600000);
     state.setGames([{...fixture,status:'FINISHED',score:{duration:'PENALTY_SHOOTOUT',
       fullTime:{home:4,away:3},regularTime:{home:1,away:1}}}]);
@@ -224,6 +227,11 @@ test('the goal markets are registered with the original forecast and settled fro
     assert.equal(checked.markets.over25.frequency,0);
     assert.equal(checked.markets.bothScore.frequency,1);
     assert.ok(Math.abs(checked.markets.over25.model.brier-2*forecast.goalMarkets.model.over25**2)<1e-12);
+    const trial=checked.bothScoreTrial;
+    assert.equal(trial.counts.settled,1);
+    assert.equal(trial.frequency,1);
+    assert.ok(Math.abs(trial.models.candidate.logLoss+Math.log(bothScoreCandidate.probability))<1e-12);
+    assert.equal((await register(state)).result.reason,'already_registered');
     assert.deepEqual(await evidence(state),original);
   } finally {state.db.close();}
 });

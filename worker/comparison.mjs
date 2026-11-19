@@ -1,5 +1,5 @@
 import {MODEL_RELEASE,releaseStatus,eligibleRecipe} from './model-release.mjs';
-import {summarizeGoalMarkets} from './goal-market-quality.mjs';
+import {freezeBothScoreCandidate,summarizeGoalMarkets} from './goal-market-quality.mjs';
 import {qualityWindows} from './quality-windows.mjs';
 import {scoreQuality,summarizeQuality} from './metrics.mjs';
 import {predictEnsemble} from './model-v2.mjs';
@@ -96,7 +96,7 @@ export async function registerComparison(db,services,{fixtureId,kickoff},protoco
         dataSha256:bundle.report.dataSha256,codeSha256:bundle.report.codeSha256,sourceCommit:bundle.report.sourceCommit,
         trainingRunId:bundle.report.runId,unseenTeams:nightly.unseenTeams}}:{})},
     inputs:v1.inputs,stats:v1.stats,parameters:v1.parameters,sources,notices,
-    ...(config.nightly&&v1.goalMarkets?{goalMarkets:v1.goalMarkets}:{}),
+    ...(config.nightly&&v1.goalMarkets?{goalMarkets:freezeBothScoreCandidate(v1.goalMarkets,savedAt)}:{}),
     ...(bundle?{candidateArtifact:{modelJson:bundle.modelJson,modelSha256:bundle.report.modelSha256,trainingReport:bundle.report,
       modelUrl:bundle.modelUrl,modelFetchedAt:bundle.modelFetchedAt,reportUrl:bundle.reportUrl,reportFetchedAt:bundle.reportFetchedAt}}:{}),
     policy:policy(config)};
@@ -181,7 +181,8 @@ export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PRO
     }
     if(config.nightly&&includeRelease){
       const matchesResult=latest.kickoff===row.kickoff_at&&latest.providerStatus==='FINISHED';
-      goalRows.push({forecast:parse(row.goal_markets),state:state==='settled'&&!matchesResult?'review':state,result:latest.score});
+      goalRows.push({forecast:parse(row.goal_markets),state:state==='settled'&&!matchesResult?'review':state,
+        result:latest.score,savedAt:row.saved_at});
       windowRows.push({kickoff:row.kickoff_at,league:row.league||'PL',state,score:latest.score,
         models:{v1:models?.v1?.probabilities,candidate:models?.candidate?.probabilities,base:models?.base?.probabilities}});
       releaseRows.push({fixtureId:row.fixture_id,kickoff:row.kickoff_at,savedAt:row.saved_at,state,models,league:row.league,
@@ -195,7 +196,7 @@ export async function comparisonReport(db,now=Date.now(),protocol=COMPARISON_PRO
     fixtureScope:{total:records.length,returned:fixtures.length,limit:100},
     ...(config.nightly?{versions:[...versions.values()].map(({scored,...version})=>({...version,
       models:Object.fromEntries(Object.entries(scored).map(([key,rows])=>[key,summarizeQuality(rows)]))}))}:{}),
-    ...(config.nightly&&includeRelease?{goalMarkets:summarizeGoalMarkets(goalRows),windows:qualityWindows(windowRows,['v1','candidate','base'],now),release:await releaseStatus(db,releaseRows,now,paused)}:{}),
+    ...(config.nightly&&includeRelease?{goalMarkets:summarizeGoalMarkets(goalRows,{includeBothScoreTrial:true}),windows:qualityWindows(windowRows,['v1','candidate','base'],now),release:await releaseStatus(db,releaseRows,now,paused)}:{}),
     policy:policy(config)};
 }
 

@@ -57,6 +57,8 @@ test('the deployed Worker adapter registers real v1 math with verified nightly w
     assert.equal(await modelDigest(packet.candidateArtifact.modelJson),packet.models.candidate.modelSha256);
     assert.equal(packet.models.candidate.modelVersion,bundle.report.modelVersion);
     assert.equal(packet.savedAt,new Date(clock).toISOString());
+    assert.equal(packet.goalMarkets.bothScoreCandidate.protocol,'pl-btts-calibration-live-1');
+    assert.ok(packet.goalMarkets.bothScoreCandidate.probability>0&&packet.goalMarkets.bothScoreCandidate.probability<1);
     // Independently reproduce all four distributions in Python, through the
     // public verifier. Normalized but incorrect probabilities must be rejected.
     const verify=value=>spawnSync('python3',['-m','scripts.verify_candidate','-'],{cwd:new URL('..',import.meta.url),input:JSON.stringify(value),encoding:'utf8'});

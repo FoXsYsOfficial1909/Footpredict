@@ -106,7 +106,12 @@ with sync_playwright() as playwright:
             goals.locator(':scope > summary').click()
             assert 'сверено '+str(goal_report['counts']['settled']) in goals.inner_text()
             assert goals.get_by_role('link',name='Сравнение на истории АПЛ').is_visible()
-            assert goals.locator('h4').count() == (2 if goal_report['counts']['settled'] else 0)
+            assert goals.locator(':scope > div > h4').count() == (2 if goal_report['counts']['settled'] else 0)
+            trial = goal_report.get('bothScoreTrial')
+            if trial:
+                panel = goals.locator('#v2BothScoreTrial')
+                assert f"Записано {trial['counts']['registered']} из {trial['counts']['eligible']}" in panel.inner_text()
+                assert panel.locator(':scope > .table-scroll tbody tr').count() == (3 if trial['counts']['settled'] else 0)
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
             goals.locator(':scope > summary').click()
         page.screenshot(path=str(OUTPUT/'analytics-mobile.png'), full_page=True)
