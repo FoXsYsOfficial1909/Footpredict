@@ -28,9 +28,12 @@ def instant(value):
     return parsed.timestamp()
 
 
+def poisson_mass(mean):
+    return [math.exp(-mean)*mean**i/math.factorial(i) for i in range(21)]
+
+
 def distribution(home,away):
-    h=[math.exp(-home)*home**i/math.factorial(i) for i in range(21)]
-    a=[math.exp(-away)*away**i/math.factorial(i) for i in range(21)]
+    h,a=poisson_mass(home),poisson_mass(away)
     values=[math.fsum(h[i]*a[j] for i in range(21) for j in range(21) if (0 if i>j else 1 if i==j else 2)==key) for key in range(3)]
     total=math.fsum(values)
     return [value/total for value in values]
@@ -49,6 +52,45 @@ def ensemble(model,home,away):
 
 def valid_probabilities(values):
     return isinstance(values,list) and len(values)==3 and all(type(value) in (int,float) and math.isfinite(value) and 0<=value<=1 for value in values) and abs(math.fsum(values)-1)<1e-8
+
+
+def verify_goal_markets(snapshot, home, away, inputs, weights, saved):
+    require(snapshot['protocol']=='poisson-goal-markets-1' and snapshot['modelVersion']=='poisson-1.0.0',
+            'Unknown goal-market protocol or model')
+    h,a=poisson_mass(home),poisson_mass(away)
+    mass=math.fsum(h)*math.fsum(a)
+    model={'over25':math.fsum(h[i]*a[j] for i in range(21) for j in range(21) if i+j>=3)/mass,
+           'bothScore':math.fsum(h[1:])*math.fsum(a[1:])/mass}
+    scores=[game['score']['fullTime'] for game in inputs]
+    total=math.fsum(weights)+2
+    base={'over25':(1+math.fsum(w for w,s in zip(weights,scores) if s['home']+s['away']>=3))/total,
+          'bothScore':(1+math.fsum(w for w,s in zip(weights,scores) if min(s['home'],s['away'])>0))/total}
+    values={'model':model,'base':base}
+    for name,markets in values.items():
+        require(all(abs(snapshot[name][key]-probability)<1e-10 for key,probability in markets.items()),
+                'Frozen goal markets do not match the reproduced calculations')
+    candidate=snapshot.get('bothScoreCandidate')
+    if candidate is not None:
+        require(candidate['protocol']=='pl-btts-calibration-live-1' and saved>=instant('2026-11-19T19:25:00Z'),
+                'Unknown BTTS trial or registration before its start')
+        raw=(ROOT/'docs/research/goal-markets-2026-11-19/calibration.json').read_bytes()
+        artifact=loads(raw)
+        coefficients=artifact['models']['bothScore']
+        require(candidate['artifactSha256']==hashlib.sha256(raw).hexdigest() and
+                candidate['modelVersion']==artifact['candidateVersion'] and
+                all(candidate[key]==coefficients[key] for key in ('intercept','slope')),
+                'BTTS model does not match the frozen training artifact')
+
+        def logit(probability):
+            p=max(1e-12,min(1-1e-12,probability))
+            return math.log(p/(1-p))
+
+        offset=logit(base['bothScore'])
+        log_odds=offset+coefficients['intercept']+coefficients['slope']*(logit(model['bothScore'])-offset)
+        p=1/(1+math.exp(-log_odds))
+        require(abs(candidate['probability']-p)<1e-10,'Frozen BTTS probability differs from the reproduced calculation')
+        values['bothScoreCandidate']=p
+    return values
 
 
 def verify(packet):
@@ -97,12 +139,14 @@ def verify(packet):
         require(valid_probabilities(probabilities) and valid_probabilities(packet['models'][key]['probabilities']),'Invalid probability distribution')
         differences[key]=max(abs(actual-expected) for actual,expected in zip(probabilities,packet['models'][key]['probabilities']))
     require(max(differences.values())<1e-10,'Frozen probabilities do not match the reproduced calculations')
+    goal_markets=packet.get('goalMarkets')
     return {'fixtureId':packet['fixtureId'],'match':packet['home']+' — '+packet['away'],'savedAt':packet['savedAt'],
         'kickoff':packet['kickoff'],'horizonHours':(kickoff-saved)/3600,'inputGames':len(inputs),
         'candidateVersion':model['model_version'],'candidateSha256':checksum,'sourceRunId':report['runId'],
         'referenceV2FileSha256':hashlib.sha256(v2_path.read_bytes()).hexdigest(),
         'trainingCutoffExclusive':report['trainingCutoffExclusive'],'allFourReproduced':True,'maximumDifference':max(differences.values()),
-        'probabilities':values,'noFutureInputs':True,'promoted':False}
+        'probabilities':values,'noFutureInputs':True,'promoted':False,
+        **({'goalMarkets':verify_goal_markets(goal_markets,h,a,inputs,weights,saved)} if goal_markets is not None else {})}
 
 
 if __name__=='__main__':

@@ -1,0 +1,18 @@
+{
+  "candidateVersion": "pl-btts-league-gap-0.1.0",
+  "league": "PL",
+  "market": "bothScore",
+  "goalPlan": "docs/research/goal-market-calibration-plan-2026-11-19.json",
+  "referenceArtifact": "docs/research/goal-markets-2026-11-19/calibration.json",
+  "referenceSha256": "866fc04068d7198ec5482f7738b201b26c2329e4eb17c4464d5ec99d2a2ee3c8",
+  "feature": "Count of teams whose last eligible Premier League match was at most three calendar days before the target. Missing team history leaves the reference probability unchanged.",
+  "shortGapDays": 3,
+  "model": "logit(frozen_btts_calibration) + coefficient * short_gap_teams",
+  "ridge": 0.01,
+  "primaryMetric": "logLoss",
+  "brierScale": [0, 2],
+  "bootstrapSamples": 1500,
+  "bootstrapSeed": 20261119,
+  "comparison": "Same prediction rows for all variants, by checked season and pooled. The short-gap subgroup is defined before scoring.",
+  "decision": "Report all covered prediction rows and the prespecified short-gap subgroup. Keep the existing prospective trial intact. Any new prospective series requires historical benefit over the frozen calibration and league frequencies."
+}

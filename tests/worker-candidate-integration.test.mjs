@@ -59,11 +59,15 @@ test('the deployed Worker adapter registers real v1 math with verified nightly w
     assert.equal(packet.savedAt,new Date(clock).toISOString());
     assert.equal(packet.goalMarkets.bothScoreCandidate.protocol,'pl-btts-calibration-live-1');
     assert.ok(packet.goalMarkets.bothScoreCandidate.probability>0&&packet.goalMarkets.bothScoreCandidate.probability<1);
-    // Independently reproduce all four distributions in Python, through the
+    // Independently reproduce the distributions and goal markets in Python, through the
     // public verifier. Normalized but incorrect probabilities must be rejected.
     const verify=value=>spawnSync('python3',['-m','scripts.verify_candidate','-'],{cwd:new URL('..',import.meta.url),input:JSON.stringify(value),encoding:'utf8'});
     const verified=verify(packet);assert.equal(verified.status,0,verified.stderr);
-    assert.equal(JSON.parse(verified.stdout).allFourReproduced,true);
+    const reproduced=JSON.parse(verified.stdout);
+    assert.equal(reproduced.allFourReproduced,true);
+    assert.ok(Math.abs(reproduced.goalMarkets.bothScoreCandidate-packet.goalMarkets.bothScoreCandidate.probability)<1e-10);
+    const alteredGoal=structuredClone(packet);alteredGoal.goalMarkets.bothScoreCandidate.probability+=.01;
+    assert.notEqual(verify(alteredGoal).status,0);
     const changed=structuredClone(packet);changed.models.candidate.probabilities[0]+=.01;changed.models.candidate.probabilities[1]-=.01;
     assert.notEqual(verify(changed).status,0);
     assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM predictions').get().n,0);

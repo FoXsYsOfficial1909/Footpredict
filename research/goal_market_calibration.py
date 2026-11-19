@@ -74,12 +74,24 @@ def scores(probabilities, actual):
             'meanProbability': float(probabilities.mean()), 'calibration': bins}, log_losses
 
 
-def evaluate(period, models, plan):
-    rows = period['rows']
-    days, by_day = np.unique([row['day'] for row in rows], return_inverse=True)
+def paired_log_loss(days, losses, candidate, references, plan):
+    days, by_day = np.unique(days, return_inverse=True)
     counts = np.bincount(by_day)
     rng = np.random.default_rng(plan['bootstrapSeed'])
     samples = rng.integers(len(days), size=(plan['bootstrapSamples'], len(days)))
+    differences = {}
+    for reference in references:
+        delta = losses[candidate] - losses[reference]
+        sums = np.bincount(by_day, weights=delta)
+        draws = sums[samples].sum(axis=1) / counts[samples].sum(axis=1)
+        differences[reference] = {'difference': float(delta.mean()),
+                                  'ci95': np.quantile(draws, [.025, .975]).tolist()}
+    return differences
+
+
+def evaluate(period, models, plan):
+    rows = period['rows']
+    days = [row['day'] for row in rows]
     markets = {}
     for market, weights in models.items():
         poisson, base, actual = inputs(rows, market)
@@ -87,20 +99,14 @@ def evaluate(period, models, plan):
         metrics, losses = {}, {}
         for name, probabilities in variants.items():
             metrics[name], losses[name] = scores(probabilities, actual)
-        differences = {}
-        for reference in ('poisson', 'base'):
-            delta = losses['candidate'] - losses[reference]
-            sums = np.bincount(by_day, weights=delta)
-            draws = sums[samples].sum(axis=1) / counts[samples].sum(axis=1)
-            differences[reference] = {'difference': float(delta.mean()),
-                                      'ci95': np.quantile(draws, [.025, .975]).tolist()}
+        differences = paired_log_loss(days, losses, 'candidate', ('poisson', 'base'), plan)
         markets[market] = {'frequency': float(actual.mean()), **metrics, 'pairedLogLoss': differences}
     fields = ('season', 'from', 'to', 'completed', 'coverage')
     return {**{key: period[key] for key in fields}, 'checked': len(rows),
             'skipped': len(period['skipped']), 'markets': markets}
 
 
-def experiment(replay, plan):
+def chronological_split(replay, plan):
     train = plan['trainSeasons']
     checks = plan['validationSeasons'] + plan['laterReplaySeasons']
     periods = {period['season']: period for period in replay['periods']}
@@ -111,6 +117,13 @@ def experiment(replay, plan):
     earliest_check = min(date.fromisoformat(periods[year]['from']) for year in checks)
     if date.fromisoformat(latest) >= earliest_check - timedelta(days=1):
         raise ValueError('Training labels overlap the validation information cutoff')
+    return periods, rows
+
+
+def experiment(replay, plan):
+    train = plan['trainSeasons']
+    periods, rows = chronological_split(replay, plan)
+    latest = max(row['day'] for row in rows)
     models = {market: fit(rows, market, plan['ridge']) for market in plan['markets']}
     return {'schemaVersion': 1, 'candidateVersion': plan['candidateVersion'], 'league': plan['league'],
             'source': replay['source'], 'settings': replay['settings'], 'leadHours': replay['leadHours'],

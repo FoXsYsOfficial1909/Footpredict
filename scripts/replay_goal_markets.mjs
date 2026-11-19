@@ -36,7 +36,20 @@ for (const [i, [,day,year,home,away,h,a]] of games.entries()) {
   seasons.get(year).push(match);
 }
 
-function evaluate(year, includeRows) {
+function lastLeagueDates(game, inputs) {
+  const dates = {home: null, away: null};
+  for (const side of ['home', 'away']) {
+    const team = game[side+'Team'].id;
+    for (const g of inputs) {
+      if (g.homeTeam.id !== team && g.awayTeam.id !== team) continue;
+      const date = g.utcDate.slice(0,10);
+      if (dates[side] === null || date > dates[side]) dates[side] = date;
+    }
+  }
+  return dates;
+}
+
+function evaluate(year, includeRows, includeRest) {
   const current = seasons.get(year), previous = seasons.get(year-1);
   const paired = [], skipped = [], rows = [];
   for (const game of current) {
@@ -55,7 +68,8 @@ function evaluate(year, includeRows) {
     if (includeRows) {
       const {home, away} = game.score.fullTime;
       const {model, base} = forecast.goalMarkets;
-      rows.push({day, fixture:game.id, poisson:model, base, events:goalEvents(home, away)});
+      rows.push({day, fixture:game.id, poisson:model, base, events:goalEvents(home, away),
+        ...(includeRest ? {lastLeagueMatch:lastLeagueDates(game, forecast.inputs)} : {})});
     }
   }
   const dates = current.map(g=>g.utcDate.slice(0,10)).sort();
@@ -64,12 +78,13 @@ function evaluate(year, includeRows) {
     ...(includeRows ? {rows} : {})};
 }
 
-const includeRows = process.argv[2] === '--training-rows';
+const includeRest = process.argv[2] === '--rest-rows';
+const includeRows = includeRest || process.argv[2] === '--training-rows';
 const years = includeRows ? [...seasons.keys()].filter(year => seasons.has(year - 1)).sort() : [2025,2026];
 const report = {schemaVersion:1, kind:'chronological-historical-replay', league:'PL',
   prospective:false, source:{file:sourcePlan.sourceSnapshot,sha256:sha(compressed),available:games.length},
   leadHours:24, resultSafetyHours:4, settings:{halfLifeDays:120,priorSeasonWeight:.35,shrinkageGames:5},
-  primaryMetric:'logLoss', periods:years.map(year => evaluate(year, includeRows))};
+  primaryMetric:'logLoss', periods:years.map(year => evaluate(year, includeRows, includeRest))};
 const output = JSON.stringify(report,null,2)+'\n';
 const location = process.argv[includeRows ? 3 : 2];
 if (location) writeFileSync(location, output);

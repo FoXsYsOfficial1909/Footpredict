@@ -1,0 +1,1527 @@
+{
+  "schemaVersion": 1,
+  "protocol": {
+    "candidateVersion": "pl-btts-league-gap-0.1.0",
+    "league": "PL",
+    "market": "bothScore",
+    "goalPlan": "docs/research/goal-market-calibration-plan-2026-11-19.json",
+    "referenceArtifact": "docs/research/goal-markets-2026-11-19/calibration.json",
+    "referenceSha256": "866fc04068d7198ec5482f7738b201b26c2329e4eb17c4464d5ec99d2a2ee3c8",
+    "feature": "Count of teams whose last eligible Premier League match was at most three calendar days before the target. Missing team history leaves the reference probability unchanged.",
+    "shortGapDays": 3,
+    "model": "logit(frozen_btts_calibration) + coefficient * short_gap_teams",
+    "ridge": 0.01,
+    "primaryMetric": "logLoss",
+    "brierScale": [
+      0,
+      2
+    ],
+    "bootstrapSamples": 1500,
+    "bootstrapSeed": 20261119,
+    "comparison": "Same prediction rows for all variants, by checked season and pooled. The short-gap subgroup is defined before scoring.",
+    "decision": "Report all covered prediction rows and the prespecified short-gap subgroup. Keep the existing prospective trial intact. Any new prospective series requires historical benefit over the frozen calibration and league frequencies."
+  },
+  "source": {
+    "file": "docs/research/league-one-2026-11-15/training-data.json.gz",
+    "sha256": "65e57e8081d3f61ef38c547d02203bdcdeca66742810ce3c3a899335b4a19596",
+    "available": 4280
+  },
+  "prospective": false,
+  "referenceVersion": "pl-goal-calibration-0.1.0",
+  "leadHours": 24,
+  "resultSafetyHours": 4,
+  "training": {
+    "from": "2016-08-13",
+    "to": "2023-05-28",
+    "checked": 2578,
+    "gapAvailable": 2578,
+    "shortGap": 547,
+    "coefficient": 0.013714358126687589,
+    "iterations": 3,
+    "initialObjective": 0.6947809331636204,
+    "fittedObjective": 0.694769588703704
+  },
+  "periods": [
+    {
+      "season": 2023,
+      "from": "2023-08-12",
+      "to": "2024-05-19",
+      "completed": 380,
+      "coverage": 0.968421052631579,
+      "gapAvailable": 368,
+      "gapMissing": 0,
+      "checked": 368,
+      "models": {
+        "poisson": {
+          "logLoss": 0.6749558099284308,
+          "brier": 0.48162451388330935,
+          "accuracy": 0.5978260869565217,
+          "meanProbability": 0.5912167515948842,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 196,
+              "predicted": 0.5435334456461153,
+              "observed": 0.6122448979591837
+            },
+            {
+              "n": 172,
+              "predicted": 0.6455535420946441,
+              "observed": 0.6162790697674418
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "base": {
+          "logLoss": 0.6705309387760267,
+          "brier": 0.47751571443736296,
+          "accuracy": 0.6141304347826086,
+          "meanProbability": 0.5931395481040915,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 195,
+              "predicted": 0.5721189989441502,
+              "observed": 0.6102564102564103
+            },
+            {
+              "n": 173,
+              "predicted": 0.616833230683216,
+              "observed": 0.6184971098265896
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated": {
+          "logLoss": 0.6704264434545885,
+          "brier": 0.47741023854755704,
+          "accuracy": 0.6141304347826086,
+          "meanProbability": 0.5899282667848886,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 222,
+              "predicted": 0.571233580082066,
+              "observed": 0.6081081081081081
+            },
+            {
+              "n": 146,
+              "predicted": 0.6183544342371254,
+              "observed": 0.6232876712328768
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "candidate": {
+          "logLoss": 0.6705922320941148,
+          "brier": 0.477564288396147,
+          "accuracy": 0.6141304347826086,
+          "meanProbability": 0.5907915662342783,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 220,
+              "predicted": 0.5715755275028396,
+              "observed": 0.6136363636363636
+            },
+            {
+              "n": 148,
+              "predicted": 0.6193559481323628,
+              "observed": 0.6148648648648649
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLoss": {
+        "calibrated": {
+          "difference": 0.00016578863952633184,
+          "ci95": [
+            -0.0002512636521748117,
+            0.000622249190472948
+          ]
+        },
+        "base": {
+          "difference": 6.12933180882594e-05,
+          "ci95": [
+            -0.0028256020608619747,
+            0.0029258238123095856
+          ]
+        },
+        "poisson": {
+          "difference": -0.004363577834316004,
+          "ci95": [
+            -0.013882580499340212,
+            0.005084846585888899
+          ]
+        }
+      },
+      "shortGap": {
+        "checked": 69,
+        "models": {
+          "poisson": {
+            "logLoss": 0.7114534309642683,
+            "brier": 0.5164579267069146,
+            "accuracy": 0.5362318840579711,
+            "meanProbability": 0.5969524428599006,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 37,
+                "predicted": 0.5535543087553264,
+                "observed": 0.6486486486486487
+              },
+              {
+                "n": 32,
+                "predicted": 0.6471315354183143,
+                "observed": 0.5
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "base": {
+            "logLoss": 0.6861147440738075,
+            "brier": 0.4928132537766384,
+            "accuracy": 0.5797101449275363,
+            "meanProbability": 0.6052860845476227,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 28,
+                "predicted": 0.5832860912230728,
+                "observed": 0.6428571428571429
+              },
+              {
+                "n": 41,
+                "predicted": 0.6203104702326814,
+                "observed": 0.5365853658536586
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "calibrated": {
+            "logLoss": 0.6903987818618976,
+            "brier": 0.49693364343214896,
+            "accuracy": 0.5797101449275363,
+            "meanProbability": 0.6006156980195192,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 30,
+                "predicted": 0.5771490600962828,
+                "observed": 0.6333333333333333
+              },
+              {
+                "n": 39,
+                "predicted": 0.6186669579604701,
+                "observed": 0.5384615384615384
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "candidate": {
+            "logLoss": 0.6912829879393714,
+            "brier": 0.4977552426246284,
+            "accuracy": 0.5797101449275363,
+            "meanProbability": 0.6052199617495976,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 28,
+                "predicted": 0.5802583241176613,
+                "observed": 0.6785714285714286
+              },
+              {
+                "n": 41,
+                "predicted": 0.6222669337909199,
+                "observed": 0.5121951219512195
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          }
+        },
+        "pairedLogLoss": {
+          "calibrated": {
+            "difference": 0.0008842060774737698,
+            "ci95": [
+              -0.0014103648314661545,
+              0.003274994610768297
+            ]
+          },
+          "base": {
+            "difference": 0.005168243865563853,
+            "ci95": [
+              -0.000548804728108659,
+              0.010723589017580469
+            ]
+          },
+          "poisson": {
+            "difference": -0.020170443024896876,
+            "ci95": [
+              -0.03757165136912437,
+              -0.0018914109518439835
+            ]
+          }
+        }
+      }
+    },
+    {
+      "season": 2024,
+      "from": "2024-08-16",
+      "to": "2025-05-25",
+      "completed": 380,
+      "coverage": 0.968421052631579,
+      "gapAvailable": 368,
+      "gapMissing": 0,
+      "checked": 368,
+      "models": {
+        "poisson": {
+          "logLoss": 0.6852015771228465,
+          "brier": 0.49169873693746047,
+          "accuracy": 0.5597826086956522,
+          "meanProbability": 0.5799017413981052,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 3,
+              "predicted": 0.3737345631365146,
+              "observed": 0.3333333333333333
+            },
+            {
+              "n": 217,
+              "predicted": 0.5366442080591567,
+              "observed": 0.5668202764976958
+            },
+            {
+              "n": 146,
+              "predicted": 0.6453990687276008,
+              "observed": 0.589041095890411
+            },
+            {
+              "n": 2,
+              "predicted": 0.8012899810132526,
+              "observed": 0.5
+            }
+          ]
+        },
+        "base": {
+          "logLoss": 0.6845131799222679,
+          "brier": 0.49130173837013735,
+          "accuracy": 0.5733695652173914,
+          "meanProbability": 0.5992899240121499,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 179,
+              "predicted": 0.5759128100824108,
+              "observed": 0.5698324022346368
+            },
+            {
+              "n": 189,
+              "predicted": 0.6214301536069822,
+              "observed": 0.5767195767195767
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated": {
+          "logLoss": 0.6822159517643023,
+          "brier": 0.489084880323806,
+          "accuracy": 0.5733695652173914,
+          "meanProbability": 0.5922020924005704,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 218,
+              "predicted": 0.5740795890088662,
+              "observed": 0.5596330275229358
+            },
+            {
+              "n": 150,
+              "predicted": 0.6185401306631803,
+              "observed": 0.5933333333333334
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "candidate": {
+          "logLoss": 0.6820741336805959,
+          "brier": 0.48894730054363955,
+          "accuracy": 0.5733695652173914,
+          "meanProbability": 0.5928833581541401,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 214,
+              "predicted": 0.5743226291558631,
+              "observed": 0.5607476635514018
+            },
+            {
+              "n": 154,
+              "predicted": 0.6186755400088884,
+              "observed": 0.5909090909090909
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLoss": {
+        "calibrated": {
+          "difference": -0.00014181808370622803,
+          "ci95": [
+            -0.0004745728795541103,
+            0.00019930228091662874
+          ]
+        },
+        "base": {
+          "difference": -0.0024390462416718785,
+          "ci95": [
+            -0.005835555930123997,
+            0.001311623868438237
+          ]
+        },
+        "poisson": {
+          "difference": -0.0031274434422504517,
+          "ci95": [
+            -0.014963045143214575,
+            0.0074263287688863516
+          ]
+        }
+      },
+      "shortGap": {
+        "checked": 56,
+        "models": {
+          "poisson": {
+            "logLoss": 0.6698188789473912,
+            "brier": 0.4767397403287164,
+            "accuracy": 0.5535714285714286,
+            "meanProbability": 0.5871069556530145,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 1,
+                "predicted": 0.3894930261632786,
+                "observed": 1.0
+              },
+              {
+                "n": 30,
+                "predicted": 0.5391034382473353,
+                "observed": 0.5666666666666667
+              },
+              {
+                "n": 24,
+                "predicted": 0.6464188968344685,
+                "observed": 0.7083333333333334
+              },
+              {
+                "n": 1,
+                "predicted": 0.801339818958227,
+                "observed": 1.0
+              }
+            ]
+          },
+          "base": {
+            "logLoss": 0.6607700155908862,
+            "brier": 0.4678650521878162,
+            "accuracy": 0.6428571428571429,
+            "meanProbability": 0.5958735132330052,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 25,
+                "predicted": 0.5753213817067884,
+                "observed": 0.68
+              },
+              {
+                "n": 31,
+                "predicted": 0.6124478128509219,
+                "observed": 0.6129032258064516
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "calibrated": {
+            "logLoss": 0.6608494088330605,
+            "brier": 0.4680208283602069,
+            "accuracy": 0.6428571428571429,
+            "meanProbability": 0.591328029080916,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 37,
+                "predicted": 0.5789748088935149,
+                "observed": 0.6216216216216216
+              },
+              {
+                "n": 19,
+                "predicted": 0.6153842999721704,
+                "observed": 0.6842105263157895
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "candidate": {
+            "logLoss": 0.6599174614258481,
+            "brier": 0.4671167326619702,
+            "accuracy": 0.6428571428571429,
+            "meanProbability": 0.5958049183186593,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 33,
+                "predicted": 0.5811442474085428,
+                "observed": 0.6363636363636364
+              },
+              {
+                "n": 23,
+                "predicted": 0.6168397939723049,
+                "observed": 0.6521739130434783
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          }
+        },
+        "pairedLogLoss": {
+          "calibrated": {
+            "difference": -0.0009319474072123556,
+            "ci95": [
+              -0.0030584292842807293,
+              0.0012538936203134912
+            ]
+          },
+          "base": {
+            "difference": -0.000852554165038172,
+            "ci95": [
+              -0.00742034661417179,
+              0.006968765669475931
+            ]
+          },
+          "poisson": {
+            "difference": -0.009901417521543018,
+            "ci95": [
+              -0.03538744231892631,
+              0.012086469864670452
+            ]
+          }
+        }
+      }
+    },
+    {
+      "season": 2025,
+      "from": "2025-08-15",
+      "to": "2026-05-24",
+      "completed": 380,
+      "coverage": 0.9710526315789474,
+      "gapAvailable": 369,
+      "gapMissing": 0,
+      "checked": 369,
+      "models": {
+        "poisson": {
+          "logLoss": 0.6957482581456693,
+          "brier": 0.5025521754750176,
+          "accuracy": 0.5176151761517616,
+          "meanProbability": 0.5360350523859113,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 9,
+              "predicted": 0.3859526848290519,
+              "observed": 0.5555555555555556
+            },
+            {
+              "n": 290,
+              "predicted": 0.5152824743438038,
+              "observed": 0.5655172413793104
+            },
+            {
+              "n": 70,
+              "predicted": 0.6413063229605241,
+              "observed": 0.6
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "base": {
+          "logLoss": 0.6895419732174288,
+          "brier": 0.49638360497955714,
+          "accuracy": 0.5447154471544715,
+          "meanProbability": 0.5444859648687067,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 369,
+              "predicted": 0.5444859648687067,
+              "observed": 0.5718157181571816
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated": {
+          "logLoss": 0.6891107196012862,
+          "brier": 0.49597069549841505,
+          "accuracy": 0.5392953929539296,
+          "meanProbability": 0.5396172223721315,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 367,
+              "predicted": 0.5392544660611229,
+              "observed": 0.5722070844686649
+            },
+            {
+              "n": 2,
+              "predicted": 0.6061830054422013,
+              "observed": 0.5
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "candidate": {
+          "logLoss": 0.6889347555429614,
+          "brier": 0.4957979434695488,
+          "accuracy": 0.5392953929539296,
+          "meanProbability": 0.5403878728985478,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 366,
+              "predicted": 0.5398512723091478,
+              "observed": 0.5710382513661202
+            },
+            {
+              "n": 3,
+              "predicted": 0.6058531448053367,
+              "observed": 0.6666666666666666
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLoss": {
+        "calibrated": {
+          "difference": -0.0001759640583248702,
+          "ci95": [
+            -0.0006383864102448614,
+            0.0002874861555879251
+          ]
+        },
+        "base": {
+          "difference": -0.0006072176744674987,
+          "ci95": [
+            -0.004851103303962209,
+            0.003603558270499015
+          ]
+        },
+        "poisson": {
+          "difference": -0.006813502602707884,
+          "ci95": [
+            -0.020884327000856105,
+            0.007369546915522485
+          ]
+        }
+      },
+      "shortGap": {
+        "checked": 58,
+        "models": {
+          "poisson": {
+            "logLoss": 0.6546651914770101,
+            "brier": 0.46301907498270034,
+            "accuracy": 0.5862068965517241,
+            "meanProbability": 0.5378269906998892,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 1,
+                "predicted": 0.39542201423504775,
+                "observed": 1.0
+              },
+              {
+                "n": 45,
+                "predicted": 0.5094014174115054,
+                "observed": 0.5333333333333333
+              },
+              {
+                "n": 12,
+                "predicted": 0.6562899719033984,
+                "observed": 0.8333333333333334
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "base": {
+            "logLoss": 0.6805877632683787,
+            "brier": 0.4874369969335619,
+            "accuracy": 0.603448275862069,
+            "meanProbability": 0.5542445008224536,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 58,
+                "predicted": 0.5542445008224536,
+                "observed": 0.603448275862069
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "calibrated": {
+            "logLoss": 0.6730636103327832,
+            "brier": 0.4800441834284032,
+            "accuracy": 0.603448275862069,
+            "meanProbability": 0.5476014751562936,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 57,
+                "predicted": 0.5466047958732009,
+                "observed": 0.5964912280701754
+              },
+              {
+                "n": 1,
+                "predicted": 0.6044121942925852,
+                "observed": 1.0
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          },
+          "candidate": {
+            "logLoss": 0.6719441148582681,
+            "brier": 0.47894512310682263,
+            "accuracy": 0.603448275862069,
+            "meanProbability": 0.5525044069536659,
+            "calibration": [
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              },
+              {
+                "n": 56,
+                "predicted": 0.550636606883722,
+                "observed": 0.5892857142857143
+              },
+              {
+                "n": 2,
+                "predicted": 0.6048028089120963,
+                "observed": 1.0
+              },
+              {
+                "n": 0,
+                "predicted": null,
+                "observed": null
+              }
+            ]
+          }
+        },
+        "pairedLogLoss": {
+          "calibrated": {
+            "difference": -0.0011194954745151226,
+            "ci95": [
+              -0.003801409630191823,
+              0.0019088451314218415
+            ]
+          },
+          "base": {
+            "difference": -0.008643648410110548,
+            "ci95": [
+              -0.014790169743267287,
+              -0.003365085415117265
+            ]
+          },
+          "poisson": {
+            "difference": 0.017278923381257996,
+            "ci95": [
+              0.0008359829333291482,
+              0.03640664521974165
+            ]
+          }
+        }
+      }
+    },
+    {
+      "season": 2026,
+      "from": "2026-08-22",
+      "to": "2026-11-08",
+      "completed": 100,
+      "coverage": 0.89,
+      "gapAvailable": 89,
+      "gapMissing": 0,
+      "checked": 89,
+      "models": {
+        "poisson": {
+          "logLoss": 0.7041800153842626,
+          "brier": 0.5098745419476529,
+          "accuracy": 0.5393258426966292,
+          "meanProbability": 0.5490381518348029,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 3,
+              "predicted": 0.3860601932480234,
+              "observed": 0.3333333333333333
+            },
+            {
+              "n": 63,
+              "predicted": 0.5233119245008008,
+              "observed": 0.5079365079365079
+            },
+            {
+              "n": 23,
+              "predicted": 0.64076363869578,
+              "observed": 0.5217391304347826
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "base": {
+          "logLoss": 0.7008840291829843,
+          "brier": 0.5076764134037419,
+          "accuracy": 0.4943820224719101,
+          "meanProbability": 0.5375194280505665,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 89,
+              "predicted": 0.5375194280505665,
+              "observed": 0.5056179775280899
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated": {
+          "logLoss": 0.6991207908827926,
+          "brier": 0.5058932790569124,
+          "accuracy": 0.5280898876404494,
+          "meanProbability": 0.5372731295970153,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 89,
+              "predicted": 0.5372731295970153,
+              "observed": 0.5056179775280899
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "candidate": {
+          "logLoss": 0.6991207908827926,
+          "brier": 0.5058932790569124,
+          "accuracy": 0.5280898876404494,
+          "meanProbability": 0.5372731295970153,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 89,
+              "predicted": 0.5372731295970153,
+              "observed": 0.5056179775280899
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLoss": {
+        "calibrated": {
+          "difference": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "base": {
+          "difference": -0.0017632383001917682,
+          "ci95": [
+            -0.008274949075805695,
+            0.004232680355993137
+          ]
+        },
+        "poisson": {
+          "difference": -0.005059224501470144,
+          "ci95": [
+            -0.027186596796594856,
+            0.0185372805557956
+          ]
+        }
+      },
+      "shortGap": {
+        "checked": 0,
+        "models": null,
+        "pairedLogLoss": null
+      }
+    }
+  ],
+  "pooled": {
+    "from": "2023-08-12",
+    "to": "2026-11-08",
+    "completed": 1240,
+    "coverage": 0.9629032258064516,
+    "gapAvailable": 1194,
+    "gapMissing": 0,
+    "checked": 1194,
+    "models": {
+      "poisson": {
+        "logLoss": 0.6867177948574719,
+        "brier": 0.49330280007174704,
+        "accuracy": 0.5569514237855946,
+        "meanProbability": 0.5675317715788266,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 15,
+            "predicted": 0.3835305621743387,
+            "observed": 0.4666666666666667
+          },
+          {
+            "n": 766,
+            "predicted": 0.5292231296328057,
+            "observed": 0.5731070496083551
+          },
+          {
+            "n": 411,
+            "predicted": 0.6445072495662971,
+            "observed": 0.5985401459854015
+          },
+          {
+            "n": 2,
+            "predicted": 0.8012899810132526,
+            "observed": 0.5
+          }
+        ]
+      },
+      "base": {
+        "logLoss": 0.68297814270979,
+        "brier": 0.48984386403982383,
+        "accuracy": 0.5711892797319933,
+        "meanProbability": 0.5758530953700418,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 832,
+            "predicted": 0.5569785431873966,
+            "observed": 0.5733173076923077
+          },
+          {
+            "n": 362,
+            "predicted": 0.6192332816019779,
+            "observed": 0.5966850828729282
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          }
+        ]
+      },
+      "calibrated": {
+        "logLoss": 0.6819732054958082,
+        "brier": 0.48886758142348574,
+        "accuracy": 0.5720268006700168,
+        "meanProbability": 0.5711558088523448,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 896,
+            "predicted": 0.5554541325454442,
+            "observed": 0.5714285714285714
+          },
+          {
+            "n": 298,
+            "predicted": 0.6183662181509455,
+            "observed": 0.6073825503355704
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          }
+        ]
+      },
+      "candidate": {
+        "logLoss": 0.6819262125536139,
+        "brier": 0.4888192694356534,
+        "accuracy": 0.5720268006700168,
+        "meanProbability": 0.5718700216152733,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 889,
+            "predicted": 0.5557418817651989,
+            "observed": 0.5725534308211474
+          },
+          {
+            "n": 305,
+            "predicted": 0.6188795833422115,
+            "observed": 0.6032786885245902
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          }
+        ]
+      }
+    },
+    "pairedLogLoss": {
+      "calibrated": {
+        "difference": -4.699294219437094e-05,
+        "ci95": [
+          -0.0002644949509776124,
+          0.00016761247634058276
+        ]
+      },
+      "base": {
+        "difference": -0.0010519301561761696,
+        "ci95": [
+          -0.002963820121579929,
+          0.0007955128266021877
+        ]
+      },
+      "poisson": {
+        "difference": -0.0047915823038580455,
+        "ci95": [
+          -0.010947060838095166,
+          0.0015025606645702582
+        ]
+      }
+    },
+    "shortGap": {
+      "checked": 183,
+      "models": {
+        "poisson": {
+          "logLoss": 0.6807143446079508,
+          "brier": 0.4873668237714853,
+          "accuracy": 0.5573770491803278,
+          "meanProbability": 0.5752004018278444,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 2,
+              "predicted": 0.39245752019916313,
+              "observed": 1.0
+            },
+            {
+              "n": 112,
+              "predicted": 0.5319435388829007,
+              "observed": 0.5803571428571429
+            },
+            {
+              "n": 68,
+              "predicted": 0.6484962105919717,
+              "observed": 0.6323529411764706
+            },
+            {
+              "n": 1,
+              "predicted": 0.801339818958227,
+              "observed": 1.0
+            }
+          ]
+        },
+        "base": {
+          "logLoss": 0.6766072594740346,
+          "brier": 0.4834748811762423,
+          "accuracy": 0.6065573770491803,
+          "meanProbability": 0.5862286208881781,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 111,
+              "predicted": 0.5663173526542168,
+              "observed": 0.6306306306306306
+            },
+            {
+              "n": 72,
+              "predicted": 0.6169251594155349,
+              "observed": 0.5694444444444444
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated": {
+          "logLoss": 0.6758621434012226,
+          "brier": 0.48273306242534003,
+          "accuracy": 0.6065573770491803,
+          "meanProbability": 0.5809712478193615,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 124,
+              "predicted": 0.5636533314251693,
+              "observed": 0.6129032258064516
+            },
+            {
+              "n": 59,
+              "predicted": 0.6173682246478331,
+              "observed": 0.5932203389830508
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "candidate": {
+          "logLoss": 0.675555533712807,
+          "brier": 0.48241784650472896,
+          "accuracy": 0.6065573770491803,
+          "meanProbability": 0.5856311933873212,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 117,
+              "predicted": 0.5663302839766226,
+              "observed": 0.6239316239316239
+            },
+            {
+              "n": 66,
+              "predicted": 0.6198464418881048,
+              "observed": 0.5757575757575758
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLoss": {
+        "calibrated": {
+          "difference": -0.0003066096884157317,
+          "ci95": [
+            -0.0017352613802893053,
+            0.0011602747049053264
+          ]
+        },
+        "base": {
+          "difference": -0.0010517257612275607,
+          "ci95": [
+            -0.004799694539984453,
+            0.002779580772987452
+          ]
+        },
+        "poisson": {
+          "difference": -0.005158810895143878,
+          "ci95": [
+            -0.016854485112403686,
+            0.006955082891354729
+          ]
+        }
+      }
+    }
+  },
+  "replaySha256": "1f648810c810e831e29e48157a2bc65b231106aea9fa14c0e3905d39267e27e6",
+  "planSha256": "41b3ded3568552713d6df2d44855cca3efa0f7c7ce3a0708ef321d59c9c36a33"
+}
