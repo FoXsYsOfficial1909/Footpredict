@@ -1,0 +1,23 @@
+{
+  "candidateVersion": "pl-btts-dixon-coles-0.1.0",
+  "league": "PL",
+  "market": "bothScore",
+  "goalPlan": "docs/research/goal-market-calibration-plan-2026-11-19.json",
+  "referenceArtifact": "docs/research/goal-markets-2026-11-19/calibration.json",
+  "referenceSha256": "866fc04068d7198ec5482f7738b201b26c2329e4eb17c4464d5ec99d2a2ee3c8",
+  "rates": "The exact Worker Poisson rate pairs from the 24-hour historical replay.",
+  "rhoFitCutoffExclusive": "2023-07-01",
+  "rhoHalfLifeDays": 365,
+  "rhoWindowDays": 3650,
+  "rhoBounds": [-0.15, 0.039999],
+  "minimumRhoMatches": 500,
+  "scoreLimit": 20,
+  "variants": ["poisson", "base", "calibrated", "dixon", "calibratedDixon"],
+  "primaryMetric": "logLoss",
+  "primaryComparison": "calibratedDixon against calibrated on the pooled checked games",
+  "brierScale": [0, 2],
+  "bootstrapSamples": 1500,
+  "bootstrapSeed": 20261120,
+  "comparison": "Fit one score-dependence coefficient from early matches. Keep both the Poisson rates and the trained BTTS calibration weights fixed. Use identical matches for all five variants, by checked season and pooled.",
+  "decision": "Research only. A separate prospective series requires a negative pooled paired Log Loss interval against calibrated, lower Brier against calibrated, and lower Log Loss than league frequencies."
+}
