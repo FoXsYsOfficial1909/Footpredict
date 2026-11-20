@@ -131,7 +131,7 @@
   "latestCheck": {
     "schemaVersion": 1,
     "protocol": "continuous-training-1",
-    "checkedAt": "2026-11-20T07:45:21.363208+00:00",
+    "checkedAt": "2026-11-20T20:43:58.514079+00:00",
     "asOf": "2026-11-20",
     "league": "PL",
     "division": "E0",
@@ -141,13 +141,13 @@
     "inputMatches": 4280,
     "trainingCutoffExclusive": "2026-11-19",
     "latestInputMatch": "2026-11-08",
-    "status": "trained",
+    "status": "unchanged",
     "modelSha256": "f888ecd7f7cafef2ccb13d5b6de71468562d560ac19e6ce042bb678ee547b5ec",
-    "reason": "inputs_settings_code_or_daily_cutoff_changed",
+    "reason": "inputs_and_daily_cutoff_unchanged",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "44697216735",
+    "runId": "44813892842",
     "runAttempt": "1",
-    "sourceCommit": "afb22eb727f2b0cdbf2d4f3c6ad093a238a005ef",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/44697216735"
+    "sourceCommit": "c25928bebba8f59b8780bce519a0b768d7e10f6d",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/44813892842"
   }
 }
