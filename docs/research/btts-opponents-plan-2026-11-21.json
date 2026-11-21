@@ -1,0 +1,18 @@
+{
+  "market": "bothScore",
+  "seasons": [2023, 2024, 2025, 2026],
+  "rateArchive": "docs/research/dixon-oof-2026-11-15",
+  "rateHashes": {
+    "validation": "6ea6120043d2d9bab0ee355f9ba7bb1021cfa57a3fe271cb8b0d57003ce8e6a5",
+    "audit": "c28e7212e686117cf511f8ffef143b41ed761669c9aaa6768d77cadacdd0c594",
+    "monitoring": "488a6956d8ed5c2d69735c7b0c8b681bd82dcb5d5c1989c4a7d8932b497fa929"
+  },
+  "replaySha256": "ef3b18663c68ca0b666ea37d51314ccab956eafef27560b2aa7ef518b95d6e33",
+  "calibrationSha256": "866fc04068d7198ec5482f7738b201b26c2329e4eb17c4464d5ec99d2a2ee3c8",
+  "primaryMetric": "logLoss",
+  "primaryComparison": "Replace Worker rates with archived opponent-adjusted rates, holding BTTS calibration weights fixed. Compare against the existing calibration on all paired games.",
+  "brierScale": [0, 2],
+  "bootstrapSamples": 1500,
+  "bootstrapSeed": 20261121,
+  "historicalGate": "Upper paired 95% Log Loss difference versus calibration below zero, lower Brier than calibration and lower Log Loss than league frequencies. Independent prospective evaluation is required for promotion."
+}
