@@ -4,14 +4,14 @@
   "latestAttempt": {
     "schemaVersion": 1,
     "protocol": "automatic-experiments-1",
-    "status": "unchanged",
-    "generatedAt": "2026-11-23T09:44:31.208753+00:00",
-    "evaluatedAt": "2026-11-16T12:19:26.844332+00:00",
-    "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
-    "dataSha256": "22d6a26a90dd6d76faf221517a0460d83ef54ed312e28f2e7434e80e85d4caa0",
+    "status": "success",
+    "generatedAt": "2026-11-24T00:22:50.055402+00:00",
+    "evaluatedAt": "2026-11-24T00:22:50.055402+00:00",
+    "inputFingerprint": "89aca957162cb74321d1e43b3300e817f9f39de11b39a1823605314fd2e4dff9",
+    "dataSha256": "80a0561ea6b7d96137f965bf51bde30df9954a563a11e5c6be90867377362f2c",
     "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
     "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
-    "evaluationCutoffExclusive": "2026-11-15",
+    "evaluationCutoffExclusive": "2026-11-23",
     "selection": {
       "baseline": {
         "n": 736,
@@ -56,32 +56,32 @@
         }
       ],
       "chosen": null,
-      "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
+      "inputFingerprint": "89aca957162cb74321d1e43b3300e817f9f39de11b39a1823605314fd2e4dff9",
       "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
       "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
       "auditComputedAfterSelection": true
     },
     "sourceFreshness": {
       "season": 2026,
-      "completedMatches": 100,
+      "completedMatches": 110,
       "matchedXg": 80,
-      "missingXg": 20,
+      "missingXg": 30,
       "latestXgDate": "2026-10-25",
-      "latestResultDate": "2026-11-08",
-      "dataAgeDays": 29,
+      "latestResultDate": "2026-11-23",
+      "dataAgeDays": 30,
       "incomplete": true,
       "sourceStatus": "stale",
       "sourceCheckedAt": "2026-11-23T09:43:41.967223Z",
       "sourceDataStatus": "stale",
-      "cohortCutoffExclusive": "2026-11-22",
+      "cohortCutoffExclusive": "2026-11-23",
       "eligibleForEvaluation": {
         "season": 2026,
-        "completedMatches": 100,
+        "completedMatches": 109,
         "matchedXg": 80,
-        "missingXg": 20,
+        "missingXg": 29,
         "latestXgDate": "2026-10-25",
-        "latestResultDate": "2026-11-08",
-        "dataAgeDays": 29,
+        "latestResultDate": "2026-11-22",
+        "dataAgeDays": 30,
         "incomplete": true
       }
     },
@@ -188,10 +188,10 @@
         },
         {
           "season": 2026,
-          "rows": 100,
-          "sha256": "d598a5f681e1a9a4acf9dad9fb203b68da6f67e2d195678dbe99e95fbba14593",
-          "shotsRows": 100,
-          "xgRows": 100,
+          "rows": 110,
+          "sha256": "21d2b96792bd0bc8a324123ae68eaf60b981c5a016c538d086e8d8a5cbedd95a",
+          "shotsRows": 110,
+          "xgRows": 110,
           "invalidStatisticsRows": 0,
           "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
         }
@@ -200,7 +200,7 @@
       "join": {
         "source": "Validated Understat match observations",
         "providerMixing": false,
-        "referenceMatches": 4280,
+        "referenceMatches": 4290,
         "archiveMatches": 2740,
         "matched": 2740,
         "unmatchedArchiveMatches": 0,
@@ -273,9 +273,9 @@
             "scoreConflicts": 0
           },
           "2026": {
-            "referenceMatches": 100,
+            "referenceMatches": 110,
             "matched": 80,
-            "missing": 20,
+            "missing": 30,
             "scoreConflicts": 0
           }
         },
@@ -285,7 +285,7 @@
       "xgSource": {
         "schemaVersion": 1,
         "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
-        "preparedAt": "2026-11-23T09:44:30.835613+00:00",
+        "preparedAt": "2026-11-24T00:22:49.628359+00:00",
         "sourceUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json",
         "sourceReportSha256": "ada5025325e8932d99b79d21fc8c87ce18bb7ef9465730f31d38d5dff39c7d1b",
         "acceptedSource": {
@@ -381,11 +381,11 @@
           "sourceCheckedAt": "2026-11-23T09:43:41.967223Z",
           "lastAcceptedAt": "2026-11-06T04:05:14.787131Z",
           "dataLastMatchDate": "2026-10-25",
-          "dataAgeDays": 29,
+          "dataAgeDays": 30,
           "season": 2026,
-          "completedMatches": 100,
+          "completedMatches": 110,
           "matchedXg": 80,
-          "missingXg": 20,
+          "missingXg": 30,
           "status": "stale"
         },
         "referenceSources": [
@@ -614,10 +614,10 @@
             "division": "E0",
             "league": "PL",
             "url": "https://www.football-data.co.uk/mmz4281/2627/E0.csv",
-            "sha256": "d598a5f681e1a9a4acf9dad9fb203b68da6f67e2d195678dbe99e95fbba14593",
-            "rows": 100,
+            "sha256": "21d2b96792bd0bc8a324123ae68eaf60b981c5a016c538d086e8d8a5cbedd95a",
+            "rows": 110,
             "first_date": "2026-08-21",
-            "last_date": "2026-11-08",
+            "last_date": "2026-11-23",
             "used_columns": [
               "Div",
               "Date",
@@ -633,7 +633,7 @@
         "join": {
           "source": "Validated Understat match observations",
           "providerMixing": false,
-          "referenceMatches": 4280,
+          "referenceMatches": 4290,
           "archiveMatches": 2740,
           "matched": 2740,
           "unmatchedArchiveMatches": 0,
@@ -706,9 +706,9 @@
               "scoreConflicts": 0
             },
             "2026": {
-              "referenceMatches": 100,
+              "referenceMatches": 110,
               "matched": 80,
-              "missing": 20,
+              "missing": 30,
               "scoreConflicts": 0
             }
           },
@@ -716,9 +716,9 @@
           "excludedNearDateCandidates": []
         },
         "promotedToDefault": false,
-        "referenceSnapshotSha256": "bb4469e8ec9199b9c8fb8ec1323e9ab4e1d468f9cdbfdc52441a060632fbc617",
-        "referenceSnapshotUncompressedSha256": "39f87b245ea27fe63c3256c7bbb6b3dea3f022f3fb2461c8583337e151f8db36",
-        "referenceSnapshotRows": 4280
+        "referenceSnapshotSha256": "c382a6795215446584929a9d9469f0bc3d582ed0af9f6be0abd6e4551dac7a88",
+        "referenceSnapshotUncompressedSha256": "31f41916146da337240625f96ddb2832dd7470c8850d6efb5534e3d7185f7ea3",
+        "referenceSnapshotRows": 4290
       }
     },
     "promotedToDefault": false,
@@ -831,19 +831,19 @@
       }
     },
     "recentMonitoring": {
-      "commonMatches": 89,
-      "targets": 100,
+      "commonMatches": 98,
+      "targets": 109,
       "metrics": {
         "baseline": {
-          "n": 89,
-          "brier": 0.6136230857274514,
-          "logloss": 1.0221213139354182,
-          "accuracy": 0.48314606741573035
+          "n": 98,
+          "brier": 0.6176188152045007,
+          "logloss": 1.0267794446784637,
+          "accuracy": 0.47959183673469385
         }
       },
       "errorAnalysis": {
-        "commonMatches": 89,
-        "incorrectTopOutcomes": 46,
+        "commonMatches": 98,
+        "incorrectTopOutcomes": 51,
         "confusionMatrix": {
           "labels": [
             "home",
@@ -854,9 +854,9 @@
           "columns": "actual",
           "counts": [
             [
-              31,
-              20,
-              15
+              35,
+              22,
+              16
             ],
             [
               0,
@@ -864,8 +864,8 @@
               0
             ],
             [
+              7,
               6,
-              5,
               12
             ]
           ]
@@ -897,6 +897,18 @@
             "logloss": 1.495351426777411
           },
           {
+            "date": "2026-11-21",
+            "home": "Man City",
+            "away": "Fulham",
+            "actual": 1,
+            "probabilities": [
+              0.597453402210446,
+              0.23050076213516027,
+              0.1720458356543938
+            ],
+            "logloss": 1.4675011101076885
+          },
+          {
             "date": "2026-08-29",
             "home": "Liverpool",
             "away": "Nott'm Forest",
@@ -919,49 +931,37 @@
               0.18039801082039814
             ],
             "logloss": 1.4496356019418624
-          },
-          {
-            "date": "2026-09-12",
-            "home": "Liverpool",
-            "away": "Fulham",
-            "actual": 1,
-            "probabilities": [
-              0.5626036258238964,
-              0.23701228600521584,
-              0.20038408817088774
-            ],
-            "logloss": 1.4396432995061808
           }
         ]
       }
     },
     "cacheStats": {
-      "hits": 0,
-      "misses": 0,
+      "hits": 2760,
+      "misses": 9,
       "corrupt": 0,
-      "fits": 0
+      "fits": 2
     },
-    "durationSeconds": 0.19875880700000437,
+    "durationSeconds": 8.358981532999998,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "45149701964",
+    "runId": "45296628787",
     "runAttempt": "1",
     "sourceCommit": "1dd1f5b842c888db3b2646f1281765d4274ddedc",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45149701964",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45149701964#artifacts",
-    "reportSha256": "9bb900f6febd1d4464624e629fbf0903050f23f70f32cc748be602d3dba31b20",
-    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/9bb900f6febd1d4464624e629fbf0903050f23f70f32cc748be602d3dba31b20.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45296628787",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45296628787#artifacts",
+    "reportSha256": "c76b0994fc49239a4b2369b4d07ecec6fe841d1a74dd967456a257a199af531f",
+    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/c76b0994fc49239a4b2369b4d07ecec6fe841d1a74dd967456a257a199af531f.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "automatic-experiments-1",
     "status": "success",
-    "generatedAt": "2026-11-16T12:19:26.844332+00:00",
-    "evaluatedAt": "2026-11-16T12:19:26.844332+00:00",
-    "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
-    "dataSha256": "22d6a26a90dd6d76faf221517a0460d83ef54ed312e28f2e7434e80e85d4caa0",
+    "generatedAt": "2026-11-24T00:22:50.055402+00:00",
+    "evaluatedAt": "2026-11-24T00:22:50.055402+00:00",
+    "inputFingerprint": "89aca957162cb74321d1e43b3300e817f9f39de11b39a1823605314fd2e4dff9",
+    "dataSha256": "80a0561ea6b7d96137f965bf51bde30df9954a563a11e5c6be90867377362f2c",
     "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
     "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
-    "evaluationCutoffExclusive": "2026-11-15",
+    "evaluationCutoffExclusive": "2026-11-23",
     "selection": {
       "baseline": {
         "n": 736,
@@ -1006,32 +1006,32 @@
         }
       ],
       "chosen": null,
-      "inputFingerprint": "4eccab2866e4ba8a47a453d22be465bc42e437ed9b6009e50bdc82075f591b84",
+      "inputFingerprint": "89aca957162cb74321d1e43b3300e817f9f39de11b39a1823605314fd2e4dff9",
       "planSha256": "3f419f00e4084dda224fad419f4add21afe151dee14cdcbeff0c50fc3a42fd78",
       "codeSha256": "a7afbee42a7e473e079d7f7e17b6a151d9b158e004c7b622a49c4be049e32914",
       "auditComputedAfterSelection": true
     },
     "sourceFreshness": {
       "season": 2026,
-      "completedMatches": 100,
+      "completedMatches": 110,
       "matchedXg": 80,
-      "missingXg": 20,
+      "missingXg": 30,
       "latestXgDate": "2026-10-25",
-      "latestResultDate": "2026-11-08",
-      "dataAgeDays": 22,
+      "latestResultDate": "2026-11-23",
+      "dataAgeDays": 30,
       "incomplete": true,
       "sourceStatus": "stale",
-      "sourceCheckedAt": "2026-11-16T08:33:51.941221Z",
+      "sourceCheckedAt": "2026-11-23T09:43:41.967223Z",
       "sourceDataStatus": "stale",
-      "cohortCutoffExclusive": "2026-11-15",
+      "cohortCutoffExclusive": "2026-11-23",
       "eligibleForEvaluation": {
         "season": 2026,
-        "completedMatches": 100,
+        "completedMatches": 109,
         "matchedXg": 80,
-        "missingXg": 20,
+        "missingXg": 29,
         "latestXgDate": "2026-10-25",
-        "latestResultDate": "2026-11-08",
-        "dataAgeDays": 22,
+        "latestResultDate": "2026-11-22",
+        "dataAgeDays": 30,
         "incomplete": true
       }
     },
@@ -1138,10 +1138,10 @@
         },
         {
           "season": 2026,
-          "rows": 100,
-          "sha256": "d598a5f681e1a9a4acf9dad9fb203b68da6f67e2d195678dbe99e95fbba14593",
-          "shotsRows": 100,
-          "xgRows": 100,
+          "rows": 110,
+          "sha256": "21d2b96792bd0bc8a324123ae68eaf60b981c5a016c538d086e8d8a5cbedd95a",
+          "shotsRows": 110,
+          "xgRows": 110,
           "invalidStatisticsRows": 0,
           "source": "https://www.football-data.co.uk/mmz4281/2627/E0.csv"
         }
@@ -1150,7 +1150,7 @@
       "join": {
         "source": "Validated Understat match observations",
         "providerMixing": false,
-        "referenceMatches": 4280,
+        "referenceMatches": 4290,
         "archiveMatches": 2740,
         "matched": 2740,
         "unmatchedArchiveMatches": 0,
@@ -1223,9 +1223,9 @@
             "scoreConflicts": 0
           },
           "2026": {
-            "referenceMatches": 100,
+            "referenceMatches": 110,
             "matched": 80,
-            "missing": 20,
+            "missing": 30,
             "scoreConflicts": 0
           }
         },
@@ -1235,9 +1235,9 @@
       "xgSource": {
         "schemaVersion": 1,
         "normalizedMatchesSha256": "4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153",
-        "preparedAt": "2026-11-16T12:19:26.493528+00:00",
+        "preparedAt": "2026-11-24T00:22:49.628359+00:00",
         "sourceUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/xg-data-reports/datasets/4fc439e87c145c44bd0d970c8ccb2339be91b0a64d360285c3716097d0254153.json",
-        "sourceReportSha256": "b0062ca47e16aca5f47508ef226cbbf5f74aac12a7eb1fcdd94fb7d344029914",
+        "sourceReportSha256": "ada5025325e8932d99b79d21fc8c87ce18bb7ef9465730f31d38d5dff39c7d1b",
         "acceptedSource": {
           "schemaVersion": 1,
           "status": "success",
@@ -1328,14 +1328,14 @@
         },
         "sourceFreshness": {
           "sourceStatus": "stale",
-          "sourceCheckedAt": "2026-11-16T08:33:51.941221Z",
+          "sourceCheckedAt": "2026-11-23T09:43:41.967223Z",
           "lastAcceptedAt": "2026-11-06T04:05:14.787131Z",
           "dataLastMatchDate": "2026-10-25",
-          "dataAgeDays": 22,
+          "dataAgeDays": 30,
           "season": 2026,
-          "completedMatches": 100,
+          "completedMatches": 110,
           "matchedXg": 80,
-          "missingXg": 20,
+          "missingXg": 30,
           "status": "stale"
         },
         "referenceSources": [
@@ -1564,10 +1564,10 @@
             "division": "E0",
             "league": "PL",
             "url": "https://www.football-data.co.uk/mmz4281/2627/E0.csv",
-            "sha256": "d598a5f681e1a9a4acf9dad9fb203b68da6f67e2d195678dbe99e95fbba14593",
-            "rows": 100,
+            "sha256": "21d2b96792bd0bc8a324123ae68eaf60b981c5a016c538d086e8d8a5cbedd95a",
+            "rows": 110,
             "first_date": "2026-08-21",
-            "last_date": "2026-11-08",
+            "last_date": "2026-11-23",
             "used_columns": [
               "Div",
               "Date",
@@ -1583,7 +1583,7 @@
         "join": {
           "source": "Validated Understat match observations",
           "providerMixing": false,
-          "referenceMatches": 4280,
+          "referenceMatches": 4290,
           "archiveMatches": 2740,
           "matched": 2740,
           "unmatchedArchiveMatches": 0,
@@ -1656,9 +1656,9 @@
               "scoreConflicts": 0
             },
             "2026": {
-              "referenceMatches": 100,
+              "referenceMatches": 110,
               "matched": 80,
-              "missing": 20,
+              "missing": 30,
               "scoreConflicts": 0
             }
           },
@@ -1666,9 +1666,9 @@
           "excludedNearDateCandidates": []
         },
         "promotedToDefault": false,
-        "referenceSnapshotSha256": "bb4469e8ec9199b9c8fb8ec1323e9ab4e1d468f9cdbfdc52441a060632fbc617",
-        "referenceSnapshotUncompressedSha256": "39f87b245ea27fe63c3256c7bbb6b3dea3f022f3fb2461c8583337e151f8db36",
-        "referenceSnapshotRows": 4280
+        "referenceSnapshotSha256": "c382a6795215446584929a9d9469f0bc3d582ed0af9f6be0abd6e4551dac7a88",
+        "referenceSnapshotUncompressedSha256": "31f41916146da337240625f96ddb2832dd7470c8850d6efb5534e3d7185f7ea3",
+        "referenceSnapshotRows": 4290
       }
     },
     "promotedToDefault": false,
@@ -1781,19 +1781,19 @@
       }
     },
     "recentMonitoring": {
-      "commonMatches": 89,
-      "targets": 100,
+      "commonMatches": 98,
+      "targets": 109,
       "metrics": {
         "baseline": {
-          "n": 89,
-          "brier": 0.6136230857274514,
-          "logloss": 1.0221213139354182,
-          "accuracy": 0.48314606741573035
+          "n": 98,
+          "brier": 0.6176188152045007,
+          "logloss": 1.0267794446784637,
+          "accuracy": 0.47959183673469385
         }
       },
       "errorAnalysis": {
-        "commonMatches": 89,
-        "incorrectTopOutcomes": 46,
+        "commonMatches": 98,
+        "incorrectTopOutcomes": 51,
         "confusionMatrix": {
           "labels": [
             "home",
@@ -1804,9 +1804,9 @@
           "columns": "actual",
           "counts": [
             [
-              31,
-              20,
-              15
+              35,
+              22,
+              16
             ],
             [
               0,
@@ -1814,8 +1814,8 @@
               0
             ],
             [
+              7,
               6,
-              5,
               12
             ]
           ]
@@ -1847,6 +1847,18 @@
             "logloss": 1.495351426777411
           },
           {
+            "date": "2026-11-21",
+            "home": "Man City",
+            "away": "Fulham",
+            "actual": 1,
+            "probabilities": [
+              0.597453402210446,
+              0.23050076213516027,
+              0.1720458356543938
+            ],
+            "logloss": 1.4675011101076885
+          },
+          {
             "date": "2026-08-29",
             "home": "Liverpool",
             "away": "Nott'm Forest",
@@ -1869,36 +1881,24 @@
               0.18039801082039814
             ],
             "logloss": 1.4496356019418624
-          },
-          {
-            "date": "2026-09-12",
-            "home": "Liverpool",
-            "away": "Fulham",
-            "actual": 1,
-            "probabilities": [
-              0.5626036258238964,
-              0.23701228600521584,
-              0.20038408817088774
-            ],
-            "logloss": 1.4396432995061808
           }
         ]
       }
     },
     "cacheStats": {
-      "hits": 0,
-      "misses": 2760,
+      "hits": 2760,
+      "misses": 9,
       "corrupt": 0,
-      "fits": 833
+      "fits": 2
     },
-    "durationSeconds": 12.037383682000005,
+    "durationSeconds": 8.358981532999998,
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "43865457970",
+    "runId": "45296628787",
     "runAttempt": "1",
-    "sourceCommit": "0a5fb0c422ffdb47aa6f9b8650fd119fd5227b74",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457970",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/43865457970#artifacts",
-    "reportSha256": "44bb7527343626b9fc548b4db4092caebaa4c1e7666283252090c46e4ff7cddc",
-    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/44bb7527343626b9fc548b4db4092caebaa4c1e7666283252090c46e4ff7cddc.json"
+    "sourceCommit": "1dd1f5b842c888db3b2646f1281765d4274ddedc",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45296628787",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45296628787#artifacts",
+    "reportSha256": "c76b0994fc49239a4b2369b4d07ecec6fe841d1a74dd967456a257a199af531f",
+    "reportUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/experiment-reports/reports/c76b0994fc49239a4b2369b4d07ecec6fe841d1a74dd967456a257a199af531f.json"
   }
 }
