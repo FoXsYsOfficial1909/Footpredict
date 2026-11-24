@@ -1,0 +1,19 @@
+{
+  "market": "bothScore",
+  "seasons": [2023, 2024, 2025, 2026],
+  "replaySha256": "ef3b18663c68ca0b666ea37d51314ccab956eafef27560b2aa7ef518b95d6e33",
+  "calibrationSha256": "866fc04068d7198ec5482f7738b201b26c2329e4eb17c4464d5ec99d2a2ee3c8",
+  "settings": {"halfLifeDays": 120, "priorSeasonWeight": 0.35, "shrinkageGames": 5},
+  "candidateHalfLifeDays": 365,
+  "leadHours": 24,
+  "resultSafetyHours": 4,
+  "rateBounds": [0.05, 5],
+  "scoreLimit": 20,
+  "primaryMetric": "logLoss",
+  "primaryComparison": "Compare 365 and 120 days of half-life in the goal rates and league frequency together, with the same history, prior-season multiplier, smoothing and calibration coefficients.",
+  "diagnostics": "Change only the goal rates or only the league frequency to show how each calibration input responds. All variants use identical matches.",
+  "brierScale": [0, 2],
+  "bootstrapSamples": 1500,
+  "bootstrapSeed": 20261124,
+  "historicalGate": "Upper paired 95% Log Loss difference versus the 120-day calibration below zero, lower Brier than the 120-day calibration and lower Log Loss than the 120-day league frequency. Prospective evaluation is required for promotion."
+}
