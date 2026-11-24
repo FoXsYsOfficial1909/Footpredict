@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "protocol": "continuous-training-1",
+  "checkedAt": "2026-11-24T00:22:05.092052+00:00",
+  "asOf": "2026-11-24",
+  "league": "ELC",
+  "division": "E1",
+  "method": "goals",
+  "promotedToDefault": false,
+  "trainingFingerprint": "2bfaa02c30ca32d1d903f6504d130b4ffdf42655933c076bfb934d3bd7fce0e1",
+  "inputMatches": 6264,
+  "trainingCutoffExclusive": "2026-11-23",
+  "latestInputMatch": "2026-11-22",
+  "status": "trained",
+  "modelSha256": "5d48a752acc17048f8b8c33774e5d0875632571673c2bd67ed737a626b5b1c47",
+  "reason": "inputs_settings_code_or_daily_cutoff_changed",
+  "repository": "FoXsYsOfficial1909/Footpredict",
+  "runId": "45296526223",
+  "runAttempt": "1",
+  "sourceCommit": "1dd1f5b842c888db3b2646f1281765d4274ddedc",
+  "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45296526223"
+}
