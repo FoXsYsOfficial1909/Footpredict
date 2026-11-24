@@ -58,9 +58,9 @@
     "log_base_away",
     "v1_available"
   ],
-  "sourceDataSha256": "63097b3e330872357eef22b9145e9ac98ac39920ba8ab61d82bade714b3fe86f",
-  "dataSha256": "353f0bf9b91646258388a8d24b0359435989af5c6e599c81e1e1e14eea2d0f7b",
-  "compressedSha256": "011380acd99763976c5f74a5204489e944049e5450efe575f82799e0427788da",
+  "sourceDataSha256": "b2b3f0183892bd733074bc27810aed51067367f730706063e30686baf2118456",
+  "dataSha256": "6ae6281b07bbe37cb246a5b8075ea53be4489fa91a7f28a0c2f06a350e3e9a88",
+  "compressedSha256": "e14cd22a1fc8a4f557687f08b8e20a500ea0ce5417b18b66307038b81df24016",
   "codeHashes": {
     "research/neural_features.py": "0c8e96f71f960a1f460aca4b1f055c2930bd50124d3b2bbd5ae849c4bf2149fa",
     "research/performance.py": "d9ceeb9e8d4da013817c3d7e4cc6ba3f5dfb410abfd97678e52247bf631bd31d",

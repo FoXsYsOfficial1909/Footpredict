@@ -2087,11 +2087,11 @@
     }
   },
   "training": {
-    "inputFingerprint": "da7af4e2efc7b7ccefc5bac5cf74020fa4210eb43ef7d88729e41ea3d526feab",
-    "modelSha256": "b94fe95985d1f31fb84ca8aad05685aa9e489763231f4ff6f5eb3aa2a7f3d426",
-    "modelVersion": "neural-agent-2026-11-18-0c4a06ef73b1",
-    "trainedAt": "2026-11-18T16:57:50.200495+00:00",
-    "monitoringEvaluatedAt": "2026-11-18T16:57:50.200495+00:00",
-    "trainingMatches": 13075
+    "inputFingerprint": "a45427372d13b8656a80edac551df19146c6720229f238f0d72a55997b96515a",
+    "modelSha256": "d676427753b0a2407079500bbe16424a437f47755d8f6fa6e19845db627688d6",
+    "modelVersion": "neural-agent-2026-11-24-73cb42c8b5cd",
+    "trainedAt": "2026-11-24T00:26:21.932674+00:00",
+    "monitoringEvaluatedAt": "2026-11-24T00:26:21.932674+00:00",
+    "trainingMatches": 13108
   }
 }
