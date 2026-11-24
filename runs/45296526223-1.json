@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "protocol": "championship-shots-nightly-1",
+  "status": "success",
+  "league": "ELC",
+  "division": "E1",
+  "method": "shots_on_target",
+  "asOf": "2026-11-24",
+  "generatedAt": "2026-11-24T00:22:08.662931+00:00",
+  "trainingCutoffExclusive": "2026-11-23",
+  "latestTrainingMatch": "2026-11-22",
+  "trainingMatches": 6264,
+  "poissonTrainingMatches": 1656,
+  "modelVersion": "ELC-shots-candidate-2026-11-24-5c5b55239d96",
+  "modelSha256": "96037176664b5fed6abe67055a6c7a02dd72250a5f4233f7064d153f82973e0a",
+  "dataSha256": "401ecb22e067630aa7f26024881f0817e2cff0fba6021c30ba28d78e2a85ce93",
+  "goalDataSha256": "aa8310b43d1e8ac31f90b6f1115c65ff62a9e9f6ca183a64aec3e8414602d0dc",
+  "settingsSha256": "b5842ca79238db35fe98fdd36f7d02befdc0cadfb1590beddc2fdce3f1da202c",
+  "planSha256": "340c17901e701530cae346309aaa8ec06409fbc75103b3fcd4371a56f335df25",
+  "codeSha256": "013606ab1de7d4cb6164906258d738eff455593fa2e99dfd1f28cabf206fbc7c",
+  "evaluation": {
+    "kind": "rolling_historical_procedure",
+    "commonMatches": 122,
+    "from": "2026-09-12",
+    "to": "2026-11-22",
+    "metrics": {
+      "shots": {
+        "n": 122,
+        "brier": 0.6454054276379975,
+        "logloss": 1.0645671710406863,
+        "accuracy": 0.4672131147540984
+      },
+      "goals": {
+        "n": 122,
+        "brier": 0.6550587437952543,
+        "logloss": 1.0782810447203917,
+        "accuracy": 0.4426229508196721
+      },
+      "v1": {
+        "n": 122,
+        "brier": 0.6162696519990154,
+        "logloss": 1.027467634741405,
+        "accuracy": 0.5245901639344263
+      },
+      "base": {
+        "n": 122,
+        "brier": 0.6483975842667243,
+        "logloss": 1.0720527704307936,
+        "accuracy": 0.45081967213114754
+      }
+    }
+  },
+  "coverage": {
+    "matches": 6264,
+    "completeShotMatches": 6262,
+    "goalFallbackMatches": 2,
+    "invalidStatisticsMatches": 1
+  },
+  "predictionSha256": "ed2f75cb7c4066a1817a31e7a065797de43eaf37d6c82025e70e5fb71be6e493",
+  "historicalGatePassed": false,
+  "durationSeconds": 1.9874711379999894,
+  "timings": {
+    "dataLoadSeconds": 0.5453490809999977,
+    "historicalValidationSeconds": 1.3049058400000035,
+    "finalFitSeconds": 0.02336086799999748
+  },
+  "additionalProviderRequests": 0,
+  "prospectiveValidationRequired": true,
+  "promotedToDefault": false,
+  "trainingFingerprint": "2bfaa02c30ca32d1d903f6504d130b4ffdf42655933c076bfb934d3bd7fce0e1",
+  "repository": "FoXsYsOfficial1909/Footpredict",
+  "runId": "45296526223",
+  "runAttempt": "1",
+  "sourceCommit": "1dd1f5b842c888db3b2646f1281765d4274ddedc",
+  "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45296526223",
+  "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45296526223#artifacts",
+  "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/championship-shots-training-reports/models/96037176664b5fed6abe67055a6c7a02dd72250a5f4233f7064d153f82973e0a.json"
+}
