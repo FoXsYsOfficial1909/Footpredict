@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "protocol": "nightly-fixed-settings-1",
+  "status": "success",
+  "asOf": "2026-11-25",
+  "generatedAt": "2026-11-25T09:09:45.065824+00:00",
+  "trainingCutoffExclusive": "2026-11-24",
+  "latestTrainingMatch": "2026-11-23",
+  "trainingMatches": 4290,
+  "poissonTrainingMatches": 1130,
+  "modelVersion": "ensemble-candidate-2026-11-25-c1d102ab7326",
+  "modelSha256": "6b3406084478279706899badd3936d71acde83c8159aef4df83c28ddeaffc311",
+  "dataSha256": "681f4135b2460749dd289c6a0b9f0d680fce42674efb1bd62b6ddb57eac142b8",
+  "settingsSha256": "bdc6f29f3ab8db55cbdcd861fee4cd280103b18c5dcf231a96575decff8b96cd",
+  "codeSha256": "934eeebbabd2b60effb47d65859b1b2adbb16fcfa2c036730ec51cc21390ed37",
+  "evaluation": {
+    "kind": "rolling_historical_procedure",
+    "requestedMatches": 120,
+    "targets": 120,
+    "commonMatches": 109,
+    "excludedFromAll": 11,
+    "from": "2026-05-24",
+    "to": "2026-11-23",
+    "metrics": {
+      "candidate": {
+        "n": 109,
+        "brier": 0.6354129617610682,
+        "logloss": 1.0563553980167448,
+        "accuracy": 0.44954128440366975
+      },
+      "v1": {
+        "n": 109,
+        "brier": 0.6627606776425888,
+        "logloss": 1.0922610456666557,
+        "accuracy": 0.41284403669724773
+      },
+      "base": {
+        "n": 109,
+        "brier": 0.6622339883100645,
+        "logloss": 1.0924671384447817,
+        "accuracy": 0.43119266055045874
+      }
+    },
+    "poissonFitSeconds": 0.17645496600000143
+  },
+  "durationSeconds": 1.8154723760000024,
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true,
+  "computeSeconds": 1.7150400900000022,
+  "timings": {
+    "referencePreparationSeconds": 1.5050212189999996,
+    "historicalValidationSeconds": 0.19045315700000032,
+    "finalFitSeconds": 0.007525852000000555,
+    "dataLoadSeconds": 0.10040835899999934
+  },
+  "trainingFingerprint": "5d4aa48188e9edd8d3f9d960408238750c1fb65ddee3917b2e04d9f9a629b447",
+  "repository": "FoXsYsOfficial1909/Footpredict",
+  "runId": "45582634341",
+  "runAttempt": "1",
+  "sourceCommit": "746a15b231cef14f4daefd3d444a0cd66b8a16ce",
+  "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45582634341",
+  "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45582634341#artifacts",
+  "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/training-reports/models/6b3406084478279706899badd3936d71acde83c8159aef4df83c28ddeaffc311.json"
+}
