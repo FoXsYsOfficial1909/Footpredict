@@ -2184,14 +2184,23 @@
         "away": 0
       },
       "actual": 0
+    },
+    "560649": {
+      "status": "settled",
+      "checkedAt": "2026-11-25T01:07:33.899Z",
+      "score": {
+        "home": 4,
+        "away": 0
+      },
+      "actual": 0
     }
   },
   "training": {
-    "inputFingerprint": "a45427372d13b8656a80edac551df19146c6720229f238f0d72a55997b96515a",
-    "modelSha256": "d676427753b0a2407079500bbe16424a437f47755d8f6fa6e19845db627688d6",
-    "modelVersion": "neural-agent-2026-11-24-73cb42c8b5cd",
-    "trainedAt": "2026-11-24T00:26:21.932674+00:00",
-    "monitoringEvaluatedAt": "2026-11-24T00:26:21.932674+00:00",
-    "trainingMatches": 13108
+    "inputFingerprint": "4c5309437429d257c4d8e8986e6508a83fb840c6550b9a6496e20d03eae48a22",
+    "modelSha256": "af1b851b53f28ab89e05c4672611ff191d6b777b98fa8e071d8a41ef86ea6c3c",
+    "modelVersion": "neural-agent-2026-11-25-122e6e928ae4",
+    "trainedAt": "2026-11-25T09:17:16.698751+00:00",
+    "monitoringEvaluatedAt": "2026-11-25T09:17:16.698751+00:00",
+    "trainingMatches": 13109
   }
 }
