@@ -1,0 +1,1325 @@
+{
+  "protocol": {
+    "market": "bothScore",
+    "seasons": [
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "replaySha256": "ef3b18663c68ca0b666ea37d51314ccab956eafef27560b2aa7ef518b95d6e33",
+    "calibrationSha256": "866fc04068d7198ec5482f7738b201b26c2329e4eb17c4464d5ec99d2a2ee3c8",
+    "settings": {
+      "halfLifeDays": 120,
+      "priorSeasonWeight": 0.35,
+      "shrinkageGames": 5
+    },
+    "candidateShrinkageGames": 10,
+    "leadHours": 24,
+    "resultSafetyHours": 4,
+    "rateBounds": [
+      0.05,
+      5
+    ],
+    "scoreLimit": 20,
+    "recentHistory": {
+      "windowDays": 120,
+      "maximumGamesOnEitherSide": 5
+    },
+    "primaryMetric": "logLoss",
+    "primaryComparison": "Compare 10 and 5 pseudo-games in the team Poisson goal rates with identical history, frequency input, temporal weights and BTTS calibration coefficients.",
+    "diagnostics": "Measure performance by season and for forecasts with at most five eligible home games for the home side or away games for the away side within the prior 120 days.",
+    "brierScale": [
+      0,
+      2
+    ],
+    "bootstrapSamples": 1500,
+    "bootstrapSeed": 20261125,
+    "historicalGate": "Upper paired 95% Log Loss difference versus the 5-game calibration below zero, lower Brier than the 5-game calibration and lower Log Loss than league frequencies. Prospective evaluation is required for promotion."
+  },
+  "source": {
+    "file": "docs/research/league-one-2026-11-15/training-data.json.gz",
+    "sha256": "65e57e8081d3f61ef38c547d02203bdcdeca66742810ce3c3a899335b4a19596",
+    "available": 4280
+  },
+  "prospective": false,
+  "historicalGatePassed": false,
+  "periods": [
+    {
+      "season": 2023,
+      "completed": 380,
+      "coverage": 0.968421052631579,
+      "from": "2023-08-12",
+      "to": "2024-05-19",
+      "checked": 368,
+      "frequency": 0.6141304347826086,
+      "models": {
+        "base": {
+          "logLoss": 0.6705309387760267,
+          "brier": 0.47751571443736296,
+          "accuracy": 0.6141304347826086,
+          "meanProbability": 0.5931395481040915,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 195,
+              "predicted": 0.5721189989441502,
+              "observed": 0.6102564102564103
+            },
+            {
+              "n": 173,
+              "predicted": 0.616833230683216,
+              "observed": 0.6184971098265896
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson": {
+          "logLoss": 0.6749558099284308,
+          "brier": 0.48162451388330935,
+          "accuracy": 0.5978260869565217,
+          "meanProbability": 0.5912167515948842,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 196,
+              "predicted": 0.5435334456461153,
+              "observed": 0.6122448979591837
+            },
+            {
+              "n": 172,
+              "predicted": 0.6455535420946441,
+              "observed": 0.6162790697674418
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson10": {
+          "logLoss": 0.670997150797071,
+          "brier": 0.4778064727962094,
+          "accuracy": 0.6086956521739131,
+          "meanProbability": 0.6054738572169633,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 159,
+              "predicted": 0.5625907030066385,
+              "observed": 0.6037735849056604
+            },
+            {
+              "n": 209,
+              "predicted": 0.6380978836257751,
+              "observed": 0.6220095693779905
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated5": {
+          "logLoss": 0.6704264434545885,
+          "brier": 0.47741023854755704,
+          "accuracy": 0.6141304347826086,
+          "meanProbability": 0.5899282667848886,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 222,
+              "predicted": 0.571233580082066,
+              "observed": 0.6081081081081081
+            },
+            {
+              "n": 146,
+              "predicted": 0.6183544342371254,
+              "observed": 0.6232876712328768
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated10": {
+          "logLoss": 0.6701445008341241,
+          "brier": 0.4771286527862233,
+          "accuracy": 0.6141304347826086,
+          "meanProbability": 0.5931171985672589,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 203,
+              "predicted": 0.572995306209928,
+              "observed": 0.6108374384236454
+            },
+            {
+              "n": 165,
+              "predicted": 0.6178732237099144,
+              "observed": 0.6181818181818182
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLossAgainst5": {
+        "difference": -0.00028194262046432047,
+        "ci95": [
+          -0.0012582811467639033,
+          0.0007033023518202646
+        ]
+      }
+    },
+    {
+      "season": 2024,
+      "completed": 380,
+      "coverage": 0.968421052631579,
+      "from": "2024-08-16",
+      "to": "2025-05-25",
+      "checked": 368,
+      "frequency": 0.5733695652173914,
+      "models": {
+        "base": {
+          "logLoss": 0.6845131799222679,
+          "brier": 0.49130173837013735,
+          "accuracy": 0.5733695652173914,
+          "meanProbability": 0.5992899240121499,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 179,
+              "predicted": 0.5759128100824108,
+              "observed": 0.5698324022346368
+            },
+            {
+              "n": 189,
+              "predicted": 0.6214301536069822,
+              "observed": 0.5767195767195767
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson": {
+          "logLoss": 0.6852015771228465,
+          "brier": 0.49169873693746047,
+          "accuracy": 0.5597826086956522,
+          "meanProbability": 0.5799017413981052,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 3,
+              "predicted": 0.3737345631365146,
+              "observed": 0.3333333333333333
+            },
+            {
+              "n": 217,
+              "predicted": 0.5366442080591567,
+              "observed": 0.5668202764976958
+            },
+            {
+              "n": 146,
+              "predicted": 0.6453990687276008,
+              "observed": 0.589041095890411
+            },
+            {
+              "n": 2,
+              "predicted": 0.8012899810132526,
+              "observed": 0.5
+            }
+          ]
+        },
+        "poisson10": {
+          "logLoss": 0.6833507312630188,
+          "brier": 0.4900071265623864,
+          "accuracy": 0.5706521739130435,
+          "meanProbability": 0.5937926405350514,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 199,
+              "predicted": 0.557678565284213,
+              "observed": 0.5577889447236181
+            },
+            {
+              "n": 169,
+              "predicted": 0.636317498374796,
+              "observed": 0.591715976331361
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated5": {
+          "logLoss": 0.6822159517643023,
+          "brier": 0.489084880323806,
+          "accuracy": 0.5733695652173914,
+          "meanProbability": 0.5922020924005704,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 218,
+              "predicted": 0.5740795890088662,
+              "observed": 0.5596330275229358
+            },
+            {
+              "n": 150,
+              "predicted": 0.6185401306631803,
+              "observed": 0.5933333333333334
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated10": {
+          "logLoss": 0.6828152264520698,
+          "brier": 0.4896668770029363,
+          "accuracy": 0.5733695652173914,
+          "meanProbability": 0.5952478875952578,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 201,
+              "predicted": 0.5766044208868755,
+              "observed": 0.5621890547263682
+            },
+            {
+              "n": 167,
+              "predicted": 0.6176870301604365,
+              "observed": 0.5868263473053892
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLossAgainst5": {
+        "difference": 0.0005992746877675619,
+        "ci95": [
+          -0.0004361690493639029,
+          0.0016823062308568492
+        ]
+      }
+    },
+    {
+      "season": 2025,
+      "completed": 380,
+      "coverage": 0.9710526315789474,
+      "from": "2025-08-15",
+      "to": "2026-05-24",
+      "checked": 369,
+      "frequency": 0.5718157181571816,
+      "models": {
+        "base": {
+          "logLoss": 0.6895419732174288,
+          "brier": 0.49638360497955714,
+          "accuracy": 0.5447154471544715,
+          "meanProbability": 0.5444859648687067,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 369,
+              "predicted": 0.5444859648687067,
+              "observed": 0.5718157181571816
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson": {
+          "logLoss": 0.6957482581456693,
+          "brier": 0.5025521754750176,
+          "accuracy": 0.5176151761517616,
+          "meanProbability": 0.5360350523859113,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 9,
+              "predicted": 0.3859526848290519,
+              "observed": 0.5555555555555556
+            },
+            {
+              "n": 290,
+              "predicted": 0.5152824743438038,
+              "observed": 0.5655172413793104
+            },
+            {
+              "n": 70,
+              "predicted": 0.6413063229605241,
+              "observed": 0.6
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson10": {
+          "logLoss": 0.6893872938415136,
+          "brier": 0.4962685703676945,
+          "accuracy": 0.5501355013550135,
+          "meanProbability": 0.5474389771579867,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 318,
+              "predicted": 0.5340821372805946,
+              "observed": 0.559748427672956
+            },
+            {
+              "n": 51,
+              "predicted": 0.6307228022758432,
+              "observed": 0.6470588235294118
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated5": {
+          "logLoss": 0.6891107196012862,
+          "brier": 0.49597069549841505,
+          "accuracy": 0.5392953929539296,
+          "meanProbability": 0.5396172223721315,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 367,
+              "predicted": 0.5392544660611229,
+              "observed": 0.5722070844686649
+            },
+            {
+              "n": 2,
+              "predicted": 0.6061830054422013,
+              "observed": 0.5
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated10": {
+          "logLoss": 0.6886507023598077,
+          "brier": 0.4955080661686737,
+          "accuracy": 0.5474254742547425,
+          "meanProbability": 0.5421733035929555,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 369,
+              "predicted": 0.5421733035929555,
+              "observed": 0.5718157181571816
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLossAgainst5": {
+        "difference": -0.00046001724147845665,
+        "ci95": [
+          -0.0016183073579205212,
+          0.0007074317787046228
+        ]
+      }
+    },
+    {
+      "season": 2026,
+      "completed": 100,
+      "coverage": 0.89,
+      "from": "2026-08-22",
+      "to": "2026-11-08",
+      "checked": 89,
+      "frequency": 0.5056179775280899,
+      "models": {
+        "base": {
+          "logLoss": 0.7008840291829843,
+          "brier": 0.5076764134037419,
+          "accuracy": 0.4943820224719101,
+          "meanProbability": 0.5375194280505665,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 89,
+              "predicted": 0.5375194280505665,
+              "observed": 0.5056179775280899
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson": {
+          "logLoss": 0.7041800153842626,
+          "brier": 0.5098745419476529,
+          "accuracy": 0.5393258426966292,
+          "meanProbability": 0.5490381518348029,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 3,
+              "predicted": 0.3860601932480234,
+              "observed": 0.3333333333333333
+            },
+            {
+              "n": 63,
+              "predicted": 0.5233119245008008,
+              "observed": 0.5079365079365079
+            },
+            {
+              "n": 23,
+              "predicted": 0.64076363869578,
+              "observed": 0.5217391304347826
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson10": {
+          "logLoss": 0.7006340567569951,
+          "brier": 0.507021784705981,
+          "accuracy": 0.5393258426966292,
+          "meanProbability": 0.5566343025327127,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 71,
+              "predicted": 0.5399536563799718,
+              "observed": 0.5211267605633803
+            },
+            {
+              "n": 18,
+              "predicted": 0.6224301845796347,
+              "observed": 0.4444444444444444
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated5": {
+          "logLoss": 0.6991207908827926,
+          "brier": 0.5058932790569124,
+          "accuracy": 0.5280898876404494,
+          "meanProbability": 0.5372731295970153,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 89,
+              "predicted": 0.5372731295970153,
+              "observed": 0.5056179775280899
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated10": {
+          "logLoss": 0.699415689967267,
+          "brier": 0.5062061194774351,
+          "accuracy": 0.5168539325842697,
+          "meanProbability": 0.5389143726343759,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 89,
+              "predicted": 0.5389143726343759,
+              "observed": 0.5056179775280899
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLossAgainst5": {
+        "difference": 0.0002948990844744089,
+        "ci95": [
+          -0.0018313979713560143,
+          0.002400114213073401
+        ]
+      }
+    }
+  ],
+  "pooled": {
+    "completed": 1240,
+    "coverage": 0.9629032258064516,
+    "from": "2023-08-12",
+    "to": "2026-11-08",
+    "checked": 1194,
+    "frequency": 0.5804020100502513,
+    "models": {
+      "base": {
+        "logLoss": 0.68297814270979,
+        "brier": 0.48984386403982383,
+        "accuracy": 0.5711892797319933,
+        "meanProbability": 0.5758530953700418,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 832,
+            "predicted": 0.5569785431873966,
+            "observed": 0.5733173076923077
+          },
+          {
+            "n": 362,
+            "predicted": 0.6192332816019779,
+            "observed": 0.5966850828729282
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          }
+        ]
+      },
+      "poisson": {
+        "logLoss": 0.6867177948574719,
+        "brier": 0.49330280007174704,
+        "accuracy": 0.5569514237855946,
+        "meanProbability": 0.5675317715788266,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 15,
+            "predicted": 0.3835305621743387,
+            "observed": 0.4666666666666667
+          },
+          {
+            "n": 766,
+            "predicted": 0.5292231296328057,
+            "observed": 0.5731070496083551
+          },
+          {
+            "n": 411,
+            "predicted": 0.6445072495662971,
+            "observed": 0.5985401459854015
+          },
+          {
+            "n": 2,
+            "predicted": 0.8012899810132526,
+            "observed": 0.5
+          }
+        ]
+      },
+      "poisson10": {
+        "logLoss": 0.6826971215050287,
+        "brier": 0.48945012216790196,
+        "accuracy": 0.5737018425460636,
+        "meanProbability": 0.5802977442792714,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 747,
+            "predicted": 0.5469943581363066,
+            "observed": 0.5649263721552878
+          },
+          {
+            "n": 447,
+            "predicted": 0.6359523962899977,
+            "observed": 0.6062639821029083
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          }
+        ]
+      },
+      "calibrated5": {
+        "logLoss": 0.6819732054958082,
+        "brier": 0.48886758142348574,
+        "accuracy": 0.5720268006700168,
+        "meanProbability": 0.5711558088523448,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 896,
+            "predicted": 0.5554541325454442,
+            "observed": 0.5714285714285714
+          },
+          {
+            "n": 298,
+            "predicted": 0.6183662181509455,
+            "observed": 0.6073825503355704
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          }
+        ]
+      },
+      "calibrated10": {
+        "logLoss": 0.6819508251416877,
+        "brier": 0.4888405159230678,
+        "accuracy": 0.5737018425460636,
+        "meanProbability": 0.5739896816566719,
+        "calibration": [
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          },
+          {
+            "n": 862,
+            "predicted": 0.5571239720987673,
+            "observed": 0.5719257540603249
+          },
+          {
+            "n": 332,
+            "predicted": 0.6177795661112312,
+            "observed": 0.6024096385542169
+          },
+          {
+            "n": 0,
+            "predicted": null,
+            "observed": null
+          }
+        ]
+      }
+    },
+    "pairedLogLossAgainst5": {
+      "difference": -2.238035412038131e-05,
+      "ci95": [
+        -0.0006452070792663323,
+        0.000588405283010817
+      ]
+    }
+  },
+  "subgroups": {
+    "limitedRecentHistory": {
+      "from": "2023-08-12",
+      "to": "2026-11-08",
+      "checked": 422,
+      "frequency": 0.5758293838862559,
+      "models": {
+        "base": {
+          "logLoss": 0.6847703333282132,
+          "brier": 0.4916919554581179,
+          "accuracy": 0.5497630331753555,
+          "meanProbability": 0.5595335062901817,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 340,
+              "predicted": 0.5432441515440206,
+              "observed": 0.5617647058823529
+            },
+            {
+              "n": 82,
+              "predicted": 0.6270747332864599,
+              "observed": 0.6341463414634146
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson": {
+          "logLoss": 0.6839302654803968,
+          "brier": 0.4906761460979716,
+          "accuracy": 0.5710900473933649,
+          "meanProbability": 0.5606387645676182,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 6,
+              "predicted": 0.3866870940887183,
+              "observed": 0.3333333333333333
+            },
+            {
+              "n": 282,
+              "predicted": 0.5291680752509766,
+              "observed": 0.574468085106383
+            },
+            {
+              "n": 134,
+              "predicted": 0.634657006434531,
+              "observed": 0.5895522388059702
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson10": {
+          "logLoss": 0.6797731373468482,
+          "brier": 0.4866949269709813,
+          "accuracy": 0.5781990521327014,
+          "meanProbability": 0.5719883284329853,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 290,
+              "predicted": 0.5478215606759212,
+              "observed": 0.5586206896551724
+            },
+            {
+              "n": 132,
+              "predicted": 0.6250819848689592,
+              "observed": 0.6136363636363636
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated5": {
+          "logLoss": 0.6829408209099836,
+          "brier": 0.48989429473184765,
+          "accuracy": 0.5545023696682464,
+          "meanProbability": 0.5569283900713361,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 348,
+              "predicted": 0.5437864993173027,
+              "observed": 0.5632183908045977
+            },
+            {
+              "n": 74,
+              "predicted": 0.6187307952389524,
+              "observed": 0.6351351351351351
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated10": {
+          "logLoss": 0.6827970109310985,
+          "brier": 0.4897527099180072,
+          "accuracy": 0.556872037914692,
+          "meanProbability": 0.5594519003714176,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 339,
+              "predicted": 0.5450543839105038,
+              "observed": 0.5634218289085545
+            },
+            {
+              "n": 83,
+              "predicted": 0.6182562145912942,
+              "observed": 0.6265060240963856
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLossAgainst5": {
+        "difference": -0.0001438099788854181,
+        "ci95": [
+          -0.0011823690613010402,
+          0.000822951142847431
+        ]
+      }
+    },
+    "otherFixtures": {
+      "from": "2023-11-11",
+      "to": "2026-05-24",
+      "checked": 772,
+      "frequency": 0.582901554404145,
+      "models": {
+        "base": {
+          "logLoss": 0.6819984737447969,
+          "brier": 0.48883363790184464,
+          "accuracy": 0.582901554404145,
+          "meanProbability": 0.584773907017323,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 492,
+              "predicted": 0.5664697894450142,
+              "observed": 0.5813008130081301
+            },
+            {
+              "n": 280,
+              "predicted": 0.6169368564658082,
+              "observed": 0.5857142857142857
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "poisson": {
+          "logLoss": 0.6882415479625569,
+          "brier": 0.49473861351337034,
+          "accuracy": 0.5492227979274611,
+          "meanProbability": 0.5712997106445389,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 9,
+              "predicted": 0.3814262075647523,
+              "observed": 0.5555555555555556
+            },
+            {
+              "n": 484,
+              "predicted": 0.5292552067726317,
+              "observed": 0.5723140495867769
+            },
+            {
+              "n": 277,
+              "predicted": 0.6492723491318446,
+              "observed": 0.6028880866425993
+            },
+            {
+              "n": 2,
+              "predicted": 0.8012899810132526,
+              "observed": 0.5
+            }
+          ]
+        },
+        "poisson10": {
+          "logLoss": 0.6842954651769874,
+          "brier": 0.4909562003713999,
+          "accuracy": 0.5712435233160622,
+          "meanProbability": 0.5848399379154536,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 457,
+              "predicted": 0.5464694374875357,
+              "observed": 0.5689277899343544
+            },
+            {
+              "n": 315,
+              "predicted": 0.640507616314052,
+              "observed": 0.6031746031746031
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated5": {
+          "logLoss": 0.6814442758264014,
+          "brier": 0.488306346946635,
+          "accuracy": 0.5816062176165803,
+          "meanProbability": 0.578932973004658,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 548,
+              "predicted": 0.5628635054713442,
+              "observed": 0.5766423357664233
+            },
+            {
+              "n": 224,
+              "predicted": 0.6182457775058003,
+              "observed": 0.5982142857142857
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        },
+        "calibrated10": {
+          "logLoss": 0.6814882728060255,
+          "brier": 0.4883418813817927,
+          "accuracy": 0.582901554404145,
+          "meanProbability": 0.5819364999239999,
+          "calibration": [
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            },
+            {
+              "n": 523,
+              "predicted": 0.5649472806949839,
+              "observed": 0.5774378585086042
+            },
+            {
+              "n": 249,
+              "predicted": 0.6176206832845436,
+              "observed": 0.5943775100401606
+            },
+            {
+              "n": 0,
+              "predicted": null,
+              "observed": null
+            }
+          ]
+        }
+      },
+      "pairedLogLossAgainst5": {
+        "difference": 4.399697962423724e-05,
+        "ci95": [
+          -0.0007023612200460228,
+          0.0007813603019237905
+        ]
+      }
+    }
+  }
+}

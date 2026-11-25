@@ -18,14 +18,18 @@ from research.goal_market_opponents import checked_bytes
 PLAN = ROOT / 'docs/research/btts-half-life-plan-2026-11-24.json'
 
 
-def weighted_signals(target, history, plan, half_life_days):
-    day, season, host, visitor = target[1:5]
-    day = date.fromisoformat(day)
+def past_games(day, history, plan):
     # The date-only replay assigns a common kickoff hour. Its 28-hour cutoff
     # excludes the target day and preceding day.
     cutoff_hours = plan['leadHours'] + plan['resultSafetyHours']
     last_day = day - timedelta(days=(cutoff_hours + 23) // 24)
-    earlier = [game for game in history if game[0] <= last_day]
+    return [game for game in history if game[0] <= last_day]
+
+
+def weighted_signals(target, history, plan, half_life_days):
+    day, season, host, visitor = target[1:5]
+    day = date.fromisoformat(day)
+    earlier = past_games(day, history, plan)
     goals = np.array([game[4:6] for game in earlier])
     ages = np.array([(day - game[0]).days for game in earlier])
     settings = plan['settings']
@@ -65,8 +69,7 @@ def evaluate(rows, completed, weights, plan):
             'models': metrics, 'pairedLogLossAgainst120': paired}
 
 
-def run():
-    plan = json.loads(PLAN.read_bytes())
+def load_replay(plan):
     raw = subprocess.check_output(['node', 'scripts/replay_goal_markets.mjs', '--score-rows'], cwd=ROOT)
     replay = json.loads(checked_bytes(raw, plan['replaySha256']))
     for key in ('settings', 'leadHours', 'resultSafetyHours'):
@@ -80,8 +83,13 @@ def run():
         seasons.setdefault(year, []).append((date.fromisoformat(day), year, home, away, hg, ag))
     artifact = ROOT / 'docs/research/goal-markets-2026-11-19/calibration.json'
     calibration = json.loads(checked_bytes(artifact.read_bytes(), plan['calibrationSha256']))
+    return replay, fixtures, seasons, calibration['models'][plan['market']]
+
+
+def run():
+    plan = json.loads(PLAN.read_bytes())
+    replay, fixtures, seasons, weights = load_replay(plan)
     market = plan['market']
-    weights = calibration['models'][market]
 
     periods, pooled = [], []
     for period in replay['periods']:
@@ -111,7 +119,7 @@ def run():
     passed = (summary['pairedLogLossAgainst120']['calibrated365']['ci95'][1] < 0
               and models['calibrated365']['brier'] < models['calibrated120']['brier']
               and models['calibrated365']['logLoss'] < models['base']['logLoss'])
-    return {'protocol': plan, 'source': source, 'prospective': False, 'historicalGatePassed': passed,
+    return {'protocol': plan, 'source': replay['source'], 'prospective': False, 'historicalGatePassed': passed,
             'periods': periods, 'pooled': summary}
 
 

@@ -1,0 +1,20 @@
+{
+  "market": "bothScore",
+  "seasons": [2023, 2024, 2025, 2026],
+  "replaySha256": "ef3b18663c68ca0b666ea37d51314ccab956eafef27560b2aa7ef518b95d6e33",
+  "calibrationSha256": "866fc04068d7198ec5482f7738b201b26c2329e4eb17c4464d5ec99d2a2ee3c8",
+  "settings": {"halfLifeDays": 120, "priorSeasonWeight": 0.35, "shrinkageGames": 5},
+  "candidateShrinkageGames": 10,
+  "leadHours": 24,
+  "resultSafetyHours": 4,
+  "rateBounds": [0.05, 5],
+  "scoreLimit": 20,
+  "recentHistory": {"windowDays": 120, "maximumGamesOnEitherSide": 5},
+  "primaryMetric": "logLoss",
+  "primaryComparison": "Compare 10 and 5 pseudo-games in the team Poisson goal rates with identical history, frequency input, temporal weights and BTTS calibration coefficients.",
+  "diagnostics": "Measure performance by season and for forecasts with at most five eligible home games for the home side or away games for the away side within the prior 120 days.",
+  "brierScale": [0, 2],
+  "bootstrapSamples": 1500,
+  "bootstrapSeed": 20261125,
+  "historicalGate": "Upper paired 95% Log Loss difference versus the 5-game calibration below zero, lower Brier than the 5-game calibration and lower Log Loss than league frequencies. Prospective evaluation is required for promotion."
+}
