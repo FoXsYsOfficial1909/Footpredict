@@ -5,14 +5,14 @@
     "schemaVersion": 1,
     "protocol": "corner-candidate-1",
     "status": "success",
-    "asOf": "2026-11-24",
-    "trainingCutoffExclusive": "2026-11-23",
-    "latestTrainingMatch": "2026-11-22",
-    "trainingMatches": 4289,
-    "pairedCornerMatches": 4289,
-    "modelTrainingMatches": 1129,
-    "modelVersion": "corners-league-2026-11-24-e076d0855bb6",
-    "modelSha256": "bf94db05822c7f8bb78334958bc4896b2fe73aa73f95c28b15fd9160115fcf9d",
+    "asOf": "2026-11-25",
+    "trainingCutoffExclusive": "2026-11-24",
+    "latestTrainingMatch": "2026-11-23",
+    "trainingMatches": 4290,
+    "pairedCornerMatches": 4290,
+    "modelTrainingMatches": 1130,
+    "modelVersion": "corners-league-2026-11-25-40c278f9e3e5",
+    "modelSha256": "2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4",
     "settings": {
       "id": "empirical-league",
       "family": "empirical",
@@ -364,21 +364,21 @@
         }
       }
     },
-    "dataSha256": "0e7d8c879c4f7fb6d73cee3f8fb0ea472cea5f0bf2134698e9c6fff1dd2a0081",
+    "dataSha256": "6c23d6d3643106a623e8084b523920599be58369e7e4a1099443bb0ff4fc6e75",
     "codeSha256": "7191139681cd1d091270d3256eefd6f29683405c576491913538fa497cc4f38f",
     "sourceCoverage": {
-      "resultMatches": 4289,
-      "pairedCornerMatches": 4289,
+      "resultMatches": 4290,
+      "pairedCornerMatches": 4290,
       "missingCornerMatches": 0,
-      "latestResultDate": "2026-11-22",
-      "latestCornerDate": "2026-11-22"
+      "latestResultDate": "2026-11-23",
+      "latestCornerDate": "2026-11-23"
     },
     "evaluation": {
       "kind": "rolling_historical_corner_procedure",
-      "targets": 121,
-      "commonMatches": 121,
-      "from": "2026-05-19",
-      "to": "2026-11-22",
+      "targets": 120,
+      "commonMatches": 120,
+      "from": "2026-05-24",
+      "to": "2026-11-23",
       "lines": [
         8.5,
         9.5,
@@ -386,60 +386,60 @@
       ],
       "metrics": {
         "challenger": {
-          "n": 121,
-          "brier": 0.24920513523188306,
-          "logloss": 0.6920638999575605,
-          "accuracy": 0.5647382920110192,
-          "meanAbsoluteError": 2.6892901815211347,
-          "predictiveIntervalCoverage": 0.8347107438016529,
-          "meanPredictiveIntervalWidth": 8.768595041322314,
+          "n": 120,
+          "brier": 0.2485911452485097,
+          "logloss": 0.6907846244005248,
+          "accuracy": 0.5666666666666667,
+          "meanAbsoluteError": 2.6703815106928754,
+          "predictiveIntervalCoverage": 0.8333333333333334,
+          "meanPredictiveIntervalWidth": 8.758333333333333,
           "byLine": {
             "8.5": {
-              "n": 121,
-              "brier": 0.25041302997947995,
-              "logloss": 0.695430338041781,
-              "accuracy": 0.5867768595041323
+              "n": 120,
+              "brier": 0.2487117601034542,
+              "logloss": 0.691876618293066,
+              "accuracy": 0.5916666666666667
             },
             "9.5": {
-              "n": 121,
-              "brier": 0.2563208505982422,
-              "logloss": 0.7059018293206455,
-              "accuracy": 0.48760330578512395
+              "n": 120,
+              "brier": 0.25675829364068775,
+              "logloss": 0.7067792057121269,
+              "accuracy": 0.48333333333333334
             },
             "10.5": {
-              "n": 121,
-              "brier": 0.24088152511792701,
-              "logloss": 0.6748595325102545,
-              "accuracy": 0.6198347107438017
+              "n": 120,
+              "brier": 0.2403033820013872,
+              "logloss": 0.6736980491963813,
+              "accuracy": 0.625
             }
           }
         },
         "baseline": {
-          "n": 121,
-          "brier": 0.24920513523188306,
-          "logloss": 0.6920638999575605,
-          "accuracy": 0.5647382920110192,
-          "meanAbsoluteError": 2.6892901815211347,
-          "predictiveIntervalCoverage": 0.8347107438016529,
-          "meanPredictiveIntervalWidth": 8.768595041322314,
+          "n": 120,
+          "brier": 0.2485911452485097,
+          "logloss": 0.6907846244005248,
+          "accuracy": 0.5666666666666667,
+          "meanAbsoluteError": 2.6703815106928754,
+          "predictiveIntervalCoverage": 0.8333333333333334,
+          "meanPredictiveIntervalWidth": 8.758333333333333,
           "byLine": {
             "8.5": {
-              "n": 121,
-              "brier": 0.25041302997947995,
-              "logloss": 0.695430338041781,
-              "accuracy": 0.5867768595041323
+              "n": 120,
+              "brier": 0.2487117601034542,
+              "logloss": 0.691876618293066,
+              "accuracy": 0.5916666666666667
             },
             "9.5": {
-              "n": 121,
-              "brier": 0.2563208505982422,
-              "logloss": 0.7059018293206455,
-              "accuracy": 0.48760330578512395
+              "n": 120,
+              "brier": 0.25675829364068775,
+              "logloss": 0.7067792057121269,
+              "accuracy": 0.48333333333333334
             },
             "10.5": {
-              "n": 121,
-              "brier": 0.24088152511792701,
-              "logloss": 0.6748595325102545,
-              "accuracy": 0.6198347107438017
+              "n": 120,
+              "brier": 0.2403033820013872,
+              "logloss": 0.6736980491963813,
+              "accuracy": 0.625
             }
           }
         }
@@ -687,7 +687,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.7290336859999798,
+    "durationSeconds": 1.6217751100000015,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -697,28 +697,28 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.07373016500000062,
-    "generatedAt": "2026-11-24T10:27:04.613238+00:00",
+    "computeSeconds": 0.08297527200000232,
+    "generatedAt": "2026-11-25T09:12:54.247989+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "45374847354",
+    "runId": "45583222403",
     "runAttempt": "1",
-    "sourceCommit": "1dd1f5b842c888db3b2646f1281765d4274ddedc",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45374847354",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45374847354#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/bf94db05822c7f8bb78334958bc4896b2fe73aa73f95c28b15fd9160115fcf9d.json"
+    "sourceCommit": "746a15b231cef14f4daefd3d444a0cd66b8a16ce",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "corner-candidate-1",
     "status": "success",
-    "asOf": "2026-11-24",
-    "trainingCutoffExclusive": "2026-11-23",
-    "latestTrainingMatch": "2026-11-22",
-    "trainingMatches": 4289,
-    "pairedCornerMatches": 4289,
-    "modelTrainingMatches": 1129,
-    "modelVersion": "corners-league-2026-11-24-e076d0855bb6",
-    "modelSha256": "bf94db05822c7f8bb78334958bc4896b2fe73aa73f95c28b15fd9160115fcf9d",
+    "asOf": "2026-11-25",
+    "trainingCutoffExclusive": "2026-11-24",
+    "latestTrainingMatch": "2026-11-23",
+    "trainingMatches": 4290,
+    "pairedCornerMatches": 4290,
+    "modelTrainingMatches": 1130,
+    "modelVersion": "corners-league-2026-11-25-40c278f9e3e5",
+    "modelSha256": "2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4",
     "settings": {
       "id": "empirical-league",
       "family": "empirical",
@@ -1070,21 +1070,21 @@
         }
       }
     },
-    "dataSha256": "0e7d8c879c4f7fb6d73cee3f8fb0ea472cea5f0bf2134698e9c6fff1dd2a0081",
+    "dataSha256": "6c23d6d3643106a623e8084b523920599be58369e7e4a1099443bb0ff4fc6e75",
     "codeSha256": "7191139681cd1d091270d3256eefd6f29683405c576491913538fa497cc4f38f",
     "sourceCoverage": {
-      "resultMatches": 4289,
-      "pairedCornerMatches": 4289,
+      "resultMatches": 4290,
+      "pairedCornerMatches": 4290,
       "missingCornerMatches": 0,
-      "latestResultDate": "2026-11-22",
-      "latestCornerDate": "2026-11-22"
+      "latestResultDate": "2026-11-23",
+      "latestCornerDate": "2026-11-23"
     },
     "evaluation": {
       "kind": "rolling_historical_corner_procedure",
-      "targets": 121,
-      "commonMatches": 121,
-      "from": "2026-05-19",
-      "to": "2026-11-22",
+      "targets": 120,
+      "commonMatches": 120,
+      "from": "2026-05-24",
+      "to": "2026-11-23",
       "lines": [
         8.5,
         9.5,
@@ -1092,60 +1092,60 @@
       ],
       "metrics": {
         "challenger": {
-          "n": 121,
-          "brier": 0.24920513523188306,
-          "logloss": 0.6920638999575605,
-          "accuracy": 0.5647382920110192,
-          "meanAbsoluteError": 2.6892901815211347,
-          "predictiveIntervalCoverage": 0.8347107438016529,
-          "meanPredictiveIntervalWidth": 8.768595041322314,
+          "n": 120,
+          "brier": 0.2485911452485097,
+          "logloss": 0.6907846244005248,
+          "accuracy": 0.5666666666666667,
+          "meanAbsoluteError": 2.6703815106928754,
+          "predictiveIntervalCoverage": 0.8333333333333334,
+          "meanPredictiveIntervalWidth": 8.758333333333333,
           "byLine": {
             "8.5": {
-              "n": 121,
-              "brier": 0.25041302997947995,
-              "logloss": 0.695430338041781,
-              "accuracy": 0.5867768595041323
+              "n": 120,
+              "brier": 0.2487117601034542,
+              "logloss": 0.691876618293066,
+              "accuracy": 0.5916666666666667
             },
             "9.5": {
-              "n": 121,
-              "brier": 0.2563208505982422,
-              "logloss": 0.7059018293206455,
-              "accuracy": 0.48760330578512395
+              "n": 120,
+              "brier": 0.25675829364068775,
+              "logloss": 0.7067792057121269,
+              "accuracy": 0.48333333333333334
             },
             "10.5": {
-              "n": 121,
-              "brier": 0.24088152511792701,
-              "logloss": 0.6748595325102545,
-              "accuracy": 0.6198347107438017
+              "n": 120,
+              "brier": 0.2403033820013872,
+              "logloss": 0.6736980491963813,
+              "accuracy": 0.625
             }
           }
         },
         "baseline": {
-          "n": 121,
-          "brier": 0.24920513523188306,
-          "logloss": 0.6920638999575605,
-          "accuracy": 0.5647382920110192,
-          "meanAbsoluteError": 2.6892901815211347,
-          "predictiveIntervalCoverage": 0.8347107438016529,
-          "meanPredictiveIntervalWidth": 8.768595041322314,
+          "n": 120,
+          "brier": 0.2485911452485097,
+          "logloss": 0.6907846244005248,
+          "accuracy": 0.5666666666666667,
+          "meanAbsoluteError": 2.6703815106928754,
+          "predictiveIntervalCoverage": 0.8333333333333334,
+          "meanPredictiveIntervalWidth": 8.758333333333333,
           "byLine": {
             "8.5": {
-              "n": 121,
-              "brier": 0.25041302997947995,
-              "logloss": 0.695430338041781,
-              "accuracy": 0.5867768595041323
+              "n": 120,
+              "brier": 0.2487117601034542,
+              "logloss": 0.691876618293066,
+              "accuracy": 0.5916666666666667
             },
             "9.5": {
-              "n": 121,
-              "brier": 0.2563208505982422,
-              "logloss": 0.7059018293206455,
-              "accuracy": 0.48760330578512395
+              "n": 120,
+              "brier": 0.25675829364068775,
+              "logloss": 0.7067792057121269,
+              "accuracy": 0.48333333333333334
             },
             "10.5": {
-              "n": 121,
-              "brier": 0.24088152511792701,
-              "logloss": 0.6748595325102545,
-              "accuracy": 0.6198347107438017
+              "n": 120,
+              "brier": 0.2403033820013872,
+              "logloss": 0.6736980491963813,
+              "accuracy": 0.625
             }
           }
         }
@@ -1393,7 +1393,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.7290336859999798,
+    "durationSeconds": 1.6217751100000015,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -1403,14 +1403,14 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.07373016500000062,
-    "generatedAt": "2026-11-24T10:27:04.613238+00:00",
+    "computeSeconds": 0.08297527200000232,
+    "generatedAt": "2026-11-25T09:12:54.247989+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "45374847354",
+    "runId": "45583222403",
     "runAttempt": "1",
-    "sourceCommit": "1dd1f5b842c888db3b2646f1281765d4274ddedc",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45374847354",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45374847354#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/bf94db05822c7f8bb78334958bc4896b2fe73aa73f95c28b15fd9160115fcf9d.json"
+    "sourceCommit": "746a15b231cef14f4daefd3d444a0cd66b8a16ce",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4.json"
   }
 }
