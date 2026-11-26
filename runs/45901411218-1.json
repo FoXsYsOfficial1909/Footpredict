@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "protocol": "championship-nightly-1",
+  "status": "success",
+  "asOf": "2026-11-26",
+  "trainingCutoffExclusive": "2026-11-25",
+  "latestTrainingMatch": "2026-11-24",
+  "trainingMatches": 6272,
+  "poissonTrainingMatches": 1652,
+  "modelVersion": "ELC-candidate-2026-11-26-6b95429f08ca",
+  "modelSha256": "dcc8fb7897c608d80418d6f82865e8f46409068c530189c629608a1c55f618b7",
+  "dataSha256": "8d18ab57bae28d000e7d6bd8b1220555c93842cf4dec9051b4d1d67967f6554e",
+  "settingsSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
+  "codeSha256": "be5b3c7274a0e68378c5e4ef4dbcbc50d1d5a67b6afd4344bc0c4c5cbf0ced16",
+  "settings": {
+    "league": "ELC",
+    "division": "E1",
+    "protocol": "championship-selection-1",
+    "planSha256": "13f86f1b3f95b55ed97b5051b8e752f99bf3a5702bb35a59f6652d94737ec479",
+    "candidateId": "glm-730-r0.03-w0.75",
+    "glm": {
+      "half_life": 730,
+      "ridge": 0.03,
+      "window_days": 1095
+    },
+    "elo": {
+      "k": 30,
+      "home_advantage": 80,
+      "draw_weight": 0.9
+    },
+    "glm_weight": 0.75,
+    "validation": {
+      "n": 1061,
+      "brier": 0.6177735641577966,
+      "logloss": 1.0290010212404144,
+      "accuracy": 0.4665409990574929
+    },
+    "selectionSeasons": [
+      2023,
+      2024
+    ],
+    "coverage": {
+      "targets": 1104,
+      "commonMatches": 1061,
+      "excludedFromAll": 43
+    },
+    "selectionDataSha256": "acc8f5586421d0ea90af0cb54d2b87273679bda37dcebc4c65b89ebb3841c446",
+    "chosenBeforeAudit": true,
+    "promotedToDefault": false
+  },
+  "evaluation": {
+    "kind": "rolling_historical_procedure",
+    "requestedMatches": 120,
+    "targets": 120,
+    "commonMatches": 120,
+    "excludedFromAll": 0,
+    "from": "2026-09-13",
+    "to": "2026-11-24",
+    "metrics": {
+      "candidate": {
+        "n": 120,
+        "brier": 0.6525929375815089,
+        "logloss": 1.0748468041413934,
+        "accuracy": 0.45
+      },
+      "v1": {
+        "n": 120,
+        "brier": 0.6248944837683891,
+        "logloss": 1.0396226515304368,
+        "accuracy": 0.5083333333333333
+      },
+      "base": {
+        "n": 120,
+        "brier": 0.6490979971209652,
+        "logloss": 1.073400605161065,
+        "accuracy": 0.45
+      }
+    },
+    "poissonFitSeconds": 0.10136203099999364
+  },
+  "dataSources": [
+    {
+      "season": 2015,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1516/E1.csv",
+      "sha256": "3bd30151b05c5a570d222f8b02d430622d62b7822c564a33fa04a3dbf7391cf5",
+      "rows": 552,
+      "first_date": "2015-08-07",
+      "last_date": "2016-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2016,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1617/E1.csv",
+      "sha256": "78c37fc070b9937d72dbc351fac746605f6346b36176f02d4828de57aa135f98",
+      "rows": 552,
+      "first_date": "2016-08-05",
+      "last_date": "2017-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2017,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1718/E1.csv",
+      "sha256": "04d07d578d818bdcd6b95d43e79f10a6a26be01b45be6190b09ebdeaeba0a7ce",
+      "rows": 552,
+      "first_date": "2017-08-04",
+      "last_date": "2018-05-06",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2018,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1819/E1.csv",
+      "sha256": "112eedf787e26e00aac1442ef86e7fee5d4a43f86552ff2dac31ceb95a849487",
+      "rows": 552,
+      "first_date": "2018-08-03",
+      "last_date": "2019-05-05",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2019,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/1920/E1.csv",
+      "sha256": "f31450c623c0b74b89692584a85924cc652d33ec89757acf4b2dda5e26261d57",
+      "rows": 552,
+      "first_date": "2019-08-02",
+      "last_date": "2020-07-22",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2020,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2021/E1.csv",
+      "sha256": "cf93295e310c60e5b97ae7466d772f8ec6a908ad401e38fceb7e8617369d5073",
+      "rows": 552,
+      "first_date": "2020-09-11",
+      "last_date": "2021-05-08",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2021,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2122/E1.csv",
+      "sha256": "a181451be4801b9f838daf5f6aaf21e9f09d36042be9e6c15388e71001e772ea",
+      "rows": 552,
+      "first_date": "2021-08-06",
+      "last_date": "2022-05-07",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2022,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2223/E1.csv",
+      "sha256": "cd38ab0586ea8cb4d573c363ff70749117f116da5b2741e5b0ea37da05860b1b",
+      "rows": 552,
+      "first_date": "2022-07-29",
+      "last_date": "2023-05-08",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2023,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2324/E1.csv",
+      "sha256": "5737f6cc95c95092b28317f41d3123e2fb09345434efc1c84bbdf15830849ab3",
+      "rows": 552,
+      "first_date": "2023-08-04",
+      "last_date": "2024-05-04",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2024,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2425/E1.csv",
+      "sha256": "f34c340446c916374be66bdc2fb25b87ee7f2662712ca009653d03ac705535f9",
+      "rows": 552,
+      "first_date": "2024-08-09",
+      "last_date": "2025-05-03",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2025,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2526/E1.csv",
+      "sha256": "98954c319950f19158624b17a154ef1c56eb7b8d169ef317f28f06d11d0b9a74",
+      "rows": 552,
+      "first_date": "2025-08-08",
+      "last_date": "2026-05-02",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    },
+    {
+      "season": 2026,
+      "division": "E1",
+      "league": "ELC",
+      "url": "https://www.football-data.co.uk/mmz4281/2627/E1.csv",
+      "sha256": "8abf1159a002feb6adfd08137056299e01eb428038901e2db191758843b1281c",
+      "rows": 204,
+      "first_date": "2026-08-14",
+      "last_date": "2026-11-25",
+      "used_columns": [
+        "Div",
+        "Date",
+        "HomeTeam",
+        "AwayTeam",
+        "FTHG",
+        "FTAG",
+        "FTR"
+      ],
+      "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
+    }
+  ],
+  "durationSeconds": 0.8443201810000005,
+  "timings": {
+    "referencePreparationSeconds": 0.5804455709999985,
+    "historicalValidationSeconds": 0.11525115700000299,
+    "finalFitSeconds": 0.005608103000000142,
+    "dataLoadSeconds": 0.12808066200000212
+  },
+  "promotedToDefault": false,
+  "prospectiveValidationRequired": true,
+  "limitations": [
+    "Settings are fixed from the persisted validation selection; this run performs no grid search.",
+    "Historical monitoring evaluates rolling fits, not the newly fitted final weights.",
+    "These dates may have been inspected before. Historical metrics are not an untouched or prospective test.",
+    "Same-day and immediately preceding-day results are excluded because CSV publication times are unknown.",
+    "News, injuries and lineups are not numeric predictors in this candidate."
+  ],
+  "league": "ELC",
+  "division": "E1",
+  "selectionSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
+  "historicalQualification": {
+    "protocol": "championship-selection-1",
+    "selectionSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
+    "historicalGatePassed": false,
+    "retrospective": true,
+    "prospectiveValidationRequired": true
+  },
+  "generatedAt": "2026-11-26T21:56:04.598370+00:00",
+  "computeSeconds": 0.7157337830000046,
+  "trainingFingerprint": "8fdcc6dbed309976094a693ae85444331f91401e4a325b62babb37d65702b453",
+  "repository": "FoXsYsOfficial1909/Footpredict",
+  "runId": "45901411218",
+  "runAttempt": "1",
+  "sourceCommit": "29b83dece2a31257f126620b59209524ae6098a6",
+  "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45901411218",
+  "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45901411218#artifacts",
+  "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/championship-training-reports/models/dcc8fb7897c608d80418d6f82865e8f46409068c530189c629608a1c55f618b7.json"
+}
