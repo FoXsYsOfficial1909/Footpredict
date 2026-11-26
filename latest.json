@@ -5,14 +5,14 @@
     "schemaVersion": 1,
     "protocol": "corner-candidate-1",
     "status": "success",
-    "asOf": "2026-11-25",
-    "trainingCutoffExclusive": "2026-11-24",
+    "asOf": "2026-11-26",
+    "trainingCutoffExclusive": "2026-11-25",
     "latestTrainingMatch": "2026-11-23",
     "trainingMatches": 4290,
     "pairedCornerMatches": 4290,
-    "modelTrainingMatches": 1130,
-    "modelVersion": "corners-league-2026-11-25-40c278f9e3e5",
-    "modelSha256": "2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4",
+    "modelTrainingMatches": 1123,
+    "modelVersion": "corners-league-2026-11-26-633710a9bdf4",
+    "modelSha256": "4b170510008fe92ee3c2d4771b6fcd5e645e6850debd53c4ce39a902e75ee504",
     "settings": {
       "id": "empirical-league",
       "family": "empirical",
@@ -388,7 +388,7 @@
         "challenger": {
           "n": 120,
           "brier": 0.2485911452485097,
-          "logloss": 0.6907846244005248,
+          "logloss": 0.6907846244005249,
           "accuracy": 0.5666666666666667,
           "meanAbsoluteError": 2.6703815106928754,
           "predictiveIntervalCoverage": 0.8333333333333334,
@@ -403,7 +403,7 @@
             "9.5": {
               "n": 120,
               "brier": 0.25675829364068775,
-              "logloss": 0.7067792057121269,
+              "logloss": 0.706779205712127,
               "accuracy": 0.48333333333333334
             },
             "10.5": {
@@ -417,7 +417,7 @@
         "baseline": {
           "n": 120,
           "brier": 0.2485911452485097,
-          "logloss": 0.6907846244005248,
+          "logloss": 0.6907846244005249,
           "accuracy": 0.5666666666666667,
           "meanAbsoluteError": 2.6703815106928754,
           "predictiveIntervalCoverage": 0.8333333333333334,
@@ -432,7 +432,7 @@
             "9.5": {
               "n": 120,
               "brier": 0.25675829364068775,
-              "logloss": 0.7067792057121269,
+              "logloss": 0.706779205712127,
               "accuracy": 0.48333333333333334
             },
             "10.5": {
@@ -687,7 +687,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.6217751100000015,
+    "durationSeconds": 1.805477045999993,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -697,28 +697,28 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.08297527200000232,
-    "generatedAt": "2026-11-25T09:12:54.247989+00:00",
+    "computeSeconds": 0.10817549400000814,
+    "generatedAt": "2026-11-26T08:55:18.541334+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "45583222403",
+    "runId": "45787205218",
     "runAttempt": "1",
-    "sourceCommit": "746a15b231cef14f4daefd3d444a0cd66b8a16ce",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4.json"
+    "sourceCommit": "29b83dece2a31257f126620b59209524ae6098a6",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45787205218",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45787205218#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/4b170510008fe92ee3c2d4771b6fcd5e645e6850debd53c4ce39a902e75ee504.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "corner-candidate-1",
     "status": "success",
-    "asOf": "2026-11-25",
-    "trainingCutoffExclusive": "2026-11-24",
+    "asOf": "2026-11-26",
+    "trainingCutoffExclusive": "2026-11-25",
     "latestTrainingMatch": "2026-11-23",
     "trainingMatches": 4290,
     "pairedCornerMatches": 4290,
-    "modelTrainingMatches": 1130,
-    "modelVersion": "corners-league-2026-11-25-40c278f9e3e5",
-    "modelSha256": "2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4",
+    "modelTrainingMatches": 1123,
+    "modelVersion": "corners-league-2026-11-26-633710a9bdf4",
+    "modelSha256": "4b170510008fe92ee3c2d4771b6fcd5e645e6850debd53c4ce39a902e75ee504",
     "settings": {
       "id": "empirical-league",
       "family": "empirical",
@@ -1094,7 +1094,7 @@
         "challenger": {
           "n": 120,
           "brier": 0.2485911452485097,
-          "logloss": 0.6907846244005248,
+          "logloss": 0.6907846244005249,
           "accuracy": 0.5666666666666667,
           "meanAbsoluteError": 2.6703815106928754,
           "predictiveIntervalCoverage": 0.8333333333333334,
@@ -1109,7 +1109,7 @@
             "9.5": {
               "n": 120,
               "brier": 0.25675829364068775,
-              "logloss": 0.7067792057121269,
+              "logloss": 0.706779205712127,
               "accuracy": 0.48333333333333334
             },
             "10.5": {
@@ -1123,7 +1123,7 @@
         "baseline": {
           "n": 120,
           "brier": 0.2485911452485097,
-          "logloss": 0.6907846244005248,
+          "logloss": 0.6907846244005249,
           "accuracy": 0.5666666666666667,
           "meanAbsoluteError": 2.6703815106928754,
           "predictiveIntervalCoverage": 0.8333333333333334,
@@ -1138,7 +1138,7 @@
             "9.5": {
               "n": 120,
               "brier": 0.25675829364068775,
-              "logloss": 0.7067792057121269,
+              "logloss": 0.706779205712127,
               "accuracy": 0.48333333333333334
             },
             "10.5": {
@@ -1393,7 +1393,7 @@
         "not_used": "Target-match statistics and future corner counts never enter their own prediction."
       }
     ],
-    "durationSeconds": 1.6217751100000015,
+    "durationSeconds": 1.805477045999993,
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
     "limitations": [
@@ -1403,14 +1403,14 @@
       "Target and immediately preceding calendar-day observations are excluded.",
       "Weather, injuries, actual lineups and unverified workload are not numeric corner predictors."
     ],
-    "computeSeconds": 0.08297527200000232,
-    "generatedAt": "2026-11-25T09:12:54.247989+00:00",
+    "computeSeconds": 0.10817549400000814,
+    "generatedAt": "2026-11-26T08:55:18.541334+00:00",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "45583222403",
+    "runId": "45787205218",
     "runAttempt": "1",
-    "sourceCommit": "746a15b231cef14f4daefd3d444a0cd66b8a16ce",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45583222403#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/2a51fa947bbd5ba50f0a8c5c05aa725197eb05182c6911a04f6f740705b7c2f4.json"
+    "sourceCommit": "29b83dece2a31257f126620b59209524ae6098a6",
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45787205218",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45787205218#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/corner-reports/models/4b170510008fe92ee3c2d4771b6fcd5e645e6850debd53c4ce39a902e75ee504.json"
   }
 }
