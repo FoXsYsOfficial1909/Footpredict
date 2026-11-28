@@ -4,13 +4,13 @@
     "schemaVersion": 1,
     "protocol": "championship-nightly-1",
     "status": "success",
-    "asOf": "2026-11-27",
-    "trainingCutoffExclusive": "2026-11-26",
+    "asOf": "2026-11-28",
+    "trainingCutoffExclusive": "2026-11-27",
     "latestTrainingMatch": "2026-11-25",
     "trainingMatches": 6276,
     "poissonTrainingMatches": 1656,
-    "modelVersion": "ELC-candidate-2026-11-27-f95f0ba4bb74",
-    "modelSha256": "16b0c1c0b8042280828ba5187a95dc04cae3596feee5bd1c17b17cddc6239d2b",
+    "modelVersion": "ELC-candidate-2026-11-28-228a6a3e5d2c",
+    "modelSha256": "9d42fb534fa24b84611ff2aeb770d52af7f597ad00c438983225dfbd95daed84",
     "dataSha256": "4ff88e7d710203bb1b8b5764cdfc174c406d48f998a96da8379b035e2bbd3c94",
     "settingsSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
     "codeSha256": "be5b3c7274a0e68378c5e4ef4dbcbc50d1d5a67b6afd4344bc0c4c5cbf0ced16",
@@ -61,8 +61,8 @@
       "metrics": {
         "candidate": {
           "n": 120,
-          "brier": 0.6514493693792964,
-          "logloss": 1.0732736931428273,
+          "brier": 0.6514500525262698,
+          "logloss": 1.0732745658689125,
           "accuracy": 0.4583333333333333
         },
         "v1": {
@@ -78,7 +78,7 @@
           "accuracy": 0.45
         }
       },
-      "poissonFitSeconds": 0.1350798140000009
+      "poissonFitSeconds": 0.08434692200000171
     },
     "dataSources": [
       {
@@ -322,12 +322,12 @@
         "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
       }
     ],
-    "durationSeconds": 1.1577715190000006,
+    "durationSeconds": 0.7930755069999975,
     "timings": {
-      "referencePreparationSeconds": 0.8063803430000007,
-      "historicalValidationSeconds": 0.15386560299999985,
-      "finalFitSeconds": 0.008741098999998087,
-      "dataLoadSeconds": 0.17133140099999622
+      "referencePreparationSeconds": 0.5495678600000033,
+      "historicalValidationSeconds": 0.09687753400000076,
+      "finalFitSeconds": 0.005341349999994804,
+      "dataLoadSeconds": 0.1280017839999985
     },
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
@@ -348,28 +348,28 @@
       "retrospective": true,
       "prospectiveValidationRequired": true
     },
-    "generatedAt": "2026-11-27T09:05:15.838173+00:00",
-    "computeSeconds": 0.9857662419999969,
-    "trainingFingerprint": "dff2fdd587c0cf44f8484a8c27604da9385993bc6f9481de9d7fc8f34e843166",
+    "generatedAt": "2026-11-28T08:27:28.988799+00:00",
+    "computeSeconds": 0.664600722000003,
+    "trainingFingerprint": "22b59c1c7f1c4f40c64aca98343ab19147e2a666f712bb7e8d5b07a96aa43989",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "45970703409",
+    "runId": "46125876357",
     "runAttempt": "1",
     "sourceCommit": "29b83dece2a31257f126620b59209524ae6098a6",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45970703409",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45970703409#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/championship-training-reports/models/16b0c1c0b8042280828ba5187a95dc04cae3596feee5bd1c17b17cddc6239d2b.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/46125876357",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/46125876357#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/championship-training-reports/models/9d42fb534fa24b84611ff2aeb770d52af7f597ad00c438983225dfbd95daed84.json"
   },
   "latestSuccessful": {
     "schemaVersion": 1,
     "protocol": "championship-nightly-1",
     "status": "success",
-    "asOf": "2026-11-27",
-    "trainingCutoffExclusive": "2026-11-26",
+    "asOf": "2026-11-28",
+    "trainingCutoffExclusive": "2026-11-27",
     "latestTrainingMatch": "2026-11-25",
     "trainingMatches": 6276,
     "poissonTrainingMatches": 1656,
-    "modelVersion": "ELC-candidate-2026-11-27-f95f0ba4bb74",
-    "modelSha256": "16b0c1c0b8042280828ba5187a95dc04cae3596feee5bd1c17b17cddc6239d2b",
+    "modelVersion": "ELC-candidate-2026-11-28-228a6a3e5d2c",
+    "modelSha256": "9d42fb534fa24b84611ff2aeb770d52af7f597ad00c438983225dfbd95daed84",
     "dataSha256": "4ff88e7d710203bb1b8b5764cdfc174c406d48f998a96da8379b035e2bbd3c94",
     "settingsSha256": "0cd5238d22e664061dc0c984cb22088cc88167f513cddf36ae2f6e9efec64b02",
     "codeSha256": "be5b3c7274a0e68378c5e4ef4dbcbc50d1d5a67b6afd4344bc0c4c5cbf0ced16",
@@ -420,8 +420,8 @@
       "metrics": {
         "candidate": {
           "n": 120,
-          "brier": 0.6514493693792964,
-          "logloss": 1.0732736931428273,
+          "brier": 0.6514500525262698,
+          "logloss": 1.0732745658689125,
           "accuracy": 0.4583333333333333
         },
         "v1": {
@@ -437,7 +437,7 @@
           "accuracy": 0.45
         }
       },
-      "poissonFitSeconds": 0.1350798140000009
+      "poissonFitSeconds": 0.08434692200000171
     },
     "dataSources": [
       {
@@ -681,12 +681,12 @@
         "not_used": "Odds, target-match shots, cards, corners and every other post-match field"
       }
     ],
-    "durationSeconds": 1.1577715190000006,
+    "durationSeconds": 0.7930755069999975,
     "timings": {
-      "referencePreparationSeconds": 0.8063803430000007,
-      "historicalValidationSeconds": 0.15386560299999985,
-      "finalFitSeconds": 0.008741098999998087,
-      "dataLoadSeconds": 0.17133140099999622
+      "referencePreparationSeconds": 0.5495678600000033,
+      "historicalValidationSeconds": 0.09687753400000076,
+      "finalFitSeconds": 0.005341349999994804,
+      "dataLoadSeconds": 0.1280017839999985
     },
     "promotedToDefault": false,
     "prospectiveValidationRequired": true,
@@ -707,37 +707,37 @@
       "retrospective": true,
       "prospectiveValidationRequired": true
     },
-    "generatedAt": "2026-11-27T09:05:15.838173+00:00",
-    "computeSeconds": 0.9857662419999969,
-    "trainingFingerprint": "dff2fdd587c0cf44f8484a8c27604da9385993bc6f9481de9d7fc8f34e843166",
+    "generatedAt": "2026-11-28T08:27:28.988799+00:00",
+    "computeSeconds": 0.664600722000003,
+    "trainingFingerprint": "22b59c1c7f1c4f40c64aca98343ab19147e2a666f712bb7e8d5b07a96aa43989",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "45970703409",
+    "runId": "46125876357",
     "runAttempt": "1",
     "sourceCommit": "29b83dece2a31257f126620b59209524ae6098a6",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45970703409",
-    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/45970703409#artifacts",
-    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/championship-training-reports/models/16b0c1c0b8042280828ba5187a95dc04cae3596feee5bd1c17b17cddc6239d2b.json"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/46125876357",
+    "artifactsUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/46125876357#artifacts",
+    "modelUrl": "https://raw.githubusercontent.com/FoXsYsOfficial1909/Footpredict/championship-training-reports/models/9d42fb534fa24b84611ff2aeb770d52af7f597ad00c438983225dfbd95daed84.json"
   },
   "latestCheck": {
     "schemaVersion": 1,
     "protocol": "continuous-training-1",
-    "checkedAt": "2026-11-27T21:38:32.513152+00:00",
-    "asOf": "2026-11-27",
+    "checkedAt": "2026-11-28T08:27:26.663705+00:00",
+    "asOf": "2026-11-28",
     "league": "ELC",
     "division": "E1",
     "method": "goals",
     "promotedToDefault": false,
-    "trainingFingerprint": "dff2fdd587c0cf44f8484a8c27604da9385993bc6f9481de9d7fc8f34e843166",
+    "trainingFingerprint": "22b59c1c7f1c4f40c64aca98343ab19147e2a666f712bb7e8d5b07a96aa43989",
     "inputMatches": 6276,
-    "trainingCutoffExclusive": "2026-11-26",
+    "trainingCutoffExclusive": "2026-11-27",
     "latestInputMatch": "2026-11-25",
-    "status": "unchanged",
-    "modelSha256": "16b0c1c0b8042280828ba5187a95dc04cae3596feee5bd1c17b17cddc6239d2b",
-    "reason": "inputs_and_daily_cutoff_unchanged",
+    "status": "trained",
+    "modelSha256": "9d42fb534fa24b84611ff2aeb770d52af7f597ad00c438983225dfbd95daed84",
+    "reason": "inputs_settings_code_or_daily_cutoff_changed",
     "repository": "FoXsYsOfficial1909/Footpredict",
-    "runId": "46071583991",
+    "runId": "46125876357",
     "runAttempt": "1",
     "sourceCommit": "29b83dece2a31257f126620b59209524ae6098a6",
-    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/46071583991"
+    "runUrl": "https://github.com/FoXsYsOfficial1909/Footpredict/actions/runs/46125876357"
   }
 }
